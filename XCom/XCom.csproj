@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64B19295-6B97-4195-AF17-D894CCDC5796}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XCom</RootNamespace>
+    <AssemblyName>XCom</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpGL">
+      <HintPath>..\packages\SharpGLCore.2.3.0.1\lib\net40\SharpGL.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.WinForms">
+      <HintPath>..\packages\SharpGLforWinForms.2.3.0.1\lib\net40\SharpGL.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Content\Backgrounds\Backgrounds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Backgrounds.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Images\BasePreview\BasePreview.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BasePreview.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Images\Base\Base.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Images\Crafts\Crafts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Crafts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Images\CraftWeapons\CraftWeapons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CraftWeapons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Images\Equipment\Equipment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Equipment.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Images\Facilities\Facilities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Facilities.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Images\Ranks\Ranks.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ranks.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Palettes\Palettes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Palettes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Alignment.cs" />
+    <Compile Include="Controls\Background.cs" />
+    <Compile Include="Controls\Bar.cs" />
+    <Compile Include="Controls\BaseFacilities.cs" />
+    <Compile Include="Controls\BaseInformationRow.cs" />
+    <Compile Include="Controls\BaseSelect.cs" />
+    <Compile Include="Controls\Border.cs" />
+    <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\ClickToEdit.cs" />
+    <Compile Include="Controls\CraftCargoPreview.cs" />
+    <Compile Include="Controls\CraftWeaponPreview.cs" />
+    <Compile Include="Controls\DynamicLabel.cs" />
+    <Compile Include="Controls\Edit.cs" />
+    <Compile Include="Controls\ExtendedEdit.cs" />
+    <Compile Include="Controls\ExtendedLabel.cs" />
+    <Compile Include="Controls\GameSpeed.cs" />
+    <Compile Include="Controls\Interactive.cs" />
+    <Compile Include="Controls\InteractiveContainer.cs" />
+    <Compile Include="Controls\InteractiveControl.cs" />
+    <Compile Include="Controls\Label.cs" />
+    <Compile Include="Controls\ListView.cs" />
+    <Compile Include="Controls\Picture.cs" />
+    <Compile Include="Controls\Repeater.cs" />
+    <Compile Include="Controls\SoldierInformationRow.cs" />
+    <Compile Include="Controls\TimeDisplay.cs" />
+    <Compile Include="Controls\Toggle.cs" />
+    <Compile Include="Controls\UpDown.cs" />
+    <Compile Include="Data\ArmorMetadata.cs" />
+    <Compile Include="Data\ArmorType.cs" />
+    <Compile Include="Data\Base.cs" />
+    <Compile Include="Data\Country.cs" />
+    <Compile Include="Data\Craft.cs" />
+    <Compile Include="Data\CraftMetadata.cs" />
+    <Compile Include="Data\CraftStatus.cs" />
+    <Compile Include="Data\CraftType.cs" />
+    <Compile Include="Data\CraftWeapon.cs" />
+    <Compile Include="Data\CraftWeaponMetadata.cs" />
+    <Compile Include="Data\CraftWeaponType.cs" />
+    <Compile Include="Data\DamageType.cs" />
+    <Compile Include="Data\Facility.cs" />
+    <Compile Include="Data\FacilityMetadata.cs" />
+    <Compile Include="Data\FacilityShape.cs" />
+    <Compile Include="Data\FacilityType.cs" />
+    <Compile Include="Data\HwpAmmunitionType.cs" />
+    <Compile Include="Data\HwpMetadata.cs" />
+    <Compile Include="Data\HwpType.cs" />
+    <Compile Include="Data\Rank.cs" />
+    <Compile Include="Data\ResearchProgress.cs" />
+    <Compile Include="Data\ResearchProject.cs" />
+    <Compile Include="Data\ResearchType.cs" />
+    <Compile Include="Data\ResearchTypeMetadata.cs" />
+    <Compile Include="Data\Soldier.cs" />
+    <Compile Include="Data\SoldierStatistics.cs" />
+    <Compile Include="Data\Store.cs" />
+    <Compile Include="Data\StoreItem.cs" />
+    <Compile Include="Data\Stores.cs" />
+    <Compile Include="Fonts\Arrow.cs" />
+    <Compile Include="Fonts\Character.cs" />
+    <Compile Include="Fonts\Font.cs" />
+    <Compile Include="Fonts\Large.cs" />
+    <Compile Include="Fonts\Normal.cs" />
+    <Compile Include="Fonts\Small.cs" />
+    <Compile Include="Fonts\Time.cs" />
+    <Compile Include="Fonts\UpDownButtons.cs" />
+    <Compile Include="Data\GameData.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="Graphics\ColorScheme.cs" />
+    <Compile Include="Graphics\Drawable.cs" />
+    <Compile Include="Graphics\GraphicsBuffer.cs" />
+    <Compile Include="Graphics\Image.cs" />
+    <Compile Include="Graphics\Palette.cs" />
+    <Compile Include="Graphics\Pointer.cs" />
+    <Compile Include="Int32Extensions.cs" />
+    <Compile Include="InteractiveDispatcher.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\AbandonGame.cs" />
+    <Compile Include="Modals\ChooseNewResearchProject.cs" />
+    <Compile Include="Modals\ConfirmNewResearchProject.cs" />
+    <Compile Include="Modals\EditResearchProject.cs" />
+    <Compile Include="Modals\NewBaseLocation.cs" />
+    <Compile Include="Modals\NewBaseNamePrompt.cs" />
+    <Compile Include="Modals\NotEnoughMoney.cs" />
+    <Compile Include="Modals\Options.cs" />
+    <Compile Include="Modals\SelectArmor.cs" />
+    <Compile Include="Modals\SelectCraftWeapon.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\BaseInformation.cs" />
+    <Compile Include="Screens\Base.cs" />
+    <Compile Include="Screens\BuildNewBase.cs" />
+    <Compile Include="Screens\CraftArmor.cs" />
+    <Compile Include="Screens\CraftList.cs" />
+    <Compile Include="Screens\CraftSoldiers.cs" />
+    <Compile Include="Screens\Difficulty.cs" />
+    <Compile Include="Screens\EquipCraft.cs" />
+    <Compile Include="Screens\Funding.cs" />
+    <Compile Include="Screens\Geoscape.cs" />
+    <Compile Include="Screens\LoadGame.cs" />
+    <Compile Include="Screens\MainMenu.cs" />
+    <Compile Include="Screens\MonthlyCosts.cs" />
+    <Compile Include="Screens\PlaceAccessLift.cs" />
+    <Compile Include="Screens\Research.cs" />
+    <Compile Include="Screens\SaveGame.cs" />
+    <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\Soldiers.cs" />
+    <Compile Include="Screens\SoldierView.cs" />
+    <EmbeddedResource Include="Content\Backgrounds\Backgrounds.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Backgrounds.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Images\BasePreview\BasePreview.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BasePreview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Images\Base\Base.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Base.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Images\Crafts\Crafts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Crafts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Images\CraftWeapons\CraftWeapons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CraftWeapons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Images\Equipment\Equipment.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Equipment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Images\Facilities\Facilities.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Facilities.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Images\Ranks\Ranks.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Ranks.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Palettes\Palettes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Palettes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Content\Backgrounds\Assault.bin" />
+    <None Include="Content\Backgrounds\Battle.bin" />
+    <None Include="Content\Backgrounds\Craft.bin" />
+    <None Include="Content\Backgrounds\EquipCraft.bin" />
+    <None Include="Content\Backgrounds\Funds.bin" />
+    <None Include="Content\Backgrounds\InfoBase.bin" />
+    <None Include="Content\Backgrounds\InfoFacility.bin" />
+    <None Include="Content\Backgrounds\InfoItem.bin" />
+    <None Include="Content\Backgrounds\InfoMission.bin" />
+    <None Include="Content\Backgrounds\InfoSoldier.bin" />
+    <None Include="Content\Backgrounds\InfoUfo.bin" />
+    <None Include="Content\Backgrounds\Research.bin" />
+    <None Include="Content\Backgrounds\Soldier.bin" />
+    <None Include="Content\Backgrounds\Terror.bin" />
+    <None Include="Content\Backgrounds\Title.bin" />
+    <None Include="Content\Backgrounds\Ufo.bin" />
+    <None Include="Content\Backgrounds\Workshop.bin" />
+    <None Include="Content\Images\BasePreview\Background.xmg" />
+    <None Include="Content\Images\BasePreview\Construction1x1.xmg" />
+    <None Include="Content\Images\BasePreview\Construction2x2.xmg" />
+    <None Include="Content\Images\BasePreview\Facility1x1.xmg" />
+    <None Include="Content\Images\BasePreview\Facility2x2.xmg" />
+    <None Include="Content\Images\Base\Background.xmg" />
+    <None Include="Content\Images\Base\BridgeHorizontal.xmg" />
+    <None Include="Content\Images\Base\BridgeVertical.xmg" />
+    <None Include="Content\Images\Base\ConstructionCross.xmg" />
+    <None Include="Content\Images\Base\ConstructionHangar.xmg" />
+    <None Include="Content\Images\Base\ConstructionOctagon.xmg" />
+    <None Include="Content\Images\Base\ConstructionSquare.xmg" />
+    <None Include="Content\Images\Base\Cross.xmg" />
+    <None Include="Content\Images\Base\Octagon.xmg" />
+    <None Include="Content\Images\Base\Square.xmg" />
+    <None Include="Content\Images\Crafts\Avenger.xmg" />
+    <None Include="Content\Images\Crafts\Firestorm.xmg" />
+    <None Include="Content\Images\Crafts\Interceptor.xmg" />
+    <None Include="Content\Images\Crafts\Lightning.xmg" />
+    <None Include="Content\Images\Crafts\Skyranger.xmg" />
+    <None Include="Content\Images\CraftWeapons\Avalanche.xmg" />
+    <None Include="Content\Images\CraftWeapons\Cannon.xmg" />
+    <None Include="Content\Images\CraftWeapons\FusionBall.xmg" />
+    <None Include="Content\Images\CraftWeapons\LaserBeam.xmg" />
+    <None Include="Content\Images\CraftWeapons\PlasmaBeam.xmg" />
+    <None Include="Content\Images\CraftWeapons\Stingray.xmg" />
+    <None Include="Content\Images\Equipment\Crew.xmg" />
+    <None Include="Content\Images\Equipment\Items.xmg" />
+    <None Include="Content\Images\Equipment\Tank.xmg" />
+    <None Include="Content\Images\Facilities\AccessLift.xmg" />
+    <None Include="Content\Images\Facilities\AlienContainment.xmg" />
+    <None Include="Content\Images\Facilities\FusionBallDefences.xmg" />
+    <None Include="Content\Images\Facilities\GeneralStores.xmg" />
+    <None Include="Content\Images\Facilities\GravShield.xmg" />
+    <None Include="Content\Images\Facilities\Hangar.xmg" />
+    <None Include="Content\Images\Facilities\HyperWaveDecoder.xmg" />
+    <None Include="Content\Images\Facilities\Laboratory.xmg" />
+    <None Include="Content\Images\Facilities\LargeRadarSystem.xmg" />
+    <None Include="Content\Images\Facilities\LaserDefences.xmg" />
+    <None Include="Content\Images\Facilities\LivingQuarters.xmg" />
+    <None Include="Content\Images\Facilities\MindShield.xmg" />
+    <None Include="Content\Images\Facilities\MissileDefences.xmg" />
+    <None Include="Content\Images\Facilities\PlasmaDefences.xmg" />
+    <None Include="Content\Images\Facilities\PsionicLaboratory.xmg" />
+    <None Include="Content\Images\Facilities\SmallRadarSystem.xmg" />
+    <None Include="Content\Images\Facilities\Workshop.xmg" />
+    <None Include="Content\Images\Ranks\Captain.xmg" />
+    <None Include="Content\Images\Ranks\Colonel.xmg" />
+    <None Include="Content\Images\Ranks\Commander.xmg" />
+    <None Include="Content\Images\Ranks\Rookie.xmg" />
+    <None Include="Content\Images\Ranks\Sergeant.xmg" />
+    <None Include="Content\Images\Ranks\Squaddie.xmg" />
+    <None Include="Content\Palettes\Palette0.bin" />
+    <None Include="Content\Palettes\Palette1.bin" />
+    <None Include="Content\Palettes\Palette2.bin" />
+    <None Include="Content\Palettes\Palette3.bin" />
+    <None Include="Content\Palettes\Palette4.bin" />
+    <None Include="Content\Palettes\Background.bin" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
