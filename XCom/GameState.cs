@@ -49,8 +49,7 @@ namespace XCom
 
 		public void Render(GraphicsBuffer buffer)
 		{
-			if (activeScreen != null)
-				activeScreen.Render(buffer);
+			activeScreen?.Render(buffer);
 		}
 
 		private Func<Point> pointerPosition;

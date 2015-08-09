@@ -22,38 +22,32 @@ namespace XCom
 
 		public void OnKeyPressed(char value)
 		{
-			if (activeFocus != null)
-				activeFocus.OnKeyPressed(value);
+			activeFocus?.OnKeyPressed(value);
 		}
 
 		public void OnMouseMove(int row, int column, bool leftButton, bool rightButton)
 		{
-			if (activeFocus != null)
-				activeFocus.OnMouseMove(row, column, leftButton, rightButton);
+			activeFocus?.OnMouseMove(row, column, leftButton, rightButton);
 		}
 
 		public void OnLeftButtonDown(int row, int column)
 		{
-			if (activeFocus != null)
-				activeFocus.OnLeftButtonDown(row, column);
+			activeFocus?.OnLeftButtonDown(row, column);
 		}
 
 		public void OnLeftButtonUp(int row, int column)
 		{
-			if (activeFocus != null)
-				activeFocus.OnLeftButtonUp(row, column);
+			activeFocus?.OnLeftButtonUp(row, column);
 		}
 
 		public void OnRightButtonDown(int row, int column)
 		{
-			if (activeFocus != null)
-				activeFocus.OnRightButtonDown(row, column);
+			activeFocus?.OnRightButtonDown(row, column);
 		}
 
 		public void OnRightButtonUp(int row, int column)
 		{
-			if (activeFocus != null)
-				activeFocus.OnRightButtonUp(row, column);
+			activeFocus?.OnRightButtonUp(row, column);
 		}
 	}
 }
