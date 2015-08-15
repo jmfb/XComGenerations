@@ -11,7 +11,7 @@ namespace XCom.Screens
 			var data = GameState.Current.Data;
 			var selectedBase = data.Bases[data.SelectedBase];
 
-			AddControl(new Label(0, 193, selectedBase.Name, Font.Large, ColorScheme.LightMagenta));
+			AddControl(new ClickToEdit(0, 193, 127, selectedBase.Name, Font.Large, ColorScheme.LightMagenta, OnEditName));
 			AddControl(new Label(16, 194, selectedBase.Area, Font.Normal, ColorScheme.Purple));
 			AddControl(new Label(24, 194, "FUNDS> $" + data.Funds.FormatNumber(), Font.Normal, ColorScheme.Blue));
 			AddControl(new BaseSelect(41, 192, OnSelectBase));
@@ -27,6 +27,11 @@ namespace XCom.Screens
 			AddControl(new Button(175, 192, 128, 12, "SELL/SACK", ColorScheme.DarkYellow, Font.Normal, OnSellSack));
 			AddControl(new Button(188, 192, 128, 12, "GEOSCAPE", ColorScheme.DarkYellow, Font.Normal, OnGeoscape));
 			AddControl(new BaseFacilities(BaseFacilities.Mode.ViewFacilities, OnClickFacility));
+		}
+
+		private static void OnEditName(string value)
+		{
+			GameState.SelectedBase.Name = value;
 		}
 
 		private static void OnSelectBase()
