@@ -17,13 +17,8 @@ namespace XCom.Modals
 			AddControl(new Border(30, 48, 224, 140, ColorScheme.Green, Backgrounds.Research, 0));
 			AddControl(new Label(88, Label.Center, "Research Completed", Font.Large, ColorScheme.Green));
 			AddControl(new Label(105, Label.Center, research.Metadata().Name, Font.Large, ColorScheme.White));
-			AddControl(new Button(146, 64, 80, 14, "OK", ColorScheme.Green, Font.Normal, OnOk));
+			AddControl(new Button(146, 64, 80, 14, "OK", ColorScheme.Green, Font.Normal, EndModal));
 			AddControl(new Button(146, 176, 80, 14, "VIEW REPORTS", ColorScheme.Green, Font.Normal, OnViewReports));
-		}
-
-		private void OnOk()
-		{
-			SwitchToModal(new WeCanNowResearch(research));
 		}
 
 		private void OnViewReports()
@@ -31,7 +26,7 @@ namespace XCom.Modals
 			EndModal();
 			var item = research.Metadata().Item;
 			if (item != null)
-				GameState.Current.SetScreen(new ItemInformation(new Geoscape(), item.Value));
+				GameState.Current.SetScreen(new ItemInformation(Geoscape, item.Value));
 		}
 	}
 }

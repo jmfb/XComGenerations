@@ -70,7 +70,7 @@ namespace XCom.Screens
 
 		private static void OnOk()
 		{
-			GameState.Current.SetScreen(new Geoscape());
+			GameState.Current.SetScreen(Geoscape);
 		}
 	}
 }

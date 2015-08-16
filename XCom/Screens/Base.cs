@@ -69,7 +69,7 @@ namespace XCom.Screens
 
 		private static void OnResearch()
 		{
-			GameState.Current.SetScreen(new Research());
+			GameState.Current.SetScreen(new Research(new Base()));
 		}
 
 		private static void OnManufacture()

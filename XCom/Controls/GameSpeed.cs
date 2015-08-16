@@ -43,10 +43,7 @@ namespace XCom.Controls
 			selection = index;
 		}
 
-		public int Multiplier
-		{
-			get { return multipliers[selection]; }
-		}
+		public int Multiplier => multipliers[selection];
 
 		public void Reset()
 		{

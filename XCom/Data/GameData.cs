@@ -152,5 +152,10 @@ namespace XCom.Data
 				}
 			};
 		}
+
+		public void SelectBase(Base @base)
+		{
+			SelectedBase = Bases.IndexOf(@base);
+		}
 	}
 }

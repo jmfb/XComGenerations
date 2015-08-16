@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Web.Script.Serialization;
@@ -12,10 +13,12 @@ namespace XCom
 	public class GameState : Drawable
 	{
 		public InteractiveDispatcher Dispatcher { get; private set; }
-		private Screen activeScreen;
+		public Screen ActiveScreen { get; private set; }
 		public GameData Data { get; set; }
 
 		public Random Random { get; private set; }
+
+		public Queue<Action> Notifications { get; } = new Queue<Action>();
 
 		private GameState()
 		{
@@ -44,7 +47,7 @@ namespace XCom
 
 		public void Render(GraphicsBuffer buffer)
 		{
-			activeScreen?.Render(buffer);
+			ActiveScreen?.Render(buffer);
 		}
 
 		private Func<Point> pointerPosition;
@@ -58,16 +61,16 @@ namespace XCom
 
 		public void SetScreen(Screen newScreen)
 		{
-			if (activeScreen != null)
+			if (ActiveScreen != null)
 			{
-				activeScreen.OnKillFocus();
+				ActiveScreen.OnKillFocus();
 				Dispatcher.ReleaseFocus();
 			}
-			activeScreen = newScreen;
-			if (activeScreen == null)
+			ActiveScreen = newScreen;
+			if (ActiveScreen == null)
 				return;
-			Dispatcher.CaptureFocus(activeScreen);
-			activeScreen.OnSetFocus();
+			Dispatcher.CaptureFocus(ActiveScreen);
+			ActiveScreen.OnSetFocus();
 		}
 
 		public static bool GameDataExists(int gameId)

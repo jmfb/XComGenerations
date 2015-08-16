@@ -37,6 +37,13 @@ namespace XCom.Screens
 		{
 			GameState.Current.OnIdle += OnIdle;
 			stopwatch.Restart();
+			ProcessNextNotification();
+		}
+
+		private static void ProcessNextNotification()
+		{
+			if (GameState.Current.Notifications.Any())
+				GameState.Current.Notifications.Dequeue()();
 		}
 
 		public override void OnKillFocus()
@@ -88,20 +95,14 @@ namespace XCom.Screens
 			if (isNewDay)
 			{
 				//TODO: perform other daily actions
-
-				var completedResearch = AdvanceResearchProjects();
-				foreach (var research in completedResearch)
-					new ResearchCompleted(research).DoModal(this);
-
-				//TODO: notify user of completed research and allow them to re-allocated
-
+				AdvanceResearchProjects();
 			}
 			//TODO: check for new day, month, and other time based triggers
+			ProcessNextNotification();
 		}
 
-		private static List<ResearchType> AdvanceResearchProjects()
+		private static void AdvanceResearchProjects()
 		{
-			var completedResearch = new List<ResearchType>();
 			foreach (var @base in GameState.Current.Data.Bases)
 			{
 				foreach (var research in @base.ResearchProjects.ToList())
@@ -109,12 +110,26 @@ namespace XCom.Screens
 					research.HoursCompleted += research.ScientistsAllocated;
 					if (research.HoursCompleted < research.HoursToComplete)
 						continue;
-					completedResearch.Add(research.ResearchType);
-					GameState.Current.Data.CompletedResearch.Add(research.ResearchType);
+					CompleteResearch(@base, research.ResearchType);
 					@base.ResearchProjects.Remove(research);
 				}
 			}
-			return completedResearch;
+		}
+
+		private static void CompleteResearch(Data.Base @base, ResearchType research)
+		{
+			GameState.Current.Data.CompletedResearch.Add(research);
+			GameState.Current.Notifications.Enqueue(() => new ResearchCompleted(research).DoModal(GameState.Current.ActiveScreen));
+			var newResearchTypes = GameState.Current.Data.GetAvailableResearchProjects()
+				.Where(project => project.Metadata().RequiredResearch.Contains(research))
+				.ToList();
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				Geoscape.ResetGameSpeed();
+				GameState.Current.Data.SelectBase(@base);
+				new WeCanNowResearch(newResearchTypes).DoModal(GameState.Current.ActiveScreen);
+			});
+			//TODO: if this project allows manufacture, display we can now manufacture screen
 		}
 	}
 }

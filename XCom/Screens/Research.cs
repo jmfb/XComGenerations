@@ -9,8 +9,11 @@ namespace XCom.Screens
 {
 	public class Research : Screen
 	{
-		public Research()
+		private readonly Screen returnToScreen;
+
+		public Research(Screen returnToScreen)
 		{
+			this.returnToScreen = returnToScreen;
 			var selectedBase = GameState.SelectedBase;
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.Research, 7));
 			AddControl(new Label(8, Label.Center, "CURRENT RESEARCH", Font.Large, ColorScheme.Blue));
@@ -38,9 +41,9 @@ namespace XCom.Screens
 			new ChooseNewResearchProject().DoModal(this);
 		}
 
-		private static void OnOk()
+		private void OnOk()
 		{
-			GameState.Current.SetScreen(new Base());
+			GameState.Current.SetScreen(returnToScreen);
 		}
 
 		private void OnClickResearch(ResearchProject research)
