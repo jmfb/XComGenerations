@@ -30,6 +30,13 @@ namespace XCom.Screens
 			ModalParent.OnSetFocus();
 		}
 
+		protected void SwitchToModal(Screen newModal)
+		{
+			var currentParent = ModalParent;
+			EndModal();
+			newModal.DoModal(currentParent);
+		}
+
 		protected static readonly Geoscape Geoscape = new Geoscape();
 	}
 }

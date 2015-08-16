@@ -29,16 +29,14 @@ namespace XCom.Modals
 
 		private void OnOk()
 		{
-			var parent = ModalParent;
-			EndModal();
 			if (cost > GameState.Current.Data.Funds)
 			{
-				new NotEnoughMoney(ColorScheme.DarkYellow, Backgrounds.Title).DoModal(parent);
+				SwitchToModal(new NotEnoughMoney(ColorScheme.DarkYellow, Backgrounds.Title));
 			}
 			else
 			{
 				GameState.Current.Data.Funds -= cost;
-				new NewBaseNamePrompt(OnNewBase).DoModal(parent);
+				SwitchToModal(new NewBaseNamePrompt(OnNewBase));
 			}
 		}
 

@@ -26,9 +26,7 @@ namespace XCom.Modals
 
 		private void OnNewResearchProject(ResearchProject research)
 		{
-			var parent = ModalParent;
-			EndModal();
-			new EditResearchProject(research).DoModal(parent);
+			SwitchToModal(new EditResearchProject(research));
 		}
 	}
 }

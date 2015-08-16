@@ -12,29 +12,30 @@ namespace XCom.Data
 
 	public static class ResearchTypeExtensions
 	{
-		public static ResearchTypeMetadata Metadata(this ResearchType researchType)
+		public static ResearchMetadata Metadata(this ResearchType researchType)
 		{
 			return metadata[researchType];
 		}
 
-		private static readonly ResearchTypeMetadata laserWeapons = new ResearchTypeMetadata
+		private static readonly ResearchMetadata laserWeapons = new ResearchMetadata
 		{
 			Name = "Laser Weapons",
 			AverageHoursToComplete = 50,
 			RequiredResearch = new ResearchType[0]
 		};
 
-		private static readonly ResearchTypeMetadata laserPistol = new ResearchTypeMetadata
+		private static readonly ResearchMetadata laserPistol = new ResearchMetadata
 		{
 			Name = "Laser Pistol",
 			AverageHoursToComplete = 100,
 			RequiredResearch = new[]
 			{
 				ResearchType.LaserWeapons
-			}
+			},
+			Item = ItemType.LaserPistol
 		};
 
-		private static readonly ResearchTypeMetadata laserRifle = new ResearchTypeMetadata
+		private static readonly ResearchMetadata laserRifle = new ResearchMetadata
 		{
 			Name = "Laser Rifle",
 			AverageHoursToComplete = 300,
@@ -44,7 +45,7 @@ namespace XCom.Data
 			}
 		};
 
-		private static readonly ResearchTypeMetadata heavyLaser = new ResearchTypeMetadata
+		private static readonly ResearchMetadata heavyLaser = new ResearchMetadata
 		{
 			Name = "Heavy Laser",
 			AverageHoursToComplete = 460,
@@ -54,7 +55,7 @@ namespace XCom.Data
 			}
 		};
 
-		private static readonly Dictionary<ResearchType, ResearchTypeMetadata> metadata = new Dictionary<ResearchType,ResearchTypeMetadata>
+		private static readonly Dictionary<ResearchType, ResearchMetadata> metadata = new Dictionary<ResearchType,ResearchMetadata>
  		{
 			{ ResearchType.LaserWeapons, laserWeapons },
 			{ ResearchType.LaserPistol, laserPistol },

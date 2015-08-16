@@ -62,7 +62,7 @@ namespace XCom.Screens
 
 		private static void OnUfoPaedia()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new Information());
 		}
 
 		private void OnOptions()
@@ -89,16 +89,19 @@ namespace XCom.Screens
 			{
 				//TODO: perform other daily actions
 
-				AdvanceResearchProjects();
+				var completedResearch = AdvanceResearchProjects();
+				foreach (var research in completedResearch)
+					new ResearchCompleted(research).DoModal(this);
 
 				//TODO: notify user of completed research and allow them to re-allocated
+
 			}
 			//TODO: check for new day, month, and other time based triggers
 		}
 
-		private static void AdvanceResearchProjects()
+		private static List<ResearchType> AdvanceResearchProjects()
 		{
-			var completedResearch = new List<ResearchProject>();
+			var completedResearch = new List<ResearchType>();
 			foreach (var @base in GameState.Current.Data.Bases)
 			{
 				foreach (var research in @base.ResearchProjects.ToList())
@@ -106,11 +109,12 @@ namespace XCom.Screens
 					research.HoursCompleted += research.ScientistsAllocated;
 					if (research.HoursCompleted < research.HoursToComplete)
 						continue;
-					completedResearch.Add(research);
+					completedResearch.Add(research.ResearchType);
 					GameState.Current.Data.CompletedResearch.Add(research.ResearchType);
 					@base.ResearchProjects.Remove(research);
 				}
 			}
+			return completedResearch;
 		}
 	}
 }

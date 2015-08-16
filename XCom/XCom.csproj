@@ -148,11 +148,13 @@
     <Compile Include="Data\HwpAmmunitionType.cs" />
     <Compile Include="Data\HwpMetadata.cs" />
     <Compile Include="Data\HwpType.cs" />
+    <Compile Include="Data\ItemMetadata.cs" />
+    <Compile Include="Data\ItemType.cs" />
     <Compile Include="Data\Rank.cs" />
     <Compile Include="Data\ResearchProgress.cs" />
     <Compile Include="Data\ResearchProject.cs" />
     <Compile Include="Data\ResearchType.cs" />
-    <Compile Include="Data\ResearchTypeMetadata.cs" />
+    <Compile Include="Data\ResearchMetadata.cs" />
     <Compile Include="Data\Soldier.cs" />
     <Compile Include="Data\SoldierStatistics.cs" />
     <Compile Include="Data\Store.cs" />
@@ -195,8 +197,10 @@
     <Compile Include="Modals\NewBaseNamePrompt.cs" />
     <Compile Include="Modals\NotEnoughMoney.cs" />
     <Compile Include="Modals\Options.cs" />
+    <Compile Include="Modals\ResearchCompleted.cs" />
     <Compile Include="Modals\SelectArmor.cs" />
     <Compile Include="Modals\SelectCraftWeapon.cs" />
+    <Compile Include="Modals\WeCanNowResearch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\BaseInformation.cs" />
@@ -210,6 +214,9 @@
     <Compile Include="Screens\EquipCraft.cs" />
     <Compile Include="Screens\Funding.cs" />
     <Compile Include="Screens\Geoscape.cs" />
+    <Compile Include="Screens\Information.cs" />
+    <Compile Include="Screens\ItemInformation.cs" />
+    <Compile Include="Screens\ItemInformationList.cs" />
     <Compile Include="Screens\LoadGame.cs" />
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Screens\MonthlyCosts.cs" />

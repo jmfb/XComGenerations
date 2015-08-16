@@ -34,9 +34,7 @@ namespace XCom.Modals
 
 		private void OnAbandonGame()
 		{
-			var parent = ModalParent;
-			EndModal();
-			new AbandonGame().DoModal(parent);
+			SwitchToModal(new AbandonGame());
 		}
 	}
 }
