@@ -16,11 +16,11 @@ namespace XCom.Screens
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.Research, 7));
 			AddControl(new Label(8, Label.Center, "CURRENT RESEARCH", Font.Large, ColorScheme.Blue));
 			AddControl(new Label(24, 8, "Scientists Available>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 97, () => selectedBase.GetScientistsAvailable().FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new DynamicLabel(24, 97, () => selectedBase.ScientistsAvailable.FormatNumber(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(24, 160, "Scientists Allocdated>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 255, () => selectedBase.GetScientistsAllocated().FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new DynamicLabel(24, 255, () => selectedBase.ScientistsAllocated.FormatNumber(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(34, 8, "Laboratory Space Available>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(34, 133, () => selectedBase.GetLaboratorySpaceAvailable().FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new DynamicLabel(34, 133, () => selectedBase.LaboratorySpaceAvailable.FormatNumber(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(44, 8, "RESEARCH PROJECT", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(44, 115, "SCIENTISTS ALLOCATED", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(44, 250, "PROGRESS", Font.Normal, ColorScheme.Blue));

@@ -185,9 +185,12 @@
     <Compile Include="Modals\AbandonGame.cs" />
     <Compile Include="Modals\BuildFacility.cs" />
     <Compile Include="Modals\CannotBuildHere.cs" />
+    <Compile Include="Modals\CannotDismantle.cs" />
     <Compile Include="Modals\ChooseNewResearchProject.cs" />
     <Compile Include="Modals\ConfirmNewResearchProject.cs" />
+    <Compile Include="Modals\Dismantle.cs" />
     <Compile Include="Modals\EditResearchProject.cs" />
+    <Compile Include="Modals\FacilityInUse.cs" />
     <Compile Include="Modals\NewBaseLocation.cs" />
     <Compile Include="Modals\NewBaseNamePrompt.cs" />
     <Compile Include="Modals\NotEnoughMoney.cs" />

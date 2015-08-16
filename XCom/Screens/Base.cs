@@ -1,6 +1,7 @@
 ﻿using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;
+using XCom.Modals;
 
 namespace XCom.Screens
 {
@@ -96,9 +97,15 @@ namespace XCom.Screens
 			GameState.Current.SetScreen(Geoscape);
 		}
 
-		private static void OnClickFacility(int row, int column)
+		private void OnClickFacility(int row, int column)
 		{
-			//TODO
+			var facility = GameState.SelectedBase.FindFacilityAt(row, column, true);
+			if (GameState.SelectedBase.IsFacilityInUse(facility))
+				new FacilityInUse().DoModal(this);
+			else if (!GameState.SelectedBase.CanDismantleFacility(facility))
+				new CannotDismantle().DoModal(this);
+			else
+				new Dismantle(facility).DoModal(this);
 		}
 	}
 }

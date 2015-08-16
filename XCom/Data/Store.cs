@@ -18,8 +18,7 @@ namespace XCom.Data
 
 		public int CountOf(T itemType)
 		{
-			var item = Find(itemType);
-			return item == null ? 0 : item.Count;
+			return Find(itemType)?.Count ?? 0;
 		}
 
 		public void Remove(T itemType)

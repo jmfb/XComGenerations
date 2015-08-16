@@ -27,7 +27,7 @@ namespace XCom.Screens
 			totalCost += CreateCostRow(104, "Scientists", 30000, selectedBase.ScientistCount);
 
 			AddControl(new ExtendedLabel(120, 10, 240, "Base maintenance", Font.Normal, ColorScheme.LightMagenta, ColorScheme.Blue));
-			var maintenance = selectedBase.GetTotalMaintenance();
+			var maintenance = selectedBase.TotalMaintenance;
 			totalCost += maintenance;
 			AddControl(new Label(120, 250, "$" + maintenance.FormatNumber(), Font.Normal, ColorScheme.Blue));
 

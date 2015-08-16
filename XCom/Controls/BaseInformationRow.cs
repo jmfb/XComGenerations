@@ -18,7 +18,7 @@ namespace XCom.Controls
 		{
 			AddControl(new Label(topRow, 8, title, Font.Normal, ColorScheme.DarkYellow));
 			var labelText = showRatio ?
-				string.Format("{0}\t:{1}", value, total) :
+				$"{value}\t:{total}" :
 				total.ToString(CultureInfo.InvariantCulture);
 			AddControl(new Label(topRow, 126, labelText, Font.Normal, ColorScheme.White));
 			var palette = Palette.GetPalette(1);

@@ -70,14 +70,19 @@ namespace XCom.Controls
 			var facilityPoint = GetFacilityPoint(column, row);
 			if (facilityPoint == null)
 				return;
-			if (mode == Mode.BuildFacility)
+			switch (mode)
 			{
+			case Mode.PlaceAccessLift:
+				action(facilityPoint.Row, facilityPoint.Column);
+				break;
+			case Mode.ViewFacilities:
+				if (IsFacilityAt(facilityPoint.Row, facilityPoint.Column, true))
+					action(facilityPoint.Row, facilityPoint.Column);
+				break;
+			case Mode.BuildFacility:
 				if (IsSpaceAvailable(facilityPoint.Row, facilityPoint.Column))
 					action(facilityPoint.Row, facilityPoint.Column);
-			}
-			else
-			{
-				action(facilityPoint.Row, facilityPoint.Column);
+				break;
 			}
 		}
 

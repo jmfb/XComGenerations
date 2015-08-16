@@ -60,7 +60,7 @@ namespace XCom.Screens
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.EngineerCount;
-			var available = total; //TODO
+			var available = selectedBase.EngineersAvailable;
 			AddControl(new BaseInformationRow(51, "Engineers", 16, 10, 10, available, total, true));
 		}
 
@@ -68,7 +68,7 @@ namespace XCom.Screens
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.ScientistCount;
-			var available = selectedBase.GetScientistsAvailable();
+			var available = selectedBase.ScientistsAvailable;
 			AddControl(new BaseInformationRow(61, "Scientists", 16, 10, 10, available, total, true));
 		}
 
@@ -85,39 +85,39 @@ namespace XCom.Screens
 		private void CreateLivingQuartersRow()
 		{
 			var selectedBase = GameState.SelectedBase;
-			var total = selectedBase.CountFacilities(FacilityType.LivingQuarters) * 50;
-			var used = selectedBase.Soldiers.Count + selectedBase.EngineerCount + selectedBase.ScientistCount;
+			var total = selectedBase.TotalLivingSpace;
+			var used = selectedBase.PersonnelCount;
 			AddControl(new BaseInformationRow(83, "Living Quarters", 48, 25, 50, used, total, true));
 		}
 
 		private void CreateStoresRow()
 		{
 			var selectedBase = GameState.SelectedBase;
-			var total = selectedBase.CountFacilities(FacilityType.GeneralStores) * 50;
-			var used = 0; //TODO:
+			var total = selectedBase.TotalStorageSpace;
+			var used = selectedBase.Stores.Space;
 			AddControl(new BaseInformationRow(93, "Stores", 48, 25, 50, used, total, true));
 		}
 
 		private void CreateLaboratoriesRow()
 		{
 			var selectedBase = GameState.SelectedBase;
-			var total = selectedBase.GetTotalLaboratorySpace();
-			var used = selectedBase.GetScientistsAllocated();
+			var total = selectedBase.TotalLaboratorySpace;
+			var used = selectedBase.ScientistsAllocated;
 			AddControl(new BaseInformationRow(103, "Laboratories", 48, 25, 50, used, total, true));
 		}
 
 		private void CreateWorkShopsRow()
 		{
 			var selectedBase = GameState.SelectedBase;
-			var total = selectedBase.CountFacilities(FacilityType.Workshop) * 50;
-			var used = 0; //TODO:
+			var total = selectedBase.TotalWorkshopSpace;
+			var used = selectedBase.EngineersAllocated;
 			AddControl(new BaseInformationRow(113, "Work Shops", 48, 25, 50, used, total, true));
 		}
 
 		private void CreateHangarsRow()
 		{
 			var selectedBase = GameState.SelectedBase;
-			var total = selectedBase.CountFacilities(FacilityType.Hangar);
+			var total = selectedBase.TotalHangarSpace;
 			var used = selectedBase.Crafts.Count;
 			AddControl(new BaseInformationRow(123, "Hangars", 48, 18, 1, used, total, true));
 		}
