@@ -27,24 +27,19 @@ namespace XCom
 		}
 
 		public static readonly GameState Current = new GameState();
-		public static Base SelectedBase
-		{
-			get { return Current.Data.Bases[Current.Data.SelectedBase]; }
-		}
-		
+		public static Base SelectedBase => Current.Data.Bases[Current.Data.SelectedBase];
+
 		public event Action OnQuit;
 		public event Action OnIdle;
 
 		public void Quit()
 		{
-			if (OnQuit != null)
-				OnQuit();
+			OnQuit?.Invoke();
 		}
 
 		public void Idle()
 		{
-			if (OnIdle != null)
-				OnIdle();
+			OnIdle?.Invoke();
 		}
 
 		public void Render(GraphicsBuffer buffer)
@@ -59,10 +54,7 @@ namespace XCom
 			pointerPosition = pointerPositionFunction;
 		}
 
-		public Point PointerPosition
-		{
-			get { return pointerPosition(); }
-		}
+		public Point PointerPosition => pointerPosition();
 
 		public void SetScreen(Screen newScreen)
 		{
@@ -85,7 +77,7 @@ namespace XCom
 
 		private static string GetGameDataFileName(int gameId)
 		{
-			return string.Format("save{0}.json", gameId);
+			return $"save{gameId}.json";
 		}
 
 		public static GameData LoadGameData(int gameId)

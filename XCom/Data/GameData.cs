@@ -36,6 +36,23 @@ namespace XCom.Data
 				.ToList();
 		}
 
+		public List<FacilityType> GetAvailableFacilityTypes()
+		{
+			//TODO: enable more facility types as research projects are completed
+			return new List<FacilityType>
+			{
+				FacilityType.LivingQuarters,
+				FacilityType.Laboratory,
+				FacilityType.Workshop,
+				FacilityType.SmallRadarSystem,
+				FacilityType.LargeRadarSystem,
+				FacilityType.MissileDefences,
+				FacilityType.GeneralStores,
+				FacilityType.AlienContainment,
+				FacilityType.Hangar
+			};
+		}
+
 		public static GameData Create(int difficulty)
 		{
 			var random = GameState.Current.Random;

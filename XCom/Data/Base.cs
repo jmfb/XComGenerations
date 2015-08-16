@@ -69,5 +69,10 @@ namespace XCom.Data
 		{
 			return GetTotalLaboratorySpace() - GetScientistsAllocated();
 		}
+
+		public Facility FindFacilityAt(int row, int column, bool allowUnderConstruction)
+		{
+			return Facilities.FirstOrDefault(facility => facility.IsAt(row, column, allowUnderConstruction));
+		}
 	}
 }

@@ -71,15 +71,9 @@ namespace XCom.Controls
 			return this;
 		}
 
-		private int Height
-		{
-			get { return maxRowsToDisplay * RowHeight; }
-		}
+		private int Height => maxRowsToDisplay * RowHeight;
 
-		private int Width
-		{
-			get { return ColumnWidths + 16; }
-		}
+		private int Width => ColumnWidths + 16;
 
 		private int ColumnWidths
 		{
@@ -160,10 +154,7 @@ namespace XCom.Controls
 			UpdateButtons();
 		}
 
-		private int MaxScrollPosition
-		{
-			get { return data.Count - maxRowsToDisplay; }
-		}
+		private int MaxScrollPosition => data.Count - maxRowsToDisplay;
 
 		private void OnDown()
 		{

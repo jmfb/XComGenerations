@@ -63,7 +63,7 @@ namespace XCom.Screens
 
 		private static void OnBuildFacilities()
 		{
-			//TODO
+			GameState.Current.SetScreen(new BuildFacilities());
 		}
 
 		private static void OnResearch()
