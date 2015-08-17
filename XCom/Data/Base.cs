@@ -16,6 +16,7 @@ namespace XCom.Data
 		public List<Soldier> Soldiers { get; set; }
 		public Stores Stores { get; set; }
 		public List<ResearchProject> ResearchProjects { get; set; }
+		public List<ManufactureProject> ManufactureProjects { get; set; }
 
 		public static Base Create(string name, string area)
 		{
@@ -27,7 +28,8 @@ namespace XCom.Data
 				Crafts = new List<Craft>(),
 				Soldiers = new List<Soldier>(),
 				Stores = Stores.Create(),
-				ResearchProjects = new List<ResearchProject>()
+				ResearchProjects = new List<ResearchProject>(),
+				ManufactureProjects = new List<ManufactureProject>()
 			};
 		}
 
@@ -67,11 +69,13 @@ namespace XCom.Data
 
 		public int TotalWorkshopSpace => CountFacilities(FacilityType.Workshop) * 50;
 
-		public int EngineersAllocated => 0; //TODO: sum of engineers allocated to all workshop projects
+		public int EngineersAllocated => ManufactureProjects.Sum(project => project.EngineersAllocated);
 
 		public int EngineersAvailable => EngineerCount - EngineersAllocated;
 
-		public int WorkshopSpaceAvailable => TotalWorkshopSpace - EngineersAllocated;
+		private int WorkshopSpaceUsed => ManufactureProjects.Sum(project => project.ManufactureType.Metadata().SpaceRequired);
+
+		public int WorkshopSpaceAvailable => TotalWorkshopSpace - EngineersAllocated - WorkshopSpaceUsed;
 
 		public int TotalHangarSpace => CountFacilities(FacilityType.Hangar);
 

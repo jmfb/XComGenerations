@@ -150,6 +150,9 @@
     <Compile Include="Data\HwpType.cs" />
     <Compile Include="Data\ItemMetadata.cs" />
     <Compile Include="Data\ItemType.cs" />
+    <Compile Include="Data\ManufactureMetadata.cs" />
+    <Compile Include="Data\ManufactureProject.cs" />
+    <Compile Include="Data\ManufactureType.cs" />
     <Compile Include="Data\Rank.cs" />
     <Compile Include="Data\ResearchProgress.cs" />
     <Compile Include="Data\ResearchProject.cs" />
@@ -191,12 +194,15 @@
     <Compile Include="Modals\ChooseNewResearchProject.cs" />
     <Compile Include="Modals\ConfirmNewResearchProject.cs" />
     <Compile Include="Modals\Dismantle.cs" />
+    <Compile Include="Modals\EditProduction.cs" />
     <Compile Include="Modals\EditResearchProject.cs" />
     <Compile Include="Modals\FacilityInUse.cs" />
     <Compile Include="Modals\NewBaseLocation.cs" />
     <Compile Include="Modals\NewBaseNamePrompt.cs" />
+    <Compile Include="Modals\NewProduction.cs" />
     <Compile Include="Modals\NotEnoughMoney.cs" />
     <Compile Include="Modals\Options.cs" />
+    <Compile Include="Modals\ProductionInformation.cs" />
     <Compile Include="Modals\ResearchCompleted.cs" />
     <Compile Include="Modals\SelectArmor.cs" />
     <Compile Include="Modals\SelectCraftWeapon.cs" />
@@ -219,6 +225,7 @@
     <Compile Include="Screens\ItemInformationList.cs" />
     <Compile Include="Screens\LoadGame.cs" />
     <Compile Include="Screens\MainMenu.cs" />
+    <Compile Include="Screens\Manufacture.cs" />
     <Compile Include="Screens\MonthlyCosts.cs" />
     <Compile Include="Screens\PlaceAccessLift.cs" />
     <Compile Include="Screens\Research.cs" />

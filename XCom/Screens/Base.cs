@@ -74,7 +74,7 @@ namespace XCom.Screens
 
 		private static void OnManufacture()
 		{
-			//TODO
+			GameState.Current.SetScreen(new Manufacture(new Base()));
 		}
 
 		private static void OnTransfer()
