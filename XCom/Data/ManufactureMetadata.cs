@@ -7,5 +7,9 @@
 		public int Cost { get; set; }
 		public int SpaceRequired { get; set; }
 		public int HoursToProduce { get; set; }
+		public int AlienAlloysRequired { get; set; }
+		public int EleriumRequired { get; set; }
+		public int PowerSourcesRequired { get; set; }
+		public int NavigationRequired { get; set; }
 	}
 }
