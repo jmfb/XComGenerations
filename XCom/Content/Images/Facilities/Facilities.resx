@@ -124,8 +124,8 @@
   <data name="AlienContainment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlienContainment.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FusionBallDefences" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>FusionBallDefences.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="FusionBallDefenses" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FusionBallDefenses.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GeneralStores" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>GeneralStores.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -145,8 +145,8 @@
   <data name="LargeRadarSystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>LargeRadarSystem.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LaserDefences" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>LaserDefences.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="LaserDefenses" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>LaserDefenses.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="LivingQuarters" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>LivingQuarters.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -154,11 +154,11 @@
   <data name="MindShield" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>MindShield.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="MissileDefences" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>MissileDefences.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="MissileDefenses" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MissileDefenses.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="PlasmaDefences" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>PlasmaDefences.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="PlasmaDefenses" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>PlasmaDefenses.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PsionicLaboratory" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>PsionicLaboratory.xmg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

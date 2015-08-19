@@ -1,4 +1,5 @@
-﻿using XCom.Graphics;
+﻿using System.Collections.Generic;
+using XCom.Graphics;
 
 namespace XCom.Data
 {
@@ -12,5 +13,11 @@ namespace XCom.Data
 		public Image Image { get; set; }
 		public int RowOffset { get; set; }
 		public int ColumnOffset { get; set; }
+		public ResearchType? RequiredResearch { get; set; }
+
+		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
+		{
+			return RequiredResearch == null || completedResearch.Contains(RequiredResearch.Value);
+		}
 	}
 }

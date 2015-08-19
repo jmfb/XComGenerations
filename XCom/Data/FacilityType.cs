@@ -12,12 +12,12 @@ namespace XCom.Data
 		Workshop,
 		SmallRadarSystem,
 		LargeRadarSystem,
-		MissileDefences,
+		MissileDefenses,
 		GeneralStores,
 		AlienContainment,
-		LaserDefences,
-		PlasmaDefences,
-		FusionBallDefences,
+		LaserDefenses,
+		PlasmaDefenses,
+		FusionBallDefenses,
 		GravShield,
 		MindShield,
 		PsionicLaboratory,
@@ -104,14 +104,14 @@ namespace XCom.Data
 			ColumnOffset = 3
 		};
 
-		private static readonly FacilityMetadata missileDefences = new FacilityMetadata
+		private static readonly FacilityMetadata missileDefenses = new FacilityMetadata
 		{
-			Name = "Missile Defences",
+			Name = "Missile Defenses",
 			Shape = FacilityShape.Octagon,
 			DaysToConstruct = 16,
 			Cost = 200000,
 			Maintenance = 5000,
-			Image = new Image(Facilities.MissileDefences),
+			Image = new Image(Facilities.MissileDefenses),
 			RowOffset = 6,
 			ColumnOffset = 6
 		};
@@ -140,40 +140,43 @@ namespace XCom.Data
 			ColumnOffset = 3
 		};
 
-		private static readonly FacilityMetadata laserDefences = new FacilityMetadata
+		private static readonly FacilityMetadata laserDefenses = new FacilityMetadata
 		{
-			Name = "Laser Defences",
+			Name = "Laser Defenses",
 			Shape = FacilityShape.Cross,
 			DaysToConstruct = 24,
 			Cost = 400000,
 			Maintenance = 15000,
-			Image = new Image(Facilities.LaserDefences),
+			Image = new Image(Facilities.LaserDefenses),
 			RowOffset = 5,
-			ColumnOffset = 5
+			ColumnOffset = 5,
+			RequiredResearch = ResearchType.LaserDefenses
 		};
 
-		private static readonly FacilityMetadata plasmaDefences = new FacilityMetadata
+		private static readonly FacilityMetadata plasmaDefenses = new FacilityMetadata
 		{
-			Name = "Plasma Defences",
+			Name = "Plasma Defenses",
 			Shape = FacilityShape.Cross,
 			DaysToConstruct = 34,
 			Cost = 600000,
 			Maintenance = 12000,
-			Image = new Image(Facilities.PlasmaDefences),
+			Image = new Image(Facilities.PlasmaDefenses),
 			RowOffset = 5,
-			ColumnOffset = 5
+			ColumnOffset = 5,
+			RequiredResearch = ResearchType.PlasmaDefenses
 		};
 
-		private static readonly FacilityMetadata fusionBallDefences = new FacilityMetadata
+		private static readonly FacilityMetadata fusionBallDefenses = new FacilityMetadata
 		{
-			Name = "Fusion Ball Defences",
+			Name = "Fusion Ball Defenses",
 			Shape = FacilityShape.Cross,
 			DaysToConstruct = 34,
 			Cost = 800000,
 			Maintenance = 14000,
-			Image = new Image(Facilities.FusionBallDefences),
+			Image = new Image(Facilities.FusionBallDefenses),
 			RowOffset = 4,
-			ColumnOffset = 4
+			ColumnOffset = 4,
+			RequiredResearch = ResearchType.FusionDefenses
 		};
 
 		private static readonly FacilityMetadata gravShield = new FacilityMetadata
@@ -185,7 +188,8 @@ namespace XCom.Data
 			Maintenance = 15000,
 			Image = new Image(Facilities.GravShield),
 			RowOffset = 2,
-			ColumnOffset = 2
+			ColumnOffset = 2,
+			RequiredResearch = ResearchType.GravShield
 		};
 
 		private static readonly FacilityMetadata mindShield = new FacilityMetadata
@@ -197,7 +201,8 @@ namespace XCom.Data
 			Maintenance = 5000,
 			Image = new Image(Facilities.MindShield),
 			RowOffset = 3,
-			ColumnOffset = 3
+			ColumnOffset = 3,
+			RequiredResearch = ResearchType.MindShield
 		};
 
 		private static readonly FacilityMetadata psionicLaboratory = new FacilityMetadata
@@ -209,7 +214,8 @@ namespace XCom.Data
 			Maintenance = 16000,
 			Image = new Image(Facilities.PsionicLaboratory),
 			RowOffset = 4,
-			ColumnOffset = 4
+			ColumnOffset = 4,
+			RequiredResearch = ResearchType.PsiLab
 		};
 
 		private static readonly FacilityMetadata hyperWaveDecoder = new FacilityMetadata
@@ -221,7 +227,8 @@ namespace XCom.Data
 			Maintenance = 30000,
 			Image = new Image(Facilities.HyperWaveDecoder),
 			RowOffset = 3,
-			ColumnOffset = 3
+			ColumnOffset = 3,
+			RequiredResearch = ResearchType.HyperwaveDecoder
 		};
 
 		private static readonly FacilityMetadata hangar = new FacilityMetadata
@@ -244,12 +251,12 @@ namespace XCom.Data
 			{ FacilityType.Workshop, workshop },
 			{ FacilityType.SmallRadarSystem, smallRadarSystem },
 			{ FacilityType.LargeRadarSystem, largeRadarSystem },
-			{ FacilityType.MissileDefences, missileDefences },
+			{ FacilityType.MissileDefenses, missileDefenses },
 			{ FacilityType.GeneralStores, generalStores },
 			{ FacilityType.AlienContainment, alienContainment },
-			{ FacilityType.LaserDefences, laserDefences },
-			{ FacilityType.PlasmaDefences, plasmaDefences },
-			{ FacilityType.FusionBallDefences, fusionBallDefences },
+			{ FacilityType.LaserDefenses, laserDefenses },
+			{ FacilityType.PlasmaDefenses, plasmaDefenses },
+			{ FacilityType.FusionBallDefenses, fusionBallDefenses },
 			{ FacilityType.GravShield, gravShield },
 			{ FacilityType.MindShield, mindShield },
 			{ FacilityType.PsionicLaboratory, psionicLaboratory },

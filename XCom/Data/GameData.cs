@@ -19,39 +19,22 @@ namespace XCom.Data
 		public int NextInterceptorNumber { get; set; }
 		public List<ResearchType> CompletedResearch { get; set; }
 
-		public int GetTotalFunding()
-		{
-			return Countries.Sum(country => country.Funding);
-		}
+		public int TotalFunding => Countries.Sum(country => country.Funding);
 
-		public List<ResearchType> GetAvailableResearchProjects()
-		{
-			var allResearch = Enum.GetValues(typeof(ResearchType)).Cast<ResearchType>().ToList();
-			var remainingResearch = allResearch
-				.Except(CompletedResearch)
-				.Except(Bases.SelectMany(b => b.ResearchProjects.Select(p => p.ResearchType)))
-				.ToList();
-			return remainingResearch
-				.Where(research => research.Metadata().RequiredResearch.All(required => CompletedResearch.Contains(required)))
-				.ToList();
-		}
+		private static IEnumerable<ResearchType> AllResearchProjects => Enum.GetValues(typeof(ResearchType)).Cast<ResearchType>();
+		private IEnumerable<ResearchType> ActiveResearchProjects => Bases.SelectMany(b => b.ResearchProjects.Select(p => p.ResearchType));
+		//TODO: Do not exclude live aliens where more could be learned from them (even if we've already researched them) but only so long as we have them in containment
+		private IEnumerable<ResearchType> RemainingResearchProjects => AllResearchProjects.Except(CompletedResearch).Except(ActiveResearchProjects);
+		public List<ResearchType> AvailableResearchProjects => RemainingResearchProjects
+			.Where(research => research.Metadata().IsRequiredResearchCompleted(CompletedResearch))
+			//TODO: Enforce RequiredItem requirements based on items in general stores/alien containment at current base
+			.ToList();
 
-		public List<FacilityType> GetAvailableFacilityTypes()
-		{
-			//TODO: enable more facility types as research projects are completed
-			return new List<FacilityType>
-			{
-				FacilityType.LivingQuarters,
-				FacilityType.Laboratory,
-				FacilityType.Workshop,
-				FacilityType.SmallRadarSystem,
-				FacilityType.LargeRadarSystem,
-				FacilityType.MissileDefences,
-				FacilityType.GeneralStores,
-				FacilityType.AlienContainment,
-				FacilityType.Hangar
-			};
-		}
+		private static IEnumerable<FacilityType> AllFacilityTypes => Enum.GetValues(typeof(FacilityType)).Cast<FacilityType>();
+		private static IEnumerable<FacilityType> BuildableFacilityTypes => AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
+		public List<FacilityType> AvailableFacilityTypes => BuildableFacilityTypes
+			.Where(facilityType => facilityType.Metadata().IsRequiredResearchCompleted(CompletedResearch))
+			.ToList();
 
 		public static GameData Create(int difficulty)
 		{

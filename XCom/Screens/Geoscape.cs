@@ -116,13 +116,31 @@ namespace XCom.Screens
 			}
 		}
 
+		private static IEnumerable<ResearchType> GatherCompletedResearch(ResearchType research)
+		{
+			yield return research;
+			var metadata = research.Metadata();
+			if (metadata.AdditionalResearchResults != null)
+				foreach (var additionalResearch in metadata.AdditionalResearchResults)
+					yield return additionalResearch;
+			if (metadata.LotteryResearchResults == null)
+				yield break;
+			var remainingLotteryResults = metadata.LotteryResearchResults.Except(GameState.Current.Data.CompletedResearch).ToList();
+			if (remainingLotteryResults.Count == 0)
+				yield break;
+			var randomIndex = GameState.Current.Random.Next(0, remainingLotteryResults.Count);
+			yield return remainingLotteryResults[randomIndex];
+		}
+
 		private static void CompleteResearch(Data.Base @base, ResearchType research)
 		{
-			GameState.Current.Data.CompletedResearch.Add(research);
+			var previouslyAvailableResearch = GameState.Current.Data.AvailableResearchProjects;
+			var completedResearch = GameState.Current.Data.CompletedResearch;
+			var newlyCompletedResearch = GatherCompletedResearch(research).Except(completedResearch);
+			completedResearch.AddRange(newlyCompletedResearch);
+			//TODO: Potentially show information about extra research (researched medic, learned about other alien race...)
 			GameState.Current.Notifications.Enqueue(() => new ResearchCompleted(research).DoModal(GameState.Current.ActiveScreen));
-			var newResearchTypes = GameState.Current.Data.GetAvailableResearchProjects()
-				.Where(project => project.Metadata().RequiredResearch.Contains(research))
-				.ToList();
+			var newResearchTypes = GameState.Current.Data.AvailableResearchProjects.Except(previouslyAvailableResearch).ToList();
 			GameState.Current.Notifications.Enqueue(() =>
 			{
 				Geoscape.ResetGameSpeed();

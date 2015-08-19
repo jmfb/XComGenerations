@@ -260,6 +260,7 @@
     <EmbeddedResource Include="Content\Images\Facilities\Facilities.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Facilities.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\Images\Ranks\Ranks.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -329,18 +330,18 @@
     <None Include="Content\Images\Equipment\Tank.xmg" />
     <None Include="Content\Images\Facilities\AccessLift.xmg" />
     <None Include="Content\Images\Facilities\AlienContainment.xmg" />
-    <None Include="Content\Images\Facilities\FusionBallDefences.xmg" />
+    <None Include="Content\Images\Facilities\FusionBallDefenses.xmg" />
     <None Include="Content\Images\Facilities\GeneralStores.xmg" />
     <None Include="Content\Images\Facilities\GravShield.xmg" />
     <None Include="Content\Images\Facilities\Hangar.xmg" />
     <None Include="Content\Images\Facilities\HyperWaveDecoder.xmg" />
     <None Include="Content\Images\Facilities\Laboratory.xmg" />
     <None Include="Content\Images\Facilities\LargeRadarSystem.xmg" />
-    <None Include="Content\Images\Facilities\LaserDefences.xmg" />
+    <None Include="Content\Images\Facilities\LaserDefenses.xmg" />
     <None Include="Content\Images\Facilities\LivingQuarters.xmg" />
     <None Include="Content\Images\Facilities\MindShield.xmg" />
-    <None Include="Content\Images\Facilities\MissileDefences.xmg" />
-    <None Include="Content\Images\Facilities\PlasmaDefences.xmg" />
+    <None Include="Content\Images\Facilities\MissileDefenses.xmg" />
+    <None Include="Content\Images\Facilities\PlasmaDefenses.xmg" />
     <None Include="Content\Images\Facilities\PsionicLaboratory.xmg" />
     <None Include="Content\Images\Facilities\SmallRadarSystem.xmg" />
     <None Include="Content\Images\Facilities\Workshop.xmg" />

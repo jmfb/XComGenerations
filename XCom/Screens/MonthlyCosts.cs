@@ -31,7 +31,7 @@ namespace XCom.Screens
 			totalCost += maintenance;
 			AddControl(new Label(120, 250, "$" + maintenance.FormatNumber(), Font.Normal, ColorScheme.Blue));
 
-			var income = "Income=$" + GameState.Current.Data.GetTotalFunding().FormatNumber();
+			var income = "Income=$" + GameState.Current.Data.TotalFunding.FormatNumber();
 			AddControl(new Label(136, 10, income, Font.Normal, ColorScheme.Blue));
 
 			AddControl(new ExtendedLabel(136, 205, 45, "Total", Font.Normal, ColorScheme.White));

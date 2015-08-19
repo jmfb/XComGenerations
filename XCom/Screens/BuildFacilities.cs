@@ -19,7 +19,7 @@ namespace XCom.Screens
 			AddControl(new Border(40, 192, 128, 160, ColorScheme.DarkYellow, Backgrounds.Research, 12));
 			AddControl(new Label(48, 212, "Installation", Font.Large, ColorScheme.White));
 			AddControl(new Button(176, 200, 112, 16, "OK", ColorScheme.DarkYellow, Font.Normal, OnOk));
-			AddControl(new ListView<FacilityType>(64, 200, 13, data.GetAvailableFacilityTypes(), ColorScheme.DarkYellow, Palette.GetPalette(12).GetColor(230), OnSelectFacilityType)
+			AddControl(new ListView<FacilityType>(64, 200, 13, data.AvailableFacilityTypes, ColorScheme.DarkYellow, Palette.GetPalette(12).GetColor(230), OnSelectFacilityType)
 				.AddColumn(2, Alignment.Left, facilityType => "")
 				.AddColumn(94, Alignment.Left, facilityType => facilityType.Metadata().Name));
 			AddControl(new BaseFacilities(BaseFacilities.Mode.ViewFacilities, (row, column) => {}));

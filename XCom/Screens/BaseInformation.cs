@@ -35,7 +35,7 @@ namespace XCom.Screens
 		{
 			CreatePersonnelRows();
 			CreateFacilityRows();
-			CreateDefenceStrengthRow();
+			CreateDefenseStrengthRow();
 			CreateRadarRows();
 		}
 
@@ -122,15 +122,15 @@ namespace XCom.Screens
 			AddControl(new BaseInformationRow(123, "Hangars", 48, 18, 1, used, total, true));
 		}
 
-		private void CreateDefenceStrengthRow()
+		private void CreateDefenseStrengthRow()
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total =
-				selectedBase.CountFacilities(FacilityType.MissileDefences) * 500 +
-				selectedBase.CountFacilities(FacilityType.LaserDefences) * 600 +
-				selectedBase.CountFacilities(FacilityType.PlasmaDefences) * 900 +
-				selectedBase.CountFacilities(FacilityType.FusionBallDefences) * 1200;
-			AddControl(new BaseInformationRow(138, "Defence Strength", 32, 1, 60, total, total, false));
+				selectedBase.CountFacilities(FacilityType.MissileDefenses) * 500 +
+				selectedBase.CountFacilities(FacilityType.LaserDefenses) * 600 +
+				selectedBase.CountFacilities(FacilityType.PlasmaDefenses) * 900 +
+				selectedBase.CountFacilities(FacilityType.FusionBallDefenses) * 1200;
+			AddControl(new BaseInformationRow(138, "Defense Strength", 32, 1, 60, total, total, false));
 		}
 
 		private void CreateRadarRows()

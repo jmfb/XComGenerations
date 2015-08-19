@@ -24,9 +24,10 @@ namespace XCom.Modals
 		private void OnViewReports()
 		{
 			EndModal();
-			var item = research.Metadata().Item;
-			if (item != null)
-				GameState.Current.SetScreen(new ItemInformation(Geoscape, item.Value));
+			//TODO: Determine if there is a UfoPaedia page associated with the completed research
+			//		Choose the first one and display the XxxInformation page for it.
+			//		Return to the Geoscape.
+			GameState.Current.SetScreen(new ItemInformation(Geoscape, ItemType.LaserPistol));
 		}
 	}
 }
