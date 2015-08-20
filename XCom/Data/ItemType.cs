@@ -4,9 +4,65 @@ namespace XCom.Data
 {
 	public enum ItemType
 	{
+		Soldier,
+		Scientist,
+		Engineer,
+
+		Skyranger,
+		Interceptor,
+
+		StingrayLauncher,
+		AvalancheLauncher,
+		Cannon,
+		StingrayMissiles,
+		AvalancheMissiles,
+		CannonRounds,
+
+		TankCannon,
+		HwpCannonShells,
+		TankRocketLauncher,
+		HwpRockets,
+
+		Pistol,
+		PistolClip,
+		Rifle,
+		RifleClip,
+		HeavyCannon,
+		HcApAmmo,
+		HcHeAmmo,
+		HcIAmmo,
+		AutoCannon,
+		AcApAmmo,
+		AcHeAmmo,
+		AcIAmmo,
+		RocketLauncher,
+		SmallRocket,
+		LargeRocket,
+		IncindiaryRocket,
+
+		Grenade,
+		SmokeGrenade,
+		ProximityGrenade,
+		HighExplosive,
+		StunRod,
+		ElectroFlare,
+
+		FusionBallLauncher,
+		LaserCannon,
+		PlasmaBeam,
+		FusionBall,
+		TankLaserCannon,
+		HovertankPlasma,
+		HovertankLauncher,
+		HwpFusionBomb,
+
 		LaserPistol,
 		LaserRifle,
 		HeavyLaser,
+
+		MotionScanner,
+		MediKit,
+		PsiAmp,
 
 		PlasmaPistol,
 		PlasmaPistolClip,
@@ -21,6 +77,10 @@ namespace XCom.Data
 		AlienGrenade,
 		MindProbe,
 
+		PersonalArmor,
+		PowerSuit,
+		FlyingSuit,
+
 		UfoPowerSource,
 		UfoNavigation,
 		AlienAlloys,
@@ -29,6 +89,10 @@ namespace XCom.Data
 		AlienEntertainment,
 		AlienSurgery,
 		ExaminationRoom,
+
+		Firestorm,
+		Lightning,
+		Avenger,
 
 		SectoidCorpse,
 		SectoidSoldier,
