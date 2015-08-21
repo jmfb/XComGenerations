@@ -9,7 +9,7 @@ namespace XCom
 	public partial class MainForm : Form
 	{
 		private readonly GraphicsBuffer graphicsBuffer = new GraphicsBuffer();
-		private const int ScaleFactor = 3;
+		private const int scaleFactor = 3;
 
 		public MainForm()
 		{
@@ -45,7 +45,7 @@ namespace XCom
 			RenderPointer();
 			gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 			gl.RasterPos(0, 0);
-			gl.PixelZoom(ScaleFactor, ScaleFactor);
+			gl.PixelZoom(scaleFactor, scaleFactor);
 			gl.DrawPixels(
 				GraphicsBuffer.GameWidth,
 				GraphicsBuffer.GameHeight,
@@ -59,8 +59,8 @@ namespace XCom
 			get
 			{
 				var mousePosition = PointToClient(MousePosition);
-				var topRow = mousePosition.Y / ScaleFactor;
-				var leftColumn = mousePosition.X / ScaleFactor;
+				var topRow = mousePosition.Y / scaleFactor;
+				var leftColumn = mousePosition.X / scaleFactor;
 				return new Point(leftColumn, topRow);
 			}
 		}
@@ -86,8 +86,8 @@ namespace XCom
 
 		private void openGlControl_MouseMove(object sender, MouseEventArgs e)
 		{
-			var row = e.Y / ScaleFactor;
-			var column = e.X / ScaleFactor;
+			var row = e.Y / scaleFactor;
+			var column = e.X / scaleFactor;
 			var leftButton = e.Button == MouseButtons.Left;
 			var rightButton = e.Button == MouseButtons.Right;
 			GameState.Current.Dispatcher.OnMouseMove(row, column, leftButton, rightButton);
@@ -95,8 +95,8 @@ namespace XCom
 
 		private void openGlControl_MouseDown(object sender, MouseEventArgs e)
 		{
-			var row = e.Y / ScaleFactor;
-			var column = e.X / ScaleFactor;
+			var row = e.Y / scaleFactor;
+			var column = e.X / scaleFactor;
 			switch (e.Button)
 			{
 			case MouseButtons.Left:
@@ -110,8 +110,8 @@ namespace XCom
 
 		private void openGlControl_MouseUp(object sender, MouseEventArgs e)
 		{
-			var row = e.Y / ScaleFactor;
-			var column = e.X / ScaleFactor;
+			var row = e.Y / scaleFactor;
+			var column = e.X / scaleFactor;
 			switch (e.Button)
 			{
 			case MouseButtons.Left:
