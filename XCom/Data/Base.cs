@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace XCom.Data
@@ -80,6 +81,13 @@ namespace XCom.Data
 		public int TotalHangarSpace => CountFacilities(FacilityType.Hangar);
 
 		public int HangarSpaceAvailable => TotalHangarSpace - Crafts.Count;
+
+		private static IEnumerable<ManufactureType> AllManufactureProjects => Enum.GetValues(typeof(ManufactureType)).Cast<ManufactureType>();
+		private IEnumerable<ManufactureType> ActiveManufactureProjects => ManufactureProjects.Select(project => project.ManufactureType);
+		private IEnumerable<ManufactureType> RemainingManufactureProjects => AllManufactureProjects.Except(ActiveManufactureProjects);
+		public List<ManufactureType> AvailableManufactureProjects => RemainingManufactureProjects
+			.Where(project => project.Metadata().IsRequiredResearchCompleted(GameState.Current.Data.CompletedResearch))
+			.ToList();
 
 		public Facility FindFacilityAt(int row, int column, bool allowUnderConstruction)
 		{

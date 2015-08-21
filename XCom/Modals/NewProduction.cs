@@ -15,7 +15,7 @@ namespace XCom.Modals
 			AddControl(new Label(38, Label.Center, "Production Items", Font.Large, ColorScheme.LightMagenta));
 			AddControl(new Label(54, 12, "ITEM", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(54, 167, "CATEGORY", Font.Normal, ColorScheme.LightMagenta));
-			var projects = GameState.Current.Data.AvailableManufactureProjects;
+			var projects = GameState.SelectedBase.AvailableManufactureProjects;
 			AddControl(new ListView<ManufactureType>(70, 10, 9, projects, ColorScheme.White, Palette.GetPalette(1).GetColor(230), OnSelectProject)
 				.AddColumn(2, Alignment.Left, project => "")
 				.AddColumn(155, Alignment.Left, project => project.Metadata().Name)

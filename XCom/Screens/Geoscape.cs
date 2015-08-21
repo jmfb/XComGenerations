@@ -37,7 +37,6 @@ namespace XCom.Screens
 		{
 			GameState.Current.OnIdle += OnIdle;
 			stopwatch.Restart();
-			ProcessNextNotification();
 		}
 
 		private static void ProcessNextNotification()
@@ -116,6 +115,28 @@ namespace XCom.Screens
 			}
 		}
 
+		private static void CompleteResearch(Data.Base @base, ResearchType research)
+		{
+			var previouslyAvailableResearch = GameState.Current.Data.AvailableResearchProjects;
+			var previouslyAvailableProduction = @base.AvailableManufactureProjects;
+			RecordCompletedResearch(research);
+			NotfiyResearchCompleted(research);
+
+			var newResearchTypes = GameState.Current.Data.AvailableResearchProjects.Except(previouslyAvailableResearch).ToList();
+			NotifyWeCanNowResearch(@base, newResearchTypes);
+
+			var newProduction = @base.AvailableManufactureProjects.Except(previouslyAvailableProduction).ToList();
+			if (newProduction.Any())
+				NotifyWeCanNowProduce(@base, newProduction);
+		}
+
+		private static void RecordCompletedResearch(ResearchType research)
+		{
+			var completedResearch = GameState.Current.Data.CompletedResearch;
+			var newlyCompletedResearch = GatherCompletedResearch(research).Except(completedResearch);
+			completedResearch.AddRange(newlyCompletedResearch);
+		}
+
 		private static IEnumerable<ResearchType> GatherCompletedResearch(ResearchType research)
 		{
 			yield return research;
@@ -132,22 +153,30 @@ namespace XCom.Screens
 			yield return remainingLotteryResults[randomIndex];
 		}
 
-		private static void CompleteResearch(Data.Base @base, ResearchType research)
+		private static void NotfiyResearchCompleted(ResearchType research)
 		{
-			var previouslyAvailableResearch = GameState.Current.Data.AvailableResearchProjects;
-			var completedResearch = GameState.Current.Data.CompletedResearch;
-			var newlyCompletedResearch = GatherCompletedResearch(research).Except(completedResearch);
-			completedResearch.AddRange(newlyCompletedResearch);
 			//TODO: Potentially show information about extra research (researched medic, learned about other alien race...)
 			GameState.Current.Notifications.Enqueue(() => new ResearchCompleted(research).DoModal(GameState.Current.ActiveScreen));
-			var newResearchTypes = GameState.Current.Data.AvailableResearchProjects.Except(previouslyAvailableResearch).ToList();
+		}
+
+		private static void NotifyWeCanNowResearch(Data.Base @base, List<ResearchType> newResearchTypes)
+		{
 			GameState.Current.Notifications.Enqueue(() =>
 			{
 				Geoscape.ResetGameSpeed();
 				GameState.Current.Data.SelectBase(@base);
 				new WeCanNowResearch(newResearchTypes).DoModal(GameState.Current.ActiveScreen);
 			});
-			//TODO: if this project allows manufacture, display we can now manufacture screen
+		}
+
+		private static void NotifyWeCanNowProduce(Data.Base @base, List<ManufactureType> newProduction)
+		{
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				Geoscape.ResetGameSpeed();
+				GameState.Current.Data.SelectBase(@base);
+				new WeCanNowProduce(newProduction).DoModal(GameState.Current.ActiveScreen);
+			});
 		}
 	}
 }

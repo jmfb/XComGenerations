@@ -206,6 +206,7 @@
     <Compile Include="Modals\ResearchCompleted.cs" />
     <Compile Include="Modals\SelectArmor.cs" />
     <Compile Include="Modals\SelectCraftWeapon.cs" />
+    <Compile Include="Modals\WeCanNowProduce.cs" />
     <Compile Include="Modals\WeCanNowResearch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
