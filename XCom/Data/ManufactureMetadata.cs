@@ -11,5 +11,7 @@
 		public int EleriumRequired { get; set; }
 		public int PowerSourcesRequired { get; set; }
 		public int NavigationRequired { get; set; }
+		public ItemType ItemProduced { get; set; }
+		public ResearchType[] RequiredResearch { get; set; }
 	}
 }

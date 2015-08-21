@@ -55,7 +55,9 @@ namespace XCom.Data
 			Cost = 242000,
 			HoursToProduce = 400,
 			SpaceRequired = 6,
-			AlienAlloysRequired = 1
+			AlienAlloysRequired = 1,
+			ItemProduced = ItemType.FusionBallLauncher,
+			RequiredResearch = new[] { ResearchType.FusionMissile }
 		};
 
 		private static readonly ManufactureMetadata laserCannon = new ManufactureMetadata
@@ -64,7 +66,9 @@ namespace XCom.Data
 			Category = "Craft Weapon",
 			Cost = 182000,
 			HoursToProduce = 300,
-			SpaceRequired = 6
+			SpaceRequired = 6,
+			ItemProduced = ItemType.LaserCannon,
+			RequiredResearch = new[] { ResearchType.LaserCannon }
 		};
 
 		private static readonly ManufactureMetadata plasmaBeam = new ManufactureMetadata
@@ -74,7 +78,9 @@ namespace XCom.Data
 			Cost = 226000,
 			HoursToProduce = 300,
 			SpaceRequired = 8,
-			EleriumRequired = 15
+			EleriumRequired = 15,
+			ItemProduced = ItemType.PlasmaBeam,
+			RequiredResearch = new[] { ResearchType.PlasmaCannon }
 		};
 
 		private static readonly ManufactureMetadata fusionBall = new ManufactureMetadata
@@ -84,7 +90,9 @@ namespace XCom.Data
 			Cost = 28000,
 			HoursToProduce = 600,
 			SpaceRequired = 6,
-			EleriumRequired = 4
+			EleriumRequired = 4,
+			ItemProduced = ItemType.FusionBall,
+			RequiredResearch = new[] { ResearchType.FusionMissile }
 		};
 
 		private static readonly ManufactureMetadata tankLaserCannon = new ManufactureMetadata
@@ -93,7 +101,9 @@ namespace XCom.Data
 			Category = "Heavy Weapons Platform",
 			Cost = 500000,
 			HoursToProduce = 1200,
-			SpaceRequired = 25
+			SpaceRequired = 25,
+			ItemProduced = ItemType.TankLaserCannon,
+			RequiredResearch = new[] { ResearchType.LaserCannon }
 		};
 
 		private static readonly ManufactureMetadata hovertankPlasma = new ManufactureMetadata
@@ -104,7 +114,9 @@ namespace XCom.Data
 			HoursToProduce = 1200,
 			SpaceRequired = 30,
 			AlienAlloysRequired = 5,
-			EleriumRequired = 30
+			EleriumRequired = 30,
+			ItemProduced = ItemType.HovertankPlasma,
+			RequiredResearch = new[] { ResearchType.PlasmaCannon, ResearchType.NewFighterCraft }
 		};
 
 		private static readonly ManufactureMetadata hovertankLauncher = new ManufactureMetadata
@@ -115,7 +127,9 @@ namespace XCom.Data
 			HoursToProduce = 1400,
 			SpaceRequired = 30,
 			AlienAlloysRequired = 8,
-			EleriumRequired = 25
+			EleriumRequired = 25,
+			ItemProduced = ItemType.HovertankLauncher,
+			RequiredResearch = new[] { ResearchType.PlasmaCannon, ResearchType.FusionMissile, ResearchType.NewFighterCraft }
 		};
 
 		private static readonly ManufactureMetadata hwpFusionBomb = new ManufactureMetadata
@@ -126,7 +140,9 @@ namespace XCom.Data
 			HoursToProduce = 400,
 			SpaceRequired = 25,
 			AlienAlloysRequired = 8,
-			EleriumRequired = 5
+			EleriumRequired = 5,
+			ItemProduced = ItemType.HwpFusionBomb,
+			RequiredResearch = new[] { ResearchType.PlasmaCannon, ResearchType.FusionMissile, ResearchType.NewFighterCraft }
 		};
 
 		private static readonly ManufactureMetadata laserPistol = new ManufactureMetadata
@@ -135,7 +151,9 @@ namespace XCom.Data
 			Category = "Weapon",
 			Cost = 8000,
 			HoursToProduce = 300,
-			SpaceRequired = 2
+			SpaceRequired = 2,
+			ItemProduced = ItemType.LaserPistol,
+			RequiredResearch = new[] { ResearchType.LaserPistol }
 		};
 
 		private static readonly ManufactureMetadata laserRifle = new ManufactureMetadata
@@ -144,7 +162,9 @@ namespace XCom.Data
 			Category = "Weapon",
 			Cost = 20000,
 			HoursToProduce = 400,
-			SpaceRequired = 3
+			SpaceRequired = 3,
+			ItemProduced = ItemType.LaserRifle,
+			RequiredResearch = new[] { ResearchType.LaserRifle }
 		};
 
 		private static readonly ManufactureMetadata heavyLaser = new ManufactureMetadata
@@ -153,7 +173,9 @@ namespace XCom.Data
 			Category = "Weapon",
 			Cost = 32000,
 			HoursToProduce = 700,
-			SpaceRequired = 4
+			SpaceRequired = 4,
+			ItemProduced = ItemType.HeavyLaser,
+			RequiredResearch = new[] { ResearchType.HeavyLaser }
 		};
 
 		private static readonly ManufactureMetadata motionScanner = new ManufactureMetadata
@@ -162,7 +184,9 @@ namespace XCom.Data
 			Category = "Equipment",
 			Cost = 34000,
 			HoursToProduce = 220,
-			SpaceRequired = 4
+			SpaceRequired = 4,
+			ItemProduced = ItemType.MotionScanner,
+			RequiredResearch = new[] { ResearchType.MotionScanner }
 		};
 
 		private static readonly ManufactureMetadata mediKit = new ManufactureMetadata
@@ -171,7 +195,9 @@ namespace XCom.Data
 			Category = "Equipment",
 			Cost = 28000,
 			HoursToProduce = 420,
-			SpaceRequired = 4
+			SpaceRequired = 4,
+			ItemProduced = ItemType.MediKit,
+			RequiredResearch = new[] { ResearchType.MediKit }
 		};
 
 		private static readonly ManufactureMetadata psiAmp = new ManufactureMetadata
@@ -181,7 +207,9 @@ namespace XCom.Data
 			Cost = 160000,
 			HoursToProduce = 500,
 			SpaceRequired = 4,
-			EleriumRequired = 1
+			EleriumRequired = 1,
+			ItemProduced = ItemType.PsiAmp,
+			RequiredResearch = new[] { ResearchType.PsiAmp }
 		};
 
 		private static readonly ManufactureMetadata heavyPlasma = new ManufactureMetadata
@@ -191,7 +219,9 @@ namespace XCom.Data
 			Cost = 122000,
 			HoursToProduce = 1000,
 			SpaceRequired = 4,
-			AlienAlloysRequired = 1
+			AlienAlloysRequired = 1,
+			ItemProduced = ItemType.HeavyPlasma,
+			RequiredResearch = new[] { ResearchType.HeavyPlasma, ResearchType.HeavyPlasmaClip }
 		};
 
 		private static readonly ManufactureMetadata heavyPlasmaClip = new ManufactureMetadata
@@ -201,7 +231,9 @@ namespace XCom.Data
 			Cost = 6000,
 			HoursToProduce = 80,
 			SpaceRequired = 4,
-			EleriumRequired = 3
+			EleriumRequired = 3,
+			ItemProduced = ItemType.HeavyPlasmaClip,
+			RequiredResearch = new[] { ResearchType.HeavyPlasma, ResearchType.HeavyPlasmaClip }
 		};
 
 		private static readonly ManufactureMetadata plasmaRifle = new ManufactureMetadata
@@ -211,7 +243,9 @@ namespace XCom.Data
 			Cost = 88000,
 			HoursToProduce = 820,
 			SpaceRequired = 4,
-			AlienAlloysRequired = 1
+			AlienAlloysRequired = 1,
+			ItemProduced = ItemType.PlasmaRifle,
+			RequiredResearch = new[] { ResearchType.PlasmaRifle, ResearchType.PlasmaRifleClip }
 		};
 
 		private static readonly ManufactureMetadata plasmaRifleClip = new ManufactureMetadata
@@ -221,7 +255,9 @@ namespace XCom.Data
 			Cost = 3000,
 			HoursToProduce = 80,
 			SpaceRequired = 4,
-			EleriumRequired = 2
+			EleriumRequired = 2,
+			ItemProduced = ItemType.PlasmaRifleClip,
+			RequiredResearch = new[] { ResearchType.PlasmaRifle, ResearchType.PlasmaRifleClip }
 		};
 
 		private static readonly ManufactureMetadata plasmaPistol = new ManufactureMetadata
@@ -231,7 +267,9 @@ namespace XCom.Data
 			Cost = 56000,
 			HoursToProduce = 600,
 			SpaceRequired = 3,
-			AlienAlloysRequired = 1
+			AlienAlloysRequired = 1,
+			ItemProduced = ItemType.PlasmaPistol,
+			RequiredResearch = new[] { ResearchType.PlasmaPistol, ResearchType.PlasmaPistolClip }
 		};
 
 		private static readonly ManufactureMetadata plasmaPistolClip = new ManufactureMetadata
@@ -241,7 +279,9 @@ namespace XCom.Data
 			Cost = 2000,
 			HoursToProduce = 60,
 			SpaceRequired = 4,
-			EleriumRequired = 1
+			EleriumRequired = 1,
+			ItemProduced = ItemType.PlasmaPistolClip,
+			RequiredResearch = new[] { ResearchType.PlasmaPistol, ResearchType.PlasmaPistolClip }
 		};
 
 		private static readonly ManufactureMetadata blasterLauncher = new ManufactureMetadata
@@ -251,7 +291,9 @@ namespace XCom.Data
 			Cost = 90000,
 			HoursToProduce = 1200,
 			SpaceRequired = 5,
-			AlienAlloysRequired = 1
+			AlienAlloysRequired = 1,
+			ItemProduced = ItemType.BlasterLauncher,
+			RequiredResearch = new[] { ResearchType.BlasterLauncher, ResearchType.BlasterBomb }
 		};
 
 		private static readonly ManufactureMetadata blasterBomb = new ManufactureMetadata
@@ -261,7 +303,9 @@ namespace XCom.Data
 			Cost = 8000,
 			HoursToProduce = 220,
 			SpaceRequired = 3,
-			EleriumRequired = 3
+			EleriumRequired = 3,
+			ItemProduced = ItemType.BlasterBomb,
+			RequiredResearch = new[] { ResearchType.BlasterLauncher, ResearchType.BlasterBomb }
 		};
 
 		private static readonly ManufactureMetadata smallLauncher = new ManufactureMetadata
@@ -271,7 +315,9 @@ namespace XCom.Data
 			Cost = 78000,
 			HoursToProduce = 900,
 			SpaceRequired = 3,
-			AlienAlloysRequired = 1
+			AlienAlloysRequired = 1,
+			ItemProduced = ItemType.SmallLauncher,
+			RequiredResearch = new[] { ResearchType.SmallLauncher, ResearchType.StunBomb }
 		};
 
 		private static readonly ManufactureMetadata stunBomb = new ManufactureMetadata
@@ -281,7 +327,9 @@ namespace XCom.Data
 			Cost = 7000,
 			HoursToProduce = 200,
 			SpaceRequired = 2,
-			EleriumRequired = 1
+			EleriumRequired = 1,
+			ItemProduced = ItemType.StunBomb,
+			RequiredResearch = new[] { ResearchType.SmallLauncher, ResearchType.StunBomb }
 		};
 
 		private static readonly ManufactureMetadata alienGrenade = new ManufactureMetadata
@@ -291,7 +339,9 @@ namespace XCom.Data
 			Cost = 6700,
 			HoursToProduce = 200,
 			SpaceRequired = 2,
-			EleriumRequired = 2
+			EleriumRequired = 2,
+			ItemProduced = ItemType.AlienGrenade,
+			RequiredResearch = new[] { ResearchType.AlienGrenade }
 		};
 
 		private static readonly ManufactureMetadata mindProbe = new ManufactureMetadata
@@ -301,7 +351,9 @@ namespace XCom.Data
 			Cost = 262000,
 			HoursToProduce = 1200,
 			SpaceRequired = 4,
-			EleriumRequired = 1
+			EleriumRequired = 1,
+			ItemProduced = ItemType.MindProbe,
+			RequiredResearch = new[] { ResearchType.MindProbe }
 		};
 
 		private static readonly ManufactureMetadata personalArmor = new ManufactureMetadata
@@ -311,7 +363,9 @@ namespace XCom.Data
 			Cost = 22000,
 			HoursToProduce = 800,
 			SpaceRequired = 12,
-			AlienAlloysRequired = 4
+			AlienAlloysRequired = 4,
+			ItemProduced = ItemType.PersonalArmor,
+			RequiredResearch = new[] { ResearchType.PersonalArmor }
 		};
 
 		private static readonly ManufactureMetadata powerSuit = new ManufactureMetadata
@@ -322,7 +376,9 @@ namespace XCom.Data
 			HoursToProduce = 1000,
 			SpaceRequired = 16,
 			AlienAlloysRequired = 5,
-			EleriumRequired = 5
+			EleriumRequired = 5,
+			ItemProduced = ItemType.PowerSuit,
+			RequiredResearch = new[] { ResearchType.PowerSuit }
 		};
 
 		private static readonly ManufactureMetadata flyingSuit = new ManufactureMetadata
@@ -333,7 +389,9 @@ namespace XCom.Data
 			HoursToProduce = 1400,
 			SpaceRequired = 16,
 			AlienAlloysRequired = 5,
-			EleriumRequired = 16
+			EleriumRequired = 16,
+			ItemProduced = ItemType.FlyingSuit,
+			RequiredResearch = new[] { ResearchType.FlyingSuit }
 		};
 
 		private static readonly ManufactureMetadata alienAlloys = new ManufactureMetadata
@@ -342,7 +400,9 @@ namespace XCom.Data
 			Category = "UFO component",
 			Cost = 3000,
 			HoursToProduce = 100,
-			SpaceRequired = 10
+			SpaceRequired = 10,
+			ItemProduced = ItemType.AlienAlloys,
+			RequiredResearch = new[] { ResearchType.AlienAlloys }
 		};
 
 		private static readonly ManufactureMetadata ufoPowerSource = new ManufactureMetadata
@@ -353,7 +413,9 @@ namespace XCom.Data
 			HoursToProduce = 1400,
 			SpaceRequired = 22,
 			AlienAlloysRequired = 5,
-			EleriumRequired = 16
+			EleriumRequired = 16,
+			ItemProduced = ItemType.UfoPowerSource,
+			RequiredResearch = new[] { ResearchType.UfoPowerSource }
 		};
 
 		private static readonly ManufactureMetadata ufoNavigation = new ManufactureMetadata
@@ -363,7 +425,9 @@ namespace XCom.Data
 			Cost = 150000,
 			HoursToProduce = 1600,
 			SpaceRequired = 18,
-			AlienAlloysRequired = 3
+			AlienAlloysRequired = 3,
+			ItemProduced = ItemType.UfoNavigation,
+			RequiredResearch = new[] { ResearchType.UfoNavigation }
 		};
 
 		private static readonly ManufactureMetadata firestorm = new ManufactureMetadata
@@ -375,7 +439,9 @@ namespace XCom.Data
 			SpaceRequired = 30,
 			AlienAlloysRequired = 65,
 			PowerSourcesRequired = 1,
-			NavigationRequired = 1
+			NavigationRequired = 1,
+			ItemProduced = ItemType.Firestorm,
+			RequiredResearch = new[] { ResearchType.NewFighterCraft }
 		};
 
 		private static readonly ManufactureMetadata lightning = new ManufactureMetadata
@@ -387,7 +453,9 @@ namespace XCom.Data
 			SpaceRequired = 34,
 			AlienAlloysRequired = 85,
 			PowerSourcesRequired = 1,
-			NavigationRequired = 1
+			NavigationRequired = 1,
+			ItemProduced = ItemType.Lightning,
+			RequiredResearch = new[] { ResearchType.NewFighterTransporter }
 		};
 
 		private static readonly ManufactureMetadata avenger = new ManufactureMetadata
@@ -399,7 +467,9 @@ namespace XCom.Data
 			SpaceRequired = 36,
 			AlienAlloysRequired = 120,
 			PowerSourcesRequired = 2,
-			NavigationRequired = 1
+			NavigationRequired = 1,
+			ItemProduced = ItemType.Avenger,
+			RequiredResearch = new[] { ResearchType.UltimateCraft }
 		};
 
 		private static readonly Dictionary<ManufactureType, ManufactureMetadata> metadata = new Dictionary<ManufactureType, ManufactureMetadata>
