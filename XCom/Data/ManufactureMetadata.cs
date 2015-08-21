@@ -1,4 +1,7 @@
-﻿namespace XCom.Data
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace XCom.Data
 {
 	public class ManufactureMetadata
 	{
@@ -13,5 +16,10 @@
 		public int NavigationRequired { get; set; }
 		public ItemType ItemProduced { get; set; }
 		public ResearchType[] RequiredResearch { get; set; }
+
+		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
+		{
+			return RequiredResearch.All(completedResearch.Contains);
+		}
 	}
 }
