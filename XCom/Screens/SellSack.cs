@@ -1,5 +1,9 @@
-﻿using XCom.Content.Backgrounds;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using XCom.Content.Backgrounds;
 using XCom.Controls;
+using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 
@@ -7,6 +11,8 @@ namespace XCom.Screens
 {
 	public class SellSack : Screen
 	{
+		private readonly Dictionary<ItemType, int> itemsToSell = Enum.GetValues(typeof(ItemType)).Cast<ItemType>().ToDictionary(item => item, item => 0);
+
 		public SellSack()
 		{
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.Funds, 6));
@@ -22,13 +28,37 @@ namespace XCom.Screens
 			AddControl(new Label(32, 184, "Sell/Sack", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 280, "Value", Font.Normal, ColorScheme.Blue));
 
-			//TODO: list of shit in stores
+			var data = new List<ItemType> { ItemType.PersonalArmor, ItemType.PowerSuit, ItemType.FlyingSuit }; //TODO: real items in stores
+
+			AddControl(new ListView<ItemType>(45, 10, 24, data, ColorScheme.Blue, Palette.GetPalette(6).GetColor(230), OnSellItem)
+				.ConfigureUpDown(195, OnCancelSellItem)
+				.AddColumn(155, Alignment.Left, item => item.Metadata().Name)
+				.AddColumn(64, Alignment.Left, item => GetRemaining(item).FormatNumber())
+				.AddColumn(28, Alignment.Left, item => itemsToSell[item].FormatNumber())
+				.AddColumn(40, Alignment.Left, item => "$" + item.Metadata().SalePrice.FormatNumber()));
 
 			AddControl(new Button(176, 8, 148, 16, "Sell/Sack", ColorScheme.Blue, Font.Normal, OnSellSack));
 			AddControl(new Button(176, 164, 148, 16, "Cancel", ColorScheme.Blue, Font.Normal, OnCancel));
 		}
 
-		private int TotalSalePrice => 0; //TODO:
+		private int GetRemaining(ItemType item)
+		{
+			return GameState.SelectedBase.Stores[item] - itemsToSell[item];
+		}
+
+		private void OnSellItem(ItemType item)
+		{
+			if (GetRemaining(item) > 0)
+				++itemsToSell[item];
+		}
+
+		private void OnCancelSellItem(ItemType item)
+		{
+			if (itemsToSell[item] > 0)
+				--itemsToSell[item];
+		}
+
+		private int TotalSalePrice => itemsToSell.Sum(item => item.Key.Metadata().SalePrice * item.Value);
 
 		private void OnSellSack()
 		{

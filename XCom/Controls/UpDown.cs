@@ -71,8 +71,10 @@ namespace XCom.Controls
 		{
 			if (state == State.None)
 				return;
-			//TODO: check mouse location, check focus, check time elapsed
-			if (stopwatch.ElapsedMilliseconds >= 100)
+			var position = GameState.Current.PointerPosition;
+			if (!HitTest(position.Y, position.X))
+				ChangeState(State.None);
+			else if (stopwatch.ElapsedMilliseconds >= 100)
 				FireEvent();
 		}
 

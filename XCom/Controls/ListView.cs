@@ -28,6 +28,8 @@ namespace XCom.Controls
 		private int scrollPosition;
 		private readonly Repeater up;
 		private readonly Repeater down;
+		private bool isUpDownList;
+		private Action<T> downAction;
 		private const int rowHeight = 8;
 
 		public ListView(
@@ -52,6 +54,29 @@ namespace XCom.Controls
 			AddControl(up);
 			AddControl(down);
 			UpdateButtons();
+		}
+
+		public ListView<T> ConfigureUpDown(int left, Action<T> theDownAction)
+		{
+			isUpDownList = true;
+			downAction = theDownAction;
+			var displayedRowCount = Math.Min(maxRowsToDisplay, data.Count);
+			foreach (var index in Enumerable.Range(0, displayedRowCount))
+			{
+				var localIndex = index;
+				AddControl(new UpDown(topRow + index * rowHeight, left, defaultScheme, () => OnUp(localIndex), () => OnDown(localIndex)));
+			}
+			return this;
+		}
+
+		private void OnUp(int index)
+		{
+			action(data[index - scrollPosition]);
+		}
+
+		private void OnDown(int index)
+		{
+			downAction(data[index - scrollPosition]);
 		}
 
 		public ListView<T> AddColumn(
@@ -91,7 +116,7 @@ namespace XCom.Controls
 		public override void OnLeftButtonDown(int row, int column)
 		{
 			var rowIndex = (row - topRow) / rowHeight;
-			if (IsCursorBetweenListColumns(column) && IsValidRowIndex(rowIndex))
+			if (IsCursorBetweenListColumns(column) && IsValidRowIndex(rowIndex) && !isUpDownList)
 			{
 				action(data[rowIndex + scrollPosition]);
 			}
