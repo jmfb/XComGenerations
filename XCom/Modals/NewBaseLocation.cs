@@ -54,12 +54,9 @@ namespace XCom.Modals
 
 		private static void AddTestData(Base originalBase)
 		{
-			originalBase.Stores.Armor.Add(ArmorType.PersonalArmor);
-			originalBase.Stores.Armor.Add(ArmorType.PersonalArmor);
-			originalBase.Stores.Armor.Add(ArmorType.PowerSuit);
-			originalBase.Stores.Armor.Add(ArmorType.PowerSuit);
-			originalBase.Stores.Armor.Add(ArmorType.FlyingSuit);
-			originalBase.Stores.Armor.Add(ArmorType.FlyingSuit);
+			originalBase.Stores.Add(ItemType.PersonalArmor, 2);
+			originalBase.Stores.Add(ItemType.PowerSuit, 2);
+			originalBase.Stores.Add(ItemType.FlyingSuit, 2);
 		}
 
 		private static void InitializeOriginalBase(Base originalBase)

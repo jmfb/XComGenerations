@@ -1,8 +1,8 @@
 ﻿namespace XCom.Data
 {
-	public class StoreItem<T>
+	public class StoreItem
 	{
-		public T ItemType { get; set; }
+		public ItemType ItemType { get; set; }
 		public int Count { get; set; }
 	}
 }

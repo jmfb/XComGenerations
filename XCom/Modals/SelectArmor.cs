@@ -24,13 +24,14 @@ namespace XCom.Modals
 			var nextTopRow = 104;
 			foreach (var armorType in new[]{ ArmorType.PersonalArmor, ArmorType.PowerSuit, ArmorType.FlyingSuit })
 			{
-				var count = GameState.SelectedBase.Stores.Armor.CountOf(armorType);
+				var metadata = armorType.Metadata();
+				var count = GameState.SelectedBase.Stores[metadata.Item];
 				if (count <= 0)
 					continue;
 				var localArmorType = armorType;
 				var topRow = nextTopRow;
 				nextTopRow += 16;
-				AddControl(new Button(topRow, 80, 100, 14, armorType.Metadata().Name, ColorScheme.DarkYellow, Font.Normal, () => OnEquipArmor(localArmorType)));
+				AddControl(new Button(topRow, 80, 100, 14, metadata.Name, ColorScheme.DarkYellow, Font.Normal, () => OnEquipArmor(localArmorType)));
 				AddControl(new Label(topRow, 216, count.FormatNumber(), Font.Large, ColorScheme.White));
 			}
 
@@ -47,7 +48,7 @@ namespace XCom.Modals
 		private void OnEquipArmor(ArmorType armorType)
 		{
 			ReturnSoldierArmor();
-			GameState.SelectedBase.Stores.Armor.Remove(armorType);
+			GameState.SelectedBase.Stores.Remove(armorType.Metadata().Item);
 			soldier.Armor = armorType;
 			EndModal();
 		}
@@ -55,7 +56,7 @@ namespace XCom.Modals
 		private void ReturnSoldierArmor()
 		{
 			if (soldier.Armor != null)
-				GameState.SelectedBase.Stores.Armor.Add(soldier.Armor.Value);
+				GameState.SelectedBase.Stores.Add(soldier.Armor.Value.Metadata().Item);
 		}
 	}
 }

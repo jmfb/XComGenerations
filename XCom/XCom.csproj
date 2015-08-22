@@ -160,7 +160,6 @@
     <Compile Include="Data\ResearchMetadata.cs" />
     <Compile Include="Data\Soldier.cs" />
     <Compile Include="Data\SoldierStatistics.cs" />
-    <Compile Include="Data\Store.cs" />
     <Compile Include="Data\StoreItem.cs" />
     <Compile Include="Data\Stores.cs" />
     <Compile Include="Fonts\Arrow.cs" />

@@ -11,5 +11,6 @@
 		public bool FireResistant { get; set; }
 		public bool SmokeResistant { get; set; }
 		public int StunResistance { get; set; }
+		public ItemType Item { get; set; }
 	}
 }
