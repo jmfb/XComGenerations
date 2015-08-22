@@ -94,7 +94,7 @@ namespace XCom.Screens
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.TotalStorageSpace;
-			var used = selectedBase.Stores.Space;
+			var used = selectedBase.Stores.SpaceUsed;
 			AddControl(new BaseInformationRow(93, "Stores", 48, 25, 50, used, total, true));
 		}
 

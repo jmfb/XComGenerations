@@ -54,7 +54,7 @@ namespace XCom.Data
 
 		public int TotalStorageSpace => CountFacilities(FacilityType.GeneralStores) * 50;
 
-		public int StorageSpaceAvailable => TotalStorageSpace - Stores.Space;
+		public int StorageSpaceAvailable => TotalStorageSpace - Stores.SpaceUsed;
 
 		public int TotalLivingSpace => CountFacilities(FacilityType.LivingQuarters) * 50;
 

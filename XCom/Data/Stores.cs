@@ -8,7 +8,8 @@ namespace XCom.Data
 	{
 		public List<StoreItem> Items { get; set; }
 
-		public int Space => Items.Sum(item => item.ItemType.Metadata().StorageSpace * item.Count);
+		public int TotalItemSpaceRequired => Items.Sum(item => item.ItemType.Metadata().StorageSpace * item.Count);
+		public int SpaceUsed => TotalItemSpaceRequired / 100;
 
 		public int this[ItemType itemType]
 		{
