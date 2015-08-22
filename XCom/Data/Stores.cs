@@ -6,15 +6,16 @@ namespace XCom.Data
 {
 	public class Stores
 	{
+		// ReSharper disable once MemberCanBePrivate.Global -- Needed for deserialization.
 		public List<StoreItem> Items { get; set; }
 
-		public int TotalItemSpaceRequired => Items.Sum(item => item.ItemType.Metadata().StorageSpace * item.Count);
-		public int SpaceUsed => TotalItemSpaceRequired / 100;
+		private int TotalItemSpaceRequired => Items.Sum(item => item.TotalItemSpaceRequired);
+		public int SpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 
 		public int this[ItemType itemType]
 		{
 			get { return Items.Single(item => item.ItemType == itemType).Count; }
-			set { Items.Single(item => item.ItemType == itemType).Count = value; }
+			private set { Items.Single(item => item.ItemType == itemType).Count = value; }
 		}
 
 		public void Add(ItemType item, int count = 1)

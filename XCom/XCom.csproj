@@ -211,6 +211,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\BaseInformation.cs" />
     <Compile Include="Screens\Base.cs" />
+    <Compile Include="Screens\BaseStores.cs" />
     <Compile Include="Screens\BuildFacilities.cs" />
     <Compile Include="Screens\BuildNewBase.cs" />
     <Compile Include="Screens\CraftArmor.cs" />

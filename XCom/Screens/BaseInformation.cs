@@ -166,7 +166,7 @@ namespace XCom.Screens
 
 		private static void OnStores()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new BaseStores());
 		}
 
 		private static void OnMonthlyCosts()

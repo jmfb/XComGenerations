@@ -30,7 +30,7 @@ namespace XCom.Screens
 			AddControl(new Label(32, 184, "Sell/Sack", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 280, "Value", Font.Normal, ColorScheme.Blue));
 
-			AddControl(new ListView<object>(45, 10, 24, itemsToSell.Keys.ToList(), ColorScheme.Blue, Palette.GetPalette(6).GetColor(230), OnSellItem)
+			AddControl(new ListView<object>(45, 10, 16, itemsToSell.Keys.ToList(), ColorScheme.Blue, Palette.GetPalette(6).GetColor(230), OnSellItem)
 				.ConfigureUpDown(195, OnCancelSellItem)
 				.AddColumn(155, Alignment.Left, GetName)
 				.AddColumn(64, Alignment.Left, item => GetRemaining(item).FormatNumber())
