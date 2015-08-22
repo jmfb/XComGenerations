@@ -231,6 +231,7 @@
     <Compile Include="Screens\Research.cs" />
     <Compile Include="Screens\SaveGame.cs" />
     <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\SellSack.cs" />
     <Compile Include="Screens\Soldiers.cs" />
     <Compile Include="Screens\SoldierView.cs" />
     <EmbeddedResource Include="Content\Backgrounds\Backgrounds.resx">

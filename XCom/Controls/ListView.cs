@@ -28,7 +28,7 @@ namespace XCom.Controls
 		private int scrollPosition;
 		private readonly Repeater up;
 		private readonly Repeater down;
-		private const int RowHeight = 8;
+		private const int rowHeight = 8;
 
 		public ListView(
 			int topRow,
@@ -71,7 +71,7 @@ namespace XCom.Controls
 			return this;
 		}
 
-		private int Height => maxRowsToDisplay * RowHeight;
+		private int Height => maxRowsToDisplay * rowHeight;
 
 		private int Width => ColumnWidths + 16;
 
@@ -90,7 +90,7 @@ namespace XCom.Controls
 
 		public override void OnLeftButtonDown(int row, int column)
 		{
-			var rowIndex = (row - topRow) / RowHeight;
+			var rowIndex = (row - topRow) / rowHeight;
 			if (IsCursorBetweenListColumns(column) && IsValidRowIndex(rowIndex))
 			{
 				action(data[rowIndex + scrollPosition]);
@@ -104,14 +104,14 @@ namespace XCom.Controls
 		public override void Render(GraphicsBuffer buffer)
 		{
 			var pointerPosition = GameState.Current.PointerPosition;
-			var pointerRowIndex = (pointerPosition.Y - topRow) / RowHeight;
+			var pointerRowIndex = (pointerPosition.Y - topRow) / rowHeight;
 			if (IsCursorBetweenListColumns(pointerPosition.X) && IsValidRowIndex(pointerRowIndex))
 				RenderSelectedRow(buffer, pointerRowIndex);
 			var visibleRowCount = Math.Min(maxRowsToDisplay, data.Count - scrollPosition);
 			foreach (var rowIndex in Enumerable.Range(0, visibleRowCount))
 			{
 				var rowData = data[rowIndex + scrollPosition];
-				var textTopRow = topRow + rowIndex * RowHeight;
+				var textTopRow = topRow + rowIndex * rowHeight;
 				var nextLeftColumn = leftColumn;
 				foreach (var column in columns)
 				{
@@ -138,10 +138,10 @@ namespace XCom.Controls
 		private void RenderSelectedRow(GraphicsBuffer buffer, int rowIndex)
 		{
 			buffer.FillRect(
-				topRow + rowIndex * RowHeight,
+				topRow + rowIndex * rowHeight,
 				leftColumn,
 				ColumnWidths,
-				RowHeight,
+				rowHeight,
 				selectionColor,
 				CopyPixelOperation.SourcePaint);
 		}

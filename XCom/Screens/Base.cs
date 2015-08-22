@@ -89,7 +89,7 @@ namespace XCom.Screens
 
 		private static void OnSellSack()
 		{
-			//TODO
+			GameState.Current.SetScreen(new SellSack());
 		}
 
 		private static void OnGeoscape()
