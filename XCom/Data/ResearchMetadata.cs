@@ -16,5 +16,19 @@ namespace XCom.Data
 		{
 			return RequiredResearch == null || RequiredResearch.Any(researchPath => researchPath.All(completedResearch.Contains));
 		}
+
+		public bool AreRequiredItemsInStores(Stores stores)
+		{
+			if (RequiredItem == null)
+				return true;
+			return stores[RequiredItem.Value] > 0;
+		}
+
+		public bool IsExhausted(List<ResearchType> completedResearch)
+		{
+			if (AdditionalResearchResults != null && !AdditionalResearchResults.All(completedResearch.Contains))
+				return false;
+			return LotteryResearchResults == null || LotteryResearchResults.All(completedResearch.Contains);
+		}
 	}
 }
