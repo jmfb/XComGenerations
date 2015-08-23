@@ -31,12 +31,12 @@ namespace XCom.Modals
 			AddControl(new DynamicLabel(85, 279, () => production.UnitsToProduce.FormatNumber(), Font.Large, ColorScheme.White));
 			AddControl(new Label(114, 40, "INCREASE", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(132, 40, "DECREASE", Font.Normal, ColorScheme.LightMagenta));
-			AddControl(new Repeater(108, 132, 13, 14, "U", ColorScheme.LightMagenta, Font.Arrow, OnIncreaseEngineers, 100));
-			AddControl(new Repeater(130, 132, 13, 14, "D", ColorScheme.LightMagenta, Font.Arrow, OnDecreaseEngineers, 100));
+			AddControl(new Repeater(108, 132, 13, 14, "U", ColorScheme.LightMagenta, Font.Arrow, OnIncreaseEngineers, 50));
+			AddControl(new Repeater(130, 132, 13, 14, "D", ColorScheme.LightMagenta, Font.Arrow, OnDecreaseEngineers, 50));
 			AddControl(new Label(114, 192, "INCREASE", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(132, 192, "DECREASE", Font.Normal, ColorScheme.LightMagenta));
-			AddControl(new Repeater(108, 284, 13, 14, "U", ColorScheme.LightMagenta, Font.Arrow, OnIncreaseUnits, 100));
-			AddControl(new Repeater(130, 284, 13, 14, "D", ColorScheme.LightMagenta, Font.Arrow, OnDecreaseUnits, 100));
+			AddControl(new Repeater(108, 284, 13, 14, "U", ColorScheme.LightMagenta, Font.Arrow, OnIncreaseUnits, 50));
+			AddControl(new Repeater(130, 284, 13, 14, "D", ColorScheme.LightMagenta, Font.Arrow, OnDecreaseUnits, 50));
 			AddControl(new Button(150, 16, 135, 16, "STOP PRODUCTION", ColorScheme.Purple, Font.Normal, OnStopProduction));
 			AddControl(new Button(150, 168, 135, 16, "OK", ColorScheme.Purple, Font.Normal, EndModal));
 		}
@@ -50,7 +50,11 @@ namespace XCom.Modals
 		private void OnIncreaseEngineers()
 		{
 			var selectedBase = GameState.SelectedBase;
-			if (selectedBase.EngineersAvailable > 0 && selectedBase.WorkshopSpaceAvailable > 0)
+			var areEngineersAvailable = selectedBase.EngineersAvailable > 0;
+			var isWorkshopSpaceAvailable = selectedBase.WorkshopSpaceAvailable > 0;
+			var maximumEngineersAllowed = production.ManufactureType.Metadata().HoursToProduce;
+			var areMoreEngineersAllowedOnProject = production.EngineersAllocated < maximumEngineersAllowed;
+			if (areEngineersAvailable && isWorkshopSpaceAvailable && areMoreEngineersAllowedOnProject)
 				++production.EngineersAllocated;
 		}
 
@@ -67,7 +71,8 @@ namespace XCom.Modals
 
 		private void OnDecreaseUnits()
 		{
-			if (production.UnitsToProduce > (production.UnitsProduced + 1))
+			var minimumUnitsToProduce = production.UnitsProduced + 1;
+			if (production.UnitsToProduce > minimumUnitsToProduce)
 				--production.UnitsToProduce;
 		}
 	}
