@@ -34,7 +34,7 @@ namespace XCom.Modals
 				DisplaySpecialMaterials(specialMaterials);
 
 			AddControl(new Button(155, 16, 135, 16, "CANCEL", ColorScheme.Blue, Font.Normal, EndModal));
-			if (production.CanProduce(GameState.SelectedBase))
+			if (production.CanProduce(GameState.SelectedBase) && metadata.SpaceRequired <= GameState.SelectedBase.WorkshopSpaceAvailable)
 				AddControl(new Button(155, 168, 135, 16, "START PRODUCTION", ColorScheme.Blue, Font.Normal, OnStartProduction));
 		}
 

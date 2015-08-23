@@ -23,15 +23,6 @@ namespace XCom.Data
 
 		public int TotalFunding => Countries.Sum(country => country.Funding);
 
-		private static IEnumerable<ResearchType> AllResearchProjects => Enum.GetValues(typeof(ResearchType)).Cast<ResearchType>();
-		private IEnumerable<ResearchType> ActiveResearchProjects => Bases.SelectMany(b => b.ResearchProjects.Select(project => project.ResearchType));
-		//TODO: Do not exclude live aliens where more could be learned from them (even if we've already researched them) but only so long as we have them in containment
-		private IEnumerable<ResearchType> RemainingResearchProjects => AllResearchProjects.Except(CompletedResearch).Except(ActiveResearchProjects);
-		public List<ResearchType> AvailableResearchProjects => RemainingResearchProjects
-			.Where(research => research.Metadata().IsRequiredResearchCompleted(CompletedResearch))
-			//TODO: Enforce RequiredItem requirements based on items in general stores/alien containment at current base
-			.ToList();
-
 		private static IEnumerable<FacilityType> AllFacilityTypes => Enum.GetValues(typeof(FacilityType)).Cast<FacilityType>();
 		private static IEnumerable<FacilityType> BuildableFacilityTypes => AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
 		public List<FacilityType> AvailableFacilityTypes => BuildableFacilityTypes

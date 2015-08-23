@@ -83,6 +83,15 @@ namespace XCom.Data
 
 		public int HangarSpaceAvailable => TotalHangarSpace - Crafts.Count - CraftUnderConstruction;
 
+		private static IEnumerable<ResearchType> AllResearchProjects => Enum.GetValues(typeof(ResearchType)).Cast<ResearchType>();
+		private IEnumerable<ResearchType> ActiveResearchProjects => ResearchProjects.Select(project => project.ResearchType);
+		//TODO: Do not exclude live aliens where more could be learned from them (even if we've already researched them) but only so long as we have them in containment
+		private IEnumerable<ResearchType> RemainingResearchProjects => AllResearchProjects.Except(GameState.Current.Data.CompletedResearch).Except(ActiveResearchProjects);
+		public List<ResearchType> AvailableResearchProjects => RemainingResearchProjects
+			.Where(research => research.Metadata().IsRequiredResearchCompleted(GameState.Current.Data.CompletedResearch))
+			//TODO: Enforce RequiredItem requirements based on items in general stores/alien containment at current base
+			.ToList();
+
 		private static IEnumerable<ManufactureType> AllManufactureProjects => Enum.GetValues(typeof(ManufactureType)).Cast<ManufactureType>();
 		private IEnumerable<ManufactureType> ActiveManufactureProjects => ManufactureProjects.Select(project => project.ManufactureType);
 		private IEnumerable<ManufactureType> RemainingManufactureProjects => AllManufactureProjects.Except(ActiveManufactureProjects);

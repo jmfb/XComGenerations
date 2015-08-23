@@ -228,12 +228,12 @@ namespace XCom.Screens
 
 		private static void CompleteResearch(Data.Base @base, ResearchType research)
 		{
-			var previouslyAvailableResearch = GameState.Current.Data.AvailableResearchProjects;
+			var previouslyAvailableResearch = @base.AvailableResearchProjects;
 			var previouslyAvailableProduction = @base.AvailableManufactureProjects;
 			RecordCompletedResearch(research);
 			NotfiyResearchCompleted(research);
 
-			var newResearchTypes = GameState.Current.Data.AvailableResearchProjects.Except(previouslyAvailableResearch).ToList();
+			var newResearchTypes = @base.AvailableResearchProjects.Except(previouslyAvailableResearch).ToList();
 			NotifyWeCanNowResearch(@base, newResearchTypes);
 
 			var newProduction = @base.AvailableManufactureProjects.Except(previouslyAvailableProduction).ToList();
