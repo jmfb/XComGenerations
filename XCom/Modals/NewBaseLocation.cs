@@ -67,12 +67,12 @@ namespace XCom.Modals
 		
 			AddTestData(originalBase);
 
-			var skyranger = Craft.CreateRefueled(data.NextCraftId++, CraftType.Skyranger, data.NextSkyrangerNumber++);
+			var skyranger = Craft.CreateRefueled(CraftType.Skyranger, data.NextSkyrangerNumber++);
 			originalBase.Crafts.Add(skyranger);
 			
 			for (var index = 0; index < 2; ++index)
 			{
-				var interceptor = Craft.CreateRefueled(data.NextCraftId++, CraftType.Interceptor, data.NextInterceptorNumber++);
+				var interceptor = Craft.CreateRefueled(CraftType.Interceptor, data.NextInterceptorNumber++);
 				interceptor.Weapons.Add(CraftWeapon.CreateLoaded(CraftWeaponType.Stingray));
 				interceptor.Weapons.Add(CraftWeapon.CreateLoaded(CraftWeaponType.Cannon));
 				originalBase.Crafts.Add(interceptor);

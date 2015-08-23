@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using XCom.Controls;
@@ -90,14 +91,124 @@ namespace XCom.Screens
 			var oldGameTime = GameState.Current.Data.Time;
 			var newGameTime = oldGameTime.AddMilliseconds(elapsedMillisecondsInGame);
 			GameState.Current.Data.Time = newGameTime;
+
+			var elapsedHours = GetElapsedHours(oldGameTime, newGameTime);
+			foreach (var hour in Enumerable.Range(0, elapsedHours))
+				PerformHourlyUpdates();
+
 			var isNewDay = oldGameTime.Date != newGameTime.Date;
 			if (isNewDay)
-			{
-				//TODO: perform other daily actions
-				AdvanceResearchProjects();
-			}
+				PerformDailyUpdates();
+
 			//TODO: check for new day, month, and other time based triggers
 			ProcessNextNotification();
+		}
+
+		private static int GetElapsedHours(DateTime oldGameTime, DateTime newGameTime)
+		{
+			var oldHour = GetHour(oldGameTime);
+			var newHour = GetHour(newGameTime);
+			var timeSpan = newHour - oldHour;
+			return (int)timeSpan.TotalHours;
+		}
+
+		private static DateTime GetHour(DateTime gameTime)
+		{
+			return gameTime
+				.AddMinutes(-gameTime.Minute)
+				.AddSeconds(-gameTime.Second)
+				.AddMilliseconds(-gameTime.Millisecond);
+		}
+
+		private static void PerformHourlyUpdates()
+		{
+			AdvanceManufactureProjects();
+		}
+
+		private static void PerformDailyUpdates()
+		{
+			//TODO: perform other daily actions
+			AdvanceResearchProjects();
+			AdvanceFacilityConstruction();
+		}
+
+		private static void AdvanceManufactureProjects()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+			{
+				var activeProjects = @base.ManufactureProjects.Where(project => project.EngineersAllocated > 0).ToList();
+				foreach (var project in activeProjects)
+					AdvanceManufactureProject(@base, project);
+			}
+		}
+
+		private static void AdvanceManufactureProject(Data.Base @base, ManufactureProject project)
+		{
+			var previousUnitsProduced = project.UnitsProduced;
+			project.HoursCompleted += project.EngineersAllocated;
+			var totalUnitsProduced = Math.Min(project.UnitsToProduce,
+				project.HoursCompleted / project.ManufactureType.Metadata().HoursToProduce);
+			var newUnitsProduced = totalUnitsProduced - previousUnitsProduced;
+
+			foreach (var unit in Enumerable.Range(0, newUnitsProduced))
+			{
+				project.CompleteUnit(@base);
+				++project.UnitsProduced;
+				if (project.UnitsProduced == project.UnitsToProduce)
+					break;
+				var status = project.BeginUnitProduction(@base);
+				if (status == ManufactureStatus.UnitStarted)
+					continue;
+				@base.ManufactureProjects.Remove(project);
+				NotifyProductionStopped(@base, project, status);
+				return;
+			}
+
+			if (project.UnitsProduced != project.UnitsToProduce)
+				return;
+			@base.ManufactureProjects.Remove(project);
+			NotifyProductionCompleted(@base, project);
+		}
+
+		private static void NotifyProductionStopped(Data.Base @base, ManufactureProject project, ManufactureStatus status)
+		{
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				Geoscape.ResetGameSpeed();
+				new ProductionStopped(@base.Name, project.ManufactureType.Metadata().Name, status).DoModal(GameState.Current.ActiveScreen);
+			});
+		}
+
+		private static void NotifyProductionCompleted(Data.Base @base, ManufactureProject project)
+		{
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				Geoscape.ResetGameSpeed();
+				new ProductionCompleted(@base.Name, project.ManufactureType.Metadata().Name).DoModal(GameState.Current.ActiveScreen);
+			});
+		}
+
+		private static void AdvanceFacilityConstruction()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+			{
+				var facilitiesUnderConstruction = @base.Facilities.Where(facility => facility.DaysUntilConstructionComplete > 0).ToList();
+				foreach (var facility in facilitiesUnderConstruction)
+				{
+					--facility.DaysUntilConstructionComplete;
+					if (facility.DaysUntilConstructionComplete == 0)
+						NotifyFacilityConstructionComplete(@base, facility);
+				}
+			}
+		}
+
+		private static void NotifyFacilityConstructionComplete(Data.Base @base, Facility facility)
+		{
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				Geoscape.ResetGameSpeed();
+				new FacilityConstructionCompleted(@base.Name, facility.FacilityType.Metadata().Name).DoModal(GameState.Current.ActiveScreen);
+			});
 		}
 
 		private static void AdvanceResearchProjects()

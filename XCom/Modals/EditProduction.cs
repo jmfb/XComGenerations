@@ -62,13 +62,12 @@ namespace XCom.Modals
 
 		private void OnIncreaseUnits()
 		{
-			//TODO: check storage/hangar space available
 			++production.UnitsToProduce;
 		}
 
 		private void OnDecreaseUnits()
 		{
-			if (production.UnitsToProduce > 0)
+			if (production.UnitsToProduce > (production.UnitsProduced + 1))
 				--production.UnitsToProduce;
 		}
 	}

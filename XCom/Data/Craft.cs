@@ -4,7 +4,6 @@ namespace XCom.Data
 {
 	public class Craft
 	{
-		public int Id { get; set; }
 		public CraftType CraftType { get; set; }
 		public int Number { get; set; }
 		public int Damage { get; set; }
@@ -28,17 +27,30 @@ namespace XCom.Data
 			return Damage * 100 / CraftType.Metadata().Damage;
 		}
 
-		public static Craft CreateRefueled(int id, CraftType craftType, int number)
+		public static Craft CreateRefueled(CraftType craftType, int number)
 		{
 			return new Craft
 			{
-				Id = id,
 				CraftType = craftType,
 				Number = number,
 				Damage = 0,
 				Fuel = craftType.Metadata().Fuel,
 				Weapons = new List<CraftWeapon>(),
 				Status = CraftStatus.Ready,
+				SoldierIds = new List<int>()
+			};
+		}
+
+		public static Craft CreateNew(CraftType craftType, int number)
+		{
+			return new Craft
+			{
+				CraftType = craftType,
+				Number = number,
+				Damage = 0,
+				Fuel = 0,
+				Weapons = new List<CraftWeapon>(),
+				Status = CraftStatus.Refuelling,
 				SoldierIds = new List<int>()
 			};
 		}

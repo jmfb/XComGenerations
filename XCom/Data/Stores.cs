@@ -9,7 +9,7 @@ namespace XCom.Data
 		// ReSharper disable once MemberCanBePrivate.Global -- Needed for deserialization.
 		public List<StoreItem> Items { get; set; }
 
-		private int TotalItemSpaceRequired => Items.Sum(item => item.TotalItemSpaceRequired);
+		public int TotalItemSpaceRequired => Items.Sum(item => item.TotalItemSpaceRequired);
 		public int SpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 
 		public int this[ItemType itemType]

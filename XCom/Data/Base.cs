@@ -14,6 +14,7 @@ namespace XCom.Data
 		public int EngineerCount { get; set; }
 		public int ScientistCount { get; set; }
 		public List<Craft> Crafts { get; set; }
+		public int CraftUnderConstruction { get; set; }
 		public List<Soldier> Soldiers { get; set; }
 		public Stores Stores { get; set; }
 		public List<ResearchProject> ResearchProjects { get; set; }
@@ -80,7 +81,7 @@ namespace XCom.Data
 
 		public int TotalHangarSpace => CountFacilities(FacilityType.Hangar);
 
-		public int HangarSpaceAvailable => TotalHangarSpace - Crafts.Count;
+		public int HangarSpaceAvailable => TotalHangarSpace - Crafts.Count - CraftUnderConstruction;
 
 		private static IEnumerable<ManufactureType> AllManufactureProjects => Enum.GetValues(typeof(ManufactureType)).Cast<ManufactureType>();
 		private IEnumerable<ManufactureType> ActiveManufactureProjects => ManufactureProjects.Select(project => project.ManufactureType);
@@ -113,8 +114,7 @@ namespace XCom.Data
 				return WorkshopSpaceAvailable < 50;
 
 			case FacilityType.GeneralStores:
-				//TODO: general store capacity in excess of stores
-				return false;
+				return StorageSpaceAvailable < 50;
 
 			case FacilityType.AccessLift:
 				var otherFacilitiesAreAttached = Facilities.Count > 1;

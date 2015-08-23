@@ -13,10 +13,12 @@ namespace XCom.Data
 		public IEnumerable<Country> Countries { get; set; }
 		public int SelectedBase { get; set; }
 		public List<Base> Bases { get; set; }
-		public int NextCraftId { get; set; }
 		public int NextSoldierId { get; set; }
 		public int NextSkyrangerNumber { get; set; }
 		public int NextInterceptorNumber { get; set; }
+		public int NextFirestormNumber { get; set; }
+		public int NextLightningNumber { get; set; }
+		public int NextAvengerNumber { get; set; }
 		public List<ResearchType> CompletedResearch { get; set; }
 
 		public int TotalFunding => Countries.Sum(country => country.Funding);
@@ -49,6 +51,9 @@ namespace XCom.Data
 				SelectedBase = 0,
 				NextSkyrangerNumber = 1,
 				NextInterceptorNumber = 1,
+				NextFirestormNumber = 1,
+				NextLightningNumber = 1,
+				NextAvengerNumber = 1,
 				CompletedResearch = new List<ResearchType>(),
 				Countries = new[]
 				{
