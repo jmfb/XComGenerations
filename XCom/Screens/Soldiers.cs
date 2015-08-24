@@ -33,7 +33,7 @@ namespace XCom.Screens
 		private static string GetSoldierCraftName(Soldier soldier)
 		{
 			var craft = soldier.GetCraft();
-			return craft == null ? "NONE" : craft.GetName();
+			return craft == null ? "NONE" : craft.Name;
 		}
 
 		private static void OnClickSoldier(Soldier soldier)

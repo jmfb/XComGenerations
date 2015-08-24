@@ -64,7 +64,7 @@ namespace XCom.Screens
 				return ((ItemType)item).Metadata().Name;
 			var craft = item as Craft;
 			return craft != null ?
-				craft.GetName() :
+				craft.Name :
 				((StoreItem)item).ItemType.Metadata().Name;
 		}
 

@@ -17,7 +17,7 @@ namespace XCom.Screens
 			var metadata = craft.CraftType.Metadata();
 
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.EquipCraft, 9));
-			AddControl(new Label(8, Label.Center, craft.GetName(), Font.Large, ColorScheme.Blue));
+			AddControl(new Label(8, Label.Center, craft.Name, Font.Large, ColorScheme.Blue));
 			AddControl(new Label(24, 24, "DAMAGE>", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(24, 59, craft.GetDamagePercent().FormatPercent(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(24, 232, "FUEL>", Font.Normal, ColorScheme.Blue));

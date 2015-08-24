@@ -19,6 +19,9 @@ namespace XCom.Data
 		public Stores Stores { get; set; }
 		public List<ResearchProject> ResearchProjects { get; set; }
 		public List<ManufactureProject> ManufactureProjects { get; set; }
+		public List<TransferItem<Soldier>> TransferredSoldiers { get; set; }
+		public List<TransferItem<Craft>> TransferredCrafts { get; set; }
+		public List<TransferItem<StoreItem>> TransferredStores { get; set; }
 
 		public static Base Create(string name, string area)
 		{
@@ -31,11 +34,19 @@ namespace XCom.Data
 				Soldiers = new List<Soldier>(),
 				Stores = Stores.Create(),
 				ResearchProjects = new List<ResearchProject>(),
-				ManufactureProjects = new List<ManufactureProject>()
+				ManufactureProjects = new List<ManufactureProject>(),
+				TransferredSoldiers = new List<TransferItem<Soldier>>(),
+				TransferredCrafts = new List<TransferItem<Craft>>(),
+				TransferredStores = new List<TransferItem<StoreItem>>()
 			};
 		}
 
-		public int PersonnelCount => Soldiers.Count + EngineerCount + ScientistCount;
+		private int TransferredEngineerCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Engineer)?.Item.Count ?? 0;
+		private int TransferredScientistCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Scientist)?.Item.Count ?? 0;
+		public int PersonnelCount =>
+			Soldiers.Count + TransferredSoldiers.Count +
+			EngineerCount + TransferredEngineerCount +
+			ScientistCount + TransferredScientistCount;
 
 		public int CountFacilities(FacilityType facilityType)
 		{
@@ -54,10 +65,13 @@ namespace XCom.Data
 			.Sum(facility => facility.FacilityType.Metadata().Maintenance);
 
 		public int TotalStorageSpace => CountFacilities(FacilityType.GeneralStores) * 50;
-		public int TotalItemSpace => TotalStorageSpace * 100;
-		
-		public int StorageSpaceAvailable => TotalStorageSpace - Stores.SpaceUsed;
-		public int ItemSpaceAvailable => TotalItemSpace - Stores.TotalItemSpaceRequired; //TODO: take into account transfer space
+		private int TotalItemSpace => TotalStorageSpace * 100;
+
+		private int TransferredItemSpaceRequired => TransferredStores.Sum(transfer => transfer.Item.TotalItemSpaceRequired);
+		private int TotalItemSpaceRequired => Stores.TotalItemSpaceRequired + TransferredItemSpaceRequired;
+		public int TotalSpaceUsed => (TotalItemSpaceRequired + 99) / 100;
+		private int StorageSpaceAvailable => TotalStorageSpace - TotalSpaceUsed;
+		public int ItemSpaceAvailable => TotalItemSpace - TotalItemSpaceRequired;
 
 		public int TotalLivingSpace => CountFacilities(FacilityType.LivingQuarters) * 50;
 
@@ -83,7 +97,8 @@ namespace XCom.Data
 
 		public int TotalHangarSpace => CountFacilities(FacilityType.Hangar);
 
-		public int HangarSpaceAvailable => TotalHangarSpace - Crafts.Count - CraftUnderConstruction;
+		public int TotalCraftCount => Crafts.Count + TransferredCrafts.Count + CraftUnderConstruction;
+		public int HangarSpaceAvailable => TotalHangarSpace - TotalCraftCount;
 
 		private static IEnumerable<ResearchType> AllResearchProjects => Enum.GetValues(typeof(ResearchType)).Cast<ResearchType>();
 		private IEnumerable<ResearchType> ActiveResearchProjects => ResearchProjects.Select(project => project.ResearchType);

@@ -44,13 +44,6 @@ namespace XCom.Controls
 				column < (leftColumn + 23);
 		}
 
-		public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton)
-		{
-			if (!leftButton || stopwatch.ElapsedMilliseconds < 50)
-				return;
-			OnLeftButtonDown(row, column);
-		}
-
 		public override void OnLeftButtonDown(int row, int column)
 		{
 			var middleColumn = leftColumn + 11;
@@ -74,7 +67,7 @@ namespace XCom.Controls
 			var position = GameState.Current.PointerPosition;
 			if (!HitTest(position.Y, position.X))
 				ChangeState(State.None);
-			else if (stopwatch.ElapsedMilliseconds >= 50)
+			else if (stopwatch.ElapsedMilliseconds >= 100)
 				FireEvent();
 		}
 

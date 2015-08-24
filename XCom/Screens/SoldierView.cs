@@ -35,7 +35,7 @@ namespace XCom.Screens
 			AddControl(new Label(48, 261, soldier.KillCount.ToString(CultureInfo.InvariantCulture), Font.Normal, ColorScheme.White));
 			AddControl(new Label(56, 0, "CRAFT>", Font.Normal, ColorScheme.Blue));
 			var craft = soldier.GetCraft();
-			var craftName = craft == null ? "NONE" : craft.GetName();
+			var craftName = craft == null ? "NONE" : craft.Name;
 			AddControl(new Label(56, 34, craftName, Font.Normal, ColorScheme.White));
 			if (soldier.DaysUntilRecovered > 0)
 			{

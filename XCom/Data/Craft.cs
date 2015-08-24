@@ -12,10 +12,7 @@ namespace XCom.Data
 		public CraftStatus Status { get; set; }
 		public List<int> SoldierIds { get; set; }
 
-		public string GetName()
-		{
-			return CraftType.Metadata().Name + "-" + Number;
-		}
+		public string Name => CraftType.Metadata().Name + "-" + Number;
 
 		public int GetFuelPercent()
 		{

@@ -93,10 +93,69 @@ namespace XCom.Screens
 				--itemsToPurchase[item];
 		}
 
-		private static void OnOk()
+		private void OnOk()
 		{
-			//TODO: remove funds, begin transfers to the current base base on purchase hours
-			//NOTE: purchased items should immediately take up living quarter, hangar, store space.
+			GameState.Current.Data.Funds -= TotalCost;
+			foreach (var item in itemsToPurchase.Where(itemToPurchase => itemToPurchase.Value > 0))
+			{
+				var purchaseHours = item.Key.Metadata().PurchaseHours;
+				var count = item.Value;
+				switch (item.Key)
+				{
+				case ItemType.Soldier:
+					PurchaseSoldiers(count, purchaseHours);
+					break;
+				case ItemType.Skyranger:
+					PurchaseSkyrangers(count, purchaseHours);
+					break;
+				case ItemType.Interceptor:
+					PurchaseInterceptors(count, purchaseHours);
+					break;
+				default:
+					PurchaseItems(item, count, purchaseHours);
+					break;
+				}
+			}
+			GameState.Current.SetScreen(new Base());
+		}
+
+		private static void PurchaseSoldiers(int count, int purchaseHours)
+		{
+			foreach (var index in Enumerable.Range(0, count))
+				GameState.SelectedBase.TransferredSoldiers.Add(new TransferItem<Soldier>
+				{
+					Item = Soldier.Create(GameState.Current.Data.NextSoldierId++),
+					HoursRemaining = purchaseHours
+				});
+		}
+
+		private static void PurchaseSkyrangers(int count, int purchaseHours)
+		{
+			foreach (var index in Enumerable.Range(0, count))
+				GameState.SelectedBase.TransferredCrafts.Add(new TransferItem<Craft>
+				{
+					Item = Craft.CreateNew(CraftType.Skyranger, GameState.Current.Data.NextSkyrangerNumber++),
+					HoursRemaining = purchaseHours
+				});
+		}
+
+		private static void PurchaseInterceptors(int count, int purchaseHours)
+		{
+			foreach (var index in Enumerable.Range(0, count))
+				GameState.SelectedBase.TransferredCrafts.Add(new TransferItem<Craft>
+				{
+					Item = Craft.CreateNew(CraftType.Interceptor, GameState.Current.Data.NextInterceptorNumber++),
+					HoursRemaining = purchaseHours
+				});
+		}
+
+		private static void PurchaseItems(KeyValuePair<ItemType, int> item, int count, int purchaseHours)
+		{
+			GameState.SelectedBase.TransferredStores.Add(new TransferItem<StoreItem>
+			{
+				Item = new StoreItem {ItemType = item.Key, Count = count},
+				HoursRemaining = purchaseHours
+			});
 		}
 
 		private static void OnCancel()

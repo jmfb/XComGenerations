@@ -4,6 +4,7 @@ using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
+using XCom.Modals;
 
 namespace XCom.Screens
 {
@@ -94,7 +95,7 @@ namespace XCom.Screens
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.TotalStorageSpace;
-			var used = selectedBase.Stores.SpaceUsed;
+			var used = selectedBase.TotalSpaceUsed;
 			AddControl(new BaseInformationRow(93, "Stores", 48, 25, 50, used, total, true));
 		}
 
@@ -118,7 +119,7 @@ namespace XCom.Screens
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.TotalHangarSpace;
-			var used = selectedBase.Crafts.Count;
+			var used = selectedBase.TotalCraftCount;
 			AddControl(new BaseInformationRow(123, "Hangars", 48, 18, 1, used, total, true));
 		}
 
@@ -159,9 +160,9 @@ namespace XCom.Screens
 			GameState.Current.SetScreen(new Base());
 		}
 
-		private static void OnTransfers()
+		private void OnTransfers()
 		{
-			//TODO:
+			new BaseTransfers().DoModal(this);
 		}
 
 		private static void OnStores()

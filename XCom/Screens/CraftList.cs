@@ -24,7 +24,7 @@ namespace XCom.Screens
 			AddControl(new Label(40, 268, "HWPs", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new ListView<Craft>(58, 8, 8, selectedBase.Crafts, ColorScheme.Blue, Palette.GetPalette(9).GetColor(230), OnSelectCraft)
 				.AddColumn(8, Alignment.Left, craft => "")
-				.AddColumn(94, Alignment.Left, craft => craft.GetName())
+				.AddColumn(94, Alignment.Left, craft => craft.Name)
 				.AddColumn(65, Alignment.Left, craft => craft.Status.Name())
 				.AddColumn(47, Alignment.Left, GetCraftWeaponText)
 				.AddColumn(46, Alignment.Left, craft => craft.SoldierIds.Count.ToString(CultureInfo.InvariantCulture))

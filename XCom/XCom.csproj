@@ -163,6 +163,7 @@
     <Compile Include="Data\SoldierStatistics.cs" />
     <Compile Include="Data\StoreItem.cs" />
     <Compile Include="Data\Stores.cs" />
+    <Compile Include="Data\TransferItem.cs" />
     <Compile Include="Fonts\Arrow.cs" />
     <Compile Include="Fonts\Character.cs" />
     <Compile Include="Fonts\Font.cs" />
@@ -188,6 +189,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modals\AbandonGame.cs" />
+    <Compile Include="Modals\BaseTransfers.cs" />
     <Compile Include="Modals\BuildFacility.cs" />
     <Compile Include="Modals\CannotBuildHere.cs" />
     <Compile Include="Modals\CannotDismantle.cs" />

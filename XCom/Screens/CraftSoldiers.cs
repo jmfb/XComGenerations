@@ -16,7 +16,7 @@ namespace XCom.Screens
 		{
 			this.craft = craft;
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Purple, Backgrounds.Soldier, 8));
-			AddControl(new Label(8, 16, "Select Squad for " + craft.GetName(), Font.Large, ColorScheme.Purple));
+			AddControl(new Label(8, 16, "Select Squad for " + craft.Name, Font.Large, ColorScheme.Purple));
 			AddControl(new Label(24, 16, "SPACE AVAILABLE>", Font.Normal, ColorScheme.Purple));
 			spaceAvailable = new Label(24, 94, "", Font.Normal, ColorScheme.White);
 			AddControl(spaceAvailable);

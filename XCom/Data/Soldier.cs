@@ -25,7 +25,7 @@ namespace XCom.Data
 		public string GetCraftName()
 		{
 			var craft = GetCraft();
-			return craft == null ? "NONE" : craft.GetName();
+			return craft == null ? "NONE" : craft.Name;
 		}
 
 		public string GetArmorName()
