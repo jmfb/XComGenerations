@@ -46,7 +46,7 @@ namespace XCom.Controls
 
 		public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton)
 		{
-			if (!leftButton || stopwatch.ElapsedMilliseconds < 100)
+			if (!leftButton || stopwatch.ElapsedMilliseconds < 50)
 				return;
 			OnLeftButtonDown(row, column);
 		}
@@ -74,7 +74,7 @@ namespace XCom.Controls
 			var position = GameState.Current.PointerPosition;
 			if (!HitTest(position.Y, position.X))
 				ChangeState(State.None);
-			else if (stopwatch.ElapsedMilliseconds >= 100)
+			else if (stopwatch.ElapsedMilliseconds >= 50)
 				FireEvent();
 		}
 
@@ -113,6 +113,11 @@ namespace XCom.Controls
 		{
 			Font.UpDownButtons.DrawString(buffer, topRow, leftColumn, "U", state == State.Up ? scheme.Inverse : scheme);
 			Font.UpDownButtons.DrawString(buffer, topRow, leftColumn + 12, "D", state == State.Down ? scheme.Inverse : scheme);
+		}
+
+		public void Abort()
+		{
+			ChangeState(State.None);
 		}
 	}
 }

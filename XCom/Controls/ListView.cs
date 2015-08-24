@@ -71,12 +71,12 @@ namespace XCom.Controls
 
 		private void OnUp(int index)
 		{
-			action(data[index - scrollPosition]);
+			action(data[index + scrollPosition]);
 		}
 
 		private void OnDown(int index)
 		{
-			downAction(data[index - scrollPosition]);
+			downAction(data[index + scrollPosition]);
 		}
 
 		public ListView<T> AddColumn(
@@ -94,6 +94,12 @@ namespace XCom.Controls
 			});
 			MoveButtons();
 			return this;
+		}
+
+		public void AbortUpDown()
+		{
+			foreach (var upDown in GetChildControls<UpDown>())
+				upDown.Abort();
 		}
 
 		private int Height => maxRowsToDisplay * rowHeight;

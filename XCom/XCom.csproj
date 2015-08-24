@@ -201,6 +201,9 @@
     <Compile Include="Modals\NewBaseLocation.cs" />
     <Compile Include="Modals\NewBaseNamePrompt.cs" />
     <Compile Include="Modals\NewProduction.cs" />
+    <Compile Include="Modals\NotEnoughStoreSpace.cs" />
+    <Compile Include="Modals\NotEnoughLivingSpace.cs" />
+    <Compile Include="Modals\NoFreeHangars.cs" />
     <Compile Include="Modals\NotEnoughMoney.cs" />
     <Compile Include="Modals\Options.cs" />
     <Compile Include="Modals\ProductionCompleted.cs" />
@@ -233,6 +236,7 @@
     <Compile Include="Screens\Manufacture.cs" />
     <Compile Include="Screens\MonthlyCosts.cs" />
     <Compile Include="Screens\PlaceAccessLift.cs" />
+    <Compile Include="Screens\PurchaseRecruit.cs" />
     <Compile Include="Screens\Research.cs" />
     <Compile Include="Screens\SaveGame.cs" />
     <Compile Include="Screens\Screen.cs" />

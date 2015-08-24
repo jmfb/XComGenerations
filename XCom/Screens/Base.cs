@@ -84,7 +84,7 @@ namespace XCom.Screens
 
 		private static void OnPurchaseRecruit()
 		{
-			//TODO
+			GameState.Current.SetScreen(new PurchaseRecruit());
 		}
 
 		private static void OnSellSack()

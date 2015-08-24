@@ -9,5 +9,7 @@
 		public int SalePrice { get; set; }
 		public int MonthlyCost { get; set; }
 		public int StorageSpace { get; set; }
+		public int HangarSpace { get; set; }
+		public int LivingSpace { get; set; }
 	}
 }

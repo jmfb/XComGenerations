@@ -158,7 +158,8 @@ namespace XCom.Data
 				AvailableToBuy = true,
 				PurchaseHours = 72,
 				Cost = cost,
-				MonthlyCost = cost / 2
+				MonthlyCost = cost / 2,
+				LivingSpace = 1
 			};
 		}
 
@@ -170,7 +171,8 @@ namespace XCom.Data
 				AvailableToBuy = true,
 				PurchaseHours = purchaseHours,
 				Cost = cost,
-				MonthlyCost = cost
+				MonthlyCost = cost,
+				HangarSpace = 1
 			};
 		}
 

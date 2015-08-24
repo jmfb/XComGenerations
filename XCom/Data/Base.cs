@@ -54,8 +54,10 @@ namespace XCom.Data
 			.Sum(facility => facility.FacilityType.Metadata().Maintenance);
 
 		public int TotalStorageSpace => CountFacilities(FacilityType.GeneralStores) * 50;
-
+		public int TotalItemSpace => TotalStorageSpace * 100;
+		
 		public int StorageSpaceAvailable => TotalStorageSpace - Stores.SpaceUsed;
+		public int ItemSpaceAvailable => TotalItemSpace - Stores.TotalItemSpaceRequired; //TODO: take into account transfer space
 
 		public int TotalLivingSpace => CountFacilities(FacilityType.LivingQuarters) * 50;
 

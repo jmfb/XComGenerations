@@ -18,39 +18,34 @@ namespace XCom.Controls
 			controls.Remove(control);
 		}
 
+		protected IEnumerable<T> GetChildControls<T>()
+		{
+			return controls.OfType<T>();
+		}
+
 		public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton)
 		{
-			var target = FindControl(row, column);
-			if (target != null)
-				target.OnMouseMove(row, column, leftButton, rightButton);
+			FindControl(row, column)?.OnMouseMove(row, column, leftButton, rightButton);
 		}
 
 		public override void OnLeftButtonDown(int row, int column)
 		{
-			var target = FindControl(row, column);
-			if (target != null)
-				target.OnLeftButtonDown(row, column);
+			FindControl(row, column)?.OnLeftButtonDown(row, column);
 		}
 
 		public override void OnLeftButtonUp(int row, int column)
 		{
-			var target = FindControl(row, column);
-			if (target != null)
-				target.OnLeftButtonUp(row, column);
+			FindControl(row, column)?.OnLeftButtonUp(row, column);
 		}
 
 		public override void OnRightButtonDown(int row, int column)
 		{
-			var target = FindControl(row, column);
-			if (target != null)
-				target.OnRightButtonDown(row, column);
+			FindControl(row, column)?.OnRightButtonDown(row, column);
 		}
 
 		public override void OnRightButtonUp(int row, int column)
 		{
-			var target = FindControl(row, column);
-			if (target != null)
-				target.OnRightButtonUp(row, column);
+			FindControl(row, column)?.OnRightButtonUp(row, column);
 		}
 
 		public override bool IsChild(Interactive parent)
