@@ -195,6 +195,7 @@
     <Compile Include="Modals\CannotDismantle.cs" />
     <Compile Include="Modals\ChooseNewResearchProject.cs" />
     <Compile Include="Modals\ConfirmNewResearchProject.cs" />
+    <Compile Include="Modals\ConfirmTransfer.cs" />
     <Compile Include="Modals\Dismantle.cs" />
     <Compile Include="Modals\EditProduction.cs" />
     <Compile Include="Modals\EditResearchProject.cs" />
@@ -242,9 +243,11 @@
     <Compile Include="Screens\Research.cs" />
     <Compile Include="Screens\SaveGame.cs" />
     <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\SelectDestinationBase.cs" />
     <Compile Include="Screens\SellSack.cs" />
     <Compile Include="Screens\Soldiers.cs" />
     <Compile Include="Screens\SoldierView.cs" />
+    <Compile Include="Screens\Transfer.cs" />
     <EmbeddedResource Include="Content\Backgrounds\Backgrounds.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Backgrounds.Designer.cs</LastGenOutput>

@@ -10,7 +10,7 @@ namespace XCom.Screens
 		public Base()
 		{
 			var data = GameState.Current.Data;
-			var selectedBase = data.Bases[data.SelectedBase];
+			var selectedBase = GameState.SelectedBase;
 
 			AddControl(new ClickToEdit(0, 193, 127, selectedBase.Name, Font.Large, ColorScheme.LightMagenta, OnEditName));
 			AddControl(new Label(16, 194, selectedBase.Area, Font.Normal, ColorScheme.Purple));
@@ -79,7 +79,7 @@ namespace XCom.Screens
 
 		private static void OnTransfer()
 		{
-			//TODO
+			GameState.Current.SetScreen(new SelectDestinationBase());
 		}
 
 		private static void OnPurchaseRecruit()
