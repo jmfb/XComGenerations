@@ -34,12 +34,12 @@ namespace XCom.Screens
 				var changeColor = country.FundingChange == 0 ? ColorScheme.Green : ColorScheme.Yellow;
 				var change = country.FundingChange.FormatNumber();
 				if (country.FundingChange > 0)
-					change = "+" + change;
+					change = $"+{change}";
 				AddControl(new Label(topRow, 240, change, Font.Normal, changeColor));
 			}
 
 			AddControl(new ExtendedLabel(168, 32, 108, "TOTAL", Font.Normal, ColorScheme.Aqua));
-			AddControl(new Label(168, 140, "$" + totalFunding.FormatNumber(), Font.Normal, ColorScheme.Aqua));
+			AddControl(new Label(168, 140, $"${totalFunding.FormatNumber()}", Font.Normal, ColorScheme.Aqua));
 
 			AddControl(new Button(180, 135, 50, 12, "OK", ColorScheme.Green, Font.Normal, OnOk));
 		}

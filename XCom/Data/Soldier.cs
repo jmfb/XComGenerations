@@ -42,7 +42,7 @@ namespace XCom.Data
 			return new Soldier
 			{
 				Id = id,
-				Name = firstName + " " + lastName,
+				Name = $"{firstName} {lastName}",
 				Rank = Rank.Rookie,
 				Armor = null,
 				MissionCount = 0,

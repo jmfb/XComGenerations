@@ -15,7 +15,7 @@ namespace XCom.Screens
 
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.LightMagenta, Backgrounds.EquipCraft, 9));
 			AddControl(new Label(8, 16, "INTERCEPTION CRAFT", Font.Large, ColorScheme.LightMagenta));
-			AddControl(new Label(24, 16, "Base>" + selectedBase.Name, Font.Large, ColorScheme.LightMagenta));
+			AddControl(new Label(24, 16, $"Base>{selectedBase.Name}", Font.Large, ColorScheme.LightMagenta));
 			AddControl(new Label(40, 16, "NAME", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(40, 110, "STATUS", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(40, 160, "WEAPON", Font.Normal, ColorScheme.LightMagenta));

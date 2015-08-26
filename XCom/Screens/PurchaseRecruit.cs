@@ -23,9 +23,9 @@ namespace XCom.Screens
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.Funds, 6));
 			AddControl(new Label(8, Label.Center, "Purchase/Hire Personnel", Font.Large, ColorScheme.Blue));
 			AddControl(new Label(24, 10, "Current Funds>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 78, () => "$" + GameState.Current.Data.Funds.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new DynamicLabel(24, 78, () => $"${GameState.Current.Data.Funds.FormatNumber()}", Font.Normal, ColorScheme.White));
 			AddControl(new Label(24, 160, "Cost of Purcahses>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 246, () => "$" + TotalCost.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new DynamicLabel(24, 246, () => $"${TotalCost.FormatNumber()}", Font.Normal, ColorScheme.White));
 			AddControl(new Label(32, 10, "ITEM", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 152, "COST PER UNIT", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 256, "QUANTITY", Font.Normal, ColorScheme.Blue));
@@ -68,7 +68,7 @@ namespace XCom.Screens
 			if (TotalHangarSpaceRequired + metadata.HangarSpace > GameState.SelectedBase.HangarSpaceAvailable)
 			{
 				AbortPurchaseItem();
-				new NoFreeHangars(ColorScheme.LightMagenta, Backgrounds.Funds).DoModal(this);
+				new NoFreeHangars(ColorScheme.LightMagenta, Backgrounds.Funds, "PURCHASE").DoModal(this);
 				return;
 			}
 

@@ -221,7 +221,8 @@ namespace XCom.Data
 		{
 			return new ItemMetadata
 			{
-				Name = name
+				Name = name,
+				IsLiveAlien = true
 			};
 		}
 

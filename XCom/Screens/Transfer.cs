@@ -91,9 +91,41 @@ namespace XCom.Screens
 
 		private void OnIncreaseTransfer(object item)
 		{
-			//TODO: check hangar space, living quarters, store space, alien containment
+			if (GetLivingSpaceRequired(item) + TotalLivingSpaceRequired > destination.LivingSpaceAvailable)
+			{
+				AbortTransferItem();
+				new NoFreeAccomodation().DoModal(this);
+				return;
+			}
+
+			if (GetHangarSpaceRequired(item) + TotalHangarSpaceRequired > destination.HangarSpaceAvailable)
+			{
+				AbortTransferItem();
+				new NoFreeHangars(ColorScheme.LightMagenta, Backgrounds.Funds, "TRANSFER").DoModal(this);
+				return;
+			}
+
+			if (IsAlienContainmentRequired(item) && !destination.HasAlienContainment)
+			{
+				AbortTransferItem();
+				new NoAlienContainment().DoModal(this);
+				return;
+			}
+
+			if (GetItemSpaceRequired(item) + TotalItemSpaceRequired > destination.ItemSpaceAvailable)
+			{
+				AbortTransferItem();
+				new NotEnoughStoreSpace(ColorScheme.LightMagenta, Backgrounds.Funds).DoModal(this);
+				return;
+			}
+
 			if (GetRemainingQuantity(item) > 0)
 				++itemsToTransfer[item];
+		}
+
+		private void AbortTransferItem()
+		{
+			GetChildControls<ListView<object>>().Single().AbortUpDown();
 		}
 
 		private void OnDescreaseTransfer(object item)
@@ -136,11 +168,39 @@ namespace XCom.Screens
 			if (pair.Key is Craft)
 				return 25 * Distance * pair.Value;
 			if (pair.Key is Soldier)
-				return 1 * Distance * pair.Value;
+				return 5 * Distance * pair.Value;
 			var itemType = (ItemType)pair.Key;
 			if (itemType == ItemType.Engineer || itemType == ItemType.Scientist)
-				return 1 * Distance * pair.Value;
-			return 5 * Distance * pair.Value;
+				return 5 * Distance * pair.Value;
+			return Distance * pair.Value;
+		}
+
+		private int TotalLivingSpaceRequired => itemsToTransfer.Sum(transfer => transfer.Value * GetLivingSpaceRequired(transfer.Key));
+		private int TotalHangarSpaceRequired => itemsToTransfer.Sum(transfer => transfer.Value * GetHangarSpaceRequired(transfer.Key));
+		private int TotalItemSpaceRequired => itemsToTransfer.Sum(transfer => transfer.Value * GetItemSpaceRequired(transfer.Key));
+
+		private static int GetLivingSpaceRequired(object item)
+		{
+			return (item as Craft)?.SoldierIds.Count ?? (
+				item is Soldier ? 1 :
+				(ItemType)item == ItemType.Engineer ? 1 :
+				(ItemType)item == ItemType.Scientist ? 1 :
+				0);
+		}
+
+		private static int GetHangarSpaceRequired(object item)
+		{
+			return item is Craft ? 1 : 0;
+		}
+
+		private static int GetItemSpaceRequired(object item)
+		{
+			return item is Soldier || item is Craft ? 0 : ((ItemType)item).Metadata().StorageSpace;
+		}
+
+		private static bool IsAlienContainmentRequired(object item)
+		{
+			return item is ItemType && ((ItemType)item).Metadata().IsLiveAlien;
 		}
 
 		private int TotalCost => itemsToTransfer.Sum(pair => GetTransferCost(pair));

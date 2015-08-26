@@ -15,7 +15,7 @@ namespace XCom.Screens
 		{
 			this.craft = craft;
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.EquipCraft, 10));
-			AddControl(new Label(8, 16, "Select Armor for " + craft.Name, Font.Large, ColorScheme.Blue));
+			AddControl(new Label(8, 16, $"Select Armor for {craft.Name}", Font.Large, ColorScheme.Blue));
 			AddControl(new Label(32, 16, "NAME", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 130, "CRAFT", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 200, "ARMOR", Font.Normal, ColorScheme.Blue));

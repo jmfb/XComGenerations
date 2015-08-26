@@ -204,6 +204,8 @@
     <Compile Include="Modals\NewBaseLocation.cs" />
     <Compile Include="Modals\NewBaseNamePrompt.cs" />
     <Compile Include="Modals\NewProduction.cs" />
+    <Compile Include="Modals\NoAlienContainment.cs" />
+    <Compile Include="Modals\NoFreeAccomodation.cs" />
     <Compile Include="Modals\NotEnoughStoreSpace.cs" />
     <Compile Include="Modals\NotEnoughLivingSpace.cs" />
     <Compile Include="Modals\NoFreeHangars.cs" />

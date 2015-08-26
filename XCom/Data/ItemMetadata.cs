@@ -11,5 +11,6 @@
 		public int StorageSpace { get; set; }
 		public int HangarSpace { get; set; }
 		public int LivingSpace { get; set; }
+		public bool IsLiveAlien { get; set; }
 	}
 }

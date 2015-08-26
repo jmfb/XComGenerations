@@ -12,7 +12,7 @@
 		private int EffectiveHoursRemaining => EngineersAllocated == 0 ? 0 : TotalHoursRemaining / EngineersAllocated;
 		private int DaysRemaining => EffectiveHoursRemaining / 24;
 		private int HoursRemaining => EffectiveHoursRemaining % 24;
-		public string TimeRemaining => EngineersAllocated == 0 ? "-" :  DaysRemaining.FormatNumber() + "\t/" + HoursRemaining.FormatNumber();
+		public string TimeRemaining => EngineersAllocated == 0 ? "-" :  $"{DaysRemaining.FormatNumber()}\t/{HoursRemaining.FormatNumber()}";
 
 		private bool ValidateRequiredFunds()
 		{

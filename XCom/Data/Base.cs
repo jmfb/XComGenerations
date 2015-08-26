@@ -117,6 +117,8 @@ namespace XCom.Data
 			.Where(project => project.Metadata().IsRequiredResearchCompleted(GameState.Current.Data.CompletedResearch))
 			.ToList();
 
+		public bool HasAlienContainment => CountFacilities(FacilityType.AlienContainment) > 0;
+
 		public Facility FindFacilityAt(int row, int column, bool allowUnderConstruction)
 		{
 			return Facilities.FirstOrDefault(facility => facility.IsAt(row, column, allowUnderConstruction));

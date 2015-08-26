@@ -14,7 +14,7 @@ namespace XCom.Screens
 
 			AddControl(new ClickToEdit(0, 193, 127, selectedBase.Name, Font.Large, ColorScheme.LightMagenta, OnEditName));
 			AddControl(new Label(16, 194, selectedBase.Area, Font.Normal, ColorScheme.Purple));
-			AddControl(new Label(24, 194, "FUNDS> $" + data.Funds.FormatNumber(), Font.Normal, ColorScheme.Blue));
+			AddControl(new Label(24, 194, $"FUNDS> ${data.Funds.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 			AddControl(new BaseSelect(41, 192, OnSelectBase));
 			AddControl(new Button(58, 192, 128, 12, "BUILD NEW BASE", ColorScheme.DarkYellow, Font.Normal, OnBuildNewBase));
 			AddControl(new Button(71, 192, 128, 12, "BASE INFORMATION", ColorScheme.DarkYellow, Font.Normal, OnBaseInformation));

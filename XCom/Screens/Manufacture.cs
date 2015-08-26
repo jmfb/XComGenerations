@@ -24,7 +24,7 @@ namespace XCom.Screens
 			AddControl(new Label(34, 8, "Workshop Space Available>", Font.Normal, ColorScheme.Purple));
 			AddControl(new DynamicLabel(34, 124, () => selectedBase.WorkshopSpaceAvailable.FormatNumber(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(34, 160, "Current Funds>", Font.Normal, ColorScheme.Purple));
-			AddControl(new DynamicLabel(34, 228, () => "$" + GameState.Current.Data.Funds.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new DynamicLabel(34, 228, () => $"${GameState.Current.Data.Funds.FormatNumber()}", Font.Normal, ColorScheme.White));
 			AddControl(new Label(52, 10, "ITEM", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(44, 90, "Engineers", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(52, 90, "Allocated", Font.Normal, ColorScheme.LightMagenta));
@@ -43,7 +43,7 @@ namespace XCom.Screens
 				.AddColumn(39, Alignment.Left, project => project.EngineersAllocated.FormatNumber())
 				.AddColumn(45, Alignment.Left, project => project.UnitsProduced.FormatNumber())
 				.AddColumn(27, Alignment.Left, project => project.UnitsToProduce.FormatNumber())
-				.AddColumn(47, Alignment.Left, project => "$" + project.ManufactureType.Metadata().Cost.FormatNumber())
+				.AddColumn(47, Alignment.Left, project => $"${project.ManufactureType.Metadata().Cost.FormatNumber()}")
 				.AddColumn(24, Alignment.Left, project => project.TimeRemaining));
 			AddControl(new Button(176, 8, 148, 16, "New Production", ColorScheme.Blue, Font.Normal, OnNewProduction));
 			AddControl(new Button(176, 164, 148, 16, "OK", ColorScheme.Blue, Font.Normal, OnOk));

@@ -29,13 +29,13 @@ namespace XCom.Screens
 			AddControl(new ExtendedLabel(120, 10, 240, "Base maintenance", Font.Normal, ColorScheme.LightMagenta, ColorScheme.Blue));
 			var maintenance = selectedBase.TotalMaintenance;
 			totalCost += maintenance;
-			AddControl(new Label(120, 250, "$" + maintenance.FormatNumber(), Font.Normal, ColorScheme.Blue));
+			AddControl(new Label(120, 250, $"${maintenance.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 
-			var income = "Income=$" + GameState.Current.Data.TotalFunding.FormatNumber();
+			var income = $"Income=${GameState.Current.Data.TotalFunding.FormatNumber()}";
 			AddControl(new Label(136, 10, income, Font.Normal, ColorScheme.Blue));
 
 			AddControl(new ExtendedLabel(136, 205, 45, "Total", Font.Normal, ColorScheme.White));
-			AddControl(new Label(136, 250, "$" + totalCost.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new Label(136, 250, $"${totalCost.FormatNumber()}", Font.Normal, ColorScheme.White));
 
 			AddControl(new Button(176, 10, 300, 16, "OK", ColorScheme.LightMagenta, Font.Normal, OnOk));
 		}
@@ -43,10 +43,10 @@ namespace XCom.Screens
 		private int CreateCostRow(int topRow, string label, int cost, int quantity)
 		{
 			AddControl(new ExtendedLabel(topRow, 10, 125, label, Font.Normal, ColorScheme.Blue));
-			AddControl(new ExtendedLabel(topRow, 135, 70, "$" + cost.FormatNumber(), Font.Normal, ColorScheme.Blue));
+			AddControl(new ExtendedLabel(topRow, 135, 70, $"${cost.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 			AddControl(new ExtendedLabel(topRow, 205, 45, quantity.FormatNumber(), Font.Normal, ColorScheme.Blue));
 			var total = cost * quantity;
-			AddControl(new Label(topRow, 250, "$" + total.FormatNumber(), Font.Normal, ColorScheme.Blue));
+			AddControl(new Label(topRow, 250, $"${total.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 			return total;
 		}
 

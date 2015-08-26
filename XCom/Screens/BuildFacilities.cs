@@ -15,7 +15,7 @@ namespace XCom.Screens
 			var selectedBase = GameState.SelectedBase;
 			AddControl(new Label(0, 193, selectedBase.Name, Font.Large, ColorScheme.LightMagenta));
 			AddControl(new Label(16, 194, selectedBase.Area, Font.Normal, ColorScheme.Purple));
-			AddControl(new DynamicLabel(24, 194, () => "FUNDS> $" + data.Funds.FormatNumber(), Font.Normal, ColorScheme.Blue));
+			AddControl(new DynamicLabel(24, 194, () => $"FUNDS> ${data.Funds.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 			AddControl(new Border(40, 192, 128, 160, ColorScheme.DarkYellow, Backgrounds.Research, 12));
 			AddControl(new Label(48, 212, "Installation", Font.Large, ColorScheme.White));
 			AddControl(new Button(176, 200, 112, 16, "OK", ColorScheme.DarkYellow, Font.Normal, OnOk));

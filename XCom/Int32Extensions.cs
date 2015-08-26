@@ -29,7 +29,7 @@ namespace XCom
 				number.EndsWith("2") ? "nd" :
 				number.EndsWith("3") ? "rd" :
 				"th";
-			return number + "\t" + suffix;
+			return $"{number}\t{suffix}";
 		}
 	}
 }

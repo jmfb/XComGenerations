@@ -13,7 +13,7 @@ namespace XCom.Screens
 			AddControl(new Border(30, 20, 280, 140, ColorScheme.DarkYellow, Backgrounds.Funds, 10));
 			AddControl(new Label(38, Label.Center, "Select Destination Base", Font.Large, ColorScheme.DarkYellow));
 			AddControl(new Label(54, 30, "Current Funds>", Font.Normal, ColorScheme.DarkYellow));
-			AddControl(new DynamicLabel(54, 98, () => "$" + GameState.Current.Data.Funds.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(new DynamicLabel(54, 98, () => $"${GameState.Current.Data.Funds.FormatNumber()}", Font.Normal, ColorScheme.White));
 			AddControl(new Label(64, 28, "Name", Font.Large, ColorScheme.DarkYellow));
 			AddControl(new Label(64, 160, "Area", Font.Large, ColorScheme.DarkYellow));
 			var otherBases = GameState.Current.Data.Bases.Where(@base => !ReferenceEquals(@base, GameState.SelectedBase)).ToList();

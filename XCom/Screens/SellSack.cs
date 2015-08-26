@@ -21,9 +21,9 @@ namespace XCom.Screens
 			AddControl(new Label(8, Label.Center, "Sell Items/Sack Personnel", Font.Large, ColorScheme.Blue));
 
 			AddControl(new Label(24, 10, "VALUE OF SALES>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 88, () => "$" + TotalSalePrice.FormatNumber(), Font.Normal, ColorScheme.Blue));
+			AddControl(new DynamicLabel(24, 88, () => $"${TotalSalePrice.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(24, 200, "FUNDS>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 234, () => "$" + GameState.Current.Data.Funds.FormatNumber(), Font.Normal, ColorScheme.Blue));
+			AddControl(new DynamicLabel(24, 234, () => $"${GameState.Current.Data.Funds.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 
 			AddControl(new Label(32, 10, "ITEM", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 140, "QUANTITY", Font.Normal, ColorScheme.Blue));
@@ -35,7 +35,7 @@ namespace XCom.Screens
 				.AddColumn(155, Alignment.Left, GetName)
 				.AddColumn(64, Alignment.Left, item => GetRemaining(item).FormatNumber())
 				.AddColumn(28, Alignment.Left, item => itemsToSell[item].FormatNumber())
-				.AddColumn(40, Alignment.Left, item => "$" + GetSalePrice(item).FormatNumber()));
+				.AddColumn(40, Alignment.Left, item => $"${GetSalePrice(item).FormatNumber()}"));
 
 			AddControl(new Button(176, 8, 148, 16, "Sell/Sack", ColorScheme.Blue, Font.Normal, OnSellSack));
 			AddControl(new Button(176, 164, 148, 16, "Cancel", ColorScheme.Blue, Font.Normal, OnCancel));
