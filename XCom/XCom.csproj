@@ -132,6 +132,7 @@
     <Compile Include="Data\ArmorMetadata.cs" />
     <Compile Include="Data\ArmorType.cs" />
     <Compile Include="Data\Base.cs" />
+    <Compile Include="Data\CompletedTransfer.cs" />
     <Compile Include="Data\Country.cs" />
     <Compile Include="Data\Craft.cs" />
     <Compile Include="Data\CraftMetadata.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Modals\EditResearchProject.cs" />
     <Compile Include="Modals\FacilityConstructionCompleted.cs" />
     <Compile Include="Modals\FacilityInUse.cs" />
+    <Compile Include="Modals\ItemsArriving.cs" />
     <Compile Include="Modals\NewBaseLocation.cs" />
     <Compile Include="Modals\NewBaseNamePrompt.cs" />
     <Compile Include="Modals\NewProduction.cs" />

@@ -123,11 +123,11 @@ namespace XCom.Screens
 		private static void PerformHourlyUpdates()
 		{
 			AdvanceManufactureProjects();
+			AdvanceTransfers();
 		}
 
 		private static void PerformDailyUpdates()
 		{
-			//TODO: perform other daily actions
 			AdvanceResearchProjects();
 			AdvanceFacilityConstruction();
 		}
@@ -186,6 +186,94 @@ namespace XCom.Screens
 				Geoscape.ResetGameSpeed();
 				new ProductionCompleted(@base.Name, project.ManufactureType.Metadata().Name).DoModal(GameState.Current.ActiveScreen);
 			});
+		}
+
+		private static void AdvanceTransfers()
+		{
+			DecrementTransferHoursRemaining();
+			var arrivingTransfers = GatherArrivingTransfers().ToList();
+			if (!arrivingTransfers.Any())
+				return;
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				new ItemsArriving(arrivingTransfers).DoModal(GameState.Current.ActiveScreen);
+			});
+		}
+
+		private static void DecrementTransferHoursRemaining()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+			{
+				foreach (var transferredSoldier in @base.TransferredSoldiers)
+					--transferredSoldier.HoursRemaining;
+				foreach (var transferredCraft in @base.TransferredCrafts)
+					--transferredCraft.HoursRemaining;
+				foreach (var transferredStore in @base.TransferredStores)
+					--transferredStore.HoursRemaining;
+			}
+		}
+
+		private static IEnumerable<CompletedTransfer> GatherArrivingTransfers()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+			{
+				foreach (var transferredSoldier in @base.TransferredSoldiers.Where(item => item.HoursRemaining == 0).ToList())
+					yield return CompleteSoldierTransfer(@base, transferredSoldier);
+				foreach (var transferredCraft in @base.TransferredCrafts.Where(item => item.HoursRemaining == 0).ToList())
+					yield return CompleteCraftTransfer(@base, transferredCraft);
+				foreach (var transferredStore in @base.TransferredStores.Where(item => item.HoursRemaining == 0).ToList())
+					yield return CompleteStoreTransfer(@base, transferredStore);
+			}
+		}
+
+		private static CompletedTransfer CompleteSoldierTransfer(Data.Base @base, TransferItem<Soldier> transferredSoldier)
+		{
+			@base.TransferredSoldiers.Remove(transferredSoldier);
+			@base.Soldiers.Add(transferredSoldier.Item);
+			var completedTransfer = new CompletedTransfer
+			{
+				Name = transferredSoldier.Item.Name,
+				Quantity = 1,
+				Destination = @base.Name
+			};
+			return completedTransfer;
+		}
+
+		private static CompletedTransfer CompleteCraftTransfer(Data.Base @base, TransferItem<Craft> transferredCraft)
+		{
+			@base.TransferredCrafts.Remove(transferredCraft);
+			@base.Crafts.Add(transferredCraft.Item);
+			var completedTransfer = new CompletedTransfer
+			{
+				Name = transferredCraft.Item.Name,
+				Quantity = 1,
+				Destination = @base.Name
+			};
+			return completedTransfer;
+		}
+
+		private static CompletedTransfer CompleteStoreTransfer(Data.Base @base, TransferItem<StoreItem> transferredStore)
+		{
+			@base.TransferredStores.Remove(transferredStore);
+			switch (transferredStore.Item.ItemType)
+			{
+			case ItemType.Engineer:
+				@base.EngineerCount += transferredStore.Item.Count;
+				break;
+			case ItemType.Scientist:
+				@base.ScientistCount += transferredStore.Item.Count;
+				break;
+			default:
+				@base.Stores.Add(transferredStore.Item.ItemType, transferredStore.Item.Count);
+				break;
+			}
+			var completedTransfer = new CompletedTransfer
+			{
+				Name = transferredStore.Item.ItemType.Metadata().Name,
+				Quantity = transferredStore.Item.Count,
+				Destination = @base.Name
+			};
+			return completedTransfer;
 		}
 
 		private static void AdvanceFacilityConstruction()
