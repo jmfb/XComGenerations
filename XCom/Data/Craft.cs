@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace XCom.Data
 {
@@ -11,18 +12,16 @@ namespace XCom.Data
 		public List<CraftWeapon> Weapons { get; set; }
 		public CraftStatus Status { get; set; }
 		public List<int> SoldierIds { get; set; }
+		public Stores Stores { get; set; }
 
 		public string Name => $"{CraftType.Metadata().Name}-{Number}";
-
-		public int GetFuelPercent()
-		{
-			return Fuel * 100 / CraftType.Metadata().Fuel;
-		}
-
-		public int GetDamagePercent()
-		{
-			return Damage * 100 / CraftType.Metadata().Damage;
-		}
+		public int FuelPercent => Fuel * 100 / CraftType.Metadata().Fuel;
+		public int DamagePercent => Damage * 100 / CraftType.Metadata().Damage;
+		public int TotalItemCount => Stores.Items.Where(item => item.ItemType.Metadata().HwpSpace == 0).Sum(item => item.Count);
+		public int TotalHwpCount => Stores.Items.Where(item => item.ItemType.Metadata().HwpSpace > 0).Sum(item => item.Count);
+		public int SpaceUsed => SoldierIds.Count + TotalHwpCount * 4;
+		public int SpaceAvailable => CraftType.Metadata().Space - SpaceUsed;
+		public int HwpSpaceAvailable => CraftType.Metadata().HwpCount - TotalHwpCount;
 
 		public static Craft CreateRefueled(CraftType craftType, int number)
 		{
@@ -34,7 +33,8 @@ namespace XCom.Data
 				Fuel = craftType.Metadata().Fuel,
 				Weapons = new List<CraftWeapon>(),
 				Status = CraftStatus.Ready,
-				SoldierIds = new List<int>()
+				SoldierIds = new List<int>(),
+				Stores = Stores.Create()
 			};
 		}
 
@@ -48,7 +48,8 @@ namespace XCom.Data
 				Fuel = 0,
 				Weapons = new List<CraftWeapon>(),
 				Status = CraftStatus.Refuelling,
-				SoldierIds = new List<int>()
+				SoldierIds = new List<int>(),
+				Stores = Stores.Create()
 			};
 		}
 	}

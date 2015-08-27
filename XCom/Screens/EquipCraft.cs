@@ -19,9 +19,9 @@ namespace XCom.Screens
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.EquipCraft, 9));
 			AddControl(new Label(8, Label.Center, craft.Name, Font.Large, ColorScheme.Blue));
 			AddControl(new Label(24, 24, "DAMAGE>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(24, 59, craft.GetDamagePercent().FormatPercent(), Font.Normal, ColorScheme.White));
+			AddControl(new Label(24, 59, craft.DamagePercent.FormatPercent(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(24, 232, "FUEL>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(24, 255, craft.GetFuelPercent().FormatPercent(), Font.Normal, ColorScheme.White));
+			AddControl(new Label(24, 255, craft.FuelPercent.FormatPercent(), Font.Normal, ColorScheme.White));
 			AddControl(new Picture(35 + metadata.RowOffset, 125 + metadata.ColumnOffset, metadata.Image));
 
 			if (metadata.WeaponCount >= 1)
@@ -61,9 +61,9 @@ namespace XCom.Screens
 			GameState.Current.SetScreen(new CraftSoldiers(craft));
 		}
 
-		private static void OnClickEquipment()
+		private void OnClickEquipment()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new CraftEquipment(craft));
 		}
 
 		private void OnClickArmor()

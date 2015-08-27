@@ -31,8 +31,20 @@ namespace XCom.Controls
 				nextLeftColumn += crew.Width - 1;
 				crew.Render(buffer, 96, leftColumn);
 			}
-			//TODO: tanks preview
-			//TODO: items preview
+
+			nextLeftColumn = 96;
+			foreach (var index in Enumerable.Range(0, (craft.TotalItemCount + 3) / 4))
+			{
+				var leftColumn = nextLeftColumn;
+				nextLeftColumn += items.Width - 2;
+				items.Render(buffer, 120, leftColumn);
+			}
+			foreach (var index in Enumerable.Range(0, craft.TotalHwpCount))
+			{
+				var leftColumn = nextLeftColumn;
+				nextLeftColumn += tank.Width - 2;
+				tank.Render(buffer, 120, leftColumn);
+			}
 		}
 	}
 }

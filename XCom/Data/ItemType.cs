@@ -189,6 +189,20 @@ namespace XCom.Data
 			};
 		}
 
+		private static ItemMetadata StoreTank(string name, int purchaseHours, int cost, int salePrice)
+		{
+			return new ItemMetadata
+			{
+				Name = name,
+				AvailableToBuy = true,
+				PurchaseHours = purchaseHours,
+				Cost = cost,
+				SalePrice = salePrice,
+				StorageSpace = 600,
+				HwpSpace = 1
+			};
+		}
+
 		private static ItemMetadata OtherItem(string name, int salePrice, int storageSpace)
 		{
 			return new ItemMetadata
@@ -196,6 +210,17 @@ namespace XCom.Data
 				Name = name,
 				SalePrice = salePrice,
 				StorageSpace = storageSpace
+			};
+		}
+
+		private static ItemMetadata OtherTank(string name, int salePrice)
+		{
+			return new ItemMetadata
+			{
+				Name = name,
+				SalePrice = salePrice,
+				StorageSpace = 600,
+				HwpSpace = 1
 			};
 		}
 
@@ -242,9 +267,9 @@ namespace XCom.Data
 			{ ItemType.AvalancheMissiles, StoreItem("Avalanche Missiles", 48, 9000, 7200, 150) },
 			{ ItemType.CannonRounds, StoreItem("Cannon Rounds (x50)", 96, 1240, 1012, 0) },
 
-			{ ItemType.TankCannon, StoreItem("Tank/Cannon", 96, 420000, 340000, 600) },
+			{ ItemType.TankCannon, StoreTank("Tank/Cannon", 96, 420000, 340000) },
 			{ ItemType.HwpCannonShells, StoreItem("HWP Cannon Shells", 48, 200, 100, 10) },
-			{ ItemType.TankRocketLauncher, StoreItem("Tank/Rocket Launcher", 96, 480000, 360000, 600) },
+			{ ItemType.TankRocketLauncher, StoreTank("Tank/Rocket Launcher", 96, 480000, 360000) },
 			{ ItemType.HwpRockets, StoreItem("HWP Rockets", 48, 3000, 2250, 60) },
 
 			{ ItemType.Pistol, StoreItem("Pistol", 24, 800, 600, 10) },
@@ -274,9 +299,9 @@ namespace XCom.Data
 			{ ItemType.LaserCannon, OtherItem("Laser Cannon", 211000, 200) },
 			{ ItemType.PlasmaBeam, OtherItem("Plasma Beam", 267300, 120) },
 			{ ItemType.FusionBall, OtherItem("Fusion Ball", 53300, 60) },
-			{ ItemType.TankLaserCannon, OtherItem("Tank/Laser Cannon", 594000, 600) },
-			{ ItemType.HovertankPlasma, OtherItem("Hovertank/Plasma", 980000, 600) },
-			{ ItemType.HovertankLauncher, OtherItem("Hovertank/Launcher", 1043000, 600) },
+			{ ItemType.TankLaserCannon, OtherTank("Tank/Laser Cannon", 594000) },
+			{ ItemType.HovertankPlasma, OtherTank("Hovertank/Plasma", 980000) },
+			{ ItemType.HovertankLauncher, OtherTank("Hovertank/Launcher", 1043000) },
 			{ ItemType.HwpFusionBomb, OtherItem("HWP Fusion Bomb", 31500, 60) },
 
 			{ ItemType.LaserPistol, OtherItem("Laser Pistol", 20000, 10) },
