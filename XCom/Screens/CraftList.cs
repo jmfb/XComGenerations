@@ -38,7 +38,8 @@ namespace XCom.Screens
 
 		private static void OnSelectCraft(Craft craft)
 		{
-			GameState.Current.SetScreen(new EquipCraft(craft));
+			if (craft.Status != CraftStatus.Out)
+				GameState.Current.SetScreen(new EquipCraft(craft));
 		}
 
 		private static string GetCraftWeaponText(Craft craft)

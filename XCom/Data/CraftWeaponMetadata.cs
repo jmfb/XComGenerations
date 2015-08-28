@@ -7,5 +7,8 @@ namespace XCom.Data
 		public string Name { get; set; }
 		public int Ammunition { get; set; }
 		public Image Image { get; set; }
+		public ItemType Item { get; set; }
+		public ItemType? Ammo { get; set; }
+		public int RoundsInAmmo => Ammo == ItemType.CannonRounds ? 50 : 1;
 	}
 }

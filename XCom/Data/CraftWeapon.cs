@@ -13,5 +13,14 @@
 				Ammunition = weaponType.Metadata().Ammunition
 			};
 		}
+
+		public static CraftWeapon CreateUnloaded(CraftWeaponType weaponType)
+		{
+			return new CraftWeapon
+			{
+				WeaponType = weaponType,
+				Ammunition = 0
+			};
+		}
 	}
 }

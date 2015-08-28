@@ -21,56 +21,26 @@ namespace XCom.Data
 			return metadata[craftWeaponType];
 		}
 
-		private static readonly CraftWeaponMetadata cannon = new CraftWeaponMetadata
+		private static CraftWeaponMetadata Weapon(string name, int ammunition, byte[] image, ItemType item, ItemType? ammo)
 		{
-			Name = "CANNON",
-			Ammunition = 200,
-			Image = new Image(CraftWeapons.Cannon)
-		};
+			return new CraftWeaponMetadata
+			{
+				Name = name,
+				Ammunition = ammunition,
+				Image = new Image(image),
+				Item = item,
+				Ammo = ammo
+			};
+		}
 
-		private static readonly CraftWeaponMetadata avalance = new CraftWeaponMetadata
+		private static readonly Dictionary<CraftWeaponType, CraftWeaponMetadata> metadata = new Dictionary<CraftWeaponType, CraftWeaponMetadata>
 		{
-			Name = "AVALANCHE",
-			Ammunition = 3,
-			Image = new Image(CraftWeapons.Avalanche)
-		};
-
-		private static readonly CraftWeaponMetadata stingray = new CraftWeaponMetadata
-		{
-			Name = "STINGRAY",
-			Ammunition = 6,
-			Image = new Image(CraftWeapons.Stingray)
-		};
-
-		private static readonly CraftWeaponMetadata laserBeam = new CraftWeaponMetadata
-		{
-			Name = "LASER BEAM",
-			Ammunition = 0,
-			Image = new Image(CraftWeapons.LaserBeam)
-		};
-
-		private static readonly CraftWeaponMetadata plasmaBeam = new CraftWeaponMetadata
-		{
-			Name = "PLASMA BEAM",
-			Ammunition = 100,
-			Image = new Image(CraftWeapons.PlasmaBeam)
-		};
-
-		private static readonly CraftWeaponMetadata fusionBall = new CraftWeaponMetadata
-		{
-			Name = "FUSION BALL",
-			Ammunition = 2,
-			Image = new Image(CraftWeapons.FusionBall)
-		};
-
-		private static readonly Dictionary<CraftWeaponType, CraftWeaponMetadata> metadata = new Dictionary<CraftWeaponType,CraftWeaponMetadata>
-		{
-			{ CraftWeaponType.Cannon, cannon },
-			{ CraftWeaponType.Avalanche, avalance },
-			{ CraftWeaponType.Stingray, stingray },
-			{ CraftWeaponType.LaserBeam, laserBeam },
-			{ CraftWeaponType.PlasmaBeam, plasmaBeam },
-			{ CraftWeaponType.FusionBall, fusionBall }
+			{ CraftWeaponType.Cannon, Weapon("CANNON", 200, CraftWeapons.Cannon, ItemType.Cannon, ItemType.CannonRounds) },
+			{ CraftWeaponType.Avalanche, Weapon("AVALANCHE", 3, CraftWeapons.Avalanche, ItemType.AvalancheLauncher, ItemType.AvalancheMissiles) },
+			{ CraftWeaponType.Stingray, Weapon("STINGRAY", 6, CraftWeapons.Stingray, ItemType.StingrayLauncher, ItemType.StingrayMissiles) },
+			{ CraftWeaponType.LaserBeam, Weapon("LASER BEAM", 0, CraftWeapons.LaserBeam, ItemType.LaserCannon, null) },
+			{ CraftWeaponType.PlasmaBeam, Weapon("PLASMA BEAM", 100, CraftWeapons.PlasmaBeam, ItemType.PlasmaBeam, null) },
+			{ CraftWeaponType.FusionBall, Weapon("FUSION BALL", 2, CraftWeapons.FusionBall, ItemType.FusionBallLauncher, ItemType.FusionBall) }
 		};
 	}
 }
