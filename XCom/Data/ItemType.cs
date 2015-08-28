@@ -189,6 +189,35 @@ namespace XCom.Data
 			};
 		}
 
+		private static ItemMetadata StoreEquipment(string name, int purchaseHours, int cost, int salePrice, int storageSpace)
+		{
+			return new ItemMetadata
+			{
+				Name = name,
+				AvailableToBuy = true,
+				PurchaseHours = purchaseHours,
+				Cost = cost,
+				SalePrice = salePrice,
+				StorageSpace = storageSpace,
+				IsEquipment = true
+			};
+		}
+
+		private static ItemMetadata StoreAmmo(string name, int purchaseHours, int cost, int salePrice, int storageSpace, ItemType weapon)
+		{
+			return new ItemMetadata
+			{
+				Name = name,
+				AvailableToBuy = true,
+				PurchaseHours = purchaseHours,
+				Cost = cost,
+				SalePrice = salePrice,
+				StorageSpace = storageSpace,
+				AmmoForWeapon = weapon,
+				IsEquipment = true
+			};
+		}
+
 		private static ItemMetadata StoreTank(string name, int purchaseHours, int cost, int salePrice)
 		{
 			return new ItemMetadata
@@ -210,6 +239,30 @@ namespace XCom.Data
 				Name = name,
 				SalePrice = salePrice,
 				StorageSpace = storageSpace
+			};
+		}
+
+		private static ItemMetadata OtherEquipment(string name, int salePrice, int storageSpace, params ResearchType[] requiredResearch)
+		{
+			return new ItemMetadata
+			{
+				Name = name,
+				SalePrice = salePrice,
+				StorageSpace = storageSpace,
+				IsEquipment = true,
+				RequiredResearch = requiredResearch
+			};
+		}
+
+		private static ItemMetadata OtherAmmo(string name, int salePrice, int storageSpace, ItemType weapon)
+		{
+			return new ItemMetadata
+			{
+				Name = name,
+				SalePrice = salePrice,
+				StorageSpace = storageSpace,
+				AmmoForWeapon = weapon,
+				IsEquipment = true
 			};
 		}
 
@@ -272,28 +325,28 @@ namespace XCom.Data
 			{ ItemType.TankRocketLauncher, StoreTank("Tank/Rocket Launcher", 96, 480000, 360000) },
 			{ ItemType.HwpRockets, StoreItem("HWP Rockets", 48, 3000, 2250, 60) },
 
-			{ ItemType.Pistol, StoreItem("Pistol", 24, 800, 600, 10) },
-			{ ItemType.PistolClip, StoreItem("Pistol Clip", 24, 70, 52, 10) },
-			{ ItemType.Rifle, StoreItem("Rifle", 24, 3000, 2250, 20) },
-			{ ItemType.RifleClip, StoreItem("Rifle Clip", 24, 200, 150, 10) },
-			{ ItemType.HeavyCannon, StoreItem("Heavy Cannon", 24, 6400, 4800, 30) },
-			{ ItemType.HcApAmmo, StoreItem("HC-AP Ammo", 24, 300, 225, 10) },
-			{ ItemType.HcHeAmmo, StoreItem("HC-HE Ammo", 24, 500, 275, 10) },
-			{ ItemType.HcIAmmo, StoreItem("HC-I Ammo", 24, 400, 300, 10) },
-			{ ItemType.AutoCannon, StoreItem("Auto-Cannon", 24, 13500, 10125, 30) },
-			{ ItemType.AcApAmmo, StoreItem("AC-AP Ammo", 24, 500, 400, 10) },
-			{ ItemType.AcHeAmmo, StoreItem("AC-HE Ammo", 24, 700, 560, 10) },
-			{ ItemType.AcIAmmo, StoreItem("AC-I Ammo", 24, 650, 520, 10) },
-			{ ItemType.RocketLauncher, StoreItem("Rocket Launcher", 24, 4000, 3000, 40) },
-			{ ItemType.SmallRocket, StoreItem("Small Rocket", 24, 600, 480, 20) },
-			{ ItemType.LargeRocket, StoreItem("Large Rocket", 24, 900, 720, 20) },
-			{ ItemType.IncindiaryRocket, StoreItem("Incindiary Rocket", 24, 1200, 960, 20) },
-			{ ItemType.Grenade, StoreItem("Grenade", 24, 300, 240, 10) },
-			{ ItemType.SmokeGrenade, StoreItem("Smoke Grenade", 24, 150, 120, 10) },
-			{ ItemType.ProximityGrenade, StoreItem("Proximity Grenade", 24, 500, 400, 10) },
-			{ ItemType.HighExplosive, StoreItem("High Explosive", 24, 1500, 1200, 20) },
-			{ ItemType.StunRod, StoreItem("Stun Rod", 24, 1260, 945, 10) },
-			{ ItemType.ElectroFlare, StoreItem("Electro-flare", 24, 60, 40, 10) },
+			{ ItemType.Pistol, StoreEquipment("Pistol", 24, 800, 600, 10) },
+			{ ItemType.PistolClip, StoreAmmo("Pistol Clip", 24, 70, 52, 10, ItemType.Pistol) },
+			{ ItemType.Rifle, StoreEquipment("Rifle", 24, 3000, 2250, 20) },
+			{ ItemType.RifleClip, StoreAmmo("Rifle Clip", 24, 200, 150, 10, ItemType.Rifle) },
+			{ ItemType.HeavyCannon, StoreEquipment("Heavy Cannon", 24, 6400, 4800, 30) },
+			{ ItemType.HcApAmmo, StoreAmmo("HC-AP Ammo", 24, 300, 225, 10, ItemType.HeavyCannon) },
+			{ ItemType.HcHeAmmo, StoreAmmo("HC-HE Ammo", 24, 500, 275, 10, ItemType.HeavyCannon) },
+			{ ItemType.HcIAmmo, StoreAmmo("HC-I Ammo", 24, 400, 300, 10, ItemType.HeavyCannon) },
+			{ ItemType.AutoCannon, StoreEquipment("Auto-Cannon", 24, 13500, 10125, 30) },
+			{ ItemType.AcApAmmo, StoreAmmo("AC-AP Ammo", 24, 500, 400, 10, ItemType.AutoCannon) },
+			{ ItemType.AcHeAmmo, StoreAmmo("AC-HE Ammo", 24, 700, 560, 10, ItemType.AutoCannon) },
+			{ ItemType.AcIAmmo, StoreAmmo("AC-I Ammo", 24, 650, 520, 10, ItemType.AutoCannon) },
+			{ ItemType.RocketLauncher, StoreEquipment("Rocket Launcher", 24, 4000, 3000, 40) },
+			{ ItemType.SmallRocket, StoreAmmo("Small Rocket", 24, 600, 480, 20, ItemType.RocketLauncher) },
+			{ ItemType.LargeRocket, StoreAmmo("Large Rocket", 24, 900, 720, 20, ItemType.RocketLauncher) },
+			{ ItemType.IncindiaryRocket, StoreAmmo("Incindiary Rocket", 24, 1200, 960, 20, ItemType.RocketLauncher) },
+			{ ItemType.Grenade, StoreEquipment("Grenade", 24, 300, 240, 10) },
+			{ ItemType.SmokeGrenade, StoreEquipment("Smoke Grenade", 24, 150, 120, 10) },
+			{ ItemType.ProximityGrenade, StoreEquipment("Proximity Grenade", 24, 500, 400, 10) },
+			{ ItemType.HighExplosive, StoreEquipment("High Explosive", 24, 1500, 1200, 20) },
+			{ ItemType.StunRod, StoreEquipment("Stun Rod", 24, 1260, 945, 10) },
+			{ ItemType.ElectroFlare, StoreEquipment("Electro-flare", 24, 60, 40, 10) },
 
 			{ ItemType.FusionBallLauncher, OtherItem("Fusion Ball Launcher", 281100, 200) },
 			{ ItemType.LaserCannon, OtherItem("Laser Cannon", 211000, 200) },
@@ -304,26 +357,26 @@ namespace XCom.Data
 			{ ItemType.HovertankLauncher, OtherTank("Hovertank/Launcher", 1043000) },
 			{ ItemType.HwpFusionBomb, OtherItem("HWP Fusion Bomb", 31500, 60) },
 
-			{ ItemType.LaserPistol, OtherItem("Laser Pistol", 20000, 10) },
-			{ ItemType.LaserRifle, OtherItem("Laser Rifle", 36900, 20) },
-			{ ItemType.HeavyLaser, OtherItem("Heavy Laser", 61000, 30) },
+			{ ItemType.LaserPistol, OtherEquipment("Laser Pistol", 20000, 10) },
+			{ ItemType.LaserRifle, OtherEquipment("Laser Rifle", 36900, 20) },
+			{ ItemType.HeavyLaser, OtherEquipment("Heavy Laser", 61000, 30) },
 
-			{ ItemType.MotionScanner, OtherItem("Motion Scanner", 45600, 10) },
-			{ ItemType.MediKit, OtherItem("Medi-Kit", 46500, 10) },
-			{ ItemType.PsiAmp, OtherItem("Psi-Amp", 194700, 10) },
+			{ ItemType.MotionScanner, OtherEquipment("Motion Scanner", 45600, 10) },
+			{ ItemType.MediKit, OtherEquipment("Medi-Kit", 46500, 10) },
+			{ ItemType.PsiAmp, OtherEquipment("Psi-Amp", 194700, 10) },
 
-			{ ItemType.PlasmaPistol, OtherItem("Plasma Pistol", 84000, 10) },
-			{ ItemType.PlasmaPistolClip, OtherItem("Plasma Pistol Clip", 4440, 10) },
-			{ ItemType.PlasmaRifle, OtherItem("Plasma Rifle", 126500, 20) },
-			{ ItemType.PlasmaRifleClip, OtherItem("Plasma Rifle Clip", 6290, 10) },
-			{ ItemType.HeavyPlasma, OtherItem("Heavy Plasma", 171600, 20) },
-			{ ItemType.HeavyPlasmaClip, OtherItem("Heavy Plasma Clip", 9590, 30) },
-			{ ItemType.SmallLauncher, OtherItem("Small Launcher", 120000, 20) },
-			{ ItemType.StunBomb, OtherItem("Stun Bomb", 15200, 10) },
-			{ ItemType.BlasterLauncher, OtherItem("Blaster Launcher", 144000, 30) },
-			{ ItemType.BlasterBomb, OtherItem("Blaster Bomb", 17028, 20) },
-			{ ItemType.AlienGrenade, OtherItem("Alien Grenade", 14850, 10) },
-			{ ItemType.MindProbe, OtherItem("Mind Probe", 304000, 10) },
+			{ ItemType.PlasmaPistol, OtherEquipment("Plasma Pistol", 84000, 10, ResearchType.PlasmaPistol, ResearchType.PlasmaPistolClip) },
+			{ ItemType.PlasmaPistolClip, OtherAmmo("Plasma Pistol Clip", 4440, 10, ItemType.PlasmaPistol) },
+			{ ItemType.PlasmaRifle, OtherEquipment("Plasma Rifle", 126500, 20, ResearchType.PlasmaRifle, ResearchType.PlasmaRifleClip) },
+			{ ItemType.PlasmaRifleClip, OtherAmmo("Plasma Rifle Clip", 6290, 10, ItemType.PlasmaRifle) },
+			{ ItemType.HeavyPlasma, OtherEquipment("Heavy Plasma", 171600, 20, ResearchType.HeavyPlasma, ResearchType.HeavyPlasmaClip) },
+			{ ItemType.HeavyPlasmaClip, OtherAmmo("Heavy Plasma Clip", 9590, 30, ItemType.HeavyPlasma) },
+			{ ItemType.SmallLauncher, OtherEquipment("Small Launcher", 120000, 20, ResearchType.SmallLauncher, ResearchType.StunBomb) },
+			{ ItemType.StunBomb, OtherAmmo("Stun Bomb", 15200, 10, ItemType.SmallLauncher) },
+			{ ItemType.BlasterLauncher, OtherEquipment("Blaster Launcher", 144000, 30, ResearchType.BlasterLauncher, ResearchType.BlasterBomb) },
+			{ ItemType.BlasterBomb, OtherAmmo("Blaster Bomb", 17028, 20, ItemType.BlasterLauncher) },
+			{ ItemType.AlienGrenade, OtherEquipment("Alien Grenade", 14850, 10, ResearchType.AlienGrenade) },
+			{ ItemType.MindProbe, OtherEquipment("Mind Probe", 304000, 10, ResearchType.MindProbe) },
 
 			{ ItemType.PersonalArmor, OtherItem("Personal Armor", 54000, 80) },
 			{ ItemType.PowerSuit, OtherItem("Power Suit", 85000, 80) },

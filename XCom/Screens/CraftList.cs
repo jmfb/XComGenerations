@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using XCom.Content.Backgrounds;
+﻿using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
@@ -27,8 +26,8 @@ namespace XCom.Screens
 				.AddColumn(94, Alignment.Left, craft => craft.Name)
 				.AddColumn(65, Alignment.Left, craft => craft.Status.Name())
 				.AddColumn(47, Alignment.Left, GetCraftWeaponText)
-				.AddColumn(46, Alignment.Left, craft => craft.SoldierIds.Count.ToString(CultureInfo.InvariantCulture))
-				.AddColumn(27, Alignment.Left, craft => "0")); //TODO: hwp count for craft
+				.AddColumn(46, Alignment.Left, craft => craft.SoldierIds.Count.FormatNumber())
+				.AddColumn(27, Alignment.Left, craft => craft.TotalHwpCount.FormatNumber()));
 			AddControl(new Button(176, 16, 288, 16, "OK", ColorScheme.Blue, Font.Normal, OnOk));
 		}
 
@@ -44,11 +43,7 @@ namespace XCom.Screens
 
 		private static string GetCraftWeaponText(Craft craft)
 		{
-			return string.Format(
-				CultureInfo.CurrentCulture,
-				"{0}\t/{1}",
-				craft.Weapons.Count,
-				craft.CraftType.Metadata().WeaponCount);
+			return $"{craft.Weapons.Count}\t/{craft.CraftType.Metadata().WeaponCount}";
 		}
 	}
 }

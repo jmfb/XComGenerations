@@ -1,4 +1,6 @@
-﻿namespace XCom.Data
+﻿using System.Linq;
+
+namespace XCom.Data
 {
 	public class ItemMetadata
 	{
@@ -13,5 +15,12 @@
 		public int LivingSpace { get; set; }
 		public int HwpSpace { get; set; }
 		public bool IsLiveAlien { get; set; }
+		public bool IsEquipment { get; set; }
+		public ItemType? AmmoForWeapon { get; set; }
+		public ResearchType[] RequiredResearch { get; set; }
+
+		private bool IsRequiredResearchCompletedForThisItem => RequiredResearch == null || RequiredResearch.All(GameState.Current.Data.CompletedResearch.Contains);
+		private bool IsRequiredResearchCompletedForWeapon => AmmoForWeapon == null || AmmoForWeapon.Value.Metadata().IsRequiredResearchCompleted;
+		public bool IsRequiredResearchCompleted => IsRequiredResearchCompletedForThisItem && IsRequiredResearchCompletedForWeapon;
 	}
 }

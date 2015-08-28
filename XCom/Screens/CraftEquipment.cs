@@ -35,9 +35,10 @@ namespace XCom.Screens
 		}
 
 		private List<ItemType> AvailableItems => Enum.GetValues(typeof(ItemType)).Cast<ItemType>()
-			.Where(item => GameState.SelectedBase.Stores[item] + craft.Stores[item] > 0)
-			//TODO: check research requirements
-			//TODO: eliminate stupid item types (corpses, craft weapons, armor, etc.)
+			.Where(item =>
+				GameState.SelectedBase.Stores[item] + craft.Stores[item] > 0 &&
+				(item.Metadata().HwpSpace > 0 || item.Metadata().IsEquipment) &&
+				item.Metadata().IsRequiredResearchCompleted)
 			.ToList();
 
 		private void OnIncreaseItem(ItemType item)
@@ -80,14 +81,15 @@ namespace XCom.Screens
 		{
 			if (craft.Stores[item] > 0)
 				return ColorScheme.White;
-			//TODO: if ammo, return purple
-			return ColorScheme.Blue;
+			var isAmmo = item.Metadata().AmmoForWeapon != null;
+			return isAmmo ? ColorScheme.Purple : ColorScheme.Blue;
 		}
 
 		private static string GetName(ItemType item)
 		{
-			//TODO: if ammo, return "  " + name;
-			return item.Metadata().Name;
+			var metadata = item.Metadata();
+			var isAmmo = metadata.AmmoForWeapon != null;
+			return isAmmo ? $" \t{metadata.Name}" : metadata.Name;
 		}
 
 		private static int GetStoreQuantity(ItemType item)
