@@ -37,6 +37,6 @@ namespace XCom.Screens
 			newModal.DoModal(currentParent);
 		}
 
-		protected static readonly Geoscape Geoscape = new Geoscape();
+		public static readonly Geoscape Geoscape = new Geoscape();
 	}
 }

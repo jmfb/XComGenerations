@@ -146,6 +146,8 @@
     <Compile Include="Data\FacilityMetadata.cs" />
     <Compile Include="Data\FacilityShape.cs" />
     <Compile Include="Data\FacilityType.cs" />
+    <Compile Include="Data\GameData.DailyProgress.cs" />
+    <Compile Include="Data\GameData.HourlyProgress.cs" />
     <Compile Include="Data\HwpAmmunitionType.cs" />
     <Compile Include="Data\HwpMetadata.cs" />
     <Compile Include="Data\HwpType.cs" />

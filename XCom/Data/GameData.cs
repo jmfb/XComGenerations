@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace XCom.Data
 {
-	public class GameData
+	public partial class GameData
 	{
 		public string Name { get; set; }
 		public DateTime Time { get; set; }
@@ -135,6 +135,40 @@ namespace XCom.Data
 		public void SelectBase(Base @base)
 		{
 			SelectedBase = Bases.IndexOf(@base);
+		}
+
+		public void AdvanceGameTime(long milliseconds)
+		{
+			var oldGameTime = Time;
+			Time = oldGameTime.AddMilliseconds(milliseconds);
+
+			//TODO: minute based events?
+
+			var elapsedHours = GetElapsedHours(oldGameTime);
+			foreach (var hour in Enumerable.Range(0, elapsedHours))
+				PerformHourlyUpdates();
+
+			var isNewDay = oldGameTime.Date != Time.Date;
+			if (isNewDay)
+				PerformDailyUpdates();
+
+			//TODO: monthly events
+		}
+
+		private int GetElapsedHours(DateTime oldGameTime)
+		{
+			var oldHour = GetHour(oldGameTime);
+			var newHour = GetHour(Time);
+			var timeSpan = newHour - oldHour;
+			return (int)timeSpan.TotalHours;
+		}
+
+		private static DateTime GetHour(DateTime gameTime)
+		{
+			return gameTime
+				.AddMinutes(-gameTime.Minute)
+				.AddSeconds(-gameTime.Second)
+				.AddMilliseconds(-gameTime.Millisecond);
 		}
 	}
 }
