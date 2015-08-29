@@ -17,21 +17,10 @@ namespace XCom.Data
 		public SoldierStatistics OriginalStatistics { get; set; }
 		public SoldierStatistics Statistics { get; set; }
 
-		public Craft GetCraft()
-		{
-			return GameState.SelectedBase.Crafts.FirstOrDefault(craft => craft.SoldierIds.Contains(Id));
-		}
-
-		public string GetCraftName()
-		{
-			var craft = GetCraft();
-			return craft == null ? "NONE" : craft.Name;
-		}
-
-		public string GetArmorName()
-		{
-			return Armor == null ? "NONE" : Armor.Value.Metadata().Name;
-		}
+		public Craft Craft => GameState.SelectedBase.Crafts.FirstOrDefault(craft => craft.SoldierIds.Contains(Id));
+		public string CraftName => IsWounded ? "WOUNDED" : Craft?.Name ?? "NONE";
+		public string ArmorName => Armor?.Metadata().Name ?? "NONE";
+		public bool IsWounded => DaysUntilRecovered > 0;
 
 		public static Soldier Create(int id)
 		{

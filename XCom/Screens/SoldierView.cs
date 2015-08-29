@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
@@ -12,7 +11,6 @@ namespace XCom.Screens
 	public class SoldierView : Screen
 	{
 		private readonly Soldier soldier;
-		private readonly Label armor;
 
 		public SoldierView(Soldier soldier)
 		{
@@ -25,22 +23,19 @@ namespace XCom.Screens
 			AddControl(new Button(33, 30, 48, 14, "OK", ColorScheme.Purple, Font.Normal, OnOk));
 			AddControl(new Button(33, 80, 28, 14, ">>", ColorScheme.Purple, Font.Normal, OnNextSoldier));
 			AddControl(new Button(33, 130, 60, 14, "ARMOR", ColorScheme.Purple, Font.Normal, OnEditArmor));
-			armor = new Label(38, 194, soldier.GetArmorName(), Font.Normal, ColorScheme.Purple);
-			AddControl(armor);
+			AddControl(new DynamicLabel(38, 194, () => soldier.ArmorName, Font.Normal, ColorScheme.Purple));
 			AddControl(new Label(48, 0, "RANK>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(48, 29, soldier.Rank.ToString(), Font.Normal, ColorScheme.White));
+			AddControl(new Label(48, 29, $"{soldier.Rank}", Font.Normal, ColorScheme.White));
 			AddControl(new Label(48, 130, "MISSIONS>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(48, 178, soldier.MissionCount.ToString(CultureInfo.InvariantCulture), Font.Normal, ColorScheme.White));
+			AddControl(new Label(48, 178, soldier.MissionCount.FormatNumber(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(48, 230, "KILLS>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(48, 261, soldier.KillCount.ToString(CultureInfo.InvariantCulture), Font.Normal, ColorScheme.White));
+			AddControl(new Label(48, 261, soldier.KillCount.FormatNumber(), Font.Normal, ColorScheme.White));
 			AddControl(new Label(56, 0, "CRAFT>", Font.Normal, ColorScheme.Blue));
-			var craft = soldier.GetCraft();
-			var craftName = craft == null ? "NONE" : craft.Name;
-			AddControl(new Label(56, 34, craftName, Font.Normal, ColorScheme.White));
+			AddControl(new Label(56, 34, soldier.CraftName, Font.Normal, ColorScheme.White));
 			if (soldier.DaysUntilRecovered > 0)
 			{
 				AddControl(new Label(56, 130, "WOUND RECOVERY>", Font.Normal, ColorScheme.Blue));
-				AddControl(new Label(56, 211, soldier.DaysUntilRecovered.FormatNumber() + " days", Font.Normal, ColorScheme.White));
+				AddControl(new Label(56, 211, $"{soldier.DaysUntilRecovered} days", Font.Normal, ColorScheme.White));
 			}
 
 			if (soldier.InPsiTraining)
@@ -58,11 +53,6 @@ namespace XCom.Screens
 				return;
 			AddRow(178, "PSIONIC STRENGTH", statistics => statistics.PsionicStrength, 176);
 			AddRow(190, "PSIONIC SKILL", statistics => statistics.PsionicSkill, 176);
-		}
-
-		public override void OnSetFocus()
-		{
-			armor.Text = soldier.GetArmorName();
 		}
 
 		private void AddRow(

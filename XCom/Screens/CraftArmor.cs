@@ -23,8 +23,8 @@ namespace XCom.Screens
 			AddControl(new ListView<Soldier>(40, 8, 16, GameState.SelectedBase.Soldiers, ColorScheme.Blue, selectionColor, OnSelectSoldier)
 				.AddColumn(8, Alignment.Left, soldier => "")
 				.AddColumn(114, Alignment.Left, soldier => soldier.Name, GetSoldierColor)
-				.AddColumn(70, Alignment.Left, soldier => soldier.GetCraftName(), GetSoldierColor)
-				.AddColumn(96, Alignment.Left, soldier => soldier.GetArmorName(), GetSoldierColor));
+				.AddColumn(70, Alignment.Left, soldier => soldier.CraftName, GetSoldierColor)
+				.AddColumn(96, Alignment.Left, soldier => soldier.ArmorName, GetSoldierColor));
 			AddControl(new Button(176, 16, 288, 16, "OK", ColorScheme.Blue, Font.Normal, OnOk));
 		}
 
@@ -40,7 +40,7 @@ namespace XCom.Screens
 		
 		private ColorScheme GetSoldierColor(Soldier soldier)
 		{
-			var soldierCraft = soldier.GetCraft();
+			var soldierCraft = soldier.Craft;
 			if (soldierCraft == null)
 				return ColorScheme.Blue;
 			return ReferenceEquals(craft, soldierCraft) ?

@@ -11,6 +11,7 @@ namespace XCom.Data
 		{
 			AdvanceResearchProjects();
 			AdvanceFacilityConstruction();
+			TreatWoundedSoldiers();
 		}
 
 		private static void AdvanceResearchProjects()
@@ -113,6 +114,13 @@ namespace XCom.Data
 				Screen.Geoscape.ResetGameSpeed();
 				new FacilityConstructionCompleted(@base.Name, facility.FacilityType.Metadata().Name).DoModal(GameState.Current.ActiveScreen);
 			});
+		}
+
+		private static void TreatWoundedSoldiers()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+				foreach (var soldier in @base.Soldiers.Where(soldier => soldier.DaysUntilRecovered > 0))
+					--soldier.DaysUntilRecovered;
 		}
 	}
 }

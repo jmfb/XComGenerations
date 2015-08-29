@@ -42,7 +42,7 @@ namespace XCom.Screens
 		private void GatherItemsAvailableToTransfer()
 		{
 			var selectedBase = GameState.SelectedBase;
-			foreach (var soldier in selectedBase.Soldiers.Where(soldier => soldier.GetCraft() == null))
+			foreach (var soldier in selectedBase.Soldiers.Where(soldier => soldier.Craft == null))
 				itemsToTransfer.Add(soldier, 0);
 			foreach (var craft in selectedBase.Crafts.Where(craft => craft.Status != CraftStatus.Out))
 				itemsToTransfer.Add(craft, 0);

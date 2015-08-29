@@ -43,7 +43,7 @@ namespace XCom.Screens
 
 		private void GatherItemsAvailableToSell()
 		{
-			foreach (var soldier in GameState.SelectedBase.Soldiers.Where(soldier => soldier.GetCraft() == null))
+			foreach (var soldier in GameState.SelectedBase.Soldiers.Where(soldier => soldier.Craft == null))
 				itemsToSell.Add(soldier, 0);
 			if (GameState.SelectedBase.EngineersAvailable > 0)
 				itemsToSell.Add(ItemType.Engineer, 0);
