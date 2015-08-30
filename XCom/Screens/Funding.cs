@@ -16,11 +16,8 @@ namespace XCom.Screens
 			AddControl(new Label(24, 240, "Change", Font.Large, ColorScheme.Green));
 			
 			var nextTopRow = 40;
-			var totalFunding = 0;
 			foreach (var country in GameState.Current.Data.Countries)
 			{
-				totalFunding += country.Funding;
-
 				var topRow = nextTopRow;
 				nextTopRow += 8;
 
@@ -39,7 +36,7 @@ namespace XCom.Screens
 			}
 
 			AddControl(new ExtendedLabel(168, 32, 108, "TOTAL", Font.Normal, ColorScheme.Aqua));
-			AddControl(new Label(168, 140, $"${totalFunding.FormatNumber()}", Font.Normal, ColorScheme.Aqua));
+			AddControl(new Label(168, 140, $"${GameState.Current.Data.TotalFunding.FormatNumber()}", Font.Normal, ColorScheme.Aqua));
 
 			AddControl(new Button(180, 135, 50, 12, "OK", ColorScheme.Green, Font.Normal, OnOk));
 		}

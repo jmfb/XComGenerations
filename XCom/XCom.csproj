@@ -129,6 +129,7 @@
     <Compile Include="Controls\TimeDisplay.cs" />
     <Compile Include="Controls\Toggle.cs" />
     <Compile Include="Controls\UpDown.cs" />
+    <Compile Include="Controls\WrappedLabel.cs" />
     <Compile Include="Data\ArmorMetadata.cs" />
     <Compile Include="Data\ArmorType.cs" />
     <Compile Include="Data\Base.cs" />
@@ -168,6 +169,8 @@
     <Compile Include="Data\ResearchProject.cs" />
     <Compile Include="Data\ResearchType.cs" />
     <Compile Include="Data\ResearchMetadata.cs" />
+    <Compile Include="Data\ScoreMetadata.cs" />
+    <Compile Include="Data\ScoreType.cs" />
     <Compile Include="Data\Soldier.cs" />
     <Compile Include="Data\SoldierStatistics.cs" />
     <Compile Include="Data\StoreItem.cs" />

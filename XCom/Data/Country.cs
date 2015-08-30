@@ -23,7 +23,6 @@
 
 		public void UpdateFunding()
 		{
-			Funding += FundingChange;
 			switch (Satisfaction)
 			{
 			case CountrySatisfaction.Happy:
@@ -39,13 +38,14 @@
 				SignAlienPact();
 				break;
 			}
+			Funding += FundingChange;
 		}
 
 		private void IncreaseFunding()
 		{
 			Satisfaction = CountrySatisfaction.Average;
 			FundingChange = GameState.Current.Random.Next(5, 20) * Funding / 100;
-			var maxFunding = CountryType.Metadata().MaxFunding;
+			var maxFunding = CountryType.Metadata().MaxFunding * 1000;
 			if (Funding + FundingChange > maxFunding)
 				FundingChange = maxFunding - Funding;
 		}

@@ -5,10 +5,10 @@ namespace XCom.Controls
 {
 	public class Label : Drawable
 	{
-		protected int TopRow { get; private set; }
-		protected int LeftColumn { get; private set; }
-		public string Text { protected get; set; }
-		protected Font Font { get; private set; }
+		protected int TopRow { get; }
+		protected int LeftColumn { get; }
+		protected string Text { get; set; }
+		protected Font Font { get; }
 		private readonly ColorScheme scheme;
 
 		public const int Center = -1;
