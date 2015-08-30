@@ -5,6 +5,8 @@
 		public CraftWeaponType WeaponType { get; set; }
 		public int Ammunition { get; set; }
 
+		public bool IsFullyArmed => Ammunition == WeaponType.Metadata().Ammunition;
+
 		public static CraftWeapon CreateLoaded(CraftWeaponType weaponType)
 		{
 			return new CraftWeapon
@@ -21,6 +23,14 @@
 				WeaponType = weaponType,
 				Ammunition = 0
 			};
+		}
+
+		public void Reload(int count)
+		{
+			var metadata = WeaponType.Metadata();
+			Ammunition += count;
+			if (Ammunition > metadata.Ammunition)
+				Ammunition = metadata.Ammunition;
 		}
 	}
 }

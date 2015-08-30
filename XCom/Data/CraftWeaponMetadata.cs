@@ -9,6 +9,8 @@ namespace XCom.Data
 		public Image Image { get; set; }
 		public ItemType Item { get; set; }
 		public ItemType? Ammo { get; set; }
+
 		public int RoundsInAmmo => Ammo == ItemType.CannonRounds ? 50 : 1;
+		public int AmmoPerHour => Ammo == ItemType.CannonRounds ? 2 : 1;
 	}
 }

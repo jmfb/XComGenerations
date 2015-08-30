@@ -9,6 +9,7 @@ namespace XCom.Data
 		public int Number { get; set; }
 		public int Damage { get; set; }
 		public int Fuel { get; set; }
+		public bool AlreadyNotified { get; set; }
 		public List<CraftWeapon> Weapons { get; set; }
 		public CraftStatus Status { get; set; }
 		public List<int> SoldierIds { get; set; }
@@ -51,6 +52,23 @@ namespace XCom.Data
 				SoldierIds = new List<int>(),
 				Stores = Stores.Create()
 			};
+		}
+
+		public void TransitionStatus()
+		{
+			AlreadyNotified = false;
+			switch (Status)
+			{
+			case CraftStatus.Repairs:
+				Status = CraftStatus.Refuelling;
+				break;
+			case CraftStatus.Refuelling:
+				Status = CraftStatus.Rearming;
+				break;
+			case CraftStatus.Rearming:
+				Status = CraftStatus.Ready;
+				break;
+			}
 		}
 	}
 }

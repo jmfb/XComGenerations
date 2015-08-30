@@ -12,6 +12,14 @@ namespace XCom.Data
 		{
 			AdvanceManufactureProjects();
 			AdvanceTransfers();
+			RearmCrafts();
+			RefuelCrafts();
+			RepairCrafts();
+		}
+
+		private static void PerformBiHourlyUpdates()
+		{
+			RefuelCrafts();
 		}
 
 		private static void AdvanceManufactureProjects()
@@ -156,6 +164,109 @@ namespace XCom.Data
 				Destination = @base.Name
 			};
 			return completedTransfer;
+		}
+
+		private static void RearmCrafts()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+				foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Rearming))
+					RearmCraft(@base, craft);
+		}
+
+		private static void RearmCraft(Base @base, Craft craft)
+		{
+			var weapon = craft.Weapons.FirstOrDefault(craftWeapon => !craftWeapon.IsFullyArmed);
+			if (weapon == null)
+			{
+				craft.TransitionStatus();
+				return;
+			}
+			var metadata = weapon.WeaponType.Metadata();
+			if (metadata.Ammo == null)
+				weapon.Reload(100);
+			else
+			{
+				foreach (var ammo in Enumerable.Range(0, metadata.AmmoPerHour))
+				{
+					if (@base.Stores[metadata.Ammo.Value] == 0)
+					{
+						NotifyNotEnoughStoresToRearmCraft(@base, craft, metadata.Ammo.Value);
+						return;
+					}
+
+					@base.Stores.Remove(metadata.Ammo.Value);
+					weapon.Reload(metadata.RoundsInAmmo);
+					if (weapon.IsFullyArmed)
+						break;
+				}
+			}
+		}
+
+		private static void NotifyNotEnoughStoresToRearmCraft(Base @base, Craft craft, ItemType ammoType)
+		{
+			if (craft.AlreadyNotified)
+				return;
+			craft.AlreadyNotified = true;
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				new NotEnoughStoresToRearmCraft(@base, craft, ammoType).DoModal(GameState.Current.ActiveScreen);
+			});
+		}
+
+		private static void RepairCrafts()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+				foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Repairs))
+					RepairCraft(craft);
+		}
+
+		private static void RepairCraft(Craft craft)
+		{
+			--craft.Damage;
+			if (craft.Damage == 0)
+				craft.TransitionStatus();
+		}
+
+		private static void RefuelCrafts()
+		{
+			foreach (var @base in GameState.Current.Data.Bases)
+				foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Refuelling))
+					RefuelCraft(@base, craft);
+		}
+
+		private static void RefuelCraft(Base @base, Craft craft)
+		{
+			var metadata = craft.CraftType.Metadata();
+			switch (metadata.FuelType)
+			{
+			case FuelType.Normal:
+				craft.Fuel += 50;
+				break;
+			case FuelType.Elerium115:
+				if (@base.Stores[ItemType.Elerium115] == 0)
+				{
+					NotifyNotEnoughStoresToRefuelCraft(@base, craft);
+					return;
+				}
+				@base.Stores.Remove(ItemType.Elerium115);
+				craft.Fuel += 5;
+				break;
+			}
+			if (craft.Fuel < metadata.Fuel)
+				return;
+			craft.Fuel = metadata.Fuel;
+			craft.TransitionStatus();
+		}
+
+		private static void NotifyNotEnoughStoresToRefuelCraft(Base @base, Craft craft)
+		{
+			if (craft.AlreadyNotified)
+				return;
+			craft.AlreadyNotified = true;
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				new NotEnoughStoresToRefuelCraft(@base, craft).DoModal(GameState.Current.ActiveScreen);
+			});
 		}
 	}
 }

@@ -142,11 +142,16 @@ namespace XCom.Data
 			var oldGameTime = Time;
 			Time = oldGameTime.AddMilliseconds(milliseconds);
 
-			//TODO: minute based events?
-
-			var elapsedHours = GetElapsedHours(oldGameTime);
-			foreach (var hour in Enumerable.Range(0, elapsedHours))
-				PerformHourlyUpdates();
+			var elapsedHalfHours = GetElapsedHalfHours(oldGameTime);
+			var nextHalfHourIsTopOfTheHour = !IsTopOfTheHour(oldGameTime);
+			foreach (var halfHour in Enumerable.Range(0, elapsedHalfHours))
+			{
+				if (nextHalfHourIsTopOfTheHour)
+					PerformHourlyUpdates();
+				else
+					PerformBiHourlyUpdates();
+				nextHalfHourIsTopOfTheHour = !nextHalfHourIsTopOfTheHour;
+			}
 
 			var isNewDay = oldGameTime.Date != Time.Date;
 			if (isNewDay)
@@ -155,18 +160,23 @@ namespace XCom.Data
 			//TODO: monthly events
 		}
 
-		private int GetElapsedHours(DateTime oldGameTime)
+		private int GetElapsedHalfHours(DateTime oldGameTime)
 		{
-			var oldHour = GetHour(oldGameTime);
-			var newHour = GetHour(Time);
-			var timeSpan = newHour - oldHour;
-			return (int)timeSpan.TotalHours;
+			var oldHalfHour = GetHalfHour(oldGameTime);
+			var newHalfHour = GetHalfHour(Time);
+			var timeSpan = newHalfHour - oldHalfHour;
+			return (int)timeSpan.TotalMinutes / 30;
 		}
 
-		private static DateTime GetHour(DateTime gameTime)
+		private static bool IsTopOfTheHour(DateTime gameTime)
+		{
+			return GetHalfHour(gameTime).Minute == 0;
+		}
+
+		private static DateTime GetHalfHour(DateTime gameTime)
 		{
 			return gameTime
-				.AddMinutes(-gameTime.Minute)
+				.AddMinutes(-(gameTime.Minute % 30))
 				.AddSeconds(-gameTime.Second)
 				.AddMilliseconds(-gameTime.Millisecond);
 		}

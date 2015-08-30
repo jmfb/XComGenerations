@@ -7,6 +7,7 @@ namespace XCom.Data
 		public string Name { get; set; }
 		public int Damage { get; set; }
 		public int Fuel { get; set; }
+		public FuelType FuelType { get; set; }
 		public int WeaponCount { get; set; }
 		public int Space { get; set; }
 		public int HwpCount { get; set; }
