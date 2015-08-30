@@ -43,10 +43,11 @@ namespace XCom.Data
 
 		private int TransferredEngineerCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Engineer)?.Item.Count ?? 0;
 		private int TransferredScientistCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Scientist)?.Item.Count ?? 0;
-		public int PersonnelCount =>
-			Soldiers.Count + TransferredSoldiers.Count +
-			EngineerCount + TransferredEngineerCount +
-			ScientistCount + TransferredScientistCount;
+
+		public int TotalSoldierCount => Soldiers.Count + TransferredSoldiers.Count;
+		public int TotalEngineerCount => EngineerCount + TransferredEngineerCount;
+		public int TotalScientistCount => ScientistCount + TransferredScientistCount;
+		public int PersonnelCount => TotalSoldierCount + TotalEngineerCount + TotalScientistCount;
 
 		public int CountFacilities(FacilityType facilityType)
 		{
@@ -55,14 +56,35 @@ namespace XCom.Data
 				facility.FacilityType == facilityType);
 		}
 
-		public int CountCrafts(CraftType craftType)
+		private int CountCrafts(CraftType craftType)
 		{
-			return Crafts.Count(craft => craft.CraftType == craftType);
+			return Crafts.Count(craft => craft.CraftType == craftType) +
+				TransferredCrafts.Count(craft => craft.Item.CraftType == craftType);
 		}
+		public int TotalSkyrangerCount => CountCrafts(CraftType.Skyranger);
+		public int TotalInterceptorCount => CountCrafts(CraftType.Interceptor);
+
+		private int GetMonthlyCost(ItemType itemType, int count)
+		{
+			return itemType.Metadata().MonthlyCost * count;
+		}
+		public int MonthlySkyrangerCost => GetMonthlyCost(ItemType.Skyranger, TotalSkyrangerCount);
+		public int MonthlyInterceptorCost => GetMonthlyCost(ItemType.Interceptor, TotalInterceptorCount);
+		public int MonthlySoldierCost => GetMonthlyCost(ItemType.Soldier, TotalSoldierCount);
+		public int MonthlyEngineerCost => GetMonthlyCost(ItemType.Engineer, TotalEngineerCount);
+		public int MonthlyScientistCost => GetMonthlyCost(ItemType.Scientist, TotalScientistCount);
 
 		public int TotalMaintenance => Facilities
 			.Where(facility => facility.DaysUntilConstructionComplete == 0)
 			.Sum(facility => facility.FacilityType.Metadata().Maintenance);
+
+		public int TotalMonthlyCost =>
+			MonthlySkyrangerCost +
+			MonthlyInterceptorCost +
+			MonthlySoldierCost +
+			MonthlyEngineerCost +
+			MonthlyScientistCost +
+			TotalMaintenance;
 
 		public int TotalStorageSpace => CountFacilities(FacilityType.GeneralStores) * 50;
 		private int TotalItemSpace => TotalStorageSpace * 100;

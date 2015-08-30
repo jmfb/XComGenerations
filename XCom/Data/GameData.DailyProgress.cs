@@ -47,8 +47,10 @@ namespace XCom.Data
 		private static void RecordCompletedResearch(ResearchType research)
 		{
 			var completedResearch = GameState.Current.Data.CompletedResearch;
-			var newlyCompletedResearch = GatherCompletedResearch(research).Except(completedResearch);
+			var newlyCompletedResearch = GatherCompletedResearch(research).Except(completedResearch).ToList();
 			completedResearch.AddRange(newlyCompletedResearch);
+			var researchScore = newlyCompletedResearch.Sum(item => item.Metadata().Points);
+			GameState.Current.Data.ThisMonthsScore += researchScore;
 		}
 
 		private static IEnumerable<ResearchType> GatherCompletedResearch(ResearchType research)

@@ -134,6 +134,9 @@
     <Compile Include="Data\Base.cs" />
     <Compile Include="Data\CompletedTransfer.cs" />
     <Compile Include="Data\Country.cs" />
+    <Compile Include="Data\CountryMetadata.cs" />
+    <Compile Include="Data\CountrySatisfaction.cs" />
+    <Compile Include="Data\CountryType.cs" />
     <Compile Include="Data\Craft.cs" />
     <Compile Include="Data\CraftMetadata.cs" />
     <Compile Include="Data\CraftStatus.cs" />
@@ -147,6 +150,7 @@
     <Compile Include="Data\FacilityShape.cs" />
     <Compile Include="Data\FacilityType.cs" />
     <Compile Include="Data\FuelType.cs" />
+    <Compile Include="Data\GameData.MonthlyProgress.cs" />
     <Compile Include="Data\GameData.DailyProgress.cs" />
     <Compile Include="Data\GameData.HourlyProgress.cs" />
     <Compile Include="Data\HwpAmmunitionType.cs" />
@@ -158,6 +162,7 @@
     <Compile Include="Data\ManufactureProject.cs" />
     <Compile Include="Data\ManufactureStatus.cs" />
     <Compile Include="Data\ManufactureType.cs" />
+    <Compile Include="Data\MonthlyReportCard.cs" />
     <Compile Include="Data\Rank.cs" />
     <Compile Include="Data\ResearchProgress.cs" />
     <Compile Include="Data\ResearchProject.cs" />
@@ -249,6 +254,7 @@
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Screens\Manufacture.cs" />
     <Compile Include="Screens\MonthlyCosts.cs" />
+    <Compile Include="Screens\MonthlyReport.cs" />
     <Compile Include="Screens\PlaceAccessLift.cs" />
     <Compile Include="Screens\PurchaseRecruit.cs" />
     <Compile Include="Screens\Research.cs" />

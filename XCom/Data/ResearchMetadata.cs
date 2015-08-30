@@ -7,6 +7,7 @@ namespace XCom.Data
 	{
 		public string Name { get; set; }
 		public int AverageHoursToComplete { get; set; }
+		public int Points { get; set; }
 		public ResearchType[][] RequiredResearch { get; set; }
 		public ItemType? RequiredItem { get; set; }
 		public ResearchType[] AdditionalResearchResults { get; set; }

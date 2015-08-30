@@ -139,13 +139,15 @@ namespace XCom.Data
 		private static readonly ResearchMetadata laserWeapons = new ResearchMetadata
 		{
 			Name = "Laser Weapons",
-			AverageHoursToComplete = 50
+			AverageHoursToComplete = 50,
+			Points = 10
 		};
 
 		private static readonly ResearchMetadata laserPistol = new ResearchMetadata
 		{
 			Name = "Laser Pistol",
 			AverageHoursToComplete = 100,
+			Points = 10,
 			RequiredResearch = new[]
 			{
 				new[] {  ResearchType.LaserWeapons }
@@ -156,6 +158,7 @@ namespace XCom.Data
 		{
 			Name = "Laser Rifle",
 			AverageHoursToComplete = 300,
+			Points = 10,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.LaserPistol }
@@ -166,6 +169,7 @@ namespace XCom.Data
 		{
 			Name = "Heavy Laser",
 			AverageHoursToComplete = 460,
+			Points = 10,
 			RequiredResearch = new[]
 			{
 				new[] {  ResearchType.LaserRifle }
@@ -176,6 +180,7 @@ namespace XCom.Data
 		{
 			Name = "Laser Cannon",
 			AverageHoursToComplete = 420,
+			Points = 10,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.HeavyLaser }
@@ -186,6 +191,7 @@ namespace XCom.Data
 		{
 			Name = "Laser Defenses",
 			AverageHoursToComplete = 510,
+			Points = 15,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.LaserCannon }
@@ -196,6 +202,7 @@ namespace XCom.Data
 		{
 			Name = "Plasma Pistol",
 			AverageHoursToComplete = 600,
+			Points = 20,
 			RequiredItem = ItemType.PlasmaPistol
 		};
 
@@ -203,6 +210,7 @@ namespace XCom.Data
 		{
 			Name = "Plasma Pistol Clip",
 			AverageHoursToComplete = 400,
+			Points = 5,
 			RequiredItem = ItemType.PlasmaPistolClip
 		};
 
@@ -210,6 +218,7 @@ namespace XCom.Data
 		{
 			Name = "Plasma Rifle",
 			AverageHoursToComplete = 700,
+			Points = 25,
 			RequiredItem = ItemType.PlasmaRifle
 		};
 
@@ -217,6 +226,7 @@ namespace XCom.Data
 		{
 			Name = "Plasma Rifle Clip",
 			AverageHoursToComplete = 400,
+			Points = 6,
 			RequiredItem = ItemType.PlasmaRifleClip
 		};
 
@@ -224,6 +234,7 @@ namespace XCom.Data
 		{
 			Name = "Heavy Plasma",
 			AverageHoursToComplete = 800,
+			Points = 30,
 			RequiredItem = ItemType.HeavyPlasma
 		};
 
@@ -231,6 +242,7 @@ namespace XCom.Data
 		{
 			Name = "Heavy Plasma Clip",
 			AverageHoursToComplete = 400,
+			Points = 7,
 			RequiredItem = ItemType.HeavyPlasmaClip
 		};
 
@@ -238,6 +250,7 @@ namespace XCom.Data
 		{
 			Name = "Plasma Cannon",
 			AverageHoursToComplete = 660,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.PlasmaRifle, ResearchType.PlasmaRifleClip },
@@ -249,6 +262,7 @@ namespace XCom.Data
 		{
 			Name = "Plasma Defenses",
 			AverageHoursToComplete = 620,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.PlasmaCannon }
@@ -258,19 +272,22 @@ namespace XCom.Data
 		private static readonly ResearchMetadata mediKit = new ResearchMetadata
 		{
 			Name = "Medi-Kit",
-			AverageHoursToComplete = 210
+			AverageHoursToComplete = 210,
+			Points = 20
 		};
 
 		private static readonly ResearchMetadata motionScanner = new ResearchMetadata
 		{
 			Name = "Motion Scanner",
-			AverageHoursToComplete = 180
+			AverageHoursToComplete = 180,
+			Points = 20
 		};
 
 		private static readonly ResearchMetadata alienGrenade = new ResearchMetadata
 		{
 			Name = "Alien Grenade",
 			AverageHoursToComplete = 200,
+			Points = 20,
 			RequiredItem = ItemType.AlienGrenade
 		};
 
@@ -278,6 +295,7 @@ namespace XCom.Data
 		{
 			Name = "Small Launcher",
 			AverageHoursToComplete = 550,
+			Points = 30,
 			RequiredItem = ItemType.SmallLauncher
 		};
 
@@ -285,6 +303,7 @@ namespace XCom.Data
 		{
 			Name = "Stun Bomb",
 			AverageHoursToComplete = 180,
+			Points = 10,
 			RequiredItem = ItemType.StunBomb
 		};
 
@@ -292,20 +311,23 @@ namespace XCom.Data
 		{
 			Name = "Blaster Launcher",
 			AverageHoursToComplete = 900,
-			RequiredItem = ItemType.BlasterLauncher
+			RequiredItem = ItemType.BlasterLauncher,
+			Points = 40
 		};
 
 		private static readonly ResearchMetadata blasterBomb = new ResearchMetadata
 		{
 			Name = "Blaster Bomb",
 			AverageHoursToComplete = 300,
-			RequiredItem = ItemType.BlasterBomb
+			RequiredItem = ItemType.BlasterBomb,
+			Points = 10
 		};
 
 		private static readonly ResearchMetadata fusionMissile = new ResearchMetadata
 		{
 			Name = "Fusion Missile",
 			AverageHoursToComplete = 880,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.BlasterLauncher, ResearchType.BlasterBomb }
@@ -316,6 +338,7 @@ namespace XCom.Data
 		{
 			Name = "Fusion Defenses",
 			AverageHoursToComplete = 800,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.FusionMissile }
@@ -326,6 +349,7 @@ namespace XCom.Data
 		{
 			Name = "UFO Power Source",
 			AverageHoursToComplete = 450,
+			Points = 30,
 			RequiredItem = ItemType.UfoPowerSource
 		};
 
@@ -333,6 +357,7 @@ namespace XCom.Data
 		{
 			Name = "UFO Navigation",
 			AverageHoursToComplete = 450,
+			Points = 30,
 			RequiredItem = ItemType.UfoNavigation
 		};
 
@@ -340,6 +365,7 @@ namespace XCom.Data
 		{
 			Name = "Alien Alloys",
 			AverageHoursToComplete = 400,
+			Points = 30,
 			RequiredItem = ItemType.AlienAlloys
 		};
 
@@ -347,6 +373,7 @@ namespace XCom.Data
 		{
 			Name = "Elerium-115",
 			AverageHoursToComplete = 450,
+			Points = 40,
 			RequiredItem = ItemType.Elerium115
 		};
 
@@ -354,6 +381,7 @@ namespace XCom.Data
 		{
 			Name = "Personal Armor",
 			AverageHoursToComplete = 180,
+			Points = 20,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.AlienAlloys }
@@ -364,6 +392,7 @@ namespace XCom.Data
 		{
 			Name = "Power Suit",
 			AverageHoursToComplete = 205,
+			Points = 20,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.UfoPowerSource, ResearchType.Elerium115, ResearchType.PersonalArmor }
@@ -374,6 +403,7 @@ namespace XCom.Data
 		{
 			Name = "Flying Suit",
 			AverageHoursToComplete = 330,
+			Points = 20,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.UfoNavigation, ResearchType.PowerSuit }
@@ -384,6 +414,7 @@ namespace XCom.Data
 		{
 			Name = "UFO Construction",
 			AverageHoursToComplete = 450,
+			Points = 30,
 			RequiredResearch = new[]
 			{
 				new[]
@@ -400,6 +431,7 @@ namespace XCom.Data
 		{
 			Name = "New Fighter Craft",
 			AverageHoursToComplete = 600,
+			Points = 30,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.UfoConstruction }
@@ -410,6 +442,7 @@ namespace XCom.Data
 		{
 			Name = "New Fighter Transporter",
 			AverageHoursToComplete = 700,
+			Points = 30,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.NewFighterCraft }
@@ -420,6 +453,7 @@ namespace XCom.Data
 		{
 			Name = "Ultimate Craft",
 			AverageHoursToComplete = 900,
+			Points = 30,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.NewFighterTransporter }
@@ -430,6 +464,7 @@ namespace XCom.Data
 		{
 			Name = "Grav Shield",
 			AverageHoursToComplete = 930,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.NewFighterTransporter }
@@ -440,6 +475,7 @@ namespace XCom.Data
 		{
 			Name = "Mind Probe",
 			AverageHoursToComplete = 600,
+			Points = 25,
 			RequiredItem = ItemType.MindProbe
 		};
 
@@ -447,6 +483,7 @@ namespace XCom.Data
 		{
 			Name = "Psi-Lab",
 			AverageHoursToComplete = 420,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.SectoidLeader },
@@ -459,6 +496,7 @@ namespace XCom.Data
 		{
 			Name = "Psi-Amp",
 			AverageHoursToComplete = 500,
+			Points = 20,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.PsiLab }
@@ -469,6 +507,7 @@ namespace XCom.Data
 		{
 			Name = "Mind Shield",
 			AverageHoursToComplete = 360,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.PsiLab }
@@ -479,6 +518,7 @@ namespace XCom.Data
 		{
 			Name = "Hyper-Wave Decoder",
 			AverageHoursToComplete = 670,
+			Points = 25,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.Navigator }
@@ -489,6 +529,7 @@ namespace XCom.Data
 		{
 			Name = "Alien Origins",
 			AverageHoursToComplete = 300,
+			Points = 60,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.Alien }
@@ -499,6 +540,7 @@ namespace XCom.Data
 		{
 			Name = "The Martian Solution",
 			AverageHoursToComplete = 500,
+			Points = 60,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.Leader, ResearchType.AlienOrigins },
@@ -510,6 +552,7 @@ namespace XCom.Data
 		{
 			Name = "Cydonia or Bust",
 			AverageHoursToComplete = 600,
+			Points = 60,
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.Commander, ResearchType.TheMartianSolution }
@@ -520,6 +563,7 @@ namespace XCom.Data
 		{
 			Name = "Alien Food",
 			AverageHoursToComplete = 150,
+			Points = 30,
 			RequiredItem = ItemType.AlienFood
 		};
 
@@ -527,6 +571,7 @@ namespace XCom.Data
 		{
 			Name = "Alien Entertainment",
 			AverageHoursToComplete = 150,
+			Points = 30,
 			RequiredItem = ItemType.AlienEntertainment
 		};
 
@@ -534,6 +579,7 @@ namespace XCom.Data
 		{
 			Name = "Alien Surgery",
 			AverageHoursToComplete = 150,
+			Points = 30,
 			RequiredItem = ItemType.AlienSurgery
 		};
 
@@ -541,6 +587,7 @@ namespace XCom.Data
 		{
 			Name = "Examination Room",
 			AverageHoursToComplete = 150,
+			Points = 30,
 			RequiredItem = ItemType.ExaminationRoom
 		};
 
@@ -550,6 +597,7 @@ namespace XCom.Data
 			{
 				Name = name,
 				AverageHoursToComplete = 180,
+				Points = 50,
 				RequiredItem = item
 			};
 		}
@@ -603,6 +651,7 @@ namespace XCom.Data
 					race == ResearchType.Sectopod || race == ResearchType.Cyberdisc ? 192 :
 					rank == ResearchType.Terrorist ? 170 :
 					192,
+				Points = 50,
 				RequiredItem = item,
 				AdditionalResearchResults = new[] { ResearchType.Alien, race, rank },
 				LotteryResearchResults =
@@ -615,7 +664,11 @@ namespace XCom.Data
 
 		private static ResearchMetadata NotResearchable(ResearchType research)
 		{
-			return new ResearchMetadata { RequiredResearch = new[] { new[] { research } } };
+			return new ResearchMetadata
+			{
+				Points = 50,
+				RequiredResearch = new[] { new[] { research } }
+			};
 		}
 
 		private static readonly Dictionary<ResearchType, ResearchMetadata> metadata = new Dictionary<ResearchType,ResearchMetadata>

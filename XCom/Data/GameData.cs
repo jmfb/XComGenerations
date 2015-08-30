@@ -20,8 +20,11 @@ namespace XCom.Data
 		public int NextLightningNumber { get; set; }
 		public int NextAvengerNumber { get; set; }
 		public List<ResearchType> CompletedResearch { get; set; }
+		public int ThisMonthsScore { get; set; }
+		public int LastMonthsScore { get; set; }
 
 		public int TotalFunding => Countries.Sum(country => country.Funding);
+		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
 
 		private static IEnumerable<FacilityType> AllFacilityTypes => Enum.GetValues(typeof(FacilityType)).Cast<FacilityType>();
 		private static IEnumerable<FacilityType> BuildableFacilityTypes => AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
@@ -31,7 +34,6 @@ namespace XCom.Data
 
 		public static GameData Create(int difficulty)
 		{
-			var random = GameState.Current.Random;
 			return new GameData
 			{
 				Name = "",
@@ -46,93 +48,11 @@ namespace XCom.Data
 				NextLightningNumber = 1,
 				NextAvengerNumber = 1,
 				CompletedResearch = new List<ResearchType>(),
-				Countries = new[]
-				{
-					new Country
-					{
-						Name = "USA",
-						Funding = random.Next(900, 1200) * 1000
-					},
-					new Country
-					{
-						Name = "RUSSIA",
-						Funding = random.Next(400, 600) * 1000
-					},
-					new Country
-					{
-						Name = "UK",
-						Funding = random.Next(200, 500) * 1000
-					},
-					new Country
-					{
-						Name = "FRANCE",
-						Funding = random.Next(400, 600) * 1000
-					},
-					new Country
-					{
-						Name = "GERMANY",
-						Funding = random.Next(200, 400) * 1000
-					},
-					new Country
-					{
-						Name = "ITALY",
-						Funding = random.Next(100, 200) * 1000
-					},
-					new Country
-					{
-						Name = "SPAIN",
-						Funding = random.Next(100, 200) * 1000
-					},
-					new Country
-					{
-						Name = "CHINA",
-						Funding = random.Next(300, 400) * 1000
-					},
-					new Country
-					{
-						Name = "JAPAN",
-						Funding = random.Next(500, 700) * 1000
-					},
-					new Country
-					{
-						Name = "INDIA",
-						Funding = random.Next(100, 300) * 1000
-					},
-					new Country
-					{
-						Name = "BRAZIL",
-						Funding = random.Next(400, 600) * 1000
-					},
-					new Country
-					{
-						Name = "AUSTRALIA",
-						Funding = random.Next(300, 400) * 1000
-					},
-					new Country
-					{
-						Name = "NIGERIA",
-						Funding = random.Next(200, 300) * 1000
-					},
-					new Country
-					{
-						Name = "SOUTH AFRICA",
-						Funding = random.Next(300, 400) * 1000
-					},
-					new Country
-					{
-						Name = "EGYPT",
-						Funding = random.Next(100, 200) * 1000
-					},
-					new Country
-					{
-						Name = "CANADA",
-						Funding = random.Next(100, 200) * 1000
-					}
-				}
+				Countries = Enum.GetValues(typeof(CountryType)).Cast<CountryType>().Select(Country.Create).ToList()
 			};
 		}
 
-		public void SelectBase(Base @base)
+		private void SelectBase(Base @base)
 		{
 			SelectedBase = Bases.IndexOf(@base);
 		}
@@ -141,6 +61,10 @@ namespace XCom.Data
 		{
 			var oldGameTime = Time;
 			Time = oldGameTime.AddMilliseconds(milliseconds);
+
+			var isNewMonth = oldGameTime.Month != Time.Month;
+			if (isNewMonth)
+				PerformMonthlyUpdates();
 
 			var elapsedHalfHours = GetElapsedHalfHours(oldGameTime);
 			var nextHalfHourIsTopOfTheHour = !IsTopOfTheHour(oldGameTime);
@@ -156,8 +80,6 @@ namespace XCom.Data
 			var isNewDay = oldGameTime.Date != Time.Date;
 			if (isNewDay)
 				PerformDailyUpdates();
-
-			//TODO: monthly events
 		}
 
 		private int GetElapsedHalfHours(DateTime oldGameTime)

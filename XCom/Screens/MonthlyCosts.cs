@@ -18,36 +18,32 @@ namespace XCom.Screens
 			AddControl(new Label(48, 10, "Craft Rental", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(80, 10, "Salaries", Font.Normal, ColorScheme.LightMagenta));
 
-			var totalCost = 0;
 			var selectedBase = GameState.SelectedBase;
-			totalCost += CreateCostRow(56, "SKYRANGER", 500000, selectedBase.CountCrafts(CraftType.Skyranger));
-			totalCost += CreateCostRow(64, "INTERCEPTOR", 600000, selectedBase.CountCrafts(CraftType.Interceptor));
-			totalCost += CreateCostRow(88, "Soldiers", 20000, selectedBase.Soldiers.Count);
-			totalCost += CreateCostRow(96, "Engineers", 25000, selectedBase.EngineerCount);
-			totalCost += CreateCostRow(104, "Scientists", 30000, selectedBase.ScientistCount);
+			CreateCostRow(56, ItemType.Skyranger, selectedBase.TotalSkyrangerCount);
+			CreateCostRow(64, ItemType.Interceptor, selectedBase.TotalInterceptorCount);
+			CreateCostRow(88, ItemType.Soldier, selectedBase.TotalSoldierCount);
+			CreateCostRow(96, ItemType.Engineer, selectedBase.TotalEngineerCount);
+			CreateCostRow(104, ItemType.Scientist, selectedBase.TotalScientistCount);
 
 			AddControl(new ExtendedLabel(120, 10, 240, "Base maintenance", Font.Normal, ColorScheme.LightMagenta, ColorScheme.Blue));
-			var maintenance = selectedBase.TotalMaintenance;
-			totalCost += maintenance;
-			AddControl(new Label(120, 250, $"${maintenance.FormatNumber()}", Font.Normal, ColorScheme.Blue));
+			AddControl(new Label(120, 250, $"${selectedBase.TotalMaintenance.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 
 			var income = $"Income=${GameState.Current.Data.TotalFunding.FormatNumber()}";
 			AddControl(new Label(136, 10, income, Font.Normal, ColorScheme.Blue));
 
 			AddControl(new ExtendedLabel(136, 205, 45, "Total", Font.Normal, ColorScheme.White));
-			AddControl(new Label(136, 250, $"${totalCost.FormatNumber()}", Font.Normal, ColorScheme.White));
+			AddControl(new Label(136, 250, $"${selectedBase.TotalMonthlyCost.FormatNumber()}", Font.Normal, ColorScheme.White));
 
 			AddControl(new Button(176, 10, 300, 16, "OK", ColorScheme.LightMagenta, Font.Normal, OnOk));
 		}
 
-		private int CreateCostRow(int topRow, string label, int cost, int quantity)
+		private void CreateCostRow(int topRow, ItemType itemType, int quantity)
 		{
-			AddControl(new ExtendedLabel(topRow, 10, 125, label, Font.Normal, ColorScheme.Blue));
-			AddControl(new ExtendedLabel(topRow, 135, 70, $"${cost.FormatNumber()}", Font.Normal, ColorScheme.Blue));
+			var metadata = itemType.Metadata();
+			AddControl(new ExtendedLabel(topRow, 10, 125, metadata.Name, Font.Normal, ColorScheme.Blue));
+			AddControl(new ExtendedLabel(topRow, 135, 70, $"${metadata.MonthlyCost.FormatNumber()}", Font.Normal, ColorScheme.Blue));
 			AddControl(new ExtendedLabel(topRow, 205, 45, quantity.FormatNumber(), Font.Normal, ColorScheme.Blue));
-			var total = cost * quantity;
-			AddControl(new Label(topRow, 250, $"${total.FormatNumber()}", Font.Normal, ColorScheme.Blue));
-			return total;
+			AddControl(new Label(topRow, 250, $"${(metadata.MonthlyCost * quantity).FormatNumber()}", Font.Normal, ColorScheme.Blue));
 		}
 
 		private static void OnOk()
