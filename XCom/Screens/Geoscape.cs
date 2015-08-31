@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
+using XCom.Content.Backgrounds;
 using XCom.Controls;
-using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Modals;
@@ -17,6 +15,7 @@ namespace XCom.Screens
 
 		public Geoscape()
 		{
+			AddControl(new Background(Backgrounds.Geoscape, 0));
 			AddControl(new Button(0, 257, 63, 11, "INTERCEPT", ColorScheme.Blue, Font.Small, OnIntercept));
 			AddControl(new Button(12, 257, 63, 11, "BASES", ColorScheme.Blue, Font.Small, OnBases));
 			AddControl(new Button(24, 257, 63, 11, "GRAPHS", ColorScheme.Blue, Font.Small, OnGraphs));

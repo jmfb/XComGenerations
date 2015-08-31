@@ -133,6 +133,9 @@
   <data name="Funds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Funds.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Geoscape" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Geoscape.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="InfoBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>InfoBase.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

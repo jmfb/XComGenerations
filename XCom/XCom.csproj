@@ -322,6 +322,7 @@
     <None Include="Content\Backgrounds\Craft.bin" />
     <None Include="Content\Backgrounds\EquipCraft.bin" />
     <None Include="Content\Backgrounds\Funds.bin" />
+    <None Include="Content\Backgrounds\Geoscape.bin" />
     <None Include="Content\Backgrounds\InfoBase.bin" />
     <None Include="Content\Backgrounds\InfoFacility.bin" />
     <None Include="Content\Backgrounds\InfoItem.bin" />
