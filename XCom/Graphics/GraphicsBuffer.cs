@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 
@@ -117,6 +118,34 @@ namespace XCom.Graphics
 				width,
 				height,
 				paletteIndex);
+		}
+
+		public void DrawOverlay(byte[] overlay)
+		{
+			const ushort skipCode = 0xffff;
+			const ushort drawCode = 0xfffe;
+			const ushort doneCode = 0xfffd;
+			var palette = Palette.GetPalette(3);
+			for (int overlayIndex = 0, screenIndex = 0; overlayIndex < overlay.Length; )
+			{
+				var code = BitConverter.ToUInt16(overlay, overlayIndex);
+				overlayIndex += sizeof(ushort);
+				switch (code)
+				{
+				case skipCode:
+					screenIndex += 2 * BitConverter.ToInt16(overlay, overlayIndex);
+					overlayIndex += sizeof(short);
+					break;
+				case drawCode:
+					var pixelCount = 2 * BitConverter.ToInt16(overlay, overlayIndex);
+					overlayIndex += sizeof(short);
+					for (; pixelCount > 0; --pixelCount, ++overlayIndex, ++screenIndex)
+						SetPixel(screenIndex / GameWidth, screenIndex % GameWidth, palette.GetColor(overlay[overlayIndex]));
+					break;
+				case doneCode:
+					return;
+				}
+			}
 		}
 
 		private void DrawPaletteImage(

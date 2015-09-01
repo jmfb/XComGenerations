@@ -97,6 +97,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ranks.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\Overlays\Overlays.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Overlays.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Palettes\Palettes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -123,6 +128,7 @@
     <Compile Include="Controls\InteractiveControl.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\ListView.cs" />
+    <Compile Include="Controls\Overlay.cs" />
     <Compile Include="Controls\Picture.cs" />
     <Compile Include="Controls\Repeater.cs" />
     <Compile Include="Controls\SoldierInformationRow.cs" />
@@ -301,6 +307,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Ranks.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Content\Overlays\Overlays.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Overlays.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Content\Palettes\Palettes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Palettes.Designer.cs</LastGenOutput>
@@ -387,6 +397,47 @@
     <None Include="Content\Images\Ranks\Rookie.xmg" />
     <None Include="Content\Images\Ranks\Sergeant.xmg" />
     <None Include="Content\Images\Ranks\Squaddie.xmg" />
+    <None Include="Content\Overlays\AlienAlloys.bin" />
+    <None Include="Content\Overlays\AlienEntertainment.bin" />
+    <None Include="Content\Overlays\AlienFood.bin" />
+    <None Include="Content\Overlays\AlienSurgery.bin" />
+    <None Include="Content\Overlays\Avalanche.bin" />
+    <None Include="Content\Overlays\Avenger.bin" />
+    <None Include="Content\Overlays\Cannon.bin" />
+    <None Include="Content\Overlays\Celatid.bin" />
+    <None Include="Content\Overlays\CelatidAutopsy.bin" />
+    <None Include="Content\Overlays\Chryssalid.bin" />
+    <None Include="Content\Overlays\ChryssalidAutopsy.bin" />
+    <None Include="Content\Overlays\Cyberdisc.bin" />
+    <None Include="Content\Overlays\CyberdiscAutopsy.bin" />
+    <None Include="Content\Overlays\Ethereal.bin" />
+    <None Include="Content\Overlays\EtherealAutopsy.bin" />
+    <None Include="Content\Overlays\ExaminationRoom.bin" />
+    <None Include="Content\Overlays\Firestorm.bin" />
+    <None Include="Content\Overlays\Floater.bin" />
+    <None Include="Content\Overlays\FloaterAutopsy.bin" />
+    <None Include="Content\Overlays\FusionBallLauncher.bin" />
+    <None Include="Content\Overlays\Interceptor.bin" />
+    <None Include="Content\Overlays\LaserCannon.bin" />
+    <None Include="Content\Overlays\Lightning.bin" />
+    <None Include="Content\Overlays\Muton.bin" />
+    <None Include="Content\Overlays\MutonAutopsy.bin" />
+    <None Include="Content\Overlays\PlasmaBeam.bin" />
+    <None Include="Content\Overlays\Reaper.bin" />
+    <None Include="Content\Overlays\ReaperAutopsy.bin" />
+    <None Include="Content\Overlays\Sectoid.bin" />
+    <None Include="Content\Overlays\SectoidAutopsy.bin" />
+    <None Include="Content\Overlays\Sectopod.bin" />
+    <None Include="Content\Overlays\SectopodAutopsy.bin" />
+    <None Include="Content\Overlays\Silacoid.bin" />
+    <None Include="Content\Overlays\SilacoidAutopsy.bin" />
+    <None Include="Content\Overlays\Skyranger.bin" />
+    <None Include="Content\Overlays\Snakeman.bin" />
+    <None Include="Content\Overlays\SnakemanAutopsy.bin" />
+    <None Include="Content\Overlays\Stingray.bin" />
+    <None Include="Content\Overlays\UfoConstruction.bin" />
+    <None Include="Content\Overlays\UfoNavigation.bin" />
+    <None Include="Content\Overlays\UfoPowerSource.bin" />
     <None Include="Content\Palettes\Palette0.bin" />
     <None Include="Content\Palettes\Palette1.bin" />
     <None Include="Content\Palettes\Palette2.bin" />
