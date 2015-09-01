@@ -97,6 +97,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ranks.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\Items\Items.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Items.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Overlays\Overlays.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -126,6 +131,7 @@
     <Compile Include="Controls\Interactive.cs" />
     <Compile Include="Controls\InteractiveContainer.cs" />
     <Compile Include="Controls\InteractiveControl.cs" />
+    <Compile Include="Controls\Item.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\ListView.cs" />
     <Compile Include="Controls\Overlay.cs" />
@@ -307,6 +313,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Ranks.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Content\Items\Items.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Items.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Content\Overlays\Overlays.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Overlays.Designer.cs</LastGenOutput>
@@ -397,6 +407,62 @@
     <None Include="Content\Images\Ranks\Rookie.xmg" />
     <None Include="Content\Images\Ranks\Sergeant.xmg" />
     <None Include="Content\Images\Ranks\Squaddie.xmg" />
+    <None Include="Content\Items\AcApAmmo.bin" />
+    <None Include="Content\Items\AcHeAmmo.bin" />
+    <None Include="Content\Items\AcIAmmo.bin" />
+    <None Include="Content\Items\AlienGrenade.bin" />
+    <None Include="Content\Items\AutoCannon.bin" />
+    <None Include="Content\Items\BlasterBomb.bin" />
+    <None Include="Content\Items\BlasterLauncher.bin" />
+    <None Include="Content\Items\CelatidCorpse.bin" />
+    <None Include="Content\Items\ChryssalidCorpse.bin" />
+    <None Include="Content\Items\ElectroFlare.bin" />
+    <None Include="Content\Items\Elerium115.bin" />
+    <None Include="Content\Items\EtherealCorpse.bin" />
+    <None Include="Content\Items\FloaterCorpse.bin" />
+    <None Include="Content\Items\Grenade.bin" />
+    <None Include="Content\Items\HcApAmmo.bin" />
+    <None Include="Content\Items\HcHeAmmo.bin" />
+    <None Include="Content\Items\HcIAmmo.bin" />
+    <None Include="Content\Items\HeavyCannon.bin" />
+    <None Include="Content\Items\HeavyLaser.bin" />
+    <None Include="Content\Items\HeavyPlasma.bin" />
+    <None Include="Content\Items\HeavyPlasmaClip.bin" />
+    <None Include="Content\Items\HighExplosive.bin" />
+    <None Include="Content\Items\HovertankTurret.bin" />
+    <None Include="Content\Items\IncendiaryRocket.bin" />
+    <None Include="Content\Items\LargeRocket.bin" />
+    <None Include="Content\Items\LaserPistol.bin" />
+    <None Include="Content\Items\LaserRifle.bin" />
+    <None Include="Content\Items\MediKit.bin" />
+    <None Include="Content\Items\MindProbe.bin" />
+    <None Include="Content\Items\MotionScanner.bin" />
+    <None Include="Content\Items\MutonCorpse.bin" />
+    <None Include="Content\Items\PersonalArmorCorpse.bin" />
+    <None Include="Content\Items\Pistol.bin" />
+    <None Include="Content\Items\PistolClip.bin" />
+    <None Include="Content\Items\PlasmaPistol.bin" />
+    <None Include="Content\Items\PlasmaPistolClip.bin" />
+    <None Include="Content\Items\PlasmaRifle.bin" />
+    <None Include="Content\Items\PlasmaRifleClip.bin" />
+    <None Include="Content\Items\PowerSuitCorpse.bin" />
+    <None Include="Content\Items\ProximityGrenade.bin" />
+    <None Include="Content\Items\PsiAmp.bin" />
+    <None Include="Content\Items\Rifle.bin" />
+    <None Include="Content\Items\RifleClip.bin" />
+    <None Include="Content\Items\RocketLauncher.bin" />
+    <None Include="Content\Items\SectoidCorpse.bin" />
+    <None Include="Content\Items\SilacoidCorpse.bin" />
+    <None Include="Content\Items\SmallLauncher.bin" />
+    <None Include="Content\Items\SmallRocket.bin" />
+    <None Include="Content\Items\SmokeGrenade.bin" />
+    <None Include="Content\Items\SnakemanCorpse.bin" />
+    <None Include="Content\Items\SoldierCorpse.bin" />
+    <None Include="Content\Items\StunBomb.bin" />
+    <None Include="Content\Items\StunRod.bin" />
+    <None Include="Content\Items\TankCannonTurret.bin" />
+    <None Include="Content\Items\TankLaserTurret.bin" />
+    <None Include="Content\Items\TankRocketLauncherTurret.bin" />
     <None Include="Content\Overlays\AlienAlloys.bin" />
     <None Include="Content\Overlays\AlienEntertainment.bin" />
     <None Include="Content\Overlays\AlienFood.bin" />

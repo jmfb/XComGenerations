@@ -148,6 +148,31 @@ namespace XCom.Graphics
 			}
 		}
 
+		public void DrawItem(int topRow, int leftColumn, byte[] item)
+		{
+			const int imageWidth = 32;
+			const byte skipCode = 0xfe;
+			const byte doneCode = 0xff;
+			var skipRows = item[0];
+			var palette = Palette.GetPalette(4);
+			for (int itemIndex = 1, imageIndex = 0; itemIndex < item.Length; )
+			{
+				var code = item[itemIndex++];
+				switch (code)
+				{
+				case skipCode:
+					imageIndex += item[itemIndex++];
+					break;
+				case doneCode:
+					return;
+				default:
+					SetPixel(topRow + skipRows + imageIndex / imageWidth, leftColumn + imageIndex % imageWidth, palette.GetColor(code));
+					++imageIndex;
+					break;
+				}
+			}
+		}
+
 		private void DrawPaletteImage(
 			int topRow,
 			int leftColumn,
