@@ -53,7 +53,7 @@ namespace XCom.Data
 			if (!countries.Any())
 				return "";
 			return countries.Count == 1 ?
-				$"{countries[0]}{singularText}" :
+				$"{countries[0].Name}{singularText}" :
 				$"{GetCountryList(countries)}{pluralText}";
 		}
 

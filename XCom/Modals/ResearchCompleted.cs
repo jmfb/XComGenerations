@@ -9,11 +9,11 @@ namespace XCom.Modals
 {
 	public class ResearchCompleted : Screen
 	{
-		private readonly ResearchType research;
+		private readonly TopicType? topic;
 
-		public ResearchCompleted(ResearchType research)
+		public ResearchCompleted(ResearchType research, TopicType? topic)
 		{
-			this.research = research;
+			this.topic = topic;
 			AddControl(new Border(30, 48, 224, 140, ColorScheme.Green, Backgrounds.Research, 0));
 			AddControl(new Label(88, Label.Center, "Research Completed", Font.Large, ColorScheme.Green));
 			AddControl(new Label(105, Label.Center, research.Metadata().Name, Font.Large, ColorScheme.White));
@@ -24,10 +24,8 @@ namespace XCom.Modals
 		private void OnViewReports()
 		{
 			EndModal();
-			//TODO: Determine if there is a UfoPaedia page associated with the completed research
-			//		Choose the first one and display the XxxInformation page for it.
-			//		Return to the Geoscape.
-			GameState.Current.SetScreen(new ItemInformation(Geoscape, ItemType.LaserPistol));
+			if (topic != null)
+				GameState.Current.SetScreen(new TopicView(null, topic.Value));
 		}
 	}
 }

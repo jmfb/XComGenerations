@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using XCom.Content.Images.Crafts;
+using XCom.Content.Overlays;
 using XCom.Graphics;
 
 namespace XCom.Data
@@ -33,7 +34,8 @@ namespace XCom.Data
 			Acceleration = 2,
 			Image = new Image(Crafts.Skyranger),
 			RowOffset = 17,
-			ColumnOffset = 19
+			ColumnOffset = 19,
+			Overlay = Overlays.Skyranger
 		};
 
 		private static readonly CraftMetadata interceptor = new CraftMetadata
@@ -49,7 +51,8 @@ namespace XCom.Data
 			Acceleration = 3,
 			Image = new Image(Crafts.Interceptor),
 			RowOffset = 21,
-			ColumnOffset = 23
+			ColumnOffset = 23,
+			Overlay = Overlays.Interceptor
 		};
 
 		private static readonly CraftMetadata firestorm = new CraftMetadata
@@ -65,7 +68,8 @@ namespace XCom.Data
 			Acceleration = 9,
 			Image = new Image(Crafts.Firestorm),
 			RowOffset = 26,
-			ColumnOffset = 27
+			ColumnOffset = 27,
+			Overlay = Overlays.Firestorm
 		};
 
 		private static readonly CraftMetadata lightning = new CraftMetadata
@@ -81,7 +85,8 @@ namespace XCom.Data
 			Acceleration = 8,
 			Image = new Image(Crafts.Lightning),
 			RowOffset = 23,
-			ColumnOffset = 24
+			ColumnOffset = 24,
+			Overlay = Overlays.Lightning
 		};
 
 		private static readonly CraftMetadata avenger = new CraftMetadata
@@ -97,7 +102,8 @@ namespace XCom.Data
 			Acceleration = 10,
 			Image = new Image(Crafts.Avenger),
 			RowOffset = 20,
-			ColumnOffset = 23
+			ColumnOffset = 23,
+			Overlay = Overlays.Avenger
 		};
 
 		private static readonly Dictionary<CraftType, CraftMetadata> metadata = new Dictionary<CraftType,CraftMetadata>

@@ -16,5 +16,6 @@ namespace XCom.Data
 		public Image Image { get; set; }
 		public int RowOffset { get; set; }
 		public int ColumnOffset { get; set; }
+		public byte[] Overlay { get; set; }
 	}
 }

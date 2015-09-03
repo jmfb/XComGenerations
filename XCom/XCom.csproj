@@ -187,6 +187,9 @@
     <Compile Include="Data\SoldierStatistics.cs" />
     <Compile Include="Data\StoreItem.cs" />
     <Compile Include="Data\Stores.cs" />
+    <Compile Include="Data\TopicCategory.cs" />
+    <Compile Include="Data\TopicMetadata.cs" />
+    <Compile Include="Data\TopicType.cs" />
     <Compile Include="Data\TransferItem.cs" />
     <Compile Include="Fonts\Arrow.cs" />
     <Compile Include="Fonts\Character.cs" />
@@ -263,8 +266,8 @@
     <Compile Include="Screens\Funding.cs" />
     <Compile Include="Screens\Geoscape.cs" />
     <Compile Include="Screens\Information.cs" />
-    <Compile Include="Screens\ItemInformation.cs" />
-    <Compile Include="Screens\ItemInformationList.cs" />
+    <Compile Include="Screens\TopicView.cs" />
+    <Compile Include="Screens\TopicList.cs" />
     <Compile Include="Screens\LoadGame.cs" />
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Screens\Manufacture.cs" />

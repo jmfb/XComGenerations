@@ -32,6 +32,27 @@ namespace XCom.Data
 			.Where(facilityType => facilityType.Metadata().IsRequiredResearchCompleted(CompletedResearch))
 			.ToList();
 
+		private static IEnumerable<TopicType> AllTopics => Enum.GetValues(typeof(TopicType)).Cast<TopicType>();
+		private List<TopicType> AvailableTopics => AllTopics.Where(topic => topic.Metadata().IsRequiredResearchCompleted(CompletedResearch)).ToList();
+		public TopicType GetNextTopic(TopicType topic)
+		{
+			var availableTopics = AvailableTopics;
+			var index = availableTopics.IndexOf(topic);
+			var nextIndex = (index + 1) % availableTopics.Count;
+			return availableTopics[nextIndex];
+		}
+		public TopicType GetPreviousTopic(TopicType topic)
+		{
+			var availableTopics = AvailableTopics;
+			var index = availableTopics.IndexOf(topic);
+			var previousIndex = (index + availableTopics.Count - 1) % availableTopics.Count;
+			return availableTopics[previousIndex];
+		}
+		public List<TopicType> GetTopics(TopicCategory category)
+		{
+			return AvailableTopics.Where(topic => topic.Metadata().Category == category).ToList();
+		}
+
 		public static GameData Create(int difficulty)
 		{
 			return new GameData

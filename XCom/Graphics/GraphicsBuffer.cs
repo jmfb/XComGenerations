@@ -120,12 +120,12 @@ namespace XCom.Graphics
 				paletteIndex);
 		}
 
-		public void DrawOverlay(byte[] overlay)
+		public void DrawOverlay(byte[] overlay, int paletteIndex)
 		{
 			const ushort skipCode = 0xffff;
 			const ushort drawCode = 0xfffe;
 			const ushort doneCode = 0xfffd;
-			var palette = Palette.GetPalette(3);
+			var palette = Palette.GetPalette(paletteIndex);
 			for (int overlayIndex = 0, screenIndex = 0; overlayIndex < overlay.Length; )
 			{
 				var code = BitConverter.ToUInt16(overlay, overlayIndex);

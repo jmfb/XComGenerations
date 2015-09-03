@@ -33,8 +33,10 @@ namespace XCom.Data
 		{
 			var previouslyAvailableResearch = @base.AvailableResearchProjects;
 			var previouslyAvailableProduction = @base.AvailableManufactureProjects;
+			var previouslyAvailableTopics = GameState.Current.Data.AvailableTopics;
 			RecordCompletedResearch(research);
-			NotfiyResearchCompleted(research);
+			var newTopics = GameState.Current.Data.AvailableTopics.Except(previouslyAvailableTopics);
+			NotfiyResearchCompleted(research, newTopics.Cast<TopicType?>().FirstOrDefault());
 
 			var newResearchTypes = @base.AvailableResearchProjects.Except(previouslyAvailableResearch).ToList();
 			NotifyWeCanNowResearch(@base, newResearchTypes);
@@ -69,10 +71,9 @@ namespace XCom.Data
 			yield return remainingLotteryResults[randomIndex];
 		}
 
-		private static void NotfiyResearchCompleted(ResearchType research)
+		private static void NotfiyResearchCompleted(ResearchType research, TopicType? topic)
 		{
-			//TODO: Potentially show information about extra research (researched medic, learned about other alien race...)
-			GameState.Current.Notifications.Enqueue(() => new ResearchCompleted(research).DoModal(GameState.Current.ActiveScreen));
+			GameState.Current.Notifications.Enqueue(() => new ResearchCompleted(research, topic).DoModal(GameState.Current.ActiveScreen));
 		}
 
 		private static void NotifyWeCanNowResearch(Base @base, List<ResearchType> newResearchTypes)

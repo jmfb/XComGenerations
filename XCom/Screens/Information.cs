@@ -1,5 +1,6 @@
 ﻿using XCom.Content.Backgrounds;
 using XCom.Controls;
+using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 
@@ -25,47 +26,47 @@ namespace XCom.Screens
 
 		private static void OnCraftAndArmament()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.CraftAndArmament));
 		}
 
 		private static void OnHeavyWeaponsPlatforms()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.HeavyWeaponsPlatforms));
 		}
 
 		private static void OnWeaponsAndEquipment()
 		{
-			GameState.Current.SetScreen(new ItemInformationList());
+			GameState.Current.SetScreen(new TopicList(TopicCategory.WeaponsAndEquipment));
 		}
 
 		private static void OnAlienArtifacts()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.AlienArtifacts));
 		}
 
 		private static void OnBaseFacilities()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.BaseFacilities));
 		}
 
 		private static void OnAlienLifeForms()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.AlienLifeForms));
 		}
 
 		private static void OnAlienResearch()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.AlienResearch));
 		}
 
 		private static void OnUfoComponents()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.UfoComponents));
 		}
 
 		private static void OnUfos()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new TopicList(TopicCategory.Ufos));
 		}
 
 		private static void OnOk()
