@@ -35,7 +35,14 @@ namespace XCom.Data
 			Image = new Image(Crafts.Skyranger),
 			RowOffset = 17,
 			ColumnOffset = 19,
-			Overlay = Overlays.Skyranger
+			Overlay = Overlays.Skyranger,
+			DescriptionLines = new[]
+			{
+				"TROOP TRANSPORTER. THE",
+				"FASTEST OF ITS KIND, WITH",
+				"VERTICAL TAKE OFF AND",
+				"LANDING (V.T.O.L) CAPABILITY."
+			}
 		};
 
 		private static readonly CraftMetadata interceptor = new CraftMetadata
@@ -52,7 +59,15 @@ namespace XCom.Data
 			Image = new Image(Crafts.Interceptor),
 			RowOffset = 21,
 			ColumnOffset = 23,
-			Overlay = Overlays.Interceptor
+			Overlay = Overlays.Interceptor,
+			DescriptionLines = new[]
+			{
+				"COMBAT AIRCRAFT WITH DUAL PULSE",
+				"DETONATION ENGINES AND SPECIALLY SHIELDED",
+				"ELECTRONIC SYSTEMS. THE BEST AVAILABLE",
+				"EARTH BASED TECHNOLOGY."
+			},
+			ShowStatsOnBottom = true
 		};
 
 		private static readonly CraftMetadata firestorm = new CraftMetadata
@@ -69,7 +84,15 @@ namespace XCom.Data
 			Image = new Image(Crafts.Firestorm),
 			RowOffset = 26,
 			ColumnOffset = 27,
-			Overlay = Overlays.Firestorm
+			Overlay = Overlays.Firestorm,
+			DescriptionLines = new[]
+			{
+				"COMBAT CRAFT.  THIS ONE-MAN",
+				"FIGHTER REPLICATES THE",
+				"CLASSIC ALIEN FLYING SAUCER",
+				"DESIGN, WITH CENTRAL",
+				"PROPULSION UNIT."
+			}
 		};
 
 		private static readonly CraftMetadata lightning = new CraftMetadata
@@ -86,7 +109,13 @@ namespace XCom.Data
 			Image = new Image(Crafts.Lightning),
 			RowOffset = 23,
 			ColumnOffset = 24,
-			Overlay = Overlays.Lightning
+			Overlay = Overlays.Lightning,
+			DescriptionLines = new[]
+			{
+				"TRANSPORTER AND COMBAT CRAFT.  A CRUDE BUT EFFECTIVE",
+				"REPLICATION OF ALIEN PROPULSION SYSTEMS."
+			},
+			ShowStatsOnBottom = true
 		};
 
 		private static readonly CraftMetadata avenger = new CraftMetadata
@@ -103,7 +132,14 @@ namespace XCom.Data
 			Image = new Image(Crafts.Avenger),
 			RowOffset = 20,
 			ColumnOffset = 23,
-			Overlay = Overlays.Avenger
+			Overlay = Overlays.Avenger,
+			DescriptionLines = new[]
+			{
+				"TRANSPORTER AND COMBAT",
+				"SPACEFRACT.  THE ULTIMATE",
+				"REPLICATION OF ALIEN",
+				"TECHNOLOGY."
+			}
 		};
 
 		private static readonly Dictionary<CraftType, CraftMetadata> metadata = new Dictionary<CraftType,CraftMetadata>

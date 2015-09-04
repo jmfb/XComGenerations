@@ -142,7 +142,7 @@ namespace XCom.Data
 				Name = craft.Metadata().Name,
 				Category = TopicCategory.CraftAndArmament,
 				Background = null,
-				Scheme = ColorScheme.White,
+				Scheme = ColorScheme.LightPurple,
 				RequiredResearch = requiredResearch,
 				Craft = craft
 			};
@@ -155,7 +155,7 @@ namespace XCom.Data
 				Name = craftWeapon.Metadata().Name,
 				Category = TopicCategory.CraftAndArmament,
 				Background = null,
-				Scheme = ColorScheme.Yellow,
+				Scheme = ColorScheme.Orange,
 				RequiredResearch = requiredResearch,
 				CraftWeapon = craftWeapon
 			};

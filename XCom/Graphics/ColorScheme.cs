@@ -34,35 +34,13 @@ namespace XCom.Graphics
 			return colors[translatedIndex];
 		}
 
-		public Color Lighter
-		{
-			get { return GetColor(1); }
-		}
-		public Color Light
-		{
-			get { return GetColor(2); }
-		}
-		public Color Base
-		{
-			get { return GetColor(3); }
-		}
-		public Color LightDark
-		{
-			get { return GetColor(4); }
-		}
-		public Color Dark
-		{
-			get { return GetColor(5); }
-		}
-		public Color Darker
-		{
-			get { return GetColor(6); }
-		}
-
-		public ColorScheme Inverse
-		{
-			get { return new ColorScheme(colors.Reverse().ToArray()); }
-		}
+		public Color Lighter => GetColor(1);
+		public Color Light => GetColor(2);
+		public Color Base => GetColor(3);
+		public Color LightDark => GetColor(4);
+		public Color Dark => GetColor(5);
+		public Color Darker => GetColor(6);
+		public ColorScheme Inverse => new ColorScheme(colors.Reverse().ToArray());
 
 		public static readonly ColorScheme White = new ColorScheme(1, 209, 5);
 		public static readonly ColorScheme Aqua = new ColorScheme(0, 134, 5);
@@ -72,6 +50,9 @@ namespace XCom.Graphics
 		public static readonly ColorScheme Purple = new ColorScheme(1, 247, 5);
 		public static readonly ColorScheme Yellow = new ColorScheme(2, 16, 6);
 		public static readonly ColorScheme LightMagenta = new ColorScheme(1, 242, 5);
+		public static readonly ColorScheme LightPurple = new ColorScheme(3, 240, 5);
+		public static readonly ColorScheme LightAqua = new ColorScheme(3, 245, 5);
+		public static readonly ColorScheme Orange = new ColorScheme(1, 16, 5);
 
 		public static readonly ColorScheme LightBlue = new ColorScheme(new[]
 		{

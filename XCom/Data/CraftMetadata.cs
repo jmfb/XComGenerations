@@ -17,5 +17,7 @@ namespace XCom.Data
 		public int RowOffset { get; set; }
 		public int ColumnOffset { get; set; }
 		public byte[] Overlay { get; set; }
+		public string[] DescriptionLines { get; set; }
+		public bool ShowStatsOnBottom { get; set; }
 	}
 }

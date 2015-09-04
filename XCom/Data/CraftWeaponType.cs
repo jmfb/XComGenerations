@@ -22,27 +22,93 @@ namespace XCom.Data
 			return metadata[craftWeaponType];
 		}
 
-		private static CraftWeaponMetadata Weapon(string name, int ammunition, byte[] image, ItemType item, ItemType? ammo, byte[] overlay)
+		private static readonly CraftWeaponMetadata cannon = new CraftWeaponMetadata
 		{
-			return new CraftWeaponMetadata
-			{
-				Name = name,
-				Ammunition = ammunition,
-				Image = new Image(image),
-				Item = item,
-				Ammo = ammo,
-				Overlay = overlay
-			};
-		}
+			Name = "CANNON",
+			Damage = 10,
+			Range = 10,
+			Accuracy = 10,
+			ReloadTime = 2,
+			Ammunition = 200,
+			Image = new Image(CraftWeapons.Cannon),
+			Item = ItemType.Cannon,
+			Ammo = ItemType.CannonRounds,
+			Overlay = Overlays.Cannon
+		};
+		private static readonly CraftWeaponMetadata avalanche = new CraftWeaponMetadata
+		{
+			Name = "AVALANCHE",
+			Damage = 100,
+			Range = 60,
+			Accuracy = 100,
+			ReloadTime = 20,
+			Ammunition = 3,
+			Image = new Image(CraftWeapons.Avalanche),
+			Item = ItemType.AvalancheLauncher,
+			Ammo = ItemType.AvalancheMissiles,
+			Overlay = Overlays.Avalanche
+		};
+		private static readonly CraftWeaponMetadata stingray = new CraftWeaponMetadata
+		{
+			Name = "STINGRAY",
+			Damage = 70,
+			Range = 30,
+			Accuracy = 70,
+			ReloadTime = 15,
+			Ammunition = 6,
+			Image = new Image(CraftWeapons.Stingray),
+			Item = ItemType.StingrayLauncher,
+			Ammo = ItemType.StingrayMissiles,
+			Overlay = Overlays.Stingray
+		};
+		private static readonly CraftWeaponMetadata laserBeam = new CraftWeaponMetadata
+		{
+			Name = "LASER BEAM",
+			Damage = 70,
+			Range = 21,
+			Accuracy = 70,
+			ReloadTime = 4,
+			Ammunition = 0,
+			Image = new Image(CraftWeapons.LaserBeam),
+			Item = ItemType.LaserCannon,
+			Ammo = null,
+			Overlay = Overlays.LaserCannon
+		};
+		private static readonly CraftWeaponMetadata plasmaBeam = new CraftWeaponMetadata
+		{
+			Name = "PLASMA BEAM",
+			Damage = 140,
+			Range = 52,
+			Accuracy = 140,
+			ReloadTime = 6,
+			Ammunition = 100,
+			Image = new Image(CraftWeapons.PlasmaBeam),
+			Item = ItemType.PlasmaBeam,
+			Ammo = null,
+			Overlay = Overlays.PlasmaBeam
+		};
+		private static readonly CraftWeaponMetadata fusionBall = new CraftWeaponMetadata
+		{
+			Name = "FUSION BALL",
+			Damage = 230,
+			Range = 65,
+			Accuracy = 230,
+			ReloadTime = 25,
+			Ammunition = 2,
+			Image = new Image(CraftWeapons.FusionBall),
+			Item = ItemType.FusionBallLauncher,
+			Ammo = ItemType.FusionBall,
+			Overlay = Overlays.FusionBallLauncher
+		};
 
 		private static readonly Dictionary<CraftWeaponType, CraftWeaponMetadata> metadata = new Dictionary<CraftWeaponType, CraftWeaponMetadata>
 		{
-			{ CraftWeaponType.Cannon, Weapon("CANNON", 200, CraftWeapons.Cannon, ItemType.Cannon, ItemType.CannonRounds, Overlays.Cannon) },
-			{ CraftWeaponType.Avalanche, Weapon("AVALANCHE", 3, CraftWeapons.Avalanche, ItemType.AvalancheLauncher, ItemType.AvalancheMissiles, Overlays.Avalanche) },
-			{ CraftWeaponType.Stingray, Weapon("STINGRAY", 6, CraftWeapons.Stingray, ItemType.StingrayLauncher, ItemType.StingrayMissiles, Overlays.Stingray) },
-			{ CraftWeaponType.LaserBeam, Weapon("LASER BEAM", 0, CraftWeapons.LaserBeam, ItemType.LaserCannon, null, Overlays.LaserCannon) },
-			{ CraftWeaponType.PlasmaBeam, Weapon("PLASMA BEAM", 100, CraftWeapons.PlasmaBeam, ItemType.PlasmaBeam, null, Overlays.PlasmaBeam) },
-			{ CraftWeaponType.FusionBall, Weapon("FUSION BALL", 2, CraftWeapons.FusionBall, ItemType.FusionBallLauncher, ItemType.FusionBall, Overlays.FusionBallLauncher) }
+			{ CraftWeaponType.Cannon, cannon },
+			{ CraftWeaponType.Avalanche, avalanche },
+			{ CraftWeaponType.Stingray, stingray },
+			{ CraftWeaponType.LaserBeam, laserBeam },
+			{ CraftWeaponType.PlasmaBeam, plasmaBeam },
+			{ CraftWeaponType.FusionBall, fusionBall }
 		};
 	}
 }
