@@ -14,6 +14,6 @@
 		public int Damage { get; set; }
 		public HwpAmmunitionType? Ammunition { get; set; }
 		public int Rounds { get; set; }
-		public string[] Description { get; set; }
+		public string[] DescriptionLines { get; set; }
 	}
 }

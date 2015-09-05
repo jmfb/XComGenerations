@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
@@ -17,7 +18,7 @@ namespace XCom.Screens
 			this.topic = topic;
 			var metadata = topic.Metadata();
 			if (metadata.Background != null)
-				AddControl(new Background(metadata.Background, 4));
+				AddControl(new Background(metadata.Background, metadata.BackgroundPalette));
 			AddTopicControls();
 			AddControl(new Button(5, 5, 30, 14, "OK", metadata.Scheme, Font.Normal, OnOk));
 			AddControl(new Button(5, 40, 30, 14, "<<", metadata.Scheme, Font.Normal, OnPrevious));
@@ -35,6 +36,8 @@ namespace XCom.Screens
 				AddCraftControls(metadata.Craft.Value);
 			else if (metadata.CraftWeapon != null)
 				AddArmamentControls(metadata.CraftWeapon.Value);
+			else if (metadata.Hwp != null)
+				AddHeavyWeaponsPlatformControls(metadata.Hwp.Value);
 			//TODO: other types
 		}
 
@@ -91,6 +94,42 @@ namespace XCom.Screens
 				nextTop += 16;
 				AddControl(new ExtendedLabel(top, 5, 135, stat.Item1, Font.Large, ColorScheme.White));
 				AddControl(new Label(top, 140, stat.Item2, Font.Large, ColorScheme.LightBlue));
+			}
+		}
+
+		private void AddHeavyWeaponsPlatformControls(HwpType hwp)
+		{
+			var metadata = hwp.Metadata();
+			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.LightAqua));
+			
+			var nextTop = 45;
+			var stats = new[]
+			{
+				Tuple.Create("TIME UNITS", metadata.TimeUnits.FormatNumber()),
+				Tuple.Create("HEALTH", metadata.Health.FormatNumber()),
+				Tuple.Create("Front Armor", metadata.FrontArmor.FormatNumber()),
+				Tuple.Create("Left Armor", metadata.LeftArmor.FormatNumber()),
+				Tuple.Create("Right Armor", metadata.RightArmor.FormatNumber()),
+				Tuple.Create("Rear Armor", metadata.RearArmor.FormatNumber()),
+				Tuple.Create("Under Armor", metadata.UnderArmor.FormatNumber()),
+				Tuple.Create("Weapon", metadata.DamageType.Metadata().Name),
+				Tuple.Create("Weapon Power", metadata.Damage.FormatNumber()),
+				Tuple.Create("Ammunition", metadata.Ammunition?.Metadata().Name),
+				Tuple.Create("Rounds", metadata.Rounds == 0 ? null : metadata.Rounds.FormatNumber())
+			};
+			foreach (var stat in stats.Where(stat => stat.Item2 != null))
+			{
+				var top = nextTop;
+				nextTop += 8;
+				AddControl(new ExtendedLabel(top, 10, 175, stat.Item1, Font.Normal, ColorScheme.LightAqua));
+				AddControl(new Label(top, 185, stat.Item2, Font.Normal, ColorScheme.LightAqua));
+			}
+			nextTop += 2;
+			foreach (var descriptionLine in metadata.DescriptionLines)
+			{
+				var top = nextTop;
+				nextTop += 8;
+				AddControl(new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.LightPurple));
 			}
 		}
 	}

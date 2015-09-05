@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Content.Backgrounds;
 using XCom.Graphics;
 
 namespace XCom.Data
@@ -15,13 +16,13 @@ namespace XCom.Data
 		Cannon,
 		FusionBall,
 		LaserCannon,
-		PlasmaBeam/*,
+		PlasmaBeam,
 
 		TankCannon,
 		TankRocketLauncher,
 		TankLaserCannon,
 		HovertankPlasma,
-		HovertankLauncher,
+		HovertankLauncher/*,
 
 		PersonalArmor,
 		PowerSuit,
@@ -135,29 +136,41 @@ namespace XCom.Data
 			return metadata[topicType];
 		}
 
-		private static TopicMetadata Craft(CraftType craft, ResearchType? requiredResearch = null)
+		private static TopicMetadata Craft(CraftType craft, params ResearchType[] requiredResearch)
 		{
 			return new TopicMetadata
 			{
 				Name = craft.Metadata().Name,
 				Category = TopicCategory.CraftAndArmament,
-				Background = null,
 				Scheme = ColorScheme.LightPurple,
 				RequiredResearch = requiredResearch,
 				Craft = craft
 			};
 		}
 
-		private static TopicMetadata Armament(CraftWeaponType craftWeapon, ResearchType? requiredResearch = null)
+		private static TopicMetadata Armament(CraftWeaponType craftWeapon, params ResearchType[] requiredResearch)
 		{
 			return new TopicMetadata
 			{
 				Name = craftWeapon.Metadata().Name,
 				Category = TopicCategory.CraftAndArmament,
-				Background = null,
 				Scheme = ColorScheme.Orange,
 				RequiredResearch = requiredResearch,
 				CraftWeapon = craftWeapon
+			};
+		}
+
+		private static TopicMetadata HeavyWeaponsPlatform(HwpType hwp, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = hwp.Metadata().Name,
+				Category = TopicCategory.HeavyWeaponsPlatforms,
+				Background = Backgrounds.InfoMission,
+				BackgroundPalette = 3,
+				Scheme = ColorScheme.LightWhite,
+				RequiredResearch = requiredResearch,
+				Hwp = hwp
 			};
 		}
 
@@ -173,7 +186,12 @@ namespace XCom.Data
 			{ TopicType.Cannon, Armament(CraftWeaponType.Cannon) },
 			{ TopicType.FusionBall, Armament(CraftWeaponType.FusionBall, ResearchType.FusionMissile) },
 			{ TopicType.LaserCannon, Armament(CraftWeaponType.LaserBeam, ResearchType.LaserCannon) },
-			{ TopicType.PlasmaBeam, Armament(CraftWeaponType.PlasmaBeam, ResearchType.PlasmaCannon) }
+			{ TopicType.PlasmaBeam, Armament(CraftWeaponType.PlasmaBeam, ResearchType.PlasmaCannon) },
+			{ TopicType.TankCannon, HeavyWeaponsPlatform(HwpType.TankCannon) },
+			{ TopicType.TankRocketLauncher, HeavyWeaponsPlatform(HwpType.TankRocketLauncher) },
+			{ TopicType.TankLaserCannon, HeavyWeaponsPlatform(HwpType.TankLaser, ResearchType.LaserCannon) },
+			{ TopicType.HovertankPlasma, HeavyWeaponsPlatform(HwpType.HovertankPlasma, ResearchType.PlasmaCannon, ResearchType.NewFighterCraft) },
+			{ TopicType.HovertankLauncher, HeavyWeaponsPlatform(HwpType.HovertankLauncher, ResearchType.PlasmaCannon, ResearchType.FusionMissile, ResearchType.NewFighterCraft) }
 		};
 	}
 }

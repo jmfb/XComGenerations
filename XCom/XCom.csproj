@@ -157,6 +157,7 @@
     <Compile Include="Data\CraftWeapon.cs" />
     <Compile Include="Data\CraftWeaponMetadata.cs" />
     <Compile Include="Data\CraftWeaponType.cs" />
+    <Compile Include="Data\DamageMetadata.cs" />
     <Compile Include="Data\DamageType.cs" />
     <Compile Include="Data\Facility.cs" />
     <Compile Include="Data\FacilityMetadata.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Data\GameData.MonthlyProgress.cs" />
     <Compile Include="Data\GameData.DailyProgress.cs" />
     <Compile Include="Data\GameData.HourlyProgress.cs" />
+    <Compile Include="Data\HwpAmmunitionMetadata.cs" />
     <Compile Include="Data\HwpAmmunitionType.cs" />
     <Compile Include="Data\HwpMetadata.cs" />
     <Compile Include="Data\HwpType.cs" />

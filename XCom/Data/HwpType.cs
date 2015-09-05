@@ -32,12 +32,12 @@ namespace XCom.Data
 			Damage = 60,
 			Ammunition = HwpAmmunitionType.CannonShell,
 			Rounds = 30,
-			Description = new[]
+			DescriptionLines = new[]
 			{
 				"Automated heavy weapons platforms are designed to",
 				"complement an XCom squad. The combination of high fire power",
 				"and strong armor makes these units valuable for open",
-				"terrain fire fights. Make sur ethat there ar esufficient",
+				"terrain fire fights. Make sure that there are sufficient",
 				"cannon shells in your stores to re-arm tanks. They are armed",
 				"automatically when you assign them to a squad."
 			}
@@ -57,7 +57,7 @@ namespace XCom.Data
 			Damage = 85,
 			Ammunition = HwpAmmunitionType.Rocket,
 			Rounds = 8,
-			Description = new[]
+			DescriptionLines = new[]
 			{
 				"This automated heavy weapons platform is armed with powerful",
 				"rockets.  This will be devastating for any alien foe.  Make sure",
@@ -79,7 +79,7 @@ namespace XCom.Data
 			Damage = 110,
 			Ammunition = null,
 			Rounds = 255,
-			Description = new[]
+			DescriptionLines = new[]
 			{
 				"Laser weapons are a useful addition for HWPs. It combines",
 				"heavy firepower with no ammunition restrictions."
@@ -100,7 +100,7 @@ namespace XCom.Data
 			Damage = 110,
 			Ammunition = null,
 			Rounds = 255,
-			Description = new[]
+			DescriptionLines = new[]
 			{
 				"Alien technology has given the HWP a new lease of life. The",
 				"added maneuverability of air travel and the power of plasma",
@@ -122,10 +122,10 @@ namespace XCom.Data
 			Damage = 140,
 			Ammunition = HwpAmmunitionType.FusionBomb,
 			Rounds = 8,
-			Description = new[]
+			DescriptionLines = new[]
 			{
 				"This hovertank has a fusion ball launcher that is capable of",
-				"immense devastation.  Use it with great care.  You wlil have",
+				"immense devastation.  Use it with great care.  You will have",
 				"to manufacture the fusion balls to keep these HWPs fully",
 				"armed. A fusion ball is an intelligent guided weapon. In order",
 				"to fire it you select a number of 'way points' with hte cursor",
