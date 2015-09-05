@@ -22,12 +22,12 @@ namespace XCom.Data
 		TankRocketLauncher,
 		TankLaserCannon,
 		HovertankPlasma,
-		HovertankLauncher/*,
+		HovertankLauncher,
 
 		PersonalArmor,
 		PowerSuit,
 		FlyingSuit,
-		Pistol,
+		Pistol/*,
 		Rifle,
 		HeavyCannon,
 		AutoCannon,
@@ -43,7 +43,7 @@ namespace XCom.Data
 		MediKit,
 		StunRod,
 		ElectroFlare,
-		PsiAmp,
+		PsiAmp/*,
 
 		HeavyPlasma,
 		HeavyPlasmaClip,
@@ -174,6 +174,32 @@ namespace XCom.Data
 			};
 		}
 
+		private static TopicMetadata Armor(ArmorType armor, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = armor.Metadata().Name,
+				Category = TopicCategory.WeaponsAndEquipment,
+				Scheme = ColorScheme.DarkYellow,
+				RequiredResearch = requiredResearch,
+				Armor = armor
+			};
+		}
+
+		private static TopicMetadata Weapon(ItemType weapon)
+		{
+			return new TopicMetadata
+			{
+				Name = weapon.Metadata().Name,
+				Category = TopicCategory.WeaponsAndEquipment,
+				Background = Backgrounds.InfoItem,
+				BackgroundPalette = 4,
+				Scheme = ColorScheme.Yellow,
+				RequiredResearch = weapon.Metadata().RequiredResearch ?? new ResearchType[0],
+				Weapon = weapon
+			};
+		}
+
 		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
 		{
 			{ TopicType.Skyranger, Craft(CraftType.Skyranger) },
@@ -191,7 +217,11 @@ namespace XCom.Data
 			{ TopicType.TankRocketLauncher, HeavyWeaponsPlatform(HwpType.TankRocketLauncher) },
 			{ TopicType.TankLaserCannon, HeavyWeaponsPlatform(HwpType.TankLaser, ResearchType.LaserCannon) },
 			{ TopicType.HovertankPlasma, HeavyWeaponsPlatform(HwpType.HovertankPlasma, ResearchType.PlasmaCannon, ResearchType.NewFighterCraft) },
-			{ TopicType.HovertankLauncher, HeavyWeaponsPlatform(HwpType.HovertankLauncher, ResearchType.PlasmaCannon, ResearchType.FusionMissile, ResearchType.NewFighterCraft) }
+			{ TopicType.HovertankLauncher, HeavyWeaponsPlatform(HwpType.HovertankLauncher, ResearchType.PlasmaCannon, ResearchType.FusionMissile, ResearchType.NewFighterCraft) },
+			{ TopicType.PersonalArmor, Armor(ArmorType.PersonalArmor, ResearchType.PersonalArmor) },
+			{ TopicType.PowerSuit, Armor(ArmorType.PowerSuit, ResearchType.PowerSuit) },
+			{ TopicType.FlyingSuit, Armor(ArmorType.FlyingSuit, ResearchType.FlyingSuit) },
+			{ TopicType.Pistol, Weapon(ItemType.Pistol) }
 		};
 	}
 }

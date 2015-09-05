@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Content.Paperdolls;
 
 namespace XCom.Data
 {
@@ -39,7 +40,8 @@ namespace XCom.Data
 			UnderArmor = 30,
 			FireResistant = true,
 			StunResistance = 10,
-			Item = ItemType.PersonalArmor
+			Item = ItemType.PersonalArmor,
+			Overlay = Paperdolls.PersonalArmorWhiteMale
 		};
 
 		private static readonly ArmorMetadata powerSuit = new ArmorMetadata
@@ -53,7 +55,8 @@ namespace XCom.Data
 			FireResistant = true,
 			SmokeResistant = true,
 			StunResistance = 20,
-			Item = ItemType.PowerSuit
+			Item = ItemType.PowerSuit,
+			Overlay = Paperdolls.PowerSuit
 		};
 
 		private static readonly ArmorMetadata flyingSuit = new ArmorMetadata
@@ -67,7 +70,8 @@ namespace XCom.Data
 			FireResistant = true,
 			SmokeResistant = true,
 			StunResistance = 20,
-			Item = ItemType.FlyingSuit
+			Item = ItemType.FlyingSuit,
+			Overlay = Paperdolls.FlyingSuit
 		};
 
 		private static readonly Dictionary<ArmorType, ArmorMetadata> metadata = new Dictionary<ArmorType,ArmorMetadata>

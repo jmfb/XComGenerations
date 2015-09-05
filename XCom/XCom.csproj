@@ -112,6 +112,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Palettes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\Paperdolls\Paperdolls.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Paperdolls.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Alignment.cs" />
     <Compile Include="Controls\Background.cs" />
     <Compile Include="Controls\Bar.cs" />
@@ -330,6 +335,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Palettes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Content\Paperdolls\Paperdolls.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Paperdolls.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -515,6 +524,24 @@
     <None Include="Content\Palettes\Palette3.bin" />
     <None Include="Content\Palettes\Palette4.bin" />
     <None Include="Content\Palettes\Background.bin" />
+    <None Include="Content\Paperdolls\CoverallsBlackFemale.bin" />
+    <None Include="Content\Paperdolls\CoverallsBlackMale.bin" />
+    <None Include="Content\Paperdolls\CoverallsBrownFemale.bin" />
+    <None Include="Content\Paperdolls\CoverallsBrownMale.bin" />
+    <None Include="Content\Paperdolls\CoverallsTanFemale.bin" />
+    <None Include="Content\Paperdolls\CoverallsTanMale.bin" />
+    <None Include="Content\Paperdolls\CoverallsWhiteFemale.bin" />
+    <None Include="Content\Paperdolls\CoverallsWhiteMale.bin" />
+    <None Include="Content\Paperdolls\FlyingSuit.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorBlackFemale.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorBlackMale.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorBrownFemale.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorBrownMale.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorTanFemale.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorTanMale.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorWhiteFemale.bin" />
+    <None Include="Content\Paperdolls\PersonalArmorWhiteMale.bin" />
+    <None Include="Content\Paperdolls\PowerSuit.bin" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

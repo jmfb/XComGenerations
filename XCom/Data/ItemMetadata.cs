@@ -18,6 +18,7 @@ namespace XCom.Data
 		public bool IsEquipment { get; set; }
 		public ItemType? AmmoForWeapon { get; set; }
 		public ResearchType[] RequiredResearch { get; set; }
+		public byte[] Image { get; set; }
 
 		private bool IsRequiredResearchCompletedForThisItem => RequiredResearch == null || RequiredResearch.All(GameState.Current.Data.CompletedResearch.Contains);
 		private bool IsRequiredResearchCompletedForWeapon => AmmoForWeapon == null || AmmoForWeapon.Value.Metadata().IsRequiredResearchCompleted;

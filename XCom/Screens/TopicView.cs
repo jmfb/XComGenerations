@@ -38,6 +38,10 @@ namespace XCom.Screens
 				AddArmamentControls(metadata.CraftWeapon.Value);
 			else if (metadata.Hwp != null)
 				AddHeavyWeaponsPlatformControls(metadata.Hwp.Value);
+			else if (metadata.Armor != null)
+				AddArmorControls(metadata.Armor.Value);
+			else if (metadata.Weapon != null)
+				AddWeaponControls(metadata.Weapon.Value);
 			//TODO: other types
 		}
 
@@ -101,7 +105,7 @@ namespace XCom.Screens
 		{
 			var metadata = hwp.Metadata();
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.LightAqua));
-			
+
 			var nextTop = 45;
 			var stats = new[]
 			{
@@ -131,6 +135,39 @@ namespace XCom.Screens
 				nextTop += 8;
 				AddControl(new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.LightPurple));
 			}
+		}
+
+		private void AddArmorControls(ArmorType armor)
+		{
+			var metadata = armor.Metadata();
+			AddControl(new Overlay(metadata.Overlay, 4));
+			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.White));
+
+			var nextTop = 70;
+			var stats = new[]
+			{
+				Tuple.Create("Front Armor", metadata.FrontArmor),
+				Tuple.Create("Left Armor", metadata.LeftArmor),
+				Tuple.Create("Right Armor", metadata.RightArmor),
+				Tuple.Create("Rear Armor", metadata.RearArmor),
+				Tuple.Create("Under Armor", metadata.UnderArmor)
+			};
+			foreach (var stat in stats)
+			{
+				var top = nextTop;
+				nextTop += 8;
+				AddControl(new ExtendedLabel(top, 150, 125, stat.Item1, Font.Normal, ColorScheme.White));
+				AddControl(new Label(top, 275, stat.Item2.FormatNumber(), Font.Normal, ColorScheme.LightBlue));
+			}
+		}
+
+		private void AddWeaponControls(ItemType weapon)
+		{
+			var metadata = weapon.Metadata();
+			AddControl(new Item(3, 157, metadata.Image));
+			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.White));
+			//TODO: center overlay
+			//TODO: ammo stuff, shot type stuff, description
 		}
 	}
 }

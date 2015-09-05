@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Content.Items;
 
 namespace XCom.Data
 {
@@ -38,7 +39,7 @@ namespace XCom.Data
 		RocketLauncher,
 		SmallRocket,
 		LargeRocket,
-		IncindiaryRocket,
+		IncendiaryRocket,
 
 		Grenade,
 		SmokeGrenade,
@@ -189,7 +190,7 @@ namespace XCom.Data
 			};
 		}
 
-		private static ItemMetadata StoreEquipment(string name, int purchaseHours, int cost, int salePrice, int storageSpace)
+		private static ItemMetadata StoreEquipment(string name, int purchaseHours, int cost, int salePrice, int storageSpace, byte[] image)
 		{
 			return new ItemMetadata
 			{
@@ -199,11 +200,12 @@ namespace XCom.Data
 				Cost = cost,
 				SalePrice = salePrice,
 				StorageSpace = storageSpace,
-				IsEquipment = true
+				IsEquipment = true,
+				Image = image
 			};
 		}
 
-		private static ItemMetadata StoreAmmo(string name, int purchaseHours, int cost, int salePrice, int storageSpace, ItemType weapon)
+		private static ItemMetadata StoreAmmo(string name, int purchaseHours, int cost, int salePrice, int storageSpace, ItemType weapon, byte[] image)
 		{
 			return new ItemMetadata
 			{
@@ -214,7 +216,8 @@ namespace XCom.Data
 				SalePrice = salePrice,
 				StorageSpace = storageSpace,
 				AmmoForWeapon = weapon,
-				IsEquipment = true
+				IsEquipment = true,
+				Image = image
 			};
 		}
 
@@ -325,28 +328,28 @@ namespace XCom.Data
 			{ ItemType.TankRocketLauncher, StoreTank("Tank/Rocket Launcher", 96, 480000, 360000) },
 			{ ItemType.HwpRockets, StoreItem("HWP Rockets", 48, 3000, 2250, 60) },
 
-			{ ItemType.Pistol, StoreEquipment("Pistol", 24, 800, 600, 10) },
-			{ ItemType.PistolClip, StoreAmmo("Pistol Clip", 24, 70, 52, 10, ItemType.Pistol) },
-			{ ItemType.Rifle, StoreEquipment("Rifle", 24, 3000, 2250, 20) },
-			{ ItemType.RifleClip, StoreAmmo("Rifle Clip", 24, 200, 150, 10, ItemType.Rifle) },
-			{ ItemType.HeavyCannon, StoreEquipment("Heavy Cannon", 24, 6400, 4800, 30) },
-			{ ItemType.HcApAmmo, StoreAmmo("HC-AP Ammo", 24, 300, 225, 10, ItemType.HeavyCannon) },
-			{ ItemType.HcHeAmmo, StoreAmmo("HC-HE Ammo", 24, 500, 275, 10, ItemType.HeavyCannon) },
-			{ ItemType.HcIAmmo, StoreAmmo("HC-I Ammo", 24, 400, 300, 10, ItemType.HeavyCannon) },
-			{ ItemType.AutoCannon, StoreEquipment("Auto-Cannon", 24, 13500, 10125, 30) },
-			{ ItemType.AcApAmmo, StoreAmmo("AC-AP Ammo", 24, 500, 400, 10, ItemType.AutoCannon) },
-			{ ItemType.AcHeAmmo, StoreAmmo("AC-HE Ammo", 24, 700, 560, 10, ItemType.AutoCannon) },
-			{ ItemType.AcIAmmo, StoreAmmo("AC-I Ammo", 24, 650, 520, 10, ItemType.AutoCannon) },
-			{ ItemType.RocketLauncher, StoreEquipment("Rocket Launcher", 24, 4000, 3000, 40) },
-			{ ItemType.SmallRocket, StoreAmmo("Small Rocket", 24, 600, 480, 20, ItemType.RocketLauncher) },
-			{ ItemType.LargeRocket, StoreAmmo("Large Rocket", 24, 900, 720, 20, ItemType.RocketLauncher) },
-			{ ItemType.IncindiaryRocket, StoreAmmo("Incindiary Rocket", 24, 1200, 960, 20, ItemType.RocketLauncher) },
-			{ ItemType.Grenade, StoreEquipment("Grenade", 24, 300, 240, 10) },
-			{ ItemType.SmokeGrenade, StoreEquipment("Smoke Grenade", 24, 150, 120, 10) },
-			{ ItemType.ProximityGrenade, StoreEquipment("Proximity Grenade", 24, 500, 400, 10) },
-			{ ItemType.HighExplosive, StoreEquipment("High Explosive", 24, 1500, 1200, 20) },
-			{ ItemType.StunRod, StoreEquipment("Stun Rod", 24, 1260, 945, 10) },
-			{ ItemType.ElectroFlare, StoreEquipment("Electro-flare", 24, 60, 40, 10) },
+			{ ItemType.Pistol, StoreEquipment("Pistol", 24, 800, 600, 10, Items.Pistol) },
+			{ ItemType.PistolClip, StoreAmmo("Pistol Clip", 24, 70, 52, 10, ItemType.Pistol, Items.PistolClip) },
+			{ ItemType.Rifle, StoreEquipment("Rifle", 24, 3000, 2250, 20, Items.Rifle) },
+			{ ItemType.RifleClip, StoreAmmo("Rifle Clip", 24, 200, 150, 10, ItemType.Rifle, Items.RifleClip) },
+			{ ItemType.HeavyCannon, StoreEquipment("Heavy Cannon", 24, 6400, 4800, 30, Items.HeavyCannon) },
+			{ ItemType.HcApAmmo, StoreAmmo("HC-AP Ammo", 24, 300, 225, 10, ItemType.HeavyCannon, Items.HcApAmmo) },
+			{ ItemType.HcHeAmmo, StoreAmmo("HC-HE Ammo", 24, 500, 275, 10, ItemType.HeavyCannon, Items.HcHeAmmo) },
+			{ ItemType.HcIAmmo, StoreAmmo("HC-I Ammo", 24, 400, 300, 10, ItemType.HeavyCannon, Items.HcIAmmo) },
+			{ ItemType.AutoCannon, StoreEquipment("Auto-Cannon", 24, 13500, 10125, 30, Items.AutoCannon) },
+			{ ItemType.AcApAmmo, StoreAmmo("AC-AP Ammo", 24, 500, 400, 10, ItemType.AutoCannon, Items.AcApAmmo) },
+			{ ItemType.AcHeAmmo, StoreAmmo("AC-HE Ammo", 24, 700, 560, 10, ItemType.AutoCannon, Items.AcHeAmmo) },
+			{ ItemType.AcIAmmo, StoreAmmo("AC-I Ammo", 24, 650, 520, 10, ItemType.AutoCannon, Items.AcIAmmo) },
+			{ ItemType.RocketLauncher, StoreEquipment("Rocket Launcher", 24, 4000, 3000, 40, Items.RocketLauncher) },
+			{ ItemType.SmallRocket, StoreAmmo("Small Rocket", 24, 600, 480, 20, ItemType.RocketLauncher, Items.SmallRocket) },
+			{ ItemType.LargeRocket, StoreAmmo("Large Rocket", 24, 900, 720, 20, ItemType.RocketLauncher, Items.LargeRocket) },
+			{ ItemType.IncendiaryRocket, StoreAmmo("Incendiary Rocket", 24, 1200, 960, 20, ItemType.RocketLauncher, Items.IncendiaryRocket) },
+			{ ItemType.Grenade, StoreEquipment("Grenade", 24, 300, 240, 10, Items.Grenade) },
+			{ ItemType.SmokeGrenade, StoreEquipment("Smoke Grenade", 24, 150, 120, 10, Items.SmokeGrenade) },
+			{ ItemType.ProximityGrenade, StoreEquipment("Proximity Grenade", 24, 500, 400, 10, Items.ProximityGrenade) },
+			{ ItemType.HighExplosive, StoreEquipment("High Explosive", 24, 1500, 1200, 20, Items.HighExplosive) },
+			{ ItemType.StunRod, StoreEquipment("Stun Rod", 24, 1260, 945, 10, Items.StunRod) },
+			{ ItemType.ElectroFlare, StoreEquipment("Electro-flare", 24, 60, 40, 10, Items.ElectroFlare) },
 
 			{ ItemType.FusionBallLauncher, OtherItem("Fusion Ball Launcher", 281100, 200) },
 			{ ItemType.LaserCannon, OtherItem("Laser Cannon", 211000, 200) },

@@ -15,6 +15,8 @@ namespace XCom.Data
 		public CraftType? Craft { get; set; }
 		public CraftWeaponType? CraftWeapon { get; set; }
 		public HwpType? Hwp { get; set; }
+		public ArmorType? Armor { get; set; }
+		public ItemType? Weapon { get; set; }
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
 		{
