@@ -161,13 +161,63 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddWeaponControls(ItemType weapon)
+		private void AddWeaponControls(WeaponType weapon)
 		{
 			var metadata = weapon.Metadata();
-			AddControl(new Item(3, 157, metadata.Image));
+			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.White));
-			//TODO: center overlay
-			//TODO: ammo stuff, shot type stuff, description
+
+			AddControl(new Label(7, 224, "DAMAGE", Font.Normal, ColorScheme.White));
+			AddControl(new Label(7, 285, "AMMO", Font.Normal, ColorScheme.White));
+
+			var nextTop = 24;
+			var ammoLeft = Label.CenterOf(195, 90);
+			var laserWeapon = EnumEx.GetValues<LaserWeaponType>()
+				.Where(laserWeaponType => laserWeaponType.Metadata().Weapon == weapon)
+				.Cast<LaserWeaponType?>()
+				.SingleOrDefault();
+			if (laserWeapon != null)
+			{
+				AddControl(new Label(nextTop, ammoLeft, DamageType.LaserBeam.Metadata().Name, Font.Normal, ColorScheme.White));
+				AddControl(new Label(nextTop + 16, ammoLeft, laserWeapon.Value.Metadata().Damage.FormatNumber(), Font.Large, ColorScheme.Red));
+			}
+			else
+			{
+				foreach (var ammunition in metadata.SupportedAmmunition)
+				{
+					var ammoMetadata = ammunition.Metadata();
+					var top = nextTop;
+					nextTop += 49;
+					AddControl(new Label(top, ammoLeft, ammoMetadata.DamageType.Metadata().Name, Font.Normal, ColorScheme.White));
+					AddControl(new Label(top + 16, ammoLeft, ammoMetadata.Damage.FormatNumber(), Font.Large, ColorScheme.Red));
+					AddControl(new Item(
+						top - 7 + 8 * (3 - ammoMetadata.Height),
+						283 + 8 * (2 - ammoMetadata.Width),
+						ammoMetadata.Image));
+				}
+			}
+
+			AddControl(new Label(67, 8, "SHOT TYPE>", Font.Normal, ColorScheme.White));
+			AddControl(new Label(67, 80, "ACCURACY>", Font.Normal, ColorScheme.White));
+			AddControl(new Label(67, 152, "TU COST>", Font.Normal, ColorScheme.White));
+
+			nextTop = 82;
+			foreach (var shot in metadata.Shots)
+			{
+				var top = nextTop;
+				nextTop += 20;
+				AddControl(new Label(top, 8, shot.ShotType.Metadata().Name, Font.Large, ColorScheme.White));
+				AddControl(new Label(top, 88, $"{shot.Accuracy.FormatNumber()}%", Font.Large, ColorScheme.LightBlue));
+				AddControl(new Label(top, 144, $"{shot.TimeUnits.FormatNumber()}%", Font.Large, ColorScheme.LightBlue));
+			}
+
+			nextTop = 138;
+			foreach (var descriptionLine in metadata.DescriptionLines)
+			{
+				var top = nextTop;
+				nextTop += 8;
+				AddControl(new Label(top, 8, descriptionLine, Font.Normal, ColorScheme.White));
+			}
 		}
 	}
 }

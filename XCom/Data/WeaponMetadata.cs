@@ -1,4 +1,7 @@
-﻿namespace XCom.Data
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace XCom.Data
 {
 	public class WeaponMetadata
 	{
@@ -12,5 +15,11 @@
 		public string[] DescriptionLines { get; set; }
 
 		public string Name => ItemType.Metadata().Name;
+
+		private WeaponType ThisWeapon => EnumEx.GetValues<WeaponType>()
+			.Single(weapon => ReferenceEquals(this, weapon.Metadata()));
+		public List<AmmunitionType> SupportedAmmunition => EnumEx.GetValues<AmmunitionType>()
+			.Where(ammo => ammo.Metadata().Weapon == ThisWeapon)
+			.ToList();
 	}
 }

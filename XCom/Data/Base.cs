@@ -122,7 +122,7 @@ namespace XCom.Data
 		public int TotalCraftCount => Crafts.Count + TransferredCrafts.Count + CraftUnderConstruction;
 		public int HangarSpaceAvailable => TotalHangarSpace - TotalCraftCount;
 
-		private static IEnumerable<ResearchType> AllResearchProjects => Enum.GetValues(typeof(ResearchType)).Cast<ResearchType>();
+		private static IEnumerable<ResearchType> AllResearchProjects => EnumEx.GetValues<ResearchType>();
 		private IEnumerable<ResearchType> ActiveResearchProjects => ResearchProjects.Select(project => project.ResearchType);
 		private static IEnumerable<ResearchType> ExhaustedResearch => GameState.Current.Data.CompletedResearch
 			.Where(research => research.Metadata().IsExhausted(GameState.Current.Data.CompletedResearch));
@@ -132,7 +132,7 @@ namespace XCom.Data
 			.Where(research => research.Metadata().AreRequiredItemsInStores(Stores))
 			.ToList();
 
-		private static IEnumerable<ManufactureType> AllManufactureProjects => Enum.GetValues(typeof(ManufactureType)).Cast<ManufactureType>();
+		private static IEnumerable<ManufactureType> AllManufactureProjects => EnumEx.GetValues<ManufactureType>();
 		private IEnumerable<ManufactureType> ActiveManufactureProjects => ManufactureProjects.Select(project => project.ManufactureType);
 		private IEnumerable<ManufactureType> RemainingManufactureProjects => AllManufactureProjects.Except(ActiveManufactureProjects);
 		public List<ManufactureType> AvailableManufactureProjects => RemainingManufactureProjects

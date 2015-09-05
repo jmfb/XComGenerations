@@ -27,14 +27,14 @@ namespace XCom.Data
 		PersonalArmor,
 		PowerSuit,
 		FlyingSuit,
-		Pistol/*,
+		Pistol,
 		Rifle,
 		HeavyCannon,
 		AutoCannon,
 		RocketLauncher,
 		LaserPistol,
 		LaserRifle,
-		HeavyLaser,
+		HeavyLaser/*,
 		Grenade,
 		SmokeGrenade,
 		ProximityGrenade,
@@ -186,7 +186,7 @@ namespace XCom.Data
 			};
 		}
 
-		private static TopicMetadata Weapon(ItemType weapon)
+		private static TopicMetadata Weapon(WeaponType weapon, params ResearchType[] requiredResearch)
 		{
 			return new TopicMetadata
 			{
@@ -195,7 +195,7 @@ namespace XCom.Data
 				Background = Backgrounds.InfoItem,
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
-				RequiredResearch = weapon.Metadata().RequiredResearch ?? new ResearchType[0],
+				RequiredResearch = requiredResearch,
 				Weapon = weapon
 			};
 		}
@@ -221,7 +221,14 @@ namespace XCom.Data
 			{ TopicType.PersonalArmor, Armor(ArmorType.PersonalArmor, ResearchType.PersonalArmor) },
 			{ TopicType.PowerSuit, Armor(ArmorType.PowerSuit, ResearchType.PowerSuit) },
 			{ TopicType.FlyingSuit, Armor(ArmorType.FlyingSuit, ResearchType.FlyingSuit) },
-			{ TopicType.Pistol, Weapon(ItemType.Pistol) }
+			{ TopicType.Pistol, Weapon(WeaponType.Pistol) },
+			{ TopicType.Rifle, Weapon(WeaponType.Rifle) },
+			{ TopicType.HeavyCannon, Weapon(WeaponType.HeavyCannon) },
+			{ TopicType.AutoCannon, Weapon(WeaponType.AutoCannon) },
+			{ TopicType.RocketLauncher, Weapon(WeaponType.RocketLauncher) },
+			{ TopicType.LaserPistol, Weapon(WeaponType.LaserPistol, ResearchType.LaserPistol) },
+			{ TopicType.LaserRifle, Weapon(WeaponType.LaserRifle, ResearchType.LaserRifle) },
+			{ TopicType.HeavyLaser, Weapon(WeaponType.HeavyLaser, ResearchType.HeavyLaser) }
 		};
 	}
 }

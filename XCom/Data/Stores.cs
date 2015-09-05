@@ -34,8 +34,7 @@ namespace XCom.Data
 		{
 			return new Stores
 			{
-				Items = Enum.GetValues(typeof(ItemType))
-					.Cast<ItemType>()
+				Items = EnumEx.GetValues<ItemType>()
 					.Select(item => new StoreItem { ItemType = item })
 					.ToList()
 			};

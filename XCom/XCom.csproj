@@ -184,6 +184,8 @@
     <Compile Include="Data\HwpType.cs" />
     <Compile Include="Data\ItemMetadata.cs" />
     <Compile Include="Data\ItemType.cs" />
+    <Compile Include="Data\LaserWeaponMetadata.cs" />
+    <Compile Include="Data\LaserWeaponType.cs" />
     <Compile Include="Data\ManufactureMetadata.cs" />
     <Compile Include="Data\ManufactureProject.cs" />
     <Compile Include="Data\ManufactureStatus.cs" />
@@ -209,6 +211,7 @@
     <Compile Include="Data\TransferItem.cs" />
     <Compile Include="Data\WeaponMetadata.cs" />
     <Compile Include="Data\WeaponType.cs" />
+    <Compile Include="EnumEx.cs" />
     <Compile Include="Fonts\Arrow.cs" />
     <Compile Include="Fonts\Character.cs" />
     <Compile Include="Fonts\Font.cs" />

@@ -33,7 +33,7 @@ namespace XCom.Modals
 			AddControl(new Button(156, 90, 140, 16, "CANCEL", ColorScheme.Purple, Font.Normal, EndModal));
 		}
 
-		private static List<CraftWeaponType> AvailableCraftWeapons => Enum.GetValues(typeof(CraftWeaponType)).Cast<CraftWeaponType>()
+		private static List<CraftWeaponType> AvailableCraftWeapons => EnumEx.GetValues<CraftWeaponType>()
 			.Where(weapon => GameState.SelectedBase.Stores[weapon.Metadata().Item] > 0)
 			.ToList();
 

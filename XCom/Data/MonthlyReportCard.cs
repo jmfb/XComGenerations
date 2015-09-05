@@ -34,7 +34,7 @@ namespace XCom.Data
 			};
 		}
 
-		private ScoreType ScoreType => Enum.GetValues(typeof(ScoreType)).Cast<ScoreType>().First(scoreType => Score < scoreType.Metadata().MaxMonthlyPoints);
+		private ScoreType ScoreType => EnumEx.GetValues<ScoreType>().First(scoreType => Score < scoreType.Metadata().MaxMonthlyPoints);
 		public string Status => ScoreType.Metadata().Name;
 		private string Description => ScoreType.Metadata().Description;
 

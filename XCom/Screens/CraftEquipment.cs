@@ -34,7 +34,7 @@ namespace XCom.Screens
 			AddControl(new Button(176, 16, 288, 16, "OK", ColorScheme.LightMagenta, Font.Normal, OnOk));
 		}
 
-		private List<ItemType> AvailableItems => Enum.GetValues(typeof(ItemType)).Cast<ItemType>()
+		private List<ItemType> AvailableItems => EnumEx.GetValues<ItemType>()
 			.Where(item =>
 				GameState.SelectedBase.Stores[item] + craft.Stores[item] > 0 &&
 				(item.Metadata().HwpSpace > 0 || item.Metadata().IsEquipment) &&

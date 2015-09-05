@@ -26,13 +26,13 @@ namespace XCom.Data
 		public int TotalFunding => Countries.Sum(country => country.Funding);
 		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
 
-		private static IEnumerable<FacilityType> AllFacilityTypes => Enum.GetValues(typeof(FacilityType)).Cast<FacilityType>();
+		private static IEnumerable<FacilityType> AllFacilityTypes => EnumEx.GetValues<FacilityType>();
 		private static IEnumerable<FacilityType> BuildableFacilityTypes => AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
 		public List<FacilityType> AvailableFacilityTypes => BuildableFacilityTypes
 			.Where(facilityType => facilityType.Metadata().IsRequiredResearchCompleted(CompletedResearch))
 			.ToList();
 
-		private static IEnumerable<TopicType> AllTopics => Enum.GetValues(typeof(TopicType)).Cast<TopicType>();
+		private static IEnumerable<TopicType> AllTopics => EnumEx.GetValues<TopicType>();
 		private List<TopicType> AvailableTopics => AllTopics.Where(topic => topic.Metadata().IsRequiredResearchCompleted(CompletedResearch)).ToList();
 		public TopicType GetNextTopic(TopicType topic)
 		{
@@ -69,7 +69,7 @@ namespace XCom.Data
 				NextLightningNumber = 1,
 				NextAvengerNumber = 1,
 				CompletedResearch = new List<ResearchType>(),
-				Countries = Enum.GetValues(typeof(CountryType)).Cast<CountryType>().Select(Country.Create).ToList()
+				Countries = EnumEx.GetValues<CountryType>().Select(Country.Create).ToList()
 			};
 		}
 
