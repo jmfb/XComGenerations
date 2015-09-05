@@ -5,6 +5,10 @@ namespace XCom.Data
 	public enum DamageType
 	{
 		ArmorPiercing,
+		HighExplosive,
+		Incendiary,
+		Stun,
+		Smoke,
 		RocketLauncher,
 		LaserBeam,
 		PlasmaBeam,
@@ -29,6 +33,10 @@ namespace XCom.Data
 		private static readonly Dictionary<DamageType, DamageMetadata> metadata = new Dictionary<DamageType, DamageMetadata>
 		{
 			{ DamageType.ArmorPiercing, Damage("ARMOR PIERCING") },
+			{ DamageType.HighExplosive, Damage("HIGH EXPLOSIVE") },
+			{ DamageType.Incendiary, Damage("INCENDIARY") },
+			{ DamageType.Stun, Damage("STUN") },
+			{ DamageType.Smoke, Damage("SMOKE") },
 			{ DamageType.RocketLauncher, Damage("ROCKET LAUNCHER") },
 			{ DamageType.LaserBeam, Damage("LASER BEAM") },
 			{ DamageType.PlasmaBeam, Damage("PLASMA BEAM") },

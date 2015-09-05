@@ -147,6 +147,8 @@
     <Compile Include="Controls\Toggle.cs" />
     <Compile Include="Controls\UpDown.cs" />
     <Compile Include="Controls\WrappedLabel.cs" />
+    <Compile Include="Data\AmmunitionMetadata.cs" />
+    <Compile Include="Data\AmmunitionType.cs" />
     <Compile Include="Data\ArmorMetadata.cs" />
     <Compile Include="Data\ArmorType.cs" />
     <Compile Include="Data\Base.cs" />
@@ -164,6 +166,8 @@
     <Compile Include="Data\CraftWeaponType.cs" />
     <Compile Include="Data\DamageMetadata.cs" />
     <Compile Include="Data\DamageType.cs" />
+    <Compile Include="Data\EquipmentMetadata.cs" />
+    <Compile Include="Data\EquipmentType.cs" />
     <Compile Include="Data\Facility.cs" />
     <Compile Include="Data\FacilityMetadata.cs" />
     <Compile Include="Data\FacilityShape.cs" />
@@ -172,6 +176,8 @@
     <Compile Include="Data\GameData.MonthlyProgress.cs" />
     <Compile Include="Data\GameData.DailyProgress.cs" />
     <Compile Include="Data\GameData.HourlyProgress.cs" />
+    <Compile Include="Data\GrenadeMetadata.cs" />
+    <Compile Include="Data\GrenadeType.cs" />
     <Compile Include="Data\HwpAmmunitionMetadata.cs" />
     <Compile Include="Data\HwpAmmunitionType.cs" />
     <Compile Include="Data\HwpMetadata.cs" />
@@ -190,6 +196,9 @@
     <Compile Include="Data\ResearchMetadata.cs" />
     <Compile Include="Data\ScoreMetadata.cs" />
     <Compile Include="Data\ScoreType.cs" />
+    <Compile Include="Data\Shot.cs" />
+    <Compile Include="Data\ShotMetadata.cs" />
+    <Compile Include="Data\ShotType.cs" />
     <Compile Include="Data\Soldier.cs" />
     <Compile Include="Data\SoldierStatistics.cs" />
     <Compile Include="Data\StoreItem.cs" />
@@ -198,6 +207,8 @@
     <Compile Include="Data\TopicMetadata.cs" />
     <Compile Include="Data\TopicType.cs" />
     <Compile Include="Data\TransferItem.cs" />
+    <Compile Include="Data\WeaponMetadata.cs" />
+    <Compile Include="Data\WeaponType.cs" />
     <Compile Include="Fonts\Arrow.cs" />
     <Compile Include="Fonts\Character.cs" />
     <Compile Include="Fonts\Font.cs" />
