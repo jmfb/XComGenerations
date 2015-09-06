@@ -50,6 +50,8 @@ namespace XCom.Screens
 				AddAmmunitionControls(metadata.Ammunition.Value);
 			else if (metadata.Facility != null)
 				AddFacilityControls(metadata.Facility.Value);
+			else if (metadata.Alien != null)
+				AddAlienControls(metadata.Alien.Value);
 			//TODO: other types
 		}
 
@@ -316,6 +318,20 @@ namespace XCom.Screens
 				var top = nextTop;
 				nextTop += 8;
 				AddControl(new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.Blue));
+			}
+		}
+
+		private void AddAlienControls(AlienType alien)
+		{
+			var metadata = alien.Metadata();
+			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.LightAqua));
+			AddControl(new Overlay(metadata.Overlay));
+			var nextTop = 40;
+			foreach (var descriptionLine in metadata.DescriptionLines)
+			{
+				var top = nextTop;
+				nextTop += 8;
+				AddControl(new Label(top, 5, descriptionLine, Font.Normal, ColorScheme.LightPurple));
 			}
 		}
 	}

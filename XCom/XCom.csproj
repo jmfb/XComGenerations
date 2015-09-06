@@ -147,6 +147,8 @@
     <Compile Include="Controls\Toggle.cs" />
     <Compile Include="Controls\UpDown.cs" />
     <Compile Include="Controls\WrappedLabel.cs" />
+    <Compile Include="Data\AlienMetadata.cs" />
+    <Compile Include="Data\AlienType.cs" />
     <Compile Include="Data\AmmunitionMetadata.cs" />
     <Compile Include="Data\AmmunitionType.cs" />
     <Compile Include="Data\ArmorMetadata.cs" />

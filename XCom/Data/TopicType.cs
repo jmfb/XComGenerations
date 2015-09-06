@@ -76,7 +76,7 @@ namespace XCom.Data
 		MindShield,
 		HyperWaveDecoder,
 		PsionicLaboratory,
-		Hangar/*,
+		Hangar,
 
 		Sectoid,
 		SectoidAutopsy,
@@ -97,7 +97,9 @@ namespace XCom.Data
 		Reaper,
 		ReaperAutopsy,
 		Cyberdisc,
-		CyberdisAutopsy,
+		CyberdiscAutopsy,
+		Sectopod,
+		SectopodAutopsy/*,
 
 		AlienOrigins,
 		TheMartianSolution,
@@ -302,6 +304,18 @@ namespace XCom.Data
 			};
 		}
 
+		private static TopicMetadata Alien(AlienType alien)
+		{
+			return new TopicMetadata
+			{
+				Name = alien.Metadata().Name,
+				Category = TopicCategory.AlienLifeForms,
+				Scheme = ColorScheme.LightWhite,
+				RequiredResearch = new[] { alien.Metadata().RequiredResearch },
+				Alien = alien
+			};
+		}
+
 		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
 		{
 			{ TopicType.Skyranger, Craft(CraftType.Skyranger) },
@@ -369,7 +383,29 @@ namespace XCom.Data
 			{ TopicType.MindShield, Facility(FacilityType.MindShield) },
 			{ TopicType.HyperWaveDecoder, Facility(FacilityType.HyperWaveDecoder) },
 			{ TopicType.PsionicLaboratory, Facility(FacilityType.PsionicLaboratory) },
-			{ TopicType.Hangar, Facility(FacilityType.Hangar) }
+			{ TopicType.Hangar, Facility(FacilityType.Hangar) },
+			{ TopicType.Sectoid, Alien(AlienType.Sectoid) },
+			{ TopicType.SectoidAutopsy, Alien(AlienType.SectoidAutopsy) },
+			{ TopicType.Snakeman, Alien(AlienType.Snakeman) },
+			{ TopicType.SnakemanAutopsy, Alien(AlienType.SnakemanAutopsy) },
+			{ TopicType.Muton, Alien(AlienType.Muton) },
+			{ TopicType.MutonAutopsy, Alien(AlienType.MutonAutopsy) },
+			{ TopicType.Floater, Alien(AlienType.Floater) },
+			{ TopicType.FloaterAutopsy, Alien(AlienType.FloaterAutopsy) },
+			{ TopicType.Ethereal, Alien(AlienType.Ethereal) },
+			{ TopicType.EtherealAutopsy, Alien(AlienType.EtherealAutopsy) },
+			{ TopicType.Celatid, Alien(AlienType.Celatid) },
+			{ TopicType.CelatidAutopsy, Alien(AlienType.CelatidAutopsy) },
+			{ TopicType.Silacoid, Alien(AlienType.Silacoid) },
+			{ TopicType.SilacoidAutopsy, Alien(AlienType.SilacoidAutopsy) },
+			{ TopicType.Chryssalid, Alien(AlienType.Chryssalid) },
+			{ TopicType.ChryssalidAutopsy, Alien(AlienType.ChryssalidAutopsy) },
+			{ TopicType.Reaper, Alien(AlienType.Reaper) },
+			{ TopicType.ReaperAutopsy, Alien(AlienType.ReaperAutopsy) },
+			{ TopicType.Cyberdisc, Alien(AlienType.Cyberdisc) },
+			{ TopicType.CyberdiscAutopsy, Alien(AlienType.CyberdiscAutopsy) },
+			{ TopicType.Sectopod, Alien(AlienType.Sectopod) },
+			{ TopicType.SectopodAutopsy, Alien(AlienType.SectopodAutopsy) }
 		};
 	}
 }
