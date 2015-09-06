@@ -148,6 +148,8 @@
     <Compile Include="Controls\UpDown.cs" />
     <Compile Include="Controls\WrappedLabel.cs" />
     <Compile Include="Data\AlienMetadata.cs" />
+    <Compile Include="Data\AlienResearchMetadata.cs" />
+    <Compile Include="Data\AlienResearchType.cs" />
     <Compile Include="Data\AlienType.cs" />
     <Compile Include="Data\AmmunitionMetadata.cs" />
     <Compile Include="Data\AmmunitionType.cs" />

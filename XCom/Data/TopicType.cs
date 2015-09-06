@@ -99,7 +99,7 @@ namespace XCom.Data
 		Cyberdisc,
 		CyberdiscAutopsy,
 		Sectopod,
-		SectopodAutopsy/*,
+		SectopodAutopsy,
 
 		AlienOrigins,
 		TheMartianSolution,
@@ -111,7 +111,7 @@ namespace XCom.Data
 		AlienBase,
 		AlienTerror,
 		AlienRetaliation,
-		AlienSupply,
+		AlienSupply/*,
 
 		UfoPowerSource,
 		UfoNavigation,
@@ -316,6 +316,20 @@ namespace XCom.Data
 			};
 		}
 
+		private static TopicMetadata AlienResearch(AlienResearchType alienResearch, ResearchType requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = alienResearch.Metadata().Name,
+				Category = TopicCategory.AlienResearch,
+				Background = Backgrounds.InfoMission,
+				BackgroundPalette = 3,
+				Scheme = ColorScheme.LightWhite,
+				RequiredResearch = new[] { requiredResearch },
+				AlienResearch = alienResearch
+			};
+		}
+
 		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
 		{
 			{ TopicType.Skyranger, Craft(CraftType.Skyranger) },
@@ -405,7 +419,18 @@ namespace XCom.Data
 			{ TopicType.Cyberdisc, Alien(AlienType.Cyberdisc) },
 			{ TopicType.CyberdiscAutopsy, Alien(AlienType.CyberdiscAutopsy) },
 			{ TopicType.Sectopod, Alien(AlienType.Sectopod) },
-			{ TopicType.SectopodAutopsy, Alien(AlienType.SectopodAutopsy) }
+			{ TopicType.SectopodAutopsy, Alien(AlienType.SectopodAutopsy) },
+			{ TopicType.AlienOrigins, AlienResearch(AlienResearchType.AlienOrigins, ResearchType.AlienOrigins) },
+			{ TopicType.TheMartianSolution, AlienResearch(AlienResearchType.TheMartianSolution, ResearchType.TheMartianSolution) },
+			{ TopicType.CydoniaOrBust, AlienResearch(AlienResearchType.CydoniaOrBust, ResearchType.CydoniaOrBust) },
+			{ TopicType.AlienResearch, AlienResearch(AlienResearchType.AlienResearch, ResearchType.AlienResearch) },
+			{ TopicType.AlienHarvest, AlienResearch(AlienResearchType.AlienHarvest, ResearchType.AlienHarvest) },
+			{ TopicType.AlienAbduction, AlienResearch(AlienResearchType.AlienAbduction, ResearchType.AlienAbduction) },
+			{ TopicType.AlienInfiltration, AlienResearch(AlienResearchType.AlienInfiltration, ResearchType.AlienInfiltration) },
+			{ TopicType.AlienBase, AlienResearch(AlienResearchType.AlienBase, ResearchType.AlienBase) },
+			{ TopicType.AlienTerror, AlienResearch(AlienResearchType.AlienTerror, ResearchType.AlienTerror) },
+			{ TopicType.AlienRetaliation, AlienResearch(AlienResearchType.AlienRetaliation, ResearchType.AlienRetaliation) },
+			{ TopicType.AlienSupply, AlienResearch(AlienResearchType.AlienSupply, ResearchType.AlienSupply) }
 		};
 	}
 }
