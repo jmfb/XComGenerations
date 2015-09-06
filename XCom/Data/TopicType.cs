@@ -34,7 +34,7 @@ namespace XCom.Data
 		RocketLauncher,
 		LaserPistol,
 		LaserRifle,
-		HeavyLaser/*,
+		HeavyLaser,
 		Grenade,
 		SmokeGrenade,
 		ProximityGrenade,
@@ -200,6 +200,35 @@ namespace XCom.Data
 			};
 		}
 
+		private static TopicMetadata Grenade(GrenadeType grenade, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = grenade.Metadata().Name,
+				Category = TopicCategory.WeaponsAndEquipment,
+				Background = Backgrounds.InfoItem,
+				BackgroundPalette = 4,
+				Scheme = ColorScheme.Yellow,
+				RequiredResearch = requiredResearch,
+				Grenade = grenade
+			};
+		}
+
+		private static TopicMetadata Equipment(EquipmentType equipment, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = equipment.Metadata().Name,
+				Category = TopicCategory.WeaponsAndEquipment,
+				Background = Backgrounds.InfoItem,
+				BackgroundPalette = 4,
+				Scheme = ColorScheme.Yellow,
+				RequiredResearch = requiredResearch,
+				Equipment = equipment
+			};
+		}
+
+
 		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
 		{
 			{ TopicType.Skyranger, Craft(CraftType.Skyranger) },
@@ -228,7 +257,16 @@ namespace XCom.Data
 			{ TopicType.RocketLauncher, Weapon(WeaponType.RocketLauncher) },
 			{ TopicType.LaserPistol, Weapon(WeaponType.LaserPistol, ResearchType.LaserPistol) },
 			{ TopicType.LaserRifle, Weapon(WeaponType.LaserRifle, ResearchType.LaserRifle) },
-			{ TopicType.HeavyLaser, Weapon(WeaponType.HeavyLaser, ResearchType.HeavyLaser) }
+			{ TopicType.HeavyLaser, Weapon(WeaponType.HeavyLaser, ResearchType.HeavyLaser) },
+			{ TopicType.Grenade, Grenade(GrenadeType.Grenade) },
+			{ TopicType.SmokeGrenade, Grenade(GrenadeType.SmokeGrenade) },
+			{ TopicType.ProximityGrenade, Grenade(GrenadeType.ProximityGrenade) },
+			{ TopicType.HighExplosive, Grenade(GrenadeType.HighExplosive) },
+			{ TopicType.MotionScanner, Equipment(EquipmentType.MotionScanner, ResearchType.MotionScanner) },
+			{ TopicType.MediKit, Equipment(EquipmentType.MediKit, ResearchType.MediKit) },
+			{ TopicType.StunRod, Equipment(EquipmentType.StunRod) },
+			{ TopicType.ElectroFlare, Equipment(EquipmentType.ElectroFlare) },
+			{ TopicType.PsiAmp, Equipment(EquipmentType.PsiAmp, ResearchType.PsiAmp) }
 		};
 	}
 }
