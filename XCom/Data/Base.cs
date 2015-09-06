@@ -141,6 +141,10 @@ namespace XCom.Data
 
 		public bool HasAlienContainment => CountFacilities(FacilityType.AlienContainment) > 0;
 
+		public int TotalDefenseValue => Facilities
+			.Where(facility => facility.DaysUntilConstructionComplete == 0)
+			.Sum(facility => facility.FacilityType.Metadata().DefenseValue);
+
 		public Facility FindFacilityAt(int row, int column, bool allowUnderConstruction)
 		{
 			return Facilities.FirstOrDefault(facility => facility.IsAt(row, column, allowUnderConstruction));

@@ -126,11 +126,7 @@ namespace XCom.Screens
 		private void CreateDefenseStrengthRow()
 		{
 			var selectedBase = GameState.SelectedBase;
-			var total =
-				selectedBase.CountFacilities(FacilityType.MissileDefenses) * 500 +
-				selectedBase.CountFacilities(FacilityType.LaserDefenses) * 600 +
-				selectedBase.CountFacilities(FacilityType.PlasmaDefenses) * 900 +
-				selectedBase.CountFacilities(FacilityType.FusionBallDefenses) * 1200;
+			var total = selectedBase.TotalDefenseValue;
 			AddControl(new BaseInformationRow(138, "Defense Strength", 32, 1, 60, total, total, false));
 		}
 

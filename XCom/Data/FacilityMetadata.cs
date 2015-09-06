@@ -10,10 +10,13 @@ namespace XCom.Data
 		public int DaysToConstruct { get; set; }
 		public int Cost { get; set; }
 		public int Maintenance { get; set; }
+		public int DefenseValue { get; set; }
+		public int HitRatio { get; set; }
 		public Image Image { get; set; }
 		public int RowOffset { get; set; }
 		public int ColumnOffset { get; set; }
 		public ResearchType? RequiredResearch { get; set; }
+		public string[] DescriptionLines { get; set; }
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
 		{

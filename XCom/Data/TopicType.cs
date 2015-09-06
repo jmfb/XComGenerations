@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using XCom.Content.Backgrounds;
 using XCom.Graphics;
 
@@ -57,7 +58,7 @@ namespace XCom.Data
 		StunBomb,
 		AlienGrenade,
 		Elerium115,
-		MindProbe/*,
+		MindProbe,
 
 		AccessLift,
 		LivingQuarters,
@@ -75,7 +76,7 @@ namespace XCom.Data
 		MindShield,
 		HyperWaveDecoder,
 		PsionicLaboratory,
-		Hangar,
+		Hangar/*,
 
 		Sectoid,
 		SectoidAutopsy,
@@ -284,6 +285,22 @@ namespace XCom.Data
 			};
 		}
 
+		private static TopicMetadata Facility(FacilityType facility)
+		{
+			return new TopicMetadata
+			{
+				Name = facility.Metadata().Name,
+				Category = TopicCategory.BaseFacilities,
+				Background = Backgrounds.InfoFacility,
+				BackgroundPalette = 1,
+				Scheme = ColorScheme.LightWhite,
+				RequiredResearch = new[] { facility.Metadata().RequiredResearch }
+					.Where(research => research != null)
+					.Cast<ResearchType>()
+					.ToArray(),
+				Facility = facility
+			};
+		}
 
 		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
 		{
@@ -335,7 +352,24 @@ namespace XCom.Data
 			{ TopicType.StunBomb, AlienAmmunition(AmmunitionType.StunBomb, ResearchType.StunBomb) },
 			{ TopicType.AlienGrenade, AlienGrenade(GrenadeType.AlienGrenade, ResearchType.AlienGrenade) },
 			{ TopicType.Elerium115, AlienEquipment(EquipmentType.Elerium115, ResearchType.Elerium115) },
-			{ TopicType.MindProbe, AlienEquipment(EquipmentType.MindProbe, ResearchType.MindProbe) }
+			{ TopicType.MindProbe, AlienEquipment(EquipmentType.MindProbe, ResearchType.MindProbe) },
+			{ TopicType.AccessLift, Facility(FacilityType.AccessLift) },
+			{ TopicType.LivingQuarters, Facility(FacilityType.LivingQuarters) },
+			{ TopicType.Laboratory, Facility(FacilityType.Laboratory) },
+			{ TopicType.Workshop, Facility(FacilityType.Workshop) },
+			{ TopicType.SmallRadarSystem, Facility(FacilityType.SmallRadarSystem) },
+			{ TopicType.LargeRadarSystem, Facility(FacilityType.LargeRadarSystem) },
+			{ TopicType.MissileDefenses, Facility(FacilityType.MissileDefenses) },
+			{ TopicType.GeneralStores, Facility(FacilityType.GeneralStores) },
+			{ TopicType.AlienContainment, Facility(FacilityType.AlienContainment) },
+			{ TopicType.LaserDefenses, Facility(FacilityType.LaserDefenses) },
+			{ TopicType.PlasmaDefenses, Facility(FacilityType.PlasmaDefenses) },
+			{ TopicType.FusionBallDefenses, Facility(FacilityType.FusionBallDefenses) },
+			{ TopicType.GravShield, Facility(FacilityType.GravShield) },
+			{ TopicType.MindShield, Facility(FacilityType.MindShield) },
+			{ TopicType.HyperWaveDecoder, Facility(FacilityType.HyperWaveDecoder) },
+			{ TopicType.PsionicLaboratory, Facility(FacilityType.PsionicLaboratory) },
+			{ TopicType.Hangar, Facility(FacilityType.Hangar) }
 		};
 	}
 }

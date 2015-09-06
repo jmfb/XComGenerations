@@ -20,6 +20,7 @@ namespace XCom.Data
 		public GrenadeType? Grenade { get; set; }
 		public EquipmentType? Equipment { get; set; }
 		public AmmunitionType? Ammunition { get; set; }
+		public FacilityType? Facility { get; set; }
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
 		{

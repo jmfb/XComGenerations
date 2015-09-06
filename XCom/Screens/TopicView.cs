@@ -48,6 +48,8 @@ namespace XCom.Screens
 				AddEquipmentControls(metadata.Equipment.Value);
 			else if (metadata.Ammunition != null)
 				AddAmmunitionControls(metadata.Ammunition.Value);
+			else if (metadata.Facility != null)
+				AddFacilityControls(metadata.Facility.Value);
 			//TODO: other types
 		}
 
@@ -95,7 +97,7 @@ namespace XCom.Screens
 			{
 				Tuple.Create("Damage", metadata.Damage.FormatNumber()),
 				Tuple.Create("Range", metadata.Range.FormatNumber() + " km"),
-				Tuple.Create("Accuracy", metadata.Accuracy.FormatNumber() + "%"),
+				Tuple.Create("Accuracy", metadata.Accuracy.FormatNumber() + "\t%"),
 				Tuple.Create("Re-load time", metadata.ReloadTime.FormatNumber() + "s")
 			};
 			foreach (var stat in stats)
@@ -213,8 +215,8 @@ namespace XCom.Screens
 				var top = nextTop;
 				nextTop += 20;
 				AddControl(new Label(top, 8, shot.ShotType.Metadata().Name, Font.Large, ColorScheme.White));
-				AddControl(new Label(top, 88, $"{shot.Accuracy.FormatNumber()}%", Font.Large, ColorScheme.LightBlue));
-				AddControl(new Label(top, 144, $"{shot.TimeUnits.FormatNumber()}%", Font.Large, ColorScheme.LightBlue));
+				AddControl(new Label(top, 88, $"{shot.Accuracy.FormatNumber()}\t%", Font.Large, ColorScheme.LightBlue));
+				AddControl(new Label(top, 144, $"{shot.TimeUnits.FormatNumber()}\t%", Font.Large, ColorScheme.LightBlue));
 			}
 
 			nextTop = 138;
@@ -277,5 +279,44 @@ namespace XCom.Screens
 			}
 		}
 
+		private void AddFacilityControls(FacilityType facility)
+		{
+			var metadata = facility.Metadata();
+			if (metadata.Shape == FacilityShape.Hangar)
+			{
+				AddControl(new Picture(18, 233, metadata.Image));
+			}
+			else
+			{
+				AddControl(new Picture(31, 249, metadata.Shape.BuildingImage()));
+				AddControl(new Picture(30 + metadata.RowOffset, 248 + metadata.ColumnOffset, metadata.Image));
+			}
+			AddControl(new Label(24, 10, metadata.Name, Font.Large, ColorScheme.Blue));
+
+			var nextTop = 40;
+			var stats = new[]
+			{
+				Tuple.Create("Construction Time", $"{metadata.DaysToConstruct} days"),
+				Tuple.Create("Construction Cost", $"${metadata.Cost.FormatNumber()}"),
+				Tuple.Create("Maintenance Cost", $"${metadata.Maintenance.FormatNumber()}"),
+				Tuple.Create("Defense Value", metadata.DefenseValue == 0 ? null : metadata.DefenseValue.FormatNumber()),
+				Tuple.Create("Hit Ratio", metadata.HitRatio == 0 ? null : $"{metadata.HitRatio}\t%")
+			};
+			foreach (var stat in stats.Where(stat => stat.Item2 != null))
+			{
+				var top = nextTop;
+				nextTop += 10;
+				AddControl(new ExtendedLabel(top, 10, 140, stat.Item1, Font.Normal, ColorScheme.Blue));
+				AddControl(new Label(top, 150, stat.Item2, Font.Normal, ColorScheme.White));
+			}
+
+			nextTop = 104;
+			foreach (var descriptionLine in metadata.DescriptionLines)
+			{
+				var top = nextTop;
+				nextTop += 8;
+				AddControl(new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.Blue));
+			}
+		}
 	}
 }
