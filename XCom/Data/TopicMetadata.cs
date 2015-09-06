@@ -23,6 +23,7 @@ namespace XCom.Data
 		public FacilityType? Facility { get; set; }
 		public AlienType? Alien { get; set; }
 		public AlienResearchType? AlienResearch { get; set; }
+		public UfoComponentType? UfoComponent { get; set; }
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
 		{

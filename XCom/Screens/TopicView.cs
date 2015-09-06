@@ -54,7 +54,8 @@ namespace XCom.Screens
 				AddAlienControls(metadata.Alien.Value);
 			else if (metadata.AlienResearch != null)
 				AddAlienResearchControls(metadata.AlienResearch.Value);
-			//TODO: other types
+			else if (metadata.UfoComponent != null)
+				AddUfoComponentControls(metadata.UfoComponent.Value);
 		}
 
 		private void AddCraftControls(CraftType craft)
@@ -348,6 +349,15 @@ namespace XCom.Screens
 				nextTop += 8;
 				AddControl(new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.LightPurple));
 			}
+		}
+
+		private void AddUfoComponentControls(UfoComponentType ufoComponent)
+		{
+			var metadata = ufoComponent.Metadata();
+			var title = new WrappedLabel(24, 5, metadata.LabelWidth, metadata.Name, Font.Large, ColorScheme.LightAqua);
+			AddControl(title);
+			AddControl(new Overlay(metadata.Overlay));
+			AddControl(new WrappedLabel(title.Bottom + 2, 5, metadata.LabelWidth, metadata.Description, Font.Normal, ColorScheme.LightPurple));
 		}
 	}
 }

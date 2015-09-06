@@ -111,7 +111,7 @@ namespace XCom.Data
 		AlienBase,
 		AlienTerror,
 		AlienRetaliation,
-		AlienSupply/*,
+		AlienSupply,
 
 		UfoPowerSource,
 		UfoNavigation,
@@ -120,7 +120,7 @@ namespace XCom.Data
 		AlienEntertainment,
 		AlienSurgery,
 		ExaminationRoom,
-		AlienAlloys,
+		AlienAlloys/*,
 
 		SmallScout,
 		MediumScout,
@@ -316,7 +316,7 @@ namespace XCom.Data
 			};
 		}
 
-		private static TopicMetadata AlienResearch(AlienResearchType alienResearch, ResearchType requiredResearch)
+		private static TopicMetadata AlienResearch(AlienResearchType alienResearch)
 		{
 			return new TopicMetadata
 			{
@@ -325,8 +325,20 @@ namespace XCom.Data
 				Background = Backgrounds.InfoMission,
 				BackgroundPalette = 3,
 				Scheme = ColorScheme.LightWhite,
-				RequiredResearch = new[] { requiredResearch },
+				RequiredResearch = new[] { alienResearch.Metadata().RequiredResearch },
 				AlienResearch = alienResearch
+			};
+		}
+
+		private static TopicMetadata UfoComponent(UfoComponentType ufoComponent)
+		{
+			return new TopicMetadata
+			{
+				Name = ufoComponent.Metadata().Name,
+				Category = TopicCategory.UfoComponents,
+				Scheme = ColorScheme.LightWhite,
+				RequiredResearch = new[] { ufoComponent.Metadata().RequiredResearch },
+				UfoComponent = ufoComponent
 			};
 		}
 
@@ -420,17 +432,25 @@ namespace XCom.Data
 			{ TopicType.CyberdiscAutopsy, Alien(AlienType.CyberdiscAutopsy) },
 			{ TopicType.Sectopod, Alien(AlienType.Sectopod) },
 			{ TopicType.SectopodAutopsy, Alien(AlienType.SectopodAutopsy) },
-			{ TopicType.AlienOrigins, AlienResearch(AlienResearchType.AlienOrigins, ResearchType.AlienOrigins) },
-			{ TopicType.TheMartianSolution, AlienResearch(AlienResearchType.TheMartianSolution, ResearchType.TheMartianSolution) },
-			{ TopicType.CydoniaOrBust, AlienResearch(AlienResearchType.CydoniaOrBust, ResearchType.CydoniaOrBust) },
-			{ TopicType.AlienResearch, AlienResearch(AlienResearchType.AlienResearch, ResearchType.AlienResearch) },
-			{ TopicType.AlienHarvest, AlienResearch(AlienResearchType.AlienHarvest, ResearchType.AlienHarvest) },
-			{ TopicType.AlienAbduction, AlienResearch(AlienResearchType.AlienAbduction, ResearchType.AlienAbduction) },
-			{ TopicType.AlienInfiltration, AlienResearch(AlienResearchType.AlienInfiltration, ResearchType.AlienInfiltration) },
-			{ TopicType.AlienBase, AlienResearch(AlienResearchType.AlienBase, ResearchType.AlienBase) },
-			{ TopicType.AlienTerror, AlienResearch(AlienResearchType.AlienTerror, ResearchType.AlienTerror) },
-			{ TopicType.AlienRetaliation, AlienResearch(AlienResearchType.AlienRetaliation, ResearchType.AlienRetaliation) },
-			{ TopicType.AlienSupply, AlienResearch(AlienResearchType.AlienSupply, ResearchType.AlienSupply) }
+			{ TopicType.AlienOrigins, AlienResearch(AlienResearchType.AlienOrigins) },
+			{ TopicType.TheMartianSolution, AlienResearch(AlienResearchType.TheMartianSolution) },
+			{ TopicType.CydoniaOrBust, AlienResearch(AlienResearchType.CydoniaOrBust) },
+			{ TopicType.AlienResearch, AlienResearch(AlienResearchType.AlienResearch) },
+			{ TopicType.AlienHarvest, AlienResearch(AlienResearchType.AlienHarvest) },
+			{ TopicType.AlienAbduction, AlienResearch(AlienResearchType.AlienAbduction) },
+			{ TopicType.AlienInfiltration, AlienResearch(AlienResearchType.AlienInfiltration) },
+			{ TopicType.AlienBase, AlienResearch(AlienResearchType.AlienBase) },
+			{ TopicType.AlienTerror, AlienResearch(AlienResearchType.AlienTerror) },
+			{ TopicType.AlienRetaliation, AlienResearch(AlienResearchType.AlienRetaliation) },
+			{ TopicType.AlienSupply, AlienResearch(AlienResearchType.AlienSupply) },
+			{ TopicType.UfoPowerSource, UfoComponent(UfoComponentType.UfoPowerSource) },
+			{ TopicType.UfoNavigation, UfoComponent(UfoComponentType.UfoNavigation) },
+			{ TopicType.UfoConstruction, UfoComponent(UfoComponentType.UfoConstruction) },
+			{ TopicType.AlienFood, UfoComponent(UfoComponentType.AlienFood) },
+			{ TopicType.AlienEntertainment, UfoComponent(UfoComponentType.AlienEntertainment) },
+			{ TopicType.AlienSurgery, UfoComponent(UfoComponentType.AlienSurgery) },
+			{ TopicType.ExaminationRoom, UfoComponent(UfoComponentType.ExaminationRoom) },
+			{ TopicType.AlienAlloys, UfoComponent(UfoComponentType.AlienAlloys) }
 		};
 	}
 }

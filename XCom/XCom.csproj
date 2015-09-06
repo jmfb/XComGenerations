@@ -213,6 +213,8 @@
     <Compile Include="Data\TopicMetadata.cs" />
     <Compile Include="Data\TopicType.cs" />
     <Compile Include="Data\TransferItem.cs" />
+    <Compile Include="Data\UfoComponentMetadata.cs" />
+    <Compile Include="Data\UfoComponentType.cs" />
     <Compile Include="Data\WeaponMetadata.cs" />
     <Compile Include="Data\WeaponType.cs" />
     <Compile Include="EnumEx.cs" />

@@ -24,6 +24,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienOrigins = new AlienResearchMetadata
 		{
 			Name = "Alien Origins",
+			RequiredResearch = ResearchType.AlienOrigins,
 			DescriptionLines = new[]
 			{
 				"It is clear that we are fighting a losing battle on earth. The",
@@ -42,6 +43,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata theMartianSolution = new AlienResearchMetadata
 		{
 			Name = "The Martian Solution",
+			RequiredResearch = ResearchType.TheMartianSolution,
 			DescriptionLines = new[]
 			{
 				"Our research now points to Mars as the base of alien",
@@ -61,6 +63,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata cydoniaOrBust = new AlienResearchMetadata
 		{
 			Name = "Cydonia or Bust",
+			RequiredResearch = ResearchType.CydoniaOrBust,
 			DescriptionLines = new[]
 			{
 				"It is now clear that the alien hordes are being controlled",
@@ -82,6 +85,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienResearch = new AlienResearchMetadata
 		{
 			Name = "Alien Research",
+			RequiredResearch = ResearchType.AlienResearch,
 			DescriptionLines = new[]
 			{
 				"The alien research mission is used for collecting basic data on",
@@ -95,6 +99,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienHarvest = new AlienResearchMetadata
 		{
 			Name = "Alien Harvest",
+			RequiredResearch = ResearchType.AlienHarvest,
 			DescriptionLines = new[]
 			{
 				"The aliens have many uses for earth's fauna.  Animals are",
@@ -112,6 +117,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienAbduction = new AlienResearchMetadata
 		{
 			Name = "Alien Abduction",
+			RequiredResearch = ResearchType.AlienAbduction,
 			DescriptionLines = new[]
 			{
 				"This is the most insidious form of alien activity.  The abduction",
@@ -129,6 +135,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienInfiltration = new AlienResearchMetadata
 		{
 			Name = "Alien Infiltration",
+			RequiredResearch = ResearchType.AlienInfiltration,
 			DescriptionLines = new[]
 			{
 				"Earth governments can be infiltrated by alien agents which are",
@@ -147,6 +154,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienBase = new AlienResearchMetadata
 		{
 			Name = "Alien Base",
+			RequiredResearch = ResearchType.AlienBase,
 			DescriptionLines = new[]
 			{
 				"Aliens will construct secret underground bases in remote",
@@ -164,6 +172,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienTerror = new AlienResearchMetadata
 		{
 			Name = "Alien Terror",
+			RequiredResearch = ResearchType.AlienTerror,
 			DescriptionLines = new[]
 			{
 				"When the aliens terrorize a city they will deploy some special",
@@ -178,6 +187,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienRetaliation = new AlienResearchMetadata
 		{
 			Name = "Alien Retaliation",
+			RequiredResearch = ResearchType.AlienRetaliation,
 			DescriptionLines = new[]
 			{
 				"If XCom interceptors are being particularly successful in",
@@ -192,6 +202,7 @@ namespace XCom.Data
 		private static readonly AlienResearchMetadata alienSupply = new AlienResearchMetadata
 		{
 			Name = "Alien Supply",
+			RequiredResearch = ResearchType.AlienSupply,
 			DescriptionLines = new[]
 			{
 				"Once an alien base is constructed then it is resupplied on a",
