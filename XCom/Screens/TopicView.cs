@@ -46,6 +46,8 @@ namespace XCom.Screens
 				AddGrenadeControls(metadata.Grenade.Value);
 			else if (metadata.Equipment != null)
 				AddEquipmentControls(metadata.Equipment.Value);
+			else if (metadata.Ammunition != null)
+				AddAmmunitionControls(metadata.Ammunition.Value);
 			//TODO: other types
 		}
 
@@ -256,5 +258,24 @@ namespace XCom.Screens
 				AddControl(new Label(top, 8, descriptionLine, Font.Normal, ColorScheme.White));
 			}
 		}
+
+		private void AddAmmunitionControls(AmmunitionType ammunition)
+		{
+			var metadata = ammunition.Metadata();
+			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
+			AddControl(new WrappedLabel(24, 5, 150, metadata.Name, Font.Large, ColorScheme.White));
+
+			AddControl(new Label(24, Label.CenterOf(195, 90), metadata.DamageType.Metadata().Name, Font.Normal, ColorScheme.White));
+			AddControl(new Label(40, Label.CenterOf(195, 90), metadata.Damage.FormatNumber(), Font.Large, ColorScheme.Red));
+
+			var nextTop = 67;
+			foreach (var descriptionLine in metadata.DescriptionLines)
+			{
+				var top = nextTop;
+				nextTop += 8;
+				AddControl(new Label(top, 8, descriptionLine, Font.Normal, ColorScheme.White));
+			}
+		}
+
 	}
 }

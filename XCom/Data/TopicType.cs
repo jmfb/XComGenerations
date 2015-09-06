@@ -43,7 +43,7 @@ namespace XCom.Data
 		MediKit,
 		StunRod,
 		ElectroFlare,
-		PsiAmp/*,
+		PsiAmp,
 
 		HeavyPlasma,
 		HeavyPlasmaClip,
@@ -57,7 +57,7 @@ namespace XCom.Data
 		StunBomb,
 		AlienGrenade,
 		Elerium115,
-		MindProbe,
+		MindProbe/*,
 
 		AccessLift,
 		LivingQuarters,
@@ -228,6 +228,62 @@ namespace XCom.Data
 			};
 		}
 
+		private static TopicMetadata AlienWeapon(WeaponType weapon, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = weapon.Metadata().Name,
+				Category = TopicCategory.AlienArtifacts,
+				Background = Backgrounds.InfoItem,
+				BackgroundPalette = 4,
+				Scheme = ColorScheme.Yellow,
+				RequiredResearch = requiredResearch,
+				Weapon = weapon
+			};
+		}
+
+		private static TopicMetadata AlienAmmunition(AmmunitionType ammunition, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = ammunition.Metadata().Name,
+				Category = TopicCategory.AlienArtifacts,
+				Background = Backgrounds.InfoItem,
+				BackgroundPalette = 4,
+				Scheme = ColorScheme.Yellow,
+				RequiredResearch = requiredResearch,
+				Ammunition = ammunition
+			};
+		}
+
+		private static TopicMetadata AlienGrenade(GrenadeType grenade, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = grenade.Metadata().Name,
+				Category = TopicCategory.AlienArtifacts,
+				Background = Backgrounds.InfoItem,
+				BackgroundPalette = 4,
+				Scheme = ColorScheme.Yellow,
+				RequiredResearch = requiredResearch,
+				Grenade = grenade
+			};
+		}
+
+		private static TopicMetadata AlienEquipment(EquipmentType equipment, params ResearchType[] requiredResearch)
+		{
+			return new TopicMetadata
+			{
+				Name = equipment.Metadata().Name,
+				Category = TopicCategory.AlienArtifacts,
+				Background = Backgrounds.InfoItem,
+				BackgroundPalette = 4,
+				Scheme = ColorScheme.Yellow,
+				RequiredResearch = requiredResearch,
+				Equipment = equipment
+			};
+		}
+
 
 		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
 		{
@@ -266,7 +322,20 @@ namespace XCom.Data
 			{ TopicType.MediKit, Equipment(EquipmentType.MediKit, ResearchType.MediKit) },
 			{ TopicType.StunRod, Equipment(EquipmentType.StunRod) },
 			{ TopicType.ElectroFlare, Equipment(EquipmentType.ElectroFlare) },
-			{ TopicType.PsiAmp, Equipment(EquipmentType.PsiAmp, ResearchType.PsiAmp) }
+			{ TopicType.PsiAmp, Equipment(EquipmentType.PsiAmp, ResearchType.PsiAmp) },
+			{ TopicType.HeavyPlasma, AlienWeapon(WeaponType.HeavyPlasma, ResearchType.HeavyPlasma) },
+			{ TopicType.HeavyPlasmaClip, AlienAmmunition(AmmunitionType.HeavyPlasmaClip, ResearchType.HeavyPlasmaClip) },
+			{ TopicType.PlasmaRifle, AlienWeapon(WeaponType.PlasmaRifle, ResearchType.PlasmaRifle) },
+			{ TopicType.PlasmaRifleClip, AlienAmmunition(AmmunitionType.PlasmaRifleClip, ResearchType.PlasmaRifleClip) },
+			{ TopicType.PlasmaPistol, AlienWeapon(WeaponType.PlasmaPistol, ResearchType.PlasmaPistol) },
+			{ TopicType.PlasmaPistolClip, AlienAmmunition(AmmunitionType.PlasmaPistolClip, ResearchType.PlasmaPistolClip) },
+			{ TopicType.BlasterLauncher, AlienWeapon(WeaponType.BlasterLauncher, ResearchType.BlasterLauncher) },
+			{ TopicType.BlasterBomb, AlienAmmunition(AmmunitionType.BlasterBomb, ResearchType.BlasterBomb) },
+			{ TopicType.SmallLauncher, AlienWeapon(WeaponType.SmallLauncher, ResearchType.SmallLauncher) },
+			{ TopicType.StunBomb, AlienAmmunition(AmmunitionType.StunBomb, ResearchType.StunBomb) },
+			{ TopicType.AlienGrenade, AlienGrenade(GrenadeType.AlienGrenade, ResearchType.AlienGrenade) },
+			{ TopicType.Elerium115, AlienEquipment(EquipmentType.Elerium115, ResearchType.Elerium115) },
+			{ TopicType.MindProbe, AlienEquipment(EquipmentType.MindProbe, ResearchType.MindProbe) }
 		};
 	}
 }
