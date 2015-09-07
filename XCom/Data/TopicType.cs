@@ -120,7 +120,7 @@ namespace XCom.Data
 		AlienEntertainment,
 		AlienSurgery,
 		ExaminationRoom,
-		AlienAlloys/*,
+		AlienAlloys,
 
 		SmallScout,
 		MediumScout,
@@ -129,7 +129,7 @@ namespace XCom.Data
 		Harvester,
 		SupplyShip,
 		TerrorShip,
-		Battleship*/
+		Battleship
 	}
 
 	public static class TopicTypeExtensions
@@ -342,6 +342,20 @@ namespace XCom.Data
 			};
 		}
 
+		private static TopicMetadata Ufo(UfoType ufo)
+		{
+			return new TopicMetadata
+			{
+				Name = ufo.Metadata().Name,
+				Category = TopicCategory.Ufos,
+				Background = Backgrounds.InfoUfo,
+				BackgroundPalette = 0,
+				Scheme = ColorScheme.Aqua,
+				RequiredResearch = new[] { ufo.Metadata().RequiredResearch },
+				Ufo = ufo
+			};
+		}
+
 		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
 		{
 			{ TopicType.Skyranger, Craft(CraftType.Skyranger) },
@@ -450,7 +464,15 @@ namespace XCom.Data
 			{ TopicType.AlienEntertainment, UfoComponent(UfoComponentType.AlienEntertainment) },
 			{ TopicType.AlienSurgery, UfoComponent(UfoComponentType.AlienSurgery) },
 			{ TopicType.ExaminationRoom, UfoComponent(UfoComponentType.ExaminationRoom) },
-			{ TopicType.AlienAlloys, UfoComponent(UfoComponentType.AlienAlloys) }
+			{ TopicType.AlienAlloys, UfoComponent(UfoComponentType.AlienAlloys) },
+			{ TopicType.SmallScout, Ufo(UfoType.SmallScout) },
+			{ TopicType.MediumScout, Ufo(UfoType.MediumScout) },
+			{ TopicType.LargeScout, Ufo(UfoType.LargeScout) },
+			{ TopicType.Abductor, Ufo(UfoType.Abductor) },
+			{ TopicType.Harvester, Ufo(UfoType.Harvester) },
+			{ TopicType.SupplyShip, Ufo(UfoType.SupplyShip) },
+			{ TopicType.TerrorShip, Ufo(UfoType.TerrorShip) },
+			{ TopicType.Battleship, Ufo(UfoType.Battleship) }
 		};
 	}
 }

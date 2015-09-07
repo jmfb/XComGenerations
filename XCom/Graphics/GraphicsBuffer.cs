@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 
@@ -117,6 +116,26 @@ namespace XCom.Graphics
 				leftColumn,
 				width,
 				height,
+				paletteIndex);
+		}
+
+		public void DrawImage(
+			byte[] image,
+			int topRow,
+			int leftColumn,
+			int width,
+			int paletteIndex)
+		{
+			DrawPaletteImage(
+				topRow,
+				leftColumn,
+				image,
+				width,
+				image.Length / width,
+				0,
+				0,
+				width,
+				image.Length / width,
 				paletteIndex);
 		}
 

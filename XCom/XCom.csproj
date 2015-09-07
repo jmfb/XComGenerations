@@ -117,6 +117,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Paperdolls.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\UfoPreviews\UfoPreviews.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UfoPreviews.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Alignment.cs" />
     <Compile Include="Controls\Background.cs" />
     <Compile Include="Controls\Bar.cs" />
@@ -141,6 +146,7 @@
     <Compile Include="Controls\ListView.cs" />
     <Compile Include="Controls\Overlay.cs" />
     <Compile Include="Controls\Picture.cs" />
+    <Compile Include="Controls\Picture2.cs" />
     <Compile Include="Controls\Repeater.cs" />
     <Compile Include="Controls\SoldierInformationRow.cs" />
     <Compile Include="Controls\TimeDisplay.cs" />
@@ -215,6 +221,8 @@
     <Compile Include="Data\TransferItem.cs" />
     <Compile Include="Data\UfoComponentMetadata.cs" />
     <Compile Include="Data\UfoComponentType.cs" />
+    <Compile Include="Data\UfoMetadata.cs" />
+    <Compile Include="Data\UfoType.cs" />
     <Compile Include="Data\WeaponMetadata.cs" />
     <Compile Include="Data\WeaponType.cs" />
     <Compile Include="EnumEx.cs" />
@@ -358,6 +366,10 @@
     <EmbeddedResource Include="Content\Paperdolls\Paperdolls.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paperdolls.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\UfoPreviews\UfoPreviews.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UfoPreviews.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -562,6 +574,16 @@
     <None Include="Content\Paperdolls\PersonalArmorWhiteFemale.bin" />
     <None Include="Content\Paperdolls\PersonalArmorWhiteMale.bin" />
     <None Include="Content\Paperdolls\PowerSuit.bin" />
+    <None Include="Content\UfoPreviews\Abductor.bin" />
+    <None Include="Content\UfoPreviews\Battleship.bin" />
+    <None Include="Content\UfoPreviews\Harvester.bin" />
+    <None Include="Content\UfoPreviews\LargeScout.bin" />
+    <None Include="Content\UfoPreviews\MediumScout.bin" />
+    <None Include="Content\UfoPreviews\Radar.bin" />
+    <None Include="Content\UfoPreviews\ShipPreview.bin" />
+    <None Include="Content\UfoPreviews\SmallScout.bin" />
+    <None Include="Content\UfoPreviews\SupplyShip.bin" />
+    <None Include="Content\UfoPreviews\TerrorShip.bin" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

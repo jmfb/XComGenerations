@@ -56,6 +56,8 @@ namespace XCom.Screens
 				AddAlienResearchControls(metadata.AlienResearch.Value);
 			else if (metadata.UfoComponent != null)
 				AddUfoComponentControls(metadata.UfoComponent.Value);
+			else if (metadata.Ufo != null)
+				AddUfoControls(metadata.Ufo.Value);
 		}
 
 		private void AddCraftControls(CraftType craft)
@@ -358,6 +360,30 @@ namespace XCom.Screens
 			AddControl(title);
 			AddControl(new Overlay(metadata.Overlay));
 			AddControl(new WrappedLabel(title.Bottom + 2, 5, metadata.LabelWidth, metadata.Description, Font.Normal, ColorScheme.LightPurple));
+		}
+
+		private void AddUfoControls(UfoType ufo)
+		{
+			var metadata = ufo.Metadata();
+			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.Aqua));
+			AddControl(new Picture2(6, 160, 160, metadata.Image, 0));
+
+			var nextTop = 68;
+			var stats = new[]
+			{
+				Tuple.Create("Damage Capacity", metadata.DamageCapacity.FormatNumber()),
+				Tuple.Create("Weapon Power", metadata.WeaponPower.FormatNumber()),
+				Tuple.Create("Weapon Range", metadata.WeaponRange.FormatNumber()),
+				Tuple.Create("Maximum Speed", $"{metadata.MaximumSpeed.FormatNumber()}\tknots")
+			};
+			foreach (var stat in stats)
+			{
+				var top = nextTop;
+				nextTop += 16;
+				AddControl(new ExtendedLabel(top, 10, 180, stat.Item1, Font.Large, ColorScheme.Aqua));
+				AddControl(new Label(top, 190, stat.Item2, Font.Large, ColorScheme.Aqua));
+			}
+			AddControl(new WrappedLabel(140, 10, 300, metadata.Description, Font.Normal, ColorScheme.Aqua));
 		}
 	}
 }
