@@ -25,7 +25,6 @@ namespace XCom.Screens
 			AddControl(new TimeDisplay());
 			AddControl(gameSpeed);
 			//TODO: GeoscapeView
-			//TODO: Miniature GeoscapeView
 		}
 
 		public void ResetGameSpeed()

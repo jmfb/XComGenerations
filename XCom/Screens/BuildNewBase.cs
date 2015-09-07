@@ -24,7 +24,6 @@ namespace XCom.Screens
 
 			AddControl(new TimeDisplay());
 			AddControl(new GameSpeed());
-			//TODO: Miniature geoscape
 
 			//TODO: replace this with real geoscape location selection
 			AddControl(new Button(100, 88, 80, 14, "Press Me", ColorScheme.Green, Font.Normal, OnChooseLocation));
