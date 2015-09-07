@@ -19,7 +19,7 @@ namespace XCom.Screens
 			var metadata = topic.Metadata();
 			if (metadata.Background != null)
 				AddControl(new Background(metadata.Background, metadata.BackgroundPalette));
-			AddTopicControls();
+			AddTopicControls((dynamic)topic.Metadata().Subject);
 			AddControl(new Button(5, 5, 30, 14, "OK", metadata.Scheme, Font.Normal, OnOk));
 			AddControl(new Button(5, 40, 30, 14, "<<", metadata.Scheme, Font.Normal, OnPrevious));
 			AddControl(new Button(5, 75, 30, 14, ">>", metadata.Scheme, Font.Normal, OnNext));
@@ -29,38 +29,7 @@ namespace XCom.Screens
 		private void OnPrevious() => GameState.Current.SetScreen(new TopicView(category, GameState.Current.Data.GetPreviousTopic(topic)));
 		private void OnNext() => GameState.Current.SetScreen(new TopicView(category, GameState.Current.Data.GetNextTopic(topic)));
 
-		private void AddTopicControls()
-		{
-			var metadata = topic.Metadata();
-			if (metadata.Craft != null)
-				AddCraftControls(metadata.Craft.Value);
-			else if (metadata.CraftWeapon != null)
-				AddArmamentControls(metadata.CraftWeapon.Value);
-			else if (metadata.Hwp != null)
-				AddHeavyWeaponsPlatformControls(metadata.Hwp.Value);
-			else if (metadata.Armor != null)
-				AddArmorControls(metadata.Armor.Value);
-			else if (metadata.Weapon != null)
-				AddWeaponControls(metadata.Weapon.Value);
-			else if (metadata.Grenade != null)
-				AddGrenadeControls(metadata.Grenade.Value);
-			else if (metadata.Equipment != null)
-				AddEquipmentControls(metadata.Equipment.Value);
-			else if (metadata.Ammunition != null)
-				AddAmmunitionControls(metadata.Ammunition.Value);
-			else if (metadata.Facility != null)
-				AddFacilityControls(metadata.Facility.Value);
-			else if (metadata.Alien != null)
-				AddAlienControls(metadata.Alien.Value);
-			else if (metadata.AlienResearch != null)
-				AddAlienResearchControls(metadata.AlienResearch.Value);
-			else if (metadata.UfoComponent != null)
-				AddUfoComponentControls(metadata.UfoComponent.Value);
-			else if (metadata.Ufo != null)
-				AddUfoControls(metadata.Ufo.Value);
-		}
-
-		private void AddCraftControls(CraftType craft)
+		private void AddTopicControls(CraftType craft)
 		{
 			var metadata = craft.Metadata();
 			AddControl(new Overlay(metadata.Overlay));
@@ -93,7 +62,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddArmamentControls(CraftWeaponType craftWeapon)
+		private void AddTopicControls(CraftWeaponType craftWeapon)
 		{
 			var metadata = craftWeapon.Metadata();
 			AddControl(new Overlay(metadata.Overlay, 4));
@@ -116,7 +85,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddHeavyWeaponsPlatformControls(HwpType hwp)
+		private void AddTopicControls(HwpType hwp)
 		{
 			var metadata = hwp.Metadata();
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.LightAqua));
@@ -152,7 +121,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddArmorControls(ArmorType armor)
+		private void AddTopicControls(ArmorType armor)
 		{
 			var metadata = armor.Metadata();
 			AddControl(new Overlay(metadata.Overlay, 4));
@@ -176,7 +145,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddWeaponControls(WeaponType weapon)
+		private void AddTopicControls(WeaponType weapon)
 		{
 			var metadata = weapon.Metadata();
 			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
@@ -235,7 +204,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddGrenadeControls(GrenadeType grenade)
+		private void AddTopicControls(GrenadeType grenade)
 		{
 			var metadata = grenade.Metadata();
 			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
@@ -253,7 +222,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddEquipmentControls(EquipmentType equipment)
+		private void AddTopicControls(EquipmentType equipment)
 		{
 			var metadata = equipment.Metadata();
 			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
@@ -268,7 +237,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddAmmunitionControls(AmmunitionType ammunition)
+		private void AddTopicControls(AmmunitionType ammunition)
 		{
 			var metadata = ammunition.Metadata();
 			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
@@ -286,7 +255,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddFacilityControls(FacilityType facility)
+		private void AddTopicControls(FacilityType facility)
 		{
 			var metadata = facility.Metadata();
 			if (metadata.Shape == FacilityShape.Hangar)
@@ -326,7 +295,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddAlienControls(AlienType alien)
+		private void AddTopicControls(AlienType alien)
 		{
 			var metadata = alien.Metadata();
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.LightAqua));
@@ -340,7 +309,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddAlienResearchControls(AlienResearchType alienResearch)
+		private void AddTopicControls(AlienResearchType alienResearch)
 		{
 			var metadata = alienResearch.Metadata();
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.LightAqua));
@@ -353,7 +322,7 @@ namespace XCom.Screens
 			}
 		}
 
-		private void AddUfoComponentControls(UfoComponentType ufoComponent)
+		private void AddTopicControls(UfoComponentType ufoComponent)
 		{
 			var metadata = ufoComponent.Metadata();
 			var title = new WrappedLabel(24, 5, metadata.LabelWidth, metadata.Name, Font.Large, ColorScheme.LightAqua);
@@ -362,11 +331,11 @@ namespace XCom.Screens
 			AddControl(new WrappedLabel(title.Bottom + 2, 5, metadata.LabelWidth, metadata.Description, Font.Normal, ColorScheme.LightPurple));
 		}
 
-		private void AddUfoControls(UfoType ufo)
+		private void AddTopicControls(UfoType ufo)
 		{
 			var metadata = ufo.Metadata();
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.Aqua));
-			AddControl(new Picture2(6, 160, 160, metadata.Image, 0));
+			AddControl(new UfoPreview(6, 160, metadata.Image));
 
 			var nextTop = 68;
 			var stats = new[]

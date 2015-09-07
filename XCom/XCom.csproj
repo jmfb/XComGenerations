@@ -38,6 +38,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="SharpGL, Version=2.4.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpGL.2.4.0.0\lib\net40\SharpGL.dll</HintPath>
       <Private>True</Private>
@@ -146,7 +147,7 @@
     <Compile Include="Controls\ListView.cs" />
     <Compile Include="Controls\Overlay.cs" />
     <Compile Include="Controls\Picture.cs" />
-    <Compile Include="Controls\Picture2.cs" />
+    <Compile Include="Controls\UfoPreview.cs" />
     <Compile Include="Controls\Repeater.cs" />
     <Compile Include="Controls\SoldierInformationRow.cs" />
     <Compile Include="Controls\TimeDisplay.cs" />

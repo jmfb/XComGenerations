@@ -12,19 +12,7 @@ namespace XCom.Data
 		public int BackgroundPalette { get; set; }
 		public ColorScheme Scheme { get; set; }
 		public ResearchType[] RequiredResearch { private get; set; }
-		public CraftType? Craft { get; set; }
-		public CraftWeaponType? CraftWeapon { get; set; }
-		public HwpType? Hwp { get; set; }
-		public ArmorType? Armor { get; set; }
-		public WeaponType? Weapon { get; set; }
-		public GrenadeType? Grenade { get; set; }
-		public EquipmentType? Equipment { get; set; }
-		public AmmunitionType? Ammunition { get; set; }
-		public FacilityType? Facility { get; set; }
-		public AlienType? Alien { get; set; }
-		public AlienResearchType? AlienResearch { get; set; }
-		public UfoComponentType? UfoComponent { get; set; }
-		public UfoType? Ufo { get; set; }
+		public object Subject { get; set; }
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
 		{

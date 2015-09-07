@@ -147,7 +147,7 @@ namespace XCom.Data
 				Category = TopicCategory.CraftAndArmament,
 				Scheme = ColorScheme.LightPurple,
 				RequiredResearch = requiredResearch,
-				Craft = craft
+				Subject = craft
 			};
 		}
 
@@ -159,7 +159,7 @@ namespace XCom.Data
 				Category = TopicCategory.CraftAndArmament,
 				Scheme = ColorScheme.Orange,
 				RequiredResearch = requiredResearch,
-				CraftWeapon = craftWeapon
+				Subject = craftWeapon
 			};
 		}
 
@@ -173,7 +173,7 @@ namespace XCom.Data
 				BackgroundPalette = 3,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = requiredResearch,
-				Hwp = hwp
+				Subject = hwp
 			};
 		}
 
@@ -185,7 +185,7 @@ namespace XCom.Data
 				Category = TopicCategory.WeaponsAndEquipment,
 				Scheme = ColorScheme.DarkYellow,
 				RequiredResearch = requiredResearch,
-				Armor = armor
+				Subject = armor
 			};
 		}
 
@@ -199,7 +199,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Weapon = weapon
+				Subject = weapon
 			};
 		}
 
@@ -213,7 +213,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Grenade = grenade
+				Subject = grenade
 			};
 		}
 
@@ -227,7 +227,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Equipment = equipment
+				Subject = equipment
 			};
 		}
 
@@ -241,7 +241,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Weapon = weapon
+				Subject = weapon
 			};
 		}
 
@@ -255,7 +255,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Ammunition = ammunition
+				Subject = ammunition
 			};
 		}
 
@@ -269,7 +269,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Grenade = grenade
+				Subject = grenade
 			};
 		}
 
@@ -283,7 +283,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Equipment = equipment
+				Subject = equipment
 			};
 		}
 
@@ -300,7 +300,7 @@ namespace XCom.Data
 					.Where(research => research != null)
 					.Cast<ResearchType>()
 					.ToArray(),
-				Facility = facility
+				Subject = facility
 			};
 		}
 
@@ -312,7 +312,7 @@ namespace XCom.Data
 				Category = TopicCategory.AlienLifeForms,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = new[] { alien.Metadata().RequiredResearch },
-				Alien = alien
+				Subject = alien
 			};
 		}
 
@@ -326,7 +326,7 @@ namespace XCom.Data
 				BackgroundPalette = 3,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = new[] { alienResearch.Metadata().RequiredResearch },
-				AlienResearch = alienResearch
+				Subject = alienResearch
 			};
 		}
 
@@ -338,7 +338,7 @@ namespace XCom.Data
 				Category = TopicCategory.UfoComponents,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = new[] { ufoComponent.Metadata().RequiredResearch },
-				UfoComponent = ufoComponent
+				Subject = ufoComponent
 			};
 		}
 
@@ -352,7 +352,7 @@ namespace XCom.Data
 				BackgroundPalette = 0,
 				Scheme = ColorScheme.Aqua,
 				RequiredResearch = new[] { ufo.Metadata().RequiredResearch },
-				Ufo = ufo
+				Subject = ufo
 			};
 		}
 

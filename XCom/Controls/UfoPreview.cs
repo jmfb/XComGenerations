@@ -2,31 +2,25 @@
 
 namespace XCom.Controls
 {
-	public class Picture2 : Drawable
+	public class UfoPreview : Drawable
 	{
 		private readonly int topRow;
 		private readonly int leftColumn;
-		private readonly int width;
 		private readonly byte[] image;
-		private readonly int paletteIndex;
 
-		public Picture2(
+		public UfoPreview(
 			int topRow,
 			int leftColumn,
-			int width,
-			byte[] image,
-			int paletteIndex)
+			byte[] image)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;
-			this.width = width;
 			this.image = image;
-			this.paletteIndex = paletteIndex;
 		}
 
 		public void Render(GraphicsBuffer buffer)
 		{
-			buffer.DrawImage(image, topRow, leftColumn, width, paletteIndex);
+			buffer.DrawImage(image, topRow, leftColumn, 160, 0);
 		}
 	}
 }
