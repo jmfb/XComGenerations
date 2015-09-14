@@ -1,7 +1,9 @@
-﻿using XCom.Content.Backgrounds;
+﻿using System.Linq;
+using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;
+using XCom.World;
 
 namespace XCom.Screens
 {
@@ -30,6 +32,14 @@ namespace XCom.Screens
 		private static void OnQuit()
 		{
 			GameState.Current.Quit();
+		}
+		
+		//TODO: remove this test code
+		public override void Render(GraphicsBuffer buffer)
+		{
+			base.Render(buffer);
+			foreach (var terrain in Terrain.Landscape.Skip(620).Take(40))
+				buffer.DrawTerrain(terrain, 0, 0);
 		}
 	}
 }

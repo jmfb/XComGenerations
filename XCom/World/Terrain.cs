@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using XCom.Content.World;
@@ -12,10 +11,9 @@ namespace XCom.World
 		public TerrainType TerrainType { get; set; }
 		public Point[] Vertices { get; set; }
 
-		private const int pointRecordSize = sizeof(short) * 2;
-		private const int coordinateRecordSize = pointRecordSize * 2;
+		private const int coordinateRecordSize = sizeof(short) * 2;
 		private const int coordinateCount = 4;
-		private const int terrainRecordSize = coordinateRecordSize * coordinateCount + sizeof(long);
+		private const int terrainRecordSize = coordinateRecordSize * coordinateCount + sizeof(int);
 
 		private static List<Terrain> LoadLandscape()
 		{

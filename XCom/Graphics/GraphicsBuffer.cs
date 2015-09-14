@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using XCom.World;
 
 namespace XCom.Graphics
 {
@@ -137,6 +138,90 @@ namespace XCom.Graphics
 				width,
 				image.Length / width,
 				paletteIndex);
+		}
+
+		//TODO: implement this completely differently
+		public void DrawTerrain(
+			Terrain terrain,
+			int shading, //0-8
+			int zoom) //0-5
+		{
+			var mask = terrain.TerrainType.Metadata().Image(zoom);
+			DrawTerrainTriangle(mask, shading, terrain.Vertices[0], terrain.Vertices[1], terrain.Vertices[2]);
+			if (terrain.Vertices.Length == 4)
+				DrawTerrainTriangle(mask, shading, terrain.Vertices[0], terrain.Vertices[2], terrain.Vertices[3]);
+		}
+
+		private void DrawTerrainTriangle(byte[] mask, int shading, params Point[] vertices)
+		{
+			//http://www.sunshine2k.de/coding/java/Bresenham/RasterisingLinesCircles.pdf
+			//http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html#algo2
+			var sortedVertices = vertices.OrderBy(vertex => vertex.Y).ToArray();
+			if (sortedVertices[1].Y == sortedVertices[2].Y)
+			{
+				DrawTerrainTriangleFlatBottom(mask, shading, sortedVertices);
+			}
+			else if (sortedVertices[0].Y == sortedVertices[1].Y)
+			{
+				DrawTerrainTriangleFlatTop(mask, shading, sortedVertices);
+			}
+			else
+			{
+				var y10 = (float)(sortedVertices[1].Y - sortedVertices[0].Y);
+				var y20 = (float)(sortedVertices[2].Y - sortedVertices[0].Y);
+				var x20 = (float)(sortedVertices[2].X - sortedVertices[0].X);
+				var midVertex = new Point
+				{
+					X = (int)(sortedVertices[0].X + (y10 /  y20) * x20),
+					Y = sortedVertices[1].Y
+				};
+				DrawTerrainTriangleFlatBottom(mask, shading, new[] { sortedVertices[0], sortedVertices[1], midVertex });
+				DrawTerrainTriangleFlatTop(mask, shading, new[] { sortedVertices[1], midVertex, sortedVertices[2] });
+			}
+		}
+
+		private void DrawTerrainTriangleFlatBottom(byte[] mask, int shading, Point[] vertices)
+		{
+			var inverseSlope1 = (float)(vertices[1].X - vertices[0].X) / (vertices[1].Y - vertices[0].Y);
+			var inverseSlope2 = (float)(vertices[2].X - vertices[0].X) / (vertices[2].Y - vertices[0].Y);
+			var currentX1 = (float)vertices[0].X;
+			var currentX2 = (float)vertices[0].X;
+			foreach (var row in Enumerable.Range(vertices[0].Y, vertices[1].Y - vertices[0].Y + 1))
+			{
+				var x1 = (int)Math.Min(currentX1, currentX2);
+				var x2 = (int)Math.Max(currentX1, currentX2);
+				DrawTerrainLine(row, x1, x2 - x1 + 1, mask, shading);
+				currentX1 += inverseSlope1;
+				currentX2 += inverseSlope2;
+			}
+		}
+
+		private void DrawTerrainTriangleFlatTop(byte[] mask, int shading, Point[] vertices)
+		{
+			var inverseSlope1 = (float)(vertices[2].X - vertices[0].X) / (vertices[2].Y - vertices[0].Y);
+			var inverseSlope2 = (float)(vertices[2].X - vertices[1].X) / (vertices[2].Y - vertices[1].Y);
+			var currentX1 = (float)vertices[2].X;
+			var currentX2 = (float)vertices[2].X;
+			foreach (var row in Enumerable.Range(0, vertices[2].Y - vertices[0].Y + 1).Select(index => vertices[2].Y - index))
+			{
+				currentX1 -= inverseSlope1;
+				currentX2 -= inverseSlope2;
+				var x1 = (int)Math.Min(currentX1, currentX2);
+				var x2 = (int)Math.Max(currentX1, currentX2);
+				DrawTerrainLine(row, x1, x2 - x1 + 1, mask, shading);
+			}
+		}
+
+		private void DrawTerrainLine(int row, int leftColumn, int width, byte[] mask, int shading)
+		{
+			var palette = Palette.GetPalette(0);
+			var maskRow = (row % 32 + 32) % 32;
+			foreach (var column in Enumerable.Range(leftColumn, width))
+			{
+				var maskColumn = (column % 32 + 32) % 32;
+				var maskIndex = maskRow * 32 + maskColumn;
+				SetPixel(row, column, palette.GetColor(mask[maskIndex] + shading));
+			}
 		}
 
 		public void DrawOverlay(byte[] overlay, int paletteIndex)
