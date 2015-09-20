@@ -5,6 +5,7 @@ using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Modals;
+using XCom.World;
 
 namespace XCom.Screens
 {
@@ -12,6 +13,7 @@ namespace XCom.Screens
 	{
 		private readonly Stopwatch stopwatch = new Stopwatch();
 		private readonly GameSpeed gameSpeed = new GameSpeed();
+		private readonly WorldView worldView;
 
 		public Geoscape()
 		{
@@ -24,12 +26,19 @@ namespace XCom.Screens
 			AddControl(new Button(60, 257, 63, 11, "FUNDING", ColorScheme.Blue, Font.Small, OnFunding));
 			AddControl(new TimeDisplay());
 			AddControl(gameSpeed);
-			//TODO: GeoscapeView
+			worldView = new WorldView();
+			AddControl(worldView);
+			AddControl(new WorldControls(worldView));
 		}
 
 		public void ResetGameSpeed()
 		{
 			gameSpeed.Reset();
+		}
+
+		public void InitializeWorldView()
+		{
+			worldView.Initialize();
 		}
 
 		public override void OnSetFocus()

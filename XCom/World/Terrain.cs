@@ -19,20 +19,28 @@ namespace XCom.World
 		{
 			var terrainCount = WorldResources.Landscape.Length / terrainRecordSize;
 			return Enumerable.Range(0, terrainCount)
-				.Select(index => LoadTerrain(index * terrainRecordSize))
+				.SelectMany(index => LoadTerrain(index * terrainRecordSize))
 				.ToList();
 		}
 
-		private static Terrain LoadTerrain(int offset)
+		private static IEnumerable<Terrain> LoadTerrain(int offset)
 		{
-			return new Terrain
+			var vertices = Enumerable.Range(0, coordinateCount)
+				.Select(index => LoadVertex(offset + index * coordinateRecordSize))
+				.OfType<Point>()
+				.ToArray();
+			var terrainType = (TerrainType)BitConverter.ToInt32(WorldResources.Landscape, offset + coordinateRecordSize * coordinateCount);
+			yield return new Terrain
 			{
-				Vertices = Enumerable.Range(0, coordinateCount)
-					.Select(index => LoadVertex(offset + index * coordinateRecordSize))
-					.OfType<Point>()
-					.ToArray(),
-				TerrainType = (TerrainType)BitConverter.ToInt32(WorldResources.Landscape, offset + coordinateRecordSize * coordinateCount)
+				Vertices = new[] { vertices[0], vertices[1], vertices[2] },
+				TerrainType = terrainType
 			};
+			if (vertices.Length == 4)
+				yield return new Terrain
+				{
+					Vertices = new[] { vertices[0], vertices[2], vertices[3] },
+					TerrainType = terrainType
+				};
 		}
 
 		private static Point? LoadVertex(int offset)

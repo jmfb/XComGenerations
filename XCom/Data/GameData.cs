@@ -22,6 +22,9 @@ namespace XCom.Data
 		public List<ResearchType> CompletedResearch { get; set; }
 		public int ThisMonthsScore { get; set; }
 		public int LastMonthsScore { get; set; }
+		public int LongitudeOffset { get; set; }
+		public int Pitch { get; set; }
+		public int Zoom { get; set; }
 
 		public int TotalFunding => Countries.Sum(country => country.Funding);
 		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);

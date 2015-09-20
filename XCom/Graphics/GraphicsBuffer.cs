@@ -15,10 +15,7 @@ namespace XCom.Graphics
 		private const int ByteCount = BytesPerRow * GameHeight;
 		private readonly byte[] data = new byte[ByteCount];
 
-		public byte[] Buffer
-		{
-			get { return data; }
-		}
+		public byte[] Buffer => data;
 
 		public void Clear()
 		{
@@ -147,12 +144,10 @@ namespace XCom.Graphics
 			int zoom) //0-5
 		{
 			var mask = terrain.TerrainType.Metadata().Image(zoom);
-			DrawTerrainTriangle(mask, shading, terrain.Vertices[0], terrain.Vertices[1], terrain.Vertices[2]);
-			if (terrain.Vertices.Length == 4)
-				DrawTerrainTriangle(mask, shading, terrain.Vertices[0], terrain.Vertices[2], terrain.Vertices[3]);
+			DrawTerrainTriangle(mask, shading, terrain.Vertices);
 		}
 
-		private void DrawTerrainTriangle(byte[] mask, int shading, params Point[] vertices)
+		private void DrawTerrainTriangle(byte[] mask, int shading, Point[] vertices)
 		{
 			//http://www.sunshine2k.de/coding/java/Bresenham/RasterisingLinesCircles.pdf
 			//http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html#algo2
@@ -214,9 +209,11 @@ namespace XCom.Graphics
 
 		private void DrawTerrainLine(int row, int leftColumn, int width, byte[] mask, int shading)
 		{
+			if (row < 0 || row >= GameHeight)
+				return;
 			var palette = Palette.GetPalette(0);
 			var maskRow = (row % 32 + 32) % 32;
-			foreach (var column in Enumerable.Range(leftColumn, width))
+			foreach (var column in Enumerable.Range(leftColumn, width).Where(column => column >= 0 && column < 256))
 			{
 				var maskColumn = (column % 32 + 32) % 32;
 				var maskIndex = maskRow * 32 + maskColumn;

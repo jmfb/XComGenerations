@@ -39,6 +39,7 @@ namespace XCom.Modals
 				GameState.Current.Data.Funds -= cost;
 				SwitchToModal(new NewBaseNamePrompt(OnNewBase));
 			}
+			Geoscape.InitializeWorldView();
 		}
 
 		private Screen OnNewBase(string name)
