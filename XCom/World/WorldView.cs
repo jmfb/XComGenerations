@@ -89,6 +89,27 @@ namespace XCom.World
 
 		public override void Render(GraphicsBuffer buffer)
 		{
+			DrawOcean(buffer);
+			DrawTerrain(buffer);
+		}
+
+		private static void DrawOcean(GraphicsBuffer buffer)
+		{
+			var oceanColor = Palette.GetPalette(0).GetColor(192);
+			switch (Zoom)
+			{
+			case 0:
+			case 1:
+				buffer.FillCircle(zoomRadius[Zoom], oceanColor);
+				break;
+			default:
+				buffer.FillRect(0, 0, 256, 200, oceanColor);
+				break;
+			}
+		}
+
+		private void DrawTerrain(GraphicsBuffer buffer)
+		{
 			foreach (var terrain in scaledFrontTerrain)
 				buffer.DrawTerrain(terrain, 0, Zoom);
 		}

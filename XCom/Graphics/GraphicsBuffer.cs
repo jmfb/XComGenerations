@@ -76,6 +76,49 @@ namespace XCom.Graphics
 				DrawHorizontalLine(row, leftColumn, width, color, operation);
 		}
 
+		private static IEnumerable<Point> Circle(int centerLeft, int centerTop, int radius)
+		{
+			var x = radius;
+			var decisionOver2 = 1 - x;
+			for (var y = 0; y <= x; )
+			{
+				yield return new Point { X = x + centerLeft, Y = y + centerTop };
+				yield return new Point { X = y + centerLeft, Y = x + centerTop };
+				yield return new Point { X = -x + centerLeft, Y = y + centerTop };
+				yield return new Point { X = -y + centerLeft, Y = x + centerTop };
+				yield return new Point { X = -x + centerLeft, Y = -y + centerTop };
+				yield return new Point { X = -y + centerLeft, Y = -x + centerTop };
+				yield return new Point { X = x + centerLeft, Y = -y + centerTop };
+				yield return new Point { X = y + centerLeft, Y = -x + centerTop };
+				++y;
+				if (decisionOver2 <= 0)
+				{
+					decisionOver2 += 2 * y + 1;
+				}
+				else
+				{
+					--x;
+					decisionOver2 += 2 * (y - x) + 1;
+				}
+			}
+		}
+
+		public void FillCircle(int radius, Color color)
+		{
+			foreach (var group in Circle(128, 100, radius)
+				.GroupBy(point => point.Y)
+				.Where(group => group.Key >= 0 && group.Key < GameHeight))
+			{
+				var minX = group.Min(point => point.X);
+				var maxX = group.Max(point => point.X);
+				foreach (var column in Enumerable.Range(minX, maxX - minX + 1)
+					.Where(column => column >= 0 && column < 256))
+				{
+					SetPixel(group.Key, column, color);
+				}
+			}
+		}
+
 		public void SetPixel(
 			int row,
 			int column,
