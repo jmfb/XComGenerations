@@ -14,7 +14,7 @@ namespace XCom.World
 		private const int degreesCount = 360;
 		private const EighthDegrees eighthDegreesCount = degreesCount * 8;
 		private const EighthDegrees halfEighthDegreesCount = eighthDegreesCount / 2;
-		private const double radiansPerEighthDegree = Math.PI / halfEighthDegreesCount;
+		public const double RadiansPerEighthDegree = Math.PI / halfEighthDegreesCount;
 		private const double tolerance = 0.1e-6;
 	
 		public class SphereTerrain
@@ -147,14 +147,14 @@ namespace XCom.World
 		private static Fractional[] CalculateCosineTable()
 		{
 			return Enumerable.Range(0, eighthDegreesCount)
-				.Select(eighthDegrees => (Fractional)(fractionalCount * Math.Cos(eighthDegrees * radiansPerEighthDegree)))
+				.Select(eighthDegrees => (Fractional)(fractionalCount * Math.Cos(eighthDegrees * RadiansPerEighthDegree)))
 				.ToArray();
 		}
 
 		private static Fractional[] CalculateSineTable()
 		{
 			return Enumerable.Range(0, eighthDegreesCount)
-				.Select(eighthDegrees => (Fractional)(fractionalCount * Math.Sin(eighthDegrees * radiansPerEighthDegree)))
+				.Select(eighthDegrees => (Fractional)(fractionalCount * Math.Sin(eighthDegrees * RadiansPerEighthDegree)))
 				.ToArray();
 		}
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using XCom.Controls;
 using XCom.Graphics;
@@ -10,9 +12,11 @@ namespace XCom.World
 		private IEnumerable<Trigonometry.SphereTerrain> frontTerrain;
 		private IEnumerable<Terrain> scaledFrontTerrain;
 		private static readonly int[] zoomRadius = { 90, 120, 180, 270, 440, 720 };
+		private readonly Action<int, int> onClick;
 
-		public WorldView()
+		public WorldView(Action<int, int> onClick)
 		{
+			this.onClick = onClick;
 			Initialize();
 		}
 
@@ -108,6 +112,54 @@ namespace XCom.World
 				buffer.FillRect(0, 0, 256, 200, oceanColor);
 				break;
 			}
+		}
+
+		private static Point? ScreenToLongitudeLatitude(int row, int column)
+		{
+			var x = (double)(column - 128);
+			var y = (double)(row - 100);
+			var r = (double)Radius;
+			var z2 = r * r - x * x - y * y;
+			if (z2 < 0)
+				return null;
+			var z = Math.Sqrt(z2);
+			var pitchRadians = Pitch * Trigonometry.RadiansPerEighthDegree;
+			var unitX = x / r;
+			var unitY = y / r;
+			var unitZ = z / r;
+			var rotatedX = unitX;
+			var rotatedY = unitY * Math.Cos(-pitchRadians) - unitZ * Math.Sin(-pitchRadians);
+			var latitude = Math.Asin(rotatedY);
+			var longitude = Math.Asin(rotatedX / Math.Cos(latitude));
+			var latitudeEighthDegrees = (int)(latitude / Trigonometry.RadiansPerEighthDegree);
+			var longitudeEighthDegrees = (int)(longitude / Trigonometry.RadiansPerEighthDegree);
+			return new Point
+			{
+				X = Trigonometry.AddEighthDegrees(LongitudeOffset, -longitudeEighthDegrees),
+				Y = Trigonometry.AddEighthDegrees(latitudeEighthDegrees, 0)
+			};
+		}
+
+		public override bool HitTest(int row, int column)
+		{
+			return row >= 0 && column >= 0 && row < 200 && column < 256;
+		}
+
+		public override void OnLeftButtonDown(int row, int column)
+		{
+			var latitudeLongitude = ScreenToLongitudeLatitude(row, column);
+			if (latitudeLongitude != null)
+				onClick(latitudeLongitude.Value.X, latitudeLongitude.Value.Y);
+		}
+
+		public override void OnRightButtonDown(int row, int column)
+		{
+			var latitudeLongitude = ScreenToLongitudeLatitude(row, column);
+			if (latitudeLongitude == null)
+				return;
+			GameState.Current.Data.LongitudeOffset = latitudeLongitude.Value.X;
+			GameState.Current.Data.Pitch = latitudeLongitude.Value.Y;
+			Initialize();
 		}
 
 		private void DrawTerrain(GraphicsBuffer buffer)

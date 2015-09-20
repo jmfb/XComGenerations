@@ -12,7 +12,7 @@ namespace XCom.Screens
 		public BuildNewBase()
 		{
 			AddControl(new Background(Backgrounds.Geoscape, 0));
-			var worldView = new WorldView();
+			var worldView = new WorldView(OnChooseLocation);
 			AddControl(worldView);
 			AddControl(new WorldControls(worldView));
 
@@ -22,12 +22,9 @@ namespace XCom.Screens
 				AddControl(new Button(8, 186, 53, 12, "CANCEL", ColorScheme.Green, Font.Normal, OnCancel));
 
 			AddControl(new TimeDisplay());
-
-			//TODO: replace this with real geoscape location selection
-			AddControl(new Button(100, 88, 80, 14, "Press Me", ColorScheme.Green, Font.Normal, OnChooseLocation));
 		}
 
-		private void OnChooseLocation()
+		private void OnChooseLocation(int longitude, int latitude)
 		{
 			//TODO: get location from geoscape click, get cost from lookup
 			new NewBaseLocation("Central Asia", 500000).DoModal(this);

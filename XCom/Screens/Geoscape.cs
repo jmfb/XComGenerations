@@ -26,7 +26,7 @@ namespace XCom.Screens
 			AddControl(new Button(60, 257, 63, 11, "FUNDING", ColorScheme.Blue, Font.Small, OnFunding));
 			AddControl(new TimeDisplay());
 			AddControl(gameSpeed);
-			worldView = new WorldView();
+			worldView = new WorldView((x, y) => { }); //TODO: handle the click
 			AddControl(worldView);
 			AddControl(new WorldControls(worldView));
 		}
