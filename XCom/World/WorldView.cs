@@ -83,9 +83,11 @@ namespace XCom.World
 			const int centerX = 128;
 			const int centerY = 100;
 			scaledFrontTerrain = frontTerrain
-				.Select(sphereTerrain => sphereTerrain.Scale(zoomRadius[Zoom], centerX, centerY))
+				.Select(sphereTerrain => sphereTerrain.Scale(Radius, centerX, centerY))
 				.ToList();
 		}
+
+		private static int Radius => zoomRadius[Zoom];
 
 		public override void Render(GraphicsBuffer buffer)
 		{
@@ -100,7 +102,7 @@ namespace XCom.World
 			{
 			case 0:
 			case 1:
-				buffer.FillCircle(zoomRadius[Zoom], oceanColor);
+				buffer.FillCircle(Radius, oceanColor);
 				break;
 			default:
 				buffer.FillRect(0, 0, 256, 200, oceanColor);
@@ -111,7 +113,7 @@ namespace XCom.World
 		private void DrawTerrain(GraphicsBuffer buffer)
 		{
 			foreach (var terrain in scaledFrontTerrain)
-				buffer.DrawTerrain(terrain, 0, Zoom);
+				buffer.DrawTerrain(terrain, Radius, 0, Zoom);
 		}
 	}
 }

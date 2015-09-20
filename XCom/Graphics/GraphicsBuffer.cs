@@ -241,13 +241,22 @@ namespace XCom.Graphics
 
 		public void DrawTerrain(
 			Terrain terrain,
+			int radius,
 			int shading, //0-8
 			int zoom) //0-5
 		{
 			var mask = terrain.TerrainType.Metadata().Image(zoom);
 			var palette = Palette.GetPalette(0);
+			var radiusSquared = radius * radius;
+			const int centerX = 128;
+			const int centerY = 100;
 			foreach (var point in Triangle(terrain.Vertices))
 			{
+				var x = point.X - centerX;
+				var y = point.Y - centerY;
+				//TODO: improve sphere clipping logic
+				if ((x * x + y * y) > radiusSquared)
+					continue;
 				var maskRow = (point.Y % 32 + 32) % 32;
 				var maskColumn = (point.X % 32 + 32) % 32;
 				var maskIndex = maskRow * 32 + maskColumn;
