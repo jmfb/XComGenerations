@@ -12,8 +12,8 @@ namespace XCom.World
 		private const int fractionalPower = 10;
 		private const Fractional fractionalCount = 1 << fractionalPower;
 		private const int degreesCount = 360;
-		private const EighthDegrees eighthDegreesCount = degreesCount * 8;
-		private const EighthDegrees halfEighthDegreesCount = eighthDegreesCount / 2;
+		public const EighthDegrees EighthDegreesCount = degreesCount * 8;
+		private const EighthDegrees halfEighthDegreesCount = EighthDegreesCount / 2;
 		public const double RadiansPerEighthDegree = Math.PI / halfEighthDegreesCount;
 		private const double tolerance = 0.1e-6;
 	
@@ -126,12 +126,12 @@ namespace XCom.World
 
 		private static Fractional Cosine(EighthDegrees eighthDegrees)
 		{
-			return cosineTable[Math.Abs(eighthDegrees) % eighthDegreesCount];
+			return cosineTable[Math.Abs(eighthDegrees) % EighthDegreesCount];
 		}
 
 		private static Fractional Sine(EighthDegrees eighthDegrees)
 		{
-			return Math.Sign(eighthDegrees) * sineTable[Math.Abs(eighthDegrees) % eighthDegreesCount];
+			return Math.Sign(eighthDegrees) * sineTable[Math.Abs(eighthDegrees) % EighthDegreesCount];
 		}
 
 		private static Fractional Multiply(Fractional value1, Fractional value2)
@@ -141,19 +141,19 @@ namespace XCom.World
 
 		public static EighthDegrees AddEighthDegrees(EighthDegrees value1, EighthDegrees value2)
 		{
-			return (value1 + value2 + eighthDegreesCount) % eighthDegreesCount;
+			return (value1 + value2 + EighthDegreesCount) % EighthDegreesCount;
 		}
 
 		private static Fractional[] CalculateCosineTable()
 		{
-			return Enumerable.Range(0, eighthDegreesCount)
+			return Enumerable.Range(0, EighthDegreesCount)
 				.Select(eighthDegrees => (Fractional)(fractionalCount * Math.Cos(eighthDegrees * RadiansPerEighthDegree)))
 				.ToArray();
 		}
 
 		private static Fractional[] CalculateSineTable()
 		{
-			return Enumerable.Range(0, eighthDegreesCount)
+			return Enumerable.Range(0, EighthDegreesCount)
 				.Select(eighthDegrees => (Fractional)(fractionalCount * Math.Sin(eighthDegrees * RadiansPerEighthDegree)))
 				.ToArray();
 		}

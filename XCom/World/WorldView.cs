@@ -131,12 +131,14 @@ namespace XCom.World
 			var rotatedY = unitY * Math.Cos(-pitchRadians) - unitZ * Math.Sin(-pitchRadians);
 			var latitude = Math.Asin(rotatedY);
 			var longitude = Math.Asin(rotatedX / Math.Cos(latitude));
-			var latitudeEighthDegrees = (int)(latitude / Trigonometry.RadiansPerEighthDegree);
+			var latitudeEighthDegrees = -(int)(latitude / Trigonometry.RadiansPerEighthDegree);
 			var longitudeEighthDegrees = (int)(longitude / Trigonometry.RadiansPerEighthDegree);
+			//TODO: fix arcsin bug causing 721-1440 to get recorded as 1-720 (quadrant problem)
+			//  To repeat, rotate Earth vertically and click past north pole (it will be reported as a click on the wrong hemisphere)
 			return new Point
 			{
-				X = Trigonometry.AddEighthDegrees(LongitudeOffset, -longitudeEighthDegrees),
-				Y = Trigonometry.AddEighthDegrees(latitudeEighthDegrees, 0)
+				X = Trigonometry.AddEighthDegrees(longitudeEighthDegrees, -LongitudeOffset),
+				Y = latitudeEighthDegrees
 			};
 		}
 
@@ -157,8 +159,8 @@ namespace XCom.World
 			var latitudeLongitude = ScreenToLongitudeLatitude(row, column);
 			if (latitudeLongitude == null)
 				return;
-			GameState.Current.Data.LongitudeOffset = latitudeLongitude.Value.X;
-			GameState.Current.Data.Pitch = latitudeLongitude.Value.Y;
+			LongitudeOffset = Trigonometry.AddEighthDegrees(-latitudeLongitude.Value.X, 0);
+			GameState.Current.Data.Pitch = Trigonometry.AddEighthDegrees(-latitudeLongitude.Value.Y, 0);
 			Initialize();
 		}
 

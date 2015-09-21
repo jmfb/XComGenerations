@@ -5,31 +5,35 @@ using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Screens;
+using XCom.World;
 using Base = XCom.Data.Base;
 
 namespace XCom.Modals
 {
 	public class NewBaseLocation : Screen
 	{
-		private readonly string area;
-		private readonly int cost;
+		private readonly int longitude;
+		private readonly int latitude;
+		private readonly RegionType region;
 
-		public NewBaseLocation(string area, int cost)
+		public NewBaseLocation(int longitude, int latitude)
 		{
-			this.area = area;
-			this.cost = cost;
-
+			this.longitude = longitude;
+			this.latitude = latitude;
+			region = EnumEx.GetValues<RegionType>()
+				.Single(regionType => regionType.Metadata().IsInRegion(longitude, latitude));
 			AddControl(new Border(64, 16, 224, 72, ColorScheme.Green, Backgrounds.Title, 0));
 			AddControl(new Label(80, 68, "Cost>$", Font.Normal, ColorScheme.Green));
 			AddControl(new Label(90, 68, "Area>", Font.Normal, ColorScheme.Green));
-			AddControl(new Label(80, 97, cost.FormatNumber(), Font.Normal, ColorScheme.Yellow));
-			AddControl(new Label(90, 92, area, Font.Normal, ColorScheme.Yellow));
+			AddControl(new Label(80, 97, region.Metadata().BaseCost.FormatNumber(), Font.Normal, ColorScheme.Yellow));
+			AddControl(new Label(90, 92, region.Metadata().Name, Font.Normal, ColorScheme.Yellow));
 			AddControl(new Button(104, 68, 50, 12, "OK", ColorScheme.Green, Font.Normal, OnOk));
 			AddControl(new Button(104, 138, 50, 12, "CANCEL", ColorScheme.Green, Font.Normal, EndModal));
 		}
 
 		private void OnOk()
 		{
+			var cost = region.Metadata().BaseCost;
 			if (cost > GameState.Current.Data.Funds)
 			{
 				SwitchToModal(new NotEnoughMoney(ColorScheme.DarkYellow, Backgrounds.Title));
@@ -44,7 +48,7 @@ namespace XCom.Modals
 
 		private Screen OnNewBase(string name)
 		{
-			var newBase = Base.Create(name, area);
+			var newBase = Base.Create(name, longitude, latitude, region);
 			var data = GameState.Current.Data;
 			if (name == "Research") //TODO: remove research hack
 				data.CompletedResearch = EnumEx.GetValues<ResearchType>().ToList();

@@ -26,8 +26,8 @@ namespace XCom.Screens
 
 		private void OnChooseLocation(int longitude, int latitude)
 		{
-			//TODO: get location from geoscape click, get cost from lookup
-			new NewBaseLocation("Central Asia", 500000).DoModal(this);
+			//TODO: validate there is terrain at location (you cannot build a base on water...or can you?)
+			new NewBaseLocation(longitude, latitude).DoModal(this);
 		}
 
 		private static void OnCancel()

@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using XCom.World;
 
 namespace XCom.Data
 {
 	public class Base
 	{
 		public string Name { get; set; }
-		public string Area { get; set; }
+		public int Longitude { get; set; }
+		public int Latitude { get; set; }
+		public RegionType Region { get; set; }
 
 		public List<Facility> Facilities { get; set; }
 
@@ -23,12 +26,14 @@ namespace XCom.Data
 		public List<TransferItem<Craft>> TransferredCrafts { get; set; }
 		public List<TransferItem<StoreItem>> TransferredStores { get; set; }
 
-		public static Base Create(string name, string area)
+		public static Base Create(string name, int longitude, int latitude, RegionType region)
 		{
 			return new Base
 			{
-				Area = area,
 				Name = name,
+				Longitude = longitude,
+				Latitude = latitude,
+				Region = region,
 				Facilities = new List<Facility>(),
 				Crafts = new List<Craft>(),
 				Soldiers = new List<Soldier>(),
@@ -40,6 +45,8 @@ namespace XCom.Data
 				TransferredStores = new List<TransferItem<StoreItem>>()
 			};
 		}
+
+		public string Area => Region.Metadata().Name;
 
 		private int TransferredEngineerCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Engineer)?.Item.Count ?? 0;
 		private int TransferredScientistCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Scientist)?.Item.Count ?? 0;
@@ -64,15 +71,12 @@ namespace XCom.Data
 		public int TotalSkyrangerCount => CountCrafts(CraftType.Skyranger);
 		public int TotalInterceptorCount => CountCrafts(CraftType.Interceptor);
 
-		private int GetMonthlyCost(ItemType itemType, int count)
-		{
-			return itemType.Metadata().MonthlyCost * count;
-		}
-		public int MonthlySkyrangerCost => GetMonthlyCost(ItemType.Skyranger, TotalSkyrangerCount);
-		public int MonthlyInterceptorCost => GetMonthlyCost(ItemType.Interceptor, TotalInterceptorCount);
-		public int MonthlySoldierCost => GetMonthlyCost(ItemType.Soldier, TotalSoldierCount);
-		public int MonthlyEngineerCost => GetMonthlyCost(ItemType.Engineer, TotalEngineerCount);
-		public int MonthlyScientistCost => GetMonthlyCost(ItemType.Scientist, TotalScientistCount);
+		private static int GetMonthlyCost(ItemType itemType, int count) => itemType.Metadata().MonthlyCost * count;
+		private int MonthlySkyrangerCost => GetMonthlyCost(ItemType.Skyranger, TotalSkyrangerCount);
+		private int MonthlyInterceptorCost => GetMonthlyCost(ItemType.Interceptor, TotalInterceptorCount);
+		private int MonthlySoldierCost => GetMonthlyCost(ItemType.Soldier, TotalSoldierCount);
+		private int MonthlyEngineerCost => GetMonthlyCost(ItemType.Engineer, TotalEngineerCount);
+		private int MonthlyScientistCost => GetMonthlyCost(ItemType.Scientist, TotalScientistCount);
 
 		public int TotalMaintenance => Facilities
 			.Where(facility => facility.DaysUntilConstructionComplete == 0)
@@ -261,6 +265,5 @@ namespace XCom.Data
 						facilities[row][column] = status;
 			}
 		}
-
 	}
 }
