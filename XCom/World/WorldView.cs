@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using XCom.Controls;
@@ -13,11 +14,16 @@ namespace XCom.World
 		private IEnumerable<Terrain> scaledFrontTerrain;
 		private static readonly int[] zoomRadius = { 90, 120, 180, 270, 440, 720 };
 		private readonly Action<int, int> onClick;
+		private readonly Stopwatch stopwatch = new Stopwatch();
+		private bool flashWorldObjects;
+		private const int centerX = 128;
+		private const int centerY = 100;
 
 		public WorldView(Action<int, int> onClick)
 		{
 			this.onClick = onClick;
 			Initialize();
+			stopwatch.Restart();
 		}
 
 		public void Initialize()
@@ -84,8 +90,6 @@ namespace XCom.World
 
 		private void ScaleFrontTerrain()
 		{
-			const int centerX = 128;
-			const int centerY = 100;
 			scaledFrontTerrain = frontTerrain
 				.Select(sphereTerrain => sphereTerrain.Scale(Radius, centerX, centerY))
 				.ToList();
@@ -97,6 +101,7 @@ namespace XCom.World
 		{
 			DrawOcean(buffer);
 			DrawTerrain(buffer);
+			DrawWorldObjects(buffer);
 		}
 
 		private static void DrawOcean(GraphicsBuffer buffer)
@@ -168,6 +173,42 @@ namespace XCom.World
 		{
 			foreach (var terrain in scaledFrontTerrain)
 				buffer.DrawTerrain(terrain, Radius, 0, Zoom);
+		}
+
+		private void UpdateFlashWorldObjects()
+		{
+			if (stopwatch.ElapsedMilliseconds < 100)
+				return;
+			flashWorldObjects = !flashWorldObjects;
+			stopwatch.Restart();
+		}
+
+		private IEnumerable<WorldObject> VisibleXcomBases => GameState.Current.Data.Bases
+			//TODO: I think these Y values are inverted due to a discrepency between World view and Region layout and click translation.
+			//TODO: Why is Pitch negative!?
+			.Select(@base => Trigonometry.CalculateSphereCoordinate(@base.Longitude, @base.Latitude, LongitudeOffset, -Pitch))
+			.Where(coordinate => coordinate.Z >= 0)
+			.Select(coordinate => new Point
+			{
+				X = Trigonometry.ScaleValue(coordinate.X, Radius, centerX),
+				//TODO: Why is Y negative!?
+				Y = Trigonometry.ScaleValue(-coordinate.Y, Radius, centerY)
+			})
+			.Where(point => HitTest(point.Y, point.X))
+			.Select(point => new WorldObject
+			{
+				WorldObjectType = WorldObjectType.XcomBase,
+				Location = point
+			});
+
+		private IEnumerable<WorldObject> VisibleWorldObjects =>
+			VisibleXcomBases;
+
+		private void DrawWorldObjects(GraphicsBuffer buffer)
+		{
+			UpdateFlashWorldObjects();
+			foreach (var worldObject in VisibleWorldObjects)
+				worldObject.Render(buffer, flashWorldObjects);
 		}
 	}
 }

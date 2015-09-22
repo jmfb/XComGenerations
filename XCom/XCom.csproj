@@ -333,6 +333,9 @@
     <Compile Include="World\TerrainType.cs" />
     <Compile Include="World\Trigonometry.cs" />
     <Compile Include="World\WorldControls.cs" />
+    <Compile Include="World\WorldObject.cs" />
+    <Compile Include="World\WorldObjectMetadata.cs" />
+    <Compile Include="World\WorldObjectType.cs" />
     <Compile Include="World\WorldView.cs" />
     <EmbeddedResource Include="Content\Backgrounds\Backgrounds.resx">
       <Generator>ResXFileCodeGenerator</Generator>

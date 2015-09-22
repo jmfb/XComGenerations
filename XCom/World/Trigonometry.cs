@@ -32,8 +32,8 @@ namespace XCom.World
 					Vertices = Vertices
 						.Select(vertex => new Point
 						{
-							X = Multiply(radius, vertex.X) + centerX,
-							Y = Multiply(radius, vertex.Y) + centerY
+							X = ScaleValue(vertex.X, radius, centerX),
+							Y = ScaleValue(vertex.Y, radius, centerY)
 						}).ToArray()
 				};
 			}
@@ -99,7 +99,7 @@ namespace XCom.World
 			public Fractional Z { get; set; }
 		}
 
-		private static SphereCoordinate CalculateSphereCoordinate(EighthDegrees longitude, EighthDegrees latitude, EighthDegrees longitudeOffset, EighthDegrees pitch)
+		public static SphereCoordinate CalculateSphereCoordinate(EighthDegrees longitude, EighthDegrees latitude, EighthDegrees longitudeOffset, EighthDegrees pitch)
 		{
 			return new SphereCoordinate
 			{
@@ -137,6 +137,11 @@ namespace XCom.World
 		private static Fractional Multiply(Fractional value1, Fractional value2)
 		{
 			return (value1 * value2) >> fractionalPower;
+		}
+
+		public static int ScaleValue(Fractional value, int scale, int offset)
+		{
+			return Multiply(value, scale) + offset;
 		}
 
 		public static EighthDegrees AddEighthDegrees(EighthDegrees value1, EighthDegrees value2)
