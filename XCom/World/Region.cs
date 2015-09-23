@@ -10,7 +10,9 @@
 		public Region(int left, int top, int width, int height)
 		{
 			this.left = left;
-			this.top = top;
+			//Top argument is given where +720 is north pole and -719 is south pole.
+			//Need to invert the top to convert top into latitude values matching world coordinates.
+			this.top = -top + 1;
 			this.width = width;
 			this.height = height;
 		}
@@ -19,8 +21,8 @@
 		{
 			return longitude >= left &&
 				longitude < (left + width) &&
-				latitude <= top &&
-				latitude > (top - height);
+				latitude >= top &&
+				latitude < (top + height);
 		}
 	}
 }

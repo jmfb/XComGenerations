@@ -143,7 +143,7 @@ namespace XCom.World
 			return new Point
 			{
 				X = Trigonometry.AddEighthDegrees(longitudeEighthDegrees, -LongitudeOffset),
-				Y = latitudeEighthDegrees
+				Y = -latitudeEighthDegrees
 			};
 		}
 
@@ -165,7 +165,7 @@ namespace XCom.World
 			if (latitudeLongitude == null)
 				return;
 			LongitudeOffset = Trigonometry.AddEighthDegrees(-latitudeLongitude.Value.X, 0);
-			GameState.Current.Data.Pitch = Trigonometry.AddEighthDegrees(-latitudeLongitude.Value.Y, 0);
+			GameState.Current.Data.Pitch = Trigonometry.AddEighthDegrees(latitudeLongitude.Value.Y, 0);
 			Initialize();
 		}
 
@@ -184,15 +184,12 @@ namespace XCom.World
 		}
 
 		private IEnumerable<WorldObject> VisibleXcomBases => GameState.Current.Data.Bases
-			//TODO: I think these Y values are inverted due to a discrepency between World view and Region layout and click translation.
-			//TODO: Why is Pitch negative!?
-			.Select(@base => Trigonometry.CalculateSphereCoordinate(@base.Longitude, @base.Latitude, LongitudeOffset, -Pitch))
+			.Select(@base => Trigonometry.CalculateSphereCoordinate(@base.Longitude, @base.Latitude, LongitudeOffset, Pitch))
 			.Where(coordinate => coordinate.Z >= 0)
 			.Select(coordinate => new Point
 			{
 				X = Trigonometry.ScaleValue(coordinate.X, Radius, centerX),
-				//TODO: Why is Y negative!?
-				Y = Trigonometry.ScaleValue(-coordinate.Y, Radius, centerY)
+				Y = Trigonometry.ScaleValue(coordinate.Y, Radius, centerY)
 			})
 			.Where(point => HitTest(point.Y, point.X))
 			.Select(point => new WorldObject
