@@ -102,11 +102,25 @@ namespace XCom.Screens
 			var bases = data.Bases
 				.Where(@base => Trigonometry.HitTestCoordinate(@base.Location, location))
 				.ToList();
-			if (!bases.Any())
+			var waypoints = data.Waypoints
+				.Where(waypoint => Trigonometry.HitTestCoordinate(waypoint.Location, location))
+				.ToList();
+			var worldObjects = bases.Cast<object>().Concat(waypoints).ToList();
+			if (!worldObjects.Any())
 				return;
-			if (bases.Count > 1)
+			if (worldObjects.Count > 1)
 				throw new NotImplementedException();
-			new LaunchInterception(bases[0]).DoModal(this);
+			SelectWorldObject((dynamic)worldObjects[0]);
+		}
+
+		private void SelectWorldObject(Data.Base @base)
+		{
+			new LaunchInterception(@base).DoModal(this);
+		}
+
+		private void SelectWorldObject(Waypoint waypoint)
+		{
+			new ViewWaypoint(waypoint).DoModal(this);
 		}
 	}
 }

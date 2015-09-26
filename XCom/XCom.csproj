@@ -340,6 +340,7 @@
     <Compile Include="World\TerrainMetadata.cs" />
     <Compile Include="World\TerrainType.cs" />
     <Compile Include="World\Trigonometry.cs" />
+    <Compile Include="World\ViewWaypoint.cs" />
     <Compile Include="World\Waypoint.cs" />
     <Compile Include="World\WorldControls.cs" />
     <Compile Include="World\WorldObject.cs" />
