@@ -13,8 +13,7 @@ namespace XCom.Controls
 		{
 			public int Width { get; set; }
 			public Alignment Alignment { get; set; }
-			public Func<T, string> Display { get; set; }
-			public Func<T, ColorScheme> Scheme { get; set; }
+			public Func<T, ColoredText>[] Parts { get; set; }
 		}
 
 		private readonly List<Column> columns = new List<Column>();
@@ -85,12 +84,26 @@ namespace XCom.Controls
 			Func<T, string> display,
 			Func<T, ColorScheme> scheme = null)
 		{
+			return AddColumn(
+				width,
+				alignment,
+				value => new ColoredText
+				{
+					Text = display(value),
+					Scheme = scheme?.Invoke(value) ?? defaultScheme
+				});
+		}
+
+		public ListView<T> AddColumn(
+			int width,
+			Alignment alignment,
+			params Func<T, ColoredText>[] parts)
+		{
 			columns.Add(new Column
 			{
 				Width = width,
 				Alignment = alignment,
-				Display = display,
-				Scheme = scheme
+				Parts = parts
 			});
 			MoveButtons();
 			return this;
@@ -146,19 +159,25 @@ namespace XCom.Controls
 				var nextLeftColumn = leftColumn;
 				foreach (var column in columns)
 				{
-					var columnText = column.Display(rowData);
+					var parts = column.Parts.Select(part => part(rowData)).ToList();
 					var textLeftColumn = nextLeftColumn;
+					var textWidth = parts.Sum(part => Font.Normal.MeasureString(part.Text)) - parts.Count;
 					switch (column.Alignment)
 					{
 					case Alignment.Center:
-						textLeftColumn = nextLeftColumn + (column.Width - Font.Normal.MeasureString(columnText)) / 2;
+						textLeftColumn = nextLeftColumn + (column.Width - textWidth) / 2;
 						break;
 					case Alignment.Right:
-						textLeftColumn = nextLeftColumn + column.Width - Font.Normal.MeasureString(columnText);
+						textLeftColumn = nextLeftColumn + column.Width - textWidth;
 						break;
 					}
-					var columnScheme = column.Scheme == null ? defaultScheme : column.Scheme(rowData);
-					Font.Normal.DrawString(buffer, textTopRow, textLeftColumn, columnText, columnScheme);
+					var nextPartLeft = textLeftColumn;
+					foreach (var part in parts)
+					{
+						var left = nextPartLeft;
+						nextPartLeft += Font.Normal.MeasureString(part.Text) - 1;
+						Font.Normal.DrawString(buffer, textTopRow, left, part.Text, part.Scheme);
+					}
 
 					nextLeftColumn += column.Width;
 				}

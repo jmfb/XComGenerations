@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
@@ -28,7 +27,7 @@ namespace XCom.Screens
 			AddControl(new ListView<ItemType>(40, 8, 16, AvailableItems, ColorScheme.LightMagenta, Palette.GetPalette(8).GetColor(230), OnIncreaseItem)
 				.ConfigureUpDown(210, OnDecreaseItem)
 				.AddColumn(8, Alignment.Left, item => "")
-				.AddColumn(154, Alignment.Left, GetName, GetColor)
+				.AddColumn(154, Alignment.Left, item => GetName(item), GetColor)
 				.AddColumn(86, Alignment.Left, item => GetStoreQuantity(item).FormatNumber(), GetColor)
 				.AddColumn(40, Alignment.Left, item => GetCraftQuantity(item).FormatNumber(), GetColor));
 			AddControl(new Button(176, 16, 288, 16, "OK", ColorScheme.LightMagenta, Font.Normal, OnOk));

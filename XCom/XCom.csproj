@@ -137,6 +137,7 @@
     <Compile Include="Controls\Border.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\ClickToEdit.cs" />
+    <Compile Include="Controls\ColoredText.cs" />
     <Compile Include="Controls\CraftCargoPreview.cs" />
     <Compile Include="Controls\CraftWeaponPreview.cs" />
     <Compile Include="Controls\DynamicLabel.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
@@ -15,7 +16,6 @@ namespace XCom.World
 		{
 			AddControl(new Border(30, 0, 320, 140, ColorScheme.Green, Backgrounds.Craft, 10));
 			AddControl(new Label(45, Label.Center, "LAUNCH INTERCEPTION", Font.Large, ColorScheme.Green));
-			
 			AddControl(new Label(70, 15, "CRAFT", Font.Normal, ColorScheme.Aqua));
 			AddControl(new Label(70, 100, "STATUS", Font.Normal, ColorScheme.Aqua));
 			AddControl(new Label(70, 165, "BASE", Font.Normal, ColorScheme.Aqua));
@@ -25,12 +25,27 @@ namespace XCom.World
 			AddControl(new ListView<Craft>(78, 15, 7, GetCrafts(baseFilter), ColorScheme.Green, selectionColor, OnSelectCraft)
 				.AddColumn(85, Alignment.Left, craft => craft.Name, craft => ColorScheme.Green)
 				.AddColumn(65, Alignment.Left, craft => craft.Status.Name(), craft => craft.Status == CraftStatus.Ready ? ColorScheme.Yellow : ColorScheme.Green)
-				.AddColumn(85, Alignment.Left, craft => craft.BaseName, craft => ColorScheme.Green));
-			//TODO: weapons/crew/hwps (50, left, x/x/x, 0:green, >0:yellow)
-			//TODO: need a column type w/ multiple colors (array of string or something)
-
+				.AddColumn(85, Alignment.Left, craft => craft.BaseName, craft => ColorScheme.Green)
+				.AddColumn(50, Alignment.Left,
+					ColoredNumber(craft => craft.Weapons.Count),
+					NumberSeparator,
+					ColoredNumber(craft => craft.SoldierIds.Count),
+					NumberSeparator,
+					ColoredNumber(craft => craft.TotalHwpCount)));
 			AddControl(new Button(145, 16, 288, 16, "Cancel", ColorScheme.Aqua, Font.Normal, EndModal));
 		}
+
+		private static Func<Craft, ColoredText> ColoredNumber(Func<Craft, int> number)
+		{
+			return craft => new ColoredText
+			{
+				Text = number(craft).FormatNumber(),
+				Scheme = number(craft) == 0 ? ColorScheme.Green : ColorScheme.Yellow
+			};
+		}
+
+		private static Func<Craft, ColoredText> NumberSeparator =>
+			craft => new ColoredText { Text = "/", Scheme = ColorScheme.Green };
 
 		private static List<Craft> GetCrafts(Data.Base baseFilter)
 		{
