@@ -99,7 +99,7 @@ namespace XCom.World
 			public Fractional Z { get; set; }
 		}
 
-		public static SphereCoordinate CalculateSphereCoordinate(EighthDegrees longitude, EighthDegrees latitude, EighthDegrees longitudeOffset, EighthDegrees pitch)
+		private static SphereCoordinate CalculateSphereCoordinate(EighthDegrees longitude, EighthDegrees latitude, EighthDegrees longitudeOffset, EighthDegrees pitch)
 		{
 			return new SphereCoordinate
 			{
@@ -107,6 +107,25 @@ namespace XCom.World
 				Y = CalculateSphereY(longitude, longitudeOffset, latitude, pitch),
 				Z = CalculateSphereZ(longitude, longitudeOffset, latitude, pitch)
 			};
+		}
+
+		public static Point? MapPointToScreen(
+			EighthDegrees longitude,
+			EighthDegrees latitude,
+			EighthDegrees longitudeOffset,
+			EighthDegrees pitch,
+			int radius,
+			int centerX,
+			int centerY)
+		{
+			var coordinate = CalculateSphereCoordinate(longitude, latitude, longitudeOffset, pitch);
+			if (coordinate.Z < 0)
+				return null;
+			var x = ScaleValue(coordinate.X, radius, centerX);
+			var y = ScaleValue(coordinate.Y, radius, centerY);
+			if (x < 0 || x >= centerX * 2 || y < 0 || y >= centerY * 2)
+				return null;
+			return new Point { X = x, Y = y };
 		}
 
 		private static Fractional CalculateSphereX(EighthDegrees longitude, EighthDegrees longitudeOffset, EighthDegrees latitude)
@@ -139,7 +158,7 @@ namespace XCom.World
 			return (value1 * value2) >> fractionalPower;
 		}
 
-		public static int ScaleValue(Fractional value, int scale, int offset)
+		private static int ScaleValue(Fractional value, int scale, int offset)
 		{
 			return Multiply(value, scale) + offset;
 		}

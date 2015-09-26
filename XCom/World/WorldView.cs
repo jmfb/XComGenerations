@@ -128,22 +128,28 @@ namespace XCom.World
 			if (z2 < 0)
 				return null;
 			var z = Math.Sqrt(z2);
+
 			var pitchRadians = Pitch * Trigonometry.RadiansPerEighthDegree;
+			var rollRadians = LongitudeOffset * Trigonometry.RadiansPerEighthDegree;
+
 			var unitX = x / r;
 			var unitY = y / r;
 			var unitZ = z / r;
+
 			var rotatedX = unitX;
-			var rotatedY = unitY * Math.Cos(-pitchRadians) - unitZ * Math.Sin(-pitchRadians);
+			var rotatedY = unitY * Math.Cos(pitchRadians) + unitZ * Math.Sin(pitchRadians);
+			var rotatedZ = unitZ * Math.Cos(pitchRadians) - unitY * Math.Sin(pitchRadians);
+
 			var latitude = Math.Asin(rotatedY);
-			var longitude = Math.Asin(rotatedX / Math.Cos(latitude));
-			var latitudeEighthDegrees = -(int)(latitude / Trigonometry.RadiansPerEighthDegree);
+			var longitude = Math.Atan2(rotatedX, rotatedZ) - rollRadians;
+
+			var latitudeEighthDegrees = (int)(latitude / Trigonometry.RadiansPerEighthDegree);
 			var longitudeEighthDegrees = (int)(longitude / Trigonometry.RadiansPerEighthDegree);
-			//TODO: fix arcsin bug causing 721-1440 to get recorded as 1-720 (quadrant problem)
-			//  To repeat, rotate Earth vertically and click past north pole (it will be reported as a click on the wrong hemisphere)
+
 			return new Point
 			{
-				X = Trigonometry.AddEighthDegrees(longitudeEighthDegrees, -LongitudeOffset),
-				Y = -latitudeEighthDegrees
+				X = Trigonometry.AddEighthDegrees(longitudeEighthDegrees, 0),
+				Y = latitudeEighthDegrees
 			};
 		}
 
@@ -183,22 +189,16 @@ namespace XCom.World
 			stopwatch.Restart();
 		}
 
-		private IEnumerable<WorldObject> VisibleXcomBases => GameState.Current.Data.Bases
-			.Select(@base => Trigonometry.CalculateSphereCoordinate(@base.Longitude, @base.Latitude, LongitudeOffset, Pitch))
-			.Where(coordinate => coordinate.Z >= 0)
-			.Select(coordinate => new Point
-			{
-				X = Trigonometry.ScaleValue(coordinate.X, Radius, centerX),
-				Y = Trigonometry.ScaleValue(coordinate.Y, Radius, centerY)
-			})
-			.Where(point => HitTest(point.Y, point.X))
+		private static IEnumerable<WorldObject> VisibleXcomBases => GameState.Current.Data.Bases
+			.Select(@base => Trigonometry.MapPointToScreen(@base.Longitude, @base.Latitude, LongitudeOffset, Pitch, Radius, centerX, centerY))
+			.OfType<Point>()
 			.Select(point => new WorldObject
 			{
 				WorldObjectType = WorldObjectType.XcomBase,
 				Location = point
 			});
 
-		private IEnumerable<WorldObject> VisibleWorldObjects =>
+		private static IEnumerable<WorldObject> VisibleWorldObjects =>
 			VisibleXcomBases;
 
 		private void DrawWorldObjects(GraphicsBuffer buffer)
