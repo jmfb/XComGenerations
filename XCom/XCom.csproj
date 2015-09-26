@@ -325,10 +325,12 @@
     <Compile Include="Screens\Soldiers.cs" />
     <Compile Include="Screens\SoldierView.cs" />
     <Compile Include="Screens\Transfer.cs" />
+    <Compile Include="World\ConfirmDestination.cs" />
     <Compile Include="World\LaunchInterception.cs" />
     <Compile Include="World\Region.cs" />
     <Compile Include="World\RegionMetadata.cs" />
     <Compile Include="World\RegionType.cs" />
+    <Compile Include="World\SelectDestination.cs" />
     <Compile Include="World\Terrain.cs" />
     <Compile Include="World\TerrainCategory.cs" />
     <Compile Include="World\TerrainMetadata.cs" />

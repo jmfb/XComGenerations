@@ -22,7 +22,6 @@ namespace XCom.Screens
 		private static void OnDifficulty(int difficulty)
 		{
 			GameState.Current.Data = GameData.Create(difficulty);
-			Geoscape.InitializeWorldView();
 			GameState.Current.SetScreen(new BuildNewBase());
 		}
 	}

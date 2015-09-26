@@ -37,13 +37,9 @@ namespace XCom.Screens
 			gameSpeed.Reset();
 		}
 
-		public void InitializeWorldView()
-		{
-			worldView.Initialize();
-		}
-
 		public override void OnSetFocus()
 		{
+			worldView.Initialize();
 			GameState.Current.OnIdle += OnIdle;
 			stopwatch.Restart();
 		}

@@ -59,7 +59,8 @@ namespace XCom.World
 		{
 			if (craft.Status != CraftStatus.Ready)
 				return;
-			//TODO: select destination mode
+			EndModal();
+			GameState.Current.SetScreen(new SelectDestination(craft));
 		}
 	}
 }

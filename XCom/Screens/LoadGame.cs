@@ -51,7 +51,6 @@ namespace XCom.Screens
 			GameState.Current.Data = data;
 			//TODO: determine battlescape or geoscape
 			Geoscape.ResetGameSpeed();
-			Geoscape.InitializeWorldView();
 			GameState.Current.SetScreen(Geoscape);
 		}
 
