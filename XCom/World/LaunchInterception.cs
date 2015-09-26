@@ -25,7 +25,7 @@ namespace XCom.World
 			AddControl(new ListView<Craft>(78, 15, 7, GetCrafts(baseFilter), ColorScheme.Green, selectionColor, OnSelectCraft)
 				.AddColumn(85, Alignment.Left, craft => craft.Name, craft => ColorScheme.Green)
 				.AddColumn(65, Alignment.Left, craft => craft.Status.Name(), craft => craft.Status == CraftStatus.Ready ? ColorScheme.Yellow : ColorScheme.Green)
-				.AddColumn(85, Alignment.Left, craft => craft.BaseName, craft => ColorScheme.Green)
+				.AddColumn(85, Alignment.Left, craft => craft.Base.Name, craft => ColorScheme.Green)
 				.AddColumn(50, Alignment.Left,
 					ColoredNumber(craft => craft.Weapons.Count),
 					NumberSeparator,

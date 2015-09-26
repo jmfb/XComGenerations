@@ -244,6 +244,18 @@ namespace XCom.World
 			return (-b + Math.Sqrt(numerator)) / (2.0 * a);
 		}
 
+		private static double[] QuadraticEquationBothSolutions(double a, double b, double c)
+		{
+			var numerator = b * b - 4.0 * a * c;
+			if (IsNegative(numerator))
+				return new[] { 0.0, 0.0 };
+			return new[]
+			{
+				(-b + Math.Sqrt(numerator)) / (2.0 * a),
+				(-b - Math.Sqrt(numerator)) / (2.0 * a)
+			};
+		}
+
 		private static void ArcSphereIntersection(double x1, double y1, double z1, double x2, double y2, double z2, out double x, out double y)
 		{
 			//Equation of a plane: ax + by + cz + d = 0
@@ -548,6 +560,50 @@ namespace XCom.World
 			{
 				Longitude = AddEighthDegrees(longitudeEighthDegrees, 0),
 				Latitude = latitudeEighthDegrees
+			};
+		}
+
+		public static Location MoveLocation(Location source, Location destination, int distance)
+		{
+			var xr = destination.Longitude < source.Longitude ? destination.Longitude + EighthDegreesCount : destination.Longitude;
+			var xl = destination.Longitude > source.Longitude ? destination.Longitude - EighthDegreesCount : destination.Longitude;
+			var dxr = xr - source.Longitude;
+			var dxl = xl - source.Longitude;
+			var dy = destination.Latitude - source.Latitude;
+			var maxDistanceToRight = Math.Sqrt(dxr * dxr + dy * dy);
+			var maxDistanceToLeft = Math.Sqrt(dxl * dxl + dy * dy);
+			var destinationLongitude = maxDistanceToLeft < maxDistanceToRight ? xl : xr;
+			var dx = maxDistanceToLeft < maxDistanceToRight ? dxl : dxr;
+			var maxDistance = Math.Min(maxDistanceToLeft, maxDistanceToRight);
+
+			if (distance >= maxDistance)
+				return new Location
+				{
+					Longitude = destination.Longitude,
+					Latitude = destination.Latitude
+				};
+
+			double m, b, x;
+			bool vertical;
+			LineEquation(source.Longitude, source.Latitude, destinationLongitude, destination.Latitude, out m, out b, out vertical, out x);
+			if (vertical)
+				return new Location
+				{
+					Longitude = source.Longitude,
+					Latitude = source.Latitude + Math.Sign(dy) * distance
+				};
+
+			var c = b - source.Latitude;
+			var longitudes = QuadraticEquationBothSolutions(
+				m * m + 1,
+				2 * m * c - 2 * source.Longitude,
+				c * c + source.Longitude * source.Longitude - distance * distance);
+			var longitude = dx < 0 ? longitudes.Min() : longitudes.Max();
+			var latitude = m * longitude + b;
+			return new Location
+			{
+				Longitude = AddEighthDegrees((int)longitude, 0),
+				Latitude = (int)latitude
 			};
 		}
 	}

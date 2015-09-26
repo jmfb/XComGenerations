@@ -26,7 +26,7 @@ namespace XCom.World
 		{
 			var waypointNumber = GameState.Current.Data.CreateWaypoint(location);
 			craft.Status = CraftStatus.Out;
-			craft.Location = craft.BaseLocation;
+			craft.Location = craft.Base.Location;
 			craft.Destination = new Destination
 			{
 				WorldObjectType = WorldObjectType.Waypoint,

@@ -329,6 +329,8 @@
     <Compile Include="World\Destination.cs" />
     <Compile Include="World\LaunchInterception.cs" />
     <Compile Include="World\Location.cs" />
+    <Compile Include="World\LowFuel.cs" />
+    <Compile Include="World\ReachedWaypoint.cs" />
     <Compile Include="World\Region.cs" />
     <Compile Include="World\RegionMetadata.cs" />
     <Compile Include="World\RegionType.cs" />

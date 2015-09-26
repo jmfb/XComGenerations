@@ -14,6 +14,7 @@ namespace XCom.Data
 		public IEnumerable<Country> Countries { get; set; }
 		public int SelectedBase { get; set; }
 		public List<Base> Bases { get; set; }
+		public int NextBaseNumber { get; set; }
 		public int NextSoldierId { get; set; }
 		public int NextSkyrangerNumber { get; set; }
 		public int NextInterceptorNumber { get; set; }
@@ -71,6 +72,7 @@ namespace XCom.Data
 				Funds = 5000000,
 				Bases = new List<Base>(),
 				SelectedBase = 0,
+				NextBaseNumber = 1,
 				NextSkyrangerNumber = 1,
 				NextInterceptorNumber = 1,
 				NextFirestormNumber = 1,
@@ -94,9 +96,11 @@ namespace XCom.Data
 			return number;
 		}
 
-		public void RemoveWaypoint(int number)
+		public Waypoint RemoveWaypoint(int number)
 		{
-			Waypoints.Remove(Waypoints.Single(waypoint => waypoint.Number == number));
+			var waypointToRemove = Waypoints.Single(waypoint => waypoint.Number == number);
+			Waypoints.Remove(waypointToRemove);
+			return waypointToRemove;
 		}
 
 		private void SelectBase(Base @base)
@@ -113,39 +117,36 @@ namespace XCom.Data
 			if (isNewMonth)
 				PerformMonthlyUpdates();
 
-			var elapsedHalfHours = GetElapsedHalfHours(oldGameTime);
-			var nextHalfHourIsTopOfTheHour = !IsTopOfTheHour(oldGameTime);
-			foreach (var halfHour in Enumerable.Range(0, elapsedHalfHours))
+			var elapsedTenMinuteIntervals = GetElapsedTenMinuteIntervals(oldGameTime);
+			var currentTenMinuteInterval = GetTenMinuteInterval(oldGameTime).Minute / 10;
+			foreach (var tenMinuteInterval in Enumerable.Range(0, elapsedTenMinuteIntervals))
 			{
-				if (nextHalfHourIsTopOfTheHour)
+				currentTenMinuteInterval = (currentTenMinuteInterval + 1) % 6;
+				PerformTenMinuteUpdates();
+				if (currentTenMinuteInterval == 0)
 					PerformHourlyUpdates();
-				else
+				else if (currentTenMinuteInterval == 3)
 					PerformBiHourlyUpdates();
-				nextHalfHourIsTopOfTheHour = !nextHalfHourIsTopOfTheHour;
 			}
+			PerformInstantaneousUpdates(milliseconds);
 
 			var isNewDay = oldGameTime.Date != Time.Date;
 			if (isNewDay)
 				PerformDailyUpdates();
 		}
 
-		private int GetElapsedHalfHours(DateTime oldGameTime)
+		private int GetElapsedTenMinuteIntervals(DateTime oldGameTime)
 		{
-			var oldHalfHour = GetHalfHour(oldGameTime);
-			var newHalfHour = GetHalfHour(Time);
-			var timeSpan = newHalfHour - oldHalfHour;
-			return (int)timeSpan.TotalMinutes / 30;
+			var oldTenMinuteInterval = GetTenMinuteInterval(oldGameTime);
+			var newTenMinuteInterval = GetTenMinuteInterval(Time);
+			var timeSpan = newTenMinuteInterval - oldTenMinuteInterval;
+			return (int)timeSpan.TotalMinutes / 10;
 		}
 
-		private static bool IsTopOfTheHour(DateTime gameTime)
-		{
-			return GetHalfHour(gameTime).Minute == 0;
-		}
-
-		private static DateTime GetHalfHour(DateTime gameTime)
+		private static DateTime GetTenMinuteInterval(DateTime gameTime)
 		{
 			return gameTime
-				.AddMinutes(-(gameTime.Minute % 30))
+				.AddMinutes(-(gameTime.Minute % 10))
 				.AddSeconds(-gameTime.Second)
 				.AddMilliseconds(-gameTime.Millisecond);
 		}

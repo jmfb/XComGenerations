@@ -7,6 +7,7 @@ namespace XCom.Data
 	public class Base
 	{
 		public string Name { get; set; }
+		public int Number { get; set; }
 		public Location Location { get; set; }
 		public RegionType Region { get; set; }
 
@@ -29,6 +30,7 @@ namespace XCom.Data
 			return new Base
 			{
 				Name = name,
+				Number = GameState.Current.Data.NextBaseNumber++,
 				Location = location,
 				Region = region,
 				Facilities = new List<Facility>(),

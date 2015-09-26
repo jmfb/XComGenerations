@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using XCom.World;
 
@@ -17,6 +18,10 @@ namespace XCom.Data
 		public Stores Stores { get; set; }
 		public Location Location { get; set; }
 		public Destination Destination { get; set; }
+		public bool IsPatrolling { get; set; }
+		public bool LowFuel { get; set; }
+		public double Speed { get; set; }
+		public double DistanceError { get; set; }
 
 		public string Name => $"{CraftType.Metadata().Name}-{Number}";
 		public int FuelPercent => Fuel * 100 / CraftType.Metadata().Fuel;
@@ -27,9 +32,7 @@ namespace XCom.Data
 		public int SpaceAvailable => CraftType.Metadata().Space - SpaceUsed;
 		public int HwpSpaceAvailable => CraftType.Metadata().HwpCount - TotalHwpCount;
 
-		private Base Base => GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
-		public string BaseName => Base.Name;
-		public Location BaseLocation => new Location { Longitude = Base.Location.Longitude, Latitude = Base.Location.Latitude };
+		public Base Base => GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
 
 		public static Craft CreateRefueled(CraftType craftType, int number)
 		{
@@ -76,6 +79,48 @@ namespace XCom.Data
 				Status = CraftStatus.Ready;
 				break;
 			}
+		}
+
+		public void Accelerate(long milliseconds)
+		{
+			var metadata = CraftType.Metadata();
+			var maxSpeed = IsPatrolling ? metadata.Speed / 2 : metadata.Speed;
+			if (Speed >= maxSpeed)
+				return;
+			var speedIncrease = (metadata.Acceleration * milliseconds) / 1000.0;
+			Speed = Math.Min(maxSpeed, Speed + speedIncrease);
+		}
+
+		public int Distance(long milliseconds)
+		{
+			const double earthCircumferenceInNauticalMiles = 21639;
+			const double nauticalMilesPerEightDegree = earthCircumferenceInNauticalMiles / Trigonometry.EighthDegreesCount;
+			const double millisecondsPerHour = 1000 * 60 * 60;
+			var distanceInNauticalMiles = (Speed * milliseconds) / millisecondsPerHour;
+			var distanceInEighthDegrees = distanceInNauticalMiles / nauticalMilesPerEightDegree + DistanceError;
+			var integerDistanceInEighthDegrees = (int)distanceInEighthDegrees;
+			DistanceError = distanceInEighthDegrees - integerDistanceInEighthDegrees;
+			return integerDistanceInEighthDegrees;
+		}
+
+		public void ReturnToBase()
+		{
+			Status = Damage > 0 ? CraftStatus.Repairs : CraftStatus.Refuelling;
+			Location = null;
+			Destination = null;
+			Speed = 0;
+			DistanceError = 0;
+			IsPatrolling = false;
+			LowFuel = false;
+		}
+
+		public Waypoint PatrolWaypoint()
+		{
+			var waypoint = GameState.Current.Data.RemoveWaypoint(Destination.Number);
+			Destination = null;
+			Speed = CraftType.Metadata().Speed / 2.0;
+			IsPatrolling = true;
+			return waypoint;
 		}
 	}
 }

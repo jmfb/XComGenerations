@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using XCom.Modals;
 using XCom.Screens;
+using XCom.World;
 
 namespace XCom.Data
 {
@@ -20,6 +21,16 @@ namespace XCom.Data
 		private static void PerformBiHourlyUpdates()
 		{
 			RefuelCrafts();
+		}
+
+		private static void PerformTenMinuteUpdates()
+		{
+			ConsumeFuel();
+		}
+
+		private static void PerformInstantaneousUpdates(long milliseconds)
+		{
+			MoveCrafts(milliseconds);
 		}
 
 		private static void AdvanceManufactureProjects()
@@ -267,6 +278,78 @@ namespace XCom.Data
 			{
 				new NotEnoughStoresToRefuelCraft(@base, craft).DoModal(GameState.Current.ActiveScreen);
 			});
+		}
+
+		private static void ConsumeFuel()
+		{
+			foreach (var craft in GameState.Current.Data.ActiveInterceptors)
+			{
+				switch (craft.CraftType)
+				{
+				case CraftType.Skyranger:
+				case CraftType.Interceptor:
+					craft.Fuel -= craft.IsPatrolling ? 3 : 7;
+					break;
+				default:
+					craft.Fuel -= 1;
+					break;
+				}
+				if (craft.Fuel < 0)
+					craft.Fuel = 0;
+				if (craft.FuelPercent <= 15 && !craft.LowFuel)
+					ReturnCraftToBaseDueToLowFuel(craft);
+			}
+		}
+
+		private static void ReturnCraftToBaseDueToLowFuel(Craft craft)
+		{
+			craft.IsPatrolling = false;
+			craft.LowFuel = true;
+			if (craft.Destination?.WorldObjectType == WorldObjectType.Waypoint)
+				GameState.Current.Data.RemoveWaypoint(craft.Destination.Number);
+			craft.Destination = new Destination
+			{
+				WorldObjectType = WorldObjectType.XcomBase,
+				Number = craft.Base.Number
+			};
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				new LowFuel(craft).DoModal(GameState.Current.ActiveScreen);
+			});
+		}
+
+		private static void MoveCrafts(long milliseconds)
+		{
+			var movingCrafts = GameState.Current.Data.ActiveInterceptors.Where(craft => !craft.IsPatrolling);
+			foreach (var craft in movingCrafts)
+			{
+				craft.Accelerate(milliseconds);
+				var distance = craft.Distance(milliseconds);
+				if (distance == 0)
+					continue;
+				craft.Location = Trigonometry.MoveLocation(craft.Location, craft.Destination.Location, distance);
+				if (craft.Location.Is(craft.Destination.Location))
+					CraftArrivalAtDestination(craft);
+			}
+		}
+
+		private static void CraftArrivalAtDestination(Craft craft)
+		{
+			switch (craft.Destination.WorldObjectType)
+			{
+			case WorldObjectType.XcomBase:
+				craft.ReturnToBase();
+				break;
+			case WorldObjectType.Waypoint:
+				var waypoint = craft.PatrolWaypoint();
+				GameState.Current.Notifications.Enqueue(() =>
+				{
+					new ReachedWaypoint(craft, waypoint).DoModal(GameState.Current.ActiveScreen);
+				});
+				break;
+			default:
+				throw new NotImplementedException();
+			}
 		}
 	}
 }
