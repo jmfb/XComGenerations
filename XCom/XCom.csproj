@@ -326,7 +326,9 @@
     <Compile Include="Screens\SoldierView.cs" />
     <Compile Include="Screens\Transfer.cs" />
     <Compile Include="World\ConfirmDestination.cs" />
+    <Compile Include="World\Destination.cs" />
     <Compile Include="World\LaunchInterception.cs" />
+    <Compile Include="World\Location.cs" />
     <Compile Include="World\Region.cs" />
     <Compile Include="World\RegionMetadata.cs" />
     <Compile Include="World\RegionType.cs" />
@@ -336,6 +338,7 @@
     <Compile Include="World\TerrainMetadata.cs" />
     <Compile Include="World\TerrainType.cs" />
     <Compile Include="World\Trigonometry.cs" />
+    <Compile Include="World\Waypoint.cs" />
     <Compile Include="World\WorldControls.cs" />
     <Compile Include="World\WorldObject.cs" />
     <Compile Include="World\WorldObjectMetadata.cs" />

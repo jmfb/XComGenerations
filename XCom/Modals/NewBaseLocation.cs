@@ -12,16 +12,14 @@ namespace XCom.Modals
 {
 	public class NewBaseLocation : Screen
 	{
-		private readonly int longitude;
-		private readonly int latitude;
+		private readonly Location location;
 		private readonly RegionType region;
 
-		public NewBaseLocation(int longitude, int latitude)
+		public NewBaseLocation(Location location)
 		{
-			this.longitude = longitude;
-			this.latitude = latitude;
+			this.location = location;
 			region = EnumEx.GetValues<RegionType>()
-				.Single(regionType => regionType.Metadata().IsInRegion(longitude, latitude));
+				.Single(regionType => regionType.Metadata().IsInRegion(location));
 			AddControl(new Border(64, 16, 224, 72, ColorScheme.Green, Backgrounds.Title, 0));
 			AddControl(new Label(80, 68, "Cost>$", Font.Normal, ColorScheme.Green));
 			AddControl(new Label(90, 68, "Area>", Font.Normal, ColorScheme.Green));
@@ -47,7 +45,7 @@ namespace XCom.Modals
 
 		private Screen OnNewBase(string name)
 		{
-			var newBase = Base.Create(name, longitude, latitude, region);
+			var newBase = Base.Create(name, location, region);
 			var data = GameState.Current.Data;
 			if (name == "Research") //TODO: remove research hack
 				data.CompletedResearch = EnumEx.GetValues<ResearchType>().ToList();

@@ -24,10 +24,10 @@ namespace XCom.Screens
 			AddControl(new TimeDisplay());
 		}
 
-		private void OnChooseLocation(int longitude, int latitude)
+		private void OnChooseLocation(Location location)
 		{
 			//TODO: validate there is terrain at location (you cannot build a base on water...or can you?)
-			new NewBaseLocation(longitude, latitude).DoModal(this);
+			new NewBaseLocation(location).DoModal(this);
 		}
 
 		private static void OnCancel()

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using XCom.World;
 
 namespace XCom.Data
 {
@@ -14,6 +15,8 @@ namespace XCom.Data
 		public CraftStatus Status { get; set; }
 		public List<int> SoldierIds { get; set; }
 		public Stores Stores { get; set; }
+		public Location Location { get; set; }
+		public Destination Destination { get; set; }
 
 		public string Name => $"{CraftType.Metadata().Name}-{Number}";
 		public int FuelPercent => Fuel * 100 / CraftType.Metadata().Fuel;
@@ -26,6 +29,7 @@ namespace XCom.Data
 
 		private Base Base => GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
 		public string BaseName => Base.Name;
+		public Location BaseLocation => new Location { Longitude = Base.Location.Longitude, Latitude = Base.Location.Latitude };
 
 		public static Craft CreateRefueled(CraftType craftType, int number)
 		{

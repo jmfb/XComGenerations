@@ -17,12 +17,12 @@
 			this.height = height;
 		}
 
-		public bool Contains(int longitude, int latitude)
+		public bool Contains(Location location)
 		{
-			return longitude >= left &&
-				longitude < (left + width) &&
-				latitude >= top &&
-				latitude < (top + height);
+			return location.Longitude >= left &&
+				location.Longitude < (left + width) &&
+				location.Latitude >= top &&
+				location.Latitude < (top + height);
 		}
 	}
 }

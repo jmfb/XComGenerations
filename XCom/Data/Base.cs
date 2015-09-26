@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using XCom.World;
 
@@ -8,8 +7,7 @@ namespace XCom.Data
 	public class Base
 	{
 		public string Name { get; set; }
-		public int Longitude { get; set; }
-		public int Latitude { get; set; }
+		public Location Location { get; set; }
 		public RegionType Region { get; set; }
 
 		public List<Facility> Facilities { get; set; }
@@ -26,13 +24,12 @@ namespace XCom.Data
 		public List<TransferItem<Craft>> TransferredCrafts { get; set; }
 		public List<TransferItem<StoreItem>> TransferredStores { get; set; }
 
-		public static Base Create(string name, int longitude, int latitude, RegionType region)
+		public static Base Create(string name, Location location, RegionType region)
 		{
 			return new Base
 			{
 				Name = name,
-				Longitude = longitude,
-				Latitude = latitude,
+				Location = location,
 				Region = region,
 				Facilities = new List<Facility>(),
 				Crafts = new List<Craft>(),
@@ -70,6 +67,7 @@ namespace XCom.Data
 		}
 		public int TotalSkyrangerCount => CountCrafts(CraftType.Skyranger);
 		public int TotalInterceptorCount => CountCrafts(CraftType.Interceptor);
+		public IEnumerable<Craft> ActiveInterceptors => Crafts.Where(craft => craft.Status == CraftStatus.Out);
 
 		private static int GetMonthlyCost(ItemType itemType, int count) => itemType.Metadata().MonthlyCost * count;
 		private int MonthlySkyrangerCost => GetMonthlyCost(ItemType.Skyranger, TotalSkyrangerCount);

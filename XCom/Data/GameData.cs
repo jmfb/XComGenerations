@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using XCom.World;
 
 namespace XCom.Data
 {
@@ -25,6 +26,8 @@ namespace XCom.Data
 		public int LongitudeOffset { get; set; }
 		public int Pitch { get; set; }
 		public int Zoom { get; set; }
+		public int NextWaypointNumber { get; set; }
+		public List<Waypoint> Waypoints { get; set; }
 
 		public int TotalFunding => Countries.Sum(country => country.Funding);
 		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
@@ -56,6 +59,8 @@ namespace XCom.Data
 			return AvailableTopics.Where(topic => topic.Metadata().Category == category).ToList();
 		}
 
+		public IEnumerable<Craft> ActiveInterceptors => Bases.SelectMany(@base => @base.ActiveInterceptors);
+
 		public static GameData Create(int difficulty)
 		{
 			return new GameData
@@ -72,8 +77,26 @@ namespace XCom.Data
 				NextLightningNumber = 1,
 				NextAvengerNumber = 1,
 				CompletedResearch = new List<ResearchType>(),
-				Countries = EnumEx.GetValues<CountryType>().Select(Country.Create).ToList()
+				Countries = EnumEx.GetValues<CountryType>().Select(Country.Create).ToList(),
+				NextWaypointNumber = 1,
+				Waypoints = new List<Waypoint>()
 			};
+		}
+
+		public int CreateWaypoint(Location location)
+		{
+			var number = NextWaypointNumber++;
+			Waypoints.Add(new Waypoint
+			{
+				Location = location,
+				Number = number
+			});
+			return number;
+		}
+
+		public void RemoveWaypoint(int number)
+		{
+			Waypoints.Remove(Waypoints.Single(waypoint => waypoint.Number == number));
 		}
 
 		private void SelectBase(Base @base)

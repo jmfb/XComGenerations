@@ -109,7 +109,7 @@ namespace XCom.World
 			};
 		}
 
-		public static Point? MapPointToScreen(
+		private static Point? MapPointToScreen(
 			EighthDegrees longitude,
 			EighthDegrees latitude,
 			EighthDegrees longitudeOffset,
@@ -126,6 +126,18 @@ namespace XCom.World
 			if (x < 0 || x >= centerX * 2 || y < 0 || y >= centerY * 2)
 				return null;
 			return new Point { X = x, Y = y };
+		}
+
+		public static Point? MapLocationToScreen(Location location)
+		{
+			return MapPointToScreen(
+				location.Longitude,
+				location.Latitude,
+				GameState.Current.Data.LongitudeOffset,
+				GameState.Current.Data.Pitch,
+				WorldView.Radius,
+				WorldView.CenterX,
+				WorldView.CenterY);
 		}
 
 		private static Fractional CalculateSphereX(EighthDegrees longitude, EighthDegrees longitudeOffset, EighthDegrees latitude)
@@ -452,17 +464,13 @@ namespace XCom.World
 			};
 		}
 
-		public static bool HitTestCoordinate(
-			int clickLongitude,
-			int clickLatitude,
-			int longitude,
-			int latitude)
+		public static bool HitTestCoordinate(Location clickLocation, Location location)
 		{
 			return HitTestCoordinate(
-				clickLongitude,
-				clickLatitude,
-				longitude,
-				latitude,
+				clickLocation.Longitude,
+				clickLocation.Latitude,
+				location.Longitude,
+				location.Latitude,
 				GameState.Current.Data.LongitudeOffset,
 				GameState.Current.Data.Pitch,
 				WorldView.Radius,
@@ -507,6 +515,40 @@ namespace XCom.World
 			var distance = Math.Sqrt(distanceSquared);
 			const int allowedDistanceForHit = 3;
 			return distance <= allowedDistanceForHit;
+		}
+
+		public static Location ScreenToLocation(int row, int column)
+		{
+			var x = (double)(column - WorldView.CenterX);
+			var y = (double)(row - WorldView.CenterY);
+			var r = (double)WorldView.Radius;
+			var z2 = r * r - x * x - y * y;
+			if (z2 < 0)
+				return null;
+			var z = Math.Sqrt(z2);
+
+			var pitchRadians = GameState.Current.Data.Pitch * RadiansPerEighthDegree;
+			var rollRadians = GameState.Current.Data.LongitudeOffset * RadiansPerEighthDegree;
+
+			var unitX = x / r;
+			var unitY = y / r;
+			var unitZ = z / r;
+
+			var rotatedX = unitX;
+			var rotatedY = unitY * Math.Cos(pitchRadians) + unitZ * Math.Sin(pitchRadians);
+			var rotatedZ = unitZ * Math.Cos(pitchRadians) - unitY * Math.Sin(pitchRadians);
+
+			var latitude = Math.Asin(rotatedY);
+			var longitude = Math.Atan2(rotatedX, rotatedZ) - rollRadians;
+
+			var latitudeEighthDegrees = (int)(latitude / RadiansPerEighthDegree);
+			var longitudeEighthDegrees = (int)(longitude / RadiansPerEighthDegree);
+
+			return new Location
+			{
+				Longitude = AddEighthDegrees(longitudeEighthDegrees, 0),
+				Latitude = latitudeEighthDegrees
+			};
 		}
 	}
 }

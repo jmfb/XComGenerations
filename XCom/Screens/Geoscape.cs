@@ -96,15 +96,11 @@ namespace XCom.Screens
 			ProcessNextNotification();
 		}
 
-		private void OnClick(int longitude, int latitude)
+		private void OnClick(Location location)
 		{
 			var data = GameState.Current.Data;
 			var bases = data.Bases
-				.Where(@base => Trigonometry.HitTestCoordinate(
-					@base.Longitude,
-					@base.Latitude,
-					longitude,
-					latitude))
+				.Where(@base => Trigonometry.HitTestCoordinate(@base.Location, location))
 				.ToList();
 			if (!bases.Any())
 				return;

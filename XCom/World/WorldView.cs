@@ -13,13 +13,13 @@ namespace XCom.World
 		private IEnumerable<Trigonometry.SphereTerrain> frontTerrain;
 		private IEnumerable<Terrain> scaledFrontTerrain;
 		private static readonly int[] zoomRadius = { 90, 120, 180, 270, 440, 720 };
-		private readonly Action<int, int> onClick;
+		private readonly Action<Location> onClick;
 		private readonly Stopwatch stopwatch = new Stopwatch();
 		private bool flashWorldObjects;
 		public const int CenterX = 128;
 		public const int CenterY = 100;
 
-		public WorldView(Action<int, int> onClick)
+		public WorldView(Action<Location> onClick)
 		{
 			this.onClick = onClick;
 			Initialize();
@@ -119,40 +119,6 @@ namespace XCom.World
 			}
 		}
 
-		private static Point? ScreenToLongitudeLatitude(int row, int column)
-		{
-			var x = (double)(column - 128);
-			var y = (double)(row - 100);
-			var r = (double)Radius;
-			var z2 = r * r - x * x - y * y;
-			if (z2 < 0)
-				return null;
-			var z = Math.Sqrt(z2);
-
-			var pitchRadians = Pitch * Trigonometry.RadiansPerEighthDegree;
-			var rollRadians = LongitudeOffset * Trigonometry.RadiansPerEighthDegree;
-
-			var unitX = x / r;
-			var unitY = y / r;
-			var unitZ = z / r;
-
-			var rotatedX = unitX;
-			var rotatedY = unitY * Math.Cos(pitchRadians) + unitZ * Math.Sin(pitchRadians);
-			var rotatedZ = unitZ * Math.Cos(pitchRadians) - unitY * Math.Sin(pitchRadians);
-
-			var latitude = Math.Asin(rotatedY);
-			var longitude = Math.Atan2(rotatedX, rotatedZ) - rollRadians;
-
-			var latitudeEighthDegrees = (int)(latitude / Trigonometry.RadiansPerEighthDegree);
-			var longitudeEighthDegrees = (int)(longitude / Trigonometry.RadiansPerEighthDegree);
-
-			return new Point
-			{
-				X = Trigonometry.AddEighthDegrees(longitudeEighthDegrees, 0),
-				Y = latitudeEighthDegrees
-			};
-		}
-
 		public override bool HitTest(int row, int column)
 		{
 			return row >= 0 && column >= 0 && row < 200 && column < 256;
@@ -160,18 +126,18 @@ namespace XCom.World
 
 		public override void OnLeftButtonDown(int row, int column)
 		{
-			var latitudeLongitude = ScreenToLongitudeLatitude(row, column);
-			if (latitudeLongitude != null)
-				onClick(latitudeLongitude.Value.X, latitudeLongitude.Value.Y);
+			var location = Trigonometry.ScreenToLocation(row, column);
+			if (location != null)
+				onClick(location);
 		}
 
 		public override void OnRightButtonDown(int row, int column)
 		{
-			var latitudeLongitude = ScreenToLongitudeLatitude(row, column);
-			if (latitudeLongitude == null)
+			var location = Trigonometry.ScreenToLocation(row, column);
+			if (location == null)
 				return;
-			LongitudeOffset = Trigonometry.AddEighthDegrees(-latitudeLongitude.Value.X, 0);
-			GameState.Current.Data.Pitch = Trigonometry.AddEighthDegrees(latitudeLongitude.Value.Y, 0);
+			LongitudeOffset = Trigonometry.AddEighthDegrees(-location.Longitude, 0);
+			Pitch = Trigonometry.AddEighthDegrees(location.Latitude, 0);
 			Initialize();
 		}
 
@@ -189,17 +155,32 @@ namespace XCom.World
 			stopwatch.Restart();
 		}
 
-		private static IEnumerable<WorldObject> VisibleXcomBases => GameState.Current.Data.Bases
-			.Select(@base => Trigonometry.MapPointToScreen(@base.Longitude, @base.Latitude, LongitudeOffset, Pitch, Radius, CenterX, CenterY))
-			.OfType<Point>()
-			.Select(point => new WorldObject
-			{
-				WorldObjectType = WorldObjectType.XcomBase,
-				Location = point
-			});
+		private static IEnumerable<WorldObject> GetVisibleWorldObjects<T>(
+			IEnumerable<T> items,
+			Func<T, Location> location,
+			WorldObjectType worldObjectType)
+		{
+			return items
+				.Select(item => Trigonometry.MapLocationToScreen(location(item)))
+				.OfType<Point>()
+				.Select(point => new WorldObject
+				{
+					WorldObjectType = worldObjectType,
+					Location = point
+				});
+		}
+
+		private static IEnumerable<WorldObject> VisibleXcomBases =>
+			GetVisibleWorldObjects(GameState.Current.Data.Bases, @base => @base.Location, WorldObjectType.XcomBase);
+		private static IEnumerable<WorldObject> VisibleWaypoints =>
+			GetVisibleWorldObjects(GameState.Current.Data.Waypoints, waypoint => waypoint.Location, WorldObjectType.Waypoint);
+		private static IEnumerable<WorldObject> VisibleInterceptors =>
+			GetVisibleWorldObjects(GameState.Current.Data.ActiveInterceptors, interceptor => interceptor.Location, WorldObjectType.Interceptor);
 
 		private static IEnumerable<WorldObject> VisibleWorldObjects =>
-			VisibleXcomBases;
+			VisibleXcomBases
+			.Concat(VisibleWaypoints)
+			.Concat(VisibleInterceptors);
 
 		private void DrawWorldObjects(GraphicsBuffer buffer)
 		{

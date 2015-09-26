@@ -9,7 +9,7 @@ namespace XCom.World
 		public int BaseCost { get; set; }
 		public IEnumerable<Region> Regions { get; set; }
 
-		public bool IsInRegion(int longitude, int latitude) =>
-			Regions.Any(region => region.Contains(longitude, latitude));
+		public bool IsInRegion(Location location) =>
+			Regions.Any(region => region.Contains(location));
 	}
 }

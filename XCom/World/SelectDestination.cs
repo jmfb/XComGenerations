@@ -26,11 +26,11 @@ namespace XCom.World
 			AddControl(new TimeDisplay());
 		}
 
-		private void OnChooseDestination(int longitude, int latitude)
+		private void OnChooseDestination(Location location)
 		{
 			//TODO: Hit test for intereption, landed ufo, crash site, terror site, alien base.  Otherwise waypoint.
 			//TODO: If multiple results, show popup for choice
-			new ConfirmDestination(craft, longitude, latitude).DoModal(this);
+			new ConfirmDestination(craft, location).DoModal(this);
 		}
 
 		private static void OnCancel()
