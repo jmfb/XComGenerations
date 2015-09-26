@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
@@ -26,7 +27,7 @@ namespace XCom.Screens
 			AddControl(new Button(60, 257, 63, 11, "FUNDING", ColorScheme.Blue, Font.Small, OnFunding));
 			AddControl(new TimeDisplay());
 			AddControl(gameSpeed);
-			worldView = new WorldView((x, y) => { }); //TODO: handle the click
+			worldView = new WorldView(OnClick);
 			AddControl(worldView);
 			AddControl(new WorldControls(worldView));
 		}
@@ -59,9 +60,9 @@ namespace XCom.Screens
 			stopwatch.Stop();
 		}
 
-		private static void OnIntercept()
+		private void OnIntercept()
 		{
-			//TODO:
+			new LaunchInterception().DoModal(this);
 		}
 
 		private static void OnBases()
@@ -97,6 +98,23 @@ namespace XCom.Screens
 			stopwatch.Restart();
 			GameState.Current.Data.AdvanceGameTime(elapsedMillisecondsInGame);
 			ProcessNextNotification();
+		}
+
+		private void OnClick(int longitude, int latitude)
+		{
+			var data = GameState.Current.Data;
+			var bases = data.Bases
+				.Where(@base => Trigonometry.HitTestCoordinate(
+					@base.Longitude,
+					@base.Latitude,
+					longitude,
+					latitude))
+				.ToList();
+			if (!bases.Any())
+				return;
+			if (bases.Count > 1)
+				throw new NotImplementedException();
+			new LaunchInterception(bases[0]).DoModal(this);
 		}
 	}
 }

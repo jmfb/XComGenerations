@@ -16,8 +16,8 @@ namespace XCom.World
 		private readonly Action<int, int> onClick;
 		private readonly Stopwatch stopwatch = new Stopwatch();
 		private bool flashWorldObjects;
-		private const int centerX = 128;
-		private const int centerY = 100;
+		public const int CenterX = 128;
+		public const int CenterY = 100;
 
 		public WorldView(Action<int, int> onClick)
 		{
@@ -91,11 +91,11 @@ namespace XCom.World
 		private void ScaleFrontTerrain()
 		{
 			scaledFrontTerrain = frontTerrain
-				.Select(sphereTerrain => sphereTerrain.Scale(Radius, centerX, centerY))
+				.Select(sphereTerrain => sphereTerrain.Scale(Radius, CenterX, CenterY))
 				.ToList();
 		}
 
-		private static int Radius => zoomRadius[Zoom];
+		public static int Radius => zoomRadius[Zoom];
 
 		public override void Render(GraphicsBuffer buffer)
 		{
@@ -190,7 +190,7 @@ namespace XCom.World
 		}
 
 		private static IEnumerable<WorldObject> VisibleXcomBases => GameState.Current.Data.Bases
-			.Select(@base => Trigonometry.MapPointToScreen(@base.Longitude, @base.Latitude, LongitudeOffset, Pitch, Radius, centerX, centerY))
+			.Select(@base => Trigonometry.MapPointToScreen(@base.Longitude, @base.Latitude, LongitudeOffset, Pitch, Radius, CenterX, CenterY))
 			.OfType<Point>()
 			.Select(point => new WorldObject
 			{

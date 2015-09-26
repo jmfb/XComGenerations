@@ -24,6 +24,9 @@ namespace XCom.Data
 		public int SpaceAvailable => CraftType.Metadata().Space - SpaceUsed;
 		public int HwpSpaceAvailable => CraftType.Metadata().HwpCount - TotalHwpCount;
 
+		private Base Base => GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
+		public string BaseName => Base.Name;
+
 		public static Craft CreateRefueled(CraftType craftType, int number)
 		{
 			return new Craft

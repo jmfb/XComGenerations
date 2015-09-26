@@ -324,6 +324,7 @@
     <Compile Include="Screens\Soldiers.cs" />
     <Compile Include="Screens\SoldierView.cs" />
     <Compile Include="Screens\Transfer.cs" />
+    <Compile Include="World\LaunchInterception.cs" />
     <Compile Include="World\Region.cs" />
     <Compile Include="World\RegionMetadata.cs" />
     <Compile Include="World\RegionType.cs" />

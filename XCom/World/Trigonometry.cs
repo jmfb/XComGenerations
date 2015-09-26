@@ -451,5 +451,62 @@ namespace XCom.World
 				Z = 0
 			};
 		}
+
+		public static bool HitTestCoordinate(
+			int clickLongitude,
+			int clickLatitude,
+			int longitude,
+			int latitude)
+		{
+			return HitTestCoordinate(
+				clickLongitude,
+				clickLatitude,
+				longitude,
+				latitude,
+				GameState.Current.Data.LongitudeOffset,
+				GameState.Current.Data.Pitch,
+				WorldView.Radius,
+				WorldView.CenterX,
+				WorldView.CenterY);
+		}
+
+		private static bool HitTestCoordinate(
+			int clickLongitude,
+			int clickLatitude,
+			int longitude,
+			int latitude,
+			int longitudeOffset,
+			int pitch,
+			int radius,
+			int centerX,
+			int centerY)
+		{
+			var clickPoint = MapPointToScreen(
+				clickLongitude,
+				clickLatitude,
+				longitudeOffset,
+				pitch,
+				radius,
+				centerX,
+				centerY);
+			if (clickPoint == null)
+				return false;
+			var point = MapPointToScreen(
+				longitude,
+				latitude,
+				longitudeOffset,
+				pitch,
+				radius,
+				centerX,
+				centerY);
+			if (point == null)
+				return false;
+			var dx = point.Value.X - clickPoint.Value.X;
+			var dy = point.Value.Y - clickPoint.Value.Y;
+			var distanceSquared = dx * dx + dy * dy;
+			var distance = Math.Sqrt(distanceSquared);
+			const int allowedDistanceForHit = 3;
+			return distance <= allowedDistanceForHit;
+		}
 	}
 }
