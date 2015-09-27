@@ -303,15 +303,8 @@ namespace XCom.Data
 
 		private static void ReturnCraftToBaseDueToLowFuel(Craft craft)
 		{
-			craft.IsPatrolling = false;
 			craft.LowFuel = true;
-			if (craft.Destination?.WorldObjectType == WorldObjectType.Waypoint)
-				GameState.Current.Data.RemoveWaypoint(craft.Destination.Number);
-			craft.Destination = new Destination
-			{
-				WorldObjectType = WorldObjectType.XcomBase,
-				Number = craft.Base.Number
-			};
+			craft.StartToReturnToBase();
 			GameState.Current.Notifications.Enqueue(() =>
 			{
 				new LowFuel(craft).DoModal(GameState.Current.ActiveScreen);
@@ -341,7 +334,7 @@ namespace XCom.Data
 				craft.ReturnToBase();
 				break;
 			case WorldObjectType.Waypoint:
-				var waypoint = craft.PatrolWaypoint();
+				var waypoint = craft.Patrol();
 				GameState.Current.Notifications.Enqueue(() =>
 				{
 					new ReachedWaypoint(craft, waypoint).DoModal(GameState.Current.ActiveScreen);

@@ -26,7 +26,7 @@ namespace XCom.World
 
 		private void OnRedirectCraft()
 		{
-			//TODO: redirect craft
+			SwitchToModal(new RedirectCraft(craft));
 		}
 	}
 }

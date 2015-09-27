@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
+using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Modals;
@@ -105,7 +106,14 @@ namespace XCom.Screens
 			var waypoints = data.Waypoints
 				.Where(waypoint => Trigonometry.HitTestCoordinate(waypoint.Location, location))
 				.ToList();
-			var worldObjects = bases.Cast<object>().Concat(waypoints).ToList();
+			var crafts = data.ActiveInterceptors
+				.Where(craft => Trigonometry.HitTestCoordinate(craft.Location, location))
+				.ToList();
+
+			var worldObjects = bases.Cast<object>()
+				.Concat(waypoints)
+				.Concat(crafts)
+				.ToList();
 			if (!worldObjects.Any())
 				return;
 			if (worldObjects.Count > 1)
@@ -121,6 +129,11 @@ namespace XCom.Screens
 		private void SelectWorldObject(Waypoint waypoint)
 		{
 			new ViewWaypoint(waypoint).DoModal(this);
+		}
+
+		private void SelectWorldObject(Craft craft)
+		{
+			new RedirectCraft(craft).DoModal(this);
 		}
 	}
 }

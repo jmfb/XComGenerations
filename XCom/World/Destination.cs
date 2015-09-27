@@ -8,19 +8,22 @@ namespace XCom.World
 		public WorldObjectType WorldObjectType { get; set; }
 		public int Number { get; set; }
 
-		public Location Location
+		private dynamic Target
 		{
 			get
 			{
 				switch (WorldObjectType)
 				{
 				case WorldObjectType.XcomBase:
-					return GameState.Current.Data.Bases.Single(@base => @base.Number == Number).Location;
+					return GameState.Current.Data.Bases.Single(@base => @base.Number == Number);
 				case WorldObjectType.Waypoint:
-					return GameState.Current.Data.Waypoints.Single(waypoint => waypoint.Number == Number).Location;
+					return GameState.Current.Data.Waypoints.Single(waypoint => waypoint.Number == Number);
 				}
 				throw new NotImplementedException();
 			}
 		}
+
+		public Location Location => Target.Location;
+		public string Name => Target.Name;
 	}
 }

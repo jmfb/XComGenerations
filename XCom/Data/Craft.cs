@@ -33,6 +33,20 @@ namespace XCom.Data
 		public int HwpSpaceAvailable => CraftType.Metadata().HwpCount - TotalHwpCount;
 
 		public Base Base => GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
+		public string MissionStatus
+		{
+			get
+			{
+				if (IsPatrolling)
+					return "PATROLLING";
+				if (Destination.WorldObjectType == WorldObjectType.XcomBase)
+					return LowFuel ?
+						"LOW FUEL - RETURNING TO BASE" :
+						"RETURNING TO BASE";
+				return $"DESTINATION: {Destination.Name}";
+			}
+		}
+		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess
 
 		public static Craft CreateRefueled(CraftType craftType, int number)
 		{
@@ -103,6 +117,17 @@ namespace XCom.Data
 			return integerDistanceInEighthDegrees;
 		}
 
+		public void StartToReturnToBase()
+		{
+			IsPatrolling = false;
+			RemoveWaypoint();
+			Destination = new Destination
+			{
+				WorldObjectType = WorldObjectType.XcomBase,
+				Number = Base.Number
+			};
+		}
+
 		public void ReturnToBase()
 		{
 			Status = Damage > 0 ? CraftStatus.Repairs : CraftStatus.Refuelling;
@@ -114,13 +139,20 @@ namespace XCom.Data
 			LowFuel = false;
 		}
 
-		public Waypoint PatrolWaypoint()
+		public Waypoint Patrol()
 		{
-			var waypoint = GameState.Current.Data.RemoveWaypoint(Destination.Number);
+			var waypoint = RemoveWaypoint();
 			Destination = null;
 			Speed = CraftType.Metadata().Speed / 2.0;
 			IsPatrolling = true;
 			return waypoint;
+		}
+
+		private Waypoint RemoveWaypoint()
+		{
+			return Destination?.WorldObjectType == WorldObjectType.Waypoint ?
+				GameState.Current.Data.RemoveWaypoint(Destination.Number) :
+				null;
 		}
 	}
 }

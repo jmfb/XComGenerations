@@ -150,6 +150,7 @@
     <Compile Include="Controls\InteractiveControl.cs" />
     <Compile Include="Controls\Item.cs" />
     <Compile Include="Controls\Label.cs" />
+    <Compile Include="Controls\LabeledValue.cs" />
     <Compile Include="Controls\ListView.cs" />
     <Compile Include="Controls\Overlay.cs" />
     <Compile Include="Controls\Picture.cs" />
@@ -331,6 +332,7 @@
     <Compile Include="World\Location.cs" />
     <Compile Include="World\LowFuel.cs" />
     <Compile Include="World\ReachedWaypoint.cs" />
+    <Compile Include="World\RedirectCraft.cs" />
     <Compile Include="World\Region.cs" />
     <Compile Include="World\RegionMetadata.cs" />
     <Compile Include="World\RegionType.cs" />
