@@ -144,7 +144,7 @@ namespace XCom.World
 		private void DrawTerrain(GraphicsBuffer buffer)
 		{
 			foreach (var terrain in scaledFrontTerrain)
-				buffer.DrawTerrain(terrain, Radius, 0, Zoom);
+				buffer.DrawTerrain(terrain, Radius, terrain.Shading, Zoom);
 		}
 
 		private void UpdateFlashWorldObjects()

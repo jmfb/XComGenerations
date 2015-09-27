@@ -21,6 +21,7 @@ namespace XCom.World
 		{
 			public TerrainType TerrainType { private get; set; }
 			public SphereCoordinate[] Vertices { private get; set; }
+			public int Longitude { private get; set; }
 
 			public bool IsFrontFacing => Vertices.All(vertex => vertex.Z >= 0);
 
@@ -34,7 +35,8 @@ namespace XCom.World
 						{
 							X = ScaleValue(vertex.X, radius, centerX),
 							Y = ScaleValue(vertex.Y, radius, centerY)
-						}).ToArray()
+						}).ToArray(),
+					Longitude = Longitude
 				};
 			}
 		}
@@ -57,7 +59,8 @@ namespace XCom.World
 			return new SphereTerrain
 			{
 				TerrainType = terrain.TerrainType,
-				Vertices = vertices
+				Vertices = vertices,
+				Longitude = terrain.Longitude
 			};
 		}
 

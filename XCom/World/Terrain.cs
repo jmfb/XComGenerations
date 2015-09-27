@@ -10,6 +10,29 @@ namespace XCom.World
 	{
 		public TerrainType TerrainType { get; set; }
 		public Point[] Vertices { get; set; }
+		public int Longitude { get; set; }
+
+		public int Shading
+		{
+			get
+			{
+				const int secondsInDay = 60 * 60 * 24;
+				const int secondsPerEighthDegree = secondsInDay / Trigonometry.EighthDegreesCount;
+				const int secondsPerShade = 450;
+				var secondOfDay = (int)GameState.Current.Data.Time.TimeOfDay.TotalSeconds;
+				var localSecondOfDay = (secondOfDay - Longitude * secondsPerEighthDegree + secondsInDay) % secondsInDay;
+				var shadeIndex = localSecondOfDay / secondsPerShade;
+				if (shadeIndex < 44)
+					return 8;
+				if (shadeIndex < 52)
+					return 52 - shadeIndex;
+				if (shadeIndex < 140)
+					return 0;
+				if (shadeIndex < 148)
+					return shadeIndex - 140;
+				return 8;
+			}
+		}
 
 		private const int coordinateRecordSize = sizeof(short) * 2;
 		private const int coordinateCount = 4;
@@ -23,6 +46,27 @@ namespace XCom.World
 				.ToList();
 		}
 
+		private static Terrain Create(TerrainType terrainType, params Point[] vertices)
+		{
+			return new Terrain
+			{
+				TerrainType = terrainType,
+				Vertices = vertices,
+				Longitude = LongitudeCenter(vertices)
+			};
+		}
+
+		private static int LongitudeCenter(Point[] vertices)
+		{
+			//TODO: This apparently has some issues at the poles
+			var minLongitude = vertices.Min(vertex => vertex.X);
+			var maxLongitude = vertices.Max(vertex => vertex.X);
+			var longitudeRange = maxLongitude - minLongitude;
+			return longitudeRange > Trigonometry.EighthDegreesCount / 2 ?
+				(maxLongitude + Trigonometry.EighthDegreesCount - longitudeRange) % Trigonometry.EighthDegreesCount :
+				minLongitude + longitudeRange / 2;
+		}
+
 		private static IEnumerable<Terrain> LoadTerrain(int offset)
 		{
 			var vertices = Enumerable.Range(0, coordinateCount)
@@ -30,17 +74,9 @@ namespace XCom.World
 				.OfType<Point>()
 				.ToArray();
 			var terrainType = (TerrainType)BitConverter.ToInt32(WorldResources.Landscape, offset + coordinateRecordSize * coordinateCount);
-			yield return new Terrain
-			{
-				Vertices = new[] { vertices[0], vertices[1], vertices[2] },
-				TerrainType = terrainType
-			};
+			yield return Create(terrainType, vertices[0], vertices[1], vertices[2]);
 			if (vertices.Length == 4)
-				yield return new Terrain
-				{
-					Vertices = new[] { vertices[0], vertices[2], vertices[3] },
-					TerrainType = terrainType
-				};
+				yield return Create(terrainType, vertices[0], vertices[2], vertices[3]);
 		}
 
 		private static Point? LoadVertex(int offset)
