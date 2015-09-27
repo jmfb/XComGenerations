@@ -47,6 +47,8 @@ namespace XCom.Data
 			}
 		}
 		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess
+		public string Weapon1Name => Weapons.Count >= 1 ? Weapons[0].WeaponType.Metadata().Name : "NONE";
+		public string Weapon2Name => Weapons.Count == 2 ? Weapons[1].WeaponType.Metadata().Name : "NONE";
 
 		public static Craft CreateRefueled(CraftType craftType, int number)
 		{
@@ -148,7 +150,7 @@ namespace XCom.Data
 			return waypoint;
 		}
 
-		private Waypoint RemoveWaypoint()
+		public Waypoint RemoveWaypoint()
 		{
 			return Destination?.WorldObjectType == WorldObjectType.Waypoint ?
 				GameState.Current.Data.RemoveWaypoint(Destination.Number) :

@@ -22,10 +22,10 @@ namespace XCom.World
 			AddControl(new LabeledValue(68, 32, "MAXIMUM SPEED>", craft.CraftType.Metadata().Speed.FormatNumber(), Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
 			AddControl(new LabeledValue(76, 32, "ALTITUDE>", craft.Altitude, Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
 			AddControl(new LabeledValue(84, 32, "FUEL>", craft.FuelPercent.FormatPercent(), Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
-			AddControl(new LabeledValue(92, 32, "WEAPON-1>", craft.Weapons.Count >= 1 ? craft.Weapons[0].WeaponType.Metadata().Name : "NONE", Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
+			AddControl(new LabeledValue(92, 32, "WEAPON-1>", craft.Weapon1Name, Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
 			if (craft.Weapons.Count >= 1)
 				AddControl(new LabeledValue(92, 164, "ROUNDS>", craft.Weapons[0].Ammunition.FormatNumber(), Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
-			AddControl(new LabeledValue(100, 32, "WEAPON-2>", craft.Weapons.Count == 2 ? craft.Weapons[1].WeaponType.Metadata().Name : "NONE", Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
+			AddControl(new LabeledValue(100, 32, "WEAPON-2>", craft.Weapon2Name, Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
 			if (craft.Weapons.Count == 2)
 				AddControl(new LabeledValue(100, 164, "ROUNDS>", craft.Weapons[1].Ammunition.FormatNumber(), Font.Normal, ColorScheme.Green, ColorScheme.Aqua));
 			AddControl(new Button(116, 32, 192, 12, "RETURN TO BASE", ColorScheme.Aqua, Font.Normal, OnReturnToBase));
@@ -36,18 +36,22 @@ namespace XCom.World
 
 		private void OnReturnToBase()
 		{
-			craft.StartToReturnToBase();
+			if (!craft.LowFuel)
+				craft.StartToReturnToBase();
 			EndModal();
 		}
 
 		private void OnSelectNewTarget()
 		{
-			//TODO: select new target
+			EndModal();
+			if (!craft.LowFuel)
+				GameState.Current.SetScreen(new SelectDestination(craft));
 		}
 
 		private void OnPatrol()
 		{
-			craft.Patrol();
+			if (!craft.LowFuel)
+				craft.Patrol();
 			EndModal();
 		}
 	}

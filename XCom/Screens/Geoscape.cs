@@ -100,16 +100,9 @@ namespace XCom.Screens
 		private void OnClick(Location location)
 		{
 			var data = GameState.Current.Data;
-			var bases = data.Bases
-				.Where(@base => Trigonometry.HitTestCoordinate(@base.Location, location))
-				.ToList();
-			var waypoints = data.Waypoints
-				.Where(waypoint => Trigonometry.HitTestCoordinate(waypoint.Location, location))
-				.ToList();
-			var crafts = data.ActiveInterceptors
-				.Where(craft => Trigonometry.HitTestCoordinate(craft.Location, location))
-				.ToList();
-
+			var bases = data.Bases.Where(@base => Trigonometry.HitTestCoordinate(@base.Location, location));
+			var waypoints = data.Waypoints.Where(waypoint => Trigonometry.HitTestCoordinate(waypoint.Location, location));
+			var crafts = data.ActiveInterceptors.Where(craft => Trigonometry.HitTestCoordinate(craft.Location, location));
 			var worldObjects = bases.Cast<object>()
 				.Concat(waypoints)
 				.Concat(crafts)
@@ -117,8 +110,14 @@ namespace XCom.Screens
 			if (!worldObjects.Any())
 				return;
 			if (worldObjects.Count > 1)
-				throw new NotImplementedException();
-			SelectWorldObject((dynamic)worldObjects[0]);
+				new SelectWorldObject(worldObjects, OnSelectWorldObject).DoModal(this);
+			else
+				OnSelectWorldObject(worldObjects[0]);
+		}
+
+		private void OnSelectWorldObject(object worldObject)
+		{
+			SelectWorldObject((dynamic)worldObject);
 		}
 
 		private void SelectWorldObject(Data.Base @base)
