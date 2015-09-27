@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
@@ -103,9 +102,11 @@ namespace XCom.Screens
 			var bases = data.Bases.Where(@base => Trigonometry.HitTestCoordinate(@base.Location, location));
 			var waypoints = data.Waypoints.Where(waypoint => Trigonometry.HitTestCoordinate(waypoint.Location, location));
 			var crafts = data.ActiveInterceptors.Where(craft => Trigonometry.HitTestCoordinate(craft.Location, location));
+			var ufos = data.VisibleUfos.Where(ufo => Trigonometry.HitTestCoordinate(ufo.Location, location));
 			var worldObjects = bases.Cast<object>()
 				.Concat(waypoints)
 				.Concat(crafts)
+				.Concat(ufos)
 				.ToList();
 			if (!worldObjects.Any())
 				return;
@@ -133,6 +134,11 @@ namespace XCom.Screens
 		private void SelectWorldObject(Craft craft)
 		{
 			new RedirectCraft(craft).DoModal(this);
+		}
+
+		private void SelectWorldObject(Ufo ufo)
+		{
+			new UfoDetected(ufo).DoModal(this);
 		}
 	}
 }

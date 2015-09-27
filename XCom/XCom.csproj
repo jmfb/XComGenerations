@@ -326,6 +326,7 @@
     <Compile Include="Screens\Soldiers.cs" />
     <Compile Include="Screens\SoldierView.cs" />
     <Compile Include="Screens\Transfer.cs" />
+    <Compile Include="World\AlienMissionType.cs" />
     <Compile Include="World\ConfirmDestination.cs" />
     <Compile Include="World\Destination.cs" />
     <Compile Include="World\LaunchInterception.cs" />
@@ -343,6 +344,10 @@
     <Compile Include="World\TerrainMetadata.cs" />
     <Compile Include="World\TerrainType.cs" />
     <Compile Include="World\Trigonometry.cs" />
+    <Compile Include="World\Ufo.cs" />
+    <Compile Include="World\UfoDetected.cs" />
+    <Compile Include="World\UfoFactory.cs" />
+    <Compile Include="World\UfoStatus.cs" />
     <Compile Include="World\ViewWaypoint.cs" />
     <Compile Include="World\Waypoint.cs" />
     <Compile Include="World\WorldControls.cs" />

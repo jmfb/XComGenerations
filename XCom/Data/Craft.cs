@@ -39,11 +39,18 @@ namespace XCom.Data
 			{
 				if (IsPatrolling)
 					return "PATROLLING";
-				if (Destination.WorldObjectType == WorldObjectType.XcomBase)
+				switch (Destination.WorldObjectType)
+				{
+				case WorldObjectType.XcomBase:
 					return LowFuel ?
 						"LOW FUEL - RETURNING TO BASE" :
 						"RETURNING TO BASE";
-				return $"DESTINATION: {Destination.Name}";
+				case WorldObjectType.Ufo:
+				case WorldObjectType.LandingSite:
+					return $"INTERCEPTING {Destination.Name}";
+				default:
+					return $"DESTINATION: {Destination.Name}";
+				}
 			}
 		}
 		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess

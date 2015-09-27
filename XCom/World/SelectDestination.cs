@@ -1,4 +1,5 @@
-﻿using XCom.Content.Backgrounds;
+﻿using System.Linq;
+using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
@@ -28,14 +29,53 @@ namespace XCom.World
 
 		private void OnChooseDestination(Location location)
 		{
-			//TODO: Hit test for intereption, landed ufo, crash site, terror site, alien base.  Otherwise waypoint.
-			//TODO: If multiple results, show popup for choice
-			new ConfirmDestination(craft, location).DoModal(this);
+			//TODO: hit test for terror sites and alien bases
+			var ufos = GameState.Current.Data.VisibleUfos.Where(ufo => Trigonometry.HitTestCoordinate(ufo.Location, location)).ToList();
+			if (!ufos.Any())
+				new ConfirmDestination("WAY POINT", () => SelectWaypoint(location)).DoModal(this);
+			else if (ufos.Count == 1)
+				new ConfirmDestination(ufos[0].Name, () => SelectUfo(ufos[0])).DoModal(this);
+			else
+			{
+				var selector = new SelectWorldObject(
+					ufos.Cast<object>().ToList(),
+					ufo => new ConfirmDestination(((Ufo)ufo).Name, () => SelectUfo((Ufo)ufo)).DoModal(this));
+				selector.DoModal(this);
+			}
 		}
 
 		private static void OnCancel()
 		{
 			GameState.Current.SetScreen(Geoscape);
+		}
+
+		private void SelectUfo(Ufo ufo)
+		{
+			SelectWorldObject(ufo.WorldObjectType, ufo.Number);
+		}
+
+		private void SelectWaypoint(Location location)
+		{
+			SelectWorldObject(WorldObjectType.Waypoint, GameState.Current.Data.CreateWaypoint(location));
+		}
+
+		private void SelectWorldObject(WorldObjectType worldObjectType, int number)
+		{
+			if (craft.Status == CraftStatus.Ready)
+			{
+				craft.Status = CraftStatus.Out;
+				craft.Location = craft.Base.Location;
+			}
+			else
+			{
+				craft.RemoveWaypoint();
+			}
+			craft.IsPatrolling = false;
+			craft.Destination = new Destination
+			{
+				WorldObjectType = worldObjectType,
+				Number = number
+			};
 		}
 	}
 }

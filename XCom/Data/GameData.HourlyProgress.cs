@@ -16,6 +16,7 @@ namespace XCom.Data
 			RearmCrafts();
 			RefuelCrafts();
 			RepairCrafts();
+			CreateUfos();
 		}
 
 		private static void PerformBiHourlyUpdates()
@@ -30,6 +31,7 @@ namespace XCom.Data
 
 		private static void PerformInstantaneousUpdates(long milliseconds)
 		{
+			MoveUfos(milliseconds);
 			MoveCrafts(milliseconds);
 		}
 
@@ -280,6 +282,20 @@ namespace XCom.Data
 			});
 		}
 
+		private static void CreateUfos()
+		{
+			var ufo = GameState.Current.Data.UfoFactory.TryCreate();
+			if (ufo == null)
+				return;
+			//TODO: do not automatically detect all ufos
+			ufo.IsDetected = true;
+			ufo.NotifiedDetection = true;
+			GameState.Current.Notifications.Enqueue(() =>
+			{
+				new UfoDetected(ufo).DoModal(GameState.Current.ActiveScreen);
+			});
+		}
+
 		private static void ConsumeFuel()
 		{
 			foreach (var craft in GameState.Current.Data.ActiveInterceptors)
@@ -311,6 +327,27 @@ namespace XCom.Data
 			});
 		}
 
+		private static void MoveUfos(long milliseconds)
+		{
+			var movingUfos = GameState.Current.Data.VisibleUfos
+				.Where(ufo => ufo.Status == UfoStatus.Flying);
+			foreach (var ufo in movingUfos)
+			{
+				ufo.Accelerate(milliseconds);
+				var distance = ufo.Distance(milliseconds);
+				if (distance == 0)
+					continue;
+				ufo.Location = Trigonometry.MoveLocation(ufo.Location, ufo.Destination, distance);
+				if (ufo.Location.Is(ufo.Destination))
+				{
+					//TODO: potentially more logic once ufo reaches waypoint
+					ufo.Status = UfoStatus.Landed;
+					ufo.Speed = 0;
+					ufo.DistanceError = 0;
+				}
+			}
+		}
+
 		private static void MoveCrafts(long milliseconds)
 		{
 			var movingCrafts = GameState.Current.Data.ActiveInterceptors.Where(craft => !craft.IsPatrolling);
@@ -339,6 +376,13 @@ namespace XCom.Data
 				{
 					new ReachedWaypoint(craft, waypoint).DoModal(GameState.Current.ActiveScreen);
 				});
+				break;
+			case WorldObjectType.Ufo:
+				//TODO: check if interceptor has weapons, engage enemy
+				break;
+			case WorldObjectType.LandingSite:
+			case WorldObjectType.CrashSite:
+				//TODO: check if interceptor has crew/hwps, prompt for landing site (otherwise return to base)
 				break;
 			default:
 				throw new NotImplementedException();

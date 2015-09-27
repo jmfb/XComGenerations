@@ -136,8 +136,7 @@ namespace XCom.World
 			var location = Trigonometry.ScreenToLocation(row, column);
 			if (location == null)
 				return;
-			LongitudeOffset = Trigonometry.AddEighthDegrees(-location.Longitude, 0);
-			Pitch = Trigonometry.AddEighthDegrees(location.Latitude, 0);
+			GameState.Current.Data.CenterOn(location);
 			Initialize();
 		}
 
@@ -176,11 +175,24 @@ namespace XCom.World
 			GetVisibleWorldObjects(GameState.Current.Data.Waypoints, waypoint => waypoint.Location, WorldObjectType.Waypoint);
 		private static IEnumerable<WorldObject> VisibleInterceptors =>
 			GetVisibleWorldObjects(GameState.Current.Data.ActiveInterceptors, interceptor => interceptor.Location, WorldObjectType.Interceptor);
+		private static IEnumerable<WorldObject> VisibleUfos =>
+			GetVisibleWorldObjects(FlyingUfos, ufo => ufo.Location, WorldObjectType.Ufo);
+		private static IEnumerable<WorldObject> VisibleLandingSites =>
+			GetVisibleWorldObjects(LandingSites, ufo => ufo.Location, WorldObjectType.LandingSite);
+		private static IEnumerable<WorldObject> VisibleCrashSites =>
+			GetVisibleWorldObjects(CrashSites, ufo => ufo.Location, WorldObjectType.CrashSite);
+
+		private static IEnumerable<Ufo> FlyingUfos => GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Flying);
+		private static IEnumerable<Ufo> LandingSites => GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Landed);
+		private static IEnumerable<Ufo> CrashSites => GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Crashed);
 
 		private static IEnumerable<WorldObject> VisibleWorldObjects =>
 			VisibleXcomBases
 			.Concat(VisibleWaypoints)
-			.Concat(VisibleInterceptors);
+			.Concat(VisibleInterceptors)
+			.Concat(VisibleUfos)
+			.Concat(VisibleLandingSites)
+			.Concat(VisibleCrashSites);
 
 		private void DrawWorldObjects(GraphicsBuffer buffer)
 		{

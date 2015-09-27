@@ -29,6 +29,9 @@ namespace XCom.Data
 		public int Zoom { get; set; }
 		public int NextWaypointNumber { get; set; }
 		public List<Waypoint> Waypoints { get; set; }
+		public int NextUfoNumber { get; set; }
+		public List<Ufo> Ufos { get; set; }
+		public UfoFactory UfoFactory { get; set; }
 
 		public int TotalFunding => Countries.Sum(country => country.Funding);
 		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
@@ -61,6 +64,7 @@ namespace XCom.Data
 		}
 
 		public IEnumerable<Craft> ActiveInterceptors => Bases.SelectMany(@base => @base.ActiveInterceptors);
+		public IEnumerable<Ufo> VisibleUfos => Ufos.Where(ufo => ufo.IsDetected);
 
 		public static GameData Create(int difficulty)
 		{
@@ -81,7 +85,10 @@ namespace XCom.Data
 				CompletedResearch = new List<ResearchType>(),
 				Countries = EnumEx.GetValues<CountryType>().Select(Country.Create).ToList(),
 				NextWaypointNumber = 1,
-				Waypoints = new List<Waypoint>()
+				Waypoints = new List<Waypoint>(),
+				NextUfoNumber = 1,
+				Ufos = new List<Ufo>(),
+				UfoFactory = new UfoFactory()
 			};
 		}
 
@@ -149,6 +156,12 @@ namespace XCom.Data
 				.AddMinutes(-(gameTime.Minute % 10))
 				.AddSeconds(-gameTime.Second)
 				.AddMilliseconds(-gameTime.Millisecond);
+		}
+
+		public void CenterOn(Location location)
+		{
+			LongitudeOffset = Trigonometry.AddEighthDegrees(-location.Longitude, 0);
+			Pitch = Trigonometry.AddEighthDegrees(location.Latitude, 0);
 		}
 	}
 }

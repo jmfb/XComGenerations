@@ -20,7 +20,7 @@ namespace XCom.World
 				const int secondsPerEighthDegree = secondsInDay / Trigonometry.EighthDegreesCount;
 				const int secondsPerShade = 450;
 				var secondOfDay = (int)GameState.Current.Data.Time.TimeOfDay.TotalSeconds;
-				var localSecondOfDay = (secondOfDay - Longitude * secondsPerEighthDegree + secondsInDay) % secondsInDay;
+				var localSecondOfDay = (Longitude * secondsPerEighthDegree + secondsInDay + secondOfDay) % secondsInDay;
 				var shadeIndex = localSecondOfDay / secondsPerShade;
 				if (shadeIndex < 44)
 					return 8;
