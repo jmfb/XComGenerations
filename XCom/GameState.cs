@@ -23,8 +23,6 @@ namespace XCom
 		private GameState()
 		{
 			Dispatcher = new InteractiveDispatcher();
-			SetScreen(new MainMenu());
-
 			var seed = DateTime.Now.Ticks.GetHashCode();
 			Random = new Random(seed);
 		}

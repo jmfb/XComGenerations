@@ -58,6 +58,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Content\Backgrounds\Backgrounds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,6 +103,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Items.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Movies\Movies.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Movies.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\Overlays\Overlays.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -152,6 +158,7 @@
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\LabeledValue.cs" />
     <Compile Include="Controls\ListView.cs" />
+    <Compile Include="Controls\MoviePlayer.cs" />
     <Compile Include="Controls\Overlay.cs" />
     <Compile Include="Controls\Picture.cs" />
     <Compile Include="Controls\UfoPreview.cs" />
@@ -248,6 +255,14 @@
     <Compile Include="Graphics\Drawable.cs" />
     <Compile Include="Graphics\GraphicsBuffer.cs" />
     <Compile Include="Graphics\Image.cs" />
+    <Compile Include="Graphics\Movie.cs" />
+    <Compile Include="Graphics\MovieFrame.cs" />
+    <Compile Include="Graphics\MovieFrameHeader.cs" />
+    <Compile Include="Graphics\MovieHeader.cs" />
+    <Compile Include="Graphics\MovieSubframeByteRun.cs" />
+    <Compile Include="Graphics\MovieSubframeColor64.cs" />
+    <Compile Include="Graphics\MovieSubframeDelta.cs" />
+    <Compile Include="Graphics\MovieSubframeHeader.cs" />
     <Compile Include="Graphics\Palette.cs" />
     <Compile Include="Graphics\Pointer.cs" />
     <Compile Include="Int32Extensions.cs" />
@@ -309,6 +324,7 @@
     <Compile Include="Screens\Funding.cs" />
     <Compile Include="Screens\Geoscape.cs" />
     <Compile Include="Screens\Information.cs" />
+    <Compile Include="Screens\MovieScreen.cs" />
     <Compile Include="Screens\TopicView.cs" />
     <Compile Include="Screens\TopicList.cs" />
     <Compile Include="Screens\LoadGame.cs" />
@@ -391,6 +407,10 @@
     <EmbeddedResource Include="Content\Items\Items.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Items.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Movies\Movies.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Movies.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\Overlays\Overlays.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -550,6 +570,7 @@
     <None Include="Content\Items\TankCannonTurret.bin" />
     <None Include="Content\Items\TankLaserTurret.bin" />
     <None Include="Content\Items\TankRocketLauncherTurret.bin" />
+    <None Include="Content\Movies\Introduction.bin" />
     <None Include="Content\Overlays\AlienAlloys.bin" />
     <None Include="Content\Overlays\AlienEntertainment.bin" />
     <None Include="Content\Overlays\AlienFood.bin" />
