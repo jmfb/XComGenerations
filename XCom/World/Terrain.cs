@@ -34,6 +34,11 @@ namespace XCom.World
 			}
 		}
 
+		private bool HitTest(Location location)
+		{
+			return Trigonometry.IsLocationInTriangle(location, Vertices);
+		}
+
 		private const int coordinateRecordSize = sizeof(short) * 2;
 		private const int coordinateCount = 4;
 		private const int terrainRecordSize = coordinateRecordSize * coordinateCount + sizeof(int);
@@ -93,5 +98,6 @@ namespace XCom.World
 		}
 
 		public static readonly List<Terrain> Landscape = LoadLandscape();
+		public static bool IsOnLand(Location location) => Landscape.Any(terrain => terrain.HitTest(location));
 	}
 }

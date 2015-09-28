@@ -26,8 +26,8 @@ namespace XCom.Screens
 
 		private void OnChooseLocation(Location location)
 		{
-			//TODO: validate there is terrain at location (you cannot build a base on water...or can you?)
-			new NewBaseLocation(location).DoModal(this);
+			if (Terrain.IsOnLand(location))
+				new NewBaseLocation(location).DoModal(this);
 		}
 
 		private static void OnCancel()

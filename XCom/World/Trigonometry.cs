@@ -609,5 +609,20 @@ namespace XCom.World
 				Latitude = (int)latitude
 			};
 		}
+
+		private static bool DetermineHalfPlane(Location location, Point point1, Point point2)
+		{
+			var product1 = (location.Longitude - point2.X) * (point1.Y - point2.Y);
+			var product2 = (point1.X - point2.X) * (location.Latitude - point2.Y);
+			return product1 < product2;
+		}
+
+		public static bool IsLocationInTriangle(Location location, Point[] vertices)
+		{
+			var halfPlane1 = DetermineHalfPlane(location, vertices[0], vertices[1]);
+			var halfPlane2 = DetermineHalfPlane(location, vertices[1], vertices[2]);
+			var halfPlane3 = DetermineHalfPlane(location, vertices[2], vertices[0]);
+			return halfPlane1 == halfPlane2 && halfPlane2 == halfPlane3;
+		}
 	}
 }

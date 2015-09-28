@@ -13,9 +13,9 @@ namespace XCom.Controls
 		private readonly string text;
 		private readonly ColorScheme scheme;
 		private readonly Font font;
-		protected Action Action { get; private set; }
+		protected Action Action { get; }
 		protected bool Pushed { get; set; }
-		public bool Visible { get; set; }
+		public bool Visible { protected get; set; }
 
 		public Button(
 			int topRow,
@@ -75,18 +75,11 @@ namespace XCom.Controls
 				column < (leftColumn + width);
 		}
 
-		public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton)
-		{
-			if (!Pushed && leftButton)
-				OnLeftButtonDown(row, column);
-		}
-
 		public override void OnLeftButtonDown(int row, int column)
 		{
 			if (Pushed)
 				return;
 			Pushed = true;
-			//TODO: hide cursor
 			GameState.Current.Dispatcher.CaptureFocus(this);
 		}
 
@@ -95,7 +88,6 @@ namespace XCom.Controls
 			if (!Pushed)
 				return;
 			Pushed = false;
-			//TODO: show cursor
 			GameState.Current.Dispatcher.ReleaseFocus();
 			Action();
 		}
