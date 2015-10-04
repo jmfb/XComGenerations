@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 using XCom.World;
 
 namespace XCom.Data
@@ -45,14 +46,21 @@ namespace XCom.Data
 			};
 		}
 
+		[ScriptIgnore]
 		public string Area => Region.Metadata().Name;
 
+		[ScriptIgnore]
 		private int TransferredEngineerCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Engineer)?.Item.Count ?? 0;
+		[ScriptIgnore]
 		private int TransferredScientistCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Scientist)?.Item.Count ?? 0;
 
+		[ScriptIgnore]
 		public int TotalSoldierCount => Soldiers.Count + TransferredSoldiers.Count;
+		[ScriptIgnore]
 		public int TotalEngineerCount => EngineerCount + TransferredEngineerCount;
+		[ScriptIgnore]
 		public int TotalScientistCount => ScientistCount + TransferredScientistCount;
+		[ScriptIgnore]
 		public int PersonnelCount => TotalSoldierCount + TotalEngineerCount + TotalScientistCount;
 
 		public int CountFacilities(FacilityType facilityType)
@@ -67,8 +75,11 @@ namespace XCom.Data
 			return Crafts.Count(craft => craft.CraftType == craftType) +
 				TransferredCrafts.Count(craft => craft.Item.CraftType == craftType);
 		}
+		[ScriptIgnore]
 		public int TotalSkyrangerCount => CountCrafts(CraftType.Skyranger);
+		[ScriptIgnore]
 		public int TotalInterceptorCount => CountCrafts(CraftType.Interceptor);
+		[ScriptIgnore]
 		public IEnumerable<Craft> ActiveInterceptors => Crafts.Where(craft => craft.Status == CraftStatus.Out);
 
 		private static int GetMonthlyCost(ItemType itemType, int count) => itemType.Metadata().MonthlyCost * count;
@@ -78,10 +89,12 @@ namespace XCom.Data
 		private int MonthlyEngineerCost => GetMonthlyCost(ItemType.Engineer, TotalEngineerCount);
 		private int MonthlyScientistCost => GetMonthlyCost(ItemType.Scientist, TotalScientistCount);
 
+		[ScriptIgnore]
 		public int TotalMaintenance => Facilities
 			.Where(facility => facility.DaysUntilConstructionComplete == 0)
 			.Sum(facility => facility.FacilityType.Metadata().Maintenance);
 
+		[ScriptIgnore]
 		public int TotalMonthlyCost =>
 			MonthlySkyrangerCost +
 			MonthlyInterceptorCost +
@@ -90,40 +103,56 @@ namespace XCom.Data
 			MonthlyScientistCost +
 			TotalMaintenance;
 
+		[ScriptIgnore]
 		public int TotalStorageSpace => CountFacilities(FacilityType.GeneralStores) * 50;
 		private int TotalItemSpace => TotalStorageSpace * 100;
 
 		private int TransferredItemSpaceRequired => TransferredStores.Sum(transfer => transfer.Item.TotalItemSpaceRequired);
 		private int TotalItemSpaceRequired => Stores.TotalItemSpaceRequired + TransferredItemSpaceRequired;
+		[ScriptIgnore]
 		public int TotalSpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 		private int StorageSpaceAvailable => TotalStorageSpace - TotalSpaceUsed;
+		[ScriptIgnore]
 		public int ItemSpaceAvailable => TotalItemSpace - TotalItemSpaceRequired;
 
+		[ScriptIgnore]
 		public int TotalLivingSpace => CountFacilities(FacilityType.LivingQuarters) * 50;
 
+		[ScriptIgnore]
 		public int LivingSpaceAvailable => TotalLivingSpace - PersonnelCount;
 
+		[ScriptIgnore]
 		public int TotalLaboratorySpace => CountFacilities(FacilityType.Laboratory) * 50;
 
+		[ScriptIgnore]
 		public int ScientistsAllocated => ResearchProjects.Sum(research => research.ScientistsAllocated);
 
+		[ScriptIgnore]
 		public int ScientistsAvailable => ScientistCount - ScientistsAllocated;
 
+		[ScriptIgnore]
 		public int LaboratorySpaceAvailable => TotalLaboratorySpace - ScientistsAllocated;
 
+		[ScriptIgnore]
 		public int TotalWorkshopSpace => CountFacilities(FacilityType.Workshop) * 50;
 
+		[ScriptIgnore]
 		public int EngineersAllocated => ManufactureProjects.Sum(project => project.EngineersAllocated);
 
+		[ScriptIgnore]
 		public int EngineersAvailable => EngineerCount - EngineersAllocated;
 
 		private int WorkshopSpaceUsed => ManufactureProjects.Sum(project => project.ManufactureType.Metadata().SpaceRequired);
 
+		[ScriptIgnore]
 		public int WorkshopSpaceAvailable => TotalWorkshopSpace - EngineersAllocated - WorkshopSpaceUsed;
 
+		[ScriptIgnore]
 		public int TotalHangarSpace => CountFacilities(FacilityType.Hangar);
 
+		[ScriptIgnore]
 		public int TotalCraftCount => Crafts.Count + TransferredCrafts.Count + CraftUnderConstruction;
+		[ScriptIgnore]
 		public int HangarSpaceAvailable => TotalHangarSpace - TotalCraftCount;
 
 		private static IEnumerable<ResearchType> AllResearchProjects => EnumEx.GetValues<ResearchType>();
@@ -131,6 +160,7 @@ namespace XCom.Data
 		private static IEnumerable<ResearchType> ExhaustedResearch => GameState.Current.Data.CompletedResearch
 			.Where(research => research.Metadata().IsExhausted(GameState.Current.Data.CompletedResearch));
 		private IEnumerable<ResearchType> RemainingResearchProjects => AllResearchProjects.Except(ExhaustedResearch).Except(ActiveResearchProjects);
+		[ScriptIgnore]
 		public List<ResearchType> AvailableResearchProjects => RemainingResearchProjects
 			.Where(research => research.Metadata().IsRequiredResearchCompleted(GameState.Current.Data.CompletedResearch))
 			.Where(research => research.Metadata().AreRequiredItemsInStores(Stores))
@@ -139,12 +169,15 @@ namespace XCom.Data
 		private static IEnumerable<ManufactureType> AllManufactureProjects => EnumEx.GetValues<ManufactureType>();
 		private IEnumerable<ManufactureType> ActiveManufactureProjects => ManufactureProjects.Select(project => project.ManufactureType);
 		private IEnumerable<ManufactureType> RemainingManufactureProjects => AllManufactureProjects.Except(ActiveManufactureProjects);
+		[ScriptIgnore]
 		public List<ManufactureType> AvailableManufactureProjects => RemainingManufactureProjects
 			.Where(project => project.Metadata().IsRequiredResearchCompleted(GameState.Current.Data.CompletedResearch))
 			.ToList();
 
+		[ScriptIgnore]
 		public bool HasAlienContainment => CountFacilities(FacilityType.AlienContainment) > 0;
 
+		[ScriptIgnore]
 		public int TotalDefenseValue => Facilities
 			.Where(facility => facility.DaysUntilConstructionComplete == 0)
 			.Sum(facility => facility.FacilityType.Metadata().DefenseValue);

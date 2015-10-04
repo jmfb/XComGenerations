@@ -15,7 +15,7 @@ namespace XCom.Graphics
 		private readonly byte[,] image = new byte[200, 320];
 		private int frameIndex;
 		private readonly Stopwatch stopwatch = new Stopwatch();
-		private int FrameSpeedInMilliseconds => (int)header.Speed * 100 / 7;
+		private int FrameSpeedInMilliseconds => (int)header.Speed * 20;
 
 		public Movie(byte[] data)
 		{
@@ -64,15 +64,20 @@ namespace XCom.Graphics
 			}
 		}
 
-		public bool IsOver => frameIndex >= frames.Count && stopwatch.ElapsedMilliseconds >= 5000;
+		private int MovieDuration => FrameSpeedInMilliseconds * frames.Count + 5000;
+		public bool IsOver => stopwatch.ElapsedMilliseconds >= MovieDuration;
 
 		public void OnIdle()
 		{
-			if (frameIndex >= frames.Count || stopwatch.ElapsedMilliseconds < FrameSpeedInMilliseconds)
+			var nextFrameIndex = stopwatch.ElapsedMilliseconds / FrameSpeedInMilliseconds;
+			if (nextFrameIndex == frameIndex)
 				return;
-			stopwatch.Restart();
-			++frameIndex;
-			ApplyFrame();
+			do
+			{
+				++frameIndex;
+				ApplyFrame();
+			}
+			while (frameIndex < nextFrameIndex);
 		}
 
 		private void ApplyFrame()

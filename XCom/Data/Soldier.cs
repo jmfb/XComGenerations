@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace XCom.Data
 {
@@ -17,9 +18,13 @@ namespace XCom.Data
 		public SoldierStatistics OriginalStatistics { get; set; }
 		public SoldierStatistics Statistics { get; set; }
 
+		[ScriptIgnore]
 		public Craft Craft => GameState.SelectedBase.Crafts.FirstOrDefault(craft => craft.SoldierIds.Contains(Id));
+		[ScriptIgnore]
 		public string CraftName => IsWounded ? "WOUNDED" : Craft?.Name ?? "NONE";
+		[ScriptIgnore]
 		public string ArmorName => Armor?.Metadata().Name ?? "NONE";
+		[ScriptIgnore]
 		public bool IsWounded => DaysUntilRecovered > 0;
 
 		public static Soldier Create(int id)

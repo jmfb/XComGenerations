@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Script.Serialization;
 using XCom.Data;
 
 namespace XCom.World
@@ -39,9 +40,13 @@ namespace XCom.World
 			return ufo;
 		}
 
+		[ScriptIgnore]
 		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess
+		[ScriptIgnore]
 		public string Heading => "NORTH WEST";
+		[ScriptIgnore]
 		public string Name => $"UFO-{Number}";
+		[ScriptIgnore]
 		public WorldObjectType WorldObjectType =>
 			Status == UfoStatus.Flying ? WorldObjectType.Ufo :
 			Status == UfoStatus.Landed ? WorldObjectType.LandingSite :

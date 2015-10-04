@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace XCom.Data
+﻿namespace XCom.Data
 {
 	public class SoldierStatistics
 	{

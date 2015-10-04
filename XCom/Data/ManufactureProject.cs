@@ -1,4 +1,6 @@
-﻿namespace XCom.Data
+﻿using System.Web.Script.Serialization;
+
+namespace XCom.Data
 {
 	public class ManufactureProject
 	{
@@ -7,11 +9,13 @@
 		public int UnitsToProduce { get; set; }
 		public int UnitsProduced { get; set; }
 		public int HoursCompleted { get; set; }
+
 		private int HoursToComplete => UnitsToProduce * ManufactureType.Metadata().HoursToProduce;
 		private int TotalHoursRemaining => HoursToComplete > HoursCompleted ? HoursToComplete - HoursCompleted : 0;
 		private int EffectiveHoursRemaining => EngineersAllocated == 0 ? 0 : TotalHoursRemaining / EngineersAllocated;
 		private int DaysRemaining => EffectiveHoursRemaining / 24;
 		private int HoursRemaining => EffectiveHoursRemaining % 24;
+		[ScriptIgnore]
 		public string TimeRemaining => EngineersAllocated == 0 ? "-" :  $"{DaysRemaining.FormatNumber()}\t/{HoursRemaining.FormatNumber()}";
 
 		private bool ValidateRequiredFunds()

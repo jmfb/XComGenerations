@@ -1,10 +1,13 @@
-﻿namespace XCom.Data
+﻿using System.Web.Script.Serialization;
+
+namespace XCom.Data
 {
 	public class CraftWeapon
 	{
 		public CraftWeaponType WeaponType { get; set; }
 		public int Ammunition { get; set; }
 
+		[ScriptIgnore]
 		public bool IsFullyArmed => Ammunition == WeaponType.Metadata().Ammunition;
 
 		public static CraftWeapon CreateLoaded(CraftWeaponType weaponType)

@@ -50,7 +50,6 @@ namespace XCom.Modals
 			if (name == "Research") //TODO: remove research hack
 				data.CompletedResearch = EnumEx.GetValues<ResearchType>().ToList();
 			var originalBase = data.Bases.Count == 0;
-			if (originalBase)
 				InitializeOriginalBase(newBase);
 			data.Bases.Add(newBase);
 			data.SelectedBase = data.Bases.Count - 1;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 using XCom.World;
 
 namespace XCom.Data
@@ -33,11 +34,14 @@ namespace XCom.Data
 		public List<Ufo> Ufos { get; set; }
 		public UfoFactory UfoFactory { get; set; }
 
+		[ScriptIgnore]
 		public int TotalFunding => Countries.Sum(country => country.Funding);
+		[ScriptIgnore]
 		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
 
 		private static IEnumerable<FacilityType> AllFacilityTypes => EnumEx.GetValues<FacilityType>();
 		private static IEnumerable<FacilityType> BuildableFacilityTypes => AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
+		[ScriptIgnore]
 		public List<FacilityType> AvailableFacilityTypes => BuildableFacilityTypes
 			.Where(facilityType => facilityType.Metadata().IsRequiredResearchCompleted(CompletedResearch))
 			.ToList();
@@ -63,7 +67,9 @@ namespace XCom.Data
 			return AvailableTopics.Where(topic => topic.Metadata().Category == category).ToList();
 		}
 
+		[ScriptIgnore]
 		public IEnumerable<Craft> ActiveInterceptors => Bases.SelectMany(@base => @base.ActiveInterceptors);
+		[ScriptIgnore]
 		public IEnumerable<Ufo> VisibleUfos => Ufos.Where(ufo => ufo.IsDetected);
 
 		public static GameData Create(int difficulty)

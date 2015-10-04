@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 using XCom.World;
 
 namespace XCom.Data
@@ -23,16 +24,26 @@ namespace XCom.Data
 		public double Speed { get; set; }
 		public double DistanceError { get; set; }
 
+		[ScriptIgnore]
 		public string Name => $"{CraftType.Metadata().Name}-{Number}";
+		[ScriptIgnore]
 		public int FuelPercent => Fuel * 100 / CraftType.Metadata().Fuel;
+		[ScriptIgnore]
 		public int DamagePercent => Damage * 100 / CraftType.Metadata().Damage;
+		[ScriptIgnore]
 		public int TotalItemCount => Stores.Items.Where(item => item.ItemType.Metadata().HwpSpace == 0).Sum(item => item.Count);
+		[ScriptIgnore]
 		public int TotalHwpCount => Stores.Items.Where(item => item.ItemType.Metadata().HwpSpace > 0).Sum(item => item.Count);
+		[ScriptIgnore]
 		public int SpaceUsed => SoldierIds.Count + TotalHwpCount * 4;
+		[ScriptIgnore]
 		public int SpaceAvailable => CraftType.Metadata().Space - SpaceUsed;
+		[ScriptIgnore]
 		public int HwpSpaceAvailable => CraftType.Metadata().HwpCount - TotalHwpCount;
 
+		[ScriptIgnore]
 		public Base Base => GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
+		[ScriptIgnore]
 		public string MissionStatus
 		{
 			get
@@ -53,8 +64,11 @@ namespace XCom.Data
 				}
 			}
 		}
+		[ScriptIgnore]
 		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess
+		[ScriptIgnore]
 		public string Weapon1Name => Weapons.Count >= 1 ? Weapons[0].WeaponType.Metadata().Name : "NONE";
+		[ScriptIgnore]
 		public string Weapon2Name => Weapons.Count == 2 ? Weapons[1].WeaponType.Metadata().Name : "NONE";
 
 		public static Craft CreateRefueled(CraftType craftType, int number)

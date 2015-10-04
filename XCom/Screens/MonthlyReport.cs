@@ -3,6 +3,7 @@ using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
+using XCom.Music;
 
 namespace XCom.Screens
 {
@@ -27,6 +28,11 @@ namespace XCom.Screens
 				nextTopRow = label.Bottom + 4;
 			}
 			AddControl(new Button(180, 135, 50, 12, "OK", ColorScheme.Yellow, Font.Normal, OnOk));
+		}
+
+		public override void OnSetFocus()
+		{
+			MidiFiles.Play(MusicType.Month);
 		}
 
 		private static void OnOk()

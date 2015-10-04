@@ -1,4 +1,6 @@
-﻿namespace XCom.Data
+﻿using System.Web.Script.Serialization;
+
+namespace XCom.Data
 {
 	public class Country
 	{
@@ -8,6 +10,7 @@
 		public CountrySatisfaction Satisfaction { get; set; }
 		public bool SignedAlienPact { get; set; }
 
+		[ScriptIgnore]
 		public string Name => CountryType.Metadata().Name;
 
 		public static Country Create(CountryType countryType)

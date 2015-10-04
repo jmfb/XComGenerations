@@ -6,6 +6,7 @@ using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Modals;
+using XCom.Music;
 using XCom.World;
 
 namespace XCom.Screens
@@ -39,6 +40,7 @@ namespace XCom.Screens
 
 		public override void OnSetFocus()
 		{
+			MidiFiles.Play(MusicType.Geoscape);
 			worldView.Initialize();
 			GameState.Current.OnIdle += OnIdle;
 			stopwatch.Restart();
