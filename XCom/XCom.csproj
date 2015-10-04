@@ -129,6 +129,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Paperdolls.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\SoundEffects\SoundEffects.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoundEffects.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\UfoPreviews\UfoPreviews.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -323,6 +328,7 @@
     <Compile Include="Music\MidiOutputDevice.cs" />
     <Compile Include="Music\MidiTrack.cs" />
     <Compile Include="Music\MusicType.cs" />
+    <Compile Include="Music\SoundEffectType.cs" />
     <Compile Include="Music\VoiceEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -443,6 +449,10 @@
     <EmbeddedResource Include="Content\Paperdolls\Paperdolls.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paperdolls.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\SoundEffects\SoundEffects.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SoundEffects.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\UfoPreviews\UfoPreviews.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -727,6 +737,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Music\Win.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\ButtonPush1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\ButtonPush2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\Cannon.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\CraftExplosion.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\CraftHit.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\FusionBall.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\LaserCannon.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\PlasmaCannon.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\UfoExplosion.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\UfoHit.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\WindowClose.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\WindowOpen1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\WindowOpen2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SoundEffects\Missile.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

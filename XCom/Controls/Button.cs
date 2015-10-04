@@ -1,6 +1,7 @@
 ﻿using System;
 using XCom.Fonts;
 using XCom.Graphics;
+using XCom.Music;
 
 namespace XCom.Controls
 {
@@ -89,6 +90,7 @@ namespace XCom.Controls
 				return;
 			Pushed = false;
 			GameState.Current.Dispatcher.ReleaseFocus();
+			SoundEffectType.ButtonPush.Play();
 			Action();
 		}
 	}

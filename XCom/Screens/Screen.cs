@@ -1,4 +1,5 @@
 ﻿using XCom.Controls;
+using XCom.Music;
 
 namespace XCom.Screens
 {
@@ -19,12 +20,14 @@ namespace XCom.Screens
 			parent.OnKillFocus();
 			parent.AddControl(this);
 			GameState.Current.Dispatcher.CaptureFocus(this);
+			SoundEffectType.WindowOpen.Play();
 			OnSetFocus();
 		}
 
 		protected void EndModal()
 		{
 			OnKillFocus();
+			SoundEffectType.WindowClose.Play();
 			GameState.Current.Dispatcher.ReleaseFocus();
 			ModalParent.RemoveControl(this);
 			ModalParent.OnSetFocus();
