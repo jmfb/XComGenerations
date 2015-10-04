@@ -5,6 +5,7 @@ using System.IO;
 using System.Web.Script.Serialization;
 using XCom.Data;
 using XCom.Graphics;
+using XCom.Music;
 using XCom.Screens;
 using Base = XCom.Data.Base;
 
@@ -12,19 +13,17 @@ namespace XCom
 {
 	public class GameState : Drawable
 	{
-		public InteractiveDispatcher Dispatcher { get; private set; }
+		public InteractiveDispatcher Dispatcher { get; } = new InteractiveDispatcher();
 		public Screen ActiveScreen { get; private set; }
 		public GameData Data { get; set; }
-
-		public Random Random { get; private set; }
+		public MidiOutputDevice MusicPlayer { get; } = new MidiOutputDevice();
+		public Random Random { get; } = new Random(DateTime.Now.Ticks.GetHashCode());
 
 		public Queue<Action> Notifications { get; } = new Queue<Action>();
 
 		private GameState()
 		{
-			Dispatcher = new InteractiveDispatcher();
-			var seed = DateTime.Now.Ticks.GetHashCode();
-			Random = new Random(seed);
+			OnIdle += MusicPlayer.OnIdle;
 		}
 
 		public static readonly GameState Current = new GameState();
@@ -35,6 +34,8 @@ namespace XCom
 
 		public void Quit()
 		{
+			OnIdle -= MusicPlayer.OnIdle;
+			MusicPlayer.Close();
 			OnQuit?.Invoke();
 		}
 

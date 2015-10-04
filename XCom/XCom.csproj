@@ -109,6 +109,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Movies.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\Music\Music.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Music.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Overlays\Overlays.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -308,6 +313,17 @@
     <Compile Include="Modals\SelectCraftWeapon.cs" />
     <Compile Include="Modals\WeCanNowProduce.cs" />
     <Compile Include="Modals\WeCanNowResearch.cs" />
+    <Compile Include="Music\MetaEvent.cs" />
+    <Compile Include="Music\MidiApi.cs" />
+    <Compile Include="Music\MidiChunk.cs" />
+    <Compile Include="Music\MidiChunkType.cs" />
+    <Compile Include="Music\MidiEvent.cs" />
+    <Compile Include="Music\MidiFile.cs" />
+    <Compile Include="Music\MidiFiles.cs" />
+    <Compile Include="Music\MidiOutputDevice.cs" />
+    <Compile Include="Music\MidiTrack.cs" />
+    <Compile Include="Music\MusicType.cs" />
+    <Compile Include="Music\VoiceEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\BaseInformation.cs" />
@@ -411,6 +427,10 @@
     <EmbeddedResource Include="Content\Movies\Movies.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Movies.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Music\Music.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Music.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\Overlays\Overlays.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -666,7 +686,48 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Content\Music\Battlescape.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\EnemyBase.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Geoscape1.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Geoscape2.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Intercept.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Introduction1.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Introduction2.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Introduction3.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Lose.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Mars.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Mission.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Month.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Story.midi" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Music\Win.midi" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

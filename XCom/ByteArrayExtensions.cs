@@ -13,5 +13,18 @@ namespace XCom
 			Marshal.FreeHGlobal(memory);
 			return (T)value;
 		}
+
+		public static uint ReadVariableLengthNumber(this byte[] data, ref int offset)
+		{
+			uint value = 0;
+			byte part;
+			do
+			{
+				part = data[offset++];
+				value = (value << 7) | (uint)(part & 0x7f);
+			}
+			while ((part & 0x80) != 0);
+			return value;
+		}
 	}
 }

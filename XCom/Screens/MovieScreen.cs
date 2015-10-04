@@ -1,27 +1,31 @@
 ﻿using XCom.Controls;
+using XCom.Music;
 
 namespace XCom.Screens
 {
 	public class MovieScreen : Screen
 	{
-		private readonly MoviePlayer player;
+		private readonly MoviePlayer moviePlayer;
+		private readonly MusicType music;
 		private readonly Screen nextScreen;
 
-		public MovieScreen(byte[] movieData, Screen nextScreen)
+		public MovieScreen(byte[] movieData, MusicType music, Screen nextScreen)
 		{
+			this.music = music;
 			this.nextScreen = nextScreen;
-			player = new MoviePlayer(movieData, OnMovieFinished);
-			AddControl(player);
+			moviePlayer = new MoviePlayer(movieData, OnMovieFinished);
+			AddControl(moviePlayer);
 		}
 
 		public override void OnSetFocus()
 		{
-			GameState.Current.OnIdle += player.OnIdle;
+			MidiFiles.Play(music);
+			GameState.Current.OnIdle += moviePlayer.OnIdle;
 		}
 
 		public override void OnKillFocus()
 		{
-			GameState.Current.OnIdle -= player.OnIdle;
+			GameState.Current.OnIdle -= moviePlayer.OnIdle;
 		}
 
 		private void OnMovieFinished()

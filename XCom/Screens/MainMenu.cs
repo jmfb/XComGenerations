@@ -2,6 +2,7 @@
 using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;
+using XCom.Music;
 
 namespace XCom.Screens
 {
@@ -15,6 +16,11 @@ namespace XCom.Screens
 			AddControl(new Button(90, 64, 192, 20, "New Game", ColorScheme.Aqua, Font.Normal, OnNewGame));
 			AddControl(new Button(118, 64, 192, 20, "Load Saved Game", ColorScheme.Aqua, Font.Normal, OnLoadSavedGame));
 			AddControl(new Button(146, 64, 192, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
+		}
+
+		public override void OnSetFocus()
+		{
+			MidiFiles.Play(MusicType.Story);
 		}
 
 		private static void OnNewGame()
