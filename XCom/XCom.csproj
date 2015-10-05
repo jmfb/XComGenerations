@@ -129,10 +129,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Paperdolls.resx</DependentUpon>
     </Compile>
-    <Compile Include="Content\SoundEffects\SoundEffects.Designer.cs">
+    <Compile Include="Content\SoundEffects\Interception\Interception.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SoundEffects.resx</DependentUpon>
+      <DependentUpon>Interception.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\SoundEffects\Introduction\Introduction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Introduction.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\SoundEffects\Windows\Windows.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Windows.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\UfoPreviews\UfoPreviews.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -318,6 +328,8 @@
     <Compile Include="Modals\SelectCraftWeapon.cs" />
     <Compile Include="Modals\WeCanNowProduce.cs" />
     <Compile Include="Modals\WeCanNowResearch.cs" />
+    <Compile Include="Music\InterceptionSoundEffect.cs" />
+    <Compile Include="Music\IntroductionSoundEffect.cs" />
     <Compile Include="Music\MetaEvent.cs" />
     <Compile Include="Music\MidiApi.cs" />
     <Compile Include="Music\MidiChunk.cs" />
@@ -328,7 +340,7 @@
     <Compile Include="Music\MidiOutputDevice.cs" />
     <Compile Include="Music\MidiTrack.cs" />
     <Compile Include="Music\MusicType.cs" />
-    <Compile Include="Music\SoundEffectType.cs" />
+    <Compile Include="Music\WindowsSoundEffect.cs" />
     <Compile Include="Music\VoiceEvent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -450,9 +462,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paperdolls.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\SoundEffects\SoundEffects.resx">
+    <EmbeddedResource Include="Content\SoundEffects\Interception\Interception.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SoundEffects.Designer.cs</LastGenOutput>
+      <LastGenOutput>Interception.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\SoundEffects\Introduction\Introduction.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Introduction.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\SoundEffects\Windows\Windows.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Windows.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\UfoPreviews\UfoPreviews.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -739,46 +759,74 @@
     <None Include="Content\Music\Win.midi" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\ButtonPush1.wav" />
+    <None Include="Content\SoundEffects\Windows\ButtonPush1.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\ButtonPush2.wav" />
+    <None Include="Content\SoundEffects\Windows\ButtonPush2.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\Cannon.wav" />
+    <None Include="Content\SoundEffects\Interception\Cannon.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\CraftExplosion.wav" />
+    <None Include="Content\SoundEffects\Interception\CraftExplosion.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\CraftHit.wav" />
+    <None Include="Content\SoundEffects\Interception\CraftHit.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\FusionBall.wav" />
+    <None Include="Content\SoundEffects\Interception\FusionBall.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\LaserCannon.wav" />
+    <None Include="Content\SoundEffects\Interception\LaserCannon.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\PlasmaCannon.wav" />
+    <None Include="Content\SoundEffects\Interception\PlasmaCannon.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\UfoExplosion.wav" />
+    <None Include="Content\SoundEffects\Interception\UfoExplosion.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\UfoHit.wav" />
+    <None Include="Content\SoundEffects\Interception\UfoHit.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\WindowClose.wav" />
+    <None Include="Content\SoundEffects\Windows\WindowClose.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\WindowOpen1.wav" />
+    <None Include="Content\SoundEffects\Windows\WindowOpen1.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\WindowOpen2.wav" />
+    <None Include="Content\SoundEffects\Windows\WindowOpen2.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\SoundEffects\Missile.wav" />
+    <None Include="Content\SoundEffects\Interception\Missile.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\SoundEffects\Battlescape\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\SoundEffects\Introduction\Beep.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Cannon.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Chatter.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Computer.wav" />
+    <Content Include="Content\SoundEffects\Introduction\DeadAlien1.wav" />
+    <Content Include="Content\SoundEffects\Introduction\DeadAlien2.wav" />
+    <Content Include="Content\SoundEffects\Introduction\DeadAlien3.wav" />
+    <Content Include="Content\SoundEffects\Introduction\DeathScreamFemale.wav" />
+    <Content Include="Content\SoundEffects\Introduction\DeathScreamMale.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Hum.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Landing.wav" />
+    <Content Include="Content\SoundEffects\Introduction\OpenHatch.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Plasma.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Roar1.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Roar2.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Roar3.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Roar4.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Shot.wav" />
+    <Content Include="Content\SoundEffects\Introduction\TakeOff.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Teleport.wav" />
+    <Content Include="Content\SoundEffects\Introduction\UfoDetected.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Warning.wav" />
+    <Content Include="Content\SoundEffects\Introduction\Whoosh.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

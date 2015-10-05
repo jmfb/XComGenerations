@@ -90,7 +90,7 @@ namespace XCom.Controls
 				return;
 			Pushed = false;
 			GameState.Current.Dispatcher.ReleaseFocus();
-			SoundEffectType.ButtonPush.Play();
+			WindowsSoundEffect.ButtonPush.Play();
 			Action();
 		}
 	}

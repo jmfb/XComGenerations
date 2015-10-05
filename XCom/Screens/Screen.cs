@@ -20,14 +20,14 @@ namespace XCom.Screens
 			parent.OnKillFocus();
 			parent.AddControl(this);
 			GameState.Current.Dispatcher.CaptureFocus(this);
-			SoundEffectType.WindowOpen.Play();
+			WindowsSoundEffect.WindowOpen.Play();
 			OnSetFocus();
 		}
 
 		protected void EndModal()
 		{
 			OnKillFocus();
-			SoundEffectType.WindowClose.Play();
+			WindowsSoundEffect.WindowClose.Play();
 			GameState.Current.Dispatcher.ReleaseFocus();
 			ModalParent.RemoveControl(this);
 			ModalParent.OnSetFocus();

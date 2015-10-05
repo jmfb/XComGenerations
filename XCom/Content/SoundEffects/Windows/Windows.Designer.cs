@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XCom.Content.SoundEffects {
+namespace XCom.Content.SoundEffects.Windows {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace XCom.Content.SoundEffects {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class SoundEffects {
+    internal class Windows {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SoundEffects() {
+        internal Windows() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace XCom.Content.SoundEffects {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XCom.Content.SoundEffects.SoundEffects", typeof(SoundEffects).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XCom.Content.SoundEffects.Windows.Windows", typeof(Windows).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -75,87 +75,6 @@ namespace XCom.Content.SoundEffects {
         internal static System.IO.UnmanagedMemoryStream ButtonPush2 {
             get {
                 return ResourceManager.GetStream("ButtonPush2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Cannon {
-            get {
-                return ResourceManager.GetStream("Cannon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream CraftExplosion {
-            get {
-                return ResourceManager.GetStream("CraftExplosion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream CraftHit {
-            get {
-                return ResourceManager.GetStream("CraftHit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream FusionBall {
-            get {
-                return ResourceManager.GetStream("FusionBall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream LaserCannon {
-            get {
-                return ResourceManager.GetStream("LaserCannon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Missile {
-            get {
-                return ResourceManager.GetStream("Missile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream PlasmaCannon {
-            get {
-                return ResourceManager.GetStream("PlasmaCannon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream UfoExplosion {
-            get {
-                return ResourceManager.GetStream("UfoExplosion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream UfoHit {
-            get {
-                return ResourceManager.GetStream("UfoHit", resourceCulture);
             }
         }
         

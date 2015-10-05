@@ -124,33 +124,6 @@
   <data name="ButtonPush2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ButtonPush2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Cannon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Cannon.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CraftExplosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>CraftExplosion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CraftHit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>CraftHit.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FusionBall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>FusionBall.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="LaserCannon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>LaserCannon.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Missile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Missile.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="PlasmaCannon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>PlasmaCannon.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="UfoExplosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>UfoExplosion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="UfoHit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>UfoHit.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="WindowClose" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>WindowClose.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
