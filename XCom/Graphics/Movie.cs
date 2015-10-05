@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using XCom.Music;
 
 namespace XCom.Graphics
 {
@@ -16,6 +17,7 @@ namespace XCom.Graphics
 		private int frameIndex;
 		private readonly Stopwatch stopwatch = new Stopwatch();
 		private int FrameSpeedInMilliseconds => (int)header.Speed * 20;
+		private readonly Dictionary<int, IntroductionSoundEffect> soundEffects = TimedSoundEffects.Introduction;
 
 		public Movie(byte[] data)
 		{
@@ -64,7 +66,7 @@ namespace XCom.Graphics
 			}
 		}
 
-		private int MovieDuration => FrameSpeedInMilliseconds * frames.Count + 5000;
+		private int MovieDuration => FrameSpeedInMilliseconds * frames.Count + 7000;
 		public bool IsOver => stopwatch.ElapsedMilliseconds >= MovieDuration;
 
 		public void OnIdle()
@@ -86,6 +88,10 @@ namespace XCom.Graphics
 				return;
 			(frames[frameIndex] as MovieSubframeByteRun)?.Apply(image);
 			(frames[frameIndex] as MovieSubframeDelta)?.Apply(image);
+
+			IntroductionSoundEffect soundEffect;
+			if (soundEffects.TryGetValue(frameIndex, out soundEffect))
+				soundEffect.Play();
 		}
 	}
 }

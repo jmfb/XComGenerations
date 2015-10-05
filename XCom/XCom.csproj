@@ -340,6 +340,7 @@
     <Compile Include="Music\MidiOutputDevice.cs" />
     <Compile Include="Music\MidiTrack.cs" />
     <Compile Include="Music\MusicType.cs" />
+    <Compile Include="Music\TimedSoundEffects.cs" />
     <Compile Include="Music\WindowsSoundEffect.cs" />
     <Compile Include="Music\VoiceEvent.cs" />
     <Compile Include="Program.cs" />
