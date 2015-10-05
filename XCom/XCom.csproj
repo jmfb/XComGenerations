@@ -129,6 +129,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Paperdolls.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\SoundEffects\Battlescape\Battlescape.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Battlescape.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\SoundEffects\Interception\Interception.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -328,6 +333,7 @@
     <Compile Include="Modals\SelectCraftWeapon.cs" />
     <Compile Include="Modals\WeCanNowProduce.cs" />
     <Compile Include="Modals\WeCanNowResearch.cs" />
+    <Compile Include="Music\BattlescapeSoundEffect.cs" />
     <Compile Include="Music\InterceptionSoundEffect.cs" />
     <Compile Include="Music\IntroductionSoundEffect.cs" />
     <Compile Include="Music\MetaEvent.cs" />
@@ -462,6 +468,10 @@
     <EmbeddedResource Include="Content\Paperdolls\Paperdolls.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paperdolls.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\SoundEffects\Battlescape\Battlescape.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Battlescape.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\SoundEffects\Interception\Interception.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -801,10 +811,62 @@
   <ItemGroup>
     <None Include="Content\SoundEffects\Interception\Missile.wav" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Content\SoundEffects\Battlescape\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Content\SoundEffects\Battlescape\AmmoHit.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\BeamHit.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\BigGunShot.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\BlasterLaunch.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\BulletHit.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\CelatidAttack.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\CelatidMove.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\CelatidScream.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ChryssalidAttack.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\DoorOpen.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\EtherealScream.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FlyingMovement.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepGround1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepGround2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepMars1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepMars2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepMetal1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepMetal2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepMud1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepMud2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepSand1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepSand2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepSnow1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\FootstepSnow2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\GunShot.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\HovertankMove.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ItemDrop.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ItemThrow.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\LargeExplosion.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\LaserShot.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\MachineDeath.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\MindControl.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\MindProbe.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\MutonScream.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\PlasmaShot.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ReaperAttack.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\Reload.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\RocketLaunch.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ScreamFemale1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ScreamFemale2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ScreamFemale3.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ScreamMale1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ScreamMale2.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\ScreamMale3.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\SectoidScream.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\SilacoidAttack.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\SilacoidMove.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\SmallExplosion.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\SnakemanScream.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\SnakemanSlither.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\StunRod.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\TankMove.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\UfoDoorOpen1.wav" />
+    <Content Include="Content\SoundEffects\Battlescape\UfoDoorOpen2.wav" />
     <Content Include="Content\SoundEffects\Introduction\Beep.wav" />
     <Content Include="Content\SoundEffects\Introduction\Cannon.wav" />
     <Content Include="Content\SoundEffects\Introduction\Chatter.wav" />
