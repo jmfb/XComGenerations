@@ -121,6 +121,9 @@
   <data name="Landscape" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Landscape.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Map" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Map.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="TerrainTypes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TerrainTypes.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
