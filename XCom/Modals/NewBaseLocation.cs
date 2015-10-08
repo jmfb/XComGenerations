@@ -50,6 +50,7 @@ namespace XCom.Modals
 			if (name == "Research") //TODO: remove research hack
 				data.CompletedResearch = EnumEx.GetValues<ResearchType>().ToList();
 			var originalBase = data.Bases.Count == 0;
+			if (originalBase)
 				InitializeOriginalBase(newBase);
 			data.Bases.Add(newBase);
 			data.SelectedBase = data.Bases.Count - 1;
@@ -91,60 +92,15 @@ namespace XCom.Modals
 
 			originalBase.Facilities.AddRange(new[]
 			{
-				new Facility
-				{
-					FacilityType = FacilityType.AccessLift,
-					Row = 2,
-					Column = 2
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.Hangar,
-					Row = 0,
-					Column = 2
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.Hangar,
-					Row = 4,
-					Column = 0
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.Hangar,
-					Row = 4,
-					Column = 4
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.LivingQuarters,
-					Row = 2,
-					Column = 3
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.SmallRadarSystem,
-					Row = 3,
-					Column = 1
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.GeneralStores,
-					Row = 3,
-					Column = 2
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.Laboratory,
-					Row = 3,
-					Column = 3
-				},
-				new Facility
-				{
-					FacilityType = FacilityType.Workshop,
-					Row = 3,
-					Column = 4
-				}
+				Facility.CreateConstructed(2, 2, FacilityType.AccessLift),
+				Facility.CreateConstructed(0, 2, FacilityType.Hangar),
+				Facility.CreateConstructed(4, 0, FacilityType.Hangar),
+				Facility.CreateConstructed(4, 4, FacilityType.Hangar),
+				Facility.CreateConstructed(2, 3, FacilityType.LivingQuarters),
+				Facility.CreateConstructed(3, 1, FacilityType.SmallRadarSystem),
+				Facility.CreateConstructed(3, 2, FacilityType.GeneralStores),
+				Facility.CreateConstructed(3, 3, FacilityType.Laboratory),
+				Facility.CreateConstructed(3, 4, FacilityType.Workshop)
 			});
 		}
 	}
