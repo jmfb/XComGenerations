@@ -180,7 +180,7 @@ namespace XCom.World
 
 		public static EighthDegrees AddEighthDegrees(EighthDegrees value1, EighthDegrees value2)
 		{
-			return (value1 + value2 + EighthDegreesCount) % EighthDegreesCount;
+			return (value1 + value2 + 2 * EighthDegreesCount) % EighthDegreesCount;
 		}
 
 		private static Fractional[] CalculateCosineTable()
