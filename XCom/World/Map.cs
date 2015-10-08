@@ -11,15 +11,16 @@ namespace XCom.World
 		private const int minLatitude = -latitudeCount / 2;
 		private readonly MapLocation[,] locations = new MapLocation[longitudeCount, latitudeCount];
 
-		private Map()
+		public Map()
 		{
+			var data = WorldResources.Map;
 			var index = 0;
 			foreach (var longitude in Enumerable.Range(0, longitudeCount))
 			{
 				foreach (var latitudeIndex in Enumerable.Range(0, latitudeCount))
 				{
-					var terrain = WorldResources.Map[index++];
-					var region = WorldResources.Map[index++];
+					var terrain = data[index++];
+					var region = data[index++];
 					locations[longitude, latitudeIndex] = new MapLocation
 					{
 						Location = new Location
@@ -47,6 +48,6 @@ namespace XCom.World
 			}
 		}
 
-		public static readonly Map Instance = new Map();
+		public static Map Instance { get; set; }
 	}
 }

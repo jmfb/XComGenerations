@@ -26,8 +26,9 @@ namespace XCom.Screens
 
 		private void OnChooseLocation(Location location)
 		{
-			if (Terrain.IsOnLand(location))
-				new NewBaseLocation(location).DoModal(this);
+			var mapLocation = Map.Instance[location];
+			if (mapLocation.TerrainType != null)
+				new NewBaseLocation(mapLocation).DoModal(this);
 		}
 
 		private static void OnCancel()

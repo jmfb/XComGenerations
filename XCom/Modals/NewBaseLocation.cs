@@ -12,26 +12,23 @@ namespace XCom.Modals
 {
 	public class NewBaseLocation : Screen
 	{
-		private readonly Location location;
-		private readonly RegionType region;
+		private readonly MapLocation location;
 
-		public NewBaseLocation(Location location)
+		public NewBaseLocation(MapLocation location)
 		{
 			this.location = location;
-			region = EnumEx.GetValues<RegionType>()
-				.Single(regionType => regionType.Metadata().IsInRegion(location));
 			AddControl(new Border(64, 16, 224, 72, ColorScheme.Green, Backgrounds.Title, 0));
 			AddControl(new Label(80, 68, "Cost>$", Font.Normal, ColorScheme.Green));
 			AddControl(new Label(90, 68, "Area>", Font.Normal, ColorScheme.Green));
-			AddControl(new Label(80, 97, region.Metadata().BaseCost.FormatNumber(), Font.Normal, ColorScheme.Yellow));
-			AddControl(new Label(90, 92, region.Metadata().Name, Font.Normal, ColorScheme.Yellow));
+			AddControl(new Label(80, 97, location.RegionType.Metadata().BaseCost.FormatNumber(), Font.Normal, ColorScheme.Yellow));
+			AddControl(new Label(90, 92, location.RegionType.Metadata().Name, Font.Normal, ColorScheme.Yellow));
 			AddControl(new Button(104, 68, 50, 12, "OK", ColorScheme.Green, Font.Normal, OnOk));
 			AddControl(new Button(104, 138, 50, 12, "CANCEL", ColorScheme.Green, Font.Normal, EndModal));
 		}
 
 		private void OnOk()
 		{
-			var cost = region.Metadata().BaseCost;
+			var cost = location.RegionType.Metadata().BaseCost;
 			if (cost > GameState.Current.Data.Funds)
 			{
 				SwitchToModal(new NotEnoughMoney(ColorScheme.DarkYellow, Backgrounds.Title));
@@ -45,7 +42,7 @@ namespace XCom.Modals
 
 		private Screen OnNewBase(string name)
 		{
-			var newBase = Base.Create(name, location, region);
+			var newBase = Base.Create(name, location.Location, location.RegionType);
 			var data = GameState.Current.Data;
 			if (name == "Research") //TODO: remove research hack
 				data.CompletedResearch = EnumEx.GetValues<ResearchType>().ToList();

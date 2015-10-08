@@ -3,17 +3,19 @@ using System.Windows.Forms;
 using XCom.Content.Movies;
 using XCom.Music;
 using XCom.Screens;
+using XCom.World;
 using MainMenu = XCom.Screens.MainMenu;
 
 namespace XCom
 {
-	static class Program
+	internal static class Program
 	{
 		[STAThread]
-		static void Main()
+		private static void Main()
 		{
 			try
 			{
+				LoadLargeStaticResources();
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				GameState.Current.SetScreen(new MovieScreen(Movies.Introduction, MusicType.Introduction, new MainMenu()));
@@ -23,6 +25,11 @@ namespace XCom
 			{
 				MessageBox.Show(exception.ToString());
 			}
+		}
+
+		private static void LoadLargeStaticResources()
+		{
+			Map.Instance = new Map();
 		}
 	}
 }
