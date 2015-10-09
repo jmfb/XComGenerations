@@ -142,8 +142,9 @@ namespace XCom.World
 
 		private void DrawTerrain(GraphicsBuffer buffer)
 		{
+			var secondOfDay = (int)GameState.Current.Data.Time.TimeOfDay.TotalSeconds;
 			foreach (var terrain in scaledFrontTerrain)
-				buffer.DrawTerrain(terrain, Radius, terrain.Shading, Zoom);
+				buffer.DrawTerrain(terrain, Radius, Shader.GetShadeIndex(terrain.MiddleLongitude, secondOfDay), Zoom);
 		}
 
 		private void UpdateFlashWorldObjects()

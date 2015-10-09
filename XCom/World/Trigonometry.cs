@@ -21,7 +21,7 @@ namespace XCom.World
 		{
 			public TerrainType TerrainType { private get; set; }
 			public SphereCoordinate[] Vertices { private get; set; }
-			public int Longitude { private get; set; }
+			public int MiddleLongitude { private get; set; }
 
 			public bool IsFrontFacing => Vertices.All(vertex => vertex.Z >= 0);
 
@@ -36,7 +36,7 @@ namespace XCom.World
 							X = ScaleValue(vertex.X, radius, centerX),
 							Y = ScaleValue(vertex.Y, radius, centerY)
 						}).ToArray(),
-					Longitude = Longitude
+					MiddleLongitude = MiddleLongitude
 				};
 			}
 		}
@@ -60,7 +60,7 @@ namespace XCom.World
 			{
 				TerrainType = terrain.TerrainType,
 				Vertices = vertices,
-				Longitude = terrain.Longitude
+				MiddleLongitude = terrain.MiddleLongitude
 			};
 		}
 
@@ -610,18 +610,21 @@ namespace XCom.World
 			};
 		}
 
-		private static bool DetermineHalfPlane(Location location, Point point1, Point point2)
+		private static bool DetermineHalfPlane(Location location, Point point1, Point point2, int longitudeOffset)
 		{
-			var product1 = (location.Longitude - point2.X) * (point1.Y - point2.Y);
-			var product2 = (point1.X - point2.X) * (location.Latitude - point2.Y);
+			var longitude1 = AddEighthDegrees(point1.X, -longitudeOffset);
+			var longitude2 = AddEighthDegrees(point2.X, -longitudeOffset);
+			var longitude3 = AddEighthDegrees(location.Longitude, -longitudeOffset);
+			var product1 = (longitude3 - longitude2) * (point1.Y - point2.Y);
+			var product2 = (longitude1 - longitude2) * (location.Latitude - point2.Y);
 			return product1 < product2;
 		}
 
-		public static bool IsLocationInTriangle(Location location, Point[] vertices)
+		public static bool IsLocationInTriangle(Location location, Point[] vertices, int longitudeOffset)
 		{
-			var halfPlane1 = DetermineHalfPlane(location, vertices[0], vertices[1]);
-			var halfPlane2 = DetermineHalfPlane(location, vertices[1], vertices[2]);
-			var halfPlane3 = DetermineHalfPlane(location, vertices[2], vertices[0]);
+			var halfPlane1 = DetermineHalfPlane(location, vertices[0], vertices[1], longitudeOffset);
+			var halfPlane2 = DetermineHalfPlane(location, vertices[1], vertices[2], longitudeOffset);
+			var halfPlane3 = DetermineHalfPlane(location, vertices[2], vertices[0], longitudeOffset);
 			return halfPlane1 == halfPlane2 && halfPlane2 == halfPlane3;
 		}
 	}

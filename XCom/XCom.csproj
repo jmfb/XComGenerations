@@ -398,6 +398,7 @@
     <Compile Include="World\RegionType.cs" />
     <Compile Include="World\SelectDestination.cs" />
     <Compile Include="World\SelectWorldObject.cs" />
+    <Compile Include="World\Shader.cs" />
     <Compile Include="World\Terrain.cs" />
     <Compile Include="World\TerrainCategory.cs" />
     <Compile Include="World\TerrainMetadata.cs" />

@@ -10,35 +10,13 @@ namespace XCom.World
 	{
 		public TerrainType TerrainType { get; set; }
 		public Point[] Vertices { get; set; }
-		public int Longitude { get; set; }
+		public int MiddleLongitude { get; set; }
+		public int LongitudeOffset { get; set; }
 
-		public int Shading
+		public bool HitTest(Location location)
 		{
-			get
-			{
-				const int secondsInDay = 60 * 60 * 24;
-				const int secondsPerEighthDegree = secondsInDay / Trigonometry.EighthDegreesCount;
-				const int secondsPerShade = 450;
-				var secondOfDay = (int)GameState.Current.Data.Time.TimeOfDay.TotalSeconds;
-				var localSecondOfDay = (Longitude * secondsPerEighthDegree + secondsInDay + secondOfDay) % secondsInDay;
-				var shadeIndex = localSecondOfDay / secondsPerShade;
-				if (shadeIndex < 44)
-					return 8;
-				if (shadeIndex < 52)
-					return 52 - shadeIndex;
-				if (shadeIndex < 140)
-					return 0;
-				if (shadeIndex < 148)
-					return shadeIndex - 140;
-				return 8;
-			}
+			return Trigonometry.IsLocationInTriangle(location, Vertices, LongitudeOffset);
 		}
-
-		private bool HitTest(Location location)
-		{
-			return Trigonometry.IsLocationInTriangle(location, Vertices);
-		}
-
 		private const int coordinateRecordSize = sizeof(short) * 2;
 		private const int coordinateCount = 4;
 		private const int terrainRecordSize = coordinateRecordSize * coordinateCount + sizeof(int);
@@ -51,25 +29,25 @@ namespace XCom.World
 				.ToList();
 		}
 
-		private static Terrain Create(TerrainType terrainType, params Point[] vertices)
+		private static Terrain Create(TerrainType terrainType, int longitudeOffset, params Point[] vertices)
 		{
 			return new Terrain
 			{
 				TerrainType = terrainType,
 				Vertices = vertices,
-				Longitude = LongitudeCenter(vertices)
+				MiddleLongitude = GetMiddleLongitude(longitudeOffset, vertices),
+				LongitudeOffset = longitudeOffset
 			};
 		}
 
-		private static int LongitudeCenter(Point[] vertices)
+		private static int GetMiddleLongitude(int longitudeOffset, IEnumerable<Point> vertices)
 		{
-			//TODO: This apparently has some issues at the poles
-			var minLongitude = vertices.Min(vertex => vertex.X);
-			var maxLongitude = vertices.Max(vertex => vertex.X);
-			var longitudeRange = maxLongitude - minLongitude;
-			return longitudeRange > Trigonometry.EighthDegreesCount / 2 ?
-				(maxLongitude + Trigonometry.EighthDegreesCount - longitudeRange) % Trigonometry.EighthDegreesCount :
-				minLongitude + longitudeRange / 2;
+			var longitudes = vertices.Select(vertex => Trigonometry.AddEighthDegrees(vertex.X, -longitudeOffset)).ToList();
+			var min = longitudes.Min();
+			var max = longitudes.Max();
+			var range = max - min;
+			var middle = range / 2 + min;
+			return Trigonometry.AddEighthDegrees(middle, longitudeOffset);
 		}
 
 		private static IEnumerable<Terrain> LoadTerrain(int offset)
@@ -79,9 +57,24 @@ namespace XCom.World
 				.OfType<Point>()
 				.ToArray();
 			var terrainType = (TerrainType)BitConverter.ToInt32(WorldResources.Landscape, offset + coordinateRecordSize * coordinateCount);
-			yield return Create(terrainType, vertices[0], vertices[1], vertices[2]);
+			var longitudeOffset = DetermineBestLongitudeOffset(vertices);
+			yield return Create(terrainType, longitudeOffset, vertices[0], vertices[1], vertices[2]);
 			if (vertices.Length == 4)
-				yield return Create(terrainType, vertices[0], vertices[2], vertices[3]);
+				yield return Create(terrainType, longitudeOffset, vertices[0], vertices[2], vertices[3]);
+		}
+
+		private static int DetermineBestLongitudeOffset(Point[] vertices)
+		{
+			return vertices
+				.OrderBy(vertex => GetLongitudeOffsetSpan(vertex.X, vertices))
+				.Select(vertex => vertex.X)
+				.First();
+		}
+
+		private static int GetLongitudeOffsetSpan(int longitudeOffset, IEnumerable<Point> vertices)
+		{
+			var longitudes = vertices.Select(vertex => Trigonometry.AddEighthDegrees(vertex.X, -longitudeOffset)).ToList();
+			return longitudes.Max() - longitudes.Min();
 		}
 
 		private static Point? LoadVertex(int offset)
@@ -98,6 +91,5 @@ namespace XCom.World
 		}
 
 		public static readonly List<Terrain> Landscape = LoadLandscape();
-		public static bool IsOnLand(Location location) => Landscape.Any(terrain => terrain.HitTest(location));
 	}
 }
