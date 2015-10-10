@@ -26,6 +26,33 @@ namespace XCom.World
 			var terrainCount = WorldResources.Landscape.Length / terrainRecordSize;
 			return Enumerable.Range(0, terrainCount)
 				.SelectMany(index => LoadTerrain(index * terrainRecordSize))
+				.Concat(new[]
+				{
+					new Terrain
+					{
+						TerrainType = TerrainType.PolarIce,
+						LongitudeOffset = 0,
+						MiddleLongitude = 1440,
+						Vertices = new[]
+						{
+							new Point { X = 0, Y = 720 },
+							new Point { X = 1533, Y = 628 },
+							new Point { X = 2879, Y = 720 },
+						}
+					},
+					new Terrain
+					{
+						TerrainType = TerrainType.PolarIce,
+						LongitudeOffset = 0,
+						MiddleLongitude = 1440,
+						Vertices = new[]
+						{
+							new Point { X = 0, Y = -720 },
+							new Point { X = 1520, Y = -629 },
+							new Point { X = 2879, Y = -720 },
+						}
+					}
+				})
 				.ToList();
 		}
 
