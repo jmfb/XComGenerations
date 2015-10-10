@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using XCom.Content.Movies;
-using XCom.Content.World;
 using XCom.Music;
 using XCom.Screens;
 using XCom.World;
@@ -30,7 +29,7 @@ namespace XCom
 
 		private static void LoadLargeStaticResources()
 		{
-			Map.Instance = new Map(WorldResources.Map);
+			Map.Instance = new Map();
 		}
 	}
 }

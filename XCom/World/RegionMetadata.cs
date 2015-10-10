@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace XCom.World
+﻿namespace XCom.World
 {
 	public class RegionMetadata
 	{
-		public string Name { get; set; }
-		public int BaseCost { get; set; }
-		public IEnumerable<Region> Regions { get; set; }
+		public string Name { get; private set; }
+		public int BaseCost { get; private set; }
 
-		public bool IsInRegion(Location location) =>
-			Regions.Any(region => region.Contains(location));
+		public static RegionMetadata Create(string name, int baseCost)
+		{
+			return new RegionMetadata
+			{
+				Name = name,
+				BaseCost = baseCost
+			};
+		}
 	}
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using XCom.World;
 
 namespace XCom.Graphics
 {
@@ -76,49 +75,6 @@ namespace XCom.Graphics
 				DrawHorizontalLine(row, leftColumn, width, color, operation);
 		}
 
-		private static IEnumerable<Point> Circle(int centerLeft, int centerTop, int radius)
-		{
-			var x = radius;
-			var decisionOver2 = 1 - x;
-			for (var y = 0; y <= x; )
-			{
-				yield return new Point { X = x + centerLeft, Y = y + centerTop };
-				yield return new Point { X = y + centerLeft, Y = x + centerTop };
-				yield return new Point { X = -x + centerLeft, Y = y + centerTop };
-				yield return new Point { X = -y + centerLeft, Y = x + centerTop };
-				yield return new Point { X = -x + centerLeft, Y = -y + centerTop };
-				yield return new Point { X = -y + centerLeft, Y = -x + centerTop };
-				yield return new Point { X = x + centerLeft, Y = -y + centerTop };
-				yield return new Point { X = y + centerLeft, Y = -x + centerTop };
-				++y;
-				if (decisionOver2 <= 0)
-				{
-					decisionOver2 += 2 * y + 1;
-				}
-				else
-				{
-					--x;
-					decisionOver2 += 2 * (y - x) + 1;
-				}
-			}
-		}
-
-		public void FillCircle(int radius, Color color)
-		{
-			foreach (var group in Circle(128, 100, radius)
-				.GroupBy(point => point.Y)
-				.Where(group => group.Key >= 0 && group.Key < GameHeight))
-			{
-				var minX = group.Min(point => point.X);
-				var maxX = group.Max(point => point.X);
-				foreach (var column in Enumerable.Range(minX, maxX - minX + 1)
-					.Where(column => column >= 0 && column < 256))
-				{
-					SetPixel(group.Key, column, color);
-				}
-			}
-		}
-
 		public void SetPixel(
 			int row,
 			int column,
@@ -176,92 +132,6 @@ namespace XCom.Graphics
 				width,
 				image.Length / width,
 				paletteIndex);
-		}
-
-		private static void Swap<T>(ref T value1, ref T value2)
-		{
-			var temp = value1;
-			value1 = value2;
-			value2 = temp;
-		}
-
-		private static IEnumerable<Point> Line(Point from, Point to)
-		{
-			var x0 = from.X;
-			var y0 = from.Y;
-			var x1 = to.X;
-			var y1 = to.Y;
-			var steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
-			if (steep)
-			{
-				Swap(ref x0, ref y0);
-				Swap(ref x1, ref y1);
-			}
-			if (x0 > x1)
-			{
-				Swap(ref x0, ref x1);
-				Swap(ref y0, ref y1);
-			}
-			var dX = x1 - x0;
-			var dY = Math.Abs(y1 - y0);
-			var error = dX / 2;
-			var yStep = y0 < y1 ? 1 : -1;
-			var y = y0;
-
-			for (var x = x0; x <= x1; ++x)
-			{
-				yield return steep ?
-					new Point { X = y, Y = x } :
-					new Point { X = x, Y = y };
-				error = error - dY;
-				if (error >= 0)
-					continue;
-				y += yStep;
-				error += dX;
-			}
-		}
-
-		private static IEnumerable<Point> Triangle(Point[] vertices)
-		{
-			foreach (var group in Line(vertices[0], vertices[1])
-				.Concat(Line(vertices[1], vertices[2]))
-				.Concat(Line(vertices[2], vertices[0]))
-				.GroupBy(point => point.Y)
-				.Where(group => group.Key >= 0 && group.Key < GameHeight))
-			{
-				var minX = group.Min(point => point.X);
-				var maxX = group.Max(point => point.X);
-				foreach (var column in Enumerable.Range(minX, maxX - minX + 1)
-					.Where(column => column >= 0 && column < 256))
-				{
-					yield return new Point { X = column, Y = group.Key };
-				}
-			}
-		}
-
-		public void DrawTerrain(
-			Terrain terrain,
-			int radius,
-			int shading, //0-8
-			int zoom) //0-5
-		{
-			var mask = terrain.TerrainType.Metadata().Image(zoom);
-			var palette = Palette.GetPalette(0);
-			var radiusSquared = radius * radius;
-			const int centerX = 128;
-			const int centerY = 100;
-			foreach (var point in Triangle(terrain.Vertices))
-			{
-				var x = point.X - centerX;
-				var y = point.Y - centerY;
-				//TODO: improve sphere clipping logic
-				if ((x * x + y * y) > radiusSquared)
-					continue;
-				var maskRow = (point.Y % 32 + 32) % 32;
-				var maskColumn = (point.X % 32 + 32) % 32;
-				var maskIndex = maskRow * 32 + maskColumn;
-				SetPixel(point.Y, point.X, palette.GetColor(mask[maskIndex] + shading));
-			}
 		}
 
 		public void DrawOverlay(byte[] overlay, int paletteIndex)

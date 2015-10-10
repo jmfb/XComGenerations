@@ -63,16 +63,6 @@ namespace XCom.Content.World {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Landscape {
-            get {
-                object obj = ResourceManager.GetObject("Landscape", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] Map {
             get {
                 object obj = ResourceManager.GetObject("Map", resourceCulture);

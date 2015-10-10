@@ -142,7 +142,7 @@ namespace XCom.World
 			WorldObjectType worldObjectType)
 		{
 			return items
-				.Select(item => Trigonometry.MapLocationToScreen(location(item)))
+				.Select(item => Trigonometry.LocationToScreen(location(item)))
 				.OfType<Point>()
 				.Select(point => new WorldObject
 				{
