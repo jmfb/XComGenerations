@@ -10,8 +10,7 @@ namespace XCom.World
 {
 	public class WorldView : InteractiveControl
 	{
-		private IEnumerable<Trigonometry.SphereTerrain> frontTerrain;
-		private IEnumerable<Terrain> scaledFrontTerrain;
+		private readonly MapLocation[,] screen = new MapLocation[256, 200];
 		private static readonly int[] zoomRadius = { 90, 120, 180, 270, 440, 720 };
 		private readonly Action<Location> onClick;
 		private readonly Stopwatch stopwatch = new Stopwatch();
@@ -22,14 +21,12 @@ namespace XCom.World
 		public WorldView(Action<Location> onClick)
 		{
 			this.onClick = onClick;
-			Initialize();
 			stopwatch.Restart();
 		}
 
 		public void Initialize()
 		{
-			CalculateFrontTerrain();
-			ScaleFrontTerrain();
+			CalculateScreen();
 		}
 
 		private static int LongitudeOffset
@@ -53,15 +50,13 @@ namespace XCom.World
 		public void ChangeLongitudeOffset(int delta)
 		{
 			LongitudeOffset = Trigonometry.AddEighthDegrees(LongitudeOffset, delta);
-			CalculateFrontTerrain();
-			ScaleFrontTerrain();
+			CalculateScreen();
 		}
 
 		public void ChangePitch(int delta)
 		{
 			Pitch = Trigonometry.AddEighthDegrees(Pitch, delta);
-			CalculateFrontTerrain();
-			ScaleFrontTerrain();
+			CalculateScreen();
 		}
 
 		public void IncreaseZoom()
@@ -69,7 +64,7 @@ namespace XCom.World
 			if (Zoom == 5)
 				return;
 			++Zoom;
-			ScaleFrontTerrain();
+			CalculateScreen();
 		}
 
 		public void DecreaseZoom()
@@ -77,46 +72,22 @@ namespace XCom.World
 			if (Zoom == 0)
 				return;
 			--Zoom;
-			ScaleFrontTerrain();
+			CalculateScreen();
 		}
 
-		private void CalculateFrontTerrain()
+		private void CalculateScreen()
 		{
-			frontTerrain = Terrain.Landscape
-				.Select(terrain => Trigonometry.MapTerrainToSphere(terrain, LongitudeOffset, Pitch))
-				.Where(sphereTerrain => sphereTerrain.IsFrontFacing)
-				.ToList();
-		}
-
-		private void ScaleFrontTerrain()
-		{
-			scaledFrontTerrain = frontTerrain
-				.Select(sphereTerrain => sphereTerrain.Scale(Radius, CenterX, CenterY))
-				.ToList();
+			foreach (var row in Enumerable.Range(0, 200))
+				foreach (var column in Enumerable.Range(0, 256))
+					screen[column, row] = Map.Instance[Trigonometry.ScreenToLocation(row, column)];
 		}
 
 		public static int Radius => zoomRadius[Zoom];
 
 		public override void Render(GraphicsBuffer buffer)
 		{
-			DrawOcean(buffer);
-			DrawTerrain(buffer);
+			DrawWorld(buffer);
 			DrawWorldObjects(buffer);
-		}
-
-		private static void DrawOcean(GraphicsBuffer buffer)
-		{
-			var oceanColor = Palette.GetPalette(0).GetColor(192);
-			switch (Zoom)
-			{
-			case 0:
-			case 1:
-				buffer.FillCircle(Radius, oceanColor);
-				break;
-			default:
-				buffer.FillRect(0, 0, 256, 200, oceanColor);
-				break;
-			}
 		}
 
 		public override bool HitTest(int row, int column)
@@ -140,11 +111,21 @@ namespace XCom.World
 			Initialize();
 		}
 
-		private void DrawTerrain(GraphicsBuffer buffer)
+		private void DrawWorld(GraphicsBuffer buffer)
 		{
 			var secondOfDay = (int)GameState.Current.Data.Time.TimeOfDay.TotalSeconds;
-			foreach (var terrain in scaledFrontTerrain)
-				buffer.DrawTerrain(terrain, Radius, Shader.GetShadeIndex(terrain.MiddleLongitude, secondOfDay), Zoom);
+			foreach (var row in Enumerable.Range(0, 200))
+			{
+				foreach (var column in Enumerable.Range(0, 256))
+				{
+					var mapLocation = screen[column, row];
+					if (mapLocation == null)
+						continue;
+					var shadeIndex = Shader.GetShadeIndex(mapLocation.Location.Longitude, secondOfDay);
+					var color = mapLocation.GetColor(row, column, shadeIndex, Zoom);
+					buffer.SetPixel(row, column, color);
+				}
+			}
 		}
 
 		private void UpdateFlashWorldObjects()

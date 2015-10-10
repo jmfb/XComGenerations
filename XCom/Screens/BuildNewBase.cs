@@ -9,10 +9,12 @@ namespace XCom.Screens
 {
 	public class BuildNewBase : Screen
 	{
+		private readonly WorldView worldView;
+
 		public BuildNewBase()
 		{
 			AddControl(new Background(Backgrounds.Geoscape, 0));
-			var worldView = new WorldView(OnChooseLocation);
+			worldView = new WorldView(OnChooseLocation);
 			AddControl(worldView);
 			AddControl(new WorldControls(worldView));
 
@@ -22,6 +24,11 @@ namespace XCom.Screens
 				AddControl(new Button(8, 186, 53, 12, "CANCEL", ColorScheme.Green, Font.Normal, OnCancel));
 
 			AddControl(new TimeDisplay());
+		}
+
+		public override void OnSetFocus()
+		{
+			worldView.Initialize();
 		}
 
 		private void OnChooseLocation(Location location)

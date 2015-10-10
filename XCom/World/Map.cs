@@ -162,6 +162,8 @@ namespace XCom.World
 		{
 			get
 			{
+				if (location == null)
+					return null;
 				if (location.Longitude < 0 ||
 					location.Longitude >= longitudeCount ||
 					location.Latitude < minLatitude ||
