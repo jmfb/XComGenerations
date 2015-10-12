@@ -58,6 +58,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battlescape\Inventory.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Content\Backgrounds\Backgrounds.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -129,10 +130,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Paperdolls.resx</DependentUpon>
     </Compile>
-    <Compile Include="Content\SoundEffects\Battlescape\Battlescape.Designer.cs">
+    <Compile Include="Content\SoundEffects\Battlescape\BattlescapeSounds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Battlescape.resx</DependentUpon>
+      <DependentUpon>BattlescapeSounds.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\SoundEffects\Interception\Interception.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -167,6 +168,7 @@
     <Compile Include="Controls\BaseSelect.cs" />
     <Compile Include="Controls\Border.cs" />
     <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\ClickArea.cs" />
     <Compile Include="Controls\ClickToEdit.cs" />
     <Compile Include="Controls\ColoredText.cs" />
     <Compile Include="Controls\CraftCargoPreview.cs" />
@@ -470,9 +472,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paperdolls.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\SoundEffects\Battlescape\Battlescape.resx">
+    <EmbeddedResource Include="Content\SoundEffects\Battlescape\BattlescapeSounds.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Battlescape.Designer.cs</LastGenOutput>
+      <LastGenOutput>BattlescapeSounds.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\SoundEffects\Interception\Interception.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -671,6 +673,7 @@
     <None Include="Content\Overlays\Snakeman.bin" />
     <None Include="Content\Overlays\SnakemanAutopsy.bin" />
     <None Include="Content\Overlays\Stingray.bin" />
+    <None Include="Content\Overlays\Tactical.bin" />
     <None Include="Content\Overlays\UfoConstruction.bin" />
     <None Include="Content\Overlays\UfoNavigation.bin" />
     <None Include="Content\Overlays\UfoPowerSource.bin" />

@@ -232,6 +232,9 @@
   <data name="Stingray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Stingray.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Tactical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Tactical.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="UfoConstruction" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>UfoConstruction.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
