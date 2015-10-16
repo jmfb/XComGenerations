@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Linq;
+using XCom.Battlescape;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
@@ -70,7 +71,8 @@ namespace XCom.Screens
 
 		private static void OnGraphs()
 		{
-			//TODO:
+			//TODO: remove debug code
+			GameState.Current.SetScreen(new Inventory(BattleSoldier.Create(GameState.Current.Data.Bases[0].Soldiers[0].Id)));
 		}
 
 		private static void OnUfoPaedia()

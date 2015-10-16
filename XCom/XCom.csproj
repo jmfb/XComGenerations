@@ -58,6 +58,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battlescape\BattleSoldier.cs" />
+    <Compile Include="Battlescape\BattleItem.cs" />
     <Compile Include="Battlescape\Inventory.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Content\Backgrounds\Backgrounds.Designer.cs">
@@ -228,6 +230,7 @@
     <Compile Include="Data\GameData.MonthlyProgress.cs" />
     <Compile Include="Data\GameData.DailyProgress.cs" />
     <Compile Include="Data\GameData.HourlyProgress.cs" />
+    <Compile Include="Data\Gender.cs" />
     <Compile Include="Data\GrenadeMetadata.cs" />
     <Compile Include="Data\GrenadeType.cs" />
     <Compile Include="Data\HwpAmmunitionMetadata.cs" />
@@ -243,6 +246,7 @@
     <Compile Include="Data\ManufactureStatus.cs" />
     <Compile Include="Data\ManufactureType.cs" />
     <Compile Include="Data\MonthlyReportCard.cs" />
+    <Compile Include="Data\SkinColor.cs" />
     <Compile Include="Data\Rank.cs" />
     <Compile Include="Data\ResearchProgress.cs" />
     <Compile Include="Data\ResearchProject.cs" />

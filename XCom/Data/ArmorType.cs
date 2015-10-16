@@ -5,7 +5,6 @@ namespace XCom.Data
 {
 	public enum ArmorType
 	{
-		//Coveralls,
 		PersonalArmor,
 		PowerSuit,
 		FlyingSuit
@@ -17,18 +16,6 @@ namespace XCom.Data
 		{
 			return metadata[armorType];
 		}
-
-		/*
-		private static readonly ArmorMetadata coveralls = new ArmorMetadata
-		{
-			Name = "Coveralls",
-			FrontArmor = 12,
-			LeftArmor = 8,
-			RightArmor = 8,
-			RearArmor = 5,
-			UnderArmor = 2
-		};
-		*/
 
 		private static readonly ArmorMetadata personalArmor = new ArmorMetadata
 		{
@@ -76,7 +63,6 @@ namespace XCom.Data
 
 		private static readonly Dictionary<ArmorType, ArmorMetadata> metadata = new Dictionary<ArmorType,ArmorMetadata>
 		{
-			//{ ArmorType.Coveralls, coveralls },
 			{ ArmorType.PersonalArmor, personalArmor },
 			{ ArmorType.PowerSuit, powerSuit },
 			{ ArmorType.FlyingSuit, flyingSuit }

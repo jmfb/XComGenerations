@@ -72,6 +72,11 @@ namespace XCom.Data
 		[ScriptIgnore]
 		public IEnumerable<Ufo> VisibleUfos => Ufos.Where(ufo => ufo.IsDetected);
 
+		public Soldier GetSoldier(int id)
+		{
+			return Bases.SelectMany(@base => @base.Soldiers).Single(soldier => soldier.Id == id);
+		}
+
 		public static GameData Create(int difficulty)
 		{
 			return new GameData
