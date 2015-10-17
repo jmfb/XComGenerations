@@ -10,10 +10,12 @@ namespace XCom.Battlescape
 {
 	public class Inventory : Screen
 	{
+		private readonly Battle battle;
 		private readonly BattleSoldier soldier;
 
-		public Inventory(BattleSoldier soldier)
+		public Inventory(Battle battle, BattleSoldier soldier)
 		{
+			this.battle = battle;
 			this.soldier = soldier;
 			AddControl(new Overlay(Overlays.Tactical, 4));
 			AddControl(new ClickArea(1, 238, 35, 23, OnOk));
@@ -78,14 +80,14 @@ namespace XCom.Battlescape
 			Environment.Exit(0);
 		}
 
-		private static void OnPreviousSoldier()
+		private void OnPreviousSoldier()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new Inventory(battle, battle.PreviousSoldier(soldier)));
 		}
 
-		private static void OnNextSoldier()
+		private void OnNextSoldier()
 		{
-			//TODO:
+			GameState.Current.SetScreen(new Inventory(battle, battle.NextSoldier(soldier)));
 		}
 
 		private static void OnUnloadWeapon()

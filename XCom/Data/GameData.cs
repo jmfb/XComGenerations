@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Serialization;
+using XCom.Battlescape;
 using XCom.World;
 
 namespace XCom.Data
@@ -33,6 +34,7 @@ namespace XCom.Data
 		public int NextUfoNumber { get; set; }
 		public List<Ufo> Ufos { get; set; }
 		public UfoFactory UfoFactory { get; set; }
+		public Battle Battle { get; set; }
 
 		[ScriptIgnore]
 		public int TotalFunding => Countries.Sum(country => country.Funding);
@@ -99,7 +101,8 @@ namespace XCom.Data
 				Waypoints = new List<Waypoint>(),
 				NextUfoNumber = 1,
 				Ufos = new List<Ufo>(),
-				UfoFactory = new UfoFactory()
+				UfoFactory = new UfoFactory(),
+				Battle = null
 			};
 		}
 

@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
@@ -27,11 +26,10 @@ namespace XCom.Screens
 				var topRow = nextTopRow;
 				nextTopRow += 14;
 
-				var buttonText = gameId.ToString(CultureInfo.InvariantCulture);
 				if (GameState.GameDataExists(gameId))
 				{
 					var data = GameState.LoadGameData(gameId);
-					AddControl(new Button(topRow - 2, 10, 24, 12, buttonText, ColorScheme.Aqua, Font.Normal, () => OnLoadGame(data)));
+					AddControl(new Button(topRow - 2, 10, 24, 12, $"{gameId}", ColorScheme.Aqua, Font.Normal, () => OnLoadGame(data)));
 					AddControl(new ExtendedLabel(topRow, 36, 159, data.Name, Font.Normal, ColorScheme.Yellow));
 					AddControl(new Label(topRow, 195, data.Time.ToString("H:mm"), Font.Normal, ColorScheme.Yellow));
 					AddControl(new Label(topRow, 225, data.Time.Day.FormatOrdinal(), Font.Normal, ColorScheme.Yellow));
@@ -40,7 +38,7 @@ namespace XCom.Screens
 				}
 				else
 				{
-					AddControl(new Button(topRow - 2, 10, 24, 12, buttonText, ColorScheme.Aqua, Font.Normal, () => {}));
+					AddControl(new Button(topRow - 2, 10, 24, 12, $"{gameId}", ColorScheme.Aqua, Font.Normal, () => {}));
 				}
 			}
 			AddControl(new Button(172, 120, 80, 16, "CANCEL", ColorScheme.Aqua, Font.Normal, OnCancel));
@@ -49,9 +47,15 @@ namespace XCom.Screens
 		private static void OnLoadGame(GameData data)
 		{
 			GameState.Current.Data = data;
-			//TODO: determine battlescape or geoscape
-			Geoscape.ResetGameSpeed();
-			GameState.Current.SetScreen(Geoscape);
+			if (data.Battle == null)
+			{
+				Geoscape.ResetGameSpeed();
+				GameState.Current.SetScreen(Geoscape);
+			}
+			else
+			{
+				//TODO: enter battlescape
+			}
 		}
 
 		private void OnCancel()

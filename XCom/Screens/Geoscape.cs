@@ -72,7 +72,9 @@ namespace XCom.Screens
 		private static void OnGraphs()
 		{
 			//TODO: remove debug code
-			GameState.Current.SetScreen(new Inventory(BattleSoldier.Create(GameState.Current.Data.Bases[0].Soldiers[0].Id)));
+			var battle = Battle.CreateFromCraft(GameState.Current.Data.Bases[0].Crafts[0]);
+			GameState.Current.Data.Battle = battle;
+			GameState.Current.SetScreen(new Inventory(battle, battle.Soldiers.First()));
 		}
 
 		private static void OnUfoPaedia()
