@@ -261,10 +261,38 @@ namespace XCom.Battlescape
 
 		private void OnClickRightShoulder(int row, int column)
 		{
+			if (selection == null)
+			{
+				selectionSource = InventoryLocation.RightShoulder;
+				selection = SelectItem(soldier.RightShoulder, column);
+			}
+			else
+			{
+				var dropLocation = GetDropLocation(soldier.RightShoulder, column, selection);
+				if (dropLocation == null)
+					return;
+				soldier.RightShoulder[dropLocation.Value] = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
 		}
 
 		private void OnClickLeftShoulder(int row, int column)
 		{
+			if (selection == null)
+			{
+				selectionSource = InventoryLocation.LeftShoulder;
+				selection = SelectItem(soldier.LeftShoulder, column);
+			}
+			else
+			{
+				var dropLocation = GetDropLocation(soldier.LeftShoulder, column, selection);
+				if (dropLocation == null)
+					return;
+				soldier.LeftShoulder[dropLocation.Value] = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
 		}
 
 		private void OnClickRightHand()
@@ -323,10 +351,40 @@ namespace XCom.Battlescape
 
 		private void OnClickRightLeg(int row, int column)
 		{
+			if (selection == null)
+			{
+				selectionSource = InventoryLocation.RightLeg;
+				selection = SelectItem(soldier.RightLeg, column);
+			}
+			else
+			{
+				var dropLocation = GetDropLocation(soldier.RightLeg, column, selection);
+				if (dropLocation == null)
+					return;
+				//TODO: check TUs in battle
+				soldier.RightLeg[dropLocation.Value] = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
 		}
 
 		private void OnClickLeftLeg(int row, int column)
 		{
+			if (selection == null)
+			{
+				selectionSource = InventoryLocation.LeftLeg;
+				selection = SelectItem(soldier.LeftLeg, column);
+			}
+			else
+			{
+				var dropLocation = GetDropLocation(soldier.LeftLeg, column, selection);
+				if (dropLocation == null)
+					return;
+				//TODO: check TUs in battle
+				soldier.LeftLeg[dropLocation.Value] = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
 		}
 
 		private void OnClickBackPack(int row, int column)
@@ -341,6 +399,7 @@ namespace XCom.Battlescape
 				var dropLocation = GetDropLocation(soldier.BackPack, row, column, selection);
 				if (dropLocation == null)
 					return;
+				//TODO: check TUs in battle
 				soldier.BackPack[dropLocation.Value.Y, dropLocation.Value.X] = selection;
 				selection = null;
 				BattlescapeSoundEffect.ItemDrop.Play();
@@ -349,6 +408,33 @@ namespace XCom.Battlescape
 
 		private void OnClickBelt(int row, int column)
 		{
+			if (selection == null)
+			{
+				selectionSource = InventoryLocation.Belt;
+				selection = SelectItem(soldier.Belt, row, column);
+			}
+			else
+			{
+				var dropLocation = GetDropLocation(soldier.Belt, row, column, selection);
+				if (dropLocation == null)
+					return;
+				var dropRow = dropLocation.Value.Y;
+				var dropColumn = dropLocation.Value.X;
+				if (selection.Height > 2 || (selection.Height > 1 && dropRow > 0))
+					return;
+				if (selection.Width > 1 && dropRow > 0)
+					return;
+				if (selection.Width > 1 && selection.Height > 1)
+					return;
+				if (dropRow > 0 && (dropColumn == 1 || dropColumn == 2))
+					return;
+				if (selection.Height > 1 && (dropColumn == 1 || dropColumn == 2))
+					return;
+				//TODO: check TUs in battle
+				soldier.Belt[dropRow, dropColumn] = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
 		}
 
 		private void OnClickGround(int row, int column)
@@ -365,6 +451,7 @@ namespace XCom.Battlescape
 				var dropLocation = GetDropLocation(CurrentGroundView, row, column, selection);
 				if (dropLocation == null)
 					return;
+				//TODO: check TUs in battle
 				CurrentGroundView[dropLocation.Value.Y, dropLocation.Value.X] = selection;
 				ground.Add(selection);
 				selection = null;
@@ -410,6 +497,22 @@ namespace XCom.Battlescape
 			return null;
 		}
 
+		private static int? GetDropLocation(BattleItem[] items, int column, BattleItem item)
+		{
+			if (item.Height > 1)
+				return null;
+			var width = item.Width;
+			if (items[column] != null)
+				return null;
+			if (width == 1)
+				return column;
+			if (column > 0 && items[column - 1] == null)
+				return column - 1;
+			if (column + 1 < items.Length && items[column + 1] == null)
+				return column;
+			return null;
+		}
+
 		private static bool CanDropHere(
 			Point?[,] targets,
 			int dropRow,
@@ -437,6 +540,19 @@ namespace XCom.Battlescape
 			var item = items[target.Value.Y, target.Value.X];
 			items[target.Value.Y, target.Value.X] = null;
 			return item;
+		}
+
+		private static BattleItem SelectItem(BattleItem[] items, int column)
+		{
+			foreach (var index in Enumerable.Range(0, items.Length))
+			{
+				var item = items[index];
+				if (item == null)
+					continue;
+				if (column >= index && column < index + item.Width)
+					return item;
+			}
+			return null;
 		}
 	}
 }
