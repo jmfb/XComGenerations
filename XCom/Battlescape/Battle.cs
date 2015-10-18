@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 using XCom.Data;
 
 namespace XCom.Battlescape
@@ -8,6 +9,9 @@ namespace XCom.Battlescape
 	{
 		public int Turn { get; set; }
 		public List<BattleSoldier> Soldiers { get; set; }
+
+		[ScriptIgnore]
+		public List<BattleItem> Stores { get; set; }
 
 		public BattleSoldier NextSoldier(BattleSoldier soldier)
 		{
@@ -28,7 +32,8 @@ namespace XCom.Battlescape
 			return new Battle
 			{
 				Turn = 1,
-				Soldiers = craft.SoldierIds.Select(BattleSoldier.Create).ToList()
+				Soldiers = craft.SoldierIds.Select(BattleSoldier.Create).ToList(),
+				Stores = craft.Stores.Items.SelectMany(BattleItem.Create).ToList()
 			};
 		}
 
