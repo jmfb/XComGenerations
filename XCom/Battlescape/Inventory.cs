@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using XCom.Content.Overlays;
@@ -21,12 +22,16 @@ namespace XCom.Battlescape
 		private int groundViewIndex;
 		private BattleItem selection;
 		private InventoryLocation selectionSource;
+		private readonly bool isInitialInventory;
+		private bool notEnoughTimeUnits;
+		private readonly Stopwatch stopwatch = new Stopwatch();
 
-		public Inventory(Battle battle, BattleSoldier soldier, List<BattleItem> ground)
+		public Inventory(Battle battle, BattleSoldier soldier, List<BattleItem> ground, bool isInitialInventory)
 		{
 			this.battle = battle;
 			this.soldier = soldier;
 			this.ground = ground;
+			this.isInitialInventory = isInitialInventory;
 			CalculateGroundViews();
 
 			AddControl(new Overlay(Overlays.Tactical, 4));
@@ -57,9 +62,11 @@ namespace XCom.Battlescape
 			AddControl(new ClickGridArea(104, 192, 4, 2, OnClickBelt));
 			AddControl(new ClickGridArea(152, 0, 20, 3, OnClickGround));
 
-			//TODO: When in battle, show TUs
-			//AddControl(new Label(24, 250, "TUs>", Font.Normal, ColorScheme.Green));
-			//AddControl(new DynamicLabel(24, 270, () => $"{soldier.TimeUnits}", Font.Normal, ColorScheme.Orange));
+			if (!isInitialInventory)
+			{
+				AddControl(new Label(24, 250, "TUs>", Font.Normal, ColorScheme.Green));
+				AddControl(new DynamicLabel(24, 270, () => $"{soldier.TimeUnits}", Font.Normal, ColorScheme.Orange));
+			}
 
 			AddControl(new Overlay(soldier.Soldier.Paperdoll, 4));
 		}
@@ -111,6 +118,21 @@ namespace XCom.Battlescape
 			DrawSoldierItems(buffer);
 			DrawBattleItems(buffer, CurrentGroundView, 152, 0);
 			DrawSelection(buffer);
+			DrawNotEnoughTimeUnits(buffer);
+		}
+
+		private void DrawNotEnoughTimeUnits(GraphicsBuffer buffer)
+		{
+			if (!notEnoughTimeUnits)
+				return;
+			if (stopwatch.ElapsedMilliseconds > 2000)
+			{
+				notEnoughTimeUnits = false;
+				return;
+			}
+			var blink = (int)(stopwatch.ElapsedMilliseconds / 20) % 8;
+			buffer.FillRect(176, 48, 320 - 48 * 2, 200 - 176, Palette.GetPalette(1).GetColor(40 + blink));
+			Font.Normal.DrawString(buffer, 184, 109, "Not Enough Time Units!", ColorScheme.Yellow);
 		}
 
 		private static void DrawGridLines(GraphicsBuffer buffer)
@@ -218,13 +240,13 @@ namespace XCom.Battlescape
 		private void OnPreviousSoldier()
 		{
 			//TODO: when in battle, use ground items at soldiers position
-			GameState.Current.SetScreen(new Inventory(battle, battle.PreviousSoldier(soldier), ground));
+			GameState.Current.SetScreen(new Inventory(battle, battle.PreviousSoldier(soldier), ground, isInitialInventory));
 		}
 
 		private void OnNextSoldier()
 		{
 			//TODO: when in battle, use ground items at soldiers position
-			GameState.Current.SetScreen(new Inventory(battle, battle.NextSoldier(soldier), ground));
+			GameState.Current.SetScreen(new Inventory(battle, battle.NextSoldier(soldier), ground, isInitialInventory));
 		}
 
 		private void OnUnloadWeapon()
@@ -234,8 +256,8 @@ namespace XCom.Battlescape
 			var canUnloadWeapon = selectionIsLoadedWeapon && bothHandsAreEmpty;
 			if (!canUnloadWeapon)
 				return;
-
-			//TODO: when in battle, check remaining TUs and consume them if enough
+			if (!TryConsumeTimeUnits(8))
+				return;
 
 			soldier.LeftHand = new BattleItem
 			{
@@ -261,202 +283,170 @@ namespace XCom.Battlescape
 
 		private void OnClickRightShoulder(int row, int column)
 		{
-			if (selection == null)
-			{
-				selectionSource = InventoryLocation.RightShoulder;
-				selection = SelectItem(soldier.RightShoulder, column);
-			}
-			else
-			{
-				var dropLocation = GetDropLocation(soldier.RightShoulder, column, selection);
-				if (dropLocation == null)
-					return;
-				soldier.RightShoulder[dropLocation.Value] = selection;
-				selection = null;
-				BattlescapeSoundEffect.ItemDrop.Play();
-			}
+			ClickBattleItemRow(soldier.RightShoulder, InventoryLocation.RightShoulder, column);
 		}
 
 		private void OnClickLeftShoulder(int row, int column)
 		{
-			if (selection == null)
-			{
-				selectionSource = InventoryLocation.LeftShoulder;
-				selection = SelectItem(soldier.LeftShoulder, column);
-			}
-			else
-			{
-				var dropLocation = GetDropLocation(soldier.LeftShoulder, column, selection);
-				if (dropLocation == null)
-					return;
-				soldier.LeftShoulder[dropLocation.Value] = selection;
-				selection = null;
-				BattlescapeSoundEffect.ItemDrop.Play();
-			}
+			ClickBattleItemRow(soldier.LeftShoulder, InventoryLocation.LeftShoulder, column);
 		}
 
 		private void OnClickRightHand()
 		{
-			if (selection == null && soldier.RightHand != null)
-			{
-				selection = soldier.RightHand;
-				selectionSource = InventoryLocation.RightHand;
-				soldier.RightHand = null;
-			}
-			else if (selection != null && soldier.RightHand == null)
-			{
-				//TODO: check TUs in battle
-				soldier.RightHand = selection;
-				selection = null;
-				BattlescapeSoundEffect.ItemDrop.Play();
-			}
-			else if (selection != null && soldier.RightHand != null)
-			{
-				//TODO: check TUs in battle
-				if (!soldier.RightHand.CanLoadWith(selection))
-					return;
-				soldier.RightHand.Ammunition = (AmmunitionType)selection.Item;
-				soldier.RightHand.Rounds = selection.Rounds;
-				selection = null;
-				BattlescapeSoundEffect.Reload.Play();
-			}
+			soldier.RightHand = ClickHand(soldier.RightHand, InventoryLocation.RightHand);
 		}
 
 		private void OnClickLeftHand()
 		{
-			if (selection == null && soldier.LeftHand != null)
-			{
-				selection = soldier.LeftHand;
-				selectionSource = InventoryLocation.LeftHand;
-				soldier.LeftHand = null;
-			}
-			else if (selection != null && soldier.LeftHand == null)
-			{
-				//TODO: check TUs in battle
-				soldier.LeftHand = selection;
-				selection = null;
-				BattlescapeSoundEffect.ItemDrop.Play();
-			}
-			else if (selection != null && soldier.LeftHand != null)
-			{
-				//TODO: check TUs in battle
-				if (!soldier.LeftHand.CanLoadWith(selection))
-					return;
-				soldier.LeftHand.Ammunition = (AmmunitionType)selection.Item;
-				soldier.LeftHand.Rounds = selection.Rounds;
-				selection = null;
-				BattlescapeSoundEffect.Reload.Play();
-			}
+			soldier.LeftHand = ClickHand(soldier.LeftHand, InventoryLocation.LeftHand);
 		}
 
 		private void OnClickRightLeg(int row, int column)
 		{
-			if (selection == null)
-			{
-				selectionSource = InventoryLocation.RightLeg;
-				selection = SelectItem(soldier.RightLeg, column);
-			}
-			else
-			{
-				var dropLocation = GetDropLocation(soldier.RightLeg, column, selection);
-				if (dropLocation == null)
-					return;
-				//TODO: check TUs in battle
-				soldier.RightLeg[dropLocation.Value] = selection;
-				selection = null;
-				BattlescapeSoundEffect.ItemDrop.Play();
-			}
+			ClickBattleItemRow(soldier.RightLeg, InventoryLocation.RightLeg, column);
 		}
 
 		private void OnClickLeftLeg(int row, int column)
 		{
-			if (selection == null)
-			{
-				selectionSource = InventoryLocation.LeftLeg;
-				selection = SelectItem(soldier.LeftLeg, column);
-			}
-			else
-			{
-				var dropLocation = GetDropLocation(soldier.LeftLeg, column, selection);
-				if (dropLocation == null)
-					return;
-				//TODO: check TUs in battle
-				soldier.LeftLeg[dropLocation.Value] = selection;
-				selection = null;
-				BattlescapeSoundEffect.ItemDrop.Play();
-			}
+			ClickBattleItemRow(soldier.LeftLeg, InventoryLocation.LeftLeg, column);
 		}
 
 		private void OnClickBackPack(int row, int column)
 		{
-			if (selection == null)
-			{
-				selectionSource = InventoryLocation.BackPack;
-				selection = SelectItem(soldier.BackPack, row, column);
-			}
-			else
-			{
-				var dropLocation = GetDropLocation(soldier.BackPack, row, column, selection);
-				if (dropLocation == null)
-					return;
-				//TODO: check TUs in battle
-				soldier.BackPack[dropLocation.Value.Y, dropLocation.Value.X] = selection;
-				selection = null;
-				BattlescapeSoundEffect.ItemDrop.Play();
-			}
+			ClickBattleItemGrid(soldier.BackPack, InventoryLocation.BackPack, row, column);
 		}
 
 		private void OnClickBelt(int row, int column)
 		{
+			ClickBattleItemGrid(soldier.Belt, InventoryLocation.Belt, row, column, CanPutOnBelt);
+		}
+
+		private void OnClickGround(int row, int column)
+		{
+			ClickBattleItemGrid(CurrentGroundView, InventoryLocation.Ground, row, column);
+		}
+
+		private void ClickBattleItemRow(BattleItem[] items, InventoryLocation location, int column)
+		{
 			if (selection == null)
 			{
-				selectionSource = InventoryLocation.Belt;
-				selection = SelectItem(soldier.Belt, row, column);
+				selectionSource = location;
+				selection = SelectItem(items, column);
 			}
 			else
 			{
-				var dropLocation = GetDropLocation(soldier.Belt, row, column, selection);
+				var dropLocation = GetDropLocation(items, column, selection);
 				if (dropLocation == null)
 					return;
-				var dropRow = dropLocation.Value.Y;
-				var dropColumn = dropLocation.Value.X;
-				if (selection.Height > 2 || (selection.Height > 1 && dropRow > 0))
+				if (!TryConsumeTimeUnits(GetTransferTimeUnits(location)))
 					return;
-				if (selection.Width > 1 && dropRow > 0)
-					return;
-				if (selection.Width > 1 && selection.Height > 1)
-					return;
-				if (dropRow > 0 && (dropColumn == 1 || dropColumn == 2))
-					return;
-				if (selection.Height > 1 && (dropColumn == 1 || dropColumn == 2))
-					return;
-				//TODO: check TUs in battle
-				soldier.Belt[dropRow, dropColumn] = selection;
+				items[dropLocation.Value] = selection;
 				selection = null;
 				BattlescapeSoundEffect.ItemDrop.Play();
 			}
 		}
 
-		private void OnClickGround(int row, int column)
+		private void ClickBattleItemGrid(
+			BattleItem[,] items,
+			InventoryLocation location,
+			int row,
+			int column,
+			Func<int, int, int, int, bool> canDropHere = null)
 		{
 			if (selection == null)
 			{
-				selectionSource = InventoryLocation.Ground;
-				selection = SelectItem(CurrentGroundView, row, column);
-				if (selection != null)
+				selectionSource = location;
+				selection = SelectItem(items, row, column);
+				if (location == InventoryLocation.Ground && selection != null)
 					ground.Remove(selection);
 			}
 			else
 			{
-				var dropLocation = GetDropLocation(CurrentGroundView, row, column, selection);
+				var dropLocation = GetDropLocation(items, row, column, selection);
 				if (dropLocation == null)
 					return;
-				//TODO: check TUs in battle
-				CurrentGroundView[dropLocation.Value.Y, dropLocation.Value.X] = selection;
-				ground.Add(selection);
+				var dropRow = dropLocation.Value.Y;
+				var dropColumn = dropLocation.Value.X;
+				if (canDropHere != null && !canDropHere(dropRow, dropColumn, selection.Width, selection.Height))
+					return;
+				if (!TryConsumeTimeUnits(GetTransferTimeUnits(location)))
+					return;
+				items[dropRow, dropColumn] = selection;
+				if (location == InventoryLocation.Ground)
+					ground.Add(selection);
 				selection = null;
 				BattlescapeSoundEffect.ItemDrop.Play();
 			}
+		}
+
+		private BattleItem ClickHand(BattleItem item, InventoryLocation location)
+		{
+			if (selection == null && item == null)
+				return null;
+			if (selection != null && item != null)
+			{
+				TryLoadWeapon(item);
+				return item;
+			}
+			if (item != null)
+			{
+				selection = item;
+				selectionSource = location;
+				return null;
+			}
+
+			if (!TryConsumeTimeUnits(GetTransferTimeUnits(location)))
+				return null;
+			var newItem = selection;
+			selection = null;
+			BattlescapeSoundEffect.ItemDrop.Play();
+			return newItem;
+		}
+
+		private void TryLoadWeapon(BattleItem item)
+		{
+			if (!item.CanLoadWith(selection))
+				return;
+			if (!TryConsumeTimeUnits(15))
+				return;
+			item.Ammunition = (AmmunitionType) selection.Item;
+			item.Rounds = selection.Rounds;
+			selection = null;
+			BattlescapeSoundEffect.Reload.Play();
+		}
+
+		private bool TryConsumeTimeUnits(int timeUnits)
+		{
+			if (timeUnits > soldier.TimeUnits)
+			{
+				notEnoughTimeUnits = true;
+				stopwatch.Restart();
+				return false;
+			}
+			soldier.TimeUnits -= timeUnits;
+			return true;
+		}
+
+		private int GetTransferTimeUnits(InventoryLocation destination)
+		{
+			return isInitialInventory ?
+				0 :
+				selectionSource.Metadata().TimeUnitCost[destination];
+		}
+
+		private static bool CanPutOnBelt(int dropRow, int dropColumn, int itemWidth, int itemHeight)
+		{
+			if (itemHeight > 2 || (itemHeight > 1 && dropRow > 0))
+				return false;
+			if (itemWidth > 1 && dropRow > 0)
+				return false;
+			if (itemWidth > 1 && itemHeight > 1)
+				return false;
+			if (dropRow > 0 && (dropColumn == 1 || dropColumn == 2))
+				return false;
+			if (itemHeight > 1 && (dropColumn == 1 || dropColumn == 2))
+				return false;
+			return true;
 		}
 
 		private static Point?[,] GetClickTargets(BattleItem[,] items)

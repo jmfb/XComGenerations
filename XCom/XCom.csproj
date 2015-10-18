@@ -63,6 +63,7 @@
     <Compile Include="Battlescape\BattleItem.cs" />
     <Compile Include="Battlescape\Inventory.cs" />
     <Compile Include="Battlescape\InventoryLocation.cs" />
+    <Compile Include="Battlescape\InventoryLocationMetadata.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Content\Backgrounds\Backgrounds.Designer.cs">
       <AutoGen>True</AutoGen>
