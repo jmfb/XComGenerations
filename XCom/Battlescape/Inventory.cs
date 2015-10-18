@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using XCom.Content.Overlays;
 using XCom.Controls;
+using XCom.Data;
 using XCom.Graphics;
 using XCom.Music;
 using XCom.Screens;
@@ -19,6 +20,7 @@ namespace XCom.Battlescape
 		private readonly List<BattleItem[,]> groundViews = new List<BattleItem[,]>();
 		private int groundViewIndex;
 		private BattleItem selection;
+		private InventoryLocation selectionSource;
 
 		public Inventory(Battle battle, BattleSoldier soldier, List<BattleItem> ground)
 		{
@@ -32,7 +34,7 @@ namespace XCom.Battlescape
 			AddControl(new ClickArea(1, 274, 23, 23, OnPreviousSoldier));
 			AddControl(new ClickArea(1, 298, 23, 23, OnNextSoldier));
 			AddControl(new ClickArea(32, 288, 33, 26, OnUnloadWeapon));
-			AddControl(new ClickArea(137, 288, 33, 15, OnNextEquipment));
+			AddControl(new ClickArea(137, 288, 33, 15, OnNextGroundView));
 
 			AddControl(new Label(0, 0, soldier.Soldier.Name, Font.Large, ColorScheme.Green));
 			AddControl(new Label(32, 16, "RIGHT SHOULDER", Font.Normal, ColorScheme.Green));
@@ -45,12 +47,24 @@ namespace XCom.Battlescape
 			AddControl(new Label(96, 192, "BELT", Font.Normal, ColorScheme.Green));
 			AddControl(new Label(143, 0, "GROUND", Font.Normal, ColorScheme.Green));
 
+			AddControl(new ClickGridArea(40, 16, 2, 1, OnClickRightShoulder));
+			AddControl(new ClickGridArea(40, 112, 2, 1, OnClickLeftShoulder));
+			AddControl(new ClickArea(64, 0, 32, 48, OnClickRightHand));
+			AddControl(new ClickArea(64, 128, 32, 48, OnClickLeftHand));
+			AddControl(new ClickGridArea(120, 0, 2, 1, OnClickRightLeg));
+			AddControl(new ClickGridArea(120, 128, 2, 1, OnClickLeftLeg));
+			AddControl(new ClickGridArea(40, 192, 3, 3, OnClickBackPack));
+			AddControl(new ClickGridArea(104, 192, 4, 2, OnClickBelt));
+			AddControl(new ClickGridArea(152, 0, 20, 3, OnClickGround));
+
 			//TODO: When in battle, show TUs
 			//AddControl(new Label(24, 250, "TUs>", Font.Normal, ColorScheme.Green));
 			//AddControl(new DynamicLabel(24, 270, () => $"{soldier.TimeUnits}", Font.Normal, ColorScheme.Orange));
 
 			AddControl(new Overlay(soldier.Soldier.Paperdoll, 4));
 		}
+
+		private BattleItem[,] CurrentGroundView => groundViews[groundViewIndex];
 
 		private void CalculateGroundViews()
 		{
@@ -95,7 +109,7 @@ namespace XCom.Battlescape
 			base.Render(buffer);
 			DrawGridLines(buffer);
 			DrawSoldierItems(buffer);
-			DrawGroundView(buffer);
+			DrawBattleItems(buffer, CurrentGroundView, 152, 0);
 			DrawSelection(buffer);
 		}
 
@@ -171,24 +185,22 @@ namespace XCom.Battlescape
 			}
 		}
 
-		private void DrawGroundView(GraphicsBuffer buffer)
-		{
-			DrawBattleItems(buffer, groundViews[groundViewIndex], 152, 0);
-		}
-
 		private void DrawSelection(GraphicsBuffer buffer)
 		{
 			if (selection == null)
 				return;
 
-			if (selection.Ammunition != null)
+			Font.Normal.DrawString(buffer, 20, 0, selection.Name, ColorScheme.Green);
+
+			if (selection.Rounds > 0)
 			{
 				Font.Normal.DrawString(buffer, 64, 272, "AMMO:", ColorScheme.Green);
 				Font.Normal.DrawString(buffer, 72, 272, "ROUNDS", ColorScheme.Green);
 				Font.Normal.DrawString(buffer, 80, 272, "LEFT=", ColorScheme.Green);
 				Font.Normal.DrawString(buffer, 80, 298, $"{selection.Rounds}", ColorScheme.Orange);
 				buffer.DrawFrame(88, 272, 32, 48, Color.Gray);
-				DrawCenteredBattleItem(buffer, selection, 88, 272);
+				var ammunitionItem = selection.Ammunition == null ? selection : new BattleItem { Item = selection.Ammunition };
+				DrawCenteredBattleItem(buffer, ammunitionItem, 88, 272);
 			}
 
 			var cursor = GameState.Current.PointerPosition;
@@ -240,11 +252,191 @@ namespace XCom.Battlescape
 			BattlescapeSoundEffect.Reload.Play();
 		}
 
-		private void OnNextEquipment()
+		private void OnNextGroundView()
 		{
 			var currentIndex = groundViewIndex;
 			CalculateGroundViews();
 			groundViewIndex = (currentIndex + 1) % groundViews.Count;
+		}
+
+		private void OnClickRightShoulder(int row, int column)
+		{
+		}
+
+		private void OnClickLeftShoulder(int row, int column)
+		{
+		}
+
+		private void OnClickRightHand()
+		{
+			if (selection == null && soldier.RightHand != null)
+			{
+				selection = soldier.RightHand;
+				selectionSource = InventoryLocation.RightHand;
+				soldier.RightHand = null;
+			}
+			else if (selection != null && soldier.RightHand == null)
+			{
+				//TODO: check TUs in battle
+				soldier.RightHand = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
+			else if (selection != null && soldier.RightHand != null)
+			{
+				//TODO: check TUs in battle
+				if (!soldier.RightHand.CanLoadWith(selection))
+					return;
+				soldier.RightHand.Ammunition = (AmmunitionType)selection.Item;
+				soldier.RightHand.Rounds = selection.Rounds;
+				selection = null;
+				BattlescapeSoundEffect.Reload.Play();
+			}
+		}
+
+		private void OnClickLeftHand()
+		{
+			if (selection == null && soldier.LeftHand != null)
+			{
+				selection = soldier.LeftHand;
+				selectionSource = InventoryLocation.LeftHand;
+				soldier.LeftHand = null;
+			}
+			else if (selection != null && soldier.LeftHand == null)
+			{
+				//TODO: check TUs in battle
+				soldier.LeftHand = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
+			else if (selection != null && soldier.LeftHand != null)
+			{
+				//TODO: check TUs in battle
+				if (!soldier.LeftHand.CanLoadWith(selection))
+					return;
+				soldier.LeftHand.Ammunition = (AmmunitionType)selection.Item;
+				soldier.LeftHand.Rounds = selection.Rounds;
+				selection = null;
+				BattlescapeSoundEffect.Reload.Play();
+			}
+		}
+
+		private void OnClickRightLeg(int row, int column)
+		{
+		}
+
+		private void OnClickLeftLeg(int row, int column)
+		{
+		}
+
+		private void OnClickBackPack(int row, int column)
+		{
+			if (selection == null)
+			{
+				selectionSource = InventoryLocation.BackPack;
+				selection = SelectItem(soldier.BackPack, row, column);
+			}
+			else
+			{
+				var dropLocation = GetDropLocation(soldier.BackPack, row, column, selection);
+				if (dropLocation == null)
+					return;
+				soldier.BackPack[dropLocation.Value.Y, dropLocation.Value.X] = selection;
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
+		}
+
+		private void OnClickBelt(int row, int column)
+		{
+		}
+
+		private void OnClickGround(int row, int column)
+		{
+			if (selection == null)
+			{
+				selectionSource = InventoryLocation.Ground;
+				selection = SelectItem(CurrentGroundView, row, column);
+				if (selection != null)
+					ground.Remove(selection);
+			}
+			else
+			{
+				var dropLocation = GetDropLocation(CurrentGroundView, row, column, selection);
+				if (dropLocation == null)
+					return;
+				CurrentGroundView[dropLocation.Value.Y, dropLocation.Value.X] = selection;
+				ground.Add(selection);
+				selection = null;
+				BattlescapeSoundEffect.ItemDrop.Play();
+			}
+		}
+
+		private static Point?[,] GetClickTargets(BattleItem[,] items)
+		{
+			var rows = items.GetLength(0);
+			var columns = items.GetLength(1);
+			var targets = new Point?[rows, columns];
+			foreach (var row in Enumerable.Range(0, rows))
+			{
+				foreach (var column in Enumerable.Range(0, columns))
+				{
+					var item = items[row, column];
+					if (item == null)
+						continue;
+					foreach (var rowOffset in Enumerable.Range(0, item.Height))
+						foreach (var columnOffset in Enumerable.Range(0, item.Width))
+							targets[row + rowOffset, column + columnOffset] = new Point { X = column, Y = row };
+				}
+			}
+			return targets;
+		}
+
+		private static Point? GetDropLocation(BattleItem[,] items, int row, int column, BattleItem item)
+		{
+			var targets = GetClickTargets(items);
+			var itemWidth = item.Width;
+			var itemHeight = item.Height;
+			var width = items.GetLength(1);
+			var height = items.GetLength(0);
+			foreach (var rowOffset in Enumerable.Range(0, itemHeight))
+				foreach (var columnOffset in Enumerable.Range(0, itemWidth))
+				{
+					var dropRow = row - rowOffset;
+					var dropColumn = column - columnOffset;
+					if (CanDropHere(targets, dropRow, dropColumn, itemWidth, itemHeight, width, height))
+						return new Point { X = dropColumn, Y = dropRow };
+				}
+			return null;
+		}
+
+		private static bool CanDropHere(
+			Point?[,] targets,
+			int dropRow,
+			int dropColumn,
+			int itemWidth,
+			int itemHeight,
+			int width,
+			int height)
+		{
+			if (dropRow < 0 ||
+				dropColumn < 0 ||
+				dropRow + itemHeight > height ||
+				dropColumn + itemWidth > width)
+				return false;
+			return Enumerable.Range(dropRow, itemHeight).All(row =>
+				Enumerable.Range(dropColumn, itemWidth).All(column =>
+					targets[row, column] == null));
+		}
+
+		private static BattleItem SelectItem(BattleItem[,] items, int row, int column)
+		{
+			var target = GetClickTargets(items)[row, column];
+			if (target == null)
+				return null;
+			var item = items[target.Value.Y, target.Value.X];
+			items[target.Value.Y, target.Value.X] = null;
+			return item;
 		}
 	}
 }

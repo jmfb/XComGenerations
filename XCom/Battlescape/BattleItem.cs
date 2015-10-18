@@ -13,6 +13,13 @@ namespace XCom.Battlescape
 		public int Rounds { get; set; }
 
 		[ScriptIgnore]
+		public string Name => NameOf((dynamic)Item);
+		private static string NameOf(WeaponType weaponType) => weaponType.Metadata().Name;
+		private static string NameOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Name;
+		private static string NameOf(EquipmentType equipmentType) => equipmentType.Metadata().Name;
+		private static string NameOf(GrenadeType grenadeType) => grenadeType.Metadata().Name;
+
+		[ScriptIgnore]
 		public byte[] Image => ImageOf((dynamic)Item);
 		private static byte[] ImageOf(WeaponType weaponType) => weaponType.Metadata().Image;
 		private static byte[] ImageOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Image;
@@ -61,6 +68,11 @@ namespace XCom.Battlescape
 				Ammunition = null,
 				Rounds = ammunitionType?.Metadata().Rounds ?? 0
 			};
+		}
+
+		public bool CanLoadWith(BattleItem item)
+		{
+			return Ammunition == null && (item.Item as AmmunitionType?)?.Metadata().Weapon == (WeaponType?)Item;
 		}
 	}
 }
