@@ -8,6 +8,7 @@ namespace XCom.Data
 {
 	public class Craft
 	{
+		public int Id { get; set; }
 		public CraftType CraftType { get; set; }
 		public int Number { get; set; }
 		public int Damage { get; set; }
@@ -75,6 +76,7 @@ namespace XCom.Data
 		{
 			return new Craft
 			{
+				Id = GameState.Current.Data.NextCraftId++,
 				CraftType = craftType,
 				Number = number,
 				Damage = 0,
@@ -90,6 +92,7 @@ namespace XCom.Data
 		{
 			return new Craft
 			{
+				Id = GameState.Current.Data.NextCraftId++,
 				CraftType = craftType,
 				Number = number,
 				Damage = 0,

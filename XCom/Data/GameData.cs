@@ -18,6 +18,7 @@ namespace XCom.Data
 		public List<Base> Bases { get; set; }
 		public int NextBaseNumber { get; set; }
 		public int NextSoldierId { get; set; }
+		public int NextCraftId { get; set; }
 		public int NextSkyrangerNumber { get; set; }
 		public int NextInterceptorNumber { get; set; }
 		public int NextFirestormNumber { get; set; }
@@ -77,6 +78,10 @@ namespace XCom.Data
 		public Soldier GetSoldier(int id)
 		{
 			return Bases.SelectMany(@base => @base.Soldiers).Single(soldier => soldier.Id == id);
+		}
+		public Craft GetCraft(int id)
+		{
+			return Bases.SelectMany(@base => @base.Crafts).Single(craft => craft.Id == id);
 		}
 
 		public static GameData Create(int difficulty)

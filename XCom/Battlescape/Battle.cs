@@ -8,10 +8,13 @@ namespace XCom.Battlescape
 	public class Battle
 	{
 		public int Turn { get; set; }
+		public int CraftId { get; set; }
 		public List<BattleSoldier> Soldiers { get; set; }
 
 		[ScriptIgnore]
 		public List<BattleItem> Stores { get; set; }
+		[ScriptIgnore]
+		public Craft Craft => GameState.Current.Data.GetCraft(CraftId);
 
 		public BattleSoldier NextSoldier(BattleSoldier soldier)
 		{
@@ -32,6 +35,7 @@ namespace XCom.Battlescape
 			return new Battle
 			{
 				Turn = 1,
+				CraftId = craft.Id,
 				Soldiers = craft.SoldierIds.Select(BattleSoldier.Create).ToList(),
 				Stores = craft.Stores.Items.SelectMany(BattleItem.Create).ToList()
 			};

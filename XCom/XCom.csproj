@@ -396,12 +396,14 @@
     <Compile Include="World\AlienMissionType.cs" />
     <Compile Include="World\ConfirmDestination.cs" />
     <Compile Include="World\Destination.cs" />
+    <Compile Include="World\GroundAssault.cs" />
     <Compile Include="World\LaunchInterception.cs" />
     <Compile Include="World\Location.cs" />
     <Compile Include="World\LowFuel.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\MapLocation.cs" />
     <Compile Include="World\ReachedWaypoint.cs" />
+    <Compile Include="World\ReadyToLand.cs" />
     <Compile Include="World\RedirectCraft.cs" />
     <Compile Include="World\RegionMetadata.cs" />
     <Compile Include="World\RegionType.cs" />

@@ -71,6 +71,11 @@ namespace XCom.Battlescape
 			AddControl(new Overlay(soldier.Soldier.Paperdoll, 4));
 		}
 
+		public override void OnSetFocus()
+		{
+			MidiFiles.Play(MusicType.Battlescape);
+		}
+
 		private BattleItem[,] CurrentGroundView => groundViews[groundViewIndex];
 
 		private void CalculateGroundViews()

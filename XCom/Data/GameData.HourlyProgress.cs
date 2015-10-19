@@ -382,7 +382,10 @@ namespace XCom.Data
 				break;
 			case WorldObjectType.LandingSite:
 			case WorldObjectType.CrashSite:
-				//TODO: check if interceptor has crew/hwps, prompt for landing site (otherwise return to base)
+				GameState.Current.Notifications.Enqueue(() =>
+				{
+					new ReadyToLand(craft).DoModal(GameState.Current.ActiveScreen);
+				});
 				break;
 			default:
 				throw new NotImplementedException();
