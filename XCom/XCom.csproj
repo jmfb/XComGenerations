@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battlescape\Battle.cs" />
+    <Compile Include="Battlescape\Battlescape.cs" />
     <Compile Include="Battlescape\BattleSoldier.cs" />
     <Compile Include="Battlescape\BattleItem.cs" />
     <Compile Include="Battlescape\DisplayTurn.cs" />
@@ -653,6 +654,7 @@
     <None Include="Content\Overlays\AlienSurgery.bin" />
     <None Include="Content\Overlays\Avalanche.bin" />
     <None Include="Content\Overlays\Avenger.bin" />
+    <None Include="Content\Overlays\BattlescapeControls.bin" />
     <None Include="Content\Overlays\Cannon.bin" />
     <None Include="Content\Overlays\Celatid.bin" />
     <None Include="Content\Overlays\CelatidAutopsy.bin" />

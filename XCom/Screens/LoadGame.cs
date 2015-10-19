@@ -54,7 +54,7 @@ namespace XCom.Screens
 			}
 			else
 			{
-				//TODO: enter battlescape
+				GameState.Current.SetScreen(new Battlescape.Battlescape(data.Battle));
 			}
 		}
 

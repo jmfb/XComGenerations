@@ -1,5 +1,4 @@
-﻿using System;
-using XCom.Content.Backgrounds;
+﻿using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;
@@ -38,8 +37,7 @@ namespace XCom.Battlescape
 
 		private void SwitchToBattlescape()
 		{
-			//TODO:
-			Environment.Exit(0);
+			GameState.Current.SetScreen(new Battlescape(battle));
 		}
 	}
 }

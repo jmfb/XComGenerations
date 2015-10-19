@@ -136,6 +136,9 @@
   <data name="Avenger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Avenger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BattlescapeControls" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BattlescapeControls.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Cannon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Cannon.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

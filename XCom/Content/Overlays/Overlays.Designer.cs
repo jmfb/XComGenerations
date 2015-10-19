@@ -123,6 +123,16 @@ namespace XCom.Content.Overlays {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] BattlescapeControls {
+            get {
+                object obj = ResourceManager.GetObject("BattlescapeControls", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Cannon {
             get {
                 object obj = ResourceManager.GetObject("Cannon", resourceCulture);

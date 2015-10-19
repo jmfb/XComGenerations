@@ -238,7 +238,10 @@ namespace XCom.Battlescape
 
 		private void OnOk()
 		{
-			GameState.Current.SetScreen(new DisplayTurn(battle));
+			if (isInitialInventory)
+				GameState.Current.SetScreen(new DisplayTurn(battle));
+			else
+				GameState.Current.SetScreen(new Battlescape(battle));
 		}
 
 		private void OnPreviousSoldier()
