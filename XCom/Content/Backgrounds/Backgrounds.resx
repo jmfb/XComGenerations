@@ -166,6 +166,9 @@
   <data name="Title" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Title.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Turn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Turn.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Ufo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Ufo.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

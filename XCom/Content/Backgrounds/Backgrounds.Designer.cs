@@ -223,6 +223,16 @@ namespace XCom.Content.Backgrounds {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Turn {
+            get {
+                object obj = ResourceManager.GetObject("Turn", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Ufo {
             get {
                 object obj = ResourceManager.GetObject("Ufo", resourceCulture);

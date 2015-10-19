@@ -236,10 +236,9 @@ namespace XCom.Battlescape
 			buffer.DrawItem(cursor.Y - height / 2, cursor.X - width / 2, selection.Image);
 		}
 
-		private static void OnOk()
+		private void OnOk()
 		{
-			//TODO:
-			Environment.Exit(0);
+			GameState.Current.SetScreen(new DisplayTurn(battle));
 		}
 
 		private void OnPreviousSoldier()

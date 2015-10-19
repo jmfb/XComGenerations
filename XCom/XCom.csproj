@@ -61,6 +61,7 @@
     <Compile Include="Battlescape\Battle.cs" />
     <Compile Include="Battlescape\BattleSoldier.cs" />
     <Compile Include="Battlescape\BattleItem.cs" />
+    <Compile Include="Battlescape\DisplayTurn.cs" />
     <Compile Include="Battlescape\Inventory.cs" />
     <Compile Include="Battlescape\InventoryLocation.cs" />
     <Compile Include="Battlescape\InventoryLocationMetadata.cs" />
@@ -534,6 +535,7 @@
     <None Include="Content\Backgrounds\Soldier.bin" />
     <None Include="Content\Backgrounds\Terror.bin" />
     <None Include="Content\Backgrounds\Title.bin" />
+    <None Include="Content\Backgrounds\Turn.bin" />
     <None Include="Content\Backgrounds\Ufo.bin" />
     <None Include="Content\Backgrounds\Workshop.bin" />
     <None Include="Content\Images\BasePreview\Background.xmg" />
