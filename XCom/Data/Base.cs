@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.World;
 
 namespace XCom.Data
@@ -46,21 +46,21 @@ namespace XCom.Data
 			};
 		}
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Area => Region.Metadata().Name;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		private int TransferredEngineerCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Engineer)?.Item.Count ?? 0;
-		[ScriptIgnore]
+		[JsonIgnore]
 		private int TransferredScientistCount => TransferredStores.SingleOrDefault(transfer => transfer.Item.ItemType == ItemType.Scientist)?.Item.Count ?? 0;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalSoldierCount => Soldiers.Count + TransferredSoldiers.Count;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalEngineerCount => EngineerCount + TransferredEngineerCount;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalScientistCount => ScientistCount + TransferredScientistCount;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int PersonnelCount => TotalSoldierCount + TotalEngineerCount + TotalScientistCount;
 
 		public int CountFacilities(FacilityType facilityType)
@@ -75,11 +75,11 @@ namespace XCom.Data
 			return Crafts.Count(craft => craft.CraftType == craftType) +
 				TransferredCrafts.Count(craft => craft.Item.CraftType == craftType);
 		}
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalSkyrangerCount => CountCrafts(CraftType.Skyranger);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalInterceptorCount => CountCrafts(CraftType.Interceptor);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public IEnumerable<Craft> ActiveInterceptors => Crafts.Where(craft => craft.Status == CraftStatus.Out);
 
 		private static int GetMonthlyCost(ItemType itemType, int count) => itemType.Metadata().MonthlyCost * count;
@@ -89,12 +89,12 @@ namespace XCom.Data
 		private int MonthlyEngineerCost => GetMonthlyCost(ItemType.Engineer, TotalEngineerCount);
 		private int MonthlyScientistCost => GetMonthlyCost(ItemType.Scientist, TotalScientistCount);
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalMaintenance => Facilities
 			.Where(facility => facility.DaysUntilConstructionComplete == 0)
 			.Sum(facility => facility.FacilityType.Metadata().Maintenance);
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalMonthlyCost =>
 			MonthlySkyrangerCost +
 			MonthlyInterceptorCost +
@@ -103,56 +103,56 @@ namespace XCom.Data
 			MonthlyScientistCost +
 			TotalMaintenance;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalStorageSpace => CountFacilities(FacilityType.GeneralStores) * 50;
 		private int TotalItemSpace => TotalStorageSpace * 100;
 
 		private int TransferredItemSpaceRequired => TransferredStores.Sum(transfer => transfer.Item.TotalItemSpaceRequired);
 		private int TotalItemSpaceRequired => Stores.TotalItemSpaceRequired + TransferredItemSpaceRequired;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalSpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 		private int StorageSpaceAvailable => TotalStorageSpace - TotalSpaceUsed;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int ItemSpaceAvailable => TotalItemSpace - TotalItemSpaceRequired;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalLivingSpace => CountFacilities(FacilityType.LivingQuarters) * 50;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int LivingSpaceAvailable => TotalLivingSpace - PersonnelCount;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalLaboratorySpace => CountFacilities(FacilityType.Laboratory) * 50;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int ScientistsAllocated => ResearchProjects.Sum(research => research.ScientistsAllocated);
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int ScientistsAvailable => ScientistCount - ScientistsAllocated;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int LaboratorySpaceAvailable => TotalLaboratorySpace - ScientistsAllocated;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalWorkshopSpace => CountFacilities(FacilityType.Workshop) * 50;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int EngineersAllocated => ManufactureProjects.Sum(project => project.EngineersAllocated);
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int EngineersAvailable => EngineerCount - EngineersAllocated;
 
 		private int WorkshopSpaceUsed => ManufactureProjects.Sum(project => project.ManufactureType.Metadata().SpaceRequired);
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int WorkshopSpaceAvailable => TotalWorkshopSpace - EngineersAllocated - WorkshopSpaceUsed;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalHangarSpace => CountFacilities(FacilityType.Hangar);
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalCraftCount => Crafts.Count + TransferredCrafts.Count + CraftUnderConstruction;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int HangarSpaceAvailable => TotalHangarSpace - TotalCraftCount;
 
 		private static IEnumerable<ResearchType> AllResearchProjects => EnumEx.GetValues<ResearchType>();
@@ -160,7 +160,7 @@ namespace XCom.Data
 		private static IEnumerable<ResearchType> ExhaustedResearch => GameState.Current.Data.CompletedResearch
 			.Where(research => research.Metadata().IsExhausted(GameState.Current.Data.CompletedResearch));
 		private IEnumerable<ResearchType> RemainingResearchProjects => AllResearchProjects.Except(ExhaustedResearch).Except(ActiveResearchProjects);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public List<ResearchType> AvailableResearchProjects => RemainingResearchProjects
 			.Where(research => research.Metadata().IsRequiredResearchCompleted(GameState.Current.Data.CompletedResearch))
 			.Where(research => research.Metadata().AreRequiredItemsInStores(Stores))
@@ -169,15 +169,15 @@ namespace XCom.Data
 		private static IEnumerable<ManufactureType> AllManufactureProjects => EnumEx.GetValues<ManufactureType>();
 		private IEnumerable<ManufactureType> ActiveManufactureProjects => ManufactureProjects.Select(project => project.ManufactureType);
 		private IEnumerable<ManufactureType> RemainingManufactureProjects => AllManufactureProjects.Except(ActiveManufactureProjects);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public List<ManufactureType> AvailableManufactureProjects => RemainingManufactureProjects
 			.Where(project => project.Metadata().IsRequiredResearchCompleted(GameState.Current.Data.CompletedResearch))
 			.ToList();
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public bool HasAlienContainment => CountFacilities(FacilityType.AlienContainment) > 0;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalDefenseValue => Facilities
 			.Where(facility => facility.DaysUntilConstructionComplete == 0)
 			.Sum(facility => facility.FacilityType.Metadata().DefenseValue);

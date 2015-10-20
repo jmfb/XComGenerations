@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.Data;
 
 namespace XCom.Battlescape
@@ -11,9 +11,9 @@ namespace XCom.Battlescape
 		public int CraftId { get; set; }
 		public List<BattleSoldier> Soldiers { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public List<BattleItem> Stores { get; set; }
-		[ScriptIgnore]
+		[JsonIgnore]
 		public Craft Craft => GameState.Current.Data.GetCraft(CraftId);
 
 		public BattleSoldier NextSoldier(BattleSoldier soldier)

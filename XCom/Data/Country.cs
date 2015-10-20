@@ -1,4 +1,4 @@
-﻿using System.Web.Script.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace XCom.Data
 {
@@ -10,7 +10,7 @@ namespace XCom.Data
 		public CountrySatisfaction Satisfaction { get; set; }
 		public bool SignedAlienPact { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Name => CountryType.Metadata().Name;
 
 		public static Country Create(CountryType countryType)

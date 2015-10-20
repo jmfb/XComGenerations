@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace XCom.Data
 {
@@ -15,7 +15,7 @@ namespace XCom.Data
 		public int Height {get; set; }
 		public string[] DescriptionLines { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Name => ItemType.Metadata().Name;
 
 		private WeaponType ThisWeapon => EnumEx.GetValues<WeaponType>()

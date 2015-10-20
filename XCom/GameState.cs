@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.Data;
 using XCom.Graphics;
 using XCom.Music;
@@ -85,12 +85,12 @@ namespace XCom
 		public static GameData LoadGameData(int gameId)
 		{
 			var fileContents = File.ReadAllText(GetGameDataFileName(gameId));
-			return new JavaScriptSerializer().Deserialize<GameData>(fileContents);
+			return JsonConvert.DeserializeObject<GameData>(fileContents);
 		}
 
 		public static void SaveGameData(int gameId, GameData data)
 		{
-			var fileContents = new JavaScriptSerializer().Serialize(data);
+			var fileContents = JsonConvert.SerializeObject(data);
 			File.WriteAllText(GetGameDataFileName(gameId), fileContents);
 		}
 	}

@@ -1,4 +1,4 @@
-﻿using System.Web.Script.Serialization;
+﻿using Newtonsoft.Json;
 using XCom.Data;
 
 namespace XCom.Battlescape
@@ -38,9 +38,9 @@ namespace XCom.Battlescape
 		public int RearArmor { get; set; }
 		public int UnderArmor { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public Soldier Soldier => GameState.Current.Data.GetSoldier(Id);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalFatalWounds =>
 			HeadFatalWounds +
 			RightArmFatalWounds +

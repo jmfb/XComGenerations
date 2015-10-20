@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.Data;
 
 namespace XCom.World
@@ -9,9 +9,9 @@ namespace XCom.World
 		public int Number { get; set; }
 		public Location Location { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Name => $"WAYPOINT-{Number}";
-		[ScriptIgnore]
+		[JsonIgnore]
 		public Craft TargetedBy => GameState.Current.Data.ActiveInterceptors.Single(craft =>
 				craft.Destination?.WorldObjectType == WorldObjectType.Waypoint &&
 				craft.Destination?.Number == Number);

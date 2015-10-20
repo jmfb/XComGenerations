@@ -1,4 +1,4 @@
-﻿using System.Web.Script.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace XCom.Data
 {
@@ -7,9 +7,9 @@ namespace XCom.Data
 		public ItemType ItemType { get; set; }
 		public int Count { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalItemSpaceRequired => ItemType.Metadata().StorageSpace * Count;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int SpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 	}
 }

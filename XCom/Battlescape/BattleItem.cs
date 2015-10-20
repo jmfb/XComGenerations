@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.Data;
 
 namespace XCom.Battlescape
@@ -12,28 +12,28 @@ namespace XCom.Battlescape
 		public AmmunitionType? Ammunition { get; set; }
 		public int Rounds { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Name => NameOf((dynamic)Item);
 		private static string NameOf(WeaponType weaponType) => weaponType.Metadata().Name;
 		private static string NameOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Name;
 		private static string NameOf(EquipmentType equipmentType) => equipmentType.Metadata().Name;
 		private static string NameOf(GrenadeType grenadeType) => grenadeType.Metadata().Name;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public byte[] Image => ImageOf((dynamic)Item);
 		private static byte[] ImageOf(WeaponType weaponType) => weaponType.Metadata().Image;
 		private static byte[] ImageOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Image;
 		private static byte[] ImageOf(EquipmentType equipmentType) => equipmentType.Metadata().Image;
 		private static byte[] ImageOf(GrenadeType grenadeType) => grenadeType.Metadata().Image;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int Width => WidthOf((dynamic)Item);
 		private static int WidthOf(WeaponType weaponType) => weaponType.Metadata().Width;
 		private static int WidthOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Width;
 		private static int WidthOf(EquipmentType equipmentType) => equipmentType.Metadata().Width;
 		private static int WidthOf(GrenadeType grenadeType) => grenadeType.Metadata().Width;
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int Height => HeightOf((dynamic)Item);
 		private static int HeightOf(WeaponType weaponType) => weaponType.Metadata().Height;
 		private static int HeightOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Height;

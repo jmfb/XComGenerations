@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.Data;
 
 namespace XCom.World
@@ -40,13 +40,13 @@ namespace XCom.World
 			return ufo;
 		}
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Heading => "NORTH WEST";
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string Name => $"UFO-{Number}";
-		[ScriptIgnore]
+		[JsonIgnore]
 		public WorldObjectType WorldObjectType =>
 			Status == UfoStatus.Flying ? WorldObjectType.Ufo :
 			Status == UfoStatus.Landed ? WorldObjectType.LandingSite :

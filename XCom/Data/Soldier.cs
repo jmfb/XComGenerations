@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.Content.Paperdolls;
 
 namespace XCom.Data
@@ -22,15 +22,15 @@ namespace XCom.Data
 		public SoldierStatistics OriginalStatistics { get; set; }
 		public SoldierStatistics Statistics { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public Craft Craft => GameState.SelectedBase.Crafts.FirstOrDefault(craft => craft.SoldierIds.Contains(Id));
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string CraftName => IsWounded ? "WOUNDED" : Craft?.Name ?? "NONE";
-		[ScriptIgnore]
+		[JsonIgnore]
 		public string ArmorName => Armor?.Metadata().Name ?? "NONE";
-		[ScriptIgnore]
+		[JsonIgnore]
 		public bool IsWounded => DaysUntilRecovered > 0;
-		[ScriptIgnore]
+		[JsonIgnore]
 		public byte[] Paperdoll
 		{
 			get

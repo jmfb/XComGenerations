@@ -1,4 +1,4 @@
-﻿using System.Web.Script.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace XCom.Data
 {
@@ -7,7 +7,7 @@ namespace XCom.Data
 		public CraftWeaponType WeaponType { get; set; }
 		public int Ammunition { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public bool IsFullyArmed => Ammunition == WeaponType.Metadata().Ammunition;
 
 		public static CraftWeapon CreateLoaded(CraftWeaponType weaponType)

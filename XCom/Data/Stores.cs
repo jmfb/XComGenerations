@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace XCom.Data
 {
 	public class Stores
 	{
-		// ReSharper disable once MemberCanBePrivate.Global -- Needed for deserialization.
 		public List<StoreItem> Items { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalItemSpaceRequired => Items.Sum(item => item.TotalItemSpaceRequired);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int SpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 
 		public int this[ItemType itemType]

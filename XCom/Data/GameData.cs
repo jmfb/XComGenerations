@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 using XCom.Battlescape;
 using XCom.World;
 
@@ -42,14 +42,14 @@ namespace XCom.Data
 		public int XcomMovementSpeed { get; set; }
 		public int AlienMovementSpeed { get; set; }
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalFunding => Countries.Sum(country => country.Funding);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
 
 		private static IEnumerable<FacilityType> AllFacilityTypes => EnumEx.GetValues<FacilityType>();
 		private static IEnumerable<FacilityType> BuildableFacilityTypes => AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
-		[ScriptIgnore]
+		[JsonIgnore]
 		public List<FacilityType> AvailableFacilityTypes => BuildableFacilityTypes
 			.Where(facilityType => facilityType.Metadata().IsRequiredResearchCompleted(CompletedResearch))
 			.ToList();
@@ -75,9 +75,9 @@ namespace XCom.Data
 			return AvailableTopics.Where(topic => topic.Metadata().Category == category).ToList();
 		}
 
-		[ScriptIgnore]
+		[JsonIgnore]
 		public IEnumerable<Craft> ActiveInterceptors => Bases.SelectMany(@base => @base.ActiveInterceptors);
-		[ScriptIgnore]
+		[JsonIgnore]
 		public IEnumerable<Ufo> VisibleUfos => Ufos.Where(ufo => ufo.IsDetected);
 
 		public Soldier GetSoldier(int id)

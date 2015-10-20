@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace XCom.World
 {
@@ -8,6 +9,7 @@ namespace XCom.World
 		public WorldObjectType WorldObjectType { get; set; }
 		public int Number { get; set; }
 
+		[JsonIgnore]
 		private dynamic Target
 		{
 			get
@@ -27,7 +29,9 @@ namespace XCom.World
 			}
 		}
 
+		[JsonIgnore]
 		public Location Location => Target.Location;
+		[JsonIgnore]
 		public string Name => Target.Name;
 	}
 }
