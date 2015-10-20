@@ -66,9 +66,9 @@ namespace XCom.Battlescape
 				alienMovementSpeeds[movementSpeed] = toggle;
 				AddControl(toggle);
 			}
-			AddControl(new Button(174, 16, 120, 16, "OK", ColorScheme.White, Font.Normal, OnOk));
-			AddControl(new Button(174, 184, 120, 16, "SAVE", ColorScheme.White, Font.Normal, OnSave));
-			//TODO: Add Load option!  No more abort, pout, load
+			AddControl(new Button(174, 16, 100, 16, "OK", ColorScheme.White, Font.Normal, OnOk));
+			AddControl(new Button(174, 132, 78, 16, "LOAD", ColorScheme.White, Font.Normal, OnLoad));
+			AddControl(new Button(174, 226, 78, 16, "SAVE", ColorScheme.White, Font.Normal, OnSave));
 
 			scrollSpeeds[GameState.Current.Data.ScrollSpeed].Value = true;
 			scrollTypes[GameState.Current.Data.ScrollType].Value = true;
@@ -110,6 +110,11 @@ namespace XCom.Battlescape
 		private static void OnOk()
 		{
 			GameState.Current.SetScreen(new Battlescape(GameState.Current.Data.Battle));
+		}
+
+		private static void OnLoad()
+		{
+			GameState.Current.SetScreen(new LoadGame(new Battlescape(GameState.Current.Data.Battle)));
 		}
 
 		private static void OnSave()

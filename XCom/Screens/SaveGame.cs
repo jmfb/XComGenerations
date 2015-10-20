@@ -81,7 +81,7 @@ namespace XCom.Screens
 			Background = Backgrounds.Turn,
 			BackgroundPalette = 1,
 			BorderScheme = ColorScheme.White,
-			ButtonScheme = ColorScheme.LightBlue,
+			ButtonScheme = ColorScheme.Blue,
 			HeaderScheme = ColorScheme.White,
 			TextScheme = ColorScheme.White
 		};
