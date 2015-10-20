@@ -115,7 +115,7 @@ namespace XCom.Battlescape
 
 		private static void OnOptions()
 		{
-			//TODO
+			GameState.Current.SetScreen(new GameOptions());
 		}
 
 		private void OnEndTurn()

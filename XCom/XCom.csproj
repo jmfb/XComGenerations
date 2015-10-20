@@ -63,6 +63,7 @@
     <Compile Include="Battlescape\BattleSoldier.cs" />
     <Compile Include="Battlescape\BattleItem.cs" />
     <Compile Include="Battlescape\DisplayTurn.cs" />
+    <Compile Include="Battlescape\GameOptions.cs" />
     <Compile Include="Battlescape\Inventory.cs" />
     <Compile Include="Battlescape\InventoryLocation.cs" />
     <Compile Include="Battlescape\InventoryLocationMetadata.cs" />

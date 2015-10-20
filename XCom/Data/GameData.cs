@@ -36,6 +36,11 @@ namespace XCom.Data
 		public List<Ufo> Ufos { get; set; }
 		public UfoFactory UfoFactory { get; set; }
 		public Battle Battle { get; set; }
+		public int ScrollSpeed { get; set; }
+		public int ScrollType { get; set; }
+		public int FireSpeed { get; set; }
+		public int XcomMovementSpeed { get; set; }
+		public int AlienMovementSpeed { get; set; }
 
 		[ScriptIgnore]
 		public int TotalFunding => Countries.Sum(country => country.Funding);

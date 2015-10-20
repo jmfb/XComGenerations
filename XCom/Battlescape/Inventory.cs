@@ -547,7 +547,10 @@ namespace XCom.Battlescape
 				if (item == null)
 					continue;
 				if (column >= index && column < index + item.Width)
+				{
+					items[index] = null;
 					return item;
+				}
 			}
 			return null;
 		}
