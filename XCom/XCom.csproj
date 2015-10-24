@@ -73,6 +73,7 @@
     <Compile Include="Battlescape\SelectedUnitId.cs" />
     <Compile Include="Battlescape\Unit.cs" />
     <Compile Include="Battlescape\UnitType.cs" />
+    <Compile Include="Battlescape\ViewSoldierStatistics.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Content\Backgrounds\Backgrounds.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -694,6 +695,7 @@
     <None Include="Content\Overlays\Skyranger.bin" />
     <None Include="Content\Overlays\Snakeman.bin" />
     <None Include="Content\Overlays\SnakemanAutopsy.bin" />
+    <None Include="Content\Overlays\SoldierStatistics.bin" />
     <None Include="Content\Overlays\Stingray.bin" />
     <None Include="Content\Overlays\Tactical.bin" />
     <None Include="Content\Overlays\UfoConstruction.bin" />

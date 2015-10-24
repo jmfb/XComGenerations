@@ -31,6 +31,8 @@ namespace XCom.Battlescape
 		public int FiringAccuracy { get; set; }
 		public int ThrowingAccuracy { get; set; }
 		public int Strength { get; set; }
+		public int PsionicStrength { get; set; }
+		public int PsionicSkill { get; set; }
 
 		public int FrontArmor { get; set; }
 		public int LeftArmor { get; set; }
@@ -68,7 +70,6 @@ namespace XCom.Battlescape
 		{
 			var soldier = GameState.Current.Data.GetSoldier(soldierId);
 			var statistics = soldier.Statistics;
-			var armorMetadata = soldier.Armor?.Metadata();
 			return new BattleSoldier
 			{
 				Id = soldierId,
@@ -97,12 +98,14 @@ namespace XCom.Battlescape
 				FiringAccuracy = statistics.FiringAccuracy,
 				ThrowingAccuracy = statistics.ThrowingAccuracy,
 				Strength = statistics.Strength,
+				PsionicStrength = statistics.PsionicStrength,
+				PsionicSkill = statistics.PsionicSkill,
 
-				FrontArmor = armorMetadata?.FrontArmor ?? 12,
-				LeftArmor = armorMetadata?.LeftArmor ?? 8,
-				RightArmor = armorMetadata?.RightArmor ?? 8,
-				RearArmor = armorMetadata?.RearArmor ?? 5,
-				UnderArmor = armorMetadata?.UnderArmor ?? 2,
+				FrontArmor = soldier.FrontArmor,
+				LeftArmor = soldier.LeftArmor,
+				RightArmor = soldier.RightArmor,
+				RearArmor = soldier.RearArmor,
+				UnderArmor = soldier.UnderArmor,
 
 				DoneThisTurn = false
 			};

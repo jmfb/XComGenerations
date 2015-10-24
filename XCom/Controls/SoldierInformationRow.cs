@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using XCom.Graphics;
+﻿using XCom.Graphics;
 using XCom.Fonts;
 
 namespace XCom.Controls
@@ -14,8 +13,7 @@ namespace XCom.Controls
 			int colorIndex)
 		{
 			AddControl(new Label(topRow, 6, label, Font.Normal, ColorScheme.LightMagenta));
-			var valueLabel = currentValue.ToString(CultureInfo.InvariantCulture);
-			AddControl(new Label(topRow, 131, valueLabel, Font.Normal, ColorScheme.White));
+			AddControl(new Label(topRow, 131, $"{currentValue}", Font.Normal, ColorScheme.White));
 
 			var palette = Palette.GetPalette(1);
 			var borderColor = palette.GetColor(colorIndex + 7);

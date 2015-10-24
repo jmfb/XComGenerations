@@ -443,6 +443,16 @@ namespace XCom.Content.Overlays {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] SoldierStatistics {
+            get {
+                object obj = ResourceManager.GetObject("SoldierStatistics", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Stingray {
             get {
                 object obj = ResourceManager.GetObject("Stingray", resourceCulture);

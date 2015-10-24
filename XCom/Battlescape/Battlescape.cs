@@ -157,9 +157,12 @@ namespace XCom.Battlescape
 			//TODO
 		}
 
-		private static void OnUnitStatistics()
+		private void OnUnitStatistics()
 		{
-			//TODO
+			var activeSolider = battle.SelectedSoldier;
+			if (activeSolider == null)
+				return;
+			GameState.Current.SetScreen(new ViewSoldierStatistics(battle, activeSolider));
 		}
 
 		public override void Render(GraphicsBuffer buffer)

@@ -49,6 +49,17 @@ namespace XCom.Data
 			}
 		}
 
+		[JsonIgnore]
+		public int FrontArmor => Armor?.Metadata().FrontArmor ?? 12;
+		[JsonIgnore]
+		public int LeftArmor => Armor?.Metadata().LeftArmor ?? 8;
+		[JsonIgnore]
+		public int RightArmor => Armor?.Metadata().RightArmor ?? 8;
+		[JsonIgnore]
+		public int RearArmor => Armor?.Metadata().RearArmor ?? 5;
+		[JsonIgnore]
+		public int UnderArmor => Armor?.Metadata().UnderArmor ?? 2;
+
 		private static byte[] GetPersonalArmorPaperdoll(SkinColor skinColor, Gender gender)
 		{
 			switch (skinColor)
