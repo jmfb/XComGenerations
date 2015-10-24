@@ -135,6 +135,87 @@ namespace XCom.Fonts
 			2, 1, 2, 0, 0
 		};
 
+		private static readonly byte[] zero =
+		{
+			1, 1, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 1, 1, 0, 0
+		};
+		private static readonly byte[] one =
+		{
+			0, 1, 0, 0, 0,
+			1, 1, 0, 0, 0,
+			0, 1, 0, 0, 0,
+			0, 1, 0, 0, 0,
+			1, 1, 1, 0, 0
+		};
+		private static readonly byte[] two =
+		{
+			1, 1, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			1, 1, 1, 0, 0,
+			1, 0, 0, 0, 0,
+			1, 1, 1, 0, 0
+		};
+		private static readonly byte[] three =
+		{
+			1, 1, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			0, 1, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			1, 1, 1, 0, 0
+		};
+		private static readonly byte[] four =
+		{
+			1, 0, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 1, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			0, 0, 1, 0, 0
+		};
+		private static readonly byte[] five =
+		{
+			1, 1, 1, 0, 0,
+			1, 0, 0, 0, 0,
+			1, 1, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			1, 1, 1, 0, 0
+		};
+		private static readonly byte[] six =
+		{
+			1, 1, 1, 0, 0,
+			1, 0, 0, 0, 0,
+			1, 1, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 1, 1, 0, 0
+		};
+		private static readonly byte[] seven =
+		{
+			1, 1, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			0, 0, 1, 0, 0
+		};
+		private static readonly byte[] eight =
+		{
+			1, 1, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 1, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 1, 1, 0, 0
+		};
+		private static readonly byte[] nine =
+		{
+			1, 1, 1, 0, 0,
+			1, 0, 1, 0, 0,
+			1, 1, 1, 0, 0,
+			0, 0, 1, 0, 0,
+			0, 0, 1, 0, 0
+		};
+
 		public static readonly Dictionary<char, byte[]> Characters = new Dictionary<char, byte[]>
 		{
 			{ 'A', uppercaseA },
@@ -152,7 +233,17 @@ namespace XCom.Fonts
 			{ 'R', uppercaseR },
 			{ 'S', uppercaseS },
 			{ 'T', uppercaseT },
-			{ 'U', uppercaseU }
+			{ 'U', uppercaseU },
+			{ '0', zero },
+			{ '1', one },
+			{ '2', two },
+			{ '3', three },
+			{ '4', four },
+			{ '5', five },
+			{ '6', six },
+			{ '7', seven },
+			{ '8', eight },
+			{ '9', nine }
 		};
 	}
 }

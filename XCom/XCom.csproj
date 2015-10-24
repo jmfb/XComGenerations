@@ -70,6 +70,9 @@
     <Compile Include="Battlescape\Inventory.cs" />
     <Compile Include="Battlescape\InventoryLocation.cs" />
     <Compile Include="Battlescape\InventoryLocationMetadata.cs" />
+    <Compile Include="Battlescape\SelectedUnitId.cs" />
+    <Compile Include="Battlescape\Unit.cs" />
+    <Compile Include="Battlescape\UnitType.cs" />
     <Compile Include="ByteArrayExtensions.cs" />
     <Compile Include="Content\Backgrounds\Backgrounds.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -463,6 +466,7 @@
     <EmbeddedResource Include="Content\Images\Ranks\Ranks.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Ranks.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\Items\Items.resx">
       <Generator>ResXFileCodeGenerator</Generator>

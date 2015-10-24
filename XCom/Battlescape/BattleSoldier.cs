@@ -3,7 +3,7 @@ using XCom.Data;
 
 namespace XCom.Battlescape
 {
-	public class BattleSoldier
+	public class BattleSoldier : Unit
 	{
 		public int Id { get; set; }
 
@@ -37,6 +37,21 @@ namespace XCom.Battlescape
 		public int RightArmor { get; set; }
 		public int RearArmor { get; set; }
 		public int UnderArmor { get; set; }
+
+		public bool DoneThisTurn { get; set; }
+
+		[JsonIgnore]
+		public string Name => Soldier.Name;
+		[JsonIgnore]
+		public int MaxTimeUnits => Soldier.Statistics.TimeUnits;
+		[JsonIgnore]
+		public int MaxHealth => Soldier.Statistics.Health;
+		[JsonIgnore]
+		public int MaxEnergy => Soldier.Statistics.Stamina;
+		[JsonIgnore]
+		public int MaxMorale => 100;
+		[JsonIgnore]
+		public Rank? Rank => Soldier.Rank;
 
 		[JsonIgnore]
 		public Soldier Soldier => GameState.Current.Data.GetSoldier(Id);
@@ -87,7 +102,9 @@ namespace XCom.Battlescape
 				LeftArmor = armorMetadata?.LeftArmor ?? 8,
 				RightArmor = armorMetadata?.RightArmor ?? 8,
 				RearArmor = armorMetadata?.RearArmor ?? 5,
-				UnderArmor = armorMetadata?.UnderArmor ?? 2
+				UnderArmor = armorMetadata?.UnderArmor ?? 2,
+
+				DoneThisTurn = false
 			};
 		}
 	}

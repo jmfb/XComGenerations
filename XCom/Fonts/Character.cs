@@ -17,13 +17,7 @@ namespace XCom.Fonts
 			this.height = height;
 		}
 
-		public int Width
-		{
-			get
-			{
-				return data.Length / height;
-			}
-		}
+		public int Width => data.Length / height;
 
 		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn, ColorScheme scheme)
 		{

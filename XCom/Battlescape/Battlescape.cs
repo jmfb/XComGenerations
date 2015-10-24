@@ -2,6 +2,9 @@
 using System.Linq;
 using XCom.Content.Overlays;
 using XCom.Controls;
+using XCom.Data;
+using XCom.Fonts;
+using XCom.Graphics;
 using XCom.Music;
 using XCom.Screens;
 
@@ -88,8 +91,9 @@ namespace XCom.Battlescape
 			//TODO: detect if the active unit is a soldier, otherwise just return
 			//TODO: use the ground of the active soldier
 			var ground = battle.Stores;
-			//TODO: use active soldier (not first)
-			var activeSoldier = battle.Soldiers.First();
+			var activeSoldier = battle.SelectedSoldier;
+			if (activeSoldier == null)
+				return;
 			GameState.Current.SetScreen(new Inventory(battle, activeSoldier, ground, false));
 		}
 
@@ -98,14 +102,16 @@ namespace XCom.Battlescape
 			//TODO
 		}
 
-		private static void OnNextUnit()
+		private void OnNextUnit()
 		{
-			//TODO
+			battle.SelectNextUnit(false);
+			OnCenterOnActiveUnit();
 		}
 
-		private static void OnDoneAndNextUnit()
+		private void OnDoneAndNextUnit()
 		{
-			//TODO
+			battle.SelectNextUnit(true);
+			OnCenterOnActiveUnit();
 		}
 
 		private static void OnToggleLevelView()
@@ -121,7 +127,7 @@ namespace XCom.Battlescape
 		private void OnEndTurn()
 		{
 			//TODO: real end of turn logic
-			++battle.Turn;
+			battle.StartNextTurn();
 			GameState.Current.SetScreen(new DisplayTurn(battle));
 		}
 
@@ -154,6 +160,28 @@ namespace XCom.Battlescape
 		private static void OnUnitStatistics()
 		{
 			//TODO
+		}
+
+		public override void Render(GraphicsBuffer buffer)
+		{
+			base.Render(buffer);
+			DrawUnitInformation(buffer, battle.SelectedUnit);
+		}
+
+		private static void DrawUnitInformation(GraphicsBuffer buffer, Unit unit)
+		{
+			if (unit == null)
+				return;
+			Font.Normal.DrawString(buffer, 176, 134, unit.Name, ColorScheme.Blue);
+			Font.Small.DrawString(buffer, 186, 136, $"{unit.TimeUnits}", ColorScheme.LightGreen);
+			Font.Small.DrawString(buffer, 194, 136, $"{unit.Health}", ColorScheme.Red);
+			Font.Small.DrawString(buffer, 186, 154, $"{unit.Energy}", ColorScheme.Orange);
+			Font.Small.DrawString(buffer, 194, 154, $"{unit.Morale}", ColorScheme.Purple);
+			new Bar(185, 170, unit.MaxTimeUnits, 3, unit.TimeUnits, 55, 48).Render(buffer);
+			new Bar(189, 170, unit.MaxEnergy, 3, unit.Energy, 23, 16).Render(buffer);
+			new Bar(193, 170, unit.MaxHealth, 3, unit.Health, 39, 32).Render(buffer);
+			new Bar(197, 170, unit.MaxMorale, 3, unit.Morale, 249, 247).Render(buffer);
+			unit.Rank?.Image().Render(buffer, 177, 107);
 		}
 	}
 }

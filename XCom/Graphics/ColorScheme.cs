@@ -43,12 +43,10 @@ namespace XCom.Graphics
 		public ColorScheme Inverse => new ColorScheme(colors.Reverse().ToArray());
 
 		public static readonly ColorScheme White = new ColorScheme(1, 209, 5);
-		//public static readonly ColorScheme OffWhite2 = new ColorScheme(1, 64, 5);
-		//public static readonly ColorScheme OffWhite3 = new ColorScheme(1, 1, 5);
-		//public static readonly ColorScheme AnotherLightBlue = new ColorScheme(1, 128, 5);
 		public static readonly ColorScheme LightWhite = new ColorScheme(2, 96, 5);
 		public static readonly ColorScheme Aqua = new ColorScheme(0, 134, 5);
 		public static readonly ColorScheme Green = new ColorScheme(0, 240, 5);
+		public static readonly ColorScheme LightGreen = new ColorScheme(1, 48, 5);
 		public static readonly ColorScheme Red = new ColorScheme(1, 32, 5);
 		public static readonly ColorScheme Blue = new ColorScheme(1, 219, 5);
 		public static readonly ColorScheme DarkYellow = new ColorScheme(1, 214, 5);
