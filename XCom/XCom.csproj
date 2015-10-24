@@ -61,6 +61,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battlescape\AbortMission.cs" />
     <Compile Include="Battlescape\Battle.cs" />
     <Compile Include="Battlescape\Battlescape.cs" />
     <Compile Include="Battlescape\BattleSoldier.cs" />

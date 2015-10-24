@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Data;
@@ -90,7 +89,7 @@ namespace XCom.Battlescape
 		{
 			//TODO: detect if the active unit is a soldier, otherwise just return
 			//TODO: use the ground of the active soldier
-			var ground = battle.Stores;
+			var ground = battle.Stores ?? new List<BattleItem>();
 			var activeSoldier = battle.SelectedSoldier;
 			if (activeSoldier == null)
 				return;
@@ -131,10 +130,9 @@ namespace XCom.Battlescape
 			GameState.Current.SetScreen(new DisplayTurn(battle));
 		}
 
-		private static void OnAbortMission()
+		private void OnAbortMission()
 		{
-			//TODO
-			Environment.Exit(0);
+			new AbortMission().DoModal(this);
 		}
 
 		private static void OnOptionNoReserve()
