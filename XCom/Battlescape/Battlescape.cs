@@ -171,18 +171,19 @@ namespace XCom.Battlescape
 		private int tilesetIndex;
 		private readonly Tileset[] tilesets =
 		{
-			Tileset.Jungle0,
-			Tileset.Jungle1,
-			Tileset.Jungle2,
-			Tileset.Jungle3,
-			Tileset.Jungle4,
-			Tileset.Jungle5,
-			Tileset.Jungle6,
-			Tileset.Jungle7,
-			Tileset.Jungle8,
-			Tileset.Jungle9,
-			Tileset.Jungle10,
-			Tileset.Jungle11
+			Tileset.Mountain0,
+			Tileset.Mountain1,
+			Tileset.Mountain2,
+			Tileset.Mountain3,
+			Tileset.Mountain4,
+			Tileset.Mountain5,
+			Tileset.Mountain6,
+			Tileset.Mountain7,
+			Tileset.Mountain8,
+			Tileset.Mountain9,
+			Tileset.Mountain10,
+			Tileset.Mountain11,
+			Tileset.Mountain12
 		};
 
 		public override bool HitTest(int row, int column)

@@ -77,5 +77,19 @@ namespace XCom.Battlescape
 		public static readonly Tileset Jungle9 = new Tileset(Tilesets.Jungle9, TileGroups.Jungle);
 		public static readonly Tileset Jungle10 = new Tileset(Tilesets.Jungle10, TileGroups.Jungle);
 		public static readonly Tileset Jungle11 = new Tileset(Tilesets.Jungle11, TileGroups.Jungle);
+
+		public static readonly Tileset Mountain0 = new Tileset(Tilesets.Mountain0, TileGroups.Mountain);
+		public static readonly Tileset Mountain1 = new Tileset(Tilesets.Mountain1, TileGroups.Mountain);
+		public static readonly Tileset Mountain2 = new Tileset(Tilesets.Mountain2, TileGroups.Mountain);
+		public static readonly Tileset Mountain3 = new Tileset(Tilesets.Mountain3, TileGroups.Mountain);
+		public static readonly Tileset Mountain4 = new Tileset(Tilesets.Mountain4, TileGroups.Mountain);
+		public static readonly Tileset Mountain5 = new Tileset(Tilesets.Mountain5, TileGroups.Mountain);
+		public static readonly Tileset Mountain6 = new Tileset(Tilesets.Mountain6, TileGroups.Mountain);
+		public static readonly Tileset Mountain7 = new Tileset(Tilesets.Mountain7, TileGroups.Mountain);
+		public static readonly Tileset Mountain8 = new Tileset(Tilesets.Mountain8, TileGroups.Mountain);
+		public static readonly Tileset Mountain9 = new Tileset(Tilesets.Mountain9, TileGroups.Mountain);
+		public static readonly Tileset Mountain10 = new Tileset(Tilesets.Mountain10, TileGroups.Mountain);
+		public static readonly Tileset Mountain11 = new Tileset(Tilesets.Mountain11, TileGroups.Mountain);
+		public static readonly Tileset Mountain12 = new Tileset(Tilesets.Mountain12, TileGroups.Mountain);
 	}
 }

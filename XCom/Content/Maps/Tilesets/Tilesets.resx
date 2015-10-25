@@ -232,6 +232,45 @@
   <data name="Lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Lightning.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Mountain0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain11.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain12.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Skyranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Skyranger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
