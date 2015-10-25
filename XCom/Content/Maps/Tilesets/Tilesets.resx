@@ -193,6 +193,42 @@
   <data name="Forest9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Forest9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Jungle0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle11.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Lightning.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

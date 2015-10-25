@@ -64,5 +64,18 @@ namespace XCom.Battlescape
 		public static readonly Tileset Desert9 = new Tileset(Tilesets.Desert9, TileGroups.Desert);
 		public static readonly Tileset Desert10 = new Tileset(Tilesets.Desert10, TileGroups.Desert);
 		public static readonly Tileset Desert11 = new Tileset(Tilesets.Desert11, TileGroups.Desert);
+
+		public static readonly Tileset Jungle0 = new Tileset(Tilesets.Jungle0, TileGroups.Jungle);
+		public static readonly Tileset Jungle1 = new Tileset(Tilesets.Jungle1, TileGroups.Jungle);
+		public static readonly Tileset Jungle2 = new Tileset(Tilesets.Jungle2, TileGroups.Jungle);
+		public static readonly Tileset Jungle3 = new Tileset(Tilesets.Jungle3, TileGroups.Jungle);
+		public static readonly Tileset Jungle4 = new Tileset(Tilesets.Jungle4, TileGroups.Jungle);
+		public static readonly Tileset Jungle5 = new Tileset(Tilesets.Jungle5, TileGroups.Jungle);
+		public static readonly Tileset Jungle6 = new Tileset(Tilesets.Jungle6, TileGroups.Jungle);
+		public static readonly Tileset Jungle7 = new Tileset(Tilesets.Jungle7, TileGroups.Jungle);
+		public static readonly Tileset Jungle8 = new Tileset(Tilesets.Jungle8, TileGroups.Jungle);
+		public static readonly Tileset Jungle9 = new Tileset(Tilesets.Jungle9, TileGroups.Jungle);
+		public static readonly Tileset Jungle10 = new Tileset(Tilesets.Jungle10, TileGroups.Jungle);
+		public static readonly Tileset Jungle11 = new Tileset(Tilesets.Jungle11, TileGroups.Jungle);
 	}
 }
