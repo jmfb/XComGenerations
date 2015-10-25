@@ -106,5 +106,25 @@ namespace XCom.Battlescape
 		public static readonly Tileset Polar11 = new Tileset(Tilesets.Polar11, TileGroups.Polar);
 		public static readonly Tileset Polar12 = new Tileset(Tilesets.Polar12, TileGroups.Polar);
 		public static readonly Tileset Polar13 = new Tileset(Tilesets.Polar13, TileGroups.Polar);
+
+		public static readonly Tileset Cultivation0 = new Tileset(Tilesets.Cultivation0, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation1 = new Tileset(Tilesets.Cultivation1, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation2 = new Tileset(Tilesets.Cultivation2, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation3 = new Tileset(Tilesets.Cultivation3, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation4 = new Tileset(Tilesets.Cultivation4, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation5 = new Tileset(Tilesets.Cultivation5, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation6 = new Tileset(Tilesets.Cultivation6, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation7 = new Tileset(Tilesets.Cultivation7, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation8 = new Tileset(Tilesets.Cultivation8, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation9 = new Tileset(Tilesets.Cultivation9, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation10 = new Tileset(Tilesets.Cultivation10, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation11 = new Tileset(Tilesets.Cultivation11, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation12 = new Tileset(Tilesets.Cultivation12, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation13 = new Tileset(Tilesets.Cultivation13, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation14 = new Tileset(Tilesets.Cultivation14, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation15 = new Tileset(Tilesets.Cultivation15, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation16 = new Tileset(Tilesets.Cultivation16, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation17 = new Tileset(Tilesets.Cultivation17, TileGroups.Cultivation);
+		public static readonly Tileset Cultivation18 = new Tileset(Tilesets.Cultivation18, TileGroups.Cultivation);
 	}
 }

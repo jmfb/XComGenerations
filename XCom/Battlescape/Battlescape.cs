@@ -171,20 +171,25 @@ namespace XCom.Battlescape
 		private int tilesetIndex;
 		private readonly Tileset[] tilesets =
 		{
-			Tileset.Polar0,
-			Tileset.Polar1,
-			Tileset.Polar2,
-			Tileset.Polar3,
-			Tileset.Polar4,
-			Tileset.Polar5,
-			Tileset.Polar6,
-			Tileset.Polar7,
-			Tileset.Polar8,
-			Tileset.Polar9,
-			Tileset.Polar10,
-			Tileset.Polar11,
-			Tileset.Polar12,
-			Tileset.Polar13
+			Tileset.Cultivation0,
+			Tileset.Cultivation1,
+			Tileset.Cultivation2,
+			Tileset.Cultivation3,
+			Tileset.Cultivation4,
+			Tileset.Cultivation5,
+			Tileset.Cultivation6,
+			Tileset.Cultivation7,
+			Tileset.Cultivation8,
+			Tileset.Cultivation9,
+			Tileset.Cultivation10,
+			Tileset.Cultivation11,
+			Tileset.Cultivation12,
+			Tileset.Cultivation13,
+			Tileset.Cultivation14,
+			Tileset.Cultivation15,
+			Tileset.Cultivation16,
+			Tileset.Cultivation17,
+			Tileset.Cultivation18
 		};
 
 		public override bool HitTest(int row, int column)

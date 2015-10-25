@@ -121,6 +121,63 @@
   <data name="Avenger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Avenger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Cultivation0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation11.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation12.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation13.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation14.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation15.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation16.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation17.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation18.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cultivation9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Desert0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Desert0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

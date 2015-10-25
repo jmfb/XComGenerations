@@ -73,6 +73,196 @@ namespace XCom.Content.Maps.Tilesets {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Cultivation0 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation0", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation1 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation10 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation10", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation11 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation11", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation12 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation12", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation13 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation13", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation14 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation14", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation15 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation15", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation16 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation16", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation17 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation17", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation18 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation18", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation2 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation3 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation4 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation5 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation6 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation7 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation7", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation8 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation8", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Cultivation9 {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation9", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Desert0 {
             get {
                 object obj = ResourceManager.GetObject("Desert0", resourceCulture);
