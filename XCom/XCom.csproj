@@ -72,6 +72,10 @@
     <Compile Include="Battlescape\InventoryLocation.cs" />
     <Compile Include="Battlescape\InventoryLocationMetadata.cs" />
     <Compile Include="Battlescape\SelectedUnitId.cs" />
+    <Compile Include="Battlescape\Tile.cs" />
+    <Compile Include="Battlescape\TilePropertyPage.cs" />
+    <Compile Include="Battlescape\Tileset.cs" />
+    <Compile Include="Battlescape\TilesetHeader.cs" />
     <Compile Include="Battlescape\Unit.cs" />
     <Compile Include="Battlescape\UnitType.cs" />
     <Compile Include="Battlescape\ViewSoldierStatistics.cs" />
@@ -120,6 +124,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Items.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Maps\TilePropertyPages\TilePropertyPages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TilePropertyPages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Maps\Tilesets\Tilesets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tilesets.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\Movies\Movies.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -474,6 +488,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Items.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Content\Maps\TilePropertyPages\TilePropertyPages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TilePropertyPages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Maps\Tilesets\Tilesets.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tilesets.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Content\Movies\Movies.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Movies.Designer.cs</LastGenOutput>
@@ -657,6 +679,20 @@
     <None Include="Content\Items\TankCannonTurret.bin" />
     <None Include="Content\Items\TankLaserTurret.bin" />
     <None Include="Content\Items\TankRocketLauncherTurret.bin" />
+    <None Include="Content\Maps\TilePropertyPages\Common.bin" />
+    <None Include="Content\Maps\TilePropertyPages\Forest.bin" />
+    <None Include="Content\Maps\Tilesets\Forest0.bin" />
+    <None Include="Content\Maps\Tilesets\Forest1.bin" />
+    <None Include="Content\Maps\Tilesets\Forest10.bin" />
+    <None Include="Content\Maps\Tilesets\Forest11.bin" />
+    <None Include="Content\Maps\Tilesets\Forest2.bin" />
+    <None Include="Content\Maps\Tilesets\Forest3.bin" />
+    <None Include="Content\Maps\Tilesets\Forest4.bin" />
+    <None Include="Content\Maps\Tilesets\Forest5.bin" />
+    <None Include="Content\Maps\Tilesets\Forest6.bin" />
+    <None Include="Content\Maps\Tilesets\Forest7.bin" />
+    <None Include="Content\Maps\Tilesets\Forest8.bin" />
+    <None Include="Content\Maps\Tilesets\Forest9.bin" />
     <None Include="Content\Movies\Introduction.bin" />
     <None Include="Content\Overlays\AlienAlloys.bin" />
     <None Include="Content\Overlays\AlienEntertainment.bin" />
