@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	public class TileGroups
 	{

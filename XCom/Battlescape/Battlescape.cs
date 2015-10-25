@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Data;

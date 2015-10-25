@@ -1,6 +1,6 @@
 ﻿using XCom.Graphics;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	public class BattleLocation
 	{

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using XCom.Content.Maps.TilePropertyPages;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct TilePropertyPage

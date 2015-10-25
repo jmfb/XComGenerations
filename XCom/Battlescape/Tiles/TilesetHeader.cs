@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct TilesetHeader

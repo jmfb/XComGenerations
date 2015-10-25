@@ -2,7 +2,7 @@
 using System.Linq;
 using XCom.Content.Maps.ImageGroups;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	public class ImageGroup
 	{

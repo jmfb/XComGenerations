@@ -1,7 +1,7 @@
-﻿using System.Linq;
+using System.Linq;
 using XCom.Graphics;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	public class BattleLevel
 	{

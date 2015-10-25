@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Linq;
 using XCom.Content.Maps.ImageTables;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	public class ImageTable
 	{

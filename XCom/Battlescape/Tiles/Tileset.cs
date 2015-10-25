@@ -1,10 +1,8 @@
-﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
-using XCom.Content.Maps.TilePropertyPages;
 using XCom.Content.Maps.Tilesets;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape.Tiles
 {
 	public class Tileset
 	{
@@ -12,7 +10,7 @@ namespace XCom.Battlescape
 		private readonly Tile[] tiles;
 		private readonly TileGroups groups;
 
-		public Tileset(byte[] data, TileGroups groups)
+		private Tileset(byte[] data, TileGroups groups)
 		{
 			header = data.ReadStruct<TilesetHeader>(0);
 			tiles = Enumerable.Range(0, header.TileCount)

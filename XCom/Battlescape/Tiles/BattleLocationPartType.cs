@@ -1,4 +1,4 @@
-﻿namespace XCom.Battlescape
+﻿namespace XCom.Battlescape.Tiles
 {
 	public enum BattleLocationPartType : byte
 	{
