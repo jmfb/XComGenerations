@@ -63,6 +63,16 @@ namespace XCom.Content.Maps.Tilesets {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Abductor {
+            get {
+                object obj = ResourceManager.GetObject("Abductor", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] AlienBase0 {
             get {
                 object obj = ResourceManager.GetObject("AlienBase0", resourceCulture);
@@ -226,6 +236,16 @@ namespace XCom.Content.Maps.Tilesets {
         internal static byte[] Avenger {
             get {
                 object obj = ResourceManager.GetObject("Avenger", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Battleship {
+            get {
+                object obj = ResourceManager.GetObject("Battleship", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -813,6 +833,16 @@ namespace XCom.Content.Maps.Tilesets {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Harvester {
+            get {
+                object obj = ResourceManager.GetObject("Harvester", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Jungle0 {
             get {
                 object obj = ResourceManager.GetObject("Jungle0", resourceCulture);
@@ -933,6 +963,16 @@ namespace XCom.Content.Maps.Tilesets {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] LargeScout {
+            get {
+                object obj = ResourceManager.GetObject("LargeScout", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Lightning {
             get {
                 object obj = ResourceManager.GetObject("Lightning", resourceCulture);
@@ -1046,6 +1086,16 @@ namespace XCom.Content.Maps.Tilesets {
         internal static byte[] Mars9 {
             get {
                 object obj = ResourceManager.GetObject("Mars9", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MediumScout {
+            get {
+                object obj = ResourceManager.GetObject("MediumScout", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -1326,6 +1376,36 @@ namespace XCom.Content.Maps.Tilesets {
         internal static byte[] Skyranger {
             get {
                 object obj = ResourceManager.GetObject("Skyranger", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SmallScout {
+            get {
+                object obj = ResourceManager.GetObject("SmallScout", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SupplyShip {
+            get {
+                object obj = ResourceManager.GetObject("SupplyShip", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TerrorShip {
+            get {
+                object obj = ResourceManager.GetObject("TerrorShip", resourceCulture);
                 return ((byte[])(obj));
             }
         }

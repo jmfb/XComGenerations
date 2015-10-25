@@ -48,6 +48,31 @@ namespace XCom.Battlescape
 			TileGroup.UfoEquipment,
 			TileGroup.Brain);
 
+		public static readonly TileGroups UfoSmallScout = new TileGroups(TileGroup.Common, TileGroup.UfoSmallScout);
+		public static readonly TileGroups Ufo = new TileGroups(
+			TileGroup.Common,
+			TileGroup.UfoExterior,
+			TileGroup.UfoComponents,
+			TileGroup.UfoBits);
+		public static readonly TileGroups UfoWithOperatingTable = new TileGroups(
+			TileGroup.Common,
+			TileGroup.UfoExterior,
+			TileGroup.UfoComponents,
+			TileGroup.UfoOperatingTable,
+			TileGroup.UfoBits);
+		public static readonly TileGroups UfoWithExaminationRoom = new TileGroups(
+			TileGroup.Common,
+			TileGroup.UfoExterior,
+			TileGroup.UfoComponents,
+			TileGroup.UfoExaminationRoom,
+			TileGroup.UfoBits);
+		public static readonly TileGroups UfoWithEquipment = new TileGroups(
+			TileGroup.Common,
+			TileGroup.UfoExterior,
+			TileGroup.UfoComponents,
+			TileGroup.UfoEquipment,
+			TileGroup.UfoBits);
+
 		public static readonly TileGroups City = new TileGroups(
 			TileGroup.Common,
 			TileGroup.Roads,

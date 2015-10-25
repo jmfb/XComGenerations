@@ -78,6 +78,15 @@ namespace XCom.Battlescape
 		public static readonly Tileset AlienBase14 = new Tileset(Tilesets.AlienBase14, TileGroups.AlienBase);
 		public static readonly Tileset AlienBase15 = new Tileset(Tilesets.AlienBase15, TileGroups.AlienBase);
 
+		public static readonly Tileset SmallScout = new Tileset(Tilesets.SmallScout, TileGroups.UfoSmallScout);
+		public static readonly Tileset MediumScout = new Tileset(Tilesets.MediumScout, TileGroups.Ufo);
+		public static readonly Tileset LargeScout = new Tileset(Tilesets.LargeScout, TileGroups.Ufo);
+		public static readonly Tileset Abductor = new Tileset(Tilesets.Abductor, TileGroups.UfoWithOperatingTable);
+		public static readonly Tileset Harvester = new Tileset(Tilesets.Harvester, TileGroups.UfoWithExaminationRoom);
+		public static readonly Tileset TerrorShip = new Tileset(Tilesets.TerrorShip, TileGroups.UfoWithEquipment);
+		public static readonly Tileset Battleship = new Tileset(Tilesets.Battleship, TileGroups.UfoWithEquipment);
+		public static readonly Tileset SupplyShip = new Tileset(Tilesets.SupplyShip, TileGroups.UfoWithExaminationRoom);
+
 		public static readonly Tileset City0 = new Tileset(Tilesets.City0, TileGroups.City);
 		public static readonly Tileset City1 = new Tileset(Tilesets.City1, TileGroups.City);
 		public static readonly Tileset City2 = new Tileset(Tilesets.City2, TileGroups.City);

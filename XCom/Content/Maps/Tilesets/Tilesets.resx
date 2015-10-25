@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Abductor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Abductor.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="AlienBase0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlienBase0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -168,6 +171,9 @@
   </data>
   <data name="Avenger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Avenger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Battleship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Battleship.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="City0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>City0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -343,6 +349,9 @@
   <data name="Forest9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Forest9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Harvester" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Harvester.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Jungle0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Jungle0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -379,6 +388,9 @@
   <data name="Jungle9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Jungle9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="LargeScout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>LargeScout.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Lightning.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -414,6 +426,9 @@
   </data>
   <data name="Mars9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Mars9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MediumScout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MediumScout.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Mountain0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Mountain0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -498,6 +513,15 @@
   </data>
   <data name="Skyranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Skyranger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SmallScout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>SmallScout.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SupplyShip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>SupplyShip.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TerrorShip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TerrorShip.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="XcomBase0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>XcomBase0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
