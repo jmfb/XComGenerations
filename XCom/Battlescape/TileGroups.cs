@@ -41,7 +41,19 @@ namespace XCom.Battlescape
 
 		public static readonly TileGroups XcomBase = new TileGroups(TileGroup.Common, TileGroup.XcomBase, TileGroup.XcomFacilities);
 
-		public static readonly TileGroups City = new TileGroups(TileGroup.Common, TileGroup.Roads, TileGroup.CityBits, TileGroup.City, TileGroup.Furniture);
+		public static readonly TileGroups AlienBase = new TileGroups(
+			TileGroup.Common,
+			TileGroup.AlienBase,
+			TileGroup.UfoComponents,
+			TileGroup.UfoEquipment,
+			TileGroup.Brain);
+
+		public static readonly TileGroups City = new TileGroups(
+			TileGroup.Common,
+			TileGroup.Roads,
+			TileGroup.CityBits,
+			TileGroup.City,
+			TileGroup.Furniture);
 
 		public static readonly TileGroups Cultivation = new TileGroups(TileGroup.Common, TileGroup.Cultivation, TileGroup.Barn);
 		public static readonly TileGroups Forest = new TileGroups(TileGroup.Common, TileGroup.Forest);

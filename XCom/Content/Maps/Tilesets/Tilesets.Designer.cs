@@ -63,6 +63,166 @@ namespace XCom.Content.Maps.Tilesets {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] AlienBase0 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase0", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase1 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase10 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase10", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase11 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase11", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase12 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase12", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase13 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase13", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase14 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase14", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase15 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase15", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase2 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase3 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase4 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase5 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase6 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase7 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase7", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase8 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase8", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlienBase9 {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase9", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Avenger {
             get {
                 object obj = ResourceManager.GetObject("Avenger", resourceCulture);

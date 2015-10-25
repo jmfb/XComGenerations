@@ -61,6 +61,23 @@ namespace XCom.Battlescape
 		public static readonly Tileset XcomBase19 = new Tileset(Tilesets.XcomBase19, TileGroups.XcomBase);
 		public static readonly Tileset XcomBase20 = new Tileset(Tilesets.XcomBase20, TileGroups.XcomBase);
 
+		public static readonly Tileset AlienBase0 = new Tileset(Tilesets.AlienBase0, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase1 = new Tileset(Tilesets.AlienBase1, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase2 = new Tileset(Tilesets.AlienBase2, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase3 = new Tileset(Tilesets.AlienBase3, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase4 = new Tileset(Tilesets.AlienBase4, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase5 = new Tileset(Tilesets.AlienBase5, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase6 = new Tileset(Tilesets.AlienBase6, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase7 = new Tileset(Tilesets.AlienBase7, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase8 = new Tileset(Tilesets.AlienBase8, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase9 = new Tileset(Tilesets.AlienBase9, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase10 = new Tileset(Tilesets.AlienBase10, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase11 = new Tileset(Tilesets.AlienBase11, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase12 = new Tileset(Tilesets.AlienBase12, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase13 = new Tileset(Tilesets.AlienBase13, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase14 = new Tileset(Tilesets.AlienBase14, TileGroups.AlienBase);
+		public static readonly Tileset AlienBase15 = new Tileset(Tilesets.AlienBase15, TileGroups.AlienBase);
+
 		public static readonly Tileset City0 = new Tileset(Tilesets.City0, TileGroups.City);
 		public static readonly Tileset City1 = new Tileset(Tilesets.City1, TileGroups.City);
 		public static readonly Tileset City2 = new Tileset(Tilesets.City2, TileGroups.City);

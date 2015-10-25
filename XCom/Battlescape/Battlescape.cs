@@ -171,27 +171,22 @@ namespace XCom.Battlescape
 		private int tilesetIndex;
 		private readonly Tileset[] tilesets =
 		{
-			Tileset.XcomBase0,
-			Tileset.XcomBase1,
-			Tileset.XcomBase2,
-			Tileset.XcomBase3,
-			Tileset.XcomBase4,
-			Tileset.XcomBase5,
-			Tileset.XcomBase6,
-			Tileset.XcomBase7,
-			Tileset.XcomBase8,
-			Tileset.XcomBase9,
-			Tileset.XcomBase10,
-			Tileset.XcomBase11,
-			Tileset.XcomBase12,
-			Tileset.XcomBase13,
-			Tileset.XcomBase14,
-			Tileset.XcomBase15,
-			Tileset.XcomBase16,
-			Tileset.XcomBase17,
-			Tileset.XcomBase18,
-			Tileset.XcomBase19,
-			Tileset.XcomBase20
+			Tileset.AlienBase0,
+			Tileset.AlienBase1,
+			Tileset.AlienBase2,
+			Tileset.AlienBase3,
+			Tileset.AlienBase4,
+			Tileset.AlienBase5,
+			Tileset.AlienBase6,
+			Tileset.AlienBase7,
+			Tileset.AlienBase8,
+			Tileset.AlienBase9,
+			Tileset.AlienBase10,
+			Tileset.AlienBase11,
+			Tileset.AlienBase12,
+			Tileset.AlienBase13,
+			Tileset.AlienBase14,
+			Tileset.AlienBase15
 		};
 
 		public override bool HitTest(int row, int column)

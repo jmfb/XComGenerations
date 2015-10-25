@@ -24,8 +24,8 @@ namespace XCom.Battlescape
 		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
 		{
 			ground.Render(buffer, topRow, leftColumn);
-			westWall.Render(buffer, topRow, leftColumn);
 			northWall.Render(buffer, topRow, leftColumn);
+			westWall.Render(buffer, topRow, leftColumn);
 			entity.Render(buffer, topRow, leftColumn);
 		}
 	}
