@@ -289,6 +289,39 @@
   <data name="Lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Lightning.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Mars0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Mountain0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Mountain0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

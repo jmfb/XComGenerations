@@ -633,6 +633,116 @@ namespace XCom.Content.Maps.Tilesets {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Mars0 {
+            get {
+                object obj = ResourceManager.GetObject("Mars0", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars1 {
+            get {
+                object obj = ResourceManager.GetObject("Mars1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars10 {
+            get {
+                object obj = ResourceManager.GetObject("Mars10", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars2 {
+            get {
+                object obj = ResourceManager.GetObject("Mars2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars3 {
+            get {
+                object obj = ResourceManager.GetObject("Mars3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars4 {
+            get {
+                object obj = ResourceManager.GetObject("Mars4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars5 {
+            get {
+                object obj = ResourceManager.GetObject("Mars5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars6 {
+            get {
+                object obj = ResourceManager.GetObject("Mars6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars7 {
+            get {
+                object obj = ResourceManager.GetObject("Mars7", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars8 {
+            get {
+                object obj = ResourceManager.GetObject("Mars8", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars9 {
+            get {
+                object obj = ResourceManager.GetObject("Mars9", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Mountain0 {
             get {
                 object obj = ResourceManager.GetObject("Mountain0", resourceCulture);

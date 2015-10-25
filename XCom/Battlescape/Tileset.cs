@@ -126,5 +126,17 @@ namespace XCom.Battlescape
 		public static readonly Tileset Cultivation16 = new Tileset(Tilesets.Cultivation16, TileGroups.Cultivation);
 		public static readonly Tileset Cultivation17 = new Tileset(Tilesets.Cultivation17, TileGroups.Cultivation);
 		public static readonly Tileset Cultivation18 = new Tileset(Tilesets.Cultivation18, TileGroups.Cultivation);
+
+		public static readonly Tileset Mars0 = new Tileset(Tilesets.Mars0, TileGroups.Mars);
+		public static readonly Tileset Mars1 = new Tileset(Tilesets.Mars1, TileGroups.Mars);
+		public static readonly Tileset Mars2 = new Tileset(Tilesets.Mars2, TileGroups.Mars);
+		public static readonly Tileset Mars3 = new Tileset(Tilesets.Mars3, TileGroups.Mars);
+		public static readonly Tileset Mars4 = new Tileset(Tilesets.Mars4, TileGroups.Mars);
+		public static readonly Tileset Mars5 = new Tileset(Tilesets.Mars5, TileGroups.Mars);
+		public static readonly Tileset Mars6 = new Tileset(Tilesets.Mars6, TileGroups.Mars);
+		public static readonly Tileset Mars7 = new Tileset(Tilesets.Mars7, TileGroups.Mars);
+		public static readonly Tileset Mars8 = new Tileset(Tilesets.Mars8, TileGroups.Mars);
+		public static readonly Tileset Mars9 = new Tileset(Tilesets.Mars9, TileGroups.Mars);
+		public static readonly Tileset Mars10 = new Tileset(Tilesets.Mars10, TileGroups.Mars);
 	}
 }
