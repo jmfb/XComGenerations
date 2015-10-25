@@ -121,6 +121,42 @@
   <data name="Avenger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Avenger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Desert0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert11.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Forest0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Forest0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

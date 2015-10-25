@@ -40,5 +40,6 @@ namespace XCom.Battlescape
 		public static readonly TileGroups Avenger = new TileGroups(TileGroup.Common, TileGroup.Avenger);
 
 		public static readonly TileGroups Forest = new TileGroups(TileGroup.Common, TileGroup.Forest);
+		public static readonly TileGroups Desert = new TileGroups(TileGroup.Common, TileGroup.Desert);
 	}
 }

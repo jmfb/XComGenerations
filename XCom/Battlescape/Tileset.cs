@@ -51,5 +51,18 @@ namespace XCom.Battlescape
 		public static readonly Tileset Forest9 = new Tileset(Tilesets.Forest9, TileGroups.Forest);
 		public static readonly Tileset Forest10 = new Tileset(Tilesets.Forest10, TileGroups.Forest);
 		public static readonly Tileset Forest11 = new Tileset(Tilesets.Forest11, TileGroups.Forest);
+
+		public static readonly Tileset Desert0 = new Tileset(Tilesets.Desert0, TileGroups.Desert);
+		public static readonly Tileset Desert1 = new Tileset(Tilesets.Desert1, TileGroups.Desert);
+		public static readonly Tileset Desert2 = new Tileset(Tilesets.Desert2, TileGroups.Desert);
+		public static readonly Tileset Desert3 = new Tileset(Tilesets.Desert3, TileGroups.Desert);
+		public static readonly Tileset Desert4 = new Tileset(Tilesets.Desert4, TileGroups.Desert);
+		public static readonly Tileset Desert5 = new Tileset(Tilesets.Desert5, TileGroups.Desert);
+		public static readonly Tileset Desert6 = new Tileset(Tilesets.Desert6, TileGroups.Desert);
+		public static readonly Tileset Desert7 = new Tileset(Tilesets.Desert7, TileGroups.Desert);
+		public static readonly Tileset Desert8 = new Tileset(Tilesets.Desert8, TileGroups.Desert);
+		public static readonly Tileset Desert9 = new Tileset(Tilesets.Desert9, TileGroups.Desert);
+		public static readonly Tileset Desert10 = new Tileset(Tilesets.Desert10, TileGroups.Desert);
+		public static readonly Tileset Desert11 = new Tileset(Tilesets.Desert11, TileGroups.Desert);
 	}
 }
