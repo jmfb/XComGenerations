@@ -121,6 +121,51 @@
   <data name="Avenger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Avenger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="City0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City11.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City12.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City13.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City14.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Cultivation0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Cultivation0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

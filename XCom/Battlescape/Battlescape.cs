@@ -171,17 +171,21 @@ namespace XCom.Battlescape
 		private int tilesetIndex;
 		private readonly Tileset[] tilesets =
 		{
-			Tileset.Mars0,
-			Tileset.Mars1,
-			Tileset.Mars2,
-			Tileset.Mars3,
-			Tileset.Mars4,
-			Tileset.Mars5,
-			Tileset.Mars6,
-			Tileset.Mars7,
-			Tileset.Mars8,
-			Tileset.Mars9,
-			Tileset.Mars10
+			Tileset.City0,
+			Tileset.City1,
+			Tileset.City2,
+			Tileset.City3,
+			Tileset.City4,
+			Tileset.City5,
+			Tileset.City6,
+			Tileset.City7,
+			Tileset.City8,
+			Tileset.City9,
+			Tileset.City10,
+			Tileset.City11,
+			Tileset.City12,
+			Tileset.City13,
+			Tileset.City14
 		};
 
 		public override bool HitTest(int row, int column)

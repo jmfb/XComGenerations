@@ -39,6 +39,8 @@ namespace XCom.Battlescape
 		public static readonly TileGroups Lightning = new TileGroups(TileGroup.Common, TileGroup.Lightning);
 		public static readonly TileGroups Avenger = new TileGroups(TileGroup.Common, TileGroup.Avenger);
 
+		public static readonly TileGroups City = new TileGroups(TileGroup.Common, TileGroup.Roads, TileGroup.CityBits, TileGroup.City, TileGroup.Furniture);
+
 		public static readonly TileGroups Cultivation = new TileGroups(TileGroup.Common, TileGroup.Cultivation, TileGroup.Barn);
 		public static readonly TileGroups Forest = new TileGroups(TileGroup.Common, TileGroup.Forest);
 		public static readonly TileGroups Desert = new TileGroups(TileGroup.Common, TileGroup.Desert);
