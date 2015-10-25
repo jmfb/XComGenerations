@@ -118,10 +118,85 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AlienBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlienBase.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Avenger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Avenger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Barn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Barn.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Brain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Brain.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="City" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>City.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CityBits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>CityBits.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Common" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Common.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Cultivation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Cultivation.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Desert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Desert.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Forest" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Forest.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Furniture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Furniture.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Jungle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Jungle.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Lightning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Lightning.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mars.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Mountain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Mountain.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Roads" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Roads.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Skyranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Skyranger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UfoBits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UfoBits.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UfoComponents" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UfoComponents.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UfoEquipment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UfoEquipment.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UfoExaminationRoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UfoExaminationRoom.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UfoExterior" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UfoExterior.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UfoOperatingTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UfoOperatingTable.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UfoSmallScout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UfoSmallScout.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomFacilities" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomFacilities.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

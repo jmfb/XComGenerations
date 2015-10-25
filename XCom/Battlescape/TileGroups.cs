@@ -6,7 +6,7 @@ namespace XCom.Battlescape
 	{
 		private readonly TileGroup[] groups;
 
-		public TileGroups(params TileGroup[] groups)
+		private TileGroups(params TileGroup[] groups)
 		{
 			this.groups = groups;
 		}

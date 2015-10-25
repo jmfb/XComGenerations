@@ -70,6 +70,37 @@ namespace XCom.Battlescape
 		}
 
 		public static readonly TilePropertyPage[] Common = LoadTilePropertyPages(TilePropertyPages.Common);
+
+		public static readonly TilePropertyPage[] Skyranger = LoadTilePropertyPages(TilePropertyPages.Skyranger);
+		public static readonly TilePropertyPage[] Lightning = LoadTilePropertyPages(TilePropertyPages.Lightning);
+		public static readonly TilePropertyPage[] Avenger = LoadTilePropertyPages(TilePropertyPages.Avenger);
+
+		public static readonly TilePropertyPage[] XcomBase = LoadTilePropertyPages(TilePropertyPages.XcomBase);
+		public static readonly TilePropertyPage[] XcomFacilities = LoadTilePropertyPages(TilePropertyPages.XcomFacilities);
+
+		public static readonly TilePropertyPage[] AlienBase = LoadTilePropertyPages(TilePropertyPages.AlienBase);
+		public static readonly TilePropertyPage[] Brain = LoadTilePropertyPages(TilePropertyPages.Brain);
+		public static readonly TilePropertyPage[] UfoSmallScout = LoadTilePropertyPages(TilePropertyPages.UfoSmallScout);
+		public static readonly TilePropertyPage[] UfoExterior = LoadTilePropertyPages(TilePropertyPages.UfoExterior);
+		public static readonly TilePropertyPage[] UfoBits = LoadTilePropertyPages(TilePropertyPages.UfoBits);
+		public static readonly TilePropertyPage[] UfoComponents = LoadTilePropertyPages(TilePropertyPages.UfoComponents);
+		public static readonly TilePropertyPage[] UfoEquipment = LoadTilePropertyPages(TilePropertyPages.UfoEquipment);
+		public static readonly TilePropertyPage[] UfoExaminationRoom = LoadTilePropertyPages(TilePropertyPages.UfoExaminationRoom);
+		public static readonly TilePropertyPage[] UfoOperatingTable = LoadTilePropertyPages(TilePropertyPages.UfoOperatingTable);
+
+		public static readonly TilePropertyPage[] City = LoadTilePropertyPages(TilePropertyPages.City);
+		public static readonly TilePropertyPage[] CityBits = LoadTilePropertyPages(TilePropertyPages.CityBits);
+		public static readonly TilePropertyPage[] Roads = LoadTilePropertyPages(TilePropertyPages.Roads);
+		public static readonly TilePropertyPage[] Furniture = LoadTilePropertyPages(TilePropertyPages.Furniture);
+
+		public static readonly TilePropertyPage[] Barn = LoadTilePropertyPages(TilePropertyPages.Barn);
+		public static readonly TilePropertyPage[] Cultivation = LoadTilePropertyPages(TilePropertyPages.Cultivation);
+		public static readonly TilePropertyPage[] Desert = LoadTilePropertyPages(TilePropertyPages.Desert);
 		public static readonly TilePropertyPage[] Forest = LoadTilePropertyPages(TilePropertyPages.Forest);
+		public static readonly TilePropertyPage[] Jungle = LoadTilePropertyPages(TilePropertyPages.Jungle);
+		public static readonly TilePropertyPage[] Mountain = LoadTilePropertyPages(TilePropertyPages.Mountain);
+		public static readonly TilePropertyPage[] Polar = LoadTilePropertyPages(TilePropertyPages.Polar);
+
+		public static readonly TilePropertyPage[] Mars = LoadTilePropertyPages(TilePropertyPages.Mars);
 	}
 }

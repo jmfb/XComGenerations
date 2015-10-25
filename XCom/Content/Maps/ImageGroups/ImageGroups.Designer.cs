@@ -63,6 +63,66 @@ namespace XCom.Content.Maps.ImageGroups {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] AlienBase {
+            get {
+                object obj = ResourceManager.GetObject("AlienBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Avenger {
+            get {
+                object obj = ResourceManager.GetObject("Avenger", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Barn {
+            get {
+                object obj = ResourceManager.GetObject("Barn", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Brain {
+            get {
+                object obj = ResourceManager.GetObject("Brain", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] City {
+            get {
+                object obj = ResourceManager.GetObject("City", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CityBits {
+            get {
+                object obj = ResourceManager.GetObject("CityBits", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Common {
             get {
                 object obj = ResourceManager.GetObject("Common", resourceCulture);
@@ -73,9 +133,199 @@ namespace XCom.Content.Maps.ImageGroups {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Cultivation {
+            get {
+                object obj = ResourceManager.GetObject("Cultivation", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Desert {
+            get {
+                object obj = ResourceManager.GetObject("Desert", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Forest {
             get {
                 object obj = ResourceManager.GetObject("Forest", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Furniture {
+            get {
+                object obj = ResourceManager.GetObject("Furniture", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Jungle {
+            get {
+                object obj = ResourceManager.GetObject("Jungle", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Lightning {
+            get {
+                object obj = ResourceManager.GetObject("Lightning", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mars {
+            get {
+                object obj = ResourceManager.GetObject("Mars", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Mountain {
+            get {
+                object obj = ResourceManager.GetObject("Mountain", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Polar {
+            get {
+                object obj = ResourceManager.GetObject("Polar", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Roads {
+            get {
+                object obj = ResourceManager.GetObject("Roads", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Skyranger {
+            get {
+                object obj = ResourceManager.GetObject("Skyranger", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UfoBits {
+            get {
+                object obj = ResourceManager.GetObject("UfoBits", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UfoComponents {
+            get {
+                object obj = ResourceManager.GetObject("UfoComponents", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UfoEquipment {
+            get {
+                object obj = ResourceManager.GetObject("UfoEquipment", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UfoExaminationRoom {
+            get {
+                object obj = ResourceManager.GetObject("UfoExaminationRoom", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UfoExterior {
+            get {
+                object obj = ResourceManager.GetObject("UfoExterior", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UfoOperatingTable {
+            get {
+                object obj = ResourceManager.GetObject("UfoOperatingTable", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UfoSmallScout {
+            get {
+                object obj = ResourceManager.GetObject("UfoSmallScout", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomFacilities {
+            get {
+                object obj = ResourceManager.GetObject("XcomFacilities", resourceCulture);
                 return ((byte[])(obj));
             }
         }
