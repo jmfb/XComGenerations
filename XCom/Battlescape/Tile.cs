@@ -9,5 +9,7 @@ namespace XCom.Battlescape
 		public byte WestWall;
 		public byte NorthWall;
 		public byte Entity;
+
+		public static readonly Tile Empty = default(Tile);
 	}
 }

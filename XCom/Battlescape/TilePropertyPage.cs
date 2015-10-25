@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
+using XCom.Content.Maps.TilePropertyPages;
 
 namespace XCom.Battlescape
 {
@@ -43,7 +46,7 @@ namespace XCom.Battlescape
 		public byte Unused5;
 		public byte LightBlockage;
 		public byte FootstepSoundEffect;
-		public byte TileType;
+		public BattleLocationPartType TileType;
 		public byte ExplosiveType;
 		public byte ExplosiveStrength;
 		public byte Unused6;
@@ -53,5 +56,20 @@ namespace XCom.Battlescape
 		[MarshalAs(UnmanagedType.I1)]
 		public bool IsCriticalForFacility;
 		public byte Unused7;
+
+		private static TilePropertyPage[] LoadTilePropertyPages(byte[] data)
+		{
+			var recordSize = Marshal.SizeOf(typeof(TilePropertyPage));
+			var count = data.Length / recordSize;
+			if (data.Length % recordSize != 0)
+				throw new InvalidOperationException("Invalid property page resource size.");
+			return Enumerable.Range(0, count)
+				.Select(index => index * recordSize)
+				.Select(data.ReadStruct<TilePropertyPage>)
+				.ToArray();
+		}
+
+		public static readonly TilePropertyPage[] Common = LoadTilePropertyPages(TilePropertyPages.Common);
+		public static readonly TilePropertyPage[] Forest = LoadTilePropertyPages(TilePropertyPages.Forest);
 	}
 }

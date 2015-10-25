@@ -63,16 +63,24 @@
   <ItemGroup>
     <Compile Include="Battlescape\AbortMission.cs" />
     <Compile Include="Battlescape\Battle.cs" />
+    <Compile Include="Battlescape\BattleLevel.cs" />
+    <Compile Include="Battlescape\BattleLocation.cs" />
+    <Compile Include="Battlescape\BattleLocationPart.cs" />
+    <Compile Include="Battlescape\BattleLocationPartType.cs" />
     <Compile Include="Battlescape\Battlescape.cs" />
     <Compile Include="Battlescape\BattleSoldier.cs" />
     <Compile Include="Battlescape\BattleItem.cs" />
     <Compile Include="Battlescape\DisplayTurn.cs" />
     <Compile Include="Battlescape\GameOptions.cs" />
+    <Compile Include="Battlescape\ImageGroup.cs" />
+    <Compile Include="Battlescape\ImageTable.cs" />
     <Compile Include="Battlescape\Inventory.cs" />
     <Compile Include="Battlescape\InventoryLocation.cs" />
     <Compile Include="Battlescape\InventoryLocationMetadata.cs" />
     <Compile Include="Battlescape\SelectedUnitId.cs" />
     <Compile Include="Battlescape\Tile.cs" />
+    <Compile Include="Battlescape\TileGroup.cs" />
+    <Compile Include="Battlescape\TileGroups.cs" />
     <Compile Include="Battlescape\TilePropertyPage.cs" />
     <Compile Include="Battlescape\Tileset.cs" />
     <Compile Include="Battlescape\TilesetHeader.cs" />
@@ -124,6 +132,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Items.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Maps\ImageGroups\ImageGroups.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageGroups.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Maps\ImageTables\ImageTables.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageTables.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\Maps\TilePropertyPages\TilePropertyPages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -488,6 +506,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Items.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Content\Maps\ImageGroups\ImageGroups.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageGroups.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\Maps\ImageTables\ImageTables.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageTables.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Content\Maps\TilePropertyPages\TilePropertyPages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TilePropertyPages.Designer.cs</LastGenOutput>
@@ -679,6 +705,10 @@
     <None Include="Content\Items\TankCannonTurret.bin" />
     <None Include="Content\Items\TankLaserTurret.bin" />
     <None Include="Content\Items\TankRocketLauncherTurret.bin" />
+    <None Include="Content\Maps\ImageGroups\Common.bin" />
+    <None Include="Content\Maps\ImageGroups\Forest.bin" />
+    <None Include="Content\Maps\ImageTables\Common.bin" />
+    <None Include="Content\Maps\ImageTables\Forest.bin" />
     <None Include="Content\Maps\TilePropertyPages\Common.bin" />
     <None Include="Content\Maps\TilePropertyPages\Forest.bin" />
     <None Include="Content\Maps\Tilesets\Forest0.bin" />

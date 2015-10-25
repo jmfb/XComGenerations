@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Data;
@@ -163,8 +164,55 @@ namespace XCom.Battlescape
 			GameState.Current.SetScreen(new ViewSoldierStatistics(battle, activeSolider));
 		}
 
+		private BattleLevel[] battleLevels;
+		private int tilesetIndex;
+		private Tileset[] tilesets =
+		{
+			Tileset.Forest0,
+			Tileset.Forest1,
+			Tileset.Forest2,
+			Tileset.Forest3,
+			Tileset.Forest4,
+			Tileset.Forest5,
+			Tileset.Forest6,
+			Tileset.Forest7,
+			Tileset.Forest8,
+			Tileset.Forest9,
+			Tileset.Forest10,
+			Tileset.Forest11
+		};
+
+		public override bool HitTest(int row, int column)
+		{
+			return true;
+		}
+
+		public override void OnLeftButtonDown(int row, int column)
+		{
+			battleLevels = CreateNextTileset();
+		}
+
+		private BattleLevel[] CreateNextTileset()
+		{
+			if (battleLevels != null)
+				tilesetIndex = (tilesetIndex + 1) % tilesets.Length;
+			var tileset = tilesets[tilesetIndex];
+			var levels = new BattleLevel[4];
+			foreach (var level in Enumerable.Range(0, 4))
+			{
+				levels[level] = new BattleLevel(tileset.ColumnCount, tileset.RowCount);
+				levels[level].LoadTileset(tileset, level, 0, 0);
+			}
+			return levels;
+		}
+
 		public override void Render(GraphicsBuffer buffer)
 		{
+			if (battleLevels == null)
+				battleLevels = CreateNextTileset();
+			foreach (var level in Enumerable.Range(0, 4))
+				battleLevels[level].Render(buffer, 0 - 24 * level, 140);
+
 			base.Render(buffer);
 			DrawUnitInformation(buffer, battle.SelectedUnit);
 		}

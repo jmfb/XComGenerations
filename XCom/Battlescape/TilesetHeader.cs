@@ -9,6 +9,8 @@ namespace XCom.Battlescape
 		public byte Width;
 		public byte Depth;
 
-		public int TileCount => Height * Width * Depth;
+		public int TilesPerRow => Width;
+		public int TilesPerLevel => Height * TilesPerRow;
+		public int TileCount => Depth * TilesPerLevel;
 	}
 }
