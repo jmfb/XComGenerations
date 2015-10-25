@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Images.Facilities;
 using XCom.Graphics;
 
@@ -48,7 +49,8 @@ namespace XCom.Data
 				"into or out of an underground base.  It is always the first",
 				"facility to be constructed on a new site.  The lift area is",
 				"vulnerable to intrusion from any potential hostile force."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase0 }
 		};
 
 		private static readonly FacilityMetadata livingQuarters = new FacilityMetadata
@@ -65,7 +67,8 @@ namespace XCom.Data
 			{
 				"Each accommodation block provides for up to 50 personnel.  The",
 				"facility provides basic recreation, food and sleeping areas."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase1 }
 		};
 
 		private static readonly FacilityMetadata laboratory = new FacilityMetadata
@@ -85,7 +88,8 @@ namespace XCom.Data
 				"research into materials, biochemistry and cosmology. There is",
 				"privileged access to the best research labs throughout the",
 				"world, including military establishments."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase2 }
 		};
 
 		private static readonly FacilityMetadata workshop = new FacilityMetadata
@@ -104,7 +108,8 @@ namespace XCom.Data
 				"equipment based on designs from the science labs.  Up to 50",
 				"engineers can occupy a workshop, although items under",
 				"construction will also consume some space."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase3 }
 		};
 
 		private static readonly FacilityMetadata smallRadarSystem = new FacilityMetadata
@@ -123,7 +128,8 @@ namespace XCom.Data
 				"nautical miles and is linked to satellite systems for ground",
 				"search. Each system has a 5% chance of detecting an average",
 				"sized object every 10 minutes."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase4 }
 		};
 
 		private static readonly FacilityMetadata largeRadarSystem = new FacilityMetadata
@@ -142,7 +148,8 @@ namespace XCom.Data
 				"miles and is linked to satellite systems for ground search. Each",
 				"system has a 5% chance of detecting an average sized object",
 				"every 10 minutes."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase5 }
 		};
 
 		private static readonly FacilityMetadata missileDefenses = new FacilityMetadata
@@ -161,7 +168,8 @@ namespace XCom.Data
 			{
 				"Missile defenses provide some protection against incursion by",
 				"hostile craft which are attempting to land near the base."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase6 }
 		};
 
 		private static readonly FacilityMetadata generalStores = new FacilityMetadata
@@ -179,7 +187,8 @@ namespace XCom.Data
 				"All equipment, weapons systems, munitions, recovered material",
 				"and Heavy Weapons Platforms are placed in stores, with the",
 				"exception of equipment assigned to craft in hangars."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase7 }
 		};
 
 		private static readonly FacilityMetadata alienContainment = new FacilityMetadata
@@ -197,7 +206,8 @@ namespace XCom.Data
 				"Living aliens are likely to require a special habitat to maintain",
 				"their life systems.  The containment facility can keep up to 10",
 				"alien life forms in self contained units."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase8 }
 		};
 
 		private static readonly FacilityMetadata laserDefenses = new FacilityMetadata
@@ -217,7 +227,8 @@ namespace XCom.Data
 			{
 				"Laser defenses provide protection against incursion by hostile",
 				"craft."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase9 }
 		};
 
 		private static readonly FacilityMetadata plasmaDefenses = new FacilityMetadata
@@ -237,7 +248,8 @@ namespace XCom.Data
 			{
 				"Plasma beam defenses provide powerful and efficient protection",
 				"against incursion by hostile craft."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase10 }
 		};
 
 		private static readonly FacilityMetadata fusionBallDefenses = new FacilityMetadata
@@ -258,7 +270,8 @@ namespace XCom.Data
 				"Fusion missiles provide the most effective defense against alien",
 				"attacks.  These missiles create an anti-matter implosion which",
 				"destroys everything within a specific radius."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase11 }
 		};
 
 		private static readonly FacilityMetadata gravShield = new FacilityMetadata
@@ -278,7 +291,8 @@ namespace XCom.Data
 				"the base long enough for all defense systems to fire again.  In",
 				"practice this will double the effectiveness of any defense",
 				"systems at your base."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase12 }
 		};
 
 		private static readonly FacilityMetadata mindShield = new FacilityMetadata
@@ -298,7 +312,8 @@ namespace XCom.Data
 				"then the most effective counter measure is to shield brain",
 				"waves from the base.  This facility will drastically reduce the",
 				"chances of detection by alien craft."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase15 }
 		};
 
 		private static readonly FacilityMetadata psionicLaboratory = new FacilityMetadata
@@ -320,7 +335,8 @@ namespace XCom.Data
 				"soldiers.  Training is allocated at the end of each month.",
 				"Psionic skills used in conjunction with a Psi-amp can be used",
 				"for psionic attacks during combat."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase14 }
 		};
 
 		private static readonly FacilityMetadata hyperWaveDecoder = new FacilityMetadata
@@ -340,7 +356,8 @@ namespace XCom.Data
 				"travels almost instantaneously. The decoder facility intercepts",
 				"UFO transmissions and decodes the information.  This will show",
 				"the type of UFO, the alien race and the type of activity."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase13 }
 		};
 
 		private static readonly FacilityMetadata hangar = new FacilityMetadata
@@ -360,7 +377,8 @@ namespace XCom.Data
 				"stationed at a base must have a free hangar assigned to it",
 				"which cannot be used by other craft, even if the assigned craft",
 				"is out on a mission."
-			}
+			},
+			Tilesets = new[] { Tileset.XcomBase16, Tileset.XcomBase17, Tileset.XcomBase18, Tileset.XcomBase19 }
 		};
 
 		private static readonly Dictionary<FacilityType, FacilityMetadata> metadata = new Dictionary<FacilityType, FacilityMetadata>

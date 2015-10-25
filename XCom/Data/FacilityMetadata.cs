@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Battlescape.Tiles;
 using XCom.Graphics;
 
 namespace XCom.Data
@@ -17,6 +18,7 @@ namespace XCom.Data
 		public int ColumnOffset { get; set; }
 		public ResearchType? RequiredResearch { get; set; }
 		public string[] DescriptionLines { get; set; }
+		public Tileset[] Tilesets { get; set; }
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
 		{

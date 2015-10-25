@@ -30,6 +30,10 @@ namespace XCom.Battlescape.Tiles
 				{
 					var top = topRow + column * 8 + row * 8;
 					var left = leftColumn + column * 16 - row * 16;
+					var bottom = top + 40;
+					var right = left + 32;
+					if (bottom < 0 || right < 0 || top >= 144 || left >= 320)
+						continue;
 					locations[row, column].Render(buffer, top, left);
 				}
 		}

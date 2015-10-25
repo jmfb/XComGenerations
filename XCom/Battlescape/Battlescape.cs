@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
@@ -45,6 +46,12 @@ namespace XCom.Battlescape
 		public override void OnSetFocus()
 		{
 			MidiFiles.Play(MusicType.Battlescape);
+			GameState.Current.OnIdle += OnIdle;
+		}
+
+		public override void OnKillFocus()
+		{
+			GameState.Current.OnIdle -= OnIdle;
 		}
 
 		private static void OnLeftWeapon()
@@ -67,14 +74,16 @@ namespace XCom.Battlescape
 			//TODO
 		}
 
-		private static void OnLevelUp()
+		private void OnLevelUp()
 		{
-			//TODO
+			if (levelCount < battleLevels.Length)
+				++levelCount;
 		}
 
-		private static void OnLevelDown()
+		private void OnLevelDown()
 		{
-			//TODO
+			if (levelCount > 1)
+				--levelCount;
 		}
 
 		private static void OnMiniMap()
@@ -167,67 +176,54 @@ namespace XCom.Battlescape
 
 		private int rowOffset;
 		private int columnOffset;
-		private int levelCount = 4;
+		private int levelCount = 1;
 		private BattleLevel[] battleLevels;
-		private int tilesetIndex;
-		private readonly Tileset[] tilesets =
-		{
-			Tileset.SmallScout,
-			Tileset.MediumScout,
-			Tileset.LargeScout,
-			Tileset.Abductor,
-			Tileset.Harvester,
-			Tileset.TerrorShip,
-			Tileset.Battleship,
-			Tileset.SupplyShip
-		};
+		private readonly Stopwatch stopwatch = new Stopwatch();
 
-		public override bool HitTest(int row, int column)
+		private void OnIdle()
 		{
-			return true;
-		}
-
-		public override void OnLeftButtonDown(int row, int column)
-		{
-			battleLevels = CreateNextTileset();
-		}
-
-		public override void OnRightButtonDown(int row, int column)
-		{
-			--levelCount;
-			if (levelCount == 0)
-				levelCount = 4;
-		}
-
-		public override void OnKeyPressed(char value)
-		{
-			switch (value)
+			if (!stopwatch.IsRunning)
+				stopwatch.Start();
+			if (stopwatch.ElapsedMilliseconds < 25)
+				return;
+			var pointer = GameState.Current.PointerPosition;
+			if (pointer.Y < 0 || pointer.Y >= 144 || pointer.X < 0 || pointer.X >= 320)
+				return;
+			var scrollUp = pointer.Y < 20;
+			var scrollLeft = pointer.X < 20;
+			var scrollRight = pointer.X >= 300;
+			var scrollDown = pointer.Y >= 122;
+			if (scrollUp || scrollDown)
 			{
-			case 'a':
-				columnOffset -= 32;
-				break;
-			case 'd':
-				columnOffset += 32;
-				break;
-			case 'w':
-				rowOffset -= 40;
-				break;
-			case 's':
-				rowOffset += 40;
-				break;
+				scrollLeft = pointer.X < 50;
+				scrollRight = pointer.X >= 270;
 			}
+			else if (scrollLeft || scrollRight)
+			{
+				scrollUp = pointer.Y < 50;
+				scrollDown = pointer.Y >= 94;
+			}
+			var scrollIncrement = 10 + GameState.Current.Data.ScrollSpeed * 5;
+			rowOffset += scrollUp ? scrollIncrement : scrollDown ? -scrollIncrement : 0;
+			columnOffset += scrollLeft ? scrollIncrement : scrollRight ? -scrollIncrement : 0;
+			if (scrollUp || scrollLeft || scrollRight || scrollDown)
+				stopwatch.Restart();
 		}
 
 		private BattleLevel[] CreateNextTileset()
 		{
 			if (battleLevels != null)
-				tilesetIndex = (tilesetIndex + 1) % tilesets.Length;
-			var tileset = tilesets[tilesetIndex];
-			var levels = new BattleLevel[4];
-			foreach (var level in Enumerable.Range(0, 4))
+				return battleLevels;
+			var tilesets = GameState.SelectedBase.ToTilesets();
+			var blockHeight = tilesets[0, 0].RowCount;
+			var blockWidth = tilesets[0, 0].ColumnCount;
+			var levels = new BattleLevel[2];
+			foreach (var level in Enumerable.Range(0, 2))
 			{
-				levels[level] = new BattleLevel(tileset.ColumnCount, tileset.RowCount);
-				levels[level].LoadTileset(tileset, level, 0, 0);
+				levels[level] = new BattleLevel(6 * blockWidth, 6 * blockHeight);
+				foreach (var row in Enumerable.Range(0, 6))
+					foreach (var column in Enumerable.Range(0, 6))
+						levels[level].LoadTileset(tilesets[row, column], level, row * blockHeight, column * blockWidth);
 			}
 			return levels;
 		}
