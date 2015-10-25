@@ -451,4 +451,67 @@
   <data name="Skyranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Skyranger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="XcomBase0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase11.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase12.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase13.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase14.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase15.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase16.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase17.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase18.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase19.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase20.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XcomBase9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>XcomBase9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

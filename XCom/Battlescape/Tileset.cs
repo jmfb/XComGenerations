@@ -39,6 +39,28 @@ namespace XCom.Battlescape
 		public static readonly Tileset Lightning = new Tileset(Tilesets.Lightning, TileGroups.Lightning);
 		public static readonly Tileset Avenger = new Tileset(Tilesets.Avenger, TileGroups.Avenger);
 
+		public static readonly Tileset XcomBase0 = new Tileset(Tilesets.XcomBase0, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase1 = new Tileset(Tilesets.XcomBase1, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase2 = new Tileset(Tilesets.XcomBase2, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase3 = new Tileset(Tilesets.XcomBase3, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase4 = new Tileset(Tilesets.XcomBase4, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase5 = new Tileset(Tilesets.XcomBase5, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase6 = new Tileset(Tilesets.XcomBase6, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase7 = new Tileset(Tilesets.XcomBase7, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase8 = new Tileset(Tilesets.XcomBase8, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase9 = new Tileset(Tilesets.XcomBase9, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase10 = new Tileset(Tilesets.XcomBase10, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase11 = new Tileset(Tilesets.XcomBase11, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase12 = new Tileset(Tilesets.XcomBase12, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase13 = new Tileset(Tilesets.XcomBase13, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase14 = new Tileset(Tilesets.XcomBase14, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase15 = new Tileset(Tilesets.XcomBase15, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase16 = new Tileset(Tilesets.XcomBase16, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase17 = new Tileset(Tilesets.XcomBase17, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase18 = new Tileset(Tilesets.XcomBase18, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase19 = new Tileset(Tilesets.XcomBase19, TileGroups.XcomBase);
+		public static readonly Tileset XcomBase20 = new Tileset(Tilesets.XcomBase20, TileGroups.XcomBase);
+
 		public static readonly Tileset City0 = new Tileset(Tilesets.City0, TileGroups.City);
 		public static readonly Tileset City1 = new Tileset(Tilesets.City1, TileGroups.City);
 		public static readonly Tileset City2 = new Tileset(Tilesets.City2, TileGroups.City);

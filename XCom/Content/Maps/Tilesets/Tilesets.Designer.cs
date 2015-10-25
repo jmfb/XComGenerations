@@ -1169,5 +1169,215 @@ namespace XCom.Content.Maps.Tilesets {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase0 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase0", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase1 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase10 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase10", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase11 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase11", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase12 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase12", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase13 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase13", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase14 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase14", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase15 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase15", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase16 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase16", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase17 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase17", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase18 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase18", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase19 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase19", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase2 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase20 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase20", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase3 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase4 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase5 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase6 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase7 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase7", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase8 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase8", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XcomBase9 {
+            get {
+                object obj = ResourceManager.GetObject("XcomBase9", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
