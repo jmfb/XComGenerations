@@ -91,5 +91,20 @@ namespace XCom.Battlescape
 		public static readonly Tileset Mountain10 = new Tileset(Tilesets.Mountain10, TileGroups.Mountain);
 		public static readonly Tileset Mountain11 = new Tileset(Tilesets.Mountain11, TileGroups.Mountain);
 		public static readonly Tileset Mountain12 = new Tileset(Tilesets.Mountain12, TileGroups.Mountain);
+
+		public static readonly Tileset Polar0 = new Tileset(Tilesets.Polar0, TileGroups.Polar);
+		public static readonly Tileset Polar1 = new Tileset(Tilesets.Polar1, TileGroups.Polar);
+		public static readonly Tileset Polar2 = new Tileset(Tilesets.Polar2, TileGroups.Polar);
+		public static readonly Tileset Polar3 = new Tileset(Tilesets.Polar3, TileGroups.Polar);
+		public static readonly Tileset Polar4 = new Tileset(Tilesets.Polar4, TileGroups.Polar);
+		public static readonly Tileset Polar5 = new Tileset(Tilesets.Polar5, TileGroups.Polar);
+		public static readonly Tileset Polar6 = new Tileset(Tilesets.Polar6, TileGroups.Polar);
+		public static readonly Tileset Polar7 = new Tileset(Tilesets.Polar7, TileGroups.Polar);
+		public static readonly Tileset Polar8 = new Tileset(Tilesets.Polar8, TileGroups.Polar);
+		public static readonly Tileset Polar9 = new Tileset(Tilesets.Polar9, TileGroups.Polar);
+		public static readonly Tileset Polar10 = new Tileset(Tilesets.Polar10, TileGroups.Polar);
+		public static readonly Tileset Polar11 = new Tileset(Tilesets.Polar11, TileGroups.Polar);
+		public static readonly Tileset Polar12 = new Tileset(Tilesets.Polar12, TileGroups.Polar);
+		public static readonly Tileset Polar13 = new Tileset(Tilesets.Polar13, TileGroups.Polar);
 	}
 }

@@ -271,6 +271,48 @@
   <data name="Mountain9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Mountain9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Polar0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar0.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar1.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar10.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar11.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar12.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar13.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar3.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar4.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar5.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar6.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar7.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar8.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Polar9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Polar9.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Skyranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Skyranger.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
