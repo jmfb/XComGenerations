@@ -168,7 +168,7 @@ namespace XCom.Graphics
 			const byte skipCode = 0xfe;
 			const byte doneCode = 0xff;
 			var skipRows = item[0];
-			var palette = Palette.GetPalette(4);
+			var palette = Palette.GetPalette(14);
 			for (int itemIndex = 1, imageIndex = 0; itemIndex < item.Length; )
 			{
 				var code = item[itemIndex++];

@@ -35,6 +35,10 @@ namespace XCom.Battlescape
 		private int LevelCount => header.Depth;
 		private Tile GetTile(int invertedLevel, int row, int column) => tiles[invertedLevel * header.TilesPerLevel + row * header.TilesPerRow + column];
 
+		public static readonly Tileset Skyranger = new Tileset(Tilesets.Skyranger, TileGroups.Skyranger);
+		public static readonly Tileset Lightning = new Tileset(Tilesets.Lightning, TileGroups.Lightning);
+		public static readonly Tileset Avenger = new Tileset(Tilesets.Avenger, TileGroups.Avenger);
+
 		public static readonly Tileset Forest0 = new Tileset(Tilesets.Forest0, TileGroups.Forest);
 		public static readonly Tileset Forest1 = new Tileset(Tilesets.Forest1, TileGroups.Forest);
 		public static readonly Tileset Forest2 = new Tileset(Tilesets.Forest2, TileGroups.Forest);

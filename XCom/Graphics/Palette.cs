@@ -6,10 +6,10 @@ namespace XCom.Graphics
 {
 	public class Palette
 	{
-		private const int PaletteEntries = 256;
-		private const int PaletteSize = PaletteEntries * GraphicsBuffer.BytesPerPixel;
+		private const int paletteEntries = 256;
+		private const int paletteSize = paletteEntries * GraphicsBuffer.BytesPerPixel;
 
-		private readonly byte[] data = new byte[PaletteSize];
+		private readonly byte[] data = new byte[paletteSize];
 
 		private Palette(byte[] source)
 		{
@@ -61,9 +61,29 @@ namespace XCom.Graphics
 		private static readonly Palette palette3 = new Palette(Content.Palettes.Palettes.Palette3);
 		private static readonly Palette palette4 = new Palette(Content.Palettes.Palettes.Palette4);
 
+		private static readonly Color[] greyscale =
+		{
+			Color.FromArgb(140, 150, 148),
+			Color.FromArgb(132, 138, 140),
+			Color.FromArgb(115, 125, 132),
+			Color.FromArgb(107, 117, 123),
+			Color.FromArgb(90, 105, 107),
+			Color.FromArgb(82, 93, 99),
+			Color.FromArgb(74, 81, 90),
+			Color.FromArgb(57, 69, 82),
+			Color.FromArgb(49, 56, 66),
+			Color.FromArgb(41, 48, 57),
+			Color.FromArgb(33, 36, 49),
+			Color.FromArgb(24, 28, 33),
+			Color.FromArgb(16, 20, 24),
+			Color.FromArgb(8, 12, 16),
+			Color.FromArgb(0, 4, 8),
+			Color.FromArgb(0, 0, 0)
+		};
+
 		private static Palette[] LoadPalettes()
 		{
-			var palettes = new Palette[14];
+			var palettes = new Palette[15];
 			palettes[0] = palette0;
 			palettes[1] = palette1;
 			palettes[2] = palette2;
@@ -72,6 +92,9 @@ namespace XCom.Graphics
 			palettes[5] = background;
 			foreach (var index in Enumerable.Range(0, 8))
 				palettes[6 + index] = background.MoveRange(index * 16, 16, 224);
+			palettes[14] = new Palette(palette4.data);
+			foreach (var index in Enumerable.Range(0, 16))
+				palettes[14].SetColor(240 + index, greyscale[index]);
 			return palettes;
 		}
 

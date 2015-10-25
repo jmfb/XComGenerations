@@ -164,22 +164,16 @@ namespace XCom.Battlescape
 			GameState.Current.SetScreen(new ViewSoldierStatistics(battle, activeSolider));
 		}
 
+		private int rowOffset;
+		private int columnOffset;
+		private int levelCount = 4;
 		private BattleLevel[] battleLevels;
 		private int tilesetIndex;
-		private Tileset[] tilesets =
+		private readonly Tileset[] tilesets =
 		{
-			Tileset.Forest0,
-			Tileset.Forest1,
-			Tileset.Forest2,
-			Tileset.Forest3,
-			Tileset.Forest4,
-			Tileset.Forest5,
-			Tileset.Forest6,
-			Tileset.Forest7,
-			Tileset.Forest8,
-			Tileset.Forest9,
-			Tileset.Forest10,
-			Tileset.Forest11
+			Tileset.Skyranger,
+			Tileset.Lightning,
+			Tileset.Avenger
 		};
 
 		public override bool HitTest(int row, int column)
@@ -190,6 +184,32 @@ namespace XCom.Battlescape
 		public override void OnLeftButtonDown(int row, int column)
 		{
 			battleLevels = CreateNextTileset();
+		}
+
+		public override void OnRightButtonDown(int row, int column)
+		{
+			--levelCount;
+			if (levelCount == 0)
+				levelCount = 4;
+		}
+
+		public override void OnKeyPressed(char value)
+		{
+			switch (value)
+			{
+			case 'a':
+				columnOffset -= 32;
+				break;
+			case 'd':
+				columnOffset += 32;
+				break;
+			case 'w':
+				rowOffset -= 40;
+				break;
+			case 's':
+				rowOffset += 40;
+				break;
+			}
 		}
 
 		private BattleLevel[] CreateNextTileset()
@@ -210,8 +230,8 @@ namespace XCom.Battlescape
 		{
 			if (battleLevels == null)
 				battleLevels = CreateNextTileset();
-			foreach (var level in Enumerable.Range(0, 4))
-				battleLevels[level].Render(buffer, 0 - 24 * level, 140);
+			foreach (var level in Enumerable.Range(0, levelCount))
+				battleLevels[level].Render(buffer, 0 - 24 * level + rowOffset, 140 + columnOffset);
 
 			base.Render(buffer);
 			DrawUnitInformation(buffer, battle.SelectedUnit);

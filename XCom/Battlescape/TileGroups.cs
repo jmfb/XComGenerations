@@ -35,6 +35,10 @@ namespace XCom.Battlescape
 			throw new InvalidOperationException("Index out of bounds of tile groups.");
 		}
 
+		public static readonly TileGroups Skyranger = new TileGroups(TileGroup.Common, TileGroup.Skyranger);
+		public static readonly TileGroups Lightning = new TileGroups(TileGroup.Common, TileGroup.Lightning);
+		public static readonly TileGroups Avenger = new TileGroups(TileGroup.Common, TileGroup.Avenger);
+
 		public static readonly TileGroups Forest = new TileGroups(TileGroup.Common, TileGroup.Forest);
 	}
 }

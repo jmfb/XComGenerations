@@ -63,6 +63,16 @@ namespace XCom.Content.Maps.Tilesets {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Avenger {
+            get {
+                object obj = ResourceManager.GetObject("Avenger", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Forest0 {
             get {
                 object obj = ResourceManager.GetObject("Forest0", resourceCulture);
@@ -176,6 +186,26 @@ namespace XCom.Content.Maps.Tilesets {
         internal static byte[] Forest9 {
             get {
                 object obj = ResourceManager.GetObject("Forest9", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Lightning {
+            get {
+                object obj = ResourceManager.GetObject("Lightning", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Skyranger {
+            get {
+                object obj = ResourceManager.GetObject("Skyranger", resourceCulture);
                 return ((byte[])(obj));
             }
         }

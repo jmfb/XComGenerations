@@ -786,6 +786,7 @@
     <None Include="Content\Maps\TilePropertyPages\UfoSmallScout.bin" />
     <None Include="Content\Maps\TilePropertyPages\XcomBase.bin" />
     <None Include="Content\Maps\TilePropertyPages\XcomFacilities.bin" />
+    <None Include="Content\Maps\Tilesets\Avenger.bin" />
     <None Include="Content\Maps\Tilesets\Forest0.bin" />
     <None Include="Content\Maps\Tilesets\Forest1.bin" />
     <None Include="Content\Maps\Tilesets\Forest10.bin" />
@@ -798,6 +799,8 @@
     <None Include="Content\Maps\Tilesets\Forest7.bin" />
     <None Include="Content\Maps\Tilesets\Forest8.bin" />
     <None Include="Content\Maps\Tilesets\Forest9.bin" />
+    <None Include="Content\Maps\Tilesets\Lightning.bin" />
+    <None Include="Content\Maps\Tilesets\Skyranger.bin" />
     <None Include="Content\Movies\Introduction.bin" />
     <None Include="Content\Overlays\AlienAlloys.bin" />
     <None Include="Content\Overlays\AlienEntertainment.bin" />

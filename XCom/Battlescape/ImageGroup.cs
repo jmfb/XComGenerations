@@ -8,12 +8,13 @@ namespace XCom.Battlescape
 	{
 		public byte[][] Images { get; }
 
-		private ImageGroup(ImageTable table, IEnumerable<byte> data)
+		private ImageGroup(ImageTable table, IReadOnlyCollection<byte> data)
 		{
+			var lastIndex = table.Offsets.Length - 1;
 			Images = table.Offsets
-				.Select(offset => data
+				.Select((offset, index) => data
 					.Skip(offset)
-					.TakeWhile(index => index != 0xff)
+					.Take((index == lastIndex ? data.Count : table.Offsets[index + 1]) - offset)
 					.ToArray())
 				.ToArray();
 		}
