@@ -20,6 +20,13 @@ namespace XCom.Battlescape.Tiles
 			this.groups = groups;
 		}
 
+		public Tileset(Tileset value)
+		{
+			header = value.header;
+			tiles = value.tiles.ToArray();
+			groups = value.groups;
+		}
+
 		public BattleLocation CreateBattleLocation(int level, int row, int column)
 		{
 			if (level >= LevelCount)
@@ -31,7 +38,15 @@ namespace XCom.Battlescape.Tiles
 		public int RowCount => header.Height;
 		public int ColumnCount => header.Width;
 		private int LevelCount => header.Depth;
-		private Tile GetTile(int invertedLevel, int row, int column) => tiles[invertedLevel * header.TilesPerLevel + row * header.TilesPerRow + column];
+		private int GetTileIndex(int invertedLevel, int row, int column) => invertedLevel * header.TilesPerLevel + row * header.TilesPerRow + column;
+		private Tile GetTile(int invertedLevel, int row, int column) => tiles[GetTileIndex(invertedLevel, row, column)];
+		private void SetTile(int invertedLevel, int row, int column, Tile tile) => tiles[GetTileIndex(invertedLevel, row, column)] = tile;
+
+		public Tile this[int level, int row, int column]
+		{
+			get { return GetTile(LevelCount - level - 1, row, column); }
+			set { SetTile(LevelCount - level - 1, row, column, value); }
+		}
 
 		public static readonly Tileset Skyranger = new Tileset(Tilesets.Skyranger, TileGroups.Skyranger);
 		public static readonly Tileset Lightning = new Tileset(Tilesets.Lightning, TileGroups.Lightning);

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;
@@ -76,14 +75,12 @@ namespace XCom.Battlescape
 
 		private void OnLevelUp()
 		{
-			if (levelCount < battleLevels.Length)
-				++levelCount;
+			battleMap.SelectNextLevelUp();
 		}
 
 		private void OnLevelDown()
 		{
-			if (levelCount > 1)
-				--levelCount;
+			battleMap.SelectNextLevelDown();
 		}
 
 		private static void OnMiniMap()
@@ -174,10 +171,7 @@ namespace XCom.Battlescape
 			GameState.Current.SetScreen(new ViewSoldierStatistics(battle, activeSolider));
 		}
 
-		private int rowOffset;
-		private int columnOffset;
-		private int levelCount = 1;
-		private BattleLevel[] battleLevels;
+		private BattleMap battleMap;
 		private readonly Stopwatch stopwatch = new Stopwatch();
 
 		private void OnIdle()
@@ -204,37 +198,23 @@ namespace XCom.Battlescape
 				scrollDown = pointer.Y >= 94;
 			}
 			var scrollIncrement = 10 + GameState.Current.Data.ScrollSpeed * 5;
-			rowOffset += scrollUp ? scrollIncrement : scrollDown ? -scrollIncrement : 0;
-			columnOffset += scrollLeft ? scrollIncrement : scrollRight ? -scrollIncrement : 0;
+			if (scrollUp)
+				battleMap.ScrollUp(scrollIncrement);
+			if (scrollDown)
+				battleMap.ScrollDown(scrollIncrement);
+			if (scrollLeft)
+				battleMap.ScrollLeft(scrollIncrement);
+			if (scrollRight)
+				battleMap.ScrollRight(scrollIncrement);
 			if (scrollUp || scrollLeft || scrollRight || scrollDown)
 				stopwatch.Restart();
 		}
 
-		private BattleLevel[] CreateNextTileset()
-		{
-			if (battleLevels != null)
-				return battleLevels;
-			var tilesets = GameState.SelectedBase.ToTilesets();
-			var blockHeight = tilesets[0, 0].RowCount;
-			var blockWidth = tilesets[0, 0].ColumnCount;
-			var levels = new BattleLevel[2];
-			foreach (var level in Enumerable.Range(0, 2))
-			{
-				levels[level] = new BattleLevel(6 * blockWidth, 6 * blockHeight);
-				foreach (var row in Enumerable.Range(0, 6))
-					foreach (var column in Enumerable.Range(0, 6))
-						levels[level].LoadTileset(tilesets[row, column], level, row * blockHeight, column * blockWidth);
-			}
-			return levels;
-		}
-
 		public override void Render(GraphicsBuffer buffer)
 		{
-			if (battleLevels == null)
-				battleLevels = CreateNextTileset();
-			foreach (var level in Enumerable.Range(0, levelCount))
-				battleLevels[level].Render(buffer, 0 - 24 * level + rowOffset, 140 + columnOffset);
-
+			if (battleMap == null)
+				battleMap = BattleMapFactory.CreateXcomBaseMap(GameState.SelectedBase);
+			battleMap.Render(buffer);
 			base.Render(buffer);
 			DrawUnitInformation(buffer, battle.SelectedUnit);
 		}

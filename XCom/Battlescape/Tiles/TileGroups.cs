@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace XCom.Battlescape.Tiles
 {
@@ -10,6 +11,8 @@ namespace XCom.Battlescape.Tiles
 		{
 			this.groups = groups;
 		}
+
+		public int TileCount => groups.Sum(group => group.TileCount);
 
 		public BattleLocation Create(Tile tile, int level)
 		{

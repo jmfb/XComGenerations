@@ -76,6 +76,9 @@
     <Compile Include="Battlescape\Tiles\BattleLocation.cs" />
     <Compile Include="Battlescape\Tiles\BattleLocationPart.cs" />
     <Compile Include="Battlescape\Tiles\BattleLocationPartType.cs" />
+    <Compile Include="Battlescape\Tiles\BattleMap.cs" />
+    <Compile Include="Battlescape\Tiles\BattleMapFactory.cs" />
+    <Compile Include="Battlescape\Tiles\FacilityConnectors.cs" />
     <Compile Include="Battlescape\Tiles\ImageGroup.cs" />
     <Compile Include="Battlescape\Tiles\ImageTable.cs" />
     <Compile Include="Battlescape\Tiles\Tile.cs" />

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using XCom.Battlescape.Tiles;
 using XCom.World;
 
 namespace XCom.Data
@@ -182,30 +181,6 @@ namespace XCom.Data
 		public int TotalDefenseValue => Facilities
 			.Where(facility => facility.DaysUntilConstructionComplete == 0)
 			.Sum(facility => facility.FacilityType.Metadata().DefenseValue);
-
-		public Tileset[,] ToTilesets()
-		{
-			var tilesets = new Tileset[6, 6];
-			foreach (var row in Enumerable.Range(0, 6))
-				foreach (var column in Enumerable.Range(0, 6))
-					tilesets[row, column] = Tileset.XcomBase20;
-			foreach (var facility in Facilities.Where(facility => facility.DaysUntilConstructionComplete == 0))
-			{
-				var metadata = facility.FacilityType.Metadata();
-				if (metadata.Shape == FacilityShape.Hangar)
-				{
-					tilesets[facility.Row, facility.Column] = metadata.Tilesets[0];
-					tilesets[facility.Row, facility.Column + 1] = metadata.Tilesets[1];
-					tilesets[facility.Row + 1, facility.Column] = metadata.Tilesets[2];
-					tilesets[facility.Row + 1, facility.Column + 1] = metadata.Tilesets[3];
-				}
-				else
-				{
-					tilesets[facility.Row, facility.Column] = metadata.Tilesets.Single();
-				}
-			}
-			return tilesets;
-		}
 
 		public Facility FindFacilityAt(int row, int column, bool allowUnderConstruction)
 		{
