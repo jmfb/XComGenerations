@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;
@@ -14,6 +13,8 @@ namespace XCom.Battlescape
 	public class Battlescape : Screen
 	{
 		private readonly Battle battle;
+		private readonly BattleMap battleMap;
+		private readonly HoverScroll hoverScroll = new HoverScroll();
 
 		public Battlescape(Battle battle)
 		{
@@ -40,17 +41,23 @@ namespace XCom.Battlescape
 			AddControl(new ClickArea(176, 78, 30, 12, OnOptionReserveSnapShot));
 			AddControl(new ClickArea(188, 78, 30, 12, OnOptionReserveAutoShot));
 			AddControl(new ClickArea(176, 108, 164, 24, OnUnitStatistics));
+
+			battleMap = BattleMapFactory.CreateXcomBaseMap(GameState.SelectedBase);
+			hoverScroll.OnScrollUp += battleMap.ScrollUp;
+			hoverScroll.OnScrollDown += battleMap.ScrollDown;
+			hoverScroll.OnScrollLeft += battleMap.ScrollLeft;
+			hoverScroll.OnScrollRight += battleMap.ScrollRight;
 		}
 
 		public override void OnSetFocus()
 		{
 			MidiFiles.Play(MusicType.Battlescape);
-			GameState.Current.OnIdle += OnIdle;
+			GameState.Current.OnIdle += hoverScroll.OnIdle;
 		}
 
 		public override void OnKillFocus()
 		{
-			GameState.Current.OnIdle -= OnIdle;
+			GameState.Current.OnIdle -= hoverScroll.OnIdle;
 		}
 
 		private static void OnLeftWeapon()
@@ -171,49 +178,8 @@ namespace XCom.Battlescape
 			GameState.Current.SetScreen(new ViewSoldierStatistics(battle, activeSolider));
 		}
 
-		private BattleMap battleMap;
-		private readonly Stopwatch stopwatch = new Stopwatch();
-
-		private void OnIdle()
-		{
-			if (!stopwatch.IsRunning)
-				stopwatch.Start();
-			if (stopwatch.ElapsedMilliseconds < 25)
-				return;
-			var pointer = GameState.Current.PointerPosition;
-			if (pointer.Y < 0 || pointer.Y >= 144 || pointer.X < 0 || pointer.X >= 320)
-				return;
-			var scrollUp = pointer.Y < 20;
-			var scrollLeft = pointer.X < 20;
-			var scrollRight = pointer.X >= 300;
-			var scrollDown = pointer.Y >= 122;
-			if (scrollUp || scrollDown)
-			{
-				scrollLeft = pointer.X < 50;
-				scrollRight = pointer.X >= 270;
-			}
-			else if (scrollLeft || scrollRight)
-			{
-				scrollUp = pointer.Y < 50;
-				scrollDown = pointer.Y >= 94;
-			}
-			var scrollIncrement = 10 + GameState.Current.Data.ScrollSpeed * 5;
-			if (scrollUp)
-				battleMap.ScrollUp(scrollIncrement);
-			if (scrollDown)
-				battleMap.ScrollDown(scrollIncrement);
-			if (scrollLeft)
-				battleMap.ScrollLeft(scrollIncrement);
-			if (scrollRight)
-				battleMap.ScrollRight(scrollIncrement);
-			if (scrollUp || scrollLeft || scrollRight || scrollDown)
-				stopwatch.Restart();
-		}
-
 		public override void Render(GraphicsBuffer buffer)
 		{
-			if (battleMap == null)
-				battleMap = BattleMapFactory.CreateXcomBaseMap(GameState.SelectedBase);
 			battleMap.Render(buffer);
 			base.Render(buffer);
 			DrawUnitInformation(buffer, battle.SelectedUnit);
