@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Data;
@@ -13,7 +12,6 @@ namespace XCom.Battlescape
 	public class Battlescape : Screen
 	{
 		private readonly Battle battle;
-		private readonly BattleMap battleMap;
 		private readonly HoverScroll hoverScroll = new HoverScroll();
 
 		public Battlescape(Battle battle)
@@ -42,11 +40,10 @@ namespace XCom.Battlescape
 			AddControl(new ClickArea(188, 78, 30, 12, OnOptionReserveAutoShot));
 			AddControl(new ClickArea(176, 108, 164, 24, OnUnitStatistics));
 
-			battleMap = BattleMapFactory.CreateXcomBaseMap(GameState.SelectedBase);
-			hoverScroll.OnScrollUp += battleMap.ScrollUp;
-			hoverScroll.OnScrollDown += battleMap.ScrollDown;
-			hoverScroll.OnScrollLeft += battleMap.ScrollLeft;
-			hoverScroll.OnScrollRight += battleMap.ScrollRight;
+			hoverScroll.OnScrollUp += battle.Map.ScrollUp;
+			hoverScroll.OnScrollDown += battle.Map.ScrollDown;
+			hoverScroll.OnScrollLeft += battle.Map.ScrollLeft;
+			hoverScroll.OnScrollRight += battle.Map.ScrollRight;
 		}
 
 		public override void OnSetFocus()
@@ -82,12 +79,12 @@ namespace XCom.Battlescape
 
 		private void OnLevelUp()
 		{
-			battleMap.SelectNextLevelUp();
+			battle.Map.SelectNextLevelUp();
 		}
 
 		private void OnLevelDown()
 		{
-			battleMap.SelectNextLevelDown();
+			battle.Map.SelectNextLevelDown();
 		}
 
 		private static void OnMiniMap()
@@ -180,7 +177,7 @@ namespace XCom.Battlescape
 
 		public override void Render(GraphicsBuffer buffer)
 		{
-			battleMap.Render(buffer);
+			battle.Map.Render(buffer);
 			base.Render(buffer);
 			DrawUnitInformation(buffer, battle.SelectedUnit);
 		}

@@ -15,7 +15,7 @@ namespace XCom.Battlescape.Tiles
 		{
 			var tilesets = CreateXcomBaseTilesets(@base);
 			var levels = CreateXcomBaseLevels(tilesets);
-			return new BattleMap(levels);
+			return new BattleMap { Levels = levels };
 		}
 
 		private static Tileset[,] CreateXcomBaseTilesets(Base @base)
@@ -76,7 +76,10 @@ namespace XCom.Battlescape.Tiles
 
 		private static BattleLevel CreateXcomBaseLevel(Tileset[,] tilesets, int levelIndex)
 		{
-			var battleLevel = new BattleLevel(60, 60);
+			var battleLevel = new BattleLevel
+			{
+				Locations = new BattleLocation[60, 60]
+			};
 			foreach (var row in Enumerable.Range(0, 6))
 				foreach (var column in Enumerable.Range(0, 6))
 					battleLevel.LoadTileset(tilesets[row, column], levelIndex, row * 10, column * 10);

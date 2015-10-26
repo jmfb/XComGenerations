@@ -30,9 +30,9 @@ namespace XCom.Battlescape.Tiles
 		public BattleLocation CreateBattleLocation(int level, int row, int column)
 		{
 			if (level >= LevelCount)
-				return groups.Create(Tile.Empty, level);
+				return groups.CreateBattleLocation(Tile.Empty, level);
 			var invertedLevel = LevelCount - level - 1;
-			return groups.Create(GetTile(invertedLevel, row, column), level);
+			return groups.CreateBattleLocation(GetTile(invertedLevel, row, column), level);
 		}
 
 		public int RowCount => header.Height;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace XCom.Battlescape.Tiles
 {
@@ -12,19 +11,19 @@ namespace XCom.Battlescape.Tiles
 			this.groups = groups;
 		}
 
-		public int TileCount => groups.Sum(group => group.TileCount);
-
-		public BattleLocation Create(Tile tile, int level)
+		public BattleLocation CreateBattleLocation(Tile tile, int level)
 		{
 			var isGroundLevel = level == 0;
 			var automaticallyInsertDirt = tile.Ground == 0 && isGroundLevel;
 			const int dirtIndex = 1;
 			var groundIndex = automaticallyInsertDirt ? dirtIndex : tile.Ground;
-			return new BattleLocation(
-				CreatePart(groundIndex),
-				CreatePart(tile.WestWall),
-				CreatePart(tile.NorthWall),
-				CreatePart(tile.Entity));
+			return new BattleLocation
+			{
+				Ground = CreatePart(groundIndex),
+				WestWall = CreatePart(tile.WestWall),
+				NorthWall = CreatePart(tile.NorthWall),
+				Entity = CreatePart(tile.Entity)
+			};
 		}
 
 		private BattleLocationPart CreatePart(int index)
@@ -32,7 +31,11 @@ namespace XCom.Battlescape.Tiles
 			foreach (var group in groups)
 			{
 				if (index < group.TileCount)
-					return new BattleLocationPart(group.PropertyPages[index], group.ImageGroup);
+					return new BattleLocationPart
+					{
+						Tile = group.PropertyPages[index],
+						ImageGroupType = group.ImageGroupType
+					};
 				index -= group.TileCount;
 			}
 			throw new InvalidOperationException("Index out of bounds of tile groups.");

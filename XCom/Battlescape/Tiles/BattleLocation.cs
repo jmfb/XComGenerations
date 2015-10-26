@@ -4,29 +4,17 @@ namespace XCom.Battlescape.Tiles
 {
 	public class BattleLocation
 	{
-		private readonly BattleLocationPart ground;
-		private readonly BattleLocationPart westWall;
-		private readonly BattleLocationPart northWall;
-		private readonly BattleLocationPart entity;
-
-		public BattleLocation(
-			BattleLocationPart ground,
-			BattleLocationPart westWall,
-			BattleLocationPart northWall,
-			BattleLocationPart entity)
-		{
-			this.ground = ground;
-			this.westWall = westWall;
-			this.northWall = northWall;
-			this.entity = entity;
-		}
+		public BattleLocationPart Ground { get; set; }
+		public BattleLocationPart WestWall { get; set; }
+		public BattleLocationPart NorthWall { get; set; }
+		public BattleLocationPart Entity { get; set; }
 
 		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
 		{
-			ground.Render(buffer, topRow, leftColumn);
-			northWall.Render(buffer, topRow, leftColumn);
-			westWall.Render(buffer, topRow, leftColumn);
-			entity.Render(buffer, topRow, leftColumn);
+			Ground.Render(buffer, topRow, leftColumn);
+			NorthWall.Render(buffer, topRow, leftColumn);
+			WestWall.Render(buffer, topRow, leftColumn);
+			Entity.Render(buffer, topRow, leftColumn);
 		}
 	}
 }

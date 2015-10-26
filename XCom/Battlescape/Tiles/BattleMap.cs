@@ -1,57 +1,51 @@
 ﻿using System.Linq;
-using XCom.Data;
 using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles
 {
 	public class BattleMap
 	{
-		private readonly BattleLevel[] levels;
-		private int rowOffset;
-		private int columnOffset;
-		private int selectedLevelIndex;
-
-		public BattleMap(BattleLevel[] levels)
-		{
-			this.levels = levels;
-		}
+		public BattleLevel[] Levels { get; set; }
+		public int RowOffset { get; set; }
+		public int ColumnOffset { get; set; }
+		public int SelectedLevelIndex { get; set; }
 
 		public void SelectNextLevelUp()
 		{
-			if (selectedLevelIndex + 1 < levels.Length)
-				++selectedLevelIndex;
+			if (SelectedLevelIndex + 1 < Levels.Length)
+				++SelectedLevelIndex;
 		}
 
 		public void SelectNextLevelDown()
 		{
-			if (selectedLevelIndex > 0)
-				--selectedLevelIndex;
+			if (SelectedLevelIndex > 0)
+				--SelectedLevelIndex;
 		}
 
 		public void ScrollUp(int offset)
 		{
-			rowOffset += offset;
+			RowOffset += offset;
 		}
 
 		public void ScrollDown(int offset)
 		{
-			rowOffset -= offset;
+			RowOffset -= offset;
 		}
 
 		public void ScrollLeft(int offset)
 		{
-			columnOffset += offset;
+			ColumnOffset += offset;
 		}
 
 		public void ScrollRight(int offset)
 		{
-			columnOffset -= offset;
+			ColumnOffset -= offset;
 		}
 
 		public void Render(GraphicsBuffer buffer)
 		{
-			foreach (var levelIndex in Enumerable.Range(0, selectedLevelIndex + 1))
-				levels[levelIndex].Render(buffer, -24 * levelIndex + rowOffset, columnOffset);
+			foreach (var levelIndex in Enumerable.Range(0, SelectedLevelIndex + 1))
+				Levels[levelIndex].Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset);
 		}
 	}
 }

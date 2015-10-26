@@ -81,11 +81,13 @@
     <Compile Include="Battlescape\Tiles\BattleMapFactory.cs" />
     <Compile Include="Battlescape\Tiles\FacilityConnectors.cs" />
     <Compile Include="Battlescape\Tiles\ImageGroup.cs" />
+    <Compile Include="Battlescape\Tiles\ImageGroupType.cs" />
     <Compile Include="Battlescape\Tiles\ImageTable.cs" />
     <Compile Include="Battlescape\Tiles\Tile.cs" />
     <Compile Include="Battlescape\Tiles\TileGroup.cs" />
     <Compile Include="Battlescape\Tiles\TileGroups.cs" />
     <Compile Include="Battlescape\Tiles\TilePropertyPage.cs" />
+    <Compile Include="Battlescape\Tiles\TilePropertyPageJsonConverter.cs" />
     <Compile Include="Battlescape\Tiles\Tileset.cs" />
     <Compile Include="Battlescape\Tiles\TilesetHeader.cs" />
     <Compile Include="Battlescape\Unit.cs" />
@@ -440,6 +442,7 @@
     <Compile Include="Screens\Soldiers.cs" />
     <Compile Include="Screens\SoldierView.cs" />
     <Compile Include="Screens\Transfer.cs" />
+    <Compile Include="StructExtensions.cs" />
     <Compile Include="World\AlienMissionType.cs" />
     <Compile Include="World\ConfirmDestination.cs" />
     <Compile Include="World\Destination.cs" />

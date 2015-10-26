@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 using XCom.Content.Maps.TilePropertyPages;
 
 namespace XCom.Battlescape.Tiles
 {
+	[JsonConverter(typeof(TilePropertyPageJsonConverter))]
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct TilePropertyPage
 	{

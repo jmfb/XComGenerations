@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using XCom.Battlescape.Tiles;
 using XCom.Data;
 
 namespace XCom.Battlescape
@@ -12,6 +13,7 @@ namespace XCom.Battlescape
 		public int CraftId { get; set; }
 		public List<BattleSoldier> Soldiers { get; set; }
 		public SelectedUnitId SelectedUnitId { get; set; }
+		public BattleMap Map { get; set; }
 
 		[JsonIgnore]
 		public List<BattleItem> Stores { get; set; }
@@ -85,7 +87,9 @@ namespace XCom.Battlescape
 				{
 					UnitType = UnitType.Soldier,
 					Id = craft.SoldierIds.First()
-				}
+				},
+				//TODO: Create alien base, terror, or craft recovery based on craft destination
+				Map = BattleMapFactory.CreateXcomBaseMap(craft.Base)
 			};
 		}
 
