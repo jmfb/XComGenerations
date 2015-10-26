@@ -4,18 +4,18 @@ using XCom.Data;
 
 namespace XCom.Battlescape.Tiles
 {
-	public static class BattleMapFactory
+	public static class MapFactory
 	{
 		//TODO: Construct alien base
 		//TODO: Construct terror mission
 		//TODO: Construct ship recovery (landing and crash)
 		//TODO: Construct cydonia mission (mars and final base)
 
-		public static BattleMap CreateXcomBaseMap(Base @base)
+		public static Map CreateXcomBaseMap(Base @base)
 		{
 			var tilesets = CreateXcomBaseTilesets(@base);
 			var levels = CreateXcomBaseLevels(tilesets);
-			return new BattleMap { Levels = levels };
+			return new Map { Levels = levels };
 		}
 
 		private static Tileset[,] CreateXcomBaseTilesets(Base @base)
@@ -67,23 +67,23 @@ namespace XCom.Battlescape.Tiles
 					tilesets[row, column] = facilityConnectors[row, column].UpdateTileset(tilesets[row, column]);
 		}
 
-		private static BattleLevel[] CreateXcomBaseLevels(Tileset[,] tilesets)
+		private static Level[] CreateXcomBaseLevels(Tileset[,] tilesets)
 		{
 			return Enumerable.Range(0, 2)
 				.Select(levelIndex => CreateXcomBaseLevel(tilesets, levelIndex))
 				.ToArray();
 		}
 
-		private static BattleLevel CreateXcomBaseLevel(Tileset[,] tilesets, int levelIndex)
+		private static Level CreateXcomBaseLevel(Tileset[,] tilesets, int levelIndex)
 		{
-			var battleLevel = new BattleLevel
+			var level = new Level
 			{
-				Locations = new BattleLocation[60, 60]
+				Tiles = new Tile[60, 60]
 			};
 			foreach (var row in Enumerable.Range(0, 6))
 				foreach (var column in Enumerable.Range(0, 6))
-					battleLevel.LoadTileset(tilesets[row, column], levelIndex, row * 10, column * 10);
-			return battleLevel;
+					level.LoadTileset(tilesets[row, column], levelIndex, row * 10, column * 10);
+			return level;
 		}
 	}
 }

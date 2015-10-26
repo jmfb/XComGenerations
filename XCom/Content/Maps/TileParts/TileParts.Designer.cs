@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XCom.Content.Maps.TilePropertyPages {
+namespace XCom.Content.Maps.TileParts {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace XCom.Content.Maps.TilePropertyPages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TilePropertyPages {
+    internal class TileParts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TilePropertyPages() {
+        internal TileParts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace XCom.Content.Maps.TilePropertyPages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XCom.Content.Maps.TilePropertyPages.TilePropertyPages", typeof(TilePropertyPages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XCom.Content.Maps.TileParts.TileParts", typeof(TileParts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

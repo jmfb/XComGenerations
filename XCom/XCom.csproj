@@ -73,21 +73,20 @@
     <Compile Include="Battlescape\InventoryLocation.cs" />
     <Compile Include="Battlescape\InventoryLocationMetadata.cs" />
     <Compile Include="Battlescape\SelectedUnitId.cs" />
-    <Compile Include="Battlescape\Tiles\BattleLevel.cs" />
-    <Compile Include="Battlescape\Tiles\BattleLocation.cs" />
-    <Compile Include="Battlescape\Tiles\BattleLocationPart.cs" />
-    <Compile Include="Battlescape\Tiles\BattleLocationPartType.cs" />
-    <Compile Include="Battlescape\Tiles\BattleMap.cs" />
-    <Compile Include="Battlescape\Tiles\BattleMapFactory.cs" />
+    <Compile Include="Battlescape\Tiles\Level.cs" />
+    <Compile Include="Battlescape\Tiles\Tile.cs" />
+    <Compile Include="Battlescape\Tiles\Part.cs" />
+    <Compile Include="Battlescape\Tiles\PartType.cs" />
+    <Compile Include="Battlescape\Tiles\Map.cs" />
+    <Compile Include="Battlescape\Tiles\MapFactory.cs" />
     <Compile Include="Battlescape\Tiles\FacilityConnectors.cs" />
     <Compile Include="Battlescape\Tiles\ImageGroup.cs" />
-    <Compile Include="Battlescape\Tiles\ImageGroupType.cs" />
+    <Compile Include="Battlescape\Tiles\TileMetadata.cs" />
+    <Compile Include="Battlescape\Tiles\TileType.cs" />
     <Compile Include="Battlescape\Tiles\ImageTable.cs" />
-    <Compile Include="Battlescape\Tiles\Tile.cs" />
-    <Compile Include="Battlescape\Tiles\TileGroup.cs" />
-    <Compile Include="Battlescape\Tiles\TileGroups.cs" />
-    <Compile Include="Battlescape\Tiles\TilePropertyPage.cs" />
-    <Compile Include="Battlescape\Tiles\TilePropertyPageJsonConverter.cs" />
+    <Compile Include="Battlescape\Tiles\TileData.cs" />
+    <Compile Include="Battlescape\Tiles\TileTypes.cs" />
+    <Compile Include="Battlescape\Tiles\PartData.cs" />
     <Compile Include="Battlescape\Tiles\Tileset.cs" />
     <Compile Include="Battlescape\Tiles\TilesetHeader.cs" />
     <Compile Include="Battlescape\Unit.cs" />
@@ -149,10 +148,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImageTables.resx</DependentUpon>
     </Compile>
-    <Compile Include="Content\Maps\TilePropertyPages\TilePropertyPages.Designer.cs">
+    <Compile Include="Content\Maps\TileParts\TileParts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TilePropertyPages.resx</DependentUpon>
+      <DependentUpon>TileParts.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\Maps\Tilesets\Tilesets.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -442,7 +441,6 @@
     <Compile Include="Screens\Soldiers.cs" />
     <Compile Include="Screens\SoldierView.cs" />
     <Compile Include="Screens\Transfer.cs" />
-    <Compile Include="StructExtensions.cs" />
     <Compile Include="World\AlienMissionType.cs" />
     <Compile Include="World\ConfirmDestination.cs" />
     <Compile Include="World\Destination.cs" />
@@ -521,9 +519,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ImageTables.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\Maps\TilePropertyPages\TilePropertyPages.resx">
+    <EmbeddedResource Include="Content\Maps\TileParts\TileParts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TilePropertyPages.Designer.cs</LastGenOutput>
+      <LastGenOutput>TileParts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\Maps\Tilesets\Tilesets.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -766,33 +764,33 @@
     <None Include="Content\Maps\ImageTables\UfoSmallScout.bin" />
     <None Include="Content\Maps\ImageTables\XcomBase.bin" />
     <None Include="Content\Maps\ImageTables\XcomFacilities.bin" />
-    <None Include="Content\Maps\TilePropertyPages\AlienBase.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Avenger.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Barn.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Brain.bin" />
-    <None Include="Content\Maps\TilePropertyPages\City.bin" />
-    <None Include="Content\Maps\TilePropertyPages\CityBits.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Common.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Cultivation.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Desert.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Forest.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Furniture.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Jungle.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Lightning.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Mars.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Mountain.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Polar.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Roads.bin" />
-    <None Include="Content\Maps\TilePropertyPages\Skyranger.bin" />
-    <None Include="Content\Maps\TilePropertyPages\UfoBits.bin" />
-    <None Include="Content\Maps\TilePropertyPages\UfoComponents.bin" />
-    <None Include="Content\Maps\TilePropertyPages\UfoEquipment.bin" />
-    <None Include="Content\Maps\TilePropertyPages\UfoExaminationRoom.bin" />
-    <None Include="Content\Maps\TilePropertyPages\UfoExterior.bin" />
-    <None Include="Content\Maps\TilePropertyPages\UfoOperatingTable.bin" />
-    <None Include="Content\Maps\TilePropertyPages\UfoSmallScout.bin" />
-    <None Include="Content\Maps\TilePropertyPages\XcomBase.bin" />
-    <None Include="Content\Maps\TilePropertyPages\XcomFacilities.bin" />
+    <None Include="Content\Maps\TileParts\AlienBase.bin" />
+    <None Include="Content\Maps\TileParts\Avenger.bin" />
+    <None Include="Content\Maps\TileParts\Barn.bin" />
+    <None Include="Content\Maps\TileParts\Brain.bin" />
+    <None Include="Content\Maps\TileParts\City.bin" />
+    <None Include="Content\Maps\TileParts\CityBits.bin" />
+    <None Include="Content\Maps\TileParts\Common.bin" />
+    <None Include="Content\Maps\TileParts\Cultivation.bin" />
+    <None Include="Content\Maps\TileParts\Desert.bin" />
+    <None Include="Content\Maps\TileParts\Forest.bin" />
+    <None Include="Content\Maps\TileParts\Furniture.bin" />
+    <None Include="Content\Maps\TileParts\Jungle.bin" />
+    <None Include="Content\Maps\TileParts\Lightning.bin" />
+    <None Include="Content\Maps\TileParts\Mars.bin" />
+    <None Include="Content\Maps\TileParts\Mountain.bin" />
+    <None Include="Content\Maps\TileParts\Polar.bin" />
+    <None Include="Content\Maps\TileParts\Roads.bin" />
+    <None Include="Content\Maps\TileParts\Skyranger.bin" />
+    <None Include="Content\Maps\TileParts\UfoBits.bin" />
+    <None Include="Content\Maps\TileParts\UfoComponents.bin" />
+    <None Include="Content\Maps\TileParts\UfoEquipment.bin" />
+    <None Include="Content\Maps\TileParts\UfoExaminationRoom.bin" />
+    <None Include="Content\Maps\TileParts\UfoExterior.bin" />
+    <None Include="Content\Maps\TileParts\UfoOperatingTable.bin" />
+    <None Include="Content\Maps\TileParts\UfoSmallScout.bin" />
+    <None Include="Content\Maps\TileParts\XcomBase.bin" />
+    <None Include="Content\Maps\TileParts\XcomFacilities.bin" />
     <None Include="Content\Maps\Tilesets\Abductor.bin" />
     <None Include="Content\Maps\Tilesets\AlienBase0.bin" />
     <None Include="Content\Maps\Tilesets\AlienBase1.bin" />

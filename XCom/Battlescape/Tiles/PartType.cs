@@ -1,6 +1,6 @@
 ﻿namespace XCom.Battlescape.Tiles
 {
-	public enum BattleLocationPartType : byte
+	public enum PartType : byte
 	{
 		Ground = 0,
 		WestWall = 1,

@@ -3,9 +3,9 @@ using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles
 {
-	public class BattleMap
+	public class Map
 	{
-		public BattleLevel[] Levels { get; set; }
+		public Level[] Levels { get; set; }
 		public int RowOffset { get; set; }
 		public int ColumnOffset { get; set; }
 		public int SelectedLevelIndex { get; set; }

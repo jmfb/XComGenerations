@@ -1,36 +1,20 @@
-﻿using System.Runtime.InteropServices;
+﻿using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles
 {
-	[StructLayout(LayoutKind.Sequential, Pack = 1)]
-	public struct Tile
+	public class Tile
 	{
-		public byte Ground;
-		public byte WestWall;
-		public byte NorthWall;
-		public byte Entity;
+		public Part Ground { get; set; }
+		public Part WestWall { get; set; }
+		public Part NorthWall { get; set; }
+		public Part Entity { get; set; }
 
-		public static readonly Tile Empty = default(Tile);
-
-		public Tile SetNorthWall(byte value)
+		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
 		{
-			var result = this;
-			result.NorthWall = value;
-			return result;
-		}
-
-		public Tile SetWestWall(byte value)
-		{
-			var result = this;
-			result.WestWall = value;
-			return result;
-		}
-
-		public Tile SetEntity(byte value)
-		{
-			var result = this;
-			result.Entity = value;
-			return result;
+			Ground.Render(buffer, topRow, leftColumn);
+			NorthWall.Render(buffer, topRow, leftColumn);
+			WestWall.Render(buffer, topRow, leftColumn);
+			Entity.Render(buffer, topRow, leftColumn);
 		}
 	}
 }
