@@ -1,4 +1,5 @@
-﻿using XCom.Graphics;
+﻿using XCom.Battlescape.Tiles;
+using XCom.Graphics;
 
 namespace XCom.Data
 {
@@ -19,5 +20,6 @@ namespace XCom.Data
 		public byte[] Overlay { get; set; }
 		public string[] DescriptionLines { get; set; }
 		public bool ShowStatsOnBottom { get; set; }
+		public Tileset Tileset { get; set; }
 	}
 }

@@ -88,6 +88,10 @@ namespace XCom.Data
 		{
 			return Bases.SelectMany(@base => @base.Crafts).Single(craft => craft.Id == id);
 		}
+		public Ufo GetUfo(int number)
+		{
+			return Ufos.Single(ufo => ufo.Number == number);
+		}
 
 		public static GameData Create(int difficulty)
 		{

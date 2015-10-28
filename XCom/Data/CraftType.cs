@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Images.Crafts;
 using XCom.Content.Overlays;
 using XCom.Graphics;
@@ -42,7 +43,8 @@ namespace XCom.Data
 				"FASTEST OF ITS KIND, WITH",
 				"VERTICAL TAKE OFF AND",
 				"LANDING (V.T.O.L) CAPABILITY."
-			}
+			},
+			Tileset = Tileset.Skyranger
 		};
 
 		private static readonly CraftMetadata interceptor = new CraftMetadata
@@ -115,7 +117,8 @@ namespace XCom.Data
 				"TRANSPORTER AND COMBAT CRAFT.  A CRUDE BUT EFFECTIVE",
 				"REPLICATION OF ALIEN PROPULSION SYSTEMS."
 			},
-			ShowStatsOnBottom = true
+			ShowStatsOnBottom = true,
+			Tileset = Tileset.Lightning
 		};
 
 		private static readonly CraftMetadata avenger = new CraftMetadata
@@ -139,7 +142,8 @@ namespace XCom.Data
 				"SPACEFRACT.  THE ULTIMATE",
 				"REPLICATION OF ALIEN",
 				"TECHNOLOGY."
-			}
+			},
+			Tileset = Tileset.Avenger
 		};
 
 		private static readonly Dictionary<CraftType, CraftMetadata> metadata = new Dictionary<CraftType,CraftMetadata>

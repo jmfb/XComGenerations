@@ -460,6 +460,7 @@
     <Compile Include="World\SelectWorldObject.cs" />
     <Compile Include="World\Shader.cs" />
     <Compile Include="World\TerrainCategory.cs" />
+    <Compile Include="World\TerrainCategoryMetadata.cs" />
     <Compile Include="World\TerrainMetadata.cs" />
     <Compile Include="World\TerrainType.cs" />
     <Compile Include="World\Trigonometry.cs" />

@@ -1,4 +1,6 @@
-﻿namespace XCom.Data
+﻿using XCom.Battlescape.Tiles;
+
+namespace XCom.Data
 {
 	public class UfoMetadata
 	{
@@ -12,5 +14,6 @@
 		public int MaximumSpeed { get; set; }
 		public byte[] Image { get; set; }
 		public string Description { get; set; }
+		public Tileset Tileset { get; set; }
 	}
 }

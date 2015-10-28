@@ -1,21 +1,182 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using XCom.Data;
+using XCom.World;
 
 namespace XCom.Battlescape.Tiles
 {
 	public static class MapFactory
 	{
-		//TODO: Construct alien base
-		//TODO: Construct terror mission
-		//TODO: Construct ship recovery (landing and crash)
+		private static readonly Tileset placeholder = new Tileset();
+
 		//TODO: Construct cydonia mission (mars and final base)
 
 		public static Map CreateXcomBaseMap(Base @base)
 		{
 			var tilesets = CreateXcomBaseTilesets(@base);
-			var levels = CreateXcomBaseLevels(tilesets);
+			return new Map { Levels = CreateLevels(tilesets, 2) };
+		}
+
+		public static Map CreateFromCraft(Craft craft)
+		{
+			switch (craft.Destination.WorldObjectType)
+			{
+			case WorldObjectType.AlienBase:
+				throw new NotImplementedException(); //TODO: AlienBase tilesets
+			case WorldObjectType.CrashSite:
+				//TODO: Ufo should be damaged to some degree
+				return CreateLandingSiteMap(craft);
+			case WorldObjectType.TerrorSite:
+				throw new NotImplementedException(); //TODO: City tilesets
+			case WorldObjectType.LandingSite:
+				return CreateLandingSiteMap(craft);
+			}
+			throw new InvalidOperationException("Invalid craft destination for map.");
+		}
+
+		private static Map CreateLandingSiteMap(Craft craft)
+		{
+			var mapLocation = World.Map.Instance[craft.Destination.Location];
+			var category = mapLocation.TerrainType?.Metadata().Category;
+			var ufo = GameState.Current.Data.GetUfo(craft.Destination.Number);
+			return CreateUfoMap(
+				craft.CraftType.Metadata().Tileset,
+				ufo.UfoType.Metadata().Tileset,
+				category?.Metadata(mapLocation.Location.Latitude));
+		}
+
+		private static Map CreateUfoMap(Tileset craftTileset, Tileset ufoTileset, TerrainCategoryMetadata terrainMetadata)
+		{
+			var tilesets = CreateUfoMapTilesets(craftTileset, ufoTileset, terrainMetadata);
+			var levels = CreateLevels(tilesets, 4);
 			return new Map { Levels = levels };
+		}
+
+		private static Tileset[,] CreateUfoMapTilesets(Tileset craftTileset, Tileset ufoTileset, TerrainCategoryMetadata terrainMetadata)
+		{
+			var tilesets = new Tileset[6, 6];
+			PlaceCraft(tilesets, ufoTileset, terrainMetadata.FlatTilesets);
+			PlaceCraft(tilesets, craftTileset, terrainMetadata.FlatTilesets);
+			FillTerrain(tilesets, terrainMetadata);
+			return tilesets;
+		}
+
+		private static void FillTerrain(Tileset[,] tilesets, TerrainCategoryMetadata terrainMetadata)
+		{
+			foreach (var row in Enumerable.Range(0, 6))
+				foreach (var column in Enumerable.Range(0, 6))
+					if (tilesets[row, column] == null)
+						FillTileset(tilesets, row, column, terrainMetadata);
+		}
+
+		private static void PlaceCraft(Tileset[,] tilesets, Tileset craftTileset, Tileset[] flatTilesets)
+		{
+			var craftHeight = craftTileset.RowCount / 10;
+			var craftWidth = craftTileset.ColumnCount / 10;
+			var location = GetCraftLocation(tilesets, craftWidth, craftHeight);
+			foreach (var row in Enumerable.Range(0, craftHeight))
+				foreach (var column in Enumerable.Range(0, craftWidth))
+					FillCraftSection(
+						tilesets,
+						location.Y + row,
+						location.X + column,
+						craftTileset,
+						row,
+						column,
+						flatTilesets);
+		}
+
+		private static void FillCraftSection(
+			Tileset[,] tilesets,
+			int row,
+			int column,
+			Tileset craftTileset,
+			int craftRow,
+			int craftColumn,
+			Tileset[] flatTilesets)
+		{
+			FillTileset(tilesets, row, column, flatTilesets);
+			MergeCraftSection(tilesets, row, column, craftTileset, craftRow, craftColumn);
+		}
+
+		private static Point GetCraftLocation(Tileset[,] tilesets, int craftWidth, int craftHeight)
+		{
+			for (;;)
+			{
+				var topRow = GameState.Current.Random.Next(6 - craftHeight + 1);
+				var leftColumn = GameState.Current.Random.Next(6 - craftWidth + 1);
+				var isSpaceAvailable = Enumerable.Range(topRow, craftHeight)
+					.All(row => Enumerable.Range(leftColumn, craftWidth)
+						.All(column => tilesets[row, column] == null));
+				if (isSpaceAvailable)
+					return new Point { X = leftColumn, Y = topRow };
+			}
+		}
+
+		private static void FillTileset(Tileset[,] tilesets, int row, int column, TerrainCategoryMetadata terrainMetadata)
+		{
+			var isSpaceForLargeTileset =
+				row < 5 &&
+				column < 5 &&
+				tilesets[row, column + 1] == null &&
+				tilesets[row + 1, column] == null &&
+				tilesets[row + 1, column + 1] == null;
+			var terrainTilesets = isSpaceForLargeTileset ? terrainMetadata.AllTilesets : terrainMetadata.SmallTilesets;
+			FillTileset(tilesets, row, column, terrainTilesets);
+		}
+
+		private static void FillTileset(Tileset[,] tilesets, int row, int column, Tileset[] terrainTilesets)
+		{
+			var terrainTileset = terrainTilesets[GameState.Current.Random.Next(terrainTilesets.Length)];
+			tilesets[row, column] = terrainTileset;
+			if (terrainTileset.RowCount == 10)
+				return;
+			tilesets[row, column + 1] = placeholder;
+			tilesets[row + 1, column] = placeholder;
+			tilesets[row + 1, column + 1] = placeholder;
+		}
+
+		private static void MergeCraftSection(
+			Tileset[,] tilesets,
+			int row,
+			int column,
+			Tileset craftTileset,
+			int sectionRow,
+			int sectionColumn)
+		{
+			var tileset = tilesets[row, column];
+			var mergedTileset = new Tileset(tileset, craftTileset);
+			foreach (var levelIndex in Enumerable.Range(0, craftTileset.LevelCount))
+				foreach (var tileRow in Enumerable.Range(0, 10))
+					foreach (var tileColumn in Enumerable.Range(0, 10))
+						MergeCraftTile(
+							mergedTileset,
+							levelIndex,
+							tileRow,
+							tileColumn,
+							craftTileset,
+							sectionRow,
+							sectionColumn,
+							tileset.PartCount);
+			tilesets[row, column] = mergedTileset;
+		}
+
+		private static void MergeCraftTile(
+			Tileset terrainTileset,
+			int levelIndex,
+			int tileRow,
+			int tileColumn,
+			Tileset craftTileset,
+			int sectionRow,
+			int sectionColumn,
+			int partOffset)
+		{
+			var terrainTile = terrainTileset[levelIndex, tileRow, tileColumn];
+			var craftTile = craftTileset[levelIndex, sectionRow * 10 + tileRow, sectionColumn * 10 + tileColumn];
+			var mergedTile = terrainTile.Merge(craftTile, partOffset);
+			terrainTileset[levelIndex, tileRow, tileColumn] = mergedTile;
 		}
 
 		private static Tileset[,] CreateXcomBaseTilesets(Base @base)
@@ -67,22 +228,20 @@ namespace XCom.Battlescape.Tiles
 					tilesets[row, column] = facilityConnectors[row, column].UpdateTileset(tilesets[row, column]);
 		}
 
-		private static Level[] CreateXcomBaseLevels(Tileset[,] tilesets)
+		private static Level[] CreateLevels(Tileset[,] tilesets, int levelCount)
 		{
-			return Enumerable.Range(0, 2)
-				.Select(levelIndex => CreateXcomBaseLevel(tilesets, levelIndex))
+			return Enumerable.Range(0, levelCount)
+				.Select(levelIndex => CreateLevel(tilesets, levelIndex))
 				.ToArray();
 		}
 
-		private static Level CreateXcomBaseLevel(Tileset[,] tilesets, int levelIndex)
+		private static Level CreateLevel(Tileset[,] tilesets, int levelIndex)
 		{
-			var level = new Level
-			{
-				Tiles = new Tile[60, 60]
-			};
+			var level = new Level { Tiles = new Tile[60, 60] };
 			foreach (var row in Enumerable.Range(0, 6))
 				foreach (var column in Enumerable.Range(0, 6))
-					level.LoadTileset(tilesets[row, column], levelIndex, row * 10, column * 10);
+					if (tilesets[row, column] != placeholder)
+						level.LoadTileset(tilesets[row, column], levelIndex, row * 10, column * 10);
 			return level;
 		}
 	}

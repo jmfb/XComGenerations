@@ -89,8 +89,10 @@ namespace XCom.Battlescape
 					Id = craft.SoldierIds.First()
 				},
 				//TODO: Create alien base, terror, or craft recovery based on craft destination
-				Map = MapFactory.CreateXcomBaseMap(craft.Base)
+				Map = MapFactory.CreateFromCraft(craft)
 			};
+			//TODO: Initial unit placement
+			//TODO: Placement of remaining store items
 		}
 
 		//TODO: CreateFromBase (Xcom base defense - ignore soldiers assigned to crafts that are out, ignore equipment on crafts that are out)

@@ -32,5 +32,19 @@ namespace XCom.Battlescape.Tiles
 			result.Entity = value;
 			return result;
 		}
+
+		public TileData Merge(TileData tile, int partOffset)
+		{
+			var result = this;
+			if (tile.Ground != 0)
+				result.Ground = (byte)(tile.Ground + partOffset - 2);
+			if (tile.NorthWall != 0)
+				result.NorthWall = (byte)(tile.NorthWall + partOffset - 2);
+			if (tile.WestWall != 0)
+				result.WestWall = (byte)(tile.WestWall + partOffset - 2);
+			if (tile.Entity != 0)
+				result.Entity = (byte)(tile.Entity + partOffset - 2);
+			return result;
+		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Battlescape.Tiles;
 using XCom.Content.UfoPreviews;
 
 namespace XCom.Data
@@ -32,7 +33,8 @@ namespace XCom.Data
 			Image = UfoPreviews.SmallScout,
 			Description = "This tiny craft is primarily used for reconnaissance " +
 				"or research. It normally precedes larger vessels at the start " +
-				"of an alien mission."
+				"of an alien mission.",
+			Tileset = Tileset.SmallScout
 		};
 
 		private static readonly UfoMetadata mediumScout = new UfoMetadata
@@ -47,7 +49,8 @@ namespace XCom.Data
 			MaximumSpeed = 2400,
 			Image = UfoPreviews.MediumScout,
 			Description = "A medium sized scout vessel that poses little threat to " +
-				"earth forces. Normally appears before larger vessels during missions."
+				"earth forces. Normally appears before larger vessels during missions.",
+			Tileset = Tileset.MediumScout
 		};
 
 		private static readonly UfoMetadata largeScout = new UfoMetadata
@@ -62,7 +65,8 @@ namespace XCom.Data
 			MaximumSpeed = 2700,
 			Image = UfoPreviews.LargeScout,
 			Description = "The largest alien scout craft is a general purpose vessel " +
-				"that is used in all types of alien mission."
+				"that is used in all types of alien mission.",
+			Tileset = Tileset.LargeScout
 		};
 
 		private static readonly UfoMetadata abductor = new UfoMetadata
@@ -79,7 +83,8 @@ namespace XCom.Data
 			Description = "This vessel is equipped with an examination room for " +
 				"performing horrific experiments on human subjects.  The victim is " +
 				"normally paralyzed by telepathic powers, but remains conscious while " +
-				"on the operating table."
+				"on the operating table.",
+			Tileset = Tileset.Abductor
 		};
 
 		private static readonly UfoMetadata harvester = new UfoMetadata
@@ -96,7 +101,8 @@ namespace XCom.Data
 			Description = "The harvester has a trap door in its base and is equipped " +
 				"with lifting gear to haul up cattle or other beasts.  Laser cutters " +
 				"are used to extract the desired material and the carcass is dumped on " +
-				"the ground. There are also storage containers for body parts."
+				"the ground. There are also storage containers for body parts.",
+			Tileset = Tileset.Harvester
 		};
 
 		private static readonly UfoMetadata terrorShip = new UfoMetadata
@@ -112,7 +118,8 @@ namespace XCom.Data
 			Image = UfoPreviews.TerrorShip,
 			Description = "The terror ship has a containment facility for large alien " +
 				"terror weapons or creatures. It is used to transport these alien " +
-				"terrorists into populated areas."
+				"terrorists into populated areas.",
+			Tileset = Tileset.TerrorShip
 		};
 
 		private static readonly UfoMetadata supplyShip = new UfoMetadata
@@ -128,7 +135,8 @@ namespace XCom.Data
 			Image = UfoPreviews.SupplyShip,
 			Description = "The supply vessel is used during the construction of alien " +
 				"bases or for supplying existing bases. It carries alien food containers " +
-				"and reproduction chambers."
+				"and reproduction chambers.",
+			Tileset = Tileset.SupplyShip
 		};
 
 		private static readonly UfoMetadata battleship = new UfoMetadata
@@ -144,7 +152,8 @@ namespace XCom.Data
 			Image = UfoPreviews.Battleship,
 			Description = "The battleship is the largest and most powerful alien craft. " +
 				"It is normally the primary alien mission craft, equipped with powerful " +
-				"weapons and numerous crew members."
+				"weapons and numerous crew members.",
+			Tileset = Tileset.Battleship
 		};
 
 		private static readonly Dictionary<UfoType, UfoMetadata> metadata = new Dictionary<UfoType, UfoMetadata>

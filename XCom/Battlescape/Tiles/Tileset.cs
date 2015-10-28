@@ -10,6 +10,10 @@ namespace XCom.Battlescape.Tiles
 		private readonly TileData[] tiles;
 		private readonly TileTypes types;
 
+		public Tileset()
+		{
+		}
+
 		private Tileset(byte[] data, TileTypes types)
 		{
 			header = data.ReadStruct<TilesetHeader>(0);
@@ -27,6 +31,14 @@ namespace XCom.Battlescape.Tiles
 			types = value.types;
 		}
 
+		public Tileset(Tileset value, Tileset other)
+		{
+			header = value.header;
+			header.Depth = (byte)other.LevelCount;
+			tiles = Enumerable.Repeat(TileData.Empty, (other.LevelCount - 1) * header.TilesPerLevel).Concat(value.tiles).ToArray();
+			types = new TileTypes(value.types, other.types);
+		}
+
 		public Tile CreateTile(int level, int row, int column)
 		{
 			if (level >= LevelCount)
@@ -37,7 +49,9 @@ namespace XCom.Battlescape.Tiles
 
 		public int RowCount => header.Height;
 		public int ColumnCount => header.Width;
-		private int LevelCount => header.Depth;
+		public int LevelCount => header.Depth;
+		public int PartCount => types.PartCount;
+
 		private int GetTileIndex(int invertedLevel, int row, int column) => invertedLevel * header.TilesPerLevel + row * header.TilesPerRow + column;
 		private TileData GetTile(int invertedLevel, int row, int column) => tiles[GetTileIndex(invertedLevel, row, column)];
 		private void SetTile(int invertedLevel, int row, int column, TileData tile) => tiles[GetTileIndex(invertedLevel, row, column)] = tile;
