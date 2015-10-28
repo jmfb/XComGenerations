@@ -8,9 +8,44 @@ namespace XCom.Battlescape
 {
 	public class BattleItem
 	{
-		public object Item { get; set; }
+		public BattleItemType BattleItemType { get; set; }
+		public long Value { get; set; }
 		public AmmunitionType? Ammunition { get; set; }
 		public int Rounds { get; set; }
+
+		[JsonIgnore]
+		public object Item
+		{
+			get
+			{
+				switch (BattleItemType)
+				{
+				case BattleItemType.Weapon:
+					return (WeaponType)Value;
+				case BattleItemType.Ammunition:
+					return (AmmunitionType)Value;
+				case BattleItemType.Grenade:
+					return (GrenadeType)Value;
+				case BattleItemType.Equipment:
+					return (EquipmentType)Value;
+				}
+				throw new InvalidOperationException("Unsupported battle item type.");
+			}
+			set
+			{
+				if (value is WeaponType)
+					BattleItemType = BattleItemType.Weapon;
+				else if (value is AmmunitionType)
+					BattleItemType = BattleItemType.Ammunition;
+				else if (value is GrenadeType)
+					BattleItemType = BattleItemType.Grenade;
+				else if (value is EquipmentType)
+					BattleItemType = BattleItemType.Equipment;
+				else
+					throw new InvalidOperationException("Unsupported battle item type.");
+				Value = Convert.ToInt32(value);
+			}
+		}
 
 		[JsonIgnore]
 		public string Name => NameOf((dynamic)Item);

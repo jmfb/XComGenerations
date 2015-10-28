@@ -424,6 +424,8 @@ namespace XCom.Battlescape
 
 		private bool TryConsumeTimeUnits(int timeUnits)
 		{
+			if (isInitialInventory)
+				return true;
 			if (timeUnits > soldier.TimeUnits)
 			{
 				notEnoughTimeUnits = true;
@@ -436,9 +438,7 @@ namespace XCom.Battlescape
 
 		private int GetTransferTimeUnits(InventoryLocation destination)
 		{
-			return isInitialInventory ?
-				0 :
-				selectionSource.Metadata().TimeUnitCost[destination];
+			return selectionSource.Metadata().TimeUnitCost[destination];
 		}
 
 		private static bool CanPutOnBelt(int dropRow, int dropColumn, int itemWidth, int itemHeight)
