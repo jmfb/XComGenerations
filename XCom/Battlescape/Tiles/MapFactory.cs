@@ -10,6 +10,23 @@ namespace XCom.Battlescape.Tiles
 	public static class MapFactory
 	{
 		private static readonly Tileset placeholder = new Tileset();
+		private static readonly TerrainCategoryMetadata cityMetadata = new TerrainCategoryMetadata
+		{
+			FlatTilesets = new[] { Tileset.City3, Tileset.City4 },
+			OtherTilesets = new[]
+			{
+				Tileset.City5,
+				Tileset.City6,
+				Tileset.City7,
+				Tileset.City8,
+				Tileset.City9,
+				Tileset.City10,
+				Tileset.City11,
+				Tileset.City12,
+				Tileset.City13,
+				Tileset.City14
+			}
+		};
 
 		//TODO: Construct cydonia mission (mars and final base)
 
@@ -29,11 +46,61 @@ namespace XCom.Battlescape.Tiles
 				//TODO: Ufo should be damaged to some degree
 				return CreateLandingSiteMap(craft);
 			case WorldObjectType.TerrorSite:
-				throw new NotImplementedException(); //TODO: City tilesets
+				return CreateTerrorSiteMap(craft);
 			case WorldObjectType.LandingSite:
 				return CreateLandingSiteMap(craft);
 			}
 			throw new InvalidOperationException("Invalid craft destination for map.");
+		}
+
+		private static Map CreateTerrorSiteMap(Craft craft)
+		{
+			var tilesets = new Tileset[6, 6];
+			PlaceRoads(tilesets);
+			PlaceCraft(tilesets, craft.CraftType.Metadata().Tileset, cityMetadata.FlatTilesets);
+			FillTerrain(tilesets, cityMetadata);
+			return new Map { Levels = CreateLevels(tilesets, 4) };
+		}
+
+		private static void PlaceRoads(Tileset[,] tilesets)
+		{
+			switch (GameState.Current.Random.Next(3))
+			{
+			case 0:
+				PlaceHorizontalRoad(tilesets);
+				break;
+			case 1:
+				PlaceVerticalRoad(tilesets);
+				break;
+			case 2:
+				PlaceCrossRoads(tilesets);
+				break;
+			}
+		}
+
+		private static void PlaceHorizontalRoad(Tileset[,] tilesets)
+		{
+			var row = GameState.Current.Random.Next(6);
+			foreach (var column in Enumerable.Range(0, 6))
+				tilesets[row, column] = Tileset.City0;
+		}
+
+		private static void PlaceVerticalRoad(Tileset[,] tilesets)
+		{
+			var column = GameState.Current.Random.Next(6);
+			foreach (var row in Enumerable.Range(0, 6))
+				tilesets[row, column] = Tileset.City1;
+		}
+
+		private static void PlaceCrossRoads(Tileset[,] tilesets)
+		{
+			var crossRow = GameState.Current.Random.Next(6);
+			var crossColumn = GameState.Current.Random.Next(6);
+			foreach (var column in Enumerable.Range(0, 6))
+				tilesets[crossRow, column] = Tileset.City0;
+			foreach (var row in Enumerable.Range(0, 6))
+				tilesets[row, crossColumn] = Tileset.City1;
+			tilesets[crossRow, crossColumn] = Tileset.City2;
 		}
 
 		private static Map CreateLandingSiteMap(Craft craft)
