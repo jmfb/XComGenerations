@@ -43,8 +43,43 @@ namespace XCom.Battlescape.Tiles
 				Tileset.Mars9
 			}
 		};
-
-		//TODO: Construct cydonia mission (final base)
+		private static readonly TerrainCategoryMetadata alienBaseMetadata = new TerrainCategoryMetadata
+		{
+			FlatTilesets = new Tileset[0],
+			OtherTilesets = new[]
+			{
+				Tileset.AlienBase1,
+				Tileset.AlienBase2,
+				Tileset.AlienBase3,
+				Tileset.AlienBase5,
+				Tileset.AlienBase6,
+				Tileset.AlienBase7,
+				Tileset.AlienBase8,
+				Tileset.AlienBase9,
+				Tileset.AlienBase10,
+				Tileset.AlienBase11
+			}
+		};
+		private static readonly TerrainCategoryMetadata marsBaseMetadata = new TerrainCategoryMetadata
+		{
+			FlatTilesets = new Tileset[0],
+			OtherTilesets = new[]
+			{
+				Tileset.AlienBase1,
+				Tileset.AlienBase2,
+				Tileset.AlienBase3,
+				Tileset.AlienBase5,
+				Tileset.AlienBase6,
+				Tileset.AlienBase7,
+				Tileset.AlienBase8,
+				Tileset.AlienBase9,
+				Tileset.AlienBase10,
+				Tileset.AlienBase11,
+				Tileset.AlienBase12,
+				Tileset.AlienBase13,
+				Tileset.AlienBase14
+			}
+		};
 
 		public static Map CreateMarsMap(Craft avenger)
 		{
@@ -54,6 +89,11 @@ namespace XCom.Battlescape.Tiles
 			PlaceTileset(tilesets, exitPyramid);
 			FillTerrain(tilesets, marsMetadata);
 			return new Map { Levels = CreateLevels(tilesets, 4) };
+		}
+
+		public static Map CreateMarsBaseMap()
+		{
+			return CreateAlienBaseMap(Tileset.AlienBase15, marsBaseMetadata);
 		}
 
 		public static Map CreateXcomBaseMap(Base @base)
@@ -67,9 +107,8 @@ namespace XCom.Battlescape.Tiles
 			switch (craft.Destination.WorldObjectType)
 			{
 			case WorldObjectType.AlienBase:
-				throw new NotImplementedException(); //TODO: AlienBase tilesets
+				return CreateAlienBaseMap(Tileset.AlienBase0, alienBaseMetadata);
 			case WorldObjectType.CrashSite:
-				//TODO: Ufo should be damaged to some degree
 				return CreateLandingSiteMap(craft);
 			case WorldObjectType.TerrorSite:
 				return CreateTerrorSiteMap(craft);
@@ -77,6 +116,18 @@ namespace XCom.Battlescape.Tiles
 				return CreateLandingSiteMap(craft);
 			}
 			throw new InvalidOperationException("Invalid craft destination for map.");
+		}
+
+		private static Map CreateAlienBaseMap(Tileset controlRoomTileset, TerrainCategoryMetadata baseMetadata)
+		{
+			var tilesets = new Tileset[6, 6];
+			PlaceTileset(tilesets, controlRoomTileset);
+			var entryTileset = Tileset.AlienBase4;
+			PlaceTileset(tilesets, entryTileset);
+			PlaceTileset(tilesets, entryTileset);
+			FillTerrain(tilesets, baseMetadata);
+			SetAlienBaseConnectors(tilesets);
+			return new Map { Levels = CreateLevels(tilesets, 2) };
 		}
 
 		private static Map CreateTerrorSiteMap(Craft craft)
@@ -336,6 +387,19 @@ namespace XCom.Battlescape.Tiles
 			foreach (var row in Enumerable.Range(0, 6))
 				foreach (var column in Enumerable.Range(0, 6))
 					tilesets[row, column] = facilityConnectors[row, column].UpdateTileset(tilesets[row, column]);
+		}
+
+		private static void SetAlienBaseConnectors(Tileset[,] tilesets)
+		{
+			foreach (var row in Enumerable.Range(0, 6))
+				foreach (var column in Enumerable.Range(0, 6))
+				{
+					var tileset = tilesets[row, column];
+					if (tileset == placeholder)
+						continue;
+					var facilityConnectors = new FacilityConnectors(tileset, row, column);
+					tilesets[row, column] = facilityConnectors.UpdateTileset(tileset);
+				}
 		}
 
 		private static Level[] CreateLevels(Tileset[,] tilesets, int levelCount)
