@@ -55,7 +55,7 @@ namespace XCom.Battlescape.Tiles
 
 		private static Map CreateTerrorSiteMap(Craft craft)
 		{
-			var tilesets = new Tileset[6, 6];
+			var tilesets = new Tileset[5, 5];
 			PlaceRoads(tilesets);
 			PlaceCraft(tilesets, craft.CraftType.Metadata().Tileset, cityMetadata.FlatTilesets);
 			FillTerrain(tilesets, cityMetadata);
@@ -80,25 +80,25 @@ namespace XCom.Battlescape.Tiles
 
 		private static void PlaceHorizontalRoad(Tileset[,] tilesets)
 		{
-			var row = GameState.Current.Random.Next(6);
-			foreach (var column in Enumerable.Range(0, 6))
+			var row = GameState.Current.Random.Next(tilesets.GetLength(0));
+			foreach (var column in Enumerable.Range(0, tilesets.GetLength(1)))
 				tilesets[row, column] = Tileset.City0;
 		}
 
 		private static void PlaceVerticalRoad(Tileset[,] tilesets)
 		{
-			var column = GameState.Current.Random.Next(6);
-			foreach (var row in Enumerable.Range(0, 6))
+			var column = GameState.Current.Random.Next(tilesets.GetLength(1));
+			foreach (var row in Enumerable.Range(0, tilesets.GetLength(0)))
 				tilesets[row, column] = Tileset.City1;
 		}
 
 		private static void PlaceCrossRoads(Tileset[,] tilesets)
 		{
-			var crossRow = GameState.Current.Random.Next(6);
-			var crossColumn = GameState.Current.Random.Next(6);
-			foreach (var column in Enumerable.Range(0, 6))
+			var crossRow = GameState.Current.Random.Next(tilesets.GetLength(0));
+			var crossColumn = GameState.Current.Random.Next(tilesets.GetLength(1));
+			foreach (var column in Enumerable.Range(0, tilesets.GetLength(1)))
 				tilesets[crossRow, column] = Tileset.City0;
-			foreach (var row in Enumerable.Range(0, 6))
+			foreach (var row in Enumerable.Range(0, tilesets.GetLength(0)))
 				tilesets[row, crossColumn] = Tileset.City1;
 			tilesets[crossRow, crossColumn] = Tileset.City2;
 		}
@@ -123,17 +123,23 @@ namespace XCom.Battlescape.Tiles
 
 		private static Tileset[,] CreateUfoMapTilesets(Tileset craftTileset, Tileset ufoTileset, TerrainCategoryMetadata terrainMetadata)
 		{
-			var tilesets = new Tileset[6, 6];
+			var size = IsSmallUfoTileset(ufoTileset) ? 4 : 5;
+			var tilesets = new Tileset[size, size];
 			PlaceCraft(tilesets, ufoTileset, terrainMetadata.FlatTilesets);
 			PlaceCraft(tilesets, craftTileset, terrainMetadata.FlatTilesets);
 			FillTerrain(tilesets, terrainMetadata);
 			return tilesets;
 		}
 
+		private static bool IsSmallUfoTileset(Tileset ufoTileset)
+		{
+			return ufoTileset == Tileset.SmallScout || ufoTileset == Tileset.MediumScout;
+		}
+
 		private static void FillTerrain(Tileset[,] tilesets, TerrainCategoryMetadata terrainMetadata)
 		{
-			foreach (var row in Enumerable.Range(0, 6))
-				foreach (var column in Enumerable.Range(0, 6))
+			foreach (var row in Enumerable.Range(0, tilesets.GetLength(0)))
+				foreach (var column in Enumerable.Range(0, tilesets.GetLength(1)))
 					if (tilesets[row, column] == null)
 						FillTileset(tilesets, row, column, terrainMetadata);
 		}
@@ -172,8 +178,8 @@ namespace XCom.Battlescape.Tiles
 		{
 			for (;;)
 			{
-				var topRow = GameState.Current.Random.Next(6 - craftHeight + 1);
-				var leftColumn = GameState.Current.Random.Next(6 - craftWidth + 1);
+				var topRow = GameState.Current.Random.Next(tilesets.GetLength(0) - craftHeight + 1);
+				var leftColumn = GameState.Current.Random.Next(tilesets.GetLength(1) - craftWidth + 1);
 				var isSpaceAvailable = Enumerable.Range(topRow, craftHeight)
 					.All(row => Enumerable.Range(leftColumn, craftWidth)
 						.All(column => tilesets[row, column] == null));
@@ -185,8 +191,8 @@ namespace XCom.Battlescape.Tiles
 		private static void FillTileset(Tileset[,] tilesets, int row, int column, TerrainCategoryMetadata terrainMetadata)
 		{
 			var isSpaceForLargeTileset =
-				row < 5 &&
-				column < 5 &&
+				row < (tilesets.GetLength(0) - 1) &&
+				column < (tilesets.GetLength(1) - 1) &&
 				tilesets[row, column + 1] == null &&
 				tilesets[row + 1, column] == null &&
 				tilesets[row + 1, column + 1] == null;
@@ -304,9 +310,9 @@ namespace XCom.Battlescape.Tiles
 
 		private static Level CreateLevel(Tileset[,] tilesets, int levelIndex)
 		{
-			var level = new Level { Tiles = new Tile[60, 60] };
-			foreach (var row in Enumerable.Range(0, 6))
-				foreach (var column in Enumerable.Range(0, 6))
+			var level = new Level { Tiles = new Tile[10 * tilesets.GetLength(0), 10 * tilesets.GetLength(1)] };
+			foreach (var row in Enumerable.Range(0, tilesets.GetLength(0)))
+				foreach (var column in Enumerable.Range(0, tilesets.GetLength(1)))
 					if (tilesets[row, column] != placeholder)
 						level.LoadTileset(tilesets[row, column], levelIndex, row * 10, column * 10);
 			return level;
