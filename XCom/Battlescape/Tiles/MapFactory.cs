@@ -27,8 +27,34 @@ namespace XCom.Battlescape.Tiles
 				Tileset.City14
 			}
 		};
+		private static readonly TerrainCategoryMetadata marsMetadata = new TerrainCategoryMetadata
+		{
+			FlatTilesets = new[] { Tileset.Mars0 },
+			OtherTilesets = new[]
+			{
+				Tileset.Mars1,
+				Tileset.Mars2,
+				Tileset.Mars3,
+				Tileset.Mars4,
+				Tileset.Mars5,
+				Tileset.Mars6,
+				Tileset.Mars7,
+				Tileset.Mars8,
+				Tileset.Mars9
+			}
+		};
 
-		//TODO: Construct cydonia mission (mars and final base)
+		//TODO: Construct cydonia mission (final base)
+
+		public static Map CreateMarsMap(Craft avenger)
+		{
+			var tilesets = new Tileset[5, 5];
+			PlaceCraft(tilesets, avenger.CraftType.Metadata().Tileset, marsMetadata.FlatTilesets);
+			var exitPyramid = Tileset.Mars10;
+			PlaceTileset(tilesets, exitPyramid);
+			FillTerrain(tilesets, marsMetadata);
+			return new Map { Levels = CreateLevels(tilesets, 4) };
+		}
 
 		public static Map CreateXcomBaseMap(Base @base)
 		{
@@ -148,7 +174,7 @@ namespace XCom.Battlescape.Tiles
 		{
 			var craftHeight = craftTileset.RowCount / 10;
 			var craftWidth = craftTileset.ColumnCount / 10;
-			var location = GetCraftLocation(tilesets, craftWidth, craftHeight);
+			var location = GetAvailableLocation(tilesets, craftWidth, craftHeight);
 			foreach (var row in Enumerable.Range(0, craftHeight))
 				foreach (var column in Enumerable.Range(0, craftWidth))
 					FillCraftSection(
@@ -174,14 +200,14 @@ namespace XCom.Battlescape.Tiles
 			MergeCraftSection(tilesets, row, column, craftTileset, craftRow, craftColumn);
 		}
 
-		private static Point GetCraftLocation(Tileset[,] tilesets, int craftWidth, int craftHeight)
+		private static Point GetAvailableLocation(Tileset[,] tilesets, int width, int height)
 		{
 			for (;;)
 			{
-				var topRow = GameState.Current.Random.Next(tilesets.GetLength(0) - craftHeight + 1);
-				var leftColumn = GameState.Current.Random.Next(tilesets.GetLength(1) - craftWidth + 1);
-				var isSpaceAvailable = Enumerable.Range(topRow, craftHeight)
-					.All(row => Enumerable.Range(leftColumn, craftWidth)
+				var topRow = GameState.Current.Random.Next(tilesets.GetLength(0) - height + 1);
+				var leftColumn = GameState.Current.Random.Next(tilesets.GetLength(1) - width + 1);
+				var isSpaceAvailable = Enumerable.Range(topRow, height)
+					.All(row => Enumerable.Range(leftColumn, width)
 						.All(column => tilesets[row, column] == null));
 				if (isSpaceAvailable)
 					return new Point { X = leftColumn, Y = topRow };
@@ -203,8 +229,19 @@ namespace XCom.Battlescape.Tiles
 		private static void FillTileset(Tileset[,] tilesets, int row, int column, Tileset[] terrainTilesets)
 		{
 			var terrainTileset = terrainTilesets[GameState.Current.Random.Next(terrainTilesets.Length)];
-			tilesets[row, column] = terrainTileset;
-			if (terrainTileset.RowCount == 10)
+			PlaceTileset(tilesets, row, column, terrainTileset);
+		}
+
+		private static void PlaceTileset(Tileset[,] tilesets, Tileset tileset)
+		{
+			var location = GetAvailableLocation(tilesets, tileset.ColumnCount / 10, tileset.RowCount / 10);
+			PlaceTileset(tilesets, location.Y, location.X, tileset);
+		}
+
+		private static void PlaceTileset(Tileset[,] tilesets, int row, int column, Tileset tileset)
+		{
+			tilesets[row, column] = tileset;
+			if (tileset.RowCount == 10)
 				return;
 			tilesets[row, column + 1] = placeholder;
 			tilesets[row + 1, column] = placeholder;
