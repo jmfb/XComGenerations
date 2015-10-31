@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using XCom.Battlescape.Tiles;
 using XCom.Data;
 
 namespace XCom.Battlescape
@@ -40,6 +41,7 @@ namespace XCom.Battlescape
 		public int RearArmor { get; set; }
 		public int UnderArmor { get; set; }
 
+		public MapLocation Location { get; set; }
 		public bool DoneThisTurn { get; set; }
 
 		[JsonIgnore]

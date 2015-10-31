@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Data;
@@ -239,9 +240,20 @@ namespace XCom.Battlescape
 		private void OnOk()
 		{
 			if (isInitialInventory)
-				GameState.Current.SetScreen(new DisplayTurn(battle));
+				StartBattle();
 			else
 				GameState.Current.SetScreen(new Battlescape(battle));
+		}
+
+		private void StartBattle()
+		{
+			var entryPoints = new Queue<MapLocation>(battle.Map.EntryPoints);
+			foreach (var battleSoldier in battle.Soldiers)
+				battleSoldier.Location = entryPoints.Dequeue();
+
+			//TODO: Place remaining stores on ground
+
+			GameState.Current.SetScreen(new DisplayTurn(battle));
 		}
 
 		private void OnPreviousSoldier()

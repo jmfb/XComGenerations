@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles
@@ -9,6 +11,27 @@ namespace XCom.Battlescape.Tiles
 		public int RowOffset { get; set; }
 		public int ColumnOffset { get; set; }
 		public int SelectedLevelIndex { get; set; }
+
+		[JsonIgnore]
+		public IEnumerable<MapLocation> EntryPoints
+		{
+			get
+			{
+				foreach (var levelIndex in Enumerable.Range(0, Levels.Length))
+				{
+					var level = Levels[levelIndex];
+					foreach (var row in Enumerable.Range(0, level.RowCount))
+						foreach (var column in Enumerable.Range(0, level.ColumnCount))
+							if (level.Tiles[row, column].IsEntryPoint)
+								yield return new MapLocation
+								{
+									Level = levelIndex,
+									Row = row,
+									Column = column
+								};
+				}
+			}
+		}
 
 		public void SelectNextLevelUp()
 		{

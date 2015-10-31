@@ -1,4 +1,5 @@
 using System.Linq;
+using Newtonsoft.Json;
 using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles
@@ -6,6 +7,11 @@ namespace XCom.Battlescape.Tiles
 	public class Level
 	{
 		public Tile[,] Tiles { get; set; }
+
+		[JsonIgnore]
+		public int RowCount => Tiles.GetLength(0);
+		[JsonIgnore]
+		public int ColumnCount => Tiles.GetLength(1);
 
 		public void LoadTileset(Tileset tileset, int level, int topRow, int leftColumn)
 		{

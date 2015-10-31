@@ -23,5 +23,11 @@ namespace XCom.Battlescape.Tiles
 			WestWall.Render(buffer, topRow, leftColumn);
 			Entity.Render(buffer, topRow, leftColumn);
 		}
+
+		public bool IsEntryPoint =>
+			Ground.PartData.SpecialPartType == SpecialPartType.EntryPoint ||
+			WestWall.PartData.SpecialPartType == SpecialPartType.EntryPoint ||
+			NorthWall.PartData.SpecialPartType == SpecialPartType.EntryPoint ||
+			Entity.PartData.SpecialPartType == SpecialPartType.EntryPoint;
 	}
 }

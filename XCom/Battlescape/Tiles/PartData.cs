@@ -52,7 +52,7 @@ namespace XCom.Battlescape.Tiles
 		public byte Unused6;
 		public byte BurnTurnCount;
 		public byte Brightness;
-		public byte SpecialProperties;
+		public SpecialPartType SpecialPartType;
 		[MarshalAs(UnmanagedType.I1)]
 		public bool IsCriticalForFacility;
 		public byte Unused7;
