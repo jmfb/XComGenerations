@@ -253,6 +253,7 @@ namespace XCom.Battlescape
 
 			//TODO: Place remaining stores on ground
 
+			battle.Map.CenterOn(battle.SelectedUnit.Location);
 			GameState.Current.SetScreen(new DisplayTurn(battle));
 		}
 

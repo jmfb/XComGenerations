@@ -1,4 +1,5 @@
-﻿using XCom.Data;
+﻿using XCom.Battlescape.Tiles;
+using XCom.Data;
 
 namespace XCom.Battlescape
 {
@@ -14,5 +15,6 @@ namespace XCom.Battlescape
 		int MaxMorale { get; }
 		int Morale { get; }
 		Rank? Rank { get; }
+		MapLocation Location { get; }
 	}
 }

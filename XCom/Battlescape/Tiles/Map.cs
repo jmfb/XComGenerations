@@ -70,5 +70,14 @@ namespace XCom.Battlescape.Tiles
 			foreach (var levelIndex in Enumerable.Range(0, SelectedLevelIndex + 1))
 				Levels[levelIndex].Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset);
 		}
+
+		public void CenterOn(MapLocation location)
+		{
+			SelectedLevelIndex = location.Level;
+			var topRow = -24 * location.Level + location.Column * 8 + location.Row * 8;
+			var leftColumn = location.Column * 16 - location.Row * 16;
+			RowOffset = 52 - topRow;
+			ColumnOffset = 144 - leftColumn;
+		}
 	}
 }

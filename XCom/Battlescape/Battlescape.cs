@@ -108,9 +108,9 @@ namespace XCom.Battlescape
 			GameState.Current.SetScreen(new Inventory(battle, activeSoldier, ground, false));
 		}
 
-		private static void OnCenterOnActiveUnit()
+		private void OnCenterOnActiveUnit()
 		{
-			//TODO
+			battle.Map.CenterOn(battle.SelectedUnit.Location);
 		}
 
 		private void OnNextUnit()
