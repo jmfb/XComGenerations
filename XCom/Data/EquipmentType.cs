@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Items;
 
 namespace XCom.Data
@@ -29,7 +30,9 @@ namespace XCom.Data
 			{
 				"This device can only be used in close combat, but will stun a",
 				"living organism without killing it by using electric shocks."
-			}
+			},
+			IsTwoHanded = true,
+			Sprites = BattleItemSprite.StunRod
 		};
 
 		private static readonly EquipmentMetadata electroFlare = new EquipmentMetadata
@@ -112,7 +115,8 @@ namespace XCom.Data
 				"control of the enemy unit as if it was one of your own (except",
 				"that you cannot access the object screen). It is more difficult",
 				"to be successful with this type of attack."
-			}
+			},
+			Sprites = BattleItemSprite.PsiAmp
 		};
 
 		private static readonly EquipmentMetadata elerium115 = new EquipmentMetadata

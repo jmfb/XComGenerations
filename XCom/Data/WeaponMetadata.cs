@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using XCom.Battlescape;
+using XCom.Battlescape.Tiles;
 
 namespace XCom.Data
 {
-	public class WeaponMetadata
+	public class WeaponMetadata : BattleItemMetadata
 	{
 		public ItemType ItemType { get; set; }
 		public Shot[] Shots { get; set; }
@@ -14,10 +15,9 @@ namespace XCom.Data
 		public int Width { get; set; }
 		public int Height {get; set; }
 		public string[] DescriptionLines { get; set; }
+		public Dictionary<Direction, byte[]> Sprites { get; set; }
 
-		[JsonIgnore]
 		public string Name => ItemType.Metadata().Name;
-
 		private WeaponType ThisWeapon => EnumEx.GetValues<WeaponType>()
 			.Single(weapon => ReferenceEquals(this, weapon.Metadata()));
 		public List<AmmunitionType> SupportedAmmunition => EnumEx.GetValues<AmmunitionType>()

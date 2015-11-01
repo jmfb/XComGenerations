@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using XCom.Battlescape.Tiles;
 using XCom.Data;
 
 namespace XCom.Battlescape
@@ -47,33 +48,24 @@ namespace XCom.Battlescape
 			}
 		}
 
-		[JsonIgnore]
-		public string Name => NameOf((dynamic)Item);
-		private static string NameOf(WeaponType weaponType) => weaponType.Metadata().Name;
-		private static string NameOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Name;
-		private static string NameOf(EquipmentType equipmentType) => equipmentType.Metadata().Name;
-		private static string NameOf(GrenadeType grenadeType) => grenadeType.Metadata().Name;
+		private BattleItemMetadata Metadata => MetadataOf((dynamic)Item);
+		private static BattleItemMetadata MetadataOf(WeaponType weaponType) => weaponType.Metadata();
+		private static BattleItemMetadata MetadataOf(AmmunitionType ammunitionType) => ammunitionType.Metadata();
+		private static BattleItemMetadata MetadataOf(EquipmentType equipmentType) => equipmentType.Metadata();
+		private static BattleItemMetadata MetadataOf(GrenadeType grenadeType) => grenadeType.Metadata();
 
 		[JsonIgnore]
-		public byte[] Image => ImageOf((dynamic)Item);
-		private static byte[] ImageOf(WeaponType weaponType) => weaponType.Metadata().Image;
-		private static byte[] ImageOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Image;
-		private static byte[] ImageOf(EquipmentType equipmentType) => equipmentType.Metadata().Image;
-		private static byte[] ImageOf(GrenadeType grenadeType) => grenadeType.Metadata().Image;
-
+		public string Name => Metadata.Name;
 		[JsonIgnore]
-		public int Width => WidthOf((dynamic)Item);
-		private static int WidthOf(WeaponType weaponType) => weaponType.Metadata().Width;
-		private static int WidthOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Width;
-		private static int WidthOf(EquipmentType equipmentType) => equipmentType.Metadata().Width;
-		private static int WidthOf(GrenadeType grenadeType) => grenadeType.Metadata().Width;
-
+		public byte[] Image => Metadata.Image;
 		[JsonIgnore]
-		public int Height => HeightOf((dynamic)Item);
-		private static int HeightOf(WeaponType weaponType) => weaponType.Metadata().Height;
-		private static int HeightOf(AmmunitionType ammunitionType) => ammunitionType.Metadata().Height;
-		private static int HeightOf(EquipmentType equipmentType) => equipmentType.Metadata().Height;
-		private static int HeightOf(GrenadeType grenadeType) => grenadeType.Metadata().Height;
+		public int Width => Metadata.Width;
+		[JsonIgnore]
+		public int Height => Metadata.Height;
+		[JsonIgnore]
+		public Dictionary<Direction, byte[]> Sprites => Metadata.Sprites ?? BattleItemSprite.Grenade;
+		[JsonIgnore]
+		public bool IsTwoHanded => Metadata.IsTwoHanded;
 
 		public static IEnumerable<BattleItem> Create(StoreItem item)
 		{

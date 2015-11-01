@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Items;
 
 namespace XCom.Data
@@ -29,7 +30,8 @@ namespace XCom.Data
 			{
 				"This standard issue grenade has an accurate and sophisticated",
 				"timer for precision control."
-			}
+			},
+			Sprites = BattleItemSprite.Grenade
 		};
 
 		private static readonly GrenadeMetadata smokeGrenade = new GrenadeMetadata

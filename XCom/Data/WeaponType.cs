@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Items;
 
 namespace XCom.Data
@@ -40,7 +41,8 @@ namespace XCom.Data
 			{
 				"The standard issue XCom pistol is a high powered",
 				"semi-automatic with a 12 round capacity."
-			}
+			},
+			Sprites = BattleItemSprite.Pistol
 		};
 
 		private static readonly WeaponMetadata rifle = new WeaponMetadata
@@ -61,7 +63,8 @@ namespace XCom.Data
 			{
 				"This highly accurate sniper rifle has laser guided sights and",
 				"takes 6.7mm ammunition in 20 round clips."
-			}
+			},
+			Sprites = BattleItemSprite.Rifle
 		};
 
 		private static readonly WeaponMetadata heavyCannon = new WeaponMetadata
@@ -85,7 +88,8 @@ namespace XCom.Data
 				"it can take three types of",
 				"ammunition - armor piercing,",
 				"incendiary and high explosive."
-			}
+			},
+			Sprites = BattleItemSprite.HeavyCannon
 		};
 
 		private static readonly WeaponMetadata autoCannon = new WeaponMetadata
@@ -107,7 +111,8 @@ namespace XCom.Data
 				"The auto-cannon combines the",
 				"versatility and power of a heavy",
 				"cannon with a faster fire rate."
-			}
+			},
+			Sprites = BattleItemSprite.AutoCannon
 		};
 
 		private static readonly WeaponMetadata rocketLauncher = new WeaponMetadata
@@ -128,7 +133,8 @@ namespace XCom.Data
 				"The rocket launcher is a laser guided",
 				"system which can fire three different",
 				"sizes of missile."
-			}
+			},
+			Sprites = BattleItemSprite.RocketLauncher
 		};
 
 		private static readonly WeaponMetadata laserPistol = new WeaponMetadata
@@ -149,7 +155,8 @@ namespace XCom.Data
 				"The laser pistol is an effective implementation of new",
 				"technology. It has the convenience of a pistol with faster and",
 				"more accurate firing."
-			}
+			},
+			Sprites = BattleItemSprite.LaserPistol
 		};
 
 		private static readonly WeaponMetadata laserRifle = new WeaponMetadata
@@ -170,7 +177,8 @@ namespace XCom.Data
 			{
 				"The laser rifle is a more powerful and accurate version of the",
 				"earlier pistol design."
-			}
+			},
+			Sprites = BattleItemSprite.LaserRifle
 		};
 
 		private static readonly WeaponMetadata heavyLaser = new WeaponMetadata
@@ -189,7 +197,8 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"The heavy laser is cumbersome, but extremely effective."
-			}
+			},
+			Sprites = BattleItemSprite.HeavyLaser
 		};
 
 		private static readonly WeaponMetadata heavyPlasma = new WeaponMetadata
@@ -210,7 +219,8 @@ namespace XCom.Data
 			{
 				"This is a devastatingly powerful weapon based on accelerating",
 				"particles from within a minute anti-gravity field"
-			}
+			},
+			Sprites = BattleItemSprite.HeavyPlasma
 		};
 
 		private static readonly WeaponMetadata plasmaRifle = new WeaponMetadata
@@ -231,7 +241,8 @@ namespace XCom.Data
 			{
 				"This is a devastatingly powerful weapon based on accelerating",
 				"particles from within a minute anti-gravity field"
-			}
+			},
+			Sprites = BattleItemSprite.PlasmaRifle
 		};
 
 		private static readonly WeaponMetadata plasmaPistol = new WeaponMetadata
@@ -251,7 +262,8 @@ namespace XCom.Data
 			{
 				"Plasma pistols are a lethal alien weapon based on accelerating",
 				"particles from within a minute anti-gravity field"
-			}
+			},
+			Sprites = BattleItemSprite.PlasmaPistol
 		};
 
 		private static readonly WeaponMetadata blasterLauncher = new WeaponMetadata
@@ -273,7 +285,8 @@ namespace XCom.Data
 				"generate 'way points' for the blaster bomb to follow.  When",
 				"you have positioned enough way points click on the special",
 				"launch icon."
-			}
+			},
+			Sprites = BattleItemSprite.BlasterLauncher
 		};
 
 		private static readonly WeaponMetadata smallLauncher = new WeaponMetadata
@@ -292,7 +305,8 @@ namespace XCom.Data
 			{
 				"A small launcher which fires stun bombs. Very useful for",
 				"capturing live aliens."
-			}
+			},
+			Sprites = BattleItemSprite.SmallLauncher
 		};
 
 		private readonly static Dictionary<WeaponType, WeaponMetadata> metadata = new Dictionary<WeaponType, WeaponMetadata>

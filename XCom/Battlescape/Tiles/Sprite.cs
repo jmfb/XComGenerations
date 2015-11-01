@@ -6,88 +6,125 @@ namespace XCom.Battlescape.Tiles
 {
 	public class Sprite
 	{
-		public Direction Direction { get; set; }
-		public byte[] EmptyLeftArm { get; set; }
-		public byte[] TwoHandedLeftArm { get; set; }
-		public byte[][] LeftArmAnimation { get; set; }
-		public byte[] EmptyRightArm { get; set; }
-		public byte[] OneHandedRightArm { get; set; }
-		public byte[] TwoHandedRightArm { get; set; }
-		public byte[] FiringRightArm { get; set; }
-		public byte[][] RightArmAnimation { get; set; }
-		public byte[] LegsStanding { get; set; }
-		public byte[] LegsKneeling { get; set; }
-		public byte[][] LegsAnimation { get; set; }
-		public byte[] Head { get; set; }
+		private readonly Direction direction;
+		private readonly byte[] emptyLeftArm;
+		private readonly byte[] twoHandedLeftArm;
+		private readonly byte[][] leftArmAnimation;
+		private readonly byte[] emptyRightArm;
+		private readonly byte[] oneHandedRightArm;
+		private readonly byte[] twoHandedRightArm;
+		private readonly byte[] firingRightArm;
+		private readonly byte[][] rightArmAnimation;
+		private readonly byte[] legsStanding;
+		private readonly byte[] legsKneeling;
+		private readonly byte[][] legsAnimation;
+		private readonly byte[] head;
 
-		public Sprite(
+		private Sprite(
 			ImageGroup imageGroup,
 			Direction direction,
-			int emptyLeftArm,
-			int twoHandedLeftArm,
-			int leftArmAnimation,
-			int emptyRightArm,
-			int oneHandedRightArm,
-			int twoHandedRightArm,
-			int firingRightArm,
-			int rightArmAnimation,
-			int legsStanding,
-			int legsKneeling,
-			int legsAnimation,
-			int head)
+			int emptyLeftArmIndex,
+			int twoHandedLeftArmIndex,
+			int leftArmAnimationIndex,
+			int emptyRightArmIndex,
+			int oneHandedRightArmIndex,
+			int twoHandedRightArmIndex,
+			int firingRightArmIndex,
+			int rightArmAnimationIndex,
+			int legsStandingIndex,
+			int legsKneelingIndex,
+			int legsAnimationIndex,
+			int headIndex)
 		{
-			Direction = direction;
-			EmptyLeftArm = imageGroup.Images[emptyLeftArm];
-			TwoHandedLeftArm = imageGroup.Images[twoHandedLeftArm];
-			LeftArmAnimation = imageGroup.Images.Skip(leftArmAnimation).Take(8).ToArray();
-			EmptyRightArm = imageGroup.Images[emptyRightArm];
-			OneHandedRightArm = imageGroup.Images[oneHandedRightArm];
-			TwoHandedRightArm = imageGroup.Images[twoHandedRightArm];
-			FiringRightArm = imageGroup.Images[firingRightArm];
-			RightArmAnimation = imageGroup.Images.Skip(rightArmAnimation).Take(8).ToArray();
-			LegsStanding = imageGroup.Images[legsStanding];
-			LegsKneeling = imageGroup.Images[legsKneeling];
-			LegsAnimation = imageGroup.Images.Skip(legsAnimation).Take(8).ToArray();
-			Head = imageGroup.Images[head];
+			this.direction = direction;
+			emptyLeftArm = imageGroup.Images[emptyLeftArmIndex];
+			twoHandedLeftArm = imageGroup.Images[twoHandedLeftArmIndex];
+			leftArmAnimation = imageGroup.Images.Skip(leftArmAnimationIndex).Take(8).ToArray();
+			emptyRightArm = imageGroup.Images[emptyRightArmIndex];
+			oneHandedRightArm = imageGroup.Images[oneHandedRightArmIndex];
+			twoHandedRightArm = imageGroup.Images[twoHandedRightArmIndex];
+			firingRightArm = imageGroup.Images[firingRightArmIndex];
+			rightArmAnimation = imageGroup.Images.Skip(rightArmAnimationIndex).Take(8).ToArray();
+			legsStanding = imageGroup.Images[legsStandingIndex];
+			legsKneeling = imageGroup.Images[legsKneelingIndex];
+			legsAnimation = imageGroup.Images.Skip(legsAnimationIndex).Take(8).ToArray();
+			head = imageGroup.Images[headIndex];
 
-			if (imageGroup == ImageGroup.SoldierPersonalArmor && Direction == Direction.South)
+			if (imageGroup == ImageGroup.SoldierPersonalArmor && this.direction == Direction.South)
 			{
-				var temp = RightArmAnimation;
-				RightArmAnimation = LeftArmAnimation;
-				LeftArmAnimation = temp;
+				var temp = rightArmAnimation;
+				rightArmAnimation = leftArmAnimation;
+				leftArmAnimation = temp;
 			}
 		}
 
-		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
+		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item)
 		{
-			DrawSprite(buffer, topRow, leftColumn, Head, LegsStanding, EmptyLeftArm, EmptyRightArm, 0);
+			//TODO: kneeling, flying
+			DrawSprite(buffer, topRow, leftColumn, item, LegPosition.Standing, 0);
 		}
 
-		private static readonly int[] headOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
-
-		public void Animate(GraphicsBuffer buffer, int topRow, int leftColumn, int frame)
+		public void Animate(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item, int frame)
 		{
-			DrawSprite(buffer, topRow, leftColumn, Head, LegsAnimation[frame], LeftArmAnimation[frame], RightArmAnimation[frame], headOffsets[frame]);
+			DrawSprite(buffer, topRow, leftColumn, item, LegPosition.Walking, frame);
 		}
 
-		private void DrawSprite(GraphicsBuffer buffer, int topRow, int leftColumn, byte[] head, byte[] legs, byte[] leftArm, byte[] rightArm, int headOffset)
-		{
-			var parts =
-				IsLeftArmObscured ? new[] { leftArm, head, legs, rightArm } :
-				IsRightArmObscured ? new[] { rightArm, head, legs, leftArm } :
-				new[] { head, legs, leftArm, rightArm };
-			foreach (var part in parts)
-				buffer.DrawItem(topRow + (part == head ? headOffset : 0), leftColumn, part);
-		}
+		private enum LegPosition { Standing, Kneeling, Walking }
+		private static readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
 
-		private bool IsLeftArmObscured =>
-			Direction == Direction.North ||
-			Direction == Direction.NorthEast ||
-			Direction == Direction.East;
-		private bool IsRightArmObscured =>
-			Direction == Direction.South ||
-			Direction == Direction.SouthWest ||
-			Direction == Direction.West;
+		private void DrawSprite(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item, LegPosition legPosition, int frame)
+		{
+			var isWalking = legPosition == LegPosition.Walking;
+			var isKneeling = legPosition == LegPosition.Kneeling;
+			var isOneHanded = item != null && !item.IsTwoHanded;
+			var isTwoHanded = item != null && item.IsTwoHanded;
+
+			var walkingOffset =
+				isWalking ? walkingOffsets[frame] :
+				isKneeling ? 2 : //TODO: correct offset for kneeling
+				0;
+			var leftArm =
+				isTwoHanded ? twoHandedLeftArm :
+				isWalking ? leftArmAnimation[frame] :
+				emptyLeftArm;
+			//TODO: Firing position
+			var rightArm =
+				isTwoHanded ? twoHandedRightArm :
+				isOneHanded ? oneHandedRightArm :
+				isWalking ? rightArmAnimation[frame] :
+				emptyRightArm;
+			var legs =
+				isWalking ? legsAnimation[frame] :
+				isKneeling ? legsKneeling :
+				legsStanding;
+
+			foreach (var part in direction.Metadata().DrawOrder)
+			{
+				switch (part)
+				{
+				case SpritePart.OneHandedWeapon:
+					if (isOneHanded)
+						buffer.DrawItem(topRow + walkingOffset, leftColumn, item.Sprites[direction]);
+					break;
+				case SpritePart.TwoHandedWeapon:
+					if (isTwoHanded)
+						buffer.DrawItem(topRow + walkingOffset, leftColumn, item.Sprites[direction]);
+					break;
+				case SpritePart.LeftArm:
+					buffer.DrawItem(topRow + walkingOffset, leftColumn, leftArm);
+					break;
+				case SpritePart.RightArm:
+					buffer.DrawItem(topRow + walkingOffset, leftColumn, rightArm);
+					break;
+				case SpritePart.Head:
+					buffer.DrawItem(topRow + walkingOffset, leftColumn, head);
+					break;
+				case SpritePart.Legs:
+					buffer.DrawItem(topRow, leftColumn, legs);
+					break;
+				}
+			}
+		}
 
 		private static Dictionary<Direction, Sprite> LoadSprites(
 			ImageGroup imageGroup,
@@ -120,7 +157,7 @@ namespace XCom.Battlescape.Tiles
 					legsKneeling + index,
 					legsAnimation + index * 24,
 					head + index))
-				.ToDictionary(sprite => sprite.Direction, sprite => sprite);
+				.ToDictionary(sprite => sprite.direction, sprite => sprite);
 		}
 
 		public static readonly Dictionary<Direction, Sprite> SoldierCoverallsMale = LoadSprites(ImageGroup.SoldierCoveralls, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32);
