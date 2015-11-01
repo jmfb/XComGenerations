@@ -74,9 +74,11 @@
     <Compile Include="Battlescape\InventoryLocation.cs" />
     <Compile Include="Battlescape\InventoryLocationMetadata.cs" />
     <Compile Include="Battlescape\SelectedUnitId.cs" />
+    <Compile Include="Battlescape\Tiles\Direction.cs" />
     <Compile Include="Battlescape\Tiles\Level.cs" />
     <Compile Include="Battlescape\Tiles\MapLocation.cs" />
     <Compile Include="Battlescape\Tiles\SpecialPartType.cs" />
+    <Compile Include="Battlescape\Tiles\Sprite.cs" />
     <Compile Include="Battlescape\Tiles\Tile.cs" />
     <Compile Include="Battlescape\Tiles\Part.cs" />
     <Compile Include="Battlescape\Tiles\PartType.cs" />
