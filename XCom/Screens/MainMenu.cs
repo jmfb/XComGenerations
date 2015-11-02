@@ -51,8 +51,8 @@ namespace XCom.Screens
 		public override void Render(GraphicsBuffer buffer)
 		{
 			//base.Render(buffer);
-			var sprites = SimpleSprite.CivilianFemale;
-			var death = Animation.CivilianFemaleDeath;
+			var sprites = SimpleSprite.CivilianMale;
+			var death = Animation.CivilianMaleDeath;
 			//var firing = Animation.CelatidFiring;
 
 			sprites[Direction.North].Render(buffer, 0, 144);
