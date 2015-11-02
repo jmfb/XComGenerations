@@ -44,11 +44,29 @@ namespace XCom.Battlescape.Tiles
 				.Select((direction, index) => new SimpleSprite(
 					imageGroup,
 					direction,
-					imageIndex + index, animationIndex + index * animationCount,
+					imageIndex + index,
+					animationIndex + index * animationCount,
+					animationCount))
+				.ToDictionary(sprite => sprite.direction, sprite => sprite);
+		}
+
+		private static Dictionary<Direction, SimpleSprite> LoadOmnidirectionalSprites(
+			ImageGroup imageGroup,
+			int imageIndex,
+			int animationIndex,
+			int animationCount)
+		{
+			return EnumEx.GetValues<Direction>()
+				.Select(direction => new SimpleSprite(
+					imageGroup,
+					direction,
+					imageIndex,
+					animationIndex,
 					animationCount))
 				.ToDictionary(sprite => sprite.direction, sprite => sprite);
 		}
 
 		public static readonly Dictionary<Direction, SimpleSprite> Zombie = LoadSprites(ImageGroup.Zombie, 0, 8, 8);
+		public static readonly Dictionary<Direction, SimpleSprite> Celatid = LoadOmnidirectionalSprites(ImageGroup.Celatid, 0, 1, 5);
 	}
 }
