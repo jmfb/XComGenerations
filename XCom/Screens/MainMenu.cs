@@ -51,18 +51,19 @@ namespace XCom.Screens
 		public override void Render(GraphicsBuffer buffer)
 		{
 			//base.Render(buffer);
-			var sprites = SimpleSprite.CivilianMale;
-			var death = Animation.CivilianMaleDeath;
+			var item = new BattleItem { Item = WeaponType.BlasterLauncher };
+			var sprites = SimpleSprite.Ethereal;
+			var death = Animation.EtherealDeath;
 			//var firing = Animation.CelatidFiring;
 
-			sprites[Direction.North].Render(buffer, 0, 144);
-			sprites[Direction.NorthEast].Render(buffer, 0, 176);
-			sprites[Direction.East].Render(buffer, 0, 208);
-			sprites[Direction.SouthEast].Render(buffer, 0, 240);
-			sprites[Direction.South].Render(buffer, 80, 240);
-			sprites[Direction.SouthWest].Render(buffer, 80, 208);
-			sprites[Direction.West].Render(buffer, 80, 176);
-			sprites[Direction.NorthWest].Render(buffer, 80, 144);
+			sprites[Direction.North].Render(buffer, 0, 144, item);
+			sprites[Direction.NorthEast].Render(buffer, 0, 176, item);
+			sprites[Direction.East].Render(buffer, 0, 208, item);
+			sprites[Direction.SouthEast].Render(buffer, 0, 240, item);
+			sprites[Direction.South].Render(buffer, 80, 240, item);
+			sprites[Direction.SouthWest].Render(buffer, 80, 208, item);
+			sprites[Direction.West].Render(buffer, 80, 176, item);
+			sprites[Direction.NorthWest].Render(buffer, 80, 144, item);
 
 			if (stopwatch.ElapsedMilliseconds > 100)
 			{
@@ -72,14 +73,14 @@ namespace XCom.Screens
 				stopwatch.Restart();
 			}
 
-			sprites[Direction.North].Animate(buffer, 40, 144, frame);
-			sprites[Direction.NorthEast].Animate(buffer, 40, 176, frame);
-			sprites[Direction.East].Animate(buffer, 40, 208, frame);
-			sprites[Direction.SouthEast].Animate(buffer, 40, 240, frame);
-			sprites[Direction.South].Animate(buffer, 120, 240, frame);
-			sprites[Direction.SouthWest].Animate(buffer, 120, 208, frame);
-			sprites[Direction.West].Animate(buffer, 120, 176, frame);
-			sprites[Direction.NorthWest].Animate(buffer, 120, 144, frame);
+			sprites[Direction.North].Animate(buffer, 40, 144, item, frame);
+			sprites[Direction.NorthEast].Animate(buffer, 40, 176, item, frame);
+			sprites[Direction.East].Animate(buffer, 40, 208, item, frame);
+			sprites[Direction.SouthEast].Animate(buffer, 40, 240, item, frame);
+			sprites[Direction.South].Animate(buffer, 120, 240, item, frame);
+			sprites[Direction.SouthWest].Animate(buffer, 120, 208, item, frame);
+			sprites[Direction.West].Animate(buffer, 120, 176, item, frame);
+			sprites[Direction.NorthWest].Animate(buffer, 120, 144, item, frame);
 
 			death.Animate(buffer, 0, 0, deathFrame);
 			//firing.Animate(buffer, 0, 32, firingFrame);

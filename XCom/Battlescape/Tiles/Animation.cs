@@ -27,5 +27,6 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Animation ZombieDeath = new Animation(ImageGroup.Zombie, 72, 18);
 		public static readonly Animation CelatidDeath = new Animation(ImageGroup.Celatid, 25, 3);
 		public static readonly Animation CelatidFiring = new Animation(ImageGroup.Celatid, 6, 18); //Shot is ImageGroup.Images[24]
+		public static readonly Animation EtherealDeath = new Animation(ImageGroup.Ethereal, 72, 3);
 	}
 }

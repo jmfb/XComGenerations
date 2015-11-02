@@ -22,14 +22,39 @@ namespace XCom.Battlescape.Tiles
 			animation = imageGroup.Images.Skip(animationIndex).Take(animationCount).ToArray();
 		}
 
-		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
+		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item)
 		{
-			buffer.DrawItem(topRow, leftColumn, image);
+			DrawSprite(buffer, topRow, leftColumn, item, false, 0);
 		}
 
-		public void Animate(GraphicsBuffer buffer, int topRow, int leftColumn, int frame)
+		public void Animate(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item, int frame)
 		{
-			buffer.DrawItem(topRow, leftColumn, animation[frame]);
+			DrawSprite(buffer, topRow, leftColumn, item, true, frame);
+		}
+
+		private static readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
+
+		private void DrawSprite(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item, bool animating, int frame)
+		{
+			var body = animating ? animation[frame] : image;
+			var walkingOffset = animating ? walkingOffsets[frame] : 0;
+			foreach (var part in direction.Metadata().DrawOrder)
+			{
+				switch (part)
+				{
+				case SpritePart.Head:
+					buffer.DrawItem(topRow, leftColumn, body);
+					break;
+				case SpritePart.OneHandedWeapon:
+					if (item != null && !item.IsTwoHanded)
+						buffer.DrawItem(topRow + walkingOffset, leftColumn, item.Sprites[direction]);
+					break;
+				case SpritePart.TwoHandedWeapon:
+					if (item != null && item.IsTwoHanded)
+						buffer.DrawItem(topRow + walkingOffset, leftColumn, item.Sprites[direction]);
+					break;
+				}
+			}
 		}
 
 		public int FrameCount => animation.Length;
@@ -70,5 +95,6 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Dictionary<Direction, SimpleSprite> CivilianMale = LoadSprites(ImageGroup.CivilianMale, 0, 8, 8);
 		public static readonly Dictionary<Direction, SimpleSprite> Zombie = LoadSprites(ImageGroup.Zombie, 0, 8, 8);
 		public static readonly Dictionary<Direction, SimpleSprite> Celatid = LoadOmnidirectionalSprites(ImageGroup.Celatid, 0, 1, 5);
+		public static readonly Dictionary<Direction, SimpleSprite> Ethereal = LoadSprites(ImageGroup.Ethereal, 0, 8, 8);
 	}
 }
