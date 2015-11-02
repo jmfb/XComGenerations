@@ -66,6 +66,7 @@ namespace XCom.Battlescape.Tiles
 				.ToDictionary(sprite => sprite.direction, sprite => sprite);
 		}
 
+		public static readonly Dictionary<Direction, SimpleSprite> CivilianFemale = LoadSprites(ImageGroup.CivilianFemale, 0, 8, 8);
 		public static readonly Dictionary<Direction, SimpleSprite> Zombie = LoadSprites(ImageGroup.Zombie, 0, 8, 8);
 		public static readonly Dictionary<Direction, SimpleSprite> Celatid = LoadOmnidirectionalSprites(ImageGroup.Celatid, 0, 1, 5);
 	}

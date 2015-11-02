@@ -46,14 +46,14 @@ namespace XCom.Screens
 		private readonly Stopwatch stopwatch = new Stopwatch();
 		private int frame;
 		private int deathFrame;
-		private int firingFrame;
+		//private int firingFrame;
 
 		public override void Render(GraphicsBuffer buffer)
 		{
 			//base.Render(buffer);
-			var sprites = SimpleSprite.Celatid;
-			var death = Animation.CelatidDeath;
-			var firing = Animation.CelatidFiring;
+			var sprites = SimpleSprite.CivilianFemale;
+			var death = Animation.CivilianFemaleDeath;
+			//var firing = Animation.CelatidFiring;
 
 			sprites[Direction.North].Render(buffer, 0, 144);
 			sprites[Direction.NorthEast].Render(buffer, 0, 176);
@@ -68,7 +68,7 @@ namespace XCom.Screens
 			{
 				frame = (frame + 1) % sprites[Direction.North].FrameCount;
 				deathFrame = (deathFrame + 1) % death.FrameCount;
-				firingFrame = (firingFrame + 1) % firing.FrameCount;
+				//firingFrame = (firingFrame + 1) % firing.FrameCount;
 				stopwatch.Restart();
 			}
 
@@ -82,7 +82,7 @@ namespace XCom.Screens
 			sprites[Direction.NorthWest].Animate(buffer, 120, 144, frame);
 
 			death.Animate(buffer, 0, 0, deathFrame);
-			firing.Animate(buffer, 0, 32, firingFrame);
+			//firing.Animate(buffer, 0, 32, firingFrame);
 		}
 	}
 }
