@@ -50,8 +50,6 @@ namespace XCom.Screens
 
 		//TODO: Chryssalid
 		//TODO: Floater
-		//TODO: Muton
-		//TODO: Sectoid
 		//TODO: Snakeman
 
 		//HWPs (large 4x4 images)
@@ -65,8 +63,8 @@ namespace XCom.Screens
 			//base.Render(buffer);
 			var item = new BattleItem { Item = WeaponType.BlasterLauncher };
 			//const BattleItem item = null;
-			var sprites = Sprite.Muton;
-			var death = Animation.MutonDeath;
+			var sprites = Sprite.Sectoid;
+			var death = Animation.SectoidDeath;
 			//var firing = Animation.CelatidFiring;
 
 			sprites[Direction.North].Render(buffer, 0, 144, item);

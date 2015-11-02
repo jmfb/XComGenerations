@@ -19,6 +19,7 @@ namespace XCom.Battlescape.Tiles
 		private readonly byte[] legsKneeling;
 		private readonly byte[][] legsAnimation;
 		private readonly byte[] head;
+		private readonly int weaponOffset;
 
 		private Sprite(
 			ImageGroup imageGroup,
@@ -62,6 +63,8 @@ namespace XCom.Battlescape.Tiles
 				walkingOffsets = new[] { 1, 1, 0, -1, 1, 1, 0, -1 };
 				armOffsets = new[] { 0, 0, -1, -2, 0, 0, -1, -2 };
 			}
+			if (imageGroup == ImageGroup.Sectoid)
+				weaponOffset = 6;
 		}
 
 		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item)
@@ -117,11 +120,11 @@ namespace XCom.Battlescape.Tiles
 				{
 				case SpritePart.OneHandedWeapon:
 					if (isOneHanded)
-						buffer.DrawItem(topRow + armOffset, leftColumn, item.Sprites[direction]);
+						buffer.DrawItem(topRow + armOffset + weaponOffset, leftColumn, item.Sprites[direction]);
 					break;
 				case SpritePart.TwoHandedWeapon:
 					if (isTwoHanded)
-						buffer.DrawItem(topRow + armOffset, leftColumn, item.Sprites[direction]);
+						buffer.DrawItem(topRow + armOffset + weaponOffset, leftColumn, item.Sprites[direction]);
 					break;
 				case SpritePart.LeftArm:
 					buffer.DrawItem(topRow + armOffset, leftColumn, leftArm);
@@ -181,5 +184,6 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuit = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 267);
 		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuitFlying = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 275, 24, 56, 267);
 		public static readonly Dictionary<Direction, Sprite> Muton = LoadSprites(ImageGroup.Muton, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32); //NOTE: East empty right arm animation is incorrect.
+		public static readonly Dictionary<Direction, Sprite> Sectoid = LoadSprites(ImageGroup.Sectoid, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32); //NOTE: East empty right arm animation is incorrect.
 	}
 }
