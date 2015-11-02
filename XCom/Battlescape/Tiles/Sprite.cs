@@ -69,6 +69,8 @@ namespace XCom.Battlescape.Tiles
 			DrawSprite(buffer, topRow, leftColumn, item, LegPosition.Walking, frame);
 		}
 
+		public const int FrameCount = 8;
+
 		private enum LegPosition { Standing, Kneeling, Walking }
 		private static readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
 
@@ -164,5 +166,8 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Dictionary<Direction, Sprite> SoldierCoverallsFemale = LoadSprites(ImageGroup.SoldierCoveralls, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 267);
 		public static readonly Dictionary<Direction, Sprite> SoldierPersonalArmorMale = LoadSprites(ImageGroup.SoldierPersonalArmor, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32);
 		public static readonly Dictionary<Direction, Sprite> SoldierPersonalArmorFemale = LoadSprites(ImageGroup.SoldierPersonalArmor, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 267);
+		public static readonly Dictionary<Direction, Sprite> SoldierPowerSuit = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32);
+		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuit = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 267);
+		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuitFlying = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 275, 24, 56, 267);
 	}
 }
