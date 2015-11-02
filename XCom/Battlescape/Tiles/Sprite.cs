@@ -46,7 +46,8 @@ namespace XCom.Battlescape.Tiles
 			firingRightArm = imageGroup.Images[firingRightArmIndex];
 			rightArmAnimation = imageGroup.Images.Skip(rightArmAnimationIndex).Take(8).ToArray();
 			legsStanding = imageGroup.Images[legsStandingIndex];
-			legsKneeling = imageGroup.Images[legsKneelingIndex];
+			if (legsKneelingIndex != -1)
+				legsKneeling = imageGroup.Images[legsKneelingIndex];
 			legsAnimation = imageGroup.Images.Skip(legsAnimationIndex).Take(8).ToArray();
 			head = imageGroup.Images[headIndex];
 
@@ -56,11 +57,16 @@ namespace XCom.Battlescape.Tiles
 				rightArmAnimation = leftArmAnimation;
 				leftArmAnimation = temp;
 			}
+			if (imageGroup == ImageGroup.Muton)
+			{
+				walkingOffsets = new[] { 1, 1, 0, -1, 1, 1, 0, -1 };
+				armOffsets = new[] { 0, 0, -1, -2, 0, 0, -1, -2 };
+			}
 		}
 
 		public void Render(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item)
 		{
-			//TODO: kneeling, flying
+			//TODO: kneeling
 			DrawSprite(buffer, topRow, leftColumn, item, LegPosition.Standing, 0);
 		}
 
@@ -69,10 +75,11 @@ namespace XCom.Battlescape.Tiles
 			DrawSprite(buffer, topRow, leftColumn, item, LegPosition.Walking, frame);
 		}
 
-		public const int FrameCount = 8;
+		public int FrameCount => 8;
 
 		private enum LegPosition { Standing, Kneeling, Walking }
-		private static readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
+		private readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
+		private readonly int[] armOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
 
 		private void DrawSprite(GraphicsBuffer buffer, int topRow, int leftColumn, BattleItem item, LegPosition legPosition, int frame)
 		{
@@ -84,6 +91,10 @@ namespace XCom.Battlescape.Tiles
 			var walkingOffset =
 				isWalking ? walkingOffsets[frame] :
 				isKneeling ? 2 : //TODO: correct offset for kneeling
+				0;
+			var armOffset =
+				isWalking ? armOffsets[frame] :
+				isKneeling ? 2 : //TODO: correct offset
 				0;
 			var leftArm =
 				isTwoHanded ? twoHandedLeftArm :
@@ -106,17 +117,17 @@ namespace XCom.Battlescape.Tiles
 				{
 				case SpritePart.OneHandedWeapon:
 					if (isOneHanded)
-						buffer.DrawItem(topRow + walkingOffset, leftColumn, item.Sprites[direction]);
+						buffer.DrawItem(topRow + armOffset, leftColumn, item.Sprites[direction]);
 					break;
 				case SpritePart.TwoHandedWeapon:
 					if (isTwoHanded)
-						buffer.DrawItem(topRow + walkingOffset, leftColumn, item.Sprites[direction]);
+						buffer.DrawItem(topRow + armOffset, leftColumn, item.Sprites[direction]);
 					break;
 				case SpritePart.LeftArm:
-					buffer.DrawItem(topRow + walkingOffset, leftColumn, leftArm);
+					buffer.DrawItem(topRow + armOffset, leftColumn, leftArm);
 					break;
 				case SpritePart.RightArm:
-					buffer.DrawItem(topRow + walkingOffset, leftColumn, rightArm);
+					buffer.DrawItem(topRow + armOffset, leftColumn, rightArm);
 					break;
 				case SpritePart.Head:
 					buffer.DrawItem(topRow + walkingOffset, leftColumn, head);
@@ -156,7 +167,7 @@ namespace XCom.Battlescape.Tiles
 					firingRightArm + index,
 					rightArmAnimation + index * 24,
 					legsStanding + index,
-					legsKneeling + index,
+					legsKneeling == -1 ? -1 : legsKneeling + index,
 					legsAnimation + index * 24,
 					head + index))
 				.ToDictionary(sprite => sprite.direction, sprite => sprite);
@@ -169,5 +180,6 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Dictionary<Direction, Sprite> SoldierPowerSuit = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32);
 		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuit = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 267);
 		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuitFlying = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 275, 24, 56, 267);
+		public static readonly Dictionary<Direction, Sprite> Muton = LoadSprites(ImageGroup.Muton, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32); //NOTE: East empty right arm animation is incorrect.
 	}
 }

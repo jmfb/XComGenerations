@@ -48,13 +48,25 @@ namespace XCom.Screens
 		private int deathFrame;
 		//private int firingFrame;
 
+		//TODO: Chryssalid
+		//TODO: Floater
+		//TODO: Muton
+		//TODO: Sectoid
+		//TODO: Snakeman
+
+		//HWPs (large 4x4 images)
+		//TODO: Tanks (tanks, laser, hover)
+		//TODO: Cyberdisc
+		//TODO: Reaper
+		//TODO: Sectopod
+
 		public override void Render(GraphicsBuffer buffer)
 		{
 			//base.Render(buffer);
-			//var item = new BattleItem { Item = WeaponType.BlasterLauncher };
-			const BattleItem item = null;
-			var sprites = SimpleSprite.Silacoid;
-			var death = Animation.SilacoidDeath;
+			var item = new BattleItem { Item = WeaponType.BlasterLauncher };
+			//const BattleItem item = null;
+			var sprites = Sprite.Muton;
+			var death = Animation.MutonDeath;
 			//var firing = Animation.CelatidFiring;
 
 			sprites[Direction.North].Render(buffer, 0, 144, item);
@@ -66,7 +78,7 @@ namespace XCom.Screens
 			sprites[Direction.West].Render(buffer, 80, 176, item);
 			sprites[Direction.NorthWest].Render(buffer, 80, 144, item);
 
-			if (stopwatch.ElapsedMilliseconds > 100)
+			if (stopwatch.ElapsedMilliseconds > 1000)
 			{
 				frame = (frame + 1) % sprites[Direction.North].FrameCount;
 				deathFrame = (deathFrame + 1) % death.FrameCount;
@@ -85,6 +97,9 @@ namespace XCom.Screens
 
 			death.Animate(buffer, 0, 0, deathFrame);
 			//firing.Animate(buffer, 0, 32, firingFrame);
+
+			Font.Normal.DrawString(buffer, 100, 0, $"Frame {frame}", ColorScheme.White);
+			Font.Normal.DrawString(buffer, 110, 0, $"Death {deathFrame}", ColorScheme.White);
 		}
 	}
 }
