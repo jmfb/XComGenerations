@@ -31,5 +31,6 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Animation EtherealDeath = new Animation(ImageGroup.Ethereal, 72, 3);
 		public static readonly Animation MutonDeath = new Animation(ImageGroup.Muton, 264, 3);
 		public static readonly Animation SectoidDeath = new Animation(ImageGroup.Sectoid, 264, 3);
+		public static readonly Animation ChryssalidDeath = new Animation(ImageGroup.Chryssalid, 224, 3);
 	}
 }

@@ -47,8 +47,7 @@ namespace XCom.Battlescape.Tiles
 			firingRightArm = imageGroup.Images[firingRightArmIndex];
 			rightArmAnimation = imageGroup.Images.Skip(rightArmAnimationIndex).Take(8).ToArray();
 			legsStanding = imageGroup.Images[legsStandingIndex];
-			if (legsKneelingIndex != -1)
-				legsKneeling = imageGroup.Images[legsKneelingIndex];
+			legsKneeling = imageGroup.Images[legsKneelingIndex];
 			legsAnimation = imageGroup.Images.Skip(legsAnimationIndex).Take(8).ToArray();
 			head = imageGroup.Images[headIndex];
 
@@ -170,7 +169,7 @@ namespace XCom.Battlescape.Tiles
 					firingRightArm + index,
 					rightArmAnimation + index * 24,
 					legsStanding + index,
-					legsKneeling == -1 ? -1 : legsKneeling + index,
+					legsKneeling + index,
 					legsAnimation + index * 24,
 					head + index))
 				.ToDictionary(sprite => sprite.direction, sprite => sprite);
@@ -184,6 +183,7 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuit = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 267);
 		public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuitFlying = LoadSprites(ImageGroup.SoldierPowerSuit, 0, 240, 40, 8, 232, 248, 256, 48, 275, 24, 56, 267);
 		public static readonly Dictionary<Direction, Sprite> Muton = LoadSprites(ImageGroup.Muton, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32); //NOTE: East empty right arm animation is incorrect.
-		public static readonly Dictionary<Direction, Sprite> Sectoid = LoadSprites(ImageGroup.Sectoid, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32); //NOTE: East empty right arm animation is incorrect.
+		public static readonly Dictionary<Direction, Sprite> Sectoid = LoadSprites(ImageGroup.Sectoid, 0, 240, 40, 8, 232, 248, 256, 48, 16, 24, 56, 32);
+		public static readonly Dictionary<Direction, Sprite> Chryssalid = LoadSprites(ImageGroup.Chryssalid, 0, 0, 32, 8, 8, 8, 8, 40, 16, 16, 48, 24);
 	}
 }

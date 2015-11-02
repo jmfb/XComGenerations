@@ -48,7 +48,6 @@ namespace XCom.Screens
 		private int deathFrame;
 		//private int firingFrame;
 
-		//TODO: Chryssalid
 		//TODO: Floater
 		//TODO: Snakeman
 
@@ -58,13 +57,15 @@ namespace XCom.Screens
 		//TODO: Reaper
 		//TODO: Sectopod
 
+		//TODO: Ground items
+
 		public override void Render(GraphicsBuffer buffer)
 		{
 			//base.Render(buffer);
-			var item = new BattleItem { Item = WeaponType.BlasterLauncher };
-			//const BattleItem item = null;
-			var sprites = Sprite.Sectoid;
-			var death = Animation.SectoidDeath;
+			//var item = new BattleItem { Item = WeaponType.BlasterLauncher };
+			const BattleItem item = null;
+			var sprites = Sprite.Chryssalid;
+			var death = Animation.ChryssalidDeath;
 			//var firing = Animation.CelatidFiring;
 
 			sprites[Direction.North].Render(buffer, 0, 144, item);
