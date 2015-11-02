@@ -95,6 +95,7 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Dictionary<Direction, SimpleSprite> CivilianMale = LoadSprites(ImageGroup.CivilianMale, 0, 8, 8);
 		public static readonly Dictionary<Direction, SimpleSprite> Zombie = LoadSprites(ImageGroup.Zombie, 0, 8, 8);
 		public static readonly Dictionary<Direction, SimpleSprite> Celatid = LoadOmnidirectionalSprites(ImageGroup.Celatid, 0, 1, 5);
+		public static readonly Dictionary<Direction, SimpleSprite> Silacoid = LoadOmnidirectionalSprites(ImageGroup.Silacoid, 0, 1, 5);
 		public static readonly Dictionary<Direction, SimpleSprite> Ethereal = LoadSprites(ImageGroup.Ethereal, 0, 8, 8);
 	}
 }

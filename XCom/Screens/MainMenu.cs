@@ -51,9 +51,10 @@ namespace XCom.Screens
 		public override void Render(GraphicsBuffer buffer)
 		{
 			//base.Render(buffer);
-			var item = new BattleItem { Item = WeaponType.BlasterLauncher };
-			var sprites = SimpleSprite.Ethereal;
-			var death = Animation.EtherealDeath;
+			//var item = new BattleItem { Item = WeaponType.BlasterLauncher };
+			const BattleItem item = null;
+			var sprites = SimpleSprite.Silacoid;
+			var death = Animation.SilacoidDeath;
 			//var firing = Animation.CelatidFiring;
 
 			sprites[Direction.North].Render(buffer, 0, 144, item);
