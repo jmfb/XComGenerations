@@ -10,27 +10,18 @@ namespace XCom.Battlescape.Tiles
 		private readonly byte[] image;
 		private readonly byte[] headImage;
 		private readonly byte[][] animation;
+		private readonly byte[] emptyLeftArm;
+		private readonly byte[] emptyRightArm;
 
 		private static readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
-		private int[] headTopOffsets = { 0, 0, 0, 0, 0, 0, 0, 0 };
-		private int[] headLeftOffsets = { 0, 0, 0, 0, 0, 0, 0, 0 };
+		private readonly int[] headTopOffsets = { 0, 0, 0, 0, 0, 0, 0, 0 };
+		private readonly int[] headLeftOffsets = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		private SimpleSprite(
 			ImageGroup imageGroup,
 			Direction direction,
-			int imageIndex,
-			int animationIndex,
-			int animationCount)
-		{
-			this.direction = direction;
-			image = imageGroup.Images[imageIndex];
-			headImage = null;
-			animation = imageGroup.Images.Skip(animationIndex).Take(animationCount).ToArray();
-		}
-
-		private SimpleSprite(
-			ImageGroup imageGroup,
-			Direction direction,
+			int emptyLeftArmIndex,
+			int emptyRightArmIndex,
 			int imageIndex,
 			int headImageIndex,
 			int animationIndex,
@@ -38,12 +29,14 @@ namespace XCom.Battlescape.Tiles
 		{
 			this.direction = direction;
 			image = imageGroup.Images[imageIndex];
-			headImage = imageGroup.Images[headImageIndex];
+			headImage = headImageIndex == -1 ? null : imageGroup.Images[headImageIndex];
 			animation = imageGroup.Images.Skip(animationIndex).Take(animationCount).ToArray();
+			emptyLeftArm = emptyLeftArmIndex == -1 ? null : imageGroup.Images[emptyLeftArmIndex];
+			emptyRightArm = emptyRightArmIndex == -1 ? null : imageGroup.Images[emptyRightArmIndex];
 
 			if (imageGroup == ImageGroup.Snakeman)
 			{
-				headTopOffsets = new[]{ 3, 3, 2, 1, 0, 0, 1, 2 };
+				headTopOffsets = new[] { 3, 3, 2, 1, 0, 0, 1, 2 };
 				if (direction == Direction.North ||
 					direction == Direction.NorthEast ||
 					direction == Direction.East)
@@ -75,6 +68,11 @@ namespace XCom.Battlescape.Tiles
 			var walkingOffset = animating ? walkingOffsets[frame] : 0;
 			var headTopOffset = animating ? headTopOffsets[frame] : 0;
 			var headLeftOffset = animating ? headLeftOffsets[frame] : 0;
+
+			//TODO: arms with one or two handed, possibly animating, possibly with offset
+			var leftArm = emptyLeftArm;
+			var rightArm = emptyRightArm;
+
 			foreach (var part in direction.Metadata().DrawOrder)
 			{
 				switch (part)
@@ -83,6 +81,12 @@ namespace XCom.Battlescape.Tiles
 					if (headImage != null)
 						buffer.DrawItem(topRow + headTopOffset, leftColumn + headLeftOffset, headImage);
 					buffer.DrawItem(topRow, leftColumn, body);
+					break;
+				case SpritePart.LeftArm:
+					buffer.DrawItem(topRow + headTopOffset, leftColumn + headLeftOffset, leftArm);
+					break;
+				case SpritePart.RightArm:
+					buffer.DrawItem(topRow + headTopOffset, leftColumn + headLeftOffset, rightArm);
 					break;
 				case SpritePart.OneHandedWeapon:
 					if (item != null && !item.IsTwoHanded)
@@ -108,7 +112,31 @@ namespace XCom.Battlescape.Tiles
 				.Select((direction, index) => new SimpleSprite(
 					imageGroup,
 					direction,
+					-1,
+					-1,
 					imageIndex + index,
+					-1,
+					animationIndex + index * animationCount,
+					animationCount))
+				.ToDictionary(sprite => sprite.direction, sprite => sprite);
+		}
+
+		private static Dictionary<Direction, SimpleSprite> LoadSpritesWithArms(
+			ImageGroup imageGroup,
+			int emptyLeftArmIndex,
+			int emptyRightArmIndex,
+			int imageIndex,
+			int animationIndex,
+			int animationCount)
+		{
+			return EnumEx.GetValues<Direction>()
+				.Select((direction, index) => new SimpleSprite(
+					imageGroup,
+					direction,
+					emptyLeftArmIndex + index,
+					emptyRightArmIndex + index,
+					imageIndex + index,
+					-1,
 					animationIndex + index * animationCount,
 					animationCount))
 				.ToDictionary(sprite => sprite.direction, sprite => sprite);
@@ -116,6 +144,8 @@ namespace XCom.Battlescape.Tiles
 
 		private static Dictionary<Direction, SimpleSprite> LoadSpritesWithHead(
 			ImageGroup imageGroup,
+			int emptyLeftArmIndex,
+			int emptyRightArmIndex,
 			int imageIndex,
 			int headImageIndex,
 			int animationIndex,
@@ -125,6 +155,8 @@ namespace XCom.Battlescape.Tiles
 				.Select((direction, index) => new SimpleSprite(
 					imageGroup,
 					direction,
+					emptyLeftArmIndex + index,
+					emptyRightArmIndex + index,
 					imageIndex + index,
 					headImageIndex + index,
 					animationIndex + index * animationCount,
@@ -142,7 +174,10 @@ namespace XCom.Battlescape.Tiles
 				.Select(direction => new SimpleSprite(
 					imageGroup,
 					direction,
+					-1,
+					-1,
 					imageIndex,
+					-1,
 					animationIndex,
 					animationCount))
 				.ToDictionary(sprite => sprite.direction, sprite => sprite);
@@ -154,8 +189,9 @@ namespace XCom.Battlescape.Tiles
 		public static readonly Dictionary<Direction, SimpleSprite> Celatid = LoadOmnidirectionalSprites(ImageGroup.Celatid, 0, 1, 5);
 		public static readonly Dictionary<Direction, SimpleSprite> Silacoid = LoadOmnidirectionalSprites(ImageGroup.Silacoid, 0, 1, 5);
 		public static readonly Dictionary<Direction, SimpleSprite> Ethereal = LoadSprites(ImageGroup.Ethereal, 0, 8, 8);
-		//TODO: Floater and Snakeman still need arms.
-		public static readonly Dictionary<Direction, SimpleSprite> Floater = LoadSprites(ImageGroup.Floater, 16, 24, 5);
-		public static readonly Dictionary<Direction, SimpleSprite> Snakeman = LoadSpritesWithHead(ImageGroup.Snakeman, 16, 24, 32, 8);
+		//TODO: Floater and Snakeman still need firing/animating arms.
+		//TODO: 32 Float arms: 67-98, 32 Snakeman arms: 99-130
+		public static readonly Dictionary<Direction, SimpleSprite> Floater = LoadSpritesWithArms(ImageGroup.Floater, 8, 0, 16, 24, 5);
+		public static readonly Dictionary<Direction, SimpleSprite> Snakeman = LoadSpritesWithHead(ImageGroup.Snakeman, 0, 8, 16, 24, 32, 8);
 	}
 }
