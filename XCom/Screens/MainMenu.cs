@@ -64,8 +64,8 @@ namespace XCom.Screens
 			//base.Render(buffer);
 			//var item = new BattleItem { Item = WeaponType.BlasterLauncher };
 			const BattleItem item = null;
-			var sprites = Sprite.Chryssalid;
-			var death = Animation.ChryssalidDeath;
+			var sprites = SimpleSprite.Snakeman;
+			var death = Animation.SnakemanDeath;
 			//var firing = Animation.CelatidFiring;
 
 			sprites[Direction.North].Render(buffer, 0, 144, item);
@@ -77,7 +77,7 @@ namespace XCom.Screens
 			sprites[Direction.West].Render(buffer, 80, 176, item);
 			sprites[Direction.NorthWest].Render(buffer, 80, 144, item);
 
-			if (stopwatch.ElapsedMilliseconds > 1000)
+			if (stopwatch.ElapsedMilliseconds > 100)
 			{
 				frame = (frame + 1) % sprites[Direction.North].FrameCount;
 				deathFrame = (deathFrame + 1) % death.FrameCount;
