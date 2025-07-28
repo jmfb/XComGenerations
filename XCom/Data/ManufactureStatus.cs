@@ -1,11 +1,10 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public enum ManufactureStatus
 {
-	public enum ManufactureStatus
-	{
-		UnitStarted,
-		InsufficientFunds,
-		InsufficientHangarSpace,
-		InsufficientMaterials,
-		InfufficentStorageSpace,
-	}
+	UnitStarted,
+	InsufficientFunds,
+	InsufficientHangarSpace,
+	InsufficientMaterials,
+	InfufficentStorageSpace,
 }

@@ -1,7 +1,6 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public class DamageMetadata
 {
-	public class DamageMetadata
-	{
-		public string Name { get; set; }
-	}
+	public string Name { get; set; }
 }

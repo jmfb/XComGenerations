@@ -1,42 +1,41 @@
 ﻿using XCom.Controls;
 using XCom.Music;
 
-namespace XCom.Screens
+namespace XCom.Screens;
+
+public abstract class Screen : InteractiveContainer
 {
-	public abstract class Screen : InteractiveContainer
+	protected Screen ModalParent { get; private set; }
+
+	public virtual void OnSetFocus() { }
+
+	public virtual void OnKillFocus() { }
+
+	public void DoModal(Screen parent)
 	{
-		protected Screen ModalParent { get; private set; }
-
-		public virtual void OnSetFocus() { }
-
-		public virtual void OnKillFocus() { }
-
-		public void DoModal(Screen parent)
-		{
-			ModalParent = parent;
-			parent.OnKillFocus();
-			parent.AddControl(this);
-			GameState.Current.Dispatcher.CaptureFocus(this);
-			WindowsSoundEffect.WindowOpen.Play();
-			OnSetFocus();
-		}
-
-		protected void EndModal()
-		{
-			OnKillFocus();
-			WindowsSoundEffect.WindowClose.Play();
-			GameState.Current.Dispatcher.ReleaseFocus();
-			ModalParent.RemoveControl(this);
-			ModalParent.OnSetFocus();
-		}
-
-		protected void SwitchToModal(Screen newModal)
-		{
-			var currentParent = ModalParent;
-			EndModal();
-			newModal.DoModal(currentParent);
-		}
-
-		public static readonly Geoscape Geoscape = new Geoscape();
+		ModalParent = parent;
+		parent.OnKillFocus();
+		parent.AddControl(this);
+		GameState.Current.Dispatcher.CaptureFocus(this);
+		WindowsSoundEffect.WindowOpen.Play();
+		OnSetFocus();
 	}
+
+	protected void EndModal()
+	{
+		OnKillFocus();
+		WindowsSoundEffect.WindowClose.Play();
+		GameState.Current.Dispatcher.ReleaseFocus();
+		ModalParent.RemoveControl(this);
+		ModalParent.OnSetFocus();
+	}
+
+	protected void SwitchToModal(Screen newModal)
+	{
+		var currentParent = ModalParent;
+		EndModal();
+		newModal.DoModal(currentParent);
+	}
+
+	public static readonly Geoscape Geoscape = new Geoscape();
 }

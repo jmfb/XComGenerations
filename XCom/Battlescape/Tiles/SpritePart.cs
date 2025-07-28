@@ -1,12 +1,11 @@
-﻿namespace XCom.Battlescape.Tiles
+﻿namespace XCom.Battlescape.Tiles;
+
+public enum SpritePart
 {
-	public enum SpritePart
-	{
-		Head,
-		Legs,
-		LeftArm,
-		RightArm,
-		OneHandedWeapon,
-		TwoHandedWeapon,
-	}
+	Head,
+	Legs,
+	LeftArm,
+	RightArm,
+	OneHandedWeapon,
+	TwoHandedWeapon,
 }

@@ -1,15 +1,14 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public enum TopicCategory
 {
-	public enum TopicCategory
-	{
-		CraftAndArmament,
-		HeavyWeaponsPlatforms,
-		WeaponsAndEquipment,
-		AlienArtifacts,
-		BaseFacilities,
-		AlienLifeForms,
-		AlienResearch,
-		UfoComponents,
-		Ufos,
-	}
+	CraftAndArmament,
+	HeavyWeaponsPlatforms,
+	WeaponsAndEquipment,
+	AlienArtifacts,
+	BaseFacilities,
+	AlienLifeForms,
+	AlienResearch,
+	UfoComponents,
+	Ufos,
 }

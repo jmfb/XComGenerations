@@ -1,10 +1,9 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public enum SkinColor
 {
-	public enum SkinColor
-	{
-		White,
-		Tan,
-		Brown,
-		Black,
-	}
+	White,
+	Tan,
+	Brown,
+	Black,
 }

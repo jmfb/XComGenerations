@@ -1,8 +1,7 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public enum FuelType
 {
-	public enum FuelType
-	{
-		Normal,
-		Elerium115,
-	}
+	Normal,
+	Elerium115,
 }

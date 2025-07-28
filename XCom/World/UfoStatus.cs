@@ -1,9 +1,8 @@
-﻿namespace XCom.World
+﻿namespace XCom.World;
+
+public enum UfoStatus
 {
-	public enum UfoStatus
-	{
-		Flying,
-		Landed,
-		Crashed,
-	}
+	Flying,
+	Landed,
+	Crashed,
 }

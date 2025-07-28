@@ -1,14 +1,13 @@
-﻿namespace XCom.World
+﻿namespace XCom.World;
+
+public enum AlienMissionType
 {
-	public enum AlienMissionType
-	{
-		AlienResearch,
-		AlienHarvest,
-		AlienAbduction,
-		AlienInfiltration,
-		AlienBase,
-		AlienTerror,
-		AlienRetaliation,
-		AlienSupply,
-	}
+	AlienResearch,
+	AlienHarvest,
+	AlienAbduction,
+	AlienInfiltration,
+	AlienBase,
+	AlienTerror,
+	AlienRetaliation,
+	AlienSupply,
 }

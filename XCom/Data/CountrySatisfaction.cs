@@ -1,10 +1,9 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public enum CountrySatisfaction
 {
-	public enum CountrySatisfaction
-	{
-		SignedAlienPact,
-		Unhappy,
-		Average,
-		Happy,
-	}
+	SignedAlienPact,
+	Unhappy,
+	Average,
+	Happy,
 }

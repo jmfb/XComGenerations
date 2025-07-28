@@ -1,7 +1,6 @@
-﻿namespace XCom.Graphics
+﻿namespace XCom.Graphics;
+
+public interface Drawable
 {
-	public interface Drawable
-	{
-		void Render(GraphicsBuffer buffer);
-	}
+	void Render(GraphicsBuffer buffer);
 }

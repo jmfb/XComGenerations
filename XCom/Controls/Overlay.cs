@@ -1,21 +1,20 @@
 ﻿using XCom.Graphics;
 
-namespace XCom.Controls
+namespace XCom.Controls;
+
+public class Overlay : Drawable
 {
-	public class Overlay : Drawable
+	private readonly byte[] overlay;
+	private readonly int paletteIndex;
+
+	public Overlay(byte[] overlay, int paletteIndex = 3)
 	{
-		private readonly byte[] overlay;
-		private readonly int paletteIndex;
+		this.overlay = overlay;
+		this.paletteIndex = paletteIndex;
+	}
 
-		public Overlay(byte[] overlay, int paletteIndex = 3)
-		{
-			this.overlay = overlay;
-			this.paletteIndex = paletteIndex;
-		}
-
-		public void Render(GraphicsBuffer buffer)
-		{
-			buffer.DrawOverlay(overlay, paletteIndex);
-		}
+	public void Render(GraphicsBuffer buffer)
+	{
+		buffer.DrawOverlay(overlay, paletteIndex);
 	}
 }

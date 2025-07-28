@@ -1,8 +1,7 @@
-﻿namespace XCom.Music
+﻿namespace XCom.Music;
+
+public enum MetaEvent : byte
 {
-	public enum MetaEvent : byte
-	{
-		SetTempo = 0x51,
-		EndOfTrack = 0x2f,
-	}
+	SetTempo = 0x51,
+	EndOfTrack = 0x2f,
 }

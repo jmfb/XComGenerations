@@ -1,30 +1,29 @@
 ﻿using System.Collections.Generic;
 
-namespace XCom.Data
+namespace XCom.Data;
+
+public enum LaserWeaponType
 {
-	public enum LaserWeaponType
+	LaserPistol,
+	LaserRifle,
+	HeavyLaser,
+}
+
+public static class LaserWeaponTypeExtensions
+{
+	public static LaserWeaponMetadata Metadata(this LaserWeaponType laserWeaponType) =>
+		metadata[laserWeaponType];
+
+	private static LaserWeaponMetadata Create(WeaponType weapon, int damage)
 	{
-		LaserPistol,
-		LaserRifle,
-		HeavyLaser,
+		return new LaserWeaponMetadata { Weapon = weapon, Damage = damage };
 	}
 
-	public static class LaserWeaponTypeExtensions
-	{
-		public static LaserWeaponMetadata Metadata(this LaserWeaponType laserWeaponType) =>
-			metadata[laserWeaponType];
-
-		private static LaserWeaponMetadata Create(WeaponType weapon, int damage)
+	private static readonly Dictionary<LaserWeaponType, LaserWeaponMetadata> metadata =
+		new Dictionary<LaserWeaponType, LaserWeaponMetadata>
 		{
-			return new LaserWeaponMetadata { Weapon = weapon, Damage = damage };
-		}
-
-		private static readonly Dictionary<LaserWeaponType, LaserWeaponMetadata> metadata =
-			new Dictionary<LaserWeaponType, LaserWeaponMetadata>
-			{
-				{ LaserWeaponType.LaserPistol, Create(WeaponType.LaserPistol, 46) },
-				{ LaserWeaponType.LaserRifle, Create(WeaponType.LaserRifle, 60) },
-				{ LaserWeaponType.HeavyLaser, Create(WeaponType.HeavyLaser, 85) },
-			};
-	}
+			{ LaserWeaponType.LaserPistol, Create(WeaponType.LaserPistol, 46) },
+			{ LaserWeaponType.LaserRifle, Create(WeaponType.LaserRifle, 60) },
+			{ LaserWeaponType.HeavyLaser, Create(WeaponType.HeavyLaser, 85) },
+		};
 }

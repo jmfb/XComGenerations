@@ -5,95 +5,81 @@ using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Screens;
 
-namespace XCom.Modals
+namespace XCom.Modals;
+
+public class SelectArmor : Screen
 {
-	public class SelectArmor : Screen
+	private readonly Soldier soldier;
+
+	public SelectArmor(Soldier soldier)
 	{
-		private readonly Soldier soldier;
+		this.soldier = soldier;
+		AddControl(new Border(40, 64, 192, 134, ColorScheme.Blue, Backgrounds.EquipCraft, 10));
+		AddControl(
+			new Label(48, Label.Center, "SELECT ARMOR FOR", Font.Normal, ColorScheme.DarkYellow)
+		);
+		AddControl(new Label(56, Label.Center, soldier.Name, Font.Normal, ColorScheme.DarkYellow));
+		AddControl(new Label(72, 96, "TYPE", Font.Normal, ColorScheme.DarkYellow));
+		AddControl(new Label(72, 176, "QUANTITY", Font.Normal, ColorScheme.DarkYellow));
+		AddControl(
+			new Button(88, 80, 100, 14, "NONE", ColorScheme.DarkYellow, Font.Normal, OnNone)
+		);
 
-		public SelectArmor(Soldier soldier)
-		{
-			this.soldier = soldier;
-			AddControl(new Border(40, 64, 192, 134, ColorScheme.Blue, Backgrounds.EquipCraft, 10));
-			AddControl(
-				new Label(48, Label.Center, "SELECT ARMOR FOR", Font.Normal, ColorScheme.DarkYellow)
-			);
-			AddControl(
-				new Label(56, Label.Center, soldier.Name, Font.Normal, ColorScheme.DarkYellow)
-			);
-			AddControl(new Label(72, 96, "TYPE", Font.Normal, ColorScheme.DarkYellow));
-			AddControl(new Label(72, 176, "QUANTITY", Font.Normal, ColorScheme.DarkYellow));
-			AddControl(
-				new Button(88, 80, 100, 14, "NONE", ColorScheme.DarkYellow, Font.Normal, OnNone)
-			);
-
-			var nextTopRow = 104;
-			foreach (
-				var armorType in new[]
-				{
-					ArmorType.PersonalArmor,
-					ArmorType.PowerSuit,
-					ArmorType.FlyingSuit,
-				}
-			)
+		var nextTopRow = 104;
+		foreach (
+			var armorType in new[]
 			{
-				var metadata = armorType.Metadata();
-				var count = GameState.SelectedBase.Stores[metadata.Item];
-				if (count <= 0)
-					continue;
-				var localArmorType = armorType;
-				var topRow = nextTopRow;
-				nextTopRow += 16;
-				AddControl(
-					new Button(
-						topRow,
-						80,
-						100,
-						14,
-						metadata.Name,
-						ColorScheme.DarkYellow,
-						Font.Normal,
-						() => OnEquipArmor(localArmorType)
-					)
-				);
-				AddControl(
-					new Label(topRow, 216, count.FormatNumber(), Font.Large, ColorScheme.White)
-				);
+				ArmorType.PersonalArmor,
+				ArmorType.PowerSuit,
+				ArmorType.FlyingSuit,
 			}
-
+		)
+		{
+			var metadata = armorType.Metadata();
+			var count = GameState.SelectedBase.Stores[metadata.Item];
+			if (count <= 0)
+				continue;
+			var localArmorType = armorType;
+			var topRow = nextTopRow;
+			nextTopRow += 16;
 			AddControl(
 				new Button(
-					154,
-					135,
-					50,
-					12,
-					"CANCEL",
+					topRow,
+					80,
+					100,
+					14,
+					metadata.Name,
 					ColorScheme.DarkYellow,
 					Font.Normal,
-					EndModal
+					() => OnEquipArmor(localArmorType)
 				)
 			);
+			AddControl(new Label(topRow, 216, count.FormatNumber(), Font.Large, ColorScheme.White));
 		}
 
-		private void OnNone()
-		{
-			ReturnSoldierArmor();
-			soldier.Armor = null;
-			EndModal();
-		}
+		AddControl(
+			new Button(154, 135, 50, 12, "CANCEL", ColorScheme.DarkYellow, Font.Normal, EndModal)
+		);
+	}
 
-		private void OnEquipArmor(ArmorType armorType)
-		{
-			ReturnSoldierArmor();
-			GameState.SelectedBase.Stores.Remove(armorType.Metadata().Item);
-			soldier.Armor = armorType;
-			EndModal();
-		}
+	private void OnNone()
+	{
+		ReturnSoldierArmor();
+		soldier.Armor = null;
+		EndModal();
+	}
 
-		private void ReturnSoldierArmor()
-		{
-			if (soldier.Armor != null)
-				GameState.SelectedBase.Stores.Add(soldier.Armor.Value.Metadata().Item);
-		}
+	private void OnEquipArmor(ArmorType armorType)
+	{
+		ReturnSoldierArmor();
+		GameState.SelectedBase.Stores.Remove(armorType.Metadata().Item);
+		soldier.Armor = armorType;
+		EndModal();
+	}
+
+	private void ReturnSoldierArmor()
+	{
+		if (soldier.Armor != null)
+			GameState.SelectedBase.Stores.Add(soldier.Armor.Value.Metadata().Item);
 	}
 }

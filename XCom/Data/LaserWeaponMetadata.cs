@@ -1,8 +1,7 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public class LaserWeaponMetadata
 {
-	public class LaserWeaponMetadata
-	{
-		public WeaponType Weapon { get; set; }
-		public int Damage { get; set; }
-	}
+	public WeaponType Weapon { get; set; }
+	public int Damage { get; set; }
 }

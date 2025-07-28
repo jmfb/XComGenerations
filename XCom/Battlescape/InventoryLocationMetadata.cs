@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape;
+
+public class InventoryLocationMetadata
 {
-	public class InventoryLocationMetadata
-	{
-		public Dictionary<InventoryLocation, int> TimeUnitCost { get; set; }
-	}
+	public Dictionary<InventoryLocation, int> TimeUnitCost { get; set; }
 }

@@ -1,10 +1,9 @@
-﻿namespace XCom.Battlescape
+﻿namespace XCom.Battlescape;
+
+public enum BattleItemType
 {
-	public enum BattleItemType
-	{
-		Weapon,
-		Ammunition,
-		Grenade,
-		Equipment,
-	}
+	Weapon,
+	Ammunition,
+	Grenade,
+	Equipment,
 }

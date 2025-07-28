@@ -1,10 +1,9 @@
 ﻿using XCom.Graphics;
 
-namespace XCom.Controls
+namespace XCom.Controls;
+
+public class ColoredText
 {
-	public class ColoredText
-	{
-		public string Text { get; set; }
-		public ColorScheme Scheme { get; set; }
-	}
+	public string Text { get; set; }
+	public ColorScheme Scheme { get; set; }
 }

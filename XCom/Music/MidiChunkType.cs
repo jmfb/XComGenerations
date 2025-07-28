@@ -1,9 +1,8 @@
-﻿namespace XCom.Music
+﻿namespace XCom.Music;
+
+public enum MidiChunkType
 {
-	public enum MidiChunkType
-	{
-		Header,
-		Track,
-		Other,
-	}
+	Header,
+	Track,
+	Other,
 }

@@ -1,9 +1,8 @@
-namespace XCom.Controls
+﻿namespace XCom.Controls;
+
+public enum Alignment
 {
-	public enum Alignment
-	{
-		Left,
-		Center,
-		Right,
-	}
+	Left,
+	Center,
+	Right,
 }

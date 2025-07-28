@@ -1,9 +1,8 @@
-﻿namespace XCom.Battlescape
+﻿namespace XCom.Battlescape;
+
+public enum UnitType
 {
-	public enum UnitType
-	{
-		Soldier,
-		Hwp,
-		Alien,
-	}
+	Soldier,
+	Hwp,
+	Alien,
 }

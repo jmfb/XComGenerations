@@ -1,9 +1,8 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public class CompletedTransfer
 {
-	public class CompletedTransfer
-	{
-		public string Name { get; set; }
-		public int Quantity { get; set; }
-		public string Destination { get; set; }
-	}
+	public string Name { get; set; }
+	public int Quantity { get; set; }
+	public string Destination { get; set; }
 }

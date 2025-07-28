@@ -1,7 +1,6 @@
-﻿namespace XCom.Battlescape.Tiles
+﻿namespace XCom.Battlescape.Tiles;
+
+public class DirectionMetadata
 {
-	public class DirectionMetadata
-	{
-		public SpritePart[] DrawOrder { get; set; }
-	}
+	public SpritePart[] DrawOrder { get; set; }
 }

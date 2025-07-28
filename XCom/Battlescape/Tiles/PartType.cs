@@ -1,10 +1,9 @@
-﻿namespace XCom.Battlescape.Tiles
+﻿namespace XCom.Battlescape.Tiles;
+
+public enum PartType : byte
 {
-	public enum PartType : byte
-	{
-		Ground = 0,
-		WestWall = 1,
-		NorthWall = 2,
-		Entity = 3,
-	}
+	Ground = 0,
+	WestWall = 1,
+	NorthWall = 2,
+	Entity = 3,
 }

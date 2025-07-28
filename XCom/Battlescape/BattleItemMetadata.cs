@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using XCom.Battlescape.Tiles;
 
-namespace XCom.Battlescape
+namespace XCom.Battlescape;
+
+public interface BattleItemMetadata
 {
-	public interface BattleItemMetadata
-	{
-		string Name { get; }
-		byte[] Image { get; }
-		int Width { get; }
-		int Height { get; }
-		Dictionary<Direction, byte[]> Sprites { get; }
-		bool IsTwoHanded { get; }
-	}
+	string Name { get; }
+	byte[] Image { get; }
+	int Width { get; }
+	int Height { get; }
+	Dictionary<Direction, byte[]> Sprites { get; }
+	bool IsTwoHanded { get; }
 }

@@ -1,8 +1,7 @@
-﻿namespace XCom.Data
+﻿namespace XCom.Data;
+
+public enum Gender
 {
-	public enum Gender
-	{
-		Male,
-		Female,
-	}
+	Male,
+	Female,
 }
