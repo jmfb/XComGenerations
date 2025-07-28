@@ -15,9 +15,19 @@ namespace XCom.World
 		{
 			this.action = action;
 			AddControl(new Border(64, 16, 224, 72, ColorScheme.Green, Backgrounds.Craft, 0));
-			AddControl(new Label(80, Label.CenterOf(16, 224), $"TARGET: {name}", Font.Large, ColorScheme.Green));
+			AddControl(
+				new Label(
+					80,
+					Label.CenterOf(16, 224),
+					$"TARGET: {name}",
+					Font.Large,
+					ColorScheme.Green
+				)
+			);
 			AddControl(new Button(104, 68, 50, 12, "OK", ColorScheme.Aqua, Font.Normal, OnOk));
-			AddControl(new Button(104, 138, 50, 12, "CANCEL", ColorScheme.Aqua, Font.Normal, EndModal));
+			AddControl(
+				new Button(104, 138, 50, 12, "CANCEL", ColorScheme.Aqua, Font.Normal, EndModal)
+			);
 		}
 
 		private void OnOk()

@@ -44,18 +44,29 @@ namespace XCom.Data
 
 		[JsonIgnore]
 		public int TotalFunding => Countries.Sum(country => country.Funding);
+
 		[JsonIgnore]
 		public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
 
-		private static IEnumerable<FacilityType> AllFacilityTypes => EnumEx.GetValues<FacilityType>();
-		private static IEnumerable<FacilityType> BuildableFacilityTypes => AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
+		private static IEnumerable<FacilityType> AllFacilityTypes =>
+			EnumEx.GetValues<FacilityType>();
+		private static IEnumerable<FacilityType> BuildableFacilityTypes =>
+			AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
+
 		[JsonIgnore]
-		public List<FacilityType> AvailableFacilityTypes => BuildableFacilityTypes
-			.Where(facilityType => facilityType.Metadata().IsRequiredResearchCompleted(CompletedResearch))
-			.ToList();
+		public List<FacilityType> AvailableFacilityTypes =>
+			BuildableFacilityTypes
+				.Where(facilityType =>
+					facilityType.Metadata().IsRequiredResearchCompleted(CompletedResearch)
+				)
+				.ToList();
 
 		private static IEnumerable<TopicType> AllTopics => EnumEx.GetValues<TopicType>();
-		private List<TopicType> AvailableTopics => AllTopics.Where(topic => topic.Metadata().IsRequiredResearchCompleted(CompletedResearch)).ToList();
+		private List<TopicType> AvailableTopics =>
+			AllTopics
+				.Where(topic => topic.Metadata().IsRequiredResearchCompleted(CompletedResearch))
+				.ToList();
+
 		public TopicType GetNextTopic(TopicType topic)
 		{
 			var availableTopics = AvailableTopics;
@@ -63,6 +74,7 @@ namespace XCom.Data
 			var nextIndex = (index + 1) % availableTopics.Count;
 			return availableTopics[nextIndex];
 		}
+
 		public TopicType GetPreviousTopic(TopicType topic)
 		{
 			var availableTopics = AvailableTopics;
@@ -70,13 +82,16 @@ namespace XCom.Data
 			var previousIndex = (index + availableTopics.Count - 1) % availableTopics.Count;
 			return availableTopics[previousIndex];
 		}
+
 		public List<TopicType> GetTopics(TopicCategory category)
 		{
 			return AvailableTopics.Where(topic => topic.Metadata().Category == category).ToList();
 		}
 
 		[JsonIgnore]
-		public IEnumerable<Craft> ActiveInterceptors => Bases.SelectMany(@base => @base.ActiveInterceptors);
+		public IEnumerable<Craft> ActiveInterceptors =>
+			Bases.SelectMany(@base => @base.ActiveInterceptors);
+
 		[JsonIgnore]
 		public IEnumerable<Ufo> VisibleUfos => Ufos.Where(ufo => ufo.IsDetected);
 
@@ -84,10 +99,12 @@ namespace XCom.Data
 		{
 			return Bases.SelectMany(@base => @base.Soldiers).Single(soldier => soldier.Id == id);
 		}
+
 		public Craft GetCraft(int id)
 		{
 			return Bases.SelectMany(@base => @base.Crafts).Single(craft => craft.Id == id);
 		}
+
 		public Ufo GetUfo(int number)
 		{
 			return Ufos.Single(ufo => ufo.Number == number);
@@ -116,18 +133,14 @@ namespace XCom.Data
 				NextUfoNumber = 1,
 				Ufos = new List<Ufo>(),
 				UfoFactory = new UfoFactory(),
-				Battle = null
+				Battle = null,
 			};
 		}
 
 		public int CreateWaypoint(Location location)
 		{
 			var number = NextWaypointNumber++;
-			Waypoints.Add(new Waypoint
-			{
-				Location = location,
-				Number = number
-			});
+			Waypoints.Add(new Waypoint { Location = location, Number = number });
 			return number;
 		}
 

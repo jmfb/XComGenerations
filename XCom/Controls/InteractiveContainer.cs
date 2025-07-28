@@ -63,9 +63,7 @@ namespace XCom.Controls
 
 		public override bool HitTest(int row, int column)
 		{
-			return controls
-				.OfType<Interactive>()
-				.Any(control => control.HitTest(row, column));
+			return controls.OfType<Interactive>().Any(control => control.HitTest(row, column));
 		}
 
 		private Interactive FindControl(int row, int column)

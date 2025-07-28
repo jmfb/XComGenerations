@@ -13,7 +13,7 @@ namespace XCom.Data
 		Harvester,
 		SupplyShip,
 		TerrorShip,
-		Battleship
+		Battleship,
 	}
 
 	public static class UfoTypeExtensions
@@ -31,10 +31,11 @@ namespace XCom.Data
 			WeaponRange = 0,
 			MaximumSpeed = 2200,
 			Image = UfoPreviews.SmallScout,
-			Description = "This tiny craft is primarily used for reconnaissance " +
-				"or research. It normally precedes larger vessels at the start " +
-				"of an alien mission.",
-			Tileset = Tileset.SmallScout
+			Description =
+				"This tiny craft is primarily used for reconnaissance "
+				+ "or research. It normally precedes larger vessels at the start "
+				+ "of an alien mission.",
+			Tileset = Tileset.SmallScout,
 		};
 
 		private static readonly UfoMetadata mediumScout = new UfoMetadata
@@ -48,9 +49,10 @@ namespace XCom.Data
 			WeaponRange = 120,
 			MaximumSpeed = 2400,
 			Image = UfoPreviews.MediumScout,
-			Description = "A medium sized scout vessel that poses little threat to " +
-				"earth forces. Normally appears before larger vessels during missions.",
-			Tileset = Tileset.MediumScout
+			Description =
+				"A medium sized scout vessel that poses little threat to "
+				+ "earth forces. Normally appears before larger vessels during missions.",
+			Tileset = Tileset.MediumScout,
 		};
 
 		private static readonly UfoMetadata largeScout = new UfoMetadata
@@ -64,9 +66,10 @@ namespace XCom.Data
 			WeaponRange = 272,
 			MaximumSpeed = 2700,
 			Image = UfoPreviews.LargeScout,
-			Description = "The largest alien scout craft is a general purpose vessel " +
-				"that is used in all types of alien mission.",
-			Tileset = Tileset.LargeScout
+			Description =
+				"The largest alien scout craft is a general purpose vessel "
+				+ "that is used in all types of alien mission.",
+			Tileset = Tileset.LargeScout,
 		};
 
 		private static readonly UfoMetadata abductor = new UfoMetadata
@@ -80,11 +83,12 @@ namespace XCom.Data
 			WeaponRange = 176,
 			MaximumSpeed = 4300,
 			Image = UfoPreviews.Abductor,
-			Description = "This vessel is equipped with an examination room for " +
-				"performing horrific experiments on human subjects.  The victim is " +
-				"normally paralyzed by telepathic powers, but remains conscious while " +
-				"on the operating table.",
-			Tileset = Tileset.Abductor
+			Description =
+				"This vessel is equipped with an examination room for "
+				+ "performing horrific experiments on human subjects.  The victim is "
+				+ "normally paralyzed by telepathic powers, but remains conscious while "
+				+ "on the operating table.",
+			Tileset = Tileset.Abductor,
 		};
 
 		private static readonly UfoMetadata harvester = new UfoMetadata
@@ -98,11 +102,12 @@ namespace XCom.Data
 			WeaponRange = 160,
 			MaximumSpeed = 4000,
 			Image = UfoPreviews.Harvester,
-			Description = "The harvester has a trap door in its base and is equipped " +
-				"with lifting gear to haul up cattle or other beasts.  Laser cutters " +
-				"are used to extract the desired material and the carcass is dumped on " +
-				"the ground. There are also storage containers for body parts.",
-			Tileset = Tileset.Harvester
+			Description =
+				"The harvester has a trap door in its base and is equipped "
+				+ "with lifting gear to haul up cattle or other beasts.  Laser cutters "
+				+ "are used to extract the desired material and the carcass is dumped on "
+				+ "the ground. There are also storage containers for body parts.",
+			Tileset = Tileset.Harvester,
 		};
 
 		private static readonly UfoMetadata terrorShip = new UfoMetadata
@@ -116,10 +121,11 @@ namespace XCom.Data
 			WeaponRange = 336,
 			MaximumSpeed = 4800,
 			Image = UfoPreviews.TerrorShip,
-			Description = "The terror ship has a containment facility for large alien " +
-				"terror weapons or creatures. It is used to transport these alien " +
-				"terrorists into populated areas.",
-			Tileset = Tileset.TerrorShip
+			Description =
+				"The terror ship has a containment facility for large alien "
+				+ "terror weapons or creatures. It is used to transport these alien "
+				+ "terrorists into populated areas.",
+			Tileset = Tileset.TerrorShip,
 		};
 
 		private static readonly UfoMetadata supplyShip = new UfoMetadata
@@ -133,10 +139,11 @@ namespace XCom.Data
 			WeaponRange = 288,
 			MaximumSpeed = 3200,
 			Image = UfoPreviews.SupplyShip,
-			Description = "The supply vessel is used during the construction of alien " +
-				"bases or for supplying existing bases. It carries alien food containers " +
-				"and reproduction chambers.",
-			Tileset = Tileset.SupplyShip
+			Description =
+				"The supply vessel is used during the construction of alien "
+				+ "bases or for supplying existing bases. It carries alien food containers "
+				+ "and reproduction chambers.",
+			Tileset = Tileset.SupplyShip,
 		};
 
 		private static readonly UfoMetadata battleship = new UfoMetadata
@@ -150,13 +157,17 @@ namespace XCom.Data
 			WeaponRange = 520,
 			MaximumSpeed = 5000,
 			Image = UfoPreviews.Battleship,
-			Description = "The battleship is the largest and most powerful alien craft. " +
-				"It is normally the primary alien mission craft, equipped with powerful " +
-				"weapons and numerous crew members.",
-			Tileset = Tileset.Battleship
+			Description =
+				"The battleship is the largest and most powerful alien craft. "
+				+ "It is normally the primary alien mission craft, equipped with powerful "
+				+ "weapons and numerous crew members.",
+			Tileset = Tileset.Battleship,
 		};
 
-		private static readonly Dictionary<UfoType, UfoMetadata> metadata = new Dictionary<UfoType, UfoMetadata>
+		private static readonly Dictionary<UfoType, UfoMetadata> metadata = new Dictionary<
+			UfoType,
+			UfoMetadata
+		>
 		{
 			{ UfoType.SmallScout, smallScout },
 			{ UfoType.MediumScout, mediumScout },
@@ -165,7 +176,7 @@ namespace XCom.Data
 			{ UfoType.Harvester, harvester },
 			{ UfoType.SupplyShip, supplyShip },
 			{ UfoType.TerrorShip, terrorShip },
-			{ UfoType.Battleship, battleship }
+			{ UfoType.Battleship, battleship },
 		};
 	}
 }

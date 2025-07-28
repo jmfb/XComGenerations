@@ -12,7 +12,7 @@ namespace XCom.Data
 		RocketLauncher,
 		LaserBeam,
 		PlasmaBeam,
-		FusionBallLauncher
+		FusionBallLauncher,
 	}
 
 	public static class DamageTypeExtensions
@@ -24,13 +24,13 @@ namespace XCom.Data
 
 		private static DamageMetadata Damage(string name)
 		{
-			return new DamageMetadata
-			{
-				Name = name
-			};
+			return new DamageMetadata { Name = name };
 		}
 
-		private static readonly Dictionary<DamageType, DamageMetadata> metadata = new Dictionary<DamageType, DamageMetadata>
+		private static readonly Dictionary<DamageType, DamageMetadata> metadata = new Dictionary<
+			DamageType,
+			DamageMetadata
+		>
 		{
 			{ DamageType.ArmorPiercing, Damage("ARMOR PIERCING") },
 			{ DamageType.HighExplosive, Damage("HIGH EXPLOSIVE") },
@@ -40,7 +40,7 @@ namespace XCom.Data
 			{ DamageType.RocketLauncher, Damage("ROCKET LAUNCHER") },
 			{ DamageType.LaserBeam, Damage("LASER BEAM") },
 			{ DamageType.PlasmaBeam, Damage("PLASMA BEAM") },
-			{ DamageType.FusionBallLauncher, Damage("FUSION BALL LAUNCHER") }
+			{ DamageType.FusionBallLauncher, Damage("FUSION BALL LAUNCHER") },
 		};
 	}
 }

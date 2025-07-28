@@ -5,6 +5,6 @@
 		SignedAlienPact,
 		Unhappy,
 		Average,
-		Happy
+		Happy,
 	}
 }

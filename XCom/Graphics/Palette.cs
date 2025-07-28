@@ -54,7 +54,9 @@ namespace XCom.Graphics
 			return newPalette;
 		}
 
-		private static readonly Palette background = new Palette(Content.Palettes.Palettes.Background);
+		private static readonly Palette background = new Palette(
+			Content.Palettes.Palettes.Background
+		);
 		private static readonly Palette palette0 = new Palette(Content.Palettes.Palettes.Palette0);
 		private static readonly Palette palette1 = new Palette(Content.Palettes.Palettes.Palette1);
 		private static readonly Palette palette2 = new Palette(Content.Palettes.Palettes.Palette2);
@@ -78,7 +80,7 @@ namespace XCom.Graphics
 			Color.FromArgb(16, 20, 24),
 			Color.FromArgb(8, 12, 16),
 			Color.FromArgb(0, 4, 8),
-			Color.FromArgb(0, 0, 0)
+			Color.FromArgb(0, 0, 0),
 		};
 
 		private static Palette[] LoadPalettes()

@@ -9,7 +9,14 @@ namespace XCom.Controls
 	{
 		public int Bottom { get; }
 
-		public WrappedLabel(int topRow, int leftColumn, int width, string text, Font font, ColorScheme scheme)
+		public WrappedLabel(
+			int topRow,
+			int leftColumn,
+			int width,
+			string text,
+			Font font,
+			ColorScheme scheme
+		)
 		{
 			var nextTopRow = topRow;
 			foreach (var lineOfText in WrapText(text, width, font))

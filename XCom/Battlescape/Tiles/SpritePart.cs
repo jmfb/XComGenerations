@@ -7,6 +7,6 @@
 		LeftArm,
 		RightArm,
 		OneHandedWeapon,
-		TwoHandedWeapon
+		TwoHandedWeapon,
 	}
 }

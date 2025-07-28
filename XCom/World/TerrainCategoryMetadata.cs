@@ -9,6 +9,7 @@ namespace XCom.World
 		public Tileset[] OtherTilesets { get; set; }
 
 		public Tileset[] AllTilesets => FlatTilesets.Concat(OtherTilesets).ToArray();
-		public Tileset[] SmallTilesets => AllTilesets.Where(tileset => tileset.RowCount == 10).ToArray();
+		public Tileset[] SmallTilesets =>
+			AllTilesets.Where(tileset => tileset.RowCount == 10).ToArray();
 	}
 }

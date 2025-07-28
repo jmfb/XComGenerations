@@ -15,13 +15,40 @@ namespace XCom.World
 		{
 			this.craft = craft;
 			AddControl(new Border(16, 16, 224, 168, ColorScheme.Green, Backgrounds.Craft, 10));
-			AddControl(new Label(48, Label.CenterOf(16, 224), craft.Name, Font.Large, ColorScheme.Green));
-			AddControl(new Label(64, Label.CenterOf(16, 224), "has reached", Font.Large, ColorScheme.Green));
-			AddControl(new Label(80, Label.CenterOf(16, 224), "Destination", Font.Large, ColorScheme.Green));
-			AddControl(new Label(96, Label.CenterOf(16, 224), waypoint.Name, Font.Large, ColorScheme.Green));
-			AddControl(new Label(120, Label.CenterOf(16, 224), "Now patrolling", Font.Large, ColorScheme.Green));
+			AddControl(
+				new Label(48, Label.CenterOf(16, 224), craft.Name, Font.Large, ColorScheme.Green)
+			);
+			AddControl(
+				new Label(64, Label.CenterOf(16, 224), "has reached", Font.Large, ColorScheme.Green)
+			);
+			AddControl(
+				new Label(80, Label.CenterOf(16, 224), "Destination", Font.Large, ColorScheme.Green)
+			);
+			AddControl(
+				new Label(96, Label.CenterOf(16, 224), waypoint.Name, Font.Large, ColorScheme.Green)
+			);
+			AddControl(
+				new Label(
+					120,
+					Label.CenterOf(16, 224),
+					"Now patrolling",
+					Font.Large,
+					ColorScheme.Green
+				)
+			);
 			AddControl(new Button(144, 58, 140, 12, "OK", ColorScheme.Aqua, Font.Normal, EndModal));
-			AddControl(new Button(160, 58, 140, 12, "REDIRECT CRAFT", ColorScheme.Aqua, Font.Normal, OnRedirectCraft));
+			AddControl(
+				new Button(
+					160,
+					58,
+					140,
+					12,
+					"REDIRECT CRAFT",
+					ColorScheme.Aqua,
+					Font.Normal,
+					OnRedirectCraft
+				)
+			);
 		}
 
 		private void OnRedirectCraft()

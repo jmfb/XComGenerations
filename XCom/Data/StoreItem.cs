@@ -9,6 +9,7 @@ namespace XCom.Data
 
 		[JsonIgnore]
 		public int TotalItemSpaceRequired => ItemType.Metadata().StorageSpace * Count;
+
 		[JsonIgnore]
 		public int SpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 	}

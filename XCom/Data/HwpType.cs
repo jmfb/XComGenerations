@@ -8,7 +8,7 @@ namespace XCom.Data
 		TankRocketLauncher,
 		TankLaser,
 		HovertankPlasma,
-		HovertankLauncher
+		HovertankLauncher,
 	}
 
 	public static class HwpTypeExtensions
@@ -39,8 +39,8 @@ namespace XCom.Data
 				"and strong armor makes these units valuable for open",
 				"terrain fire fights. Make sure that there are sufficient",
 				"cannon shells in your stores to re-arm tanks. They are armed",
-				"automatically when you assign them to a squad."
-			}
+				"automatically when you assign them to a squad.",
+			},
 		};
 
 		private static readonly HwpMetadata tankRocketLauncher = new HwpMetadata
@@ -61,8 +61,8 @@ namespace XCom.Data
 			{
 				"This automated heavy weapons platform is armed with powerful",
 				"rockets.  This will be devastating for any alien foe.  Make sure",
-				"your stores are kept supplied with HWP rockets."
-			}
+				"your stores are kept supplied with HWP rockets.",
+			},
 		};
 
 		private static readonly HwpMetadata tankLaserCannon = new HwpMetadata
@@ -82,8 +82,8 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"Laser weapons are a useful addition for HWPs. It combines",
-				"heavy firepower with no ammunition restrictions."
-			}
+				"heavy firepower with no ammunition restrictions.",
+			},
 		};
 
 		private static readonly HwpMetadata hovertankPlasma = new HwpMetadata
@@ -104,8 +104,8 @@ namespace XCom.Data
 			{
 				"Alien technology has given the HWP a new lease of life. The",
 				"added maneuverability of air travel and the power of plasma",
-				"beams is a lethal combination."
-			}
+				"beams is a lethal combination.",
+			},
 		};
 
 		private static readonly HwpMetadata hovertankLauncher = new HwpMetadata
@@ -129,17 +129,20 @@ namespace XCom.Data
 				"to manufacture the fusion balls to keep these HWPs fully",
 				"armed. A fusion ball is an intelligent guided weapon. In order",
 				"to fire it you select a number of 'way points' with hte cursor",
-				"and then click on the launch icon to fire the fusion ball."
-			}
+				"and then click on the launch icon to fire the fusion ball.",
+			},
 		};
 
-		private static readonly Dictionary<HwpType, HwpMetadata> metadata = new Dictionary<HwpType,HwpMetadata>
+		private static readonly Dictionary<HwpType, HwpMetadata> metadata = new Dictionary<
+			HwpType,
+			HwpMetadata
+		>
 		{
 			{ HwpType.TankCannon, tankCannon },
 			{ HwpType.TankRocketLauncher, tankRocketLauncher },
 			{ HwpType.TankLaser, tankLaserCannon },
 			{ HwpType.HovertankPlasma, hovertankPlasma },
-			{ HwpType.HovertankLauncher, hovertankLauncher }
+			{ HwpType.HovertankLauncher, hovertankLauncher },
 		};
 	}
 }

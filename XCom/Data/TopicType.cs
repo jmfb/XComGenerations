@@ -129,7 +129,7 @@ namespace XCom.Data
 		Harvester,
 		SupplyShip,
 		TerrorShip,
-		Battleship
+		Battleship,
 	}
 
 	public static class TopicTypeExtensions
@@ -147,11 +147,14 @@ namespace XCom.Data
 				Category = TopicCategory.CraftAndArmament,
 				Scheme = ColorScheme.LightPurple,
 				RequiredResearch = requiredResearch,
-				Subject = craft
+				Subject = craft,
 			};
 		}
 
-		private static TopicMetadata Armament(CraftWeaponType craftWeapon, params ResearchType[] requiredResearch)
+		private static TopicMetadata Armament(
+			CraftWeaponType craftWeapon,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -159,11 +162,14 @@ namespace XCom.Data
 				Category = TopicCategory.CraftAndArmament,
 				Scheme = ColorScheme.Orange,
 				RequiredResearch = requiredResearch,
-				Subject = craftWeapon
+				Subject = craftWeapon,
 			};
 		}
 
-		private static TopicMetadata HeavyWeaponsPlatform(HwpType hwp, params ResearchType[] requiredResearch)
+		private static TopicMetadata HeavyWeaponsPlatform(
+			HwpType hwp,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -173,7 +179,7 @@ namespace XCom.Data
 				BackgroundPalette = 3,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = requiredResearch,
-				Subject = hwp
+				Subject = hwp,
 			};
 		}
 
@@ -185,11 +191,14 @@ namespace XCom.Data
 				Category = TopicCategory.WeaponsAndEquipment,
 				Scheme = ColorScheme.DarkYellow,
 				RequiredResearch = requiredResearch,
-				Subject = armor
+				Subject = armor,
 			};
 		}
 
-		private static TopicMetadata Weapon(WeaponType weapon, params ResearchType[] requiredResearch)
+		private static TopicMetadata Weapon(
+			WeaponType weapon,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -199,11 +208,14 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Subject = weapon
+				Subject = weapon,
 			};
 		}
 
-		private static TopicMetadata Grenade(GrenadeType grenade, params ResearchType[] requiredResearch)
+		private static TopicMetadata Grenade(
+			GrenadeType grenade,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -213,11 +225,14 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Subject = grenade
+				Subject = grenade,
 			};
 		}
 
-		private static TopicMetadata Equipment(EquipmentType equipment, params ResearchType[] requiredResearch)
+		private static TopicMetadata Equipment(
+			EquipmentType equipment,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -227,11 +242,14 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Subject = equipment
+				Subject = equipment,
 			};
 		}
 
-		private static TopicMetadata AlienWeapon(WeaponType weapon, params ResearchType[] requiredResearch)
+		private static TopicMetadata AlienWeapon(
+			WeaponType weapon,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -241,11 +259,14 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Subject = weapon
+				Subject = weapon,
 			};
 		}
 
-		private static TopicMetadata AlienAmmunition(AmmunitionType ammunition, params ResearchType[] requiredResearch)
+		private static TopicMetadata AlienAmmunition(
+			AmmunitionType ammunition,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -255,11 +276,14 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Subject = ammunition
+				Subject = ammunition,
 			};
 		}
 
-		private static TopicMetadata AlienGrenade(GrenadeType grenade, params ResearchType[] requiredResearch)
+		private static TopicMetadata AlienGrenade(
+			GrenadeType grenade,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -269,11 +293,14 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Subject = grenade
+				Subject = grenade,
 			};
 		}
 
-		private static TopicMetadata AlienEquipment(EquipmentType equipment, params ResearchType[] requiredResearch)
+		private static TopicMetadata AlienEquipment(
+			EquipmentType equipment,
+			params ResearchType[] requiredResearch
+		)
 		{
 			return new TopicMetadata
 			{
@@ -283,7 +310,7 @@ namespace XCom.Data
 				BackgroundPalette = 4,
 				Scheme = ColorScheme.Yellow,
 				RequiredResearch = requiredResearch,
-				Subject = equipment
+				Subject = equipment,
 			};
 		}
 
@@ -300,7 +327,7 @@ namespace XCom.Data
 					.Where(research => research != null)
 					.Cast<ResearchType>()
 					.ToArray(),
-				Subject = facility
+				Subject = facility,
 			};
 		}
 
@@ -312,7 +339,7 @@ namespace XCom.Data
 				Category = TopicCategory.AlienLifeForms,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = new[] { alien.Metadata().RequiredResearch },
-				Subject = alien
+				Subject = alien,
 			};
 		}
 
@@ -326,7 +353,7 @@ namespace XCom.Data
 				BackgroundPalette = 3,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = new[] { alienResearch.Metadata().RequiredResearch },
-				Subject = alienResearch
+				Subject = alienResearch,
 			};
 		}
 
@@ -338,7 +365,7 @@ namespace XCom.Data
 				Category = TopicCategory.UfoComponents,
 				Scheme = ColorScheme.LightWhite,
 				RequiredResearch = new[] { ufoComponent.Metadata().RequiredResearch },
-				Subject = ufoComponent
+				Subject = ufoComponent,
 			};
 		}
 
@@ -352,11 +379,14 @@ namespace XCom.Data
 				BackgroundPalette = 0,
 				Scheme = ColorScheme.Aqua,
 				RequiredResearch = new[] { ufo.Metadata().RequiredResearch },
-				Subject = ufo
+				Subject = ufo,
 			};
 		}
 
-		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<TopicType, TopicMetadata>
+		private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<
+			TopicType,
+			TopicMetadata
+		>
 		{
 			{ TopicType.Skyranger, Craft(CraftType.Skyranger) },
 			{ TopicType.Lightning, Craft(CraftType.Lightning, ResearchType.NewFighterTransporter) },
@@ -366,14 +396,41 @@ namespace XCom.Data
 			{ TopicType.Stingray, Armament(CraftWeaponType.Stingray) },
 			{ TopicType.Avalanche, Armament(CraftWeaponType.Avalanche) },
 			{ TopicType.Cannon, Armament(CraftWeaponType.Cannon) },
-			{ TopicType.FusionBall, Armament(CraftWeaponType.FusionBall, ResearchType.FusionMissile) },
-			{ TopicType.LaserCannon, Armament(CraftWeaponType.LaserBeam, ResearchType.LaserCannon) },
-			{ TopicType.PlasmaBeam, Armament(CraftWeaponType.PlasmaBeam, ResearchType.PlasmaCannon) },
+			{
+				TopicType.FusionBall,
+				Armament(CraftWeaponType.FusionBall, ResearchType.FusionMissile)
+			},
+			{
+				TopicType.LaserCannon,
+				Armament(CraftWeaponType.LaserBeam, ResearchType.LaserCannon)
+			},
+			{
+				TopicType.PlasmaBeam,
+				Armament(CraftWeaponType.PlasmaBeam, ResearchType.PlasmaCannon)
+			},
 			{ TopicType.TankCannon, HeavyWeaponsPlatform(HwpType.TankCannon) },
 			{ TopicType.TankRocketLauncher, HeavyWeaponsPlatform(HwpType.TankRocketLauncher) },
-			{ TopicType.TankLaserCannon, HeavyWeaponsPlatform(HwpType.TankLaser, ResearchType.LaserCannon) },
-			{ TopicType.HovertankPlasma, HeavyWeaponsPlatform(HwpType.HovertankPlasma, ResearchType.PlasmaCannon, ResearchType.NewFighterCraft) },
-			{ TopicType.HovertankLauncher, HeavyWeaponsPlatform(HwpType.HovertankLauncher, ResearchType.PlasmaCannon, ResearchType.FusionMissile, ResearchType.NewFighterCraft) },
+			{
+				TopicType.TankLaserCannon,
+				HeavyWeaponsPlatform(HwpType.TankLaser, ResearchType.LaserCannon)
+			},
+			{
+				TopicType.HovertankPlasma,
+				HeavyWeaponsPlatform(
+					HwpType.HovertankPlasma,
+					ResearchType.PlasmaCannon,
+					ResearchType.NewFighterCraft
+				)
+			},
+			{
+				TopicType.HovertankLauncher,
+				HeavyWeaponsPlatform(
+					HwpType.HovertankLauncher,
+					ResearchType.PlasmaCannon,
+					ResearchType.FusionMissile,
+					ResearchType.NewFighterCraft
+				)
+			},
 			{ TopicType.PersonalArmor, Armor(ArmorType.PersonalArmor, ResearchType.PersonalArmor) },
 			{ TopicType.PowerSuit, Armor(ArmorType.PowerSuit, ResearchType.PowerSuit) },
 			{ TopicType.FlyingSuit, Armor(ArmorType.FlyingSuit, ResearchType.FlyingSuit) },
@@ -389,24 +446,63 @@ namespace XCom.Data
 			{ TopicType.SmokeGrenade, Grenade(GrenadeType.SmokeGrenade) },
 			{ TopicType.ProximityGrenade, Grenade(GrenadeType.ProximityGrenade) },
 			{ TopicType.HighExplosive, Grenade(GrenadeType.HighExplosive) },
-			{ TopicType.MotionScanner, Equipment(EquipmentType.MotionScanner, ResearchType.MotionScanner) },
+			{
+				TopicType.MotionScanner,
+				Equipment(EquipmentType.MotionScanner, ResearchType.MotionScanner)
+			},
 			{ TopicType.MediKit, Equipment(EquipmentType.MediKit, ResearchType.MediKit) },
 			{ TopicType.StunRod, Equipment(EquipmentType.StunRod) },
 			{ TopicType.ElectroFlare, Equipment(EquipmentType.ElectroFlare) },
 			{ TopicType.PsiAmp, Equipment(EquipmentType.PsiAmp, ResearchType.PsiAmp) },
-			{ TopicType.HeavyPlasma, AlienWeapon(WeaponType.HeavyPlasma, ResearchType.HeavyPlasma) },
-			{ TopicType.HeavyPlasmaClip, AlienAmmunition(AmmunitionType.HeavyPlasmaClip, ResearchType.HeavyPlasmaClip) },
-			{ TopicType.PlasmaRifle, AlienWeapon(WeaponType.PlasmaRifle, ResearchType.PlasmaRifle) },
-			{ TopicType.PlasmaRifleClip, AlienAmmunition(AmmunitionType.PlasmaRifleClip, ResearchType.PlasmaRifleClip) },
-			{ TopicType.PlasmaPistol, AlienWeapon(WeaponType.PlasmaPistol, ResearchType.PlasmaPistol) },
-			{ TopicType.PlasmaPistolClip, AlienAmmunition(AmmunitionType.PlasmaPistolClip, ResearchType.PlasmaPistolClip) },
-			{ TopicType.BlasterLauncher, AlienWeapon(WeaponType.BlasterLauncher, ResearchType.BlasterLauncher) },
-			{ TopicType.BlasterBomb, AlienAmmunition(AmmunitionType.BlasterBomb, ResearchType.BlasterBomb) },
-			{ TopicType.SmallLauncher, AlienWeapon(WeaponType.SmallLauncher, ResearchType.SmallLauncher) },
+			{
+				TopicType.HeavyPlasma,
+				AlienWeapon(WeaponType.HeavyPlasma, ResearchType.HeavyPlasma)
+			},
+			{
+				TopicType.HeavyPlasmaClip,
+				AlienAmmunition(AmmunitionType.HeavyPlasmaClip, ResearchType.HeavyPlasmaClip)
+			},
+			{
+				TopicType.PlasmaRifle,
+				AlienWeapon(WeaponType.PlasmaRifle, ResearchType.PlasmaRifle)
+			},
+			{
+				TopicType.PlasmaRifleClip,
+				AlienAmmunition(AmmunitionType.PlasmaRifleClip, ResearchType.PlasmaRifleClip)
+			},
+			{
+				TopicType.PlasmaPistol,
+				AlienWeapon(WeaponType.PlasmaPistol, ResearchType.PlasmaPistol)
+			},
+			{
+				TopicType.PlasmaPistolClip,
+				AlienAmmunition(AmmunitionType.PlasmaPistolClip, ResearchType.PlasmaPistolClip)
+			},
+			{
+				TopicType.BlasterLauncher,
+				AlienWeapon(WeaponType.BlasterLauncher, ResearchType.BlasterLauncher)
+			},
+			{
+				TopicType.BlasterBomb,
+				AlienAmmunition(AmmunitionType.BlasterBomb, ResearchType.BlasterBomb)
+			},
+			{
+				TopicType.SmallLauncher,
+				AlienWeapon(WeaponType.SmallLauncher, ResearchType.SmallLauncher)
+			},
 			{ TopicType.StunBomb, AlienAmmunition(AmmunitionType.StunBomb, ResearchType.StunBomb) },
-			{ TopicType.AlienGrenade, AlienGrenade(GrenadeType.AlienGrenade, ResearchType.AlienGrenade) },
-			{ TopicType.Elerium115, AlienEquipment(EquipmentType.Elerium115, ResearchType.Elerium115) },
-			{ TopicType.MindProbe, AlienEquipment(EquipmentType.MindProbe, ResearchType.MindProbe) },
+			{
+				TopicType.AlienGrenade,
+				AlienGrenade(GrenadeType.AlienGrenade, ResearchType.AlienGrenade)
+			},
+			{
+				TopicType.Elerium115,
+				AlienEquipment(EquipmentType.Elerium115, ResearchType.Elerium115)
+			},
+			{
+				TopicType.MindProbe,
+				AlienEquipment(EquipmentType.MindProbe, ResearchType.MindProbe)
+			},
 			{ TopicType.AccessLift, Facility(FacilityType.AccessLift) },
 			{ TopicType.LivingQuarters, Facility(FacilityType.LivingQuarters) },
 			{ TopicType.Laboratory, Facility(FacilityType.Laboratory) },
@@ -472,7 +568,7 @@ namespace XCom.Data
 			{ TopicType.Harvester, Ufo(UfoType.Harvester) },
 			{ TopicType.SupplyShip, Ufo(UfoType.SupplyShip) },
 			{ TopicType.TerrorShip, Ufo(UfoType.TerrorShip) },
-			{ TopicType.Battleship, Ufo(UfoType.Battleship) }
+			{ TopicType.Battleship, Ufo(UfoType.Battleship) },
 		};
 	}
 }

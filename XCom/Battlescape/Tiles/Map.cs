@@ -21,14 +21,14 @@ namespace XCom.Battlescape.Tiles
 				{
 					var level = Levels[levelIndex];
 					foreach (var row in Enumerable.Range(0, level.RowCount))
-						foreach (var column in Enumerable.Range(0, level.ColumnCount))
-							if (level.Tiles[row, column].IsEntryPoint)
-								yield return new MapLocation
-								{
-									Level = levelIndex,
-									Row = row,
-									Column = column
-								};
+					foreach (var column in Enumerable.Range(0, level.ColumnCount))
+						if (level.Tiles[row, column].IsEntryPoint)
+							yield return new MapLocation
+							{
+								Level = levelIndex,
+								Row = row,
+								Column = column,
+							};
 				}
 			}
 		}

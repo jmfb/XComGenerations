@@ -20,8 +20,12 @@ namespace XCom.Data
 		public ResearchType[] RequiredResearch { get; set; }
 		public byte[] Image { get; set; }
 
-		private bool IsRequiredResearchCompletedForThisItem => RequiredResearch == null || RequiredResearch.All(GameState.Current.Data.CompletedResearch.Contains);
-		private bool IsRequiredResearchCompletedForWeapon => AmmoForWeapon == null || AmmoForWeapon.Value.Metadata().IsRequiredResearchCompleted;
-		public bool IsRequiredResearchCompleted => IsRequiredResearchCompletedForThisItem && IsRequiredResearchCompletedForWeapon;
+		private bool IsRequiredResearchCompletedForThisItem =>
+			RequiredResearch == null
+			|| RequiredResearch.All(GameState.Current.Data.CompletedResearch.Contains);
+		private bool IsRequiredResearchCompletedForWeapon =>
+			AmmoForWeapon == null || AmmoForWeapon.Value.Metadata().IsRequiredResearchCompleted;
+		public bool IsRequiredResearchCompleted =>
+			IsRequiredResearchCompletedForThisItem && IsRequiredResearchCompletedForWeapon;
 	}
 }

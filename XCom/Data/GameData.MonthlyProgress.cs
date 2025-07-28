@@ -19,12 +19,20 @@ namespace XCom.Data
 			}
 
 			//TODO: remove this test code
-			Countries.Single(country => country.CountryType == CountryType.UnitedStates).Satisfaction = CountrySatisfaction.Happy;
-			Countries.Single(country => country.CountryType == CountryType.UnitedKingdom).Satisfaction = CountrySatisfaction.Happy;
-			Countries.Single(country => country.CountryType == CountryType.China).Satisfaction = CountrySatisfaction.Happy;
-			Countries.Single(country => country.CountryType == CountryType.Germany).Satisfaction = CountrySatisfaction.Unhappy;
-			Countries.Single(country => country.CountryType == CountryType.Russia).Satisfaction = CountrySatisfaction.Unhappy;
-			Countries.Single(country => country.CountryType == CountryType.Australia).Satisfaction = CountrySatisfaction.SignedAlienPact;
+			Countries
+				.Single(country => country.CountryType == CountryType.UnitedStates)
+				.Satisfaction = CountrySatisfaction.Happy;
+			Countries
+				.Single(country => country.CountryType == CountryType.UnitedKingdom)
+				.Satisfaction = CountrySatisfaction.Happy;
+			Countries.Single(country => country.CountryType == CountryType.China).Satisfaction =
+				CountrySatisfaction.Happy;
+			Countries.Single(country => country.CountryType == CountryType.Germany).Satisfaction =
+				CountrySatisfaction.Unhappy;
+			Countries.Single(country => country.CountryType == CountryType.Russia).Satisfaction =
+				CountrySatisfaction.Unhappy;
+			Countries.Single(country => country.CountryType == CountryType.Australia).Satisfaction =
+				CountrySatisfaction.SignedAlienPact;
 
 			Funds += TotalFunding - TotalMonthlyCosts;
 			if (Funds < 0)

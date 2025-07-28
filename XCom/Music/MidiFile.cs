@@ -26,20 +26,26 @@ namespace XCom.Music
 				offset += Marshal.SizeOf(chunk);
 				switch (chunk.ChunkType)
 				{
-				case MidiChunkType.Track:
-					Tracks.Add(new MidiTrack(data.Skip(offset).Take((int)chunk.ChunkLength).ToArray()));
-					break;
-				case MidiChunkType.Other:
-					break;
-				case MidiChunkType.Header:
-					throw new InvalidOperationException("Multiple header chunks are not allowed.");
+					case MidiChunkType.Track:
+						Tracks.Add(
+							new MidiTrack(data.Skip(offset).Take((int)chunk.ChunkLength).ToArray())
+						);
+						break;
+					case MidiChunkType.Other:
+						break;
+					case MidiChunkType.Header:
+						throw new InvalidOperationException(
+							"Multiple header chunks are not allowed."
+						);
 				}
 				offset += (int)chunk.ChunkLength;
 			}
 			if (Format != 1)
 				throw new InvalidOperationException($"Midi format {Format} is unsupported.");
 			if (TrackCount != Tracks.Count)
-				throw new InvalidOperationException("Header track count did not match tracks chunks.");
+				throw new InvalidOperationException(
+					"Header track count did not match tracks chunks."
+				);
 			if ((TicksPerBeat & 0x8000) != 0)
 				throw new InvalidOperationException("SMPTE time division is unsupported.");
 		}

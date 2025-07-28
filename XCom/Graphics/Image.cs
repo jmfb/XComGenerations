@@ -37,7 +37,8 @@ namespace XCom.Graphics
 						buffer.SetPixel(
 							topRow + Height - row - 1,
 							leftColumn + column,
-							Color.FromArgb(data[index], data[index + 1], data[index + 2]));
+							Color.FromArgb(data[index], data[index + 1], data[index + 2])
+						);
 					}
 				}
 			}

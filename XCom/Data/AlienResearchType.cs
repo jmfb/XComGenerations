@@ -14,12 +14,13 @@ namespace XCom.Data
 		AlienBase,
 		AlienTerror,
 		AlienRetaliation,
-		AlienSupply
+		AlienSupply,
 	}
 
 	public static class AlienResearchTypeExtensions
 	{
-		public static AlienResearchMetadata Metadata(this AlienResearchType alienResearchType) => metadata[alienResearchType];
+		public static AlienResearchMetadata Metadata(this AlienResearchType alienResearchType) =>
+			metadata[alienResearchType];
 
 		private static readonly AlienResearchMetadata alienOrigins = new AlienResearchMetadata
 		{
@@ -36,8 +37,8 @@ namespace XCom.Data
 				"civilization that pre-dates Human history.  We must locate this",
 				"place as soon as possible.  However we need to capture and",
 				"interrogate an alien leader to gain more detailed information.",
-				"The larger UFOs probably contain at least one Alien leader."
-			}
+				"The larger UFOs probably contain at least one Alien leader.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata theMartianSolution = new AlienResearchMetadata
@@ -56,8 +57,8 @@ namespace XCom.Data
 				"then the body will die.  We must step up our research efforts",
 				"before it is too late.  In order to progress we must capture",
 				"the highest ranking aliens - the commanders - which only",
-				"reside in alien bases."
-			}
+				"reside in alien bases.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata cydoniaOrBust = new AlienResearchMetadata
@@ -78,8 +79,8 @@ namespace XCom.Data
 				"master 'brain'.  We will need an Avenger craft equipped with",
 				"the most awesome destructive power at our disposal.  There",
 				"is nothing more we can learn here - we must await the",
-				"outcome of the Cydonian assault."
-			}
+				"outcome of the Cydonian assault.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienResearch = new AlienResearchMetadata
@@ -92,8 +93,8 @@ namespace XCom.Data
 				"earth and its inhabitants.  Small vehicles are predominantly",
 				"used, with occasional landings in deserted areas.  This type of",
 				"alien activity poses the least threat to XCom, with little",
-				"concern from governments or the public."
-			}
+				"concern from governments or the public.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienHarvest = new AlienResearchMetadata
@@ -110,8 +111,8 @@ namespace XCom.Data
 				"This type of activity occurs mainly in farming land.  The",
 				"theory behind the 'alien harvest' suggests that alien races",
 				"originally 'seeded' the planet with its flora and fauna, and now",
-				"they have returned to reap the harvest they have sown."
-			}
+				"they have returned to reap the harvest they have sown.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienAbduction = new AlienResearchMetadata
@@ -128,8 +129,8 @@ namespace XCom.Data
 				"experiments. The purpose behind this activity appears to be",
 				"linked to genetic mutation and manipulation of the aliens own",
 				"genetic material. This activity causes great alarm, and occurs",
-				"in populated areas or cities."
-			}
+				"in populated areas or cities.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienInfiltration = new AlienResearchMetadata
@@ -147,8 +148,8 @@ namespace XCom.Data
 				"technology. In return the government will allow the aliens to",
 				"conduct their activity unhindered. This alien mission represents",
 				"the worst threat to XCom. If a government agrees to a pact",
-				"then its funding will cease."
-			}
+				"then its funding will cease.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienBase = new AlienResearchMetadata
@@ -165,8 +166,8 @@ namespace XCom.Data
 				"of alien bases will generate a large amount of reported alien",
 				"activity without the presence of UFOs. In order to locate a",
 				"base an XCom craft must patrol an area for a few hours to",
-				"stand some chance of detection."
-			}
+				"stand some chance of detection.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienTerror = new AlienResearchMetadata
@@ -180,8 +181,8 @@ namespace XCom.Data
 				"threatened, and governments will be forced to evacuate whole",
 				"areas. The main purpose behind this activity is to generate",
 				"sufficient public hysteria so that governments will threaten",
-				"the XCom project."
-			}
+				"the XCom project.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienRetaliation = new AlienResearchMetadata
@@ -195,8 +196,8 @@ namespace XCom.Data
 				"action. This could result in a direct attack against an XCom",
 				"base.  However, the aliens have to find an XCom base in order",
 				"to attack it, and provided UFOs are kept away then there",
-				"should be little danger of an assault."
-			}
+				"should be little danger of an assault.",
+			},
 		};
 
 		private static readonly AlienResearchMetadata alienSupply = new AlienResearchMetadata
@@ -208,23 +209,24 @@ namespace XCom.Data
 				"Once an alien base is constructed then it is resupplied on a",
 				"regular basis by a special supply vessel.  If one of these",
 				"vessels is detected while landing then it is certain that an",
-				"alien base is nearby."
-			}
+				"alien base is nearby.",
+			},
 		};
 
-		private static readonly Dictionary<AlienResearchType, AlienResearchMetadata> metadata = new Dictionary<AlienResearchType, AlienResearchMetadata>
-		{
-			{ AlienResearchType.AlienOrigins, alienOrigins },
-			{ AlienResearchType.TheMartianSolution, theMartianSolution },
-			{ AlienResearchType.CydoniaOrBust, cydoniaOrBust },
-			{ AlienResearchType.AlienResearch, alienResearch },
-			{ AlienResearchType.AlienHarvest, alienHarvest },
-			{ AlienResearchType.AlienAbduction, alienAbduction },
-			{ AlienResearchType.AlienInfiltration, alienInfiltration },
-			{ AlienResearchType.AlienBase, alienBase },
-			{ AlienResearchType.AlienTerror, alienTerror },
-			{ AlienResearchType.AlienRetaliation, alienRetaliation },
-			{ AlienResearchType.AlienSupply, alienSupply }
-		};
+		private static readonly Dictionary<AlienResearchType, AlienResearchMetadata> metadata =
+			new Dictionary<AlienResearchType, AlienResearchMetadata>
+			{
+				{ AlienResearchType.AlienOrigins, alienOrigins },
+				{ AlienResearchType.TheMartianSolution, theMartianSolution },
+				{ AlienResearchType.CydoniaOrBust, cydoniaOrBust },
+				{ AlienResearchType.AlienResearch, alienResearch },
+				{ AlienResearchType.AlienHarvest, alienHarvest },
+				{ AlienResearchType.AlienAbduction, alienAbduction },
+				{ AlienResearchType.AlienInfiltration, alienInfiltration },
+				{ AlienResearchType.AlienBase, alienBase },
+				{ AlienResearchType.AlienTerror, alienTerror },
+				{ AlienResearchType.AlienRetaliation, alienRetaliation },
+				{ AlienResearchType.AlienSupply, alienSupply },
+			};
 	}
 }

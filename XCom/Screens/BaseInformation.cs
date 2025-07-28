@@ -13,13 +13,47 @@ namespace XCom.Screens
 		public BaseInformation()
 		{
 			AddControl(new Background(Backgrounds.InfoBase, 4));
-			AddControl(new ClickToEdit(8, 8, 137, GameState.SelectedBase.Name, Font.Large, ColorScheme.LightMagenta, OnEditBaseName));
+			AddControl(
+				new ClickToEdit(
+					8,
+					8,
+					137,
+					GameState.SelectedBase.Name,
+					Font.Large,
+					ColorScheme.LightMagenta,
+					OnEditBaseName
+				)
+			);
 			AddControl(new BaseSelect(8, 182, OnSelectBase));
 			CreateRows();
 			AddControl(new Button(180, 10, 30, 14, "OK", ColorScheme.Purple, Font.Normal, OnOk));
-			AddControl(new Button(180, 46, 80, 14, "TRANSFERS", ColorScheme.Purple, Font.Normal, OnTransfers));
-			AddControl(new Button(180, 132, 80, 14, "STORES", ColorScheme.Purple, Font.Normal, OnStores));
-			AddControl(new Button(180, 218, 92, 14, "Monthly Costs", ColorScheme.Purple, Font.Normal, OnMonthlyCosts));
+			AddControl(
+				new Button(
+					180,
+					46,
+					80,
+					14,
+					"TRANSFERS",
+					ColorScheme.Purple,
+					Font.Normal,
+					OnTransfers
+				)
+			);
+			AddControl(
+				new Button(180, 132, 80, 14, "STORES", ColorScheme.Purple, Font.Normal, OnStores)
+			);
+			AddControl(
+				new Button(
+					180,
+					218,
+					92,
+					14,
+					"Monthly Costs",
+					ColorScheme.Purple,
+					Font.Normal,
+					OnMonthlyCosts
+				)
+			);
 		}
 
 		private static void OnEditBaseName(string name)
@@ -42,7 +76,15 @@ namespace XCom.Screens
 
 		private void CreatePersonnelRows()
 		{
-			AddControl(new Label(30, 8, "PERSONNEL AVAILABLE:PERSONNEL TOTAL>", Font.Normal, ColorScheme.LightMagenta));
+			AddControl(
+				new Label(
+					30,
+					8,
+					"PERSONNEL AVAILABLE:PERSONNEL TOTAL>",
+					Font.Normal,
+					ColorScheme.LightMagenta
+				)
+			);
 			CreateSoldiersRow();
 			CreateEngineersRow();
 			CreateScientistsRow();
@@ -70,12 +112,22 @@ namespace XCom.Screens
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.ScientistCount;
 			var available = selectedBase.ScientistsAvailable;
-			AddControl(new BaseInformationRow(61, "Scientists", 16, 10, 10, available, total, true));
+			AddControl(
+				new BaseInformationRow(61, "Scientists", 16, 10, 10, available, total, true)
+			);
 		}
 
 		private void CreateFacilityRows()
 		{
-			AddControl(new Label(72, 8, "SPACE USED:SPACE AVAILABLE>", Font.Normal, ColorScheme.LightMagenta));
+			AddControl(
+				new Label(
+					72,
+					8,
+					"SPACE USED:SPACE AVAILABLE>",
+					Font.Normal,
+					ColorScheme.LightMagenta
+				)
+			);
 			CreateLivingQuartersRow();
 			CreateStoresRow();
 			CreateLaboratoriesRow();
@@ -88,7 +140,9 @@ namespace XCom.Screens
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.TotalLivingSpace;
 			var used = selectedBase.PersonnelCount;
-			AddControl(new BaseInformationRow(83, "Living Quarters", 48, 25, 50, used, total, true));
+			AddControl(
+				new BaseInformationRow(83, "Living Quarters", 48, 25, 50, used, total, true)
+			);
 		}
 
 		private void CreateStoresRow()
@@ -127,7 +181,9 @@ namespace XCom.Screens
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total = selectedBase.TotalDefenseValue;
-			AddControl(new BaseInformationRow(138, "Defense Strength", 32, 1, 60, total, total, false));
+			AddControl(
+				new BaseInformationRow(138, "Defense Strength", 32, 1, 60, total, total, false)
+			);
 		}
 
 		private void CreateRadarRows()
@@ -139,16 +195,29 @@ namespace XCom.Screens
 		private void CreateShortRangeDetectionRow()
 		{
 			var total = GameState.SelectedBase.CountFacilities(FacilityType.SmallRadarSystem);
-			AddControl(new BaseInformationRow(153, "Short Range Detection", 128, 25, 1, total, total, false));
+			AddControl(
+				new BaseInformationRow(
+					153,
+					"Short Range Detection",
+					128,
+					25,
+					1,
+					total,
+					total,
+					false
+				)
+			);
 		}
 
 		private void CreateLongRangeDetectionRow()
 		{
 			var selectedBase = GameState.SelectedBase;
 			var total =
-				selectedBase.CountFacilities(FacilityType.LargeRadarSystem) +
-				selectedBase.CountFacilities(FacilityType.HyperWaveDecoder);
-			AddControl(new BaseInformationRow(163, "Long Range Detection", 128, 25, 1, total, total, false));
+				selectedBase.CountFacilities(FacilityType.LargeRadarSystem)
+				+ selectedBase.CountFacilities(FacilityType.HyperWaveDecoder);
+			AddControl(
+				new BaseInformationRow(163, "Long Range Detection", 128, 25, 1, total, total, false)
+			);
 		}
 
 		private static void OnOk()

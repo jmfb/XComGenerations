@@ -29,10 +29,10 @@ namespace XCom.Controls
 
 		public override bool HitTest(int row, int column)
 		{
-			return row >= topRow &&
-				row < (topRow + 16) &&
-				column >= leftColumn &&
-				column < (leftColumn + 128);
+			return row >= topRow
+				&& row < (topRow + 16)
+				&& column >= leftColumn
+				&& column < (leftColumn + 128);
 		}
 
 		public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton)
@@ -44,9 +44,11 @@ namespace XCom.Controls
 		public override void OnLeftButtonDown(int row, int column)
 		{
 			var newBaseIndex = (column - leftColumn) / 16;
-			if (newBaseIndex == GameState.Current.Data.SelectedBase ||
-				newBaseIndex < 0 ||
-				newBaseIndex >= GameState.Current.Data.Bases.Count)
+			if (
+				newBaseIndex == GameState.Current.Data.SelectedBase
+				|| newBaseIndex < 0
+				|| newBaseIndex >= GameState.Current.Data.Bases.Count
+			)
 				return;
 			GameState.Current.Data.SelectedBase = newBaseIndex;
 			action();

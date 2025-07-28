@@ -12,12 +12,13 @@ namespace XCom.Battlescape
 		LeftLeg,
 		BackPack,
 		Belt,
-		Ground
+		Ground,
 	}
 
 	public static class InventoryLocationExtensions
 	{
-		public static InventoryLocationMetadata Metadata(this InventoryLocation location) => metadata[location];
+		public static InventoryLocationMetadata Metadata(this InventoryLocation location) =>
+			metadata[location];
 
 		private static InventoryLocationMetadata CreateShoulder(int rightShoulder, int leftShoulder)
 		{
@@ -33,12 +34,17 @@ namespace XCom.Battlescape
 					{ InventoryLocation.LeftLeg, 12 },
 					{ InventoryLocation.BackPack, 16 },
 					{ InventoryLocation.Belt, 10 },
-					{ InventoryLocation.Ground, 4 }
-				}
+					{ InventoryLocation.Ground, 4 },
+				},
 			};
 		}
 
-		private static InventoryLocationMetadata CreateHand(int rightHand, int leftHand, int rightLeg, int leftLeg)
+		private static InventoryLocationMetadata CreateHand(
+			int rightHand,
+			int leftHand,
+			int rightLeg,
+			int leftLeg
+		)
 		{
 			return new InventoryLocationMetadata
 			{
@@ -52,12 +58,17 @@ namespace XCom.Battlescape
 					{ InventoryLocation.LeftLeg, leftLeg },
 					{ InventoryLocation.BackPack, 14 },
 					{ InventoryLocation.Belt, 8 },
-					{ InventoryLocation.Ground, 2 }
-				}
+					{ InventoryLocation.Ground, 2 },
+				},
 			};
 		}
 
-		private static InventoryLocationMetadata CreateLeg(int rightLeg, int leftLeg, int rightHand, int leftHand)
+		private static InventoryLocationMetadata CreateLeg(
+			int rightLeg,
+			int leftLeg,
+			int rightHand,
+			int leftHand
+		)
 		{
 			return new InventoryLocationMetadata
 			{
@@ -71,8 +82,8 @@ namespace XCom.Battlescape
 					{ InventoryLocation.LeftLeg, leftLeg },
 					{ InventoryLocation.BackPack, 18 },
 					{ InventoryLocation.Belt, 10 },
-					{ InventoryLocation.Ground, 6 }
-				}
+					{ InventoryLocation.Ground, 6 },
+				},
 			};
 		}
 
@@ -88,8 +99,8 @@ namespace XCom.Battlescape
 				{ InventoryLocation.LeftLeg, 16 },
 				{ InventoryLocation.BackPack, 0 },
 				{ InventoryLocation.Belt, 12 },
-				{ InventoryLocation.Ground, 10 }
-			}
+				{ InventoryLocation.Ground, 10 },
+			},
 		};
 
 		private static readonly InventoryLocationMetadata belt = new InventoryLocationMetadata
@@ -104,8 +115,8 @@ namespace XCom.Battlescape
 				{ InventoryLocation.LeftLeg, 10 },
 				{ InventoryLocation.BackPack, 16 },
 				{ InventoryLocation.Belt, 0 },
-				{ InventoryLocation.Ground, 6 }
-			}
+				{ InventoryLocation.Ground, 6 },
+			},
 		};
 
 		private static readonly InventoryLocationMetadata ground = new InventoryLocationMetadata
@@ -120,21 +131,22 @@ namespace XCom.Battlescape
 				{ InventoryLocation.LeftLeg, 10 },
 				{ InventoryLocation.BackPack, 20 },
 				{ InventoryLocation.Belt, 12 },
-				{ InventoryLocation.Ground, 0 }
-			}
+				{ InventoryLocation.Ground, 0 },
+			},
 		};
 
-		private static readonly Dictionary<InventoryLocation, InventoryLocationMetadata> metadata = new Dictionary<InventoryLocation, InventoryLocationMetadata>
-		{
-			{ InventoryLocation.RightShoulder, CreateShoulder(0, 8) },
-			{ InventoryLocation.LeftShoulder, CreateShoulder(8, 0) },
-			{ InventoryLocation.RightHand, CreateHand(0, 4, 8, 10) },
-			{ InventoryLocation.LeftHand, CreateHand(4, 0, 10, 8) },
-			{ InventoryLocation.RightLeg, CreateLeg(0, 10, 4, 6) },
-			{ InventoryLocation.LeftLeg, CreateLeg(10, 0, 6, 4) },
-			{ InventoryLocation.BackPack, backPack },
-			{ InventoryLocation.Belt, belt },
-			{ InventoryLocation.Ground, ground }
-		};
+		private static readonly Dictionary<InventoryLocation, InventoryLocationMetadata> metadata =
+			new Dictionary<InventoryLocation, InventoryLocationMetadata>
+			{
+				{ InventoryLocation.RightShoulder, CreateShoulder(0, 8) },
+				{ InventoryLocation.LeftShoulder, CreateShoulder(8, 0) },
+				{ InventoryLocation.RightHand, CreateHand(0, 4, 8, 10) },
+				{ InventoryLocation.LeftHand, CreateHand(4, 0, 10, 8) },
+				{ InventoryLocation.RightLeg, CreateLeg(0, 10, 4, 6) },
+				{ InventoryLocation.LeftLeg, CreateLeg(10, 0, 6, 4) },
+				{ InventoryLocation.BackPack, backPack },
+				{ InventoryLocation.Belt, belt },
+				{ InventoryLocation.Ground, ground },
+			};
 	}
 }

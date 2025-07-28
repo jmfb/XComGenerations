@@ -39,7 +39,9 @@ namespace XCom.Data
 		{
 			foreach (var @base in GameState.Current.Data.Bases)
 			{
-				var activeProjects = @base.ManufactureProjects.Where(project => project.EngineersAllocated > 0).ToList();
+				var activeProjects = @base
+					.ManufactureProjects.Where(project => project.EngineersAllocated > 0)
+					.ToList();
 				foreach (var project in activeProjects)
 					AdvanceManufactureProject(@base, project);
 			}
@@ -49,8 +51,10 @@ namespace XCom.Data
 		{
 			var previousUnitsProduced = project.UnitsProduced;
 			project.HoursCompleted += project.EngineersAllocated;
-			var totalUnitsProduced = Math.Min(project.UnitsToProduce,
-				project.HoursCompleted / project.ManufactureType.Metadata().HoursToProduce);
+			var totalUnitsProduced = Math.Min(
+				project.UnitsToProduce,
+				project.HoursCompleted / project.ManufactureType.Metadata().HoursToProduce
+			);
 			var newUnitsProduced = totalUnitsProduced - previousUnitsProduced;
 
 			foreach (var unit in Enumerable.Range(0, newUnitsProduced))
@@ -73,12 +77,20 @@ namespace XCom.Data
 			NotifyProductionCompleted(@base, project);
 		}
 
-		private static void NotifyProductionStopped(Base @base, ManufactureProject project, ManufactureStatus status)
+		private static void NotifyProductionStopped(
+			Base @base,
+			ManufactureProject project,
+			ManufactureStatus status
+		)
 		{
 			GameState.Current.Notifications.Enqueue(() =>
 			{
 				Screen.Geoscape.ResetGameSpeed();
-				new ProductionStopped(@base.Name, project.ManufactureType.Metadata().Name, status).DoModal(GameState.Current.ActiveScreen);
+				new ProductionStopped(
+					@base.Name,
+					project.ManufactureType.Metadata().Name,
+					status
+				).DoModal(GameState.Current.ActiveScreen);
 			});
 		}
 
@@ -87,7 +99,10 @@ namespace XCom.Data
 			GameState.Current.Notifications.Enqueue(() =>
 			{
 				Screen.Geoscape.ResetGameSpeed();
-				new ProductionCompleted(@base.Name, project.ManufactureType.Metadata().Name).DoModal(GameState.Current.ActiveScreen);
+				new ProductionCompleted(
+					@base.Name,
+					project.ManufactureType.Metadata().Name
+				).DoModal(GameState.Current.ActiveScreen);
 			});
 		}
 
@@ -120,16 +135,31 @@ namespace XCom.Data
 		{
 			foreach (var @base in GameState.Current.Data.Bases)
 			{
-				foreach (var transferredSoldier in @base.TransferredSoldiers.Where(item => item.HoursRemaining == 0).ToList())
+				foreach (
+					var transferredSoldier in @base
+						.TransferredSoldiers.Where(item => item.HoursRemaining == 0)
+						.ToList()
+				)
 					yield return CompleteSoldierTransfer(@base, transferredSoldier);
-				foreach (var transferredCraft in @base.TransferredCrafts.Where(item => item.HoursRemaining == 0).ToList())
+				foreach (
+					var transferredCraft in @base
+						.TransferredCrafts.Where(item => item.HoursRemaining == 0)
+						.ToList()
+				)
 					yield return CompleteCraftTransfer(@base, transferredCraft);
-				foreach (var transferredStore in @base.TransferredStores.Where(item => item.HoursRemaining == 0).ToList())
+				foreach (
+					var transferredStore in @base
+						.TransferredStores.Where(item => item.HoursRemaining == 0)
+						.ToList()
+				)
 					yield return CompleteStoreTransfer(@base, transferredStore);
 			}
 		}
 
-		private static CompletedTransfer CompleteSoldierTransfer(Base @base, TransferItem<Soldier> transferredSoldier)
+		private static CompletedTransfer CompleteSoldierTransfer(
+			Base @base,
+			TransferItem<Soldier> transferredSoldier
+		)
 		{
 			@base.TransferredSoldiers.Remove(transferredSoldier);
 			@base.Soldiers.Add(transferredSoldier.Item);
@@ -137,12 +167,15 @@ namespace XCom.Data
 			{
 				Name = transferredSoldier.Item.Name,
 				Quantity = 1,
-				Destination = @base.Name
+				Destination = @base.Name,
 			};
 			return completedTransfer;
 		}
 
-		private static CompletedTransfer CompleteCraftTransfer(Base @base, TransferItem<Craft> transferredCraft)
+		private static CompletedTransfer CompleteCraftTransfer(
+			Base @base,
+			TransferItem<Craft> transferredCraft
+		)
 		{
 			@base.TransferredCrafts.Remove(transferredCraft);
 			@base.Crafts.Add(transferredCraft.Item);
@@ -150,31 +183,34 @@ namespace XCom.Data
 			{
 				Name = transferredCraft.Item.Name,
 				Quantity = 1,
-				Destination = @base.Name
+				Destination = @base.Name,
 			};
 			return completedTransfer;
 		}
 
-		private static CompletedTransfer CompleteStoreTransfer(Base @base, TransferItem<StoreItem> transferredStore)
+		private static CompletedTransfer CompleteStoreTransfer(
+			Base @base,
+			TransferItem<StoreItem> transferredStore
+		)
 		{
 			@base.TransferredStores.Remove(transferredStore);
 			switch (transferredStore.Item.ItemType)
 			{
-			case ItemType.Engineer:
-				@base.EngineerCount += transferredStore.Item.Count;
-				break;
-			case ItemType.Scientist:
-				@base.ScientistCount += transferredStore.Item.Count;
-				break;
-			default:
-				@base.Stores.Add(transferredStore.Item.ItemType, transferredStore.Item.Count);
-				break;
+				case ItemType.Engineer:
+					@base.EngineerCount += transferredStore.Item.Count;
+					break;
+				case ItemType.Scientist:
+					@base.ScientistCount += transferredStore.Item.Count;
+					break;
+				default:
+					@base.Stores.Add(transferredStore.Item.ItemType, transferredStore.Item.Count);
+					break;
 			}
 			var completedTransfer = new CompletedTransfer
 			{
 				Name = transferredStore.Item.ItemType.Metadata().Name,
 				Quantity = transferredStore.Item.Count,
-				Destination = @base.Name
+				Destination = @base.Name,
 			};
 			return completedTransfer;
 		}
@@ -182,8 +218,8 @@ namespace XCom.Data
 		private static void RearmCrafts()
 		{
 			foreach (var @base in GameState.Current.Data.Bases)
-				foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Rearming))
-					RearmCraft(@base, craft);
+			foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Rearming))
+				RearmCraft(@base, craft);
 		}
 
 		private static void RearmCraft(Base @base, Craft craft)
@@ -215,22 +251,28 @@ namespace XCom.Data
 			}
 		}
 
-		private static void NotifyNotEnoughStoresToRearmCraft(Base @base, Craft craft, ItemType ammoType)
+		private static void NotifyNotEnoughStoresToRearmCraft(
+			Base @base,
+			Craft craft,
+			ItemType ammoType
+		)
 		{
 			if (craft.AlreadyNotified)
 				return;
 			craft.AlreadyNotified = true;
 			GameState.Current.Notifications.Enqueue(() =>
 			{
-				new NotEnoughStoresToRearmCraft(@base, craft, ammoType).DoModal(GameState.Current.ActiveScreen);
+				new NotEnoughStoresToRearmCraft(@base, craft, ammoType).DoModal(
+					GameState.Current.ActiveScreen
+				);
 			});
 		}
 
 		private static void RepairCrafts()
 		{
 			foreach (var @base in GameState.Current.Data.Bases)
-				foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Repairs))
-					RepairCraft(craft);
+			foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Repairs))
+				RepairCraft(craft);
 		}
 
 		private static void RepairCraft(Craft craft)
@@ -243,8 +285,10 @@ namespace XCom.Data
 		private static void RefuelCrafts()
 		{
 			foreach (var @base in GameState.Current.Data.Bases)
-				foreach (var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Refuelling))
-					RefuelCraft(@base, craft);
+			foreach (
+				var craft in @base.Crafts.Where(craft => craft.Status == CraftStatus.Refuelling)
+			)
+				RefuelCraft(@base, craft);
 		}
 
 		private static void RefuelCraft(Base @base, Craft craft)
@@ -252,18 +296,18 @@ namespace XCom.Data
 			var metadata = craft.CraftType.Metadata();
 			switch (metadata.FuelType)
 			{
-			case FuelType.Normal:
-				craft.Fuel += 50;
-				break;
-			case FuelType.Elerium115:
-				if (@base.Stores[ItemType.Elerium115] == 0)
-				{
-					NotifyNotEnoughStoresToRefuelCraft(@base, craft);
-					return;
-				}
-				@base.Stores.Remove(ItemType.Elerium115);
-				craft.Fuel += 5;
-				break;
+				case FuelType.Normal:
+					craft.Fuel += 50;
+					break;
+				case FuelType.Elerium115:
+					if (@base.Stores[ItemType.Elerium115] == 0)
+					{
+						NotifyNotEnoughStoresToRefuelCraft(@base, craft);
+						return;
+					}
+					@base.Stores.Remove(ItemType.Elerium115);
+					craft.Fuel += 5;
+					break;
 			}
 			if (craft.Fuel < metadata.Fuel)
 				return;
@@ -278,7 +322,9 @@ namespace XCom.Data
 			craft.AlreadyNotified = true;
 			GameState.Current.Notifications.Enqueue(() =>
 			{
-				new NotEnoughStoresToRefuelCraft(@base, craft).DoModal(GameState.Current.ActiveScreen);
+				new NotEnoughStoresToRefuelCraft(@base, craft).DoModal(
+					GameState.Current.ActiveScreen
+				);
 			});
 		}
 
@@ -302,13 +348,13 @@ namespace XCom.Data
 			{
 				switch (craft.CraftType)
 				{
-				case CraftType.Skyranger:
-				case CraftType.Interceptor:
-					craft.Fuel -= craft.IsPatrolling ? 3 : 7;
-					break;
-				default:
-					craft.Fuel -= 1;
-					break;
+					case CraftType.Skyranger:
+					case CraftType.Interceptor:
+						craft.Fuel -= craft.IsPatrolling ? 3 : 7;
+						break;
+					default:
+						craft.Fuel -= 1;
+						break;
 				}
 				if (craft.Fuel < 0)
 					craft.Fuel = 0;
@@ -329,8 +375,9 @@ namespace XCom.Data
 
 		private static void MoveUfos(long milliseconds)
 		{
-			var movingUfos = GameState.Current.Data.VisibleUfos
-				.Where(ufo => ufo.Status == UfoStatus.Flying);
+			var movingUfos = GameState.Current.Data.VisibleUfos.Where(ufo =>
+				ufo.Status == UfoStatus.Flying
+			);
 			foreach (var ufo in movingUfos)
 			{
 				ufo.Accelerate(milliseconds);
@@ -350,14 +397,20 @@ namespace XCom.Data
 
 		private static void MoveCrafts(long milliseconds)
 		{
-			var movingCrafts = GameState.Current.Data.ActiveInterceptors.Where(craft => !craft.IsPatrolling);
+			var movingCrafts = GameState.Current.Data.ActiveInterceptors.Where(craft =>
+				!craft.IsPatrolling
+			);
 			foreach (var craft in movingCrafts)
 			{
 				craft.Accelerate(milliseconds);
 				var distance = craft.Distance(milliseconds);
 				if (distance == 0)
 					continue;
-				craft.Location = Trigonometry.MoveLocation(craft.Location, craft.Destination.Location, distance);
+				craft.Location = Trigonometry.MoveLocation(
+					craft.Location,
+					craft.Destination.Location,
+					distance
+				);
 				if (craft.Location.Is(craft.Destination.Location))
 					CraftArrivalAtDestination(craft);
 			}
@@ -367,28 +420,30 @@ namespace XCom.Data
 		{
 			switch (craft.Destination.WorldObjectType)
 			{
-			case WorldObjectType.XcomBase:
-				craft.ReturnToBase();
-				break;
-			case WorldObjectType.Waypoint:
-				var waypoint = craft.Patrol();
-				GameState.Current.Notifications.Enqueue(() =>
-				{
-					new ReachedWaypoint(craft, waypoint).DoModal(GameState.Current.ActiveScreen);
-				});
-				break;
-			case WorldObjectType.Ufo:
-				//TODO: check if interceptor has weapons, engage enemy
-				break;
-			case WorldObjectType.LandingSite:
-			case WorldObjectType.CrashSite:
-				GameState.Current.Notifications.Enqueue(() =>
-				{
-					new ReadyToLand(craft).DoModal(GameState.Current.ActiveScreen);
-				});
-				break;
-			default:
-				throw new NotImplementedException();
+				case WorldObjectType.XcomBase:
+					craft.ReturnToBase();
+					break;
+				case WorldObjectType.Waypoint:
+					var waypoint = craft.Patrol();
+					GameState.Current.Notifications.Enqueue(() =>
+					{
+						new ReachedWaypoint(craft, waypoint).DoModal(
+							GameState.Current.ActiveScreen
+						);
+					});
+					break;
+				case WorldObjectType.Ufo:
+					//TODO: check if interceptor has weapons, engage enemy
+					break;
+				case WorldObjectType.LandingSite:
+				case WorldObjectType.CrashSite:
+					GameState.Current.Notifications.Enqueue(() =>
+					{
+						new ReadyToLand(craft).DoModal(GameState.Current.ActiveScreen);
+					});
+					break;
+				default:
+					throw new NotImplementedException();
 			}
 		}
 	}

@@ -19,7 +19,7 @@ namespace XCom.Data
 		Nigeria,
 		SouthAfrica,
 		Egypt,
-		Canada
+		Canada,
 	}
 
 	public static class CountryTypeExtensions
@@ -29,18 +29,26 @@ namespace XCom.Data
 			return metadata[countryType];
 		}
 
-		private static CountryMetadata Create(string name, int minStartingFunding, int maxStartingFunding, int maxFunding)
+		private static CountryMetadata Create(
+			string name,
+			int minStartingFunding,
+			int maxStartingFunding,
+			int maxFunding
+		)
 		{
 			return new CountryMetadata
 			{
 				Name = name,
 				MinStartingFunding = minStartingFunding,
 				MaxStartingFunding = maxStartingFunding,
-				MaxFunding = maxFunding
+				MaxFunding = maxFunding,
 			};
 		}
 
-		private static readonly Dictionary<CountryType, CountryMetadata> metadata = new Dictionary<CountryType, CountryMetadata>
+		private static readonly Dictionary<CountryType, CountryMetadata> metadata = new Dictionary<
+			CountryType,
+			CountryMetadata
+		>
 		{
 			{ CountryType.UnitedStates, Create("USA", 900, 1200, 10000) },
 			{ CountryType.Russia, Create("RUSSIA", 400, 600, 8000) },
@@ -57,7 +65,7 @@ namespace XCom.Data
 			{ CountryType.Nigeria, Create("NIGERIA", 200, 300, 2000) },
 			{ CountryType.SouthAfrica, Create("SOUTH AFRICA", 300, 400, 3000) },
 			{ CountryType.Egypt, Create("EGYPT", 100, 200, 2000) },
-			{ CountryType.Canada, Create("CANADA", 100, 200, 4000) }
+			{ CountryType.Canada, Create("CANADA", 100, 200, 4000) },
 		};
 	}
 }

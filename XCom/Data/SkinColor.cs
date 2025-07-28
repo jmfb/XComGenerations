@@ -5,6 +5,6 @@
 		White,
 		Tan,
 		Brown,
-		Black
+		Black,
 	}
 }

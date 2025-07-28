@@ -21,14 +21,14 @@ namespace XCom.Battlescape
 			{
 				switch (BattleItemType)
 				{
-				case BattleItemType.Weapon:
-					return (WeaponType)Value;
-				case BattleItemType.Ammunition:
-					return (AmmunitionType)Value;
-				case BattleItemType.Grenade:
-					return (GrenadeType)Value;
-				case BattleItemType.Equipment:
-					return (EquipmentType)Value;
+					case BattleItemType.Weapon:
+						return (WeaponType)Value;
+					case BattleItemType.Ammunition:
+						return (AmmunitionType)Value;
+					case BattleItemType.Grenade:
+						return (GrenadeType)Value;
+					case BattleItemType.Equipment:
+						return (EquipmentType)Value;
 				}
 				throw new InvalidOperationException("Unsupported battle item type.");
 			}
@@ -49,21 +49,35 @@ namespace XCom.Battlescape
 		}
 
 		private BattleItemMetadata Metadata => MetadataOf((dynamic)Item);
-		private static BattleItemMetadata MetadataOf(WeaponType weaponType) => weaponType.Metadata();
-		private static BattleItemMetadata MetadataOf(AmmunitionType ammunitionType) => ammunitionType.Metadata();
-		private static BattleItemMetadata MetadataOf(EquipmentType equipmentType) => equipmentType.Metadata();
-		private static BattleItemMetadata MetadataOf(GrenadeType grenadeType) => grenadeType.Metadata();
+
+		private static BattleItemMetadata MetadataOf(WeaponType weaponType) =>
+			weaponType.Metadata();
+
+		private static BattleItemMetadata MetadataOf(AmmunitionType ammunitionType) =>
+			ammunitionType.Metadata();
+
+		private static BattleItemMetadata MetadataOf(EquipmentType equipmentType) =>
+			equipmentType.Metadata();
+
+		private static BattleItemMetadata MetadataOf(GrenadeType grenadeType) =>
+			grenadeType.Metadata();
 
 		[JsonIgnore]
 		public string Name => Metadata.Name;
+
 		[JsonIgnore]
 		public byte[] Image => Metadata.Image;
+
 		[JsonIgnore]
 		public int Width => Metadata.Width;
+
 		[JsonIgnore]
 		public int Height => Metadata.Height;
+
 		[JsonIgnore]
-		public Dictionary<Direction, byte[]> Sprites => Metadata.Sprites ?? BattleItemSprite.Grenade;
+		public Dictionary<Direction, byte[]> Sprites =>
+			Metadata.Sprites ?? BattleItemSprite.Grenade;
+
 		[JsonIgnore]
 		public bool IsTwoHanded => Metadata.IsTwoHanded;
 
@@ -74,32 +88,38 @@ namespace XCom.Battlescape
 
 		private static BattleItem Create(ItemType item)
 		{
-			var weaponType = EnumEx.GetValues<WeaponType>()
+			var weaponType = EnumEx
+				.GetValues<WeaponType>()
 				.Cast<WeaponType?>()
 				.SingleOrDefault(weapon => weapon?.Metadata().ItemType == item);
-			var ammunitionType = EnumEx.GetValues<AmmunitionType>()
+			var ammunitionType = EnumEx
+				.GetValues<AmmunitionType>()
 				.Cast<AmmunitionType?>()
 				.SingleOrDefault(ammunition => ammunition?.Metadata().ItemType == item);
-			var equipmentType = EnumEx.GetValues<EquipmentType>()
+			var equipmentType = EnumEx
+				.GetValues<EquipmentType>()
 				.Cast<EquipmentType?>()
 				.SingleOrDefault(equipment => equipment?.Metadata().ItemType == item);
-			var grenadeType = EnumEx.GetValues<GrenadeType>()
+			var grenadeType = EnumEx
+				.GetValues<GrenadeType>()
 				.Cast<GrenadeType?>()
 				.SingleOrDefault(grenade => grenade?.Metadata().ItemType == item);
-			var battleItemType = weaponType ?? ammunitionType ?? (object)equipmentType ?? grenadeType;
+			var battleItemType =
+				weaponType ?? ammunitionType ?? (object)equipmentType ?? grenadeType;
 			if (battleItemType == null)
 				throw new InvalidOperationException($"Invalid item type {item}");
 			return new BattleItem
 			{
 				Item = battleItemType,
 				Ammunition = null,
-				Rounds = ammunitionType?.Metadata().Rounds ?? 0
+				Rounds = ammunitionType?.Metadata().Rounds ?? 0,
 			};
 		}
 
 		public bool CanLoadWith(BattleItem item)
 		{
-			return Ammunition == null && (item.Item as AmmunitionType?)?.Metadata().Weapon == (WeaponType?)Item;
+			return Ammunition == null
+				&& (item.Item as AmmunitionType?)?.Metadata().Weapon == (WeaponType?)Item;
 		}
 	}
 }

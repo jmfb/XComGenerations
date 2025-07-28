@@ -12,6 +12,6 @@
 		Mission,
 		Month,
 		Story,
-		Win
+		Win,
 	}
 }

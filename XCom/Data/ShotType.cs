@@ -6,7 +6,7 @@ namespace XCom.Data
 	{
 		Auto,
 		Snap,
-		Aimed
+		Aimed,
 	}
 
 	public static class ShotTypeExtensions
@@ -18,17 +18,17 @@ namespace XCom.Data
 
 		private static ShotMetadata Shot(string name)
 		{
-			return new ShotMetadata
-			{
-				Name = name
-			};
+			return new ShotMetadata { Name = name };
 		}
 
-		private static readonly Dictionary<ShotType, ShotMetadata> metadata = new Dictionary<ShotType, ShotMetadata>
+		private static readonly Dictionary<ShotType, ShotMetadata> metadata = new Dictionary<
+			ShotType,
+			ShotMetadata
+		>
 		{
 			{ ShotType.Auto, Shot("Auto") },
 			{ ShotType.Snap, Shot("Snap") },
-			{ ShotType.Aimed, Shot("Aimed") }
+			{ ShotType.Aimed, Shot("Aimed") },
 		};
 	}
 }

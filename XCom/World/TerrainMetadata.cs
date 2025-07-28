@@ -13,12 +13,12 @@ namespace XCom.World
 		{
 			switch (zoom / 2)
 			{
-			case 0:
-				return ImageZoom3;
-			case 1:
-				return ImageZoom2;
-			case 2:
-				return ImageZoom1;
+				case 0:
+					return ImageZoom3;
+				case 1:
+					return ImageZoom2;
+				case 2:
+					return ImageZoom1;
 			}
 			throw new InvalidOperationException("Invalid zoom");
 		}

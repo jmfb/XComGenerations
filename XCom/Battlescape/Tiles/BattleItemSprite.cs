@@ -7,12 +7,16 @@ namespace XCom.Battlescape.Tiles
 	{
 		private static Dictionary<Direction, byte[]> LoadSprites(int groupIndex)
 		{
-			return EnumEx.GetValues<Direction>()
-				.Select((direction, index) => new
-				{
-					Direction = direction,
-					Image = ImageGroup.Hand.Images[groupIndex * 8 + index]
-				})
+			return EnumEx
+				.GetValues<Direction>()
+				.Select(
+					(direction, index) =>
+						new
+						{
+							Direction = direction,
+							Image = ImageGroup.Hand.Images[groupIndex * 8 + index],
+						}
+				)
 				.ToDictionary(value => value.Direction, value => value.Image);
 		}
 

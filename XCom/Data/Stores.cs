@@ -11,6 +11,7 @@ namespace XCom.Data
 
 		[JsonIgnore]
 		public int TotalItemSpaceRequired => Items.Sum(item => item.TotalItemSpaceRequired);
+
 		[JsonIgnore]
 		public int SpaceUsed => (TotalItemSpaceRequired + 99) / 100;
 
@@ -36,9 +37,10 @@ namespace XCom.Data
 		{
 			return new Stores
 			{
-				Items = EnumEx.GetValues<ItemType>()
+				Items = EnumEx
+					.GetValues<ItemType>()
 					.Select(item => new StoreItem { ItemType = item })
-					.ToList()
+					.ToList(),
 			};
 		}
 	}

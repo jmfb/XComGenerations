@@ -26,7 +26,7 @@ namespace XCom.Data
 		Cyberdisc,
 		CyberdiscAutopsy,
 		Sectopod,
-		SectopodAutopsy
+		SectopodAutopsy,
 	}
 
 	public static class AlienTypeExtensions
@@ -58,8 +58,8 @@ namespace XCom.Data
 				"appears to want to develop",
 				"superior genetic hybrids to",
 				"increase the efficiency of their",
-				"hive-like society."
-			}
+				"hive-like society.",
+			},
 		};
 
 		private static readonly AlienMetadata sectoidAutopsy = new AlienMetadata
@@ -84,8 +84,8 @@ namespace XCom.Data
 				"clues as to how this species can",
 				"reproduce.  They are most",
 				"probably a genetically engineered",
-				"species."
-			}
+				"species.",
+			},
 		};
 
 		private static readonly AlienMetadata snakeman = new AlienMetadata
@@ -108,8 +108,8 @@ namespace XCom.Data
 				"the command of some other",
 				"Intelligence which directs their",
 				"military-style incursions on",
-				"earth."
-			}
+				"earth.",
+			},
 		};
 
 		private static readonly AlienMetadata snakemanAutopsy = new AlienMetadata
@@ -133,8 +133,8 @@ namespace XCom.Data
 				"its body at any one time.  Left",
 				"to its own devices this species",
 				"would be a severe threat to",
-				"life on earth."
-			}
+				"life on earth.",
+			},
 		};
 
 		private static readonly AlienMetadata muton = new AlienMetadata
@@ -161,8 +161,8 @@ namespace XCom.Data
 				"implants are used to enhance",
 				"their combat performance.  They",
 				"are clearly the foot soldiers",
-				"for a higher intelligence."
-			}
+				"for a higher intelligence.",
+			},
 		};
 
 		private static readonly AlienMetadata mutonAutopsy = new AlienMetadata
@@ -187,8 +187,8 @@ namespace XCom.Data
 				"of warfare and conquest.",
 				"Armor piercing ammunition is",
 				"not very effective against",
-				"their toughened skin."
-			}
+				"their toughened skin.",
+			},
 		};
 
 		private static readonly AlienMetadata floater = new AlienMetadata
@@ -211,8 +211,8 @@ namespace XCom.Data
 				"contains an anti-grav unit which",
 				"enabled the creature to float,",
 				"albeit unsteadily, through the",
-				"air."
-			}
+				"air.",
+			},
 		};
 
 		private static readonly AlienMetadata floaterAutopsy = new AlienMetadata
@@ -234,8 +234,8 @@ namespace XCom.Data
 				"environments.  The brain is",
 				"smaller than ours, but the",
 				"sensory organs are well",
-				"developed."
-			}
+				"developed.",
+			},
 		};
 
 		private static readonly AlienMetadata ethereal = new AlienMetadata
@@ -261,8 +261,8 @@ namespace XCom.Data
 				"their mental powers for combat.",
 				"They rarely appear on earth",
 				"since they seem to rely on other",
-				"races to pursue their objectives."
-			}
+				"races to pursue their objectives.",
+			},
 		};
 
 		private static readonly AlienMetadata etherealAutopsy = new AlienMetadata
@@ -285,8 +285,8 @@ namespace XCom.Data
 				"proportion of the body's blood",
 				"supply.  It is a mystery as to",
 				"how this creature can sustain",
-				"itself without external support."
-			}
+				"itself without external support.",
+			},
 		};
 
 		private static readonly AlienMetadata celatid = new AlienMetadata
@@ -309,8 +309,8 @@ namespace XCom.Data
 				"has the ability to clone itself",
 				"at an alarming rate. It",
 				"accompanies the Muton race in",
-				"its wonderings."
-			}
+				"its wonderings.",
+			},
 		};
 
 		private static readonly AlienMetadata celatidAutopsy = new AlienMetadata
@@ -332,8 +332,8 @@ namespace XCom.Data
 				"reproductive system. A small",
 				"organ contains embryos which",
 				"can grow rapidly into a new",
-				"being."
-			}
+				"being.",
+			},
 		};
 
 		private static readonly AlienMetadata silacoid = new AlienMetadata
@@ -352,8 +352,8 @@ namespace XCom.Data
 				"and can be controlled by",
 				"implants or telepathic beings. It",
 				"works with the Muton alien",
-				"race."
-			}
+				"race.",
+			},
 		};
 
 		private static readonly AlienMetadata silacoidAutopsy = new AlienMetadata
@@ -370,8 +370,8 @@ namespace XCom.Data
 				"system has tremendous power",
 				"and speed. Its rock like skin is",
 				"not harmed by fire or",
-				"incendiary ammunition."
-			}
+				"incendiary ammunition.",
+			},
 		};
 
 		private static readonly AlienMetadata chryssalid = new AlienMetadata
@@ -394,8 +394,8 @@ namespace XCom.Data
 				"the victim shortly after",
 				"impregnation.  Chryssalids are",
 				"associated with the Snakeman",
-				"race."
-			}
+				"race.",
+			},
 		};
 
 		private static readonly AlienMetadata chryssalidAutopsy = new AlienMetadata
@@ -414,8 +414,8 @@ namespace XCom.Data
 				"creature carries twenty eggs",
 				"which are laid inside other",
 				"organisms.  This creature is a",
-				"very effective terror weapon."
-			}
+				"very effective terror weapon.",
+			},
 		};
 
 		private static readonly AlienMetadata reaper = new AlienMetadata
@@ -434,8 +434,8 @@ namespace XCom.Data
 				"this creature are of little use",
 				"except to terrorize and",
 				"destroy. Reapers are commonly",
-				"associated with Floaters."
-			}
+				"associated with Floaters.",
+			},
 		};
 
 		private static readonly AlienMetadata reaperAutopsy = new AlienMetadata
@@ -451,8 +451,8 @@ namespace XCom.Data
 				"wounded.  However its furry",
 				"skin is highly flammable, making",
 				"the creature vulnerable to",
-				"incendiary weapons."
-			}
+				"incendiary weapons.",
+			},
 		};
 
 		private static readonly AlienMetadata cyberdisc = new AlienMetadata
@@ -470,8 +470,8 @@ namespace XCom.Data
 				"difficult terrain. Its primary",
 				"function is destruction and",
 				"terror in the service of the",
-				"Sectoid race."
-			}
+				"Sectoid race.",
+			},
 		};
 
 		private static readonly AlienMetadata cyberdiscAutopsy = new AlienMetadata
@@ -487,8 +487,8 @@ namespace XCom.Data
 				"ammunition. The primary",
 				"anti-gravity system is too",
 				"badly damaged to gain any",
-				"understanding of its functioning."
-			}
+				"understanding of its functioning.",
+			},
 		};
 
 		private static readonly AlienMetadata sectopod = new AlienMetadata
@@ -506,8 +506,8 @@ namespace XCom.Data
 				"controllers, the Ethereals.",
 				"Sectopods are the most powerful",
 				"terror weapon available to the",
-				"alien forces."
-			}
+				"alien forces.",
+			},
 		};
 
 		private static readonly AlienMetadata sectopodAutopsy = new AlienMetadata
@@ -523,11 +523,14 @@ namespace XCom.Data
 				"in particular plasma weapons.",
 				"However, the sensing circuitry",
 				"seems particularly vulnerable to",
-				"laser weapons."
-			}
+				"laser weapons.",
+			},
 		};
 
-		private static readonly Dictionary<AlienType, AlienMetadata> metadata = new Dictionary<AlienType, AlienMetadata>
+		private static readonly Dictionary<AlienType, AlienMetadata> metadata = new Dictionary<
+			AlienType,
+			AlienMetadata
+		>
 		{
 			{ AlienType.Sectoid, sectoid },
 			{ AlienType.SectoidAutopsy, sectoidAutopsy },
@@ -550,7 +553,7 @@ namespace XCom.Data
 			{ AlienType.Cyberdisc, cyberdisc },
 			{ AlienType.CyberdiscAutopsy, cyberdiscAutopsy },
 			{ AlienType.Sectopod, sectopod },
-			{ AlienType.SectopodAutopsy, sectopodAutopsy }
+			{ AlienType.SectopodAutopsy, sectopodAutopsy },
 		};
 	}
 }

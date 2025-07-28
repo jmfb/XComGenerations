@@ -25,9 +25,20 @@ namespace XCom.Screens
 			AddControl(new Button(5, 75, 30, 14, ">>", metadata.Scheme, Font.Normal, OnNext));
 		}
 
-		private void OnOk() => GameState.Current.SetScreen(category == null ? (Screen)Geoscape : new TopicList(category.Value));
-		private void OnPrevious() => GameState.Current.SetScreen(new TopicView(category, GameState.Current.Data.GetPreviousTopic(topic)));
-		private void OnNext() => GameState.Current.SetScreen(new TopicView(category, GameState.Current.Data.GetNextTopic(topic)));
+		private void OnOk() =>
+			GameState.Current.SetScreen(
+				category == null ? (Screen)Geoscape : new TopicList(category.Value)
+			);
+
+		private void OnPrevious() =>
+			GameState.Current.SetScreen(
+				new TopicView(category, GameState.Current.Data.GetPreviousTopic(topic))
+			);
+
+		private void OnNext() =>
+			GameState.Current.SetScreen(
+				new TopicView(category, GameState.Current.Data.GetNextTopic(topic))
+			);
 
 		private void AddTopicControls(CraftType craft)
 		{
@@ -39,7 +50,9 @@ namespace XCom.Screens
 			{
 				var top = nextDescriptionTop;
 				nextDescriptionTop += 8;
-				AddControl(new Label(top, 5, descriptionLine, Font.Normal, ColorScheme.LightPurple));
+				AddControl(
+					new Label(top, 5, descriptionLine, Font.Normal, ColorScheme.LightPurple)
+				);
 			}
 
 			var left = metadata.ShowStatsOnBottom ? 5 : 160;
@@ -51,14 +64,22 @@ namespace XCom.Screens
 				Tuple.Create("FUEL CAPACITY>", metadata.Fuel),
 				Tuple.Create("WEAPON PODS>", metadata.WeaponCount),
 				Tuple.Create("CARGO SPACE>", metadata.Space),
-				Tuple.Create("HWP CAPACITY>", metadata.HwpCount)
+				Tuple.Create("HWP CAPACITY>", metadata.HwpCount),
 			};
 			foreach (var stat in stats)
 			{
 				var top = nextStatTop;
 				nextStatTop += 8;
 				AddControl(new Label(top, left, stat.Item1, Font.Normal, ColorScheme.LightPurple));
-				AddControl(new Label(top, left + Font.Normal.MeasureString(stat.Item1) - 1, stat.Item2.FormatNumber(), Font.Normal, ColorScheme.LightAqua));
+				AddControl(
+					new Label(
+						top,
+						left + Font.Normal.MeasureString(stat.Item1) - 1,
+						stat.Item2.FormatNumber(),
+						Font.Normal,
+						ColorScheme.LightAqua
+					)
+				);
 			}
 		}
 
@@ -67,20 +88,22 @@ namespace XCom.Screens
 			var metadata = craftWeapon.Metadata();
 			AddControl(new Overlay(metadata.Overlay, 4));
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.White));
-			
+
 			var nextTop = 95;
 			var stats = new[]
 			{
 				Tuple.Create("Damage", metadata.Damage.FormatNumber()),
 				Tuple.Create("Range", metadata.Range.FormatNumber() + " km"),
 				Tuple.Create("Accuracy", metadata.Accuracy.FormatNumber() + "\t%"),
-				Tuple.Create("Re-load time", metadata.ReloadTime.FormatNumber() + "s")
+				Tuple.Create("Re-load time", metadata.ReloadTime.FormatNumber() + "s"),
 			};
 			foreach (var stat in stats)
 			{
 				var top = nextTop;
 				nextTop += 16;
-				AddControl(new ExtendedLabel(top, 5, 135, stat.Item1, Font.Large, ColorScheme.White));
+				AddControl(
+					new ExtendedLabel(top, 5, 135, stat.Item1, Font.Large, ColorScheme.White)
+				);
 				AddControl(new Label(top, 140, stat.Item2, Font.Large, ColorScheme.LightBlue));
 			}
 		}
@@ -103,13 +126,18 @@ namespace XCom.Screens
 				Tuple.Create("Weapon", metadata.DamageType.Metadata().Name),
 				Tuple.Create("Weapon Power", metadata.Damage.FormatNumber()),
 				Tuple.Create("Ammunition", metadata.Ammunition?.Metadata().Name),
-				Tuple.Create("Rounds", metadata.Rounds == 0 ? null : metadata.Rounds.FormatNumber())
+				Tuple.Create(
+					"Rounds",
+					metadata.Rounds == 0 ? null : metadata.Rounds.FormatNumber()
+				),
 			};
 			foreach (var stat in stats.Where(stat => stat.Item2 != null))
 			{
 				var top = nextTop;
 				nextTop += 8;
-				AddControl(new ExtendedLabel(top, 10, 175, stat.Item1, Font.Normal, ColorScheme.LightAqua));
+				AddControl(
+					new ExtendedLabel(top, 10, 175, stat.Item1, Font.Normal, ColorScheme.LightAqua)
+				);
 				AddControl(new Label(top, 185, stat.Item2, Font.Normal, ColorScheme.LightAqua));
 			}
 			nextTop += 2;
@@ -117,7 +145,9 @@ namespace XCom.Screens
 			{
 				var top = nextTop;
 				nextTop += 8;
-				AddControl(new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.LightPurple));
+				AddControl(
+					new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.LightPurple)
+				);
 			}
 		}
 
@@ -134,21 +164,37 @@ namespace XCom.Screens
 				Tuple.Create("Left Armor", metadata.LeftArmor),
 				Tuple.Create("Right Armor", metadata.RightArmor),
 				Tuple.Create("Rear Armor", metadata.RearArmor),
-				Tuple.Create("Under Armor", metadata.UnderArmor)
+				Tuple.Create("Under Armor", metadata.UnderArmor),
 			};
 			foreach (var stat in stats)
 			{
 				var top = nextTop;
 				nextTop += 8;
-				AddControl(new ExtendedLabel(top, 150, 125, stat.Item1, Font.Normal, ColorScheme.White));
-				AddControl(new Label(top, 275, stat.Item2.FormatNumber(), Font.Normal, ColorScheme.LightBlue));
+				AddControl(
+					new ExtendedLabel(top, 150, 125, stat.Item1, Font.Normal, ColorScheme.White)
+				);
+				AddControl(
+					new Label(
+						top,
+						275,
+						stat.Item2.FormatNumber(),
+						Font.Normal,
+						ColorScheme.LightBlue
+					)
+				);
 			}
 		}
 
 		private void AddTopicControls(WeaponType weapon)
 		{
 			var metadata = weapon.Metadata();
-			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
+			AddControl(
+				new Item(
+					4 + 8 * (3 - metadata.Height),
+					158 + 8 * (2 - metadata.Width),
+					metadata.Image
+				)
+			);
 			AddControl(new Label(24, 5, metadata.Name, Font.Large, ColorScheme.White));
 
 			AddControl(new Label(7, 224, "DAMAGE", Font.Normal, ColorScheme.White));
@@ -156,14 +202,31 @@ namespace XCom.Screens
 
 			var nextTop = 24;
 			var ammoLeft = Label.CenterOf(195, 90);
-			var laserWeapon = EnumEx.GetValues<LaserWeaponType>()
+			var laserWeapon = EnumEx
+				.GetValues<LaserWeaponType>()
 				.Where(laserWeaponType => laserWeaponType.Metadata().Weapon == weapon)
 				.Cast<LaserWeaponType?>()
 				.SingleOrDefault();
 			if (laserWeapon != null)
 			{
-				AddControl(new Label(nextTop, ammoLeft, DamageType.LaserBeam.Metadata().Name, Font.Normal, ColorScheme.White));
-				AddControl(new Label(nextTop + 16, ammoLeft, laserWeapon.Value.Metadata().Damage.FormatNumber(), Font.Large, ColorScheme.Red));
+				AddControl(
+					new Label(
+						nextTop,
+						ammoLeft,
+						DamageType.LaserBeam.Metadata().Name,
+						Font.Normal,
+						ColorScheme.White
+					)
+				);
+				AddControl(
+					new Label(
+						nextTop + 16,
+						ammoLeft,
+						laserWeapon.Value.Metadata().Damage.FormatNumber(),
+						Font.Large,
+						ColorScheme.Red
+					)
+				);
 			}
 			else
 			{
@@ -172,12 +235,31 @@ namespace XCom.Screens
 					var ammoMetadata = ammunition.Metadata();
 					var top = nextTop;
 					nextTop += 49;
-					AddControl(new Label(top, ammoLeft, ammoMetadata.DamageType.Metadata().Name, Font.Normal, ColorScheme.White));
-					AddControl(new Label(top + 16, ammoLeft, ammoMetadata.Damage.FormatNumber(), Font.Large, ColorScheme.Red));
-					AddControl(new Item(
-						top - 7 + 8 * (3 - ammoMetadata.Height),
-						283 + 8 * (2 - ammoMetadata.Width),
-						ammoMetadata.Image));
+					AddControl(
+						new Label(
+							top,
+							ammoLeft,
+							ammoMetadata.DamageType.Metadata().Name,
+							Font.Normal,
+							ColorScheme.White
+						)
+					);
+					AddControl(
+						new Label(
+							top + 16,
+							ammoLeft,
+							ammoMetadata.Damage.FormatNumber(),
+							Font.Large,
+							ColorScheme.Red
+						)
+					);
+					AddControl(
+						new Item(
+							top - 7 + 8 * (3 - ammoMetadata.Height),
+							283 + 8 * (2 - ammoMetadata.Width),
+							ammoMetadata.Image
+						)
+					);
 				}
 			}
 
@@ -190,9 +272,27 @@ namespace XCom.Screens
 			{
 				var top = nextTop;
 				nextTop += 20;
-				AddControl(new Label(top, 8, shot.ShotType.Metadata().Name, Font.Large, ColorScheme.White));
-				AddControl(new Label(top, 88, $"{shot.Accuracy.FormatNumber()}\t%", Font.Large, ColorScheme.LightBlue));
-				AddControl(new Label(top, 144, $"{shot.TimeUnits.FormatNumber()}\t%", Font.Large, ColorScheme.LightBlue));
+				AddControl(
+					new Label(top, 8, shot.ShotType.Metadata().Name, Font.Large, ColorScheme.White)
+				);
+				AddControl(
+					new Label(
+						top,
+						88,
+						$"{shot.Accuracy.FormatNumber()}\t%",
+						Font.Large,
+						ColorScheme.LightBlue
+					)
+				);
+				AddControl(
+					new Label(
+						top,
+						144,
+						$"{shot.TimeUnits.FormatNumber()}\t%",
+						Font.Large,
+						ColorScheme.LightBlue
+					)
+				);
 			}
 
 			nextTop = 138;
@@ -207,11 +307,33 @@ namespace XCom.Screens
 		private void AddTopicControls(GrenadeType grenade)
 		{
 			var metadata = grenade.Metadata();
-			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
+			AddControl(
+				new Item(
+					4 + 8 * (3 - metadata.Height),
+					158 + 8 * (2 - metadata.Width),
+					metadata.Image
+				)
+			);
 			AddControl(new WrappedLabel(24, 5, 150, metadata.Name, Font.Large, ColorScheme.White));
 
-			AddControl(new Label(24, Label.CenterOf(195, 90), metadata.DamageType.Metadata().Name, Font.Normal, ColorScheme.White));
-			AddControl(new Label(40, Label.CenterOf(195, 90), metadata.Damage.FormatNumber(), Font.Large, ColorScheme.Red));
+			AddControl(
+				new Label(
+					24,
+					Label.CenterOf(195, 90),
+					metadata.DamageType.Metadata().Name,
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
+			AddControl(
+				new Label(
+					40,
+					Label.CenterOf(195, 90),
+					metadata.Damage.FormatNumber(),
+					Font.Large,
+					ColorScheme.Red
+				)
+			);
 
 			var nextTop = 67;
 			foreach (var descriptionLine in metadata.DescriptionLines)
@@ -225,7 +347,13 @@ namespace XCom.Screens
 		private void AddTopicControls(EquipmentType equipment)
 		{
 			var metadata = equipment.Metadata();
-			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
+			AddControl(
+				new Item(
+					4 + 8 * (3 - metadata.Height),
+					158 + 8 * (2 - metadata.Width),
+					metadata.Image
+				)
+			);
 			AddControl(new WrappedLabel(24, 5, 150, metadata.Name, Font.Large, ColorScheme.White));
 
 			var nextTop = 67;
@@ -240,11 +368,33 @@ namespace XCom.Screens
 		private void AddTopicControls(AmmunitionType ammunition)
 		{
 			var metadata = ammunition.Metadata();
-			AddControl(new Item(4 + 8 * (3 - metadata.Height), 158 + 8 * (2 - metadata.Width), metadata.Image));
+			AddControl(
+				new Item(
+					4 + 8 * (3 - metadata.Height),
+					158 + 8 * (2 - metadata.Width),
+					metadata.Image
+				)
+			);
 			AddControl(new WrappedLabel(24, 5, 150, metadata.Name, Font.Large, ColorScheme.White));
 
-			AddControl(new Label(24, Label.CenterOf(195, 90), metadata.DamageType.Metadata().Name, Font.Normal, ColorScheme.White));
-			AddControl(new Label(40, Label.CenterOf(195, 90), metadata.Damage.FormatNumber(), Font.Large, ColorScheme.Red));
+			AddControl(
+				new Label(
+					24,
+					Label.CenterOf(195, 90),
+					metadata.DamageType.Metadata().Name,
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
+			AddControl(
+				new Label(
+					40,
+					Label.CenterOf(195, 90),
+					metadata.Damage.FormatNumber(),
+					Font.Large,
+					ColorScheme.Red
+				)
+			);
 
 			var nextTop = 67;
 			foreach (var descriptionLine in metadata.DescriptionLines)
@@ -265,7 +415,13 @@ namespace XCom.Screens
 			else
 			{
 				AddControl(new Picture(31, 249, metadata.Shape.BuildingImage()));
-				AddControl(new Picture(30 + metadata.RowOffset, 248 + metadata.ColumnOffset, metadata.Image));
+				AddControl(
+					new Picture(
+						30 + metadata.RowOffset,
+						248 + metadata.ColumnOffset,
+						metadata.Image
+					)
+				);
 			}
 			AddControl(new Label(24, 10, metadata.Name, Font.Large, ColorScheme.Blue));
 
@@ -275,14 +431,22 @@ namespace XCom.Screens
 				Tuple.Create("Construction Time", $"{metadata.DaysToConstruct} days"),
 				Tuple.Create("Construction Cost", $"${metadata.Cost.FormatNumber()}"),
 				Tuple.Create("Maintenance Cost", $"${metadata.Maintenance.FormatNumber()}"),
-				Tuple.Create("Defense Value", metadata.DefenseValue == 0 ? null : metadata.DefenseValue.FormatNumber()),
-				Tuple.Create("Hit Ratio", metadata.HitRatio == 0 ? null : $"{metadata.HitRatio}\t%")
+				Tuple.Create(
+					"Defense Value",
+					metadata.DefenseValue == 0 ? null : metadata.DefenseValue.FormatNumber()
+				),
+				Tuple.Create(
+					"Hit Ratio",
+					metadata.HitRatio == 0 ? null : $"{metadata.HitRatio}\t%"
+				),
 			};
 			foreach (var stat in stats.Where(stat => stat.Item2 != null))
 			{
 				var top = nextTop;
 				nextTop += 10;
-				AddControl(new ExtendedLabel(top, 10, 140, stat.Item1, Font.Normal, ColorScheme.Blue));
+				AddControl(
+					new ExtendedLabel(top, 10, 140, stat.Item1, Font.Normal, ColorScheme.Blue)
+				);
 				AddControl(new Label(top, 150, stat.Item2, Font.Normal, ColorScheme.White));
 			}
 
@@ -305,7 +469,9 @@ namespace XCom.Screens
 			{
 				var top = nextTop;
 				nextTop += 8;
-				AddControl(new Label(top, 5, descriptionLine, Font.Normal, ColorScheme.LightPurple));
+				AddControl(
+					new Label(top, 5, descriptionLine, Font.Normal, ColorScheme.LightPurple)
+				);
 			}
 		}
 
@@ -318,17 +484,35 @@ namespace XCom.Screens
 			{
 				var top = nextTop;
 				nextTop += 8;
-				AddControl(new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.LightPurple));
+				AddControl(
+					new Label(top, 10, descriptionLine, Font.Normal, ColorScheme.LightPurple)
+				);
 			}
 		}
 
 		private void AddTopicControls(UfoComponentType ufoComponent)
 		{
 			var metadata = ufoComponent.Metadata();
-			var title = new WrappedLabel(24, 5, metadata.LabelWidth, metadata.Name, Font.Large, ColorScheme.LightAqua);
+			var title = new WrappedLabel(
+				24,
+				5,
+				metadata.LabelWidth,
+				metadata.Name,
+				Font.Large,
+				ColorScheme.LightAqua
+			);
 			AddControl(title);
 			AddControl(new Overlay(metadata.Overlay));
-			AddControl(new WrappedLabel(title.Bottom + 2, 5, metadata.LabelWidth, metadata.Description, Font.Normal, ColorScheme.LightPurple));
+			AddControl(
+				new WrappedLabel(
+					title.Bottom + 2,
+					5,
+					metadata.LabelWidth,
+					metadata.Description,
+					Font.Normal,
+					ColorScheme.LightPurple
+				)
+			);
 		}
 
 		private void AddTopicControls(UfoType ufo)
@@ -343,16 +527,20 @@ namespace XCom.Screens
 				Tuple.Create("Damage Capacity", metadata.DamageCapacity.FormatNumber()),
 				Tuple.Create("Weapon Power", metadata.WeaponPower.FormatNumber()),
 				Tuple.Create("Weapon Range", metadata.WeaponRange.FormatNumber()),
-				Tuple.Create("Maximum Speed", $"{metadata.MaximumSpeed.FormatNumber()}\tknots")
+				Tuple.Create("Maximum Speed", $"{metadata.MaximumSpeed.FormatNumber()}\tknots"),
 			};
 			foreach (var stat in stats)
 			{
 				var top = nextTop;
 				nextTop += 16;
-				AddControl(new ExtendedLabel(top, 10, 180, stat.Item1, Font.Large, ColorScheme.Aqua));
+				AddControl(
+					new ExtendedLabel(top, 10, 180, stat.Item1, Font.Large, ColorScheme.Aqua)
+				);
 				AddControl(new Label(top, 190, stat.Item2, Font.Large, ColorScheme.Aqua));
 			}
-			AddControl(new WrappedLabel(140, 10, 300, metadata.Description, Font.Normal, ColorScheme.Aqua));
+			AddControl(
+				new WrappedLabel(140, 10, 300, metadata.Description, Font.Normal, ColorScheme.Aqua)
+			);
 		}
 	}
 }

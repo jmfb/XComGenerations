@@ -8,10 +8,7 @@ namespace XCom.Controls
 		private readonly int leftColumn;
 		private readonly Image image;
 
-		public Picture(
-			int topRow,
-			int leftColumn,
-			Image image)
+		public Picture(int topRow, int leftColumn, Image image)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;

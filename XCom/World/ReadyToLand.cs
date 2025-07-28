@@ -20,7 +20,9 @@ namespace XCom.World
 			AddControl(new Label(40, centerOf, craft.Name, Font.Large, ColorScheme.Yellow));
 			AddControl(new Label(56, centerOf, "ready to", Font.Large, ColorScheme.Aqua));
 			AddControl(new Label(72, centerOf, "land near", Font.Large, ColorScheme.Aqua));
-			AddControl(new Label(88, centerOf, craft.Destination.Name, Font.Large, ColorScheme.Yellow));
+			AddControl(
+				new Label(88, centerOf, craft.Destination.Name, Font.Large, ColorScheme.Yellow)
+			);
 			AddControl(new Label(130, centerOf, "Begin Mission?", Font.Large, ColorScheme.Aqua));
 			AddControl(new Button(150, 40, 80, 20, "YES", ColorScheme.Aqua, Font.Normal, OnYes));
 			AddControl(new Button(150, 136, 80, 20, "NO", ColorScheme.Aqua, Font.Normal, OnNo));

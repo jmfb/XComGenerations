@@ -5,6 +5,6 @@
 		Ground = 0,
 		WestWall = 1,
 		NorthWall = 2,
-		Entity = 3
+		Entity = 3,
 	}
 }

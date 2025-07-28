@@ -16,6 +16,6 @@
 		AlienHabitat = 11,
 		DeadTile = 12,
 		ExitPoint = 13,
-		AlienBrain = 14
+		AlienBrain = 14,
 	}
 }

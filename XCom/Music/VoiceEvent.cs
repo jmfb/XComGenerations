@@ -8,6 +8,6 @@
 		ControllerChange = 0xb0,
 		ProgramChange = 0xc0,
 		ChannelKeyPressure = 0xd0,
-		PitchBend = 0xe0
+		PitchBend = 0xe0,
 	}
 }

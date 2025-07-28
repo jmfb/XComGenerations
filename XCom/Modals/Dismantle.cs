@@ -15,10 +15,22 @@ namespace XCom.Modals
 		{
 			this.facility = facility;
 			AddControl(new Border(60, 20, 152, 80, ColorScheme.LightMagenta, Backgrounds.Funds, 9));
-			AddControl(new Label(75, Label.CenterOf(20, 152), "Dismantle", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(85, Label.CenterOf(20, 152), facility.FacilityType.Metadata().Name, Font.Normal, ColorScheme.Blue));
+			AddControl(
+				new Label(75, Label.CenterOf(20, 152), "Dismantle", Font.Normal, ColorScheme.Blue)
+			);
+			AddControl(
+				new Label(
+					85,
+					Label.CenterOf(20, 152),
+					facility.FacilityType.Metadata().Name,
+					Font.Normal,
+					ColorScheme.Blue
+				)
+			);
 			AddControl(new Button(115, 36, 44, 16, "OK", ColorScheme.Purple, Font.Normal, OnOk));
-			AddControl(new Button(115, 112, 44, 16, "CANCEL", ColorScheme.Purple, Font.Normal, EndModal));
+			AddControl(
+				new Button(115, 112, 44, 16, "CANCEL", ColorScheme.Purple, Font.Normal, EndModal)
+			);
 		}
 
 		private void OnOk()

@@ -22,7 +22,8 @@ namespace XCom.Controls
 			int position,
 			Color borderColor,
 			Color fillColor,
-			Color? unfilledColor = null)
+			Color? unfilledColor = null
+		)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;
@@ -41,7 +42,8 @@ namespace XCom.Controls
 			int height,
 			int position,
 			int borderColor,
-			int fillColor)
+			int fillColor
+		)
 			: this(
 				topRow,
 				leftColumn,
@@ -49,9 +51,8 @@ namespace XCom.Controls
 				height,
 				position,
 				Palette.GetPalette(1).GetColor(borderColor),
-				Palette.GetPalette(1).GetColor(fillColor))
-		{
-		}
+				Palette.GetPalette(1).GetColor(fillColor)
+			) { }
 
 		public void Render(GraphicsBuffer buffer)
 		{
@@ -60,7 +61,13 @@ namespace XCom.Controls
 			buffer.DrawVerticalLine(topRow, leftColumn + width, height, borderColor);
 			buffer.FillRect(topRow + 1, leftColumn, position, height - 2, fillColor);
 			if (unfilledColor != null)
-				buffer.FillRect(topRow + 1, leftColumn + position, width - position, height - 2, unfilledColor.Value);
+				buffer.FillRect(
+					topRow + 1,
+					leftColumn + position,
+					width - position,
+					height - 2,
+					unfilledColor.Value
+				);
 		}
 	}
 }

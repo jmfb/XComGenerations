@@ -27,16 +27,45 @@ namespace XCom.Screens
 			AddControl(new Label(30, 205, "TRANSFER", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(22, 260, "AMOUNT AT", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(30, 260, "DESTINATION", Font.Normal, ColorScheme.Blue));
-			AddControl(new ListView<object>(40, 8, 16, itemsToTransfer.Keys.ToList(), ColorScheme.Blue, Palette.GetPalette(6).GetColor(230), OnIncreaseTransfer)
-				.ConfigureUpDown(200, OnDescreaseTransfer)
-				.AddColumn(2, Alignment.Left, item => "")
-				.AddColumn(162, Alignment.Left, GetName, item => ColorScheme.LightMagenta)
-				.AddColumn(58, Alignment.Left, item => GetRemainingQuantity(item).FormatNumber(), item => ColorScheme.LightMagenta)
-				.AddColumn(30, Alignment.Left, item => GetAmountToTransfer(item).FormatNumber(), item => ColorScheme.LightMagenta)
-				.AddColumn(30, Alignment.Right, item => GetAmountAtDestination(item).FormatNumber(), item => ColorScheme.LightMagenta)
-				.AddColumn(5, Alignment.Left, item => ""));
-			AddControl(new Button(176, 8, 146, 16, "Transfer", ColorScheme.Purple, Font.Normal, OnTransfer));
-			AddControl(new Button(176, 164, 146, 16, "Cancel", ColorScheme.Purple, Font.Normal, OnCancel));
+			AddControl(
+				new ListView<object>(
+					40,
+					8,
+					16,
+					itemsToTransfer.Keys.ToList(),
+					ColorScheme.Blue,
+					Palette.GetPalette(6).GetColor(230),
+					OnIncreaseTransfer
+				)
+					.ConfigureUpDown(200, OnDescreaseTransfer)
+					.AddColumn(2, Alignment.Left, item => "")
+					.AddColumn(162, Alignment.Left, GetName, item => ColorScheme.LightMagenta)
+					.AddColumn(
+						58,
+						Alignment.Left,
+						item => GetRemainingQuantity(item).FormatNumber(),
+						item => ColorScheme.LightMagenta
+					)
+					.AddColumn(
+						30,
+						Alignment.Left,
+						item => GetAmountToTransfer(item).FormatNumber(),
+						item => ColorScheme.LightMagenta
+					)
+					.AddColumn(
+						30,
+						Alignment.Right,
+						item => GetAmountAtDestination(item).FormatNumber(),
+						item => ColorScheme.LightMagenta
+					)
+					.AddColumn(5, Alignment.Left, item => "")
+			);
+			AddControl(
+				new Button(176, 8, 146, 16, "Transfer", ColorScheme.Purple, Font.Normal, OnTransfer)
+			);
+			AddControl(
+				new Button(176, 164, 146, 16, "Cancel", ColorScheme.Purple, Font.Normal, OnCancel)
+			);
 		}
 
 		private void GatherItemsAvailableToTransfer()
@@ -44,7 +73,9 @@ namespace XCom.Screens
 			var selectedBase = GameState.SelectedBase;
 			foreach (var soldier in selectedBase.Soldiers.Where(soldier => soldier.Craft == null))
 				itemsToTransfer.Add(soldier, 0);
-			foreach (var craft in selectedBase.Crafts.Where(craft => craft.Status != CraftStatus.Out))
+			foreach (
+				var craft in selectedBase.Crafts.Where(craft => craft.Status != CraftStatus.Out)
+			)
 				itemsToTransfer.Add(craft, 0);
 			if (selectedBase.EngineersAvailable > 0)
 				itemsToTransfer.Add(ItemType.Engineer, 0);
@@ -56,18 +87,18 @@ namespace XCom.Screens
 
 		private static string GetName(object item)
 		{
-			return (item as Soldier)?.Name ??
-				(item as Craft)?.Name ??
-				((ItemType)item).Metadata().Name;
+			return (item as Soldier)?.Name
+				?? (item as Craft)?.Name
+				?? ((ItemType)item).Metadata().Name;
 		}
 
 		private static int GetAvailableQuantity(object item)
 		{
-			return item is Soldier ? 1 :
-				item is Craft ? 1 :
-				(ItemType)item == ItemType.Engineer ? GameState.SelectedBase.EngineersAvailable :
-				(ItemType)item == ItemType.Scientist ? GameState.SelectedBase.ScientistsAvailable :
-				GameState.SelectedBase.Stores[(ItemType)item];
+			return item is Soldier ? 1
+				: item is Craft ? 1
+				: (ItemType)item == ItemType.Engineer ? GameState.SelectedBase.EngineersAvailable
+				: (ItemType)item == ItemType.Scientist ? GameState.SelectedBase.ScientistsAvailable
+				: GameState.SelectedBase.Stores[(ItemType)item];
 		}
 
 		private int GetRemainingQuantity(object item)
@@ -82,26 +113,34 @@ namespace XCom.Screens
 
 		private int GetAmountAtDestination(object item)
 		{
-			return item is Soldier ? 0 :
-				item is Craft ? 0 :
-				(ItemType)item == ItemType.Engineer ? destination.EngineersAvailable :
-				(ItemType)item == ItemType.Scientist ? destination.ScientistsAvailable :
-				destination.Stores[(ItemType)item];
+			return item is Soldier ? 0
+				: item is Craft ? 0
+				: (ItemType)item == ItemType.Engineer ? destination.EngineersAvailable
+				: (ItemType)item == ItemType.Scientist ? destination.ScientistsAvailable
+				: destination.Stores[(ItemType)item];
 		}
 
 		private void OnIncreaseTransfer(object item)
 		{
-			if (GetLivingSpaceRequired(item) + TotalLivingSpaceRequired > destination.LivingSpaceAvailable)
+			if (
+				GetLivingSpaceRequired(item) + TotalLivingSpaceRequired
+				> destination.LivingSpaceAvailable
+			)
 			{
 				AbortTransferItem();
 				new NoFreeAccomodation().DoModal(this);
 				return;
 			}
 
-			if (GetHangarSpaceRequired(item) + TotalHangarSpaceRequired > destination.HangarSpaceAvailable)
+			if (
+				GetHangarSpaceRequired(item) + TotalHangarSpaceRequired
+				> destination.HangarSpaceAvailable
+			)
 			{
 				AbortTransferItem();
-				new NoFreeHangars(ColorScheme.LightMagenta, Backgrounds.Funds, "TRANSFER").DoModal(this);
+				new NoFreeHangars(ColorScheme.LightMagenta, Backgrounds.Funds, "TRANSFER").DoModal(
+					this
+				);
 				return;
 			}
 
@@ -112,7 +151,10 @@ namespace XCom.Screens
 				return;
 			}
 
-			if (GetItemSpaceRequired(item) + TotalItemSpaceRequired > destination.ItemSpaceAvailable)
+			if (
+				GetItemSpaceRequired(item) + TotalItemSpaceRequired
+				> destination.ItemSpaceAvailable
+			)
 			{
 				AbortTransferItem();
 				new NotEnoughStoreSpace(ColorScheme.LightMagenta, Backgrounds.Funds).DoModal(this);
@@ -145,6 +187,7 @@ namespace XCom.Screens
 		}
 
 		private int Distance => 50; //TODO: compute distance 0-100 between selected base and destination
+
 		/*
 		double TransferItemsState::getDistance() const
 		{
@@ -175,17 +218,22 @@ namespace XCom.Screens
 			return Distance * pair.Value;
 		}
 
-		private int TotalLivingSpaceRequired => itemsToTransfer.Sum(transfer => transfer.Value * GetLivingSpaceRequired(transfer.Key));
-		private int TotalHangarSpaceRequired => itemsToTransfer.Sum(transfer => transfer.Value * GetHangarSpaceRequired(transfer.Key));
-		private int TotalItemSpaceRequired => itemsToTransfer.Sum(transfer => transfer.Value * GetItemSpaceRequired(transfer.Key));
+		private int TotalLivingSpaceRequired =>
+			itemsToTransfer.Sum(transfer => transfer.Value * GetLivingSpaceRequired(transfer.Key));
+		private int TotalHangarSpaceRequired =>
+			itemsToTransfer.Sum(transfer => transfer.Value * GetHangarSpaceRequired(transfer.Key));
+		private int TotalItemSpaceRequired =>
+			itemsToTransfer.Sum(transfer => transfer.Value * GetItemSpaceRequired(transfer.Key));
 
 		private static int GetLivingSpaceRequired(object item)
 		{
-			return (item as Craft)?.SoldierIds.Count ?? (
-				item is Soldier ? 1 :
-				(ItemType)item == ItemType.Engineer ? 1 :
-				(ItemType)item == ItemType.Scientist ? 1 :
-				0);
+			return (item as Craft)?.SoldierIds.Count
+				?? (
+					item is Soldier ? 1
+					: (ItemType)item == ItemType.Engineer ? 1
+					: (ItemType)item == ItemType.Scientist ? 1
+					: 0
+				);
 		}
 
 		private static int GetHangarSpaceRequired(object item)
@@ -223,11 +271,9 @@ namespace XCom.Screens
 				.OfType<Soldier>();
 			foreach (var soldier in soldiersToTransfer)
 			{
-				destination.TransferredSoldiers.Add(new TransferItem<Soldier>
-				{
-					Item = soldier,
-					HoursRemaining = HoursToTransfer
-				});
+				destination.TransferredSoldiers.Add(
+					new TransferItem<Soldier> { Item = soldier, HoursRemaining = HoursToTransfer }
+				);
 				GameState.SelectedBase.Soldiers.Remove(soldier);
 			}
 		}
@@ -241,21 +287,22 @@ namespace XCom.Screens
 				.OfType<Craft>();
 			foreach (var craft in craftsToTransfer)
 			{
-				destination.TransferredCrafts.Add(new TransferItem<Craft>
-				{
-					Item = craft,
-					HoursRemaining = HoursToTransfer
-				});
+				destination.TransferredCrafts.Add(
+					new TransferItem<Craft> { Item = craft, HoursRemaining = HoursToTransfer }
+				);
 				selectedBase.Crafts.Remove(craft);
 				var craftSoldiers = craft.SoldierIds.Select(soldierId =>
-					selectedBase.Soldiers.Single(soldier => soldier.Id == soldierId));
+					selectedBase.Soldiers.Single(soldier => soldier.Id == soldierId)
+				);
 				foreach (var craftSoldier in craftSoldiers)
 				{
-					destination.TransferredSoldiers.Add(new TransferItem<Soldier>
-					{
-						Item = craftSoldier,
-						HoursRemaining = HoursToTransfer
-					});
+					destination.TransferredSoldiers.Add(
+						new TransferItem<Soldier>
+						{
+							Item = craftSoldier,
+							HoursRemaining = HoursToTransfer,
+						}
+					);
 					selectedBase.Soldiers.Remove(craftSoldier);
 				}
 			}
@@ -265,25 +312,31 @@ namespace XCom.Screens
 		{
 			var storeItemsToTransfer = itemsToTransfer
 				.Where(pair => pair.Value > 0 && pair.Key is ItemType)
-				.Select(pair => new StoreItem {ItemType = (ItemType) pair.Key, Count = pair.Value});
+				.Select(pair => new StoreItem
+				{
+					ItemType = (ItemType)pair.Key,
+					Count = pair.Value,
+				});
 			foreach (var storeItem in storeItemsToTransfer)
 			{
-				destination.TransferredStores.Add(new TransferItem<StoreItem>
-				{
-					Item = storeItem,
-					HoursRemaining = HoursToTransfer
-				});
+				destination.TransferredStores.Add(
+					new TransferItem<StoreItem>
+					{
+						Item = storeItem,
+						HoursRemaining = HoursToTransfer,
+					}
+				);
 				switch (storeItem.ItemType)
 				{
-				case ItemType.Engineer:
-					GameState.SelectedBase.EngineerCount -= storeItem.Count;
-					break;
-				case ItemType.Scientist:
-					GameState.SelectedBase.ScientistCount -= storeItem.Count;
-					break;
-				default:
-					GameState.SelectedBase.Stores.Remove(storeItem.ItemType, storeItem.Count);
-					break;
+					case ItemType.Engineer:
+						GameState.SelectedBase.EngineerCount -= storeItem.Count;
+						break;
+					case ItemType.Scientist:
+						GameState.SelectedBase.ScientistCount -= storeItem.Count;
+						break;
+					default:
+						GameState.SelectedBase.Stores.Remove(storeItem.ItemType, storeItem.Count);
+						break;
 				}
 			}
 		}

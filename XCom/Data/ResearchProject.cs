@@ -39,13 +39,14 @@
 			var deviation = averageHoursToComplete / 2;
 			var hoursToComplete = GameState.Current.Random.Next(
 				averageHoursToComplete - deviation,
-				averageHoursToComplete + deviation);
+				averageHoursToComplete + deviation
+			);
 			return new ResearchProject
 			{
 				ResearchType = researchType,
 				ScientistsAllocated = 0,
 				HoursToComplete = hoursToComplete,
-				HoursCompleted = 0
+				HoursCompleted = 0,
 			};
 		}
 	}

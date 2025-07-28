@@ -16,7 +16,9 @@ namespace XCom.Modals
 		{
 			this.action = action;
 			AddControl(new Border(60, 32, 192, 80, ColorScheme.Aqua, Backgrounds.Title, 0));
-			AddControl(new Label(76, Label.CenterOf(32, 192), "Base Name?", Font.Large, ColorScheme.Aqua));
+			AddControl(
+				new Label(76, Label.CenterOf(32, 192), "Base Name?", Font.Large, ColorScheme.Aqua)
+			);
 			baseName = new Edit(106, 54, 137, "", Font.Large, ColorScheme.Aqua, OnEditBaseName);
 			AddControl(baseName);
 		}

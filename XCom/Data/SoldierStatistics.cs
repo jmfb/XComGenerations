@@ -27,7 +27,7 @@
 				ThrowingAccuracy = random.Next(50, 80),
 				Strength = random.Next(20, 40),
 				PsionicStrength = 0,
-				PsionicSkill = 0
+				PsionicSkill = 0,
 			};
 		}
 

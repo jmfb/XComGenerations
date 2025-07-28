@@ -18,13 +18,12 @@ namespace XCom.Data
 		public ItemType ItemProduced { get; set; }
 		public ResearchType[] RequiredResearch { get; set; }
 
-		public List<StoreItem> SpecialMaterials =>
-			new[]
+		public List<StoreItem> SpecialMaterials => new[]
 			{
 				new StoreItem { ItemType = ItemType.Elerium115, Count = EleriumRequired },
 				new StoreItem { ItemType = ItemType.AlienAlloys, Count = AlienAlloysRequired },
 				new StoreItem { ItemType = ItemType.UfoPowerSource, Count = PowerSourcesRequired },
-				new StoreItem { ItemType = ItemType.UfoNavigation, Count = NavigationRequired }
+				new StoreItem { ItemType = ItemType.UfoNavigation, Count = NavigationRequired },
 			}.Where(storeItem => storeItem.Count > 0).ToList();
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)

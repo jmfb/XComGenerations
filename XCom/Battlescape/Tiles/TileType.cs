@@ -36,7 +36,7 @@ namespace XCom.Battlescape.Tiles
 		Mountain,
 		Polar,
 
-		Mars
+		Mars,
 	}
 
 	public static class TileTypeExtensions
@@ -59,14 +59,13 @@ namespace XCom.Battlescape.Tiles
 
 		private static TileMetadata Create(ImageGroup imageGroup, PartData[] parts)
 		{
-			return new TileMetadata
-			{
-				ImageGroup = imageGroup,
-				Parts = parts
-			};
+			return new TileMetadata { ImageGroup = imageGroup, Parts = parts };
 		}
 
-		private static readonly Dictionary<TileType, TileMetadata> metadata = new Dictionary<TileType, TileMetadata>
+		private static readonly Dictionary<TileType, TileMetadata> metadata = new Dictionary<
+			TileType,
+			TileMetadata
+		>
 		{
 			{ TileType.Common, Create(ImageGroup.Common, PartData.Common) },
 			{ TileType.Skyranger, Create(ImageGroup.Skyranger, PartData.Skyranger) },
@@ -81,8 +80,14 @@ namespace XCom.Battlescape.Tiles
 			{ TileType.UfoBits, Create(ImageGroup.UfoBits, PartData.UfoBits) },
 			{ TileType.UfoComponents, Create(ImageGroup.UfoComponents, PartData.UfoComponents) },
 			{ TileType.UfoEquipment, Create(ImageGroup.UfoEquipment, PartData.UfoEquipment) },
-			{ TileType.UfoExaminationRoom, Create(ImageGroup.UfoExaminationRoom, PartData.UfoExaminationRoom) },
-			{ TileType.UfoOperatingTable, Create(ImageGroup.UfoOperatingTable, PartData.UfoOperatingTable) },
+			{
+				TileType.UfoExaminationRoom,
+				Create(ImageGroup.UfoExaminationRoom, PartData.UfoExaminationRoom)
+			},
+			{
+				TileType.UfoOperatingTable,
+				Create(ImageGroup.UfoOperatingTable, PartData.UfoOperatingTable)
+			},
 			{ TileType.City, Create(ImageGroup.City, PartData.City) },
 			{ TileType.CityBits, Create(ImageGroup.CityBits, PartData.CityBits) },
 			{ TileType.Roads, Create(ImageGroup.Roads, PartData.Roads) },
@@ -94,7 +99,7 @@ namespace XCom.Battlescape.Tiles
 			{ TileType.Jungle, Create(ImageGroup.Jungle, PartData.Jungle) },
 			{ TileType.Mountain, Create(ImageGroup.Mountain, PartData.Mountain) },
 			{ TileType.Polar, Create(ImageGroup.Polar, PartData.Polar) },
-			{ TileType.Mars, Create(ImageGroup.Mars, PartData.Mars) }
+			{ TileType.Mars, Create(ImageGroup.Mars, PartData.Mars) },
 		};
 	}
 }

@@ -6,13 +6,10 @@ namespace XCom.Screens
 	public abstract class Screen : InteractiveContainer
 	{
 		protected Screen ModalParent { get; private set; }
-		public virtual void OnSetFocus()
-		{
-		}
 
-		public virtual void OnKillFocus()
-		{
-		}
+		public virtual void OnSetFocus() { }
+
+		public virtual void OnKillFocus() { }
 
 		public void DoModal(Screen parent)
 		{

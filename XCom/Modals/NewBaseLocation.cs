@@ -20,10 +20,28 @@ namespace XCom.Modals
 			AddControl(new Border(64, 16, 224, 72, ColorScheme.Green, Backgrounds.Title, 0));
 			AddControl(new Label(80, 68, "Cost>$", Font.Normal, ColorScheme.Green));
 			AddControl(new Label(90, 68, "Area>", Font.Normal, ColorScheme.Green));
-			AddControl(new Label(80, 97, location.RegionType.Metadata().BaseCost.FormatNumber(), Font.Normal, ColorScheme.Yellow));
-			AddControl(new Label(90, 92, location.RegionType.Metadata().Name, Font.Normal, ColorScheme.Yellow));
+			AddControl(
+				new Label(
+					80,
+					97,
+					location.RegionType.Metadata().BaseCost.FormatNumber(),
+					Font.Normal,
+					ColorScheme.Yellow
+				)
+			);
+			AddControl(
+				new Label(
+					90,
+					92,
+					location.RegionType.Metadata().Name,
+					Font.Normal,
+					ColorScheme.Yellow
+				)
+			);
 			AddControl(new Button(104, 68, 50, 12, "OK", ColorScheme.Green, Font.Normal, OnOk));
-			AddControl(new Button(104, 138, 50, 12, "CANCEL", ColorScheme.Green, Font.Normal, EndModal));
+			AddControl(
+				new Button(104, 138, 50, 12, "CANCEL", ColorScheme.Green, Font.Normal, EndModal)
+			);
 		}
 
 		private void OnOk()
@@ -66,15 +84,18 @@ namespace XCom.Modals
 			var data = GameState.Current.Data;
 			originalBase.ScientistCount = 10;
 			originalBase.EngineerCount = 10;
-		
+
 			AddTestData(originalBase);
 
 			var skyranger = Craft.CreateRefueled(CraftType.Skyranger, data.NextSkyrangerNumber++);
 			originalBase.Crafts.Add(skyranger);
-			
+
 			for (var index = 0; index < 2; ++index)
 			{
-				var interceptor = Craft.CreateRefueled(CraftType.Interceptor, data.NextInterceptorNumber++);
+				var interceptor = Craft.CreateRefueled(
+					CraftType.Interceptor,
+					data.NextInterceptorNumber++
+				);
 				interceptor.Weapons.Add(CraftWeapon.CreateLoaded(CraftWeaponType.Stingray));
 				interceptor.Weapons.Add(CraftWeapon.CreateLoaded(CraftWeaponType.Cannon));
 				originalBase.Crafts.Add(interceptor);
@@ -87,18 +108,20 @@ namespace XCom.Modals
 				skyranger.SoldierIds.Add(soldier.Id);
 			}
 
-			originalBase.Facilities.AddRange(new[]
-			{
-				Facility.CreateConstructed(2, 2, FacilityType.AccessLift),
-				Facility.CreateConstructed(0, 2, FacilityType.Hangar),
-				Facility.CreateConstructed(4, 0, FacilityType.Hangar),
-				Facility.CreateConstructed(4, 4, FacilityType.Hangar),
-				Facility.CreateConstructed(2, 3, FacilityType.LivingQuarters),
-				Facility.CreateConstructed(3, 1, FacilityType.SmallRadarSystem),
-				Facility.CreateConstructed(3, 2, FacilityType.GeneralStores),
-				Facility.CreateConstructed(3, 3, FacilityType.Laboratory),
-				Facility.CreateConstructed(3, 4, FacilityType.Workshop)
-			});
+			originalBase.Facilities.AddRange(
+				new[]
+				{
+					Facility.CreateConstructed(2, 2, FacilityType.AccessLift),
+					Facility.CreateConstructed(0, 2, FacilityType.Hangar),
+					Facility.CreateConstructed(4, 0, FacilityType.Hangar),
+					Facility.CreateConstructed(4, 4, FacilityType.Hangar),
+					Facility.CreateConstructed(2, 3, FacilityType.LivingQuarters),
+					Facility.CreateConstructed(3, 1, FacilityType.SmallRadarSystem),
+					Facility.CreateConstructed(3, 2, FacilityType.GeneralStores),
+					Facility.CreateConstructed(3, 3, FacilityType.Laboratory),
+					Facility.CreateConstructed(3, 4, FacilityType.Workshop),
+				}
+			);
 		}
 	}
 }

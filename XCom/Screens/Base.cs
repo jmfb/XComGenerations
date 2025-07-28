@@ -12,21 +12,160 @@ namespace XCom.Screens
 			var data = GameState.Current.Data;
 			var selectedBase = GameState.SelectedBase;
 
-			AddControl(new ClickToEdit(0, 193, 127, selectedBase.Name, Font.Large, ColorScheme.LightMagenta, OnEditName));
+			AddControl(
+				new ClickToEdit(
+					0,
+					193,
+					127,
+					selectedBase.Name,
+					Font.Large,
+					ColorScheme.LightMagenta,
+					OnEditName
+				)
+			);
 			AddControl(new Label(16, 194, selectedBase.Area, Font.Normal, ColorScheme.Purple));
-			AddControl(new Label(24, 194, $"FUNDS> ${data.Funds.FormatNumber()}", Font.Normal, ColorScheme.Blue));
+			AddControl(
+				new Label(
+					24,
+					194,
+					$"FUNDS> ${data.Funds.FormatNumber()}",
+					Font.Normal,
+					ColorScheme.Blue
+				)
+			);
 			AddControl(new BaseSelect(41, 192, OnSelectBase));
-			AddControl(new Button(58, 192, 128, 12, "BUILD NEW BASE", ColorScheme.DarkYellow, Font.Normal, OnBuildNewBase));
-			AddControl(new Button(71, 192, 128, 12, "BASE INFORMATION", ColorScheme.DarkYellow, Font.Normal, OnBaseInformation));
-			AddControl(new Button(84, 192, 128, 12, "SOLDIERS", ColorScheme.DarkYellow, Font.Normal, OnSoldiers));
-			AddControl(new Button(97, 192, 128, 12, "EQUIP CRAFT", ColorScheme.DarkYellow, Font.Normal, OnEquipCraft));
-			AddControl(new Button(110, 192, 128, 12, "BUILD FACILITIES", ColorScheme.DarkYellow, Font.Normal, OnBuildFacilities));
-			AddControl(new Button(123, 192, 128, 12, "RESEARCH", ColorScheme.DarkYellow, Font.Normal, OnResearch));
-			AddControl(new Button(136, 192, 128, 12, "MANUFACTURE", ColorScheme.DarkYellow, Font.Normal, OnManufacture));
-			AddControl(new Button(149, 192, 128, 12, "TRANSFER", ColorScheme.DarkYellow, Font.Normal, OnTransfer));
-			AddControl(new Button(162, 192, 128, 12, "PURCHASE/RECRUIT", ColorScheme.DarkYellow, Font.Normal, OnPurchaseRecruit));
-			AddControl(new Button(175, 192, 128, 12, "SELL/SACK", ColorScheme.DarkYellow, Font.Normal, OnSellSack));
-			AddControl(new Button(188, 192, 128, 12, "GEOSCAPE", ColorScheme.DarkYellow, Font.Normal, OnGeoscape));
+			AddControl(
+				new Button(
+					58,
+					192,
+					128,
+					12,
+					"BUILD NEW BASE",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnBuildNewBase
+				)
+			);
+			AddControl(
+				new Button(
+					71,
+					192,
+					128,
+					12,
+					"BASE INFORMATION",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnBaseInformation
+				)
+			);
+			AddControl(
+				new Button(
+					84,
+					192,
+					128,
+					12,
+					"SOLDIERS",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnSoldiers
+				)
+			);
+			AddControl(
+				new Button(
+					97,
+					192,
+					128,
+					12,
+					"EQUIP CRAFT",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnEquipCraft
+				)
+			);
+			AddControl(
+				new Button(
+					110,
+					192,
+					128,
+					12,
+					"BUILD FACILITIES",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnBuildFacilities
+				)
+			);
+			AddControl(
+				new Button(
+					123,
+					192,
+					128,
+					12,
+					"RESEARCH",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnResearch
+				)
+			);
+			AddControl(
+				new Button(
+					136,
+					192,
+					128,
+					12,
+					"MANUFACTURE",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnManufacture
+				)
+			);
+			AddControl(
+				new Button(
+					149,
+					192,
+					128,
+					12,
+					"TRANSFER",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnTransfer
+				)
+			);
+			AddControl(
+				new Button(
+					162,
+					192,
+					128,
+					12,
+					"PURCHASE/RECRUIT",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnPurchaseRecruit
+				)
+			);
+			AddControl(
+				new Button(
+					175,
+					192,
+					128,
+					12,
+					"SELL/SACK",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnSellSack
+				)
+			);
+			AddControl(
+				new Button(
+					188,
+					192,
+					128,
+					12,
+					"GEOSCAPE",
+					ColorScheme.DarkYellow,
+					Font.Normal,
+					OnGeoscape
+				)
+			);
 			AddControl(new BaseFacilities(BaseFacilities.Mode.ViewFacilities, OnClickFacility));
 		}
 

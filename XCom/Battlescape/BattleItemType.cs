@@ -5,6 +5,6 @@
 		Weapon,
 		Ammunition,
 		Grenade,
-		Equipment
+		Equipment,
 	}
 }

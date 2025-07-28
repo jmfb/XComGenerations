@@ -9,6 +9,6 @@
 		AlienBase,
 		AlienTerror,
 		AlienRetaliation,
-		AlienSupply
+		AlienSupply,
 	}
 }

@@ -67,8 +67,6 @@ namespace XCom.World
 			currentAction();
 		}
 
-		public override void Render(GraphicsBuffer buffer)
-		{
-		}
+		public override void Render(GraphicsBuffer buffer) { }
 	}
 }

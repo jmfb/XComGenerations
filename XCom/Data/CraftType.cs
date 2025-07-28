@@ -12,7 +12,7 @@ namespace XCom.Data
 		Interceptor,
 		Firestorm,
 		Lightning,
-		Avenger
+		Avenger,
 	}
 
 	public static class CraftTypeExtensions
@@ -42,9 +42,9 @@ namespace XCom.Data
 				"TROOP TRANSPORTER. THE",
 				"FASTEST OF ITS KIND, WITH",
 				"VERTICAL TAKE OFF AND",
-				"LANDING (V.T.O.L) CAPABILITY."
+				"LANDING (V.T.O.L) CAPABILITY.",
 			},
-			Tileset = Tileset.Skyranger
+			Tileset = Tileset.Skyranger,
 		};
 
 		private static readonly CraftMetadata interceptor = new CraftMetadata
@@ -67,9 +67,9 @@ namespace XCom.Data
 				"COMBAT AIRCRAFT WITH DUAL PULSE",
 				"DETONATION ENGINES AND SPECIALLY SHIELDED",
 				"ELECTRONIC SYSTEMS. THE BEST AVAILABLE",
-				"EARTH BASED TECHNOLOGY."
+				"EARTH BASED TECHNOLOGY.",
 			},
-			ShowStatsOnBottom = true
+			ShowStatsOnBottom = true,
 		};
 
 		private static readonly CraftMetadata firestorm = new CraftMetadata
@@ -93,8 +93,8 @@ namespace XCom.Data
 				"FIGHTER REPLICATES THE",
 				"CLASSIC ALIEN FLYING SAUCER",
 				"DESIGN, WITH CENTRAL",
-				"PROPULSION UNIT."
-			}
+				"PROPULSION UNIT.",
+			},
 		};
 
 		private static readonly CraftMetadata lightning = new CraftMetadata
@@ -115,10 +115,10 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"TRANSPORTER AND COMBAT CRAFT.  A CRUDE BUT EFFECTIVE",
-				"REPLICATION OF ALIEN PROPULSION SYSTEMS."
+				"REPLICATION OF ALIEN PROPULSION SYSTEMS.",
 			},
 			ShowStatsOnBottom = true,
-			Tileset = Tileset.Lightning
+			Tileset = Tileset.Lightning,
 		};
 
 		private static readonly CraftMetadata avenger = new CraftMetadata
@@ -141,18 +141,21 @@ namespace XCom.Data
 				"TRANSPORTER AND COMBAT",
 				"SPACEFRACT.  THE ULTIMATE",
 				"REPLICATION OF ALIEN",
-				"TECHNOLOGY."
+				"TECHNOLOGY.",
 			},
-			Tileset = Tileset.Avenger
+			Tileset = Tileset.Avenger,
 		};
 
-		private static readonly Dictionary<CraftType, CraftMetadata> metadata = new Dictionary<CraftType,CraftMetadata>
- 		{
+		private static readonly Dictionary<CraftType, CraftMetadata> metadata = new Dictionary<
+			CraftType,
+			CraftMetadata
+		>
+		{
 			{ CraftType.Skyranger, skyranger },
 			{ CraftType.Interceptor, interceptor },
 			{ CraftType.Firestorm, firestorm },
 			{ CraftType.Lightning, lightning },
-			{ CraftType.Avenger, avenger }
+			{ CraftType.Avenger, avenger },
 		};
 	}
 }

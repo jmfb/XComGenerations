@@ -14,12 +14,13 @@ namespace XCom.Controls
 			int groupSize,
 			int value,
 			int total,
-			bool showRatio)
+			bool showRatio
+		)
 		{
 			AddControl(new Label(topRow, 8, title, Font.Normal, ColorScheme.DarkYellow));
-			var labelText = showRatio ?
-				$"{value}\t:{total}" :
-				total.ToString(CultureInfo.InvariantCulture);
+			var labelText = showRatio
+				? $"{value}\t:{total}"
+				: total.ToString(CultureInfo.InvariantCulture);
 			AddControl(new Label(topRow, 126, labelText, Font.Normal, ColorScheme.White));
 			var palette = Palette.GetPalette(1);
 			var fillColor = palette.GetColor(colorIndex);

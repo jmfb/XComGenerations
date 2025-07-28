@@ -11,7 +11,7 @@ namespace XCom.Battlescape.Tiles
 		South,
 		SouthWest,
 		West,
-		NorthWest
+		NorthWest,
 	}
 
 	public static class DirectoinExtensions
@@ -27,8 +27,8 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.TwoHandedWeapon,
 				SpritePart.Head,
 				SpritePart.Legs,
-				SpritePart.RightArm
-			}
+				SpritePart.RightArm,
+			},
 		};
 
 		private static readonly DirectionMetadata northEast = new DirectionMetadata
@@ -40,8 +40,8 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.Head,
 				SpritePart.Legs,
 				SpritePart.RightArm,
-				SpritePart.OneHandedWeapon
-			}
+				SpritePart.OneHandedWeapon,
+			},
 		};
 
 		private static readonly DirectionMetadata east = new DirectionMetadata
@@ -53,8 +53,8 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.Legs,
 				SpritePart.TwoHandedWeapon,
 				SpritePart.RightArm,
-				SpritePart.OneHandedWeapon
-			}
+				SpritePart.OneHandedWeapon,
+			},
 		};
 
 		private static readonly DirectionMetadata southEast = new DirectionMetadata
@@ -66,8 +66,8 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.LeftArm,
 				SpritePart.TwoHandedWeapon,
 				SpritePart.RightArm,
-				SpritePart.OneHandedWeapon
-			}
+				SpritePart.OneHandedWeapon,
+			},
 		};
 
 		private static readonly DirectionMetadata south = new DirectionMetadata
@@ -79,8 +79,8 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.Legs,
 				SpritePart.LeftArm,
 				SpritePart.OneHandedWeapon,
-				SpritePart.TwoHandedWeapon
-			}
+				SpritePart.TwoHandedWeapon,
+			},
 		};
 
 		private static readonly DirectionMetadata southWest = new DirectionMetadata
@@ -92,8 +92,8 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.Legs,
 				SpritePart.OneHandedWeapon,
 				SpritePart.TwoHandedWeapon,
-				SpritePart.LeftArm
-			}
+				SpritePart.LeftArm,
+			},
 		};
 
 		private static readonly DirectionMetadata west = new DirectionMetadata
@@ -105,8 +105,8 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.TwoHandedWeapon,
 				SpritePart.Head,
 				SpritePart.Legs,
-				SpritePart.LeftArm
-			}
+				SpritePart.LeftArm,
+			},
 		};
 
 		private static readonly DirectionMetadata northWest = new DirectionMetadata
@@ -118,11 +118,14 @@ namespace XCom.Battlescape.Tiles
 				SpritePart.TwoHandedWeapon,
 				SpritePart.LeftArm,
 				SpritePart.Head,
-				SpritePart.Legs
-			}
+				SpritePart.Legs,
+			},
 		};
 
-		private static readonly Dictionary<Direction, DirectionMetadata> metadata = new Dictionary<Direction, DirectionMetadata>
+		private static readonly Dictionary<Direction, DirectionMetadata> metadata = new Dictionary<
+			Direction,
+			DirectionMetadata
+		>
 		{
 			{ Direction.North, north },
 			{ Direction.NorthEast, northEast },

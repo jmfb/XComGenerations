@@ -8,10 +8,7 @@ namespace XCom.Controls
 		private readonly int leftColumn;
 		private readonly byte[] image;
 
-		public UfoPreview(
-			int topRow,
-			int leftColumn,
-			byte[] image)
+		public UfoPreview(int topRow, int leftColumn, byte[] image)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;

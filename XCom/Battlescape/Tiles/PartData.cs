@@ -10,25 +10,34 @@ namespace XCom.Battlescape.Tiles
 	{
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] Images;
+
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
 		public byte[] LineOfFireTemplates;
 		public ushort MiniMapIndex;
 		public int Unused1;
 		public int Unused2;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool IsSlidingDoor;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool BlocksVisibility;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool CannotStandOn;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool IsWall;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool IsElevator;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool IsHingedDoor;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool BlocksFire;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool BlocksSmoke;
 		public byte Unused3;
@@ -53,6 +62,7 @@ namespace XCom.Battlescape.Tiles
 		public byte BurnTurnCount;
 		public byte Brightness;
 		public SpecialPartType SpecialPartType;
+
 		[MarshalAs(UnmanagedType.I1)]
 		public bool IsCriticalForFacility;
 		public byte Unused7;
@@ -63,7 +73,8 @@ namespace XCom.Battlescape.Tiles
 			var count = data.Length / recordSize;
 			if (data.Length % recordSize != 0)
 				throw new InvalidOperationException("Invalid property page resource size.");
-			return Enumerable.Range(0, count)
+			return Enumerable
+				.Range(0, count)
 				.Select(index => index * recordSize)
 				.Select(data.ReadStruct<PartData>)
 				.ToArray();
@@ -85,8 +96,12 @@ namespace XCom.Battlescape.Tiles
 		public static readonly PartData[] UfoBits = LoadParts(TileParts.UfoBits);
 		public static readonly PartData[] UfoComponents = LoadParts(TileParts.UfoComponents);
 		public static readonly PartData[] UfoEquipment = LoadParts(TileParts.UfoEquipment);
-		public static readonly PartData[] UfoExaminationRoom = LoadParts(TileParts.UfoExaminationRoom);
-		public static readonly PartData[] UfoOperatingTable = LoadParts(TileParts.UfoOperatingTable);
+		public static readonly PartData[] UfoExaminationRoom = LoadParts(
+			TileParts.UfoExaminationRoom
+		);
+		public static readonly PartData[] UfoOperatingTable = LoadParts(
+			TileParts.UfoOperatingTable
+		);
 
 		public static readonly PartData[] City = LoadParts(TileParts.City);
 		public static readonly PartData[] CityBits = LoadParts(TileParts.CityBits);

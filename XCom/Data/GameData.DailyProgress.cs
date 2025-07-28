@@ -35,13 +35,19 @@ namespace XCom.Data
 			var previouslyAvailableProduction = @base.AvailableManufactureProjects;
 			var previouslyAvailableTopics = GameState.Current.Data.AvailableTopics;
 			RecordCompletedResearch(research);
-			var newTopics = GameState.Current.Data.AvailableTopics.Except(previouslyAvailableTopics);
+			var newTopics = GameState.Current.Data.AvailableTopics.Except(
+				previouslyAvailableTopics
+			);
 			NotfiyResearchCompleted(research, newTopics.Cast<TopicType?>().FirstOrDefault());
 
-			var newResearchTypes = @base.AvailableResearchProjects.Except(previouslyAvailableResearch).ToList();
+			var newResearchTypes = @base
+				.AvailableResearchProjects.Except(previouslyAvailableResearch)
+				.ToList();
 			NotifyWeCanNowResearch(@base, newResearchTypes);
 
-			var newProduction = @base.AvailableManufactureProjects.Except(previouslyAvailableProduction).ToList();
+			var newProduction = @base
+				.AvailableManufactureProjects.Except(previouslyAvailableProduction)
+				.ToList();
 			if (newProduction.Any())
 				NotifyWeCanNowProduce(@base, newProduction);
 		}
@@ -49,7 +55,9 @@ namespace XCom.Data
 		private static void RecordCompletedResearch(ResearchType research)
 		{
 			var completedResearch = GameState.Current.Data.CompletedResearch;
-			var newlyCompletedResearch = GatherCompletedResearch(research).Except(completedResearch).ToList();
+			var newlyCompletedResearch = GatherCompletedResearch(research)
+				.Except(completedResearch)
+				.ToList();
 			completedResearch.AddRange(newlyCompletedResearch);
 			var researchScore = newlyCompletedResearch.Sum(item => item.Metadata().Points);
 			GameState.Current.Data.ThisMonthsScore += researchScore;
@@ -64,7 +72,9 @@ namespace XCom.Data
 					yield return additionalResearch;
 			if (metadata.LotteryResearchResults == null)
 				yield break;
-			var remainingLotteryResults = metadata.LotteryResearchResults.Except(GameState.Current.Data.CompletedResearch).ToList();
+			var remainingLotteryResults = metadata
+				.LotteryResearchResults.Except(GameState.Current.Data.CompletedResearch)
+				.ToList();
 			if (remainingLotteryResults.Count == 0)
 				yield break;
 			var randomIndex = GameState.Current.Random.Next(0, remainingLotteryResults.Count);
@@ -73,7 +83,9 @@ namespace XCom.Data
 
 		private static void NotfiyResearchCompleted(ResearchType research, TopicType? topic)
 		{
-			GameState.Current.Notifications.Enqueue(() => new ResearchCompleted(research, topic).DoModal(GameState.Current.ActiveScreen));
+			GameState.Current.Notifications.Enqueue(() =>
+				new ResearchCompleted(research, topic).DoModal(GameState.Current.ActiveScreen)
+			);
 		}
 
 		private static void NotifyWeCanNowResearch(Base @base, List<ResearchType> newResearchTypes)
@@ -100,7 +112,9 @@ namespace XCom.Data
 		{
 			foreach (var @base in GameState.Current.Data.Bases)
 			{
-				var facilitiesUnderConstruction = @base.Facilities.Where(facility => facility.DaysUntilConstructionComplete > 0).ToList();
+				var facilitiesUnderConstruction = @base
+					.Facilities.Where(facility => facility.DaysUntilConstructionComplete > 0)
+					.ToList();
 				foreach (var facility in facilitiesUnderConstruction)
 				{
 					--facility.DaysUntilConstructionComplete;
@@ -115,15 +129,18 @@ namespace XCom.Data
 			GameState.Current.Notifications.Enqueue(() =>
 			{
 				Screen.Geoscape.ResetGameSpeed();
-				new FacilityConstructionCompleted(@base.Name, facility.FacilityType.Metadata().Name).DoModal(GameState.Current.ActiveScreen);
+				new FacilityConstructionCompleted(
+					@base.Name,
+					facility.FacilityType.Metadata().Name
+				).DoModal(GameState.Current.ActiveScreen);
 			});
 		}
 
 		private static void TreatWoundedSoldiers()
 		{
 			foreach (var @base in GameState.Current.Data.Bases)
-				foreach (var soldier in @base.Soldiers.Where(soldier => soldier.DaysUntilRecovered > 0))
-					--soldier.DaysUntilRecovered;
+			foreach (var soldier in @base.Soldiers.Where(soldier => soldier.DaysUntilRecovered > 0))
+				--soldier.DaysUntilRecovered;
 		}
 	}
 }

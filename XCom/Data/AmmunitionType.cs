@@ -21,12 +21,13 @@ namespace XCom.Data
 		PlasmaRifleClip,
 		HeavyPlasmaClip,
 		StunBomb,
-		BlasterBomb
+		BlasterBomb,
 	}
 
 	public static class AmmunitionTypeExtensions
 	{
-		public static AmmunitionMetadata Metadata(this AmmunitionType ammunitionType) => metadata[ammunitionType];
+		public static AmmunitionMetadata Metadata(this AmmunitionType ammunitionType) =>
+			metadata[ammunitionType];
 
 		private static readonly AmmunitionMetadata pistolClip = new AmmunitionMetadata
 		{
@@ -38,7 +39,7 @@ namespace XCom.Data
 			Weight = 3,
 			Image = Items.PistolClip,
 			Width = 1,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata rifleClip = new AmmunitionMetadata
@@ -51,7 +52,7 @@ namespace XCom.Data
 			Weight = 3,
 			Image = Items.RifleClip,
 			Width = 1,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata hcApAmmo = new AmmunitionMetadata
@@ -64,7 +65,7 @@ namespace XCom.Data
 			Weight = 6,
 			Image = Items.HcApAmmo,
 			Width = 2,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata hcHeAmmo = new AmmunitionMetadata
@@ -77,7 +78,7 @@ namespace XCom.Data
 			Weight = 6,
 			Image = Items.HcHeAmmo,
 			Width = 2,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata hcIAmmo = new AmmunitionMetadata
@@ -90,7 +91,7 @@ namespace XCom.Data
 			Weight = 6,
 			Image = Items.HcIAmmo,
 			Width = 2,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata acApAmmo = new AmmunitionMetadata
@@ -103,7 +104,7 @@ namespace XCom.Data
 			Weight = 5,
 			Image = Items.AcApAmmo,
 			Width = 2,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata acHeAmmo = new AmmunitionMetadata
@@ -116,7 +117,7 @@ namespace XCom.Data
 			Weight = 5,
 			Image = Items.AcHeAmmo,
 			Width = 2,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata acIAmmo = new AmmunitionMetadata
@@ -129,7 +130,7 @@ namespace XCom.Data
 			Weight = 5,
 			Image = Items.AcIAmmo,
 			Width = 2,
-			Height = 1
+			Height = 1,
 		};
 
 		private static readonly AmmunitionMetadata smallRocket = new AmmunitionMetadata
@@ -142,7 +143,7 @@ namespace XCom.Data
 			Weight = 6,
 			Image = Items.SmallRocket,
 			Width = 1,
-			Height = 3
+			Height = 3,
 		};
 
 		private static readonly AmmunitionMetadata largeRocket = new AmmunitionMetadata
@@ -155,7 +156,7 @@ namespace XCom.Data
 			Weight = 8,
 			Image = Items.LargeRocket,
 			Width = 1,
-			Height = 3
+			Height = 3,
 		};
 
 		private static readonly AmmunitionMetadata incendiaryRocket = new AmmunitionMetadata
@@ -168,7 +169,7 @@ namespace XCom.Data
 			Weight = 8,
 			Image = Items.IncendiaryRocket,
 			Width = 1,
-			Height = 3
+			Height = 3,
 		};
 
 		private static readonly AmmunitionMetadata plasmaPistolClip = new AmmunitionMetadata
@@ -185,8 +186,8 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"Power source for the small alien plasma pistol. Contains Elerium",
-				"- the source of all alien power."
-			}
+				"- the source of all alien power.",
+			},
 		};
 
 		private static readonly AmmunitionMetadata plasmaRifleClip = new AmmunitionMetadata
@@ -204,8 +205,8 @@ namespace XCom.Data
 			{
 				"This small object is used as a power source for a plasma rifle",
 				"- a medium powered alien weapon. Contains a small quantity of",
-				"Elerium."
-			}
+				"Elerium.",
+			},
 		};
 
 		private static readonly AmmunitionMetadata heavyPlasmaClip = new AmmunitionMetadata
@@ -222,8 +223,8 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"This compact device is used as ammunition for a Heavy Plasma",
-				"Gun. It contains a small quantity of Elerium."
-			}
+				"Gun. It contains a small quantity of Elerium.",
+			},
 		};
 
 		private static readonly AmmunitionMetadata stunBomb = new AmmunitionMetadata
@@ -241,8 +242,8 @@ namespace XCom.Data
 			{
 				"The Stun bomb is used for capturing live human specimens, but",
 				"it can also be used against most alien races. It is fired from a",
-				"small launcher."
-			}
+				"small launcher.",
+			},
 		};
 
 		private static readonly AmmunitionMetadata blasterBomb = new AmmunitionMetadata
@@ -259,28 +260,29 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"This device is a highly explosive missile that has an intelligent",
-				"guidance system. It is fired from a blaster launcher."
-			}
+				"guidance system. It is fired from a blaster launcher.",
+			},
 		};
 
-		private static readonly Dictionary<AmmunitionType, AmmunitionMetadata> metadata = new Dictionary<AmmunitionType, AmmunitionMetadata>
-		{
-			{ AmmunitionType.PistolClip, pistolClip },
-			{ AmmunitionType.RifleClip, rifleClip },
-			{ AmmunitionType.HcApAmmo, hcApAmmo },
-			{ AmmunitionType.HcHeAmmo, hcHeAmmo },
-			{ AmmunitionType.HcIAmmo, hcIAmmo },
-			{ AmmunitionType.AcApAmmo, acApAmmo },
-			{ AmmunitionType.AcHeAmmo, acHeAmmo },
-			{ AmmunitionType.AcIAmmo, acIAmmo },
-			{ AmmunitionType.SmallRocket, smallRocket },
-			{ AmmunitionType.LargeRocket, largeRocket },
-			{ AmmunitionType.IncendiaryRocket, incendiaryRocket },
-			{ AmmunitionType.PlasmaPistolClip, plasmaPistolClip },
-			{ AmmunitionType.PlasmaRifleClip, plasmaRifleClip },
-			{ AmmunitionType.HeavyPlasmaClip, heavyPlasmaClip },
-			{ AmmunitionType.StunBomb, stunBomb },
-			{ AmmunitionType.BlasterBomb, blasterBomb }
-		};
+		private static readonly Dictionary<AmmunitionType, AmmunitionMetadata> metadata =
+			new Dictionary<AmmunitionType, AmmunitionMetadata>
+			{
+				{ AmmunitionType.PistolClip, pistolClip },
+				{ AmmunitionType.RifleClip, rifleClip },
+				{ AmmunitionType.HcApAmmo, hcApAmmo },
+				{ AmmunitionType.HcHeAmmo, hcHeAmmo },
+				{ AmmunitionType.HcIAmmo, hcIAmmo },
+				{ AmmunitionType.AcApAmmo, acApAmmo },
+				{ AmmunitionType.AcHeAmmo, acHeAmmo },
+				{ AmmunitionType.AcIAmmo, acIAmmo },
+				{ AmmunitionType.SmallRocket, smallRocket },
+				{ AmmunitionType.LargeRocket, largeRocket },
+				{ AmmunitionType.IncendiaryRocket, incendiaryRocket },
+				{ AmmunitionType.PlasmaPistolClip, plasmaPistolClip },
+				{ AmmunitionType.PlasmaRifleClip, plasmaRifleClip },
+				{ AmmunitionType.HeavyPlasmaClip, heavyPlasmaClip },
+				{ AmmunitionType.StunBomb, stunBomb },
+				{ AmmunitionType.BlasterBomb, blasterBomb },
+			};
 	}
 }

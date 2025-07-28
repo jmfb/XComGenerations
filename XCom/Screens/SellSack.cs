@@ -18,38 +18,84 @@ namespace XCom.Screens
 			GatherItemsAvailableToSell();
 
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.Funds, 6));
-			AddControl(new Label(8, Label.Center, "Sell Items/Sack Personnel", Font.Large, ColorScheme.Blue));
+			AddControl(
+				new Label(
+					8,
+					Label.Center,
+					"Sell Items/Sack Personnel",
+					Font.Large,
+					ColorScheme.Blue
+				)
+			);
 
 			AddControl(new Label(24, 10, "VALUE OF SALES>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 88, () => $"${TotalSalePrice.FormatNumber()}", Font.Normal, ColorScheme.Blue));
+			AddControl(
+				new DynamicLabel(
+					24,
+					88,
+					() => $"${TotalSalePrice.FormatNumber()}",
+					Font.Normal,
+					ColorScheme.Blue
+				)
+			);
 			AddControl(new Label(24, 200, "FUNDS>", Font.Normal, ColorScheme.Blue));
-			AddControl(new DynamicLabel(24, 234, () => $"${GameState.Current.Data.Funds.FormatNumber()}", Font.Normal, ColorScheme.Blue));
+			AddControl(
+				new DynamicLabel(
+					24,
+					234,
+					() => $"${GameState.Current.Data.Funds.FormatNumber()}",
+					Font.Normal,
+					ColorScheme.Blue
+				)
+			);
 
 			AddControl(new Label(32, 10, "ITEM", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 140, "QUANTITY", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 184, "Sell/Sack", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(32, 280, "Value", Font.Normal, ColorScheme.Blue));
 
-			AddControl(new ListView<object>(45, 10, 16, itemsToSell.Keys.ToList(), ColorScheme.Blue, Palette.GetPalette(6).GetColor(230), OnSellItem)
-				.ConfigureUpDown(195, OnCancelSellItem)
-				.AddColumn(155, Alignment.Left, GetName)
-				.AddColumn(64, Alignment.Left, item => GetRemaining(item).FormatNumber())
-				.AddColumn(28, Alignment.Left, item => itemsToSell[item].FormatNumber())
-				.AddColumn(40, Alignment.Left, item => $"${GetSalePrice(item).FormatNumber()}"));
+			AddControl(
+				new ListView<object>(
+					45,
+					10,
+					16,
+					itemsToSell.Keys.ToList(),
+					ColorScheme.Blue,
+					Palette.GetPalette(6).GetColor(230),
+					OnSellItem
+				)
+					.ConfigureUpDown(195, OnCancelSellItem)
+					.AddColumn(155, Alignment.Left, GetName)
+					.AddColumn(64, Alignment.Left, item => GetRemaining(item).FormatNumber())
+					.AddColumn(28, Alignment.Left, item => itemsToSell[item].FormatNumber())
+					.AddColumn(40, Alignment.Left, item => $"${GetSalePrice(item).FormatNumber()}")
+			);
 
-			AddControl(new Button(176, 8, 148, 16, "Sell/Sack", ColorScheme.Blue, Font.Normal, OnSellSack));
-			AddControl(new Button(176, 164, 148, 16, "Cancel", ColorScheme.Blue, Font.Normal, OnCancel));
+			AddControl(
+				new Button(176, 8, 148, 16, "Sell/Sack", ColorScheme.Blue, Font.Normal, OnSellSack)
+			);
+			AddControl(
+				new Button(176, 164, 148, 16, "Cancel", ColorScheme.Blue, Font.Normal, OnCancel)
+			);
 		}
 
 		private void GatherItemsAvailableToSell()
 		{
-			foreach (var soldier in GameState.SelectedBase.Soldiers.Where(soldier => soldier.Craft == null))
+			foreach (
+				var soldier in GameState.SelectedBase.Soldiers.Where(soldier =>
+					soldier.Craft == null
+				)
+			)
 				itemsToSell.Add(soldier, 0);
 			if (GameState.SelectedBase.EngineersAvailable > 0)
 				itemsToSell.Add(ItemType.Engineer, 0);
 			if (GameState.SelectedBase.ScientistsAvailable > 0)
 				itemsToSell.Add(ItemType.Scientist, 0);
-			foreach (var craft in GameState.SelectedBase.Crafts.Where(craft => craft.Status != CraftStatus.Out))
+			foreach (
+				var craft in GameState.SelectedBase.Crafts.Where(craft =>
+					craft.Status != CraftStatus.Out
+				)
+			)
 				itemsToSell.Add(craft, 0);
 			foreach (var item in GameState.SelectedBase.Stores.Items.Where(item => item.Count > 0))
 				itemsToSell.Add(item, 0);
@@ -63,9 +109,7 @@ namespace XCom.Screens
 			if (item is ItemType)
 				return ((ItemType)item).Metadata().Name;
 			var craft = item as Craft;
-			return craft != null ?
-				craft.Name :
-				((StoreItem)item).ItemType.Metadata().Name;
+			return craft != null ? craft.Name : ((StoreItem)item).ItemType.Metadata().Name;
 		}
 
 		private int GetRemaining(object item)
@@ -101,14 +145,25 @@ namespace XCom.Screens
 
 		private void OnSellSack()
 		{
-			var itemsBeingSold = itemsToSell.Where(item => item.Value > 0).Select(item => item.Key).ToList();
+			var itemsBeingSold = itemsToSell
+				.Where(item => item.Value > 0)
+				.Select(item => item.Key)
+				.ToList();
 			foreach (var soldier in itemsBeingSold.OfType<Soldier>())
 				GameState.SelectedBase.Soldiers.Remove(soldier);
 			foreach (var craft in itemsBeingSold.OfType<Craft>())
 				GameState.SelectedBase.Crafts.Remove(craft);
-			foreach (var engineer in itemsBeingSold.OfType<ItemType>().Where(itemType => itemType == ItemType.Engineer))
+			foreach (
+				var engineer in itemsBeingSold
+					.OfType<ItemType>()
+					.Where(itemType => itemType == ItemType.Engineer)
+			)
 				GameState.SelectedBase.EngineerCount -= itemsToSell[engineer];
-			foreach (var scientist in itemsBeingSold.OfType<ItemType>().Where(itemType => itemType == ItemType.Scientist))
+			foreach (
+				var scientist in itemsBeingSold
+					.OfType<ItemType>()
+					.Where(itemType => itemType == ItemType.Scientist)
+			)
 				GameState.SelectedBase.ScientistCount -= itemsToSell[scientist];
 			foreach (var storeItem in itemsBeingSold.OfType<StoreItem>())
 			{

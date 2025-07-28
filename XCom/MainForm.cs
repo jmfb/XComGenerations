@@ -50,7 +50,8 @@ namespace XCom
 				GraphicsBuffer.GameWidth,
 				GraphicsBuffer.GameHeight,
 				OpenGL.GL_RGB,
-				graphicsBuffer.Buffer);
+				graphicsBuffer.Buffer
+			);
 			gl.Flush();
 		}
 
@@ -99,12 +100,12 @@ namespace XCom
 			var column = e.X / scaleFactor;
 			switch (e.Button)
 			{
-			case MouseButtons.Left:
-				GameState.Current.Dispatcher.OnLeftButtonDown(row, column);
-				break;
-			case MouseButtons.Right:
-				GameState.Current.Dispatcher.OnRightButtonDown(row, column);
-				break;
+				case MouseButtons.Left:
+					GameState.Current.Dispatcher.OnLeftButtonDown(row, column);
+					break;
+				case MouseButtons.Right:
+					GameState.Current.Dispatcher.OnRightButtonDown(row, column);
+					break;
 			}
 		}
 
@@ -114,12 +115,12 @@ namespace XCom
 			var column = e.X / scaleFactor;
 			switch (e.Button)
 			{
-			case MouseButtons.Left:
-				GameState.Current.Dispatcher.OnLeftButtonUp(row, column);
-				break;
-			case MouseButtons.Right:
-				GameState.Current.Dispatcher.OnRightButtonUp(row, column);
-				break;
+				case MouseButtons.Left:
+					GameState.Current.Dispatcher.OnLeftButtonUp(row, column);
+					break;
+				case MouseButtons.Right:
+					GameState.Current.Dispatcher.OnRightButtonUp(row, column);
+					break;
 			}
 		}
 	}

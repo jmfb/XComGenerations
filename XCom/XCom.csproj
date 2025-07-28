@@ -1,18 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <RootNamespace>XCom</RootNamespace>
-    <AssemblyName>XCom</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="SharpGL" Version="3.1.1" />
-    <PackageReference Include="SharpGL.WinForms" Version="3.1.1" />
-  </ItemGroup>
-
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<RootNamespace>XCom</RootNamespace>
+		<AssemblyName>XCom</AssemblyName>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="SharpGL" Version="3.1.1" />
+		<PackageReference Include="SharpGL.WinForms" Version="3.1.1" />
+	</ItemGroup>
 </Project>

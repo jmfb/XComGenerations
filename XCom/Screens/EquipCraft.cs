@@ -19,22 +19,68 @@ namespace XCom.Screens
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Blue, Backgrounds.EquipCraft, 9));
 			AddControl(new Label(8, Label.Center, craft.Name, Font.Large, ColorScheme.Blue));
 			AddControl(new Label(24, 24, "DAMAGE>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(24, 59, craft.DamagePercent.FormatPercent(), Font.Normal, ColorScheme.White));
+			AddControl(
+				new Label(
+					24,
+					59,
+					craft.DamagePercent.FormatPercent(),
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
 			AddControl(new Label(24, 232, "FUEL>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(24, 255, craft.FuelPercent.FormatPercent(), Font.Normal, ColorScheme.White));
-			AddControl(new Picture(35 + metadata.RowOffset, 125 + metadata.ColumnOffset, metadata.Image));
+			AddControl(
+				new Label(
+					24,
+					255,
+					craft.FuelPercent.FormatPercent(),
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
+			AddControl(
+				new Picture(35 + metadata.RowOffset, 125 + metadata.ColumnOffset, metadata.Image)
+			);
 
 			if (metadata.WeaponCount >= 1)
-				AddControl(new Button(48, 24, 24, 36, "1", ColorScheme.Blue, Font.Normal, OnWeapon1));
+				AddControl(
+					new Button(48, 24, 24, 36, "1", ColorScheme.Blue, Font.Normal, OnWeapon1)
+				);
 			if (metadata.WeaponCount >= 2)
-				AddControl(new Button(48, 271, 24, 36, "2", ColorScheme.Blue, Font.Normal, OnWeapon2));
+				AddControl(
+					new Button(48, 271, 24, 36, "2", ColorScheme.Blue, Font.Normal, OnWeapon2)
+				);
 			AddControl(new CraftWeaponPreview(craft));
 
 			if (metadata.Space > 0)
 			{
-				AddControl(new Button(96, 24, 64, 16, "CREW", ColorScheme.Blue, Font.Normal, OnClickCrew));
-				AddControl(new Button(120, 24, 64, 16, "EQUIPMENT", ColorScheme.Blue, Font.Normal, OnClickEquipment));
-				AddControl(new Button(144, 24, 64, 16, "ARMOR", ColorScheme.Blue, Font.Normal, OnClickArmor));
+				AddControl(
+					new Button(96, 24, 64, 16, "CREW", ColorScheme.Blue, Font.Normal, OnClickCrew)
+				);
+				AddControl(
+					new Button(
+						120,
+						24,
+						64,
+						16,
+						"EQUIPMENT",
+						ColorScheme.Blue,
+						Font.Normal,
+						OnClickEquipment
+					)
+				);
+				AddControl(
+					new Button(
+						144,
+						24,
+						64,
+						16,
+						"ARMOR",
+						ColorScheme.Blue,
+						Font.Normal,
+						OnClickArmor
+					)
+				);
 			}
 			AddControl(new CraftCargoPreview(craft));
 

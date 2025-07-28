@@ -17,28 +17,79 @@ namespace XCom.Screens
 		{
 			this.craft = craft;
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.LightMagenta, Backgrounds.Battle, 8));
-			AddControl(new Label(8, 16, $"Equipment for {craft.Name}", Font.Large, ColorScheme.LightMagenta));
-			AddControl(new Label(24, 16, "SPACE AVAILABLE>", Font.Normal, ColorScheme.LightMagenta));
-			AddControl(new DynamicLabel(24, 94, () => craft.SpaceAvailable.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(
+				new Label(
+					8,
+					16,
+					$"Equipment for {craft.Name}",
+					Font.Large,
+					ColorScheme.LightMagenta
+				)
+			);
+			AddControl(
+				new Label(24, 16, "SPACE AVAILABLE>", Font.Normal, ColorScheme.LightMagenta)
+			);
+			AddControl(
+				new DynamicLabel(
+					24,
+					94,
+					() => craft.SpaceAvailable.FormatNumber(),
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
 			AddControl(new Label(24, 130, "SPACE USED>", Font.Normal, ColorScheme.LightMagenta));
-			AddControl(new DynamicLabel(24, 184, () => craft.SpaceUsed.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(
+				new DynamicLabel(
+					24,
+					184,
+					() => craft.SpaceUsed.FormatNumber(),
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
 			AddControl(new Label(32, 16, "ITEM", Font.Normal, ColorScheme.LightMagenta));
 			AddControl(new Label(32, 160, "Stores", Font.Normal, ColorScheme.LightMagenta));
-			AddControl(new ListView<ItemType>(40, 8, 16, AvailableItems, ColorScheme.LightMagenta, Palette.GetPalette(8).GetColor(230), OnIncreaseItem)
-				.ConfigureUpDown(210, OnDecreaseItem)
-				.AddColumn(8, Alignment.Left, item => "")
-				.AddColumn(154, Alignment.Left, item => GetName(item), GetColor)
-				.AddColumn(86, Alignment.Left, item => GetStoreQuantity(item).FormatNumber(), GetColor)
-				.AddColumn(40, Alignment.Left, item => GetCraftQuantity(item).FormatNumber(), GetColor));
-			AddControl(new Button(176, 16, 288, 16, "OK", ColorScheme.LightMagenta, Font.Normal, OnOk));
+			AddControl(
+				new ListView<ItemType>(
+					40,
+					8,
+					16,
+					AvailableItems,
+					ColorScheme.LightMagenta,
+					Palette.GetPalette(8).GetColor(230),
+					OnIncreaseItem
+				)
+					.ConfigureUpDown(210, OnDecreaseItem)
+					.AddColumn(8, Alignment.Left, item => "")
+					.AddColumn(154, Alignment.Left, item => GetName(item), GetColor)
+					.AddColumn(
+						86,
+						Alignment.Left,
+						item => GetStoreQuantity(item).FormatNumber(),
+						GetColor
+					)
+					.AddColumn(
+						40,
+						Alignment.Left,
+						item => GetCraftQuantity(item).FormatNumber(),
+						GetColor
+					)
+			);
+			AddControl(
+				new Button(176, 16, 288, 16, "OK", ColorScheme.LightMagenta, Font.Normal, OnOk)
+			);
 		}
 
-		private List<ItemType> AvailableItems => EnumEx.GetValues<ItemType>()
-			.Where(item =>
-				GameState.SelectedBase.Stores[item] + craft.Stores[item] > 0 &&
-				(item.Metadata().HwpSpace > 0 || item.Metadata().IsEquipment) &&
-				item.Metadata().IsRequiredResearchCompleted)
-			.ToList();
+		private List<ItemType> AvailableItems =>
+			EnumEx
+				.GetValues<ItemType>()
+				.Where(item =>
+					GameState.SelectedBase.Stores[item] + craft.Stores[item] > 0
+					&& (item.Metadata().HwpSpace > 0 || item.Metadata().IsEquipment)
+					&& item.Metadata().IsRequiredResearchCompleted
+				)
+				.ToList();
 
 		private void OnIncreaseItem(ItemType item)
 		{
@@ -64,7 +115,9 @@ namespace XCom.Screens
 			if (item.Metadata().StorageSpace > GameState.SelectedBase.ItemSpaceAvailable)
 			{
 				AbortEquipItem();
-				new NotEnoughStoreSpace(ColorScheme.LightMagenta, Backgrounds.Battle, 8).DoModal(this);
+				new NotEnoughStoreSpace(ColorScheme.LightMagenta, Backgrounds.Battle, 8).DoModal(
+					this
+				);
 				return;
 			}
 			craft.Stores.Remove(item);

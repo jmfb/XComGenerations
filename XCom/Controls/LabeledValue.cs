@@ -20,7 +20,8 @@ namespace XCom.Controls
 			string valueText,
 			Font font,
 			ColorScheme labelScheme,
-			ColorScheme valueScheme)
+			ColorScheme valueScheme
+		)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;

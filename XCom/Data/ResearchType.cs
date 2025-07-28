@@ -140,7 +140,7 @@ namespace XCom.Data
 		{
 			Name = "Laser Weapons",
 			AverageHoursToComplete = 50,
-			Points = 10
+			Points = 10,
 		};
 
 		private static readonly ResearchMetadata laserPistol = new ResearchMetadata
@@ -148,10 +148,7 @@ namespace XCom.Data
 			Name = "Laser Pistol",
 			AverageHoursToComplete = 100,
 			Points = 10,
-			RequiredResearch = new[]
-			{
-				new[] {  ResearchType.LaserWeapons }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.LaserWeapons } },
 		};
 
 		private static readonly ResearchMetadata laserRifle = new ResearchMetadata
@@ -159,10 +156,7 @@ namespace XCom.Data
 			Name = "Laser Rifle",
 			AverageHoursToComplete = 300,
 			Points = 10,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.LaserPistol }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.LaserPistol } },
 		};
 
 		private static readonly ResearchMetadata heavyLaser = new ResearchMetadata
@@ -170,10 +164,7 @@ namespace XCom.Data
 			Name = "Heavy Laser",
 			AverageHoursToComplete = 460,
 			Points = 10,
-			RequiredResearch = new[]
-			{
-				new[] {  ResearchType.LaserRifle }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.LaserRifle } },
 		};
 
 		private static readonly ResearchMetadata laserCannon = new ResearchMetadata
@@ -181,10 +172,7 @@ namespace XCom.Data
 			Name = "Laser Cannon",
 			AverageHoursToComplete = 420,
 			Points = 10,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.HeavyLaser }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.HeavyLaser } },
 		};
 
 		private static readonly ResearchMetadata laserDefenses = new ResearchMetadata
@@ -192,10 +180,7 @@ namespace XCom.Data
 			Name = "Laser Defenses",
 			AverageHoursToComplete = 510,
 			Points = 15,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.LaserCannon }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.LaserCannon } },
 		};
 
 		private static readonly ResearchMetadata plasmaPistol = new ResearchMetadata
@@ -203,7 +188,7 @@ namespace XCom.Data
 			Name = "Plasma Pistol",
 			AverageHoursToComplete = 600,
 			Points = 20,
-			RequiredItem = ItemType.PlasmaPistol
+			RequiredItem = ItemType.PlasmaPistol,
 		};
 
 		private static readonly ResearchMetadata plasmaPistolClip = new ResearchMetadata
@@ -211,7 +196,7 @@ namespace XCom.Data
 			Name = "Plasma Pistol Clip",
 			AverageHoursToComplete = 400,
 			Points = 5,
-			RequiredItem = ItemType.PlasmaPistolClip
+			RequiredItem = ItemType.PlasmaPistolClip,
 		};
 
 		private static readonly ResearchMetadata plasmaRifle = new ResearchMetadata
@@ -219,7 +204,7 @@ namespace XCom.Data
 			Name = "Plasma Rifle",
 			AverageHoursToComplete = 700,
 			Points = 25,
-			RequiredItem = ItemType.PlasmaRifle
+			RequiredItem = ItemType.PlasmaRifle,
 		};
 
 		private static readonly ResearchMetadata plasmaRifleClip = new ResearchMetadata
@@ -227,7 +212,7 @@ namespace XCom.Data
 			Name = "Plasma Rifle Clip",
 			AverageHoursToComplete = 400,
 			Points = 6,
-			RequiredItem = ItemType.PlasmaRifleClip
+			RequiredItem = ItemType.PlasmaRifleClip,
 		};
 
 		private static readonly ResearchMetadata heavyPlasma = new ResearchMetadata
@@ -235,7 +220,7 @@ namespace XCom.Data
 			Name = "Heavy Plasma",
 			AverageHoursToComplete = 800,
 			Points = 30,
-			RequiredItem = ItemType.HeavyPlasma
+			RequiredItem = ItemType.HeavyPlasma,
 		};
 
 		private static readonly ResearchMetadata heavyPlasmaClip = new ResearchMetadata
@@ -243,7 +228,7 @@ namespace XCom.Data
 			Name = "Heavy Plasma Clip",
 			AverageHoursToComplete = 400,
 			Points = 7,
-			RequiredItem = ItemType.HeavyPlasmaClip
+			RequiredItem = ItemType.HeavyPlasmaClip,
 		};
 
 		private static readonly ResearchMetadata plasmaCannon = new ResearchMetadata
@@ -254,8 +239,8 @@ namespace XCom.Data
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.PlasmaRifle, ResearchType.PlasmaRifleClip },
-				new[] { ResearchType.HeavyPlasma, ResearchType.HeavyPlasmaClip }
-			}
+				new[] { ResearchType.HeavyPlasma, ResearchType.HeavyPlasmaClip },
+			},
 		};
 
 		private static readonly ResearchMetadata plasmaDefenses = new ResearchMetadata
@@ -263,24 +248,21 @@ namespace XCom.Data
 			Name = "Plasma Defenses",
 			AverageHoursToComplete = 620,
 			Points = 25,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.PlasmaCannon }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.PlasmaCannon } },
 		};
 
 		private static readonly ResearchMetadata mediKit = new ResearchMetadata
 		{
 			Name = "Medi-Kit",
 			AverageHoursToComplete = 210,
-			Points = 20
+			Points = 20,
 		};
 
 		private static readonly ResearchMetadata motionScanner = new ResearchMetadata
 		{
 			Name = "Motion Scanner",
 			AverageHoursToComplete = 180,
-			Points = 20
+			Points = 20,
 		};
 
 		private static readonly ResearchMetadata alienGrenade = new ResearchMetadata
@@ -288,7 +270,7 @@ namespace XCom.Data
 			Name = "Alien Grenade",
 			AverageHoursToComplete = 200,
 			Points = 20,
-			RequiredItem = ItemType.AlienGrenade
+			RequiredItem = ItemType.AlienGrenade,
 		};
 
 		private static readonly ResearchMetadata smallLauncher = new ResearchMetadata
@@ -296,7 +278,7 @@ namespace XCom.Data
 			Name = "Small Launcher",
 			AverageHoursToComplete = 550,
 			Points = 30,
-			RequiredItem = ItemType.SmallLauncher
+			RequiredItem = ItemType.SmallLauncher,
 		};
 
 		private static readonly ResearchMetadata stunBomb = new ResearchMetadata
@@ -304,7 +286,7 @@ namespace XCom.Data
 			Name = "Stun Bomb",
 			AverageHoursToComplete = 180,
 			Points = 10,
-			RequiredItem = ItemType.StunBomb
+			RequiredItem = ItemType.StunBomb,
 		};
 
 		private static readonly ResearchMetadata blasterLauncher = new ResearchMetadata
@@ -312,7 +294,7 @@ namespace XCom.Data
 			Name = "Blaster Launcher",
 			AverageHoursToComplete = 900,
 			RequiredItem = ItemType.BlasterLauncher,
-			Points = 40
+			Points = 40,
 		};
 
 		private static readonly ResearchMetadata blasterBomb = new ResearchMetadata
@@ -320,7 +302,7 @@ namespace XCom.Data
 			Name = "Blaster Bomb",
 			AverageHoursToComplete = 300,
 			RequiredItem = ItemType.BlasterBomb,
-			Points = 10
+			Points = 10,
 		};
 
 		private static readonly ResearchMetadata fusionMissile = new ResearchMetadata
@@ -330,8 +312,8 @@ namespace XCom.Data
 			Points = 25,
 			RequiredResearch = new[]
 			{
-				new[] { ResearchType.BlasterLauncher, ResearchType.BlasterBomb }
-			}
+				new[] { ResearchType.BlasterLauncher, ResearchType.BlasterBomb },
+			},
 		};
 
 		private static readonly ResearchMetadata fusionDefenses = new ResearchMetadata
@@ -339,10 +321,7 @@ namespace XCom.Data
 			Name = "Fusion Defenses",
 			AverageHoursToComplete = 800,
 			Points = 25,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.FusionMissile }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.FusionMissile } },
 		};
 
 		private static readonly ResearchMetadata ufoPowerSource = new ResearchMetadata
@@ -350,7 +329,7 @@ namespace XCom.Data
 			Name = "UFO Power Source",
 			AverageHoursToComplete = 450,
 			Points = 30,
-			RequiredItem = ItemType.UfoPowerSource
+			RequiredItem = ItemType.UfoPowerSource,
 		};
 
 		private static readonly ResearchMetadata ufoNavigation = new ResearchMetadata
@@ -358,7 +337,7 @@ namespace XCom.Data
 			Name = "UFO Navigation",
 			AverageHoursToComplete = 450,
 			Points = 30,
-			RequiredItem = ItemType.UfoNavigation
+			RequiredItem = ItemType.UfoNavigation,
 		};
 
 		private static readonly ResearchMetadata alienAlloys = new ResearchMetadata
@@ -366,7 +345,7 @@ namespace XCom.Data
 			Name = "Alien Alloys",
 			AverageHoursToComplete = 400,
 			Points = 30,
-			RequiredItem = ItemType.AlienAlloys
+			RequiredItem = ItemType.AlienAlloys,
 		};
 
 		private static readonly ResearchMetadata elerium115 = new ResearchMetadata
@@ -374,7 +353,7 @@ namespace XCom.Data
 			Name = "Elerium-115",
 			AverageHoursToComplete = 450,
 			Points = 40,
-			RequiredItem = ItemType.Elerium115
+			RequiredItem = ItemType.Elerium115,
 		};
 
 		private static readonly ResearchMetadata personalArmor = new ResearchMetadata
@@ -382,10 +361,7 @@ namespace XCom.Data
 			Name = "Personal Armor",
 			AverageHoursToComplete = 180,
 			Points = 20,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.AlienAlloys }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.AlienAlloys } },
 		};
 
 		private static readonly ResearchMetadata powerSuit = new ResearchMetadata
@@ -395,8 +371,13 @@ namespace XCom.Data
 			Points = 20,
 			RequiredResearch = new[]
 			{
-				new[] { ResearchType.UfoPowerSource, ResearchType.Elerium115, ResearchType.PersonalArmor }
-			}
+				new[]
+				{
+					ResearchType.UfoPowerSource,
+					ResearchType.Elerium115,
+					ResearchType.PersonalArmor,
+				},
+			},
 		};
 
 		private static readonly ResearchMetadata flyingSuit = new ResearchMetadata
@@ -406,8 +387,8 @@ namespace XCom.Data
 			Points = 20,
 			RequiredResearch = new[]
 			{
-				new[] { ResearchType.UfoNavigation, ResearchType.PowerSuit }
-			}
+				new[] { ResearchType.UfoNavigation, ResearchType.PowerSuit },
+			},
 		};
 
 		private static readonly ResearchMetadata ufoConstruction = new ResearchMetadata
@@ -422,9 +403,9 @@ namespace XCom.Data
 					ResearchType.UfoPowerSource,
 					ResearchType.UfoNavigation,
 					ResearchType.AlienAlloys,
-					ResearchType.Elerium115
-				}
-			}
+					ResearchType.Elerium115,
+				},
+			},
 		};
 
 		private static readonly ResearchMetadata newFighterCraft = new ResearchMetadata
@@ -432,10 +413,7 @@ namespace XCom.Data
 			Name = "New Fighter Craft",
 			AverageHoursToComplete = 600,
 			Points = 30,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.UfoConstruction }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.UfoConstruction } },
 		};
 
 		private static readonly ResearchMetadata newFighterTransporter = new ResearchMetadata
@@ -443,10 +421,7 @@ namespace XCom.Data
 			Name = "New Fighter Transporter",
 			AverageHoursToComplete = 700,
 			Points = 30,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.NewFighterCraft }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.NewFighterCraft } },
 		};
 
 		private static readonly ResearchMetadata ultimateCraft = new ResearchMetadata
@@ -454,10 +429,7 @@ namespace XCom.Data
 			Name = "Ultimate Craft",
 			AverageHoursToComplete = 900,
 			Points = 30,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.NewFighterTransporter }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.NewFighterTransporter } },
 		};
 
 		private static readonly ResearchMetadata gravShield = new ResearchMetadata
@@ -465,10 +437,7 @@ namespace XCom.Data
 			Name = "Grav Shield",
 			AverageHoursToComplete = 930,
 			Points = 25,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.NewFighterTransporter }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.NewFighterTransporter } },
 		};
 
 		private static readonly ResearchMetadata mindProbe = new ResearchMetadata
@@ -476,7 +445,7 @@ namespace XCom.Data
 			Name = "Mind Probe",
 			AverageHoursToComplete = 600,
 			Points = 25,
-			RequiredItem = ItemType.MindProbe
+			RequiredItem = ItemType.MindProbe,
 		};
 
 		private static readonly ResearchMetadata psiLab = new ResearchMetadata
@@ -488,8 +457,8 @@ namespace XCom.Data
 			{
 				new[] { ResearchType.SectoidLeader },
 				new[] { ResearchType.SectoidCommander },
-				new[] { ResearchType.Ethereal }
-			}
+				new[] { ResearchType.Ethereal },
+			},
 		};
 
 		private static readonly ResearchMetadata psiAmp = new ResearchMetadata
@@ -497,10 +466,7 @@ namespace XCom.Data
 			Name = "Psi-Amp",
 			AverageHoursToComplete = 500,
 			Points = 20,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.PsiLab }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.PsiLab } },
 		};
 
 		private static readonly ResearchMetadata mindShield = new ResearchMetadata
@@ -508,10 +474,7 @@ namespace XCom.Data
 			Name = "Mind Shield",
 			AverageHoursToComplete = 360,
 			Points = 25,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.PsiLab }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.PsiLab } },
 		};
 
 		private static readonly ResearchMetadata hyperwaveDecoder = new ResearchMetadata
@@ -519,10 +482,7 @@ namespace XCom.Data
 			Name = "Hyper-Wave Decoder",
 			AverageHoursToComplete = 670,
 			Points = 25,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.Navigator }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.Navigator } },
 		};
 
 		private static readonly ResearchMetadata alienOrigins = new ResearchMetadata
@@ -530,10 +490,7 @@ namespace XCom.Data
 			Name = "Alien Origins",
 			AverageHoursToComplete = 300,
 			Points = 60,
-			RequiredResearch = new[]
-			{
-				new[] { ResearchType.Alien }
-			}
+			RequiredResearch = new[] { new[] { ResearchType.Alien } },
 		};
 
 		private static readonly ResearchMetadata theMartianSolution = new ResearchMetadata
@@ -544,8 +501,8 @@ namespace XCom.Data
 			RequiredResearch = new[]
 			{
 				new[] { ResearchType.Leader, ResearchType.AlienOrigins },
-				new[] { ResearchType.Commander, ResearchType.AlienOrigins }
-			}
+				new[] { ResearchType.Commander, ResearchType.AlienOrigins },
+			},
 		};
 
 		private static readonly ResearchMetadata cydoniaOrBust = new ResearchMetadata
@@ -555,8 +512,8 @@ namespace XCom.Data
 			Points = 60,
 			RequiredResearch = new[]
 			{
-				new[] { ResearchType.Commander, ResearchType.TheMartianSolution }
-			}
+				new[] { ResearchType.Commander, ResearchType.TheMartianSolution },
+			},
 		};
 
 		private static readonly ResearchMetadata alienFood = new ResearchMetadata
@@ -564,7 +521,7 @@ namespace XCom.Data
 			Name = "Alien Food",
 			AverageHoursToComplete = 150,
 			Points = 30,
-			RequiredItem = ItemType.AlienFood
+			RequiredItem = ItemType.AlienFood,
 		};
 
 		private static readonly ResearchMetadata alienEntertainment = new ResearchMetadata
@@ -572,7 +529,7 @@ namespace XCom.Data
 			Name = "Alien Entertainment",
 			AverageHoursToComplete = 150,
 			Points = 30,
-			RequiredItem = ItemType.AlienEntertainment
+			RequiredItem = ItemType.AlienEntertainment,
 		};
 
 		private static readonly ResearchMetadata alienSurgery = new ResearchMetadata
@@ -580,7 +537,7 @@ namespace XCom.Data
 			Name = "Alien Surgery",
 			AverageHoursToComplete = 150,
 			Points = 30,
-			RequiredItem = ItemType.AlienSurgery
+			RequiredItem = ItemType.AlienSurgery,
 		};
 
 		private static readonly ResearchMetadata examinationRoom = new ResearchMetadata
@@ -588,7 +545,7 @@ namespace XCom.Data
 			Name = "Examination Room",
 			AverageHoursToComplete = 150,
 			Points = 30,
-			RequiredItem = ItemType.ExaminationRoom
+			RequiredItem = ItemType.ExaminationRoom,
 		};
 
 		private static ResearchMetadata Corpse(string name, ItemType item)
@@ -598,11 +555,16 @@ namespace XCom.Data
 				Name = name,
 				AverageHoursToComplete = 180,
 				Points = 50,
-				RequiredItem = item
+				RequiredItem = item,
 			};
 		}
 
-		private static ResearchMetadata Alien(string name, ItemType item, ResearchType race, ResearchType rank)
+		private static ResearchMetadata Alien(
+			string name,
+			ItemType item,
+			ResearchType race,
+			ResearchType rank
+		)
 		{
 			var medicLottery = new[]
 			{
@@ -628,7 +590,7 @@ namespace XCom.Data
 				ResearchType.AlienBase,
 				ResearchType.AlienTerror,
 				ResearchType.AlienRetaliation,
-				ResearchType.AlienSupply
+				ResearchType.AlienSupply,
 			};
 
 			var engineerLottery = new[]
@@ -640,25 +602,25 @@ namespace XCom.Data
 				ResearchType.Harvester,
 				ResearchType.SupplyShip,
 				ResearchType.TerrorShip,
-				ResearchType.Battleship
+				ResearchType.Battleship,
 			};
 
 			return new ResearchMetadata
 			{
 				Name = name,
 				AverageHoursToComplete =
-					race == ResearchType.Sectoid && rank == ResearchType.Commander ? 190 :
-					race == ResearchType.Sectopod || race == ResearchType.Cyberdisc ? 192 :
-					rank == ResearchType.Terrorist ? 170 :
-					192,
+					race == ResearchType.Sectoid && rank == ResearchType.Commander ? 190
+					: race == ResearchType.Sectopod || race == ResearchType.Cyberdisc ? 192
+					: rank == ResearchType.Terrorist ? 170
+					: 192,
 				Points = 50,
 				RequiredItem = item,
 				AdditionalResearchResults = new[] { ResearchType.Alien, race, rank },
 				LotteryResearchResults =
-					rank == ResearchType.Medic ? medicLottery :
-					rank == ResearchType.Navigator ? navigatorLottery :
-					rank == ResearchType.Engineer ? engineerLottery :
-					null
+					rank == ResearchType.Medic ? medicLottery
+					: rank == ResearchType.Navigator ? navigatorLottery
+					: rank == ResearchType.Engineer ? engineerLottery
+					: null,
 			};
 		}
 
@@ -667,135 +629,382 @@ namespace XCom.Data
 			return new ResearchMetadata
 			{
 				Points = 50,
-				RequiredResearch = new[] { new[] { research } }
+				RequiredResearch = new[] { new[] { research } },
 			};
 		}
 
-		private static readonly Dictionary<ResearchType, ResearchMetadata> metadata = new Dictionary<ResearchType,ResearchMetadata>
- 		{
-			{ ResearchType.LaserWeapons, laserWeapons },
-			{ ResearchType.LaserPistol, laserPistol },
-			{ ResearchType.LaserRifle, laserRifle },
-			{ ResearchType.HeavyLaser, heavyLaser },
-			{ ResearchType.LaserCannon, laserCannon },
-			{ ResearchType.LaserDefenses, laserDefenses },
-			{ ResearchType.PlasmaPistol, plasmaPistol },
-			{ ResearchType.PlasmaPistolClip, plasmaPistolClip },
-			{ ResearchType.PlasmaRifle, plasmaRifle },
-			{ ResearchType.PlasmaRifleClip, plasmaRifleClip },
-			{ ResearchType.HeavyPlasma, heavyPlasma },
-			{ ResearchType.HeavyPlasmaClip, heavyPlasmaClip },
-			{ ResearchType.PlasmaCannon, plasmaCannon },
-			{ ResearchType.PlasmaDefenses, plasmaDefenses },
-			{ ResearchType.MediKit, mediKit },
-			{ ResearchType.MotionScanner, motionScanner },
-			{ ResearchType.AlienGrenade, alienGrenade },
-			{ ResearchType.SmallLauncher, smallLauncher },
-			{ ResearchType.StunBomb, stunBomb },
-			{ ResearchType.BlasterLauncher, blasterLauncher },
-			{ ResearchType.BlasterBomb, blasterBomb },
-			{ ResearchType.FusionMissile, fusionMissile },
-			{ ResearchType.FusionDefenses, fusionDefenses },
-			{ ResearchType.UfoPowerSource, ufoPowerSource },
-			{ ResearchType.UfoNavigation, ufoNavigation },
-			{ ResearchType.AlienAlloys, alienAlloys },
-			{ ResearchType.Elerium115, elerium115 },
-			{ ResearchType.PersonalArmor, personalArmor },
-			{ ResearchType.PowerSuit, powerSuit },
-			{ ResearchType.FlyingSuit, flyingSuit },
-			{ ResearchType.UfoConstruction, ufoConstruction },
-			{ ResearchType.NewFighterCraft, newFighterCraft },
-			{ ResearchType.NewFighterTransporter, newFighterTransporter },
-			{ ResearchType.UltimateCraft, ultimateCraft },
-			{ ResearchType.GravShield, gravShield },
-			{ ResearchType.MindProbe, mindProbe },
-			{ ResearchType.PsiLab, psiLab },
-			{ ResearchType.PsiAmp, psiAmp },
-			{ ResearchType.MindShield, mindShield },
-			{ ResearchType.HyperwaveDecoder, hyperwaveDecoder },
-			{ ResearchType.AlienOrigins, alienOrigins },
-			{ ResearchType.TheMartianSolution, theMartianSolution },
-			{ ResearchType.CydoniaOrBust, cydoniaOrBust },
-			{ ResearchType.AlienFood, alienFood },
-			{ ResearchType.AlienEntertainment, alienEntertainment },
-			{ ResearchType.AlienSurgery, alienSurgery },
-			{ ResearchType.ExaminationRoom, examinationRoom },
-			{ ResearchType.AlienResearch, NotResearchable(ResearchType.AlienResearch) },
-			{ ResearchType.AlienHarvest, NotResearchable(ResearchType.AlienHarvest) },
-			{ ResearchType.AlienAbduction, NotResearchable(ResearchType.AlienAbduction) },
-			{ ResearchType.AlienInfiltration, NotResearchable(ResearchType.AlienInfiltration) },
-			{ ResearchType.AlienBase, NotResearchable(ResearchType.AlienBase) },
-			{ ResearchType.AlienTerror, NotResearchable(ResearchType.AlienTerror) },
-			{ ResearchType.AlienRetaliation, NotResearchable(ResearchType.AlienRetaliation) },
-			{ ResearchType.AlienSupply, NotResearchable(ResearchType.AlienSupply) },
-			{ ResearchType.SmallScout, NotResearchable(ResearchType.SmallScout) },
-			{ ResearchType.MediumScout, NotResearchable(ResearchType.MediumScout) },
-			{ ResearchType.LargeScout, NotResearchable(ResearchType.LargeScout) },
-			{ ResearchType.Abductor, NotResearchable(ResearchType.Abductor) },
-			{ ResearchType.Harvester, NotResearchable(ResearchType.Harvester) },
-			{ ResearchType.SupplyShip, NotResearchable(ResearchType.SupplyShip) },
-			{ ResearchType.TerrorShip, NotResearchable(ResearchType.TerrorShip) },
-			{ ResearchType.Battleship, NotResearchable(ResearchType.Battleship) },
-			{ ResearchType.Soldier, NotResearchable(ResearchType.Soldier) },
-			{ ResearchType.Terrorist, NotResearchable(ResearchType.Terrorist) },
-			{ ResearchType.Navigator, NotResearchable(ResearchType.Navigator) },
-			{ ResearchType.Medic, NotResearchable(ResearchType.Medic) },
-			{ ResearchType.Engineer, NotResearchable(ResearchType.Engineer) },
-			{ ResearchType.Leader, NotResearchable(ResearchType.Leader) },
-			{ ResearchType.Commander, NotResearchable(ResearchType.Commander) },
-			{ ResearchType.Alien, NotResearchable(ResearchType.Alien) },
-			{ ResearchType.Sectoid, NotResearchable(ResearchType.Sectoid) },
-			{ ResearchType.Floater, NotResearchable(ResearchType.Floater) },
-			{ ResearchType.Snakeman, NotResearchable(ResearchType.Snakeman) },
-			{ ResearchType.Muton, NotResearchable(ResearchType.Muton) },
-			{ ResearchType.Ethereal, NotResearchable(ResearchType.Ethereal) },
-			{ ResearchType.Reaper, NotResearchable(ResearchType.Reaper) },
-			{ ResearchType.Chrysalid, NotResearchable(ResearchType.Chrysalid) },
-			{ ResearchType.Silacoid, NotResearchable(ResearchType.Silacoid) },
-			{ ResearchType.Celatid, NotResearchable(ResearchType.Celatid) },
-			{ ResearchType.Sectopod, NotResearchable(ResearchType.Sectopod) },
-			{ ResearchType.Cyberdisc, NotResearchable(ResearchType.Cyberdisc) },
-			{ ResearchType.SectoidCorpse, Corpse("Sectoid Corpse", ItemType.SectoidCorpse) },
-			{ ResearchType.FloaterCorpse, Corpse("Floater Corpse", ItemType.FloaterCorpse) },
-			{ ResearchType.SnakemanCorpse, Corpse("Snakeman Corpse", ItemType.SnakemanCorpse) },
-			{ ResearchType.MutonCorpse, Corpse("Muton Corpse", ItemType.MutonCorpse) },
-			{ ResearchType.EtherealCorpse, Corpse("Ethereal Corpse", ItemType.EtherealCorpse) },
-			{ ResearchType.ReaperCorpse, Corpse("Reaper Corpse", ItemType.ReaperCorpse) },
-			{ ResearchType.ChryssalidCorpse, Corpse("Chryssalid Corpse", ItemType.ChryssalidCorpse) },
-			{ ResearchType.SilacoidCorpse, Corpse("Silacoid Corpse", ItemType.SilacoidCorpse) },
-			{ ResearchType.CelatidCorpse, Corpse("Celatid Corpse", ItemType.CelatidCorpse) },
-			{ ResearchType.SectopodCorpse, Corpse("Sectopod Corpse", ItemType.SectopodCorpse) },
-			{ ResearchType.CyberdiscCorpse, Corpse("Cyberdisc Corpse", ItemType.CyberdiscCorpse) },
-			{ ResearchType.ReaperTerrorist, Alien("Reaper Terrorist", ItemType.ReaperTerrorist, ResearchType.Reaper, ResearchType.Terrorist) },
-			{ ResearchType.ChryssalidTerrorist, Alien("Chryssalid Terrorist", ItemType.ChryssalidTerrorist, ResearchType.Chrysalid, ResearchType.Terrorist) },
-			{ ResearchType.SilacoidTerrorist, Alien("Silacoid Terrorist", ItemType.SilacoidTerrorist, ResearchType.Silacoid, ResearchType.Terrorist) },
-			{ ResearchType.CelatidTerrorist, Alien("Celatid Terrorist", ItemType.CelatidTerrorist, ResearchType.Celatid, ResearchType.Terrorist) },
-			{ ResearchType.SectopodTerrorist, Alien("Sectopod Terrorist", ItemType.SectopodTerrorist, ResearchType.Sectopod, ResearchType.Terrorist) },
-			{ ResearchType.CyberdiscTerrorist, Alien("Cyberdisc Terrorist", ItemType.CyberdiscTerrorist, ResearchType.Cyberdisc, ResearchType.Terrorist) },
-			{ ResearchType.SectoidSoldier, Alien("Sectoid Soldier", ItemType.SectoidSoldier, ResearchType.Sectoid, ResearchType.Soldier) },
-			{ ResearchType.SectoidMedic, Alien("Sectoid Medic", ItemType.SectoidMedic, ResearchType.Sectoid, ResearchType.Medic) },
-			{ ResearchType.SectoidNavigator, Alien("Sectoid Navigator", ItemType.SectoidNavigator, ResearchType.Sectoid, ResearchType.Navigator) },
-			{ ResearchType.SectoidEngineer, Alien("Sectoid Engineer", ItemType.SectoidEngineer, ResearchType.Sectoid, ResearchType.Engineer) },
-			{ ResearchType.SectoidLeader, Alien("Sectoid Leader", ItemType.SectoidLeader, ResearchType.Sectoid, ResearchType.Leader) },
-			{ ResearchType.SectoidCommander, Alien("Sectoid Commander", ItemType.SectoidCommander, ResearchType.Sectoid, ResearchType.Commander) },
-			{ ResearchType.FloaterSoldier, Alien("Floater Soldier", ItemType.FloaterSoldier, ResearchType.Floater, ResearchType.Soldier) },
-			{ ResearchType.FloaterMedic, Alien("Floater Medic", ItemType.FloaterMedic, ResearchType.Floater, ResearchType.Medic) },
-			{ ResearchType.FloaterNavigator, Alien("Floater Navigator", ItemType.FloaterNavigator, ResearchType.Floater, ResearchType.Navigator) },
-			{ ResearchType.FloaterEngineer, Alien("Floater Engineer", ItemType.FloaterEngineer, ResearchType.Floater, ResearchType.Engineer) },
-			{ ResearchType.FloaterLeader, Alien("Floater Leader", ItemType.FloaterLeader, ResearchType.Floater, ResearchType.Leader) },
-			{ ResearchType.FloaterCommander, Alien("Floater Commander", ItemType.FloaterCommander, ResearchType.Floater, ResearchType.Commander) },
-			{ ResearchType.SnakemanSoldier, Alien("Snakeman Soldier", ItemType.SnakemanSoldier, ResearchType.Snakeman, ResearchType.Soldier) },
-			{ ResearchType.SnakemanMedic, Alien("Snakeman Medic", ItemType.SnakemanMedic, ResearchType.Snakeman, ResearchType.Medic) },
-			{ ResearchType.SnakemanNavigator, Alien("Snakeman Navigator", ItemType.SnakemanNavigator, ResearchType.Snakeman, ResearchType.Navigator) },
-			{ ResearchType.SnakemanEngineer, Alien("Snakeman Engineer", ItemType.SnakemanEngineer, ResearchType.Snakeman, ResearchType.Engineer) },
-			{ ResearchType.SnakemanLeader, Alien("Snakeman Leader", ItemType.SnakemanLeader, ResearchType.Snakeman, ResearchType.Leader) },
-			{ ResearchType.SnakemanCommander, Alien("Snakeman Commander", ItemType.SnakemanCommander, ResearchType.Snakeman, ResearchType.Commander) },
-			{ ResearchType.MutonSoldier, Alien("Muton Soldier", ItemType.MutonSoldier, ResearchType.Muton, ResearchType.Soldier) },
-			{ ResearchType.MutonNavigator, Alien("Muton Navigator", ItemType.MutonNavigator, ResearchType.Muton, ResearchType.Navigator) },
-			{ ResearchType.MutonEngineer, Alien("Muton Engineer", ItemType.MutonEngineer, ResearchType.Muton, ResearchType.Engineer) },
-			{ ResearchType.EtherealSoldier, Alien("Ethereal Soldier", ItemType.EtherealSoldier, ResearchType.Ethereal, ResearchType.Soldier) },
-			{ ResearchType.EtherealLeader, Alien("Ethereal Leader", ItemType.EtherealLeader, ResearchType.Ethereal, ResearchType.Leader) },
-			{ ResearchType.EtherealCommander, Alien("Ethereal Commander", ItemType.EtherealCommander, ResearchType.Ethereal, ResearchType.Commander) }
-		};
+		private static readonly Dictionary<ResearchType, ResearchMetadata> metadata =
+			new Dictionary<ResearchType, ResearchMetadata>
+			{
+				{ ResearchType.LaserWeapons, laserWeapons },
+				{ ResearchType.LaserPistol, laserPistol },
+				{ ResearchType.LaserRifle, laserRifle },
+				{ ResearchType.HeavyLaser, heavyLaser },
+				{ ResearchType.LaserCannon, laserCannon },
+				{ ResearchType.LaserDefenses, laserDefenses },
+				{ ResearchType.PlasmaPistol, plasmaPistol },
+				{ ResearchType.PlasmaPistolClip, plasmaPistolClip },
+				{ ResearchType.PlasmaRifle, plasmaRifle },
+				{ ResearchType.PlasmaRifleClip, plasmaRifleClip },
+				{ ResearchType.HeavyPlasma, heavyPlasma },
+				{ ResearchType.HeavyPlasmaClip, heavyPlasmaClip },
+				{ ResearchType.PlasmaCannon, plasmaCannon },
+				{ ResearchType.PlasmaDefenses, plasmaDefenses },
+				{ ResearchType.MediKit, mediKit },
+				{ ResearchType.MotionScanner, motionScanner },
+				{ ResearchType.AlienGrenade, alienGrenade },
+				{ ResearchType.SmallLauncher, smallLauncher },
+				{ ResearchType.StunBomb, stunBomb },
+				{ ResearchType.BlasterLauncher, blasterLauncher },
+				{ ResearchType.BlasterBomb, blasterBomb },
+				{ ResearchType.FusionMissile, fusionMissile },
+				{ ResearchType.FusionDefenses, fusionDefenses },
+				{ ResearchType.UfoPowerSource, ufoPowerSource },
+				{ ResearchType.UfoNavigation, ufoNavigation },
+				{ ResearchType.AlienAlloys, alienAlloys },
+				{ ResearchType.Elerium115, elerium115 },
+				{ ResearchType.PersonalArmor, personalArmor },
+				{ ResearchType.PowerSuit, powerSuit },
+				{ ResearchType.FlyingSuit, flyingSuit },
+				{ ResearchType.UfoConstruction, ufoConstruction },
+				{ ResearchType.NewFighterCraft, newFighterCraft },
+				{ ResearchType.NewFighterTransporter, newFighterTransporter },
+				{ ResearchType.UltimateCraft, ultimateCraft },
+				{ ResearchType.GravShield, gravShield },
+				{ ResearchType.MindProbe, mindProbe },
+				{ ResearchType.PsiLab, psiLab },
+				{ ResearchType.PsiAmp, psiAmp },
+				{ ResearchType.MindShield, mindShield },
+				{ ResearchType.HyperwaveDecoder, hyperwaveDecoder },
+				{ ResearchType.AlienOrigins, alienOrigins },
+				{ ResearchType.TheMartianSolution, theMartianSolution },
+				{ ResearchType.CydoniaOrBust, cydoniaOrBust },
+				{ ResearchType.AlienFood, alienFood },
+				{ ResearchType.AlienEntertainment, alienEntertainment },
+				{ ResearchType.AlienSurgery, alienSurgery },
+				{ ResearchType.ExaminationRoom, examinationRoom },
+				{ ResearchType.AlienResearch, NotResearchable(ResearchType.AlienResearch) },
+				{ ResearchType.AlienHarvest, NotResearchable(ResearchType.AlienHarvest) },
+				{ ResearchType.AlienAbduction, NotResearchable(ResearchType.AlienAbduction) },
+				{ ResearchType.AlienInfiltration, NotResearchable(ResearchType.AlienInfiltration) },
+				{ ResearchType.AlienBase, NotResearchable(ResearchType.AlienBase) },
+				{ ResearchType.AlienTerror, NotResearchable(ResearchType.AlienTerror) },
+				{ ResearchType.AlienRetaliation, NotResearchable(ResearchType.AlienRetaliation) },
+				{ ResearchType.AlienSupply, NotResearchable(ResearchType.AlienSupply) },
+				{ ResearchType.SmallScout, NotResearchable(ResearchType.SmallScout) },
+				{ ResearchType.MediumScout, NotResearchable(ResearchType.MediumScout) },
+				{ ResearchType.LargeScout, NotResearchable(ResearchType.LargeScout) },
+				{ ResearchType.Abductor, NotResearchable(ResearchType.Abductor) },
+				{ ResearchType.Harvester, NotResearchable(ResearchType.Harvester) },
+				{ ResearchType.SupplyShip, NotResearchable(ResearchType.SupplyShip) },
+				{ ResearchType.TerrorShip, NotResearchable(ResearchType.TerrorShip) },
+				{ ResearchType.Battleship, NotResearchable(ResearchType.Battleship) },
+				{ ResearchType.Soldier, NotResearchable(ResearchType.Soldier) },
+				{ ResearchType.Terrorist, NotResearchable(ResearchType.Terrorist) },
+				{ ResearchType.Navigator, NotResearchable(ResearchType.Navigator) },
+				{ ResearchType.Medic, NotResearchable(ResearchType.Medic) },
+				{ ResearchType.Engineer, NotResearchable(ResearchType.Engineer) },
+				{ ResearchType.Leader, NotResearchable(ResearchType.Leader) },
+				{ ResearchType.Commander, NotResearchable(ResearchType.Commander) },
+				{ ResearchType.Alien, NotResearchable(ResearchType.Alien) },
+				{ ResearchType.Sectoid, NotResearchable(ResearchType.Sectoid) },
+				{ ResearchType.Floater, NotResearchable(ResearchType.Floater) },
+				{ ResearchType.Snakeman, NotResearchable(ResearchType.Snakeman) },
+				{ ResearchType.Muton, NotResearchable(ResearchType.Muton) },
+				{ ResearchType.Ethereal, NotResearchable(ResearchType.Ethereal) },
+				{ ResearchType.Reaper, NotResearchable(ResearchType.Reaper) },
+				{ ResearchType.Chrysalid, NotResearchable(ResearchType.Chrysalid) },
+				{ ResearchType.Silacoid, NotResearchable(ResearchType.Silacoid) },
+				{ ResearchType.Celatid, NotResearchable(ResearchType.Celatid) },
+				{ ResearchType.Sectopod, NotResearchable(ResearchType.Sectopod) },
+				{ ResearchType.Cyberdisc, NotResearchable(ResearchType.Cyberdisc) },
+				{ ResearchType.SectoidCorpse, Corpse("Sectoid Corpse", ItemType.SectoidCorpse) },
+				{ ResearchType.FloaterCorpse, Corpse("Floater Corpse", ItemType.FloaterCorpse) },
+				{ ResearchType.SnakemanCorpse, Corpse("Snakeman Corpse", ItemType.SnakemanCorpse) },
+				{ ResearchType.MutonCorpse, Corpse("Muton Corpse", ItemType.MutonCorpse) },
+				{ ResearchType.EtherealCorpse, Corpse("Ethereal Corpse", ItemType.EtherealCorpse) },
+				{ ResearchType.ReaperCorpse, Corpse("Reaper Corpse", ItemType.ReaperCorpse) },
+				{
+					ResearchType.ChryssalidCorpse,
+					Corpse("Chryssalid Corpse", ItemType.ChryssalidCorpse)
+				},
+				{ ResearchType.SilacoidCorpse, Corpse("Silacoid Corpse", ItemType.SilacoidCorpse) },
+				{ ResearchType.CelatidCorpse, Corpse("Celatid Corpse", ItemType.CelatidCorpse) },
+				{ ResearchType.SectopodCorpse, Corpse("Sectopod Corpse", ItemType.SectopodCorpse) },
+				{
+					ResearchType.CyberdiscCorpse,
+					Corpse("Cyberdisc Corpse", ItemType.CyberdiscCorpse)
+				},
+				{
+					ResearchType.ReaperTerrorist,
+					Alien(
+						"Reaper Terrorist",
+						ItemType.ReaperTerrorist,
+						ResearchType.Reaper,
+						ResearchType.Terrorist
+					)
+				},
+				{
+					ResearchType.ChryssalidTerrorist,
+					Alien(
+						"Chryssalid Terrorist",
+						ItemType.ChryssalidTerrorist,
+						ResearchType.Chrysalid,
+						ResearchType.Terrorist
+					)
+				},
+				{
+					ResearchType.SilacoidTerrorist,
+					Alien(
+						"Silacoid Terrorist",
+						ItemType.SilacoidTerrorist,
+						ResearchType.Silacoid,
+						ResearchType.Terrorist
+					)
+				},
+				{
+					ResearchType.CelatidTerrorist,
+					Alien(
+						"Celatid Terrorist",
+						ItemType.CelatidTerrorist,
+						ResearchType.Celatid,
+						ResearchType.Terrorist
+					)
+				},
+				{
+					ResearchType.SectopodTerrorist,
+					Alien(
+						"Sectopod Terrorist",
+						ItemType.SectopodTerrorist,
+						ResearchType.Sectopod,
+						ResearchType.Terrorist
+					)
+				},
+				{
+					ResearchType.CyberdiscTerrorist,
+					Alien(
+						"Cyberdisc Terrorist",
+						ItemType.CyberdiscTerrorist,
+						ResearchType.Cyberdisc,
+						ResearchType.Terrorist
+					)
+				},
+				{
+					ResearchType.SectoidSoldier,
+					Alien(
+						"Sectoid Soldier",
+						ItemType.SectoidSoldier,
+						ResearchType.Sectoid,
+						ResearchType.Soldier
+					)
+				},
+				{
+					ResearchType.SectoidMedic,
+					Alien(
+						"Sectoid Medic",
+						ItemType.SectoidMedic,
+						ResearchType.Sectoid,
+						ResearchType.Medic
+					)
+				},
+				{
+					ResearchType.SectoidNavigator,
+					Alien(
+						"Sectoid Navigator",
+						ItemType.SectoidNavigator,
+						ResearchType.Sectoid,
+						ResearchType.Navigator
+					)
+				},
+				{
+					ResearchType.SectoidEngineer,
+					Alien(
+						"Sectoid Engineer",
+						ItemType.SectoidEngineer,
+						ResearchType.Sectoid,
+						ResearchType.Engineer
+					)
+				},
+				{
+					ResearchType.SectoidLeader,
+					Alien(
+						"Sectoid Leader",
+						ItemType.SectoidLeader,
+						ResearchType.Sectoid,
+						ResearchType.Leader
+					)
+				},
+				{
+					ResearchType.SectoidCommander,
+					Alien(
+						"Sectoid Commander",
+						ItemType.SectoidCommander,
+						ResearchType.Sectoid,
+						ResearchType.Commander
+					)
+				},
+				{
+					ResearchType.FloaterSoldier,
+					Alien(
+						"Floater Soldier",
+						ItemType.FloaterSoldier,
+						ResearchType.Floater,
+						ResearchType.Soldier
+					)
+				},
+				{
+					ResearchType.FloaterMedic,
+					Alien(
+						"Floater Medic",
+						ItemType.FloaterMedic,
+						ResearchType.Floater,
+						ResearchType.Medic
+					)
+				},
+				{
+					ResearchType.FloaterNavigator,
+					Alien(
+						"Floater Navigator",
+						ItemType.FloaterNavigator,
+						ResearchType.Floater,
+						ResearchType.Navigator
+					)
+				},
+				{
+					ResearchType.FloaterEngineer,
+					Alien(
+						"Floater Engineer",
+						ItemType.FloaterEngineer,
+						ResearchType.Floater,
+						ResearchType.Engineer
+					)
+				},
+				{
+					ResearchType.FloaterLeader,
+					Alien(
+						"Floater Leader",
+						ItemType.FloaterLeader,
+						ResearchType.Floater,
+						ResearchType.Leader
+					)
+				},
+				{
+					ResearchType.FloaterCommander,
+					Alien(
+						"Floater Commander",
+						ItemType.FloaterCommander,
+						ResearchType.Floater,
+						ResearchType.Commander
+					)
+				},
+				{
+					ResearchType.SnakemanSoldier,
+					Alien(
+						"Snakeman Soldier",
+						ItemType.SnakemanSoldier,
+						ResearchType.Snakeman,
+						ResearchType.Soldier
+					)
+				},
+				{
+					ResearchType.SnakemanMedic,
+					Alien(
+						"Snakeman Medic",
+						ItemType.SnakemanMedic,
+						ResearchType.Snakeman,
+						ResearchType.Medic
+					)
+				},
+				{
+					ResearchType.SnakemanNavigator,
+					Alien(
+						"Snakeman Navigator",
+						ItemType.SnakemanNavigator,
+						ResearchType.Snakeman,
+						ResearchType.Navigator
+					)
+				},
+				{
+					ResearchType.SnakemanEngineer,
+					Alien(
+						"Snakeman Engineer",
+						ItemType.SnakemanEngineer,
+						ResearchType.Snakeman,
+						ResearchType.Engineer
+					)
+				},
+				{
+					ResearchType.SnakemanLeader,
+					Alien(
+						"Snakeman Leader",
+						ItemType.SnakemanLeader,
+						ResearchType.Snakeman,
+						ResearchType.Leader
+					)
+				},
+				{
+					ResearchType.SnakemanCommander,
+					Alien(
+						"Snakeman Commander",
+						ItemType.SnakemanCommander,
+						ResearchType.Snakeman,
+						ResearchType.Commander
+					)
+				},
+				{
+					ResearchType.MutonSoldier,
+					Alien(
+						"Muton Soldier",
+						ItemType.MutonSoldier,
+						ResearchType.Muton,
+						ResearchType.Soldier
+					)
+				},
+				{
+					ResearchType.MutonNavigator,
+					Alien(
+						"Muton Navigator",
+						ItemType.MutonNavigator,
+						ResearchType.Muton,
+						ResearchType.Navigator
+					)
+				},
+				{
+					ResearchType.MutonEngineer,
+					Alien(
+						"Muton Engineer",
+						ItemType.MutonEngineer,
+						ResearchType.Muton,
+						ResearchType.Engineer
+					)
+				},
+				{
+					ResearchType.EtherealSoldier,
+					Alien(
+						"Ethereal Soldier",
+						ItemType.EtherealSoldier,
+						ResearchType.Ethereal,
+						ResearchType.Soldier
+					)
+				},
+				{
+					ResearchType.EtherealLeader,
+					Alien(
+						"Ethereal Leader",
+						ItemType.EtherealLeader,
+						ResearchType.Ethereal,
+						ResearchType.Leader
+					)
+				},
+				{
+					ResearchType.EtherealCommander,
+					Alien(
+						"Ethereal Commander",
+						ItemType.EtherealCommander,
+						ResearchType.Ethereal,
+						ResearchType.Commander
+					)
+				},
+			};
 	}
 }

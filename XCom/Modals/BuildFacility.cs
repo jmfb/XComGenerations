@@ -20,12 +20,32 @@ namespace XCom.Modals
 			AddControl(new Border(40, 192, 128, 160, ColorScheme.Blue, Backgrounds.Title, 12));
 			AddControl(new Label(50, 202, metadata.Name, Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(62, 202, "COST>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(70, 202, metadata.Cost.FormatNumber(), Font.Large, ColorScheme.White));
+			AddControl(
+				new Label(70, 202, metadata.Cost.FormatNumber(), Font.Large, ColorScheme.White)
+			);
 			AddControl(new Label(90, 202, "CONSTRUCTION TIME>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(98, 202, metadata.DaysToConstruct.FormatNumber() + " days", Font.Large, ColorScheme.White));
+			AddControl(
+				new Label(
+					98,
+					202,
+					metadata.DaysToConstruct.FormatNumber() + " days",
+					Font.Large,
+					ColorScheme.White
+				)
+			);
 			AddControl(new Label(118, 202, "MAINTENANCE>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(126, 202, metadata.Maintenance.FormatNumber(), Font.Large, ColorScheme.White));
-			AddControl(new Button(176, 200, 112, 16, "Cancel", ColorScheme.Blue, Font.Normal, OnCancel));
+			AddControl(
+				new Label(
+					126,
+					202,
+					metadata.Maintenance.FormatNumber(),
+					Font.Large,
+					ColorScheme.White
+				)
+			);
+			AddControl(
+				new Button(176, 200, 112, 16, "Cancel", ColorScheme.Blue, Font.Normal, OnCancel)
+			);
 			AddControl(new BaseFacilities(facilityType, OnClickFacility));
 		}
 
@@ -45,13 +65,15 @@ namespace XCom.Modals
 			}
 
 			GameState.Current.Data.Funds -= metadata.Cost;
-			GameState.SelectedBase.Facilities.Add(new Facility
-			{
-				FacilityType = facilityType,
-				Row = row,
-				Column = column,
-				DaysUntilConstructionComplete = metadata.DaysToConstruct
-			});
+			GameState.SelectedBase.Facilities.Add(
+				new Facility
+				{
+					FacilityType = facilityType,
+					Row = row,
+					Column = column,
+					DaysUntilConstructionComplete = metadata.DaysToConstruct,
+				}
+			);
 			EndModal();
 		}
 
@@ -59,10 +81,12 @@ namespace XCom.Modals
 		{
 			foreach (var index in Enumerable.Range(0, size))
 			{
-				if (IsValidConstructedFacility(row - 1, column + index) ||
-					IsValidConstructedFacility(row + size, column + index) ||
-					IsValidConstructedFacility(row + index, column - 1) ||
-					IsValidConstructedFacility(row + index, column + size))
+				if (
+					IsValidConstructedFacility(row - 1, column + index)
+					|| IsValidConstructedFacility(row + size, column + index)
+					|| IsValidConstructedFacility(row + index, column - 1)
+					|| IsValidConstructedFacility(row + index, column + size)
+				)
 					return true;
 			}
 			return false;
@@ -71,7 +95,8 @@ namespace XCom.Modals
 		private static bool IsValidConstructedFacility(int row, int column)
 		{
 			const bool allowUnderConstruction = false;
-			return GameState.SelectedBase.FindFacilityAt(row, column, allowUnderConstruction) != null;
+			return GameState.SelectedBase.FindFacilityAt(row, column, allowUnderConstruction)
+				!= null;
 		}
 
 		private void OnCancel()

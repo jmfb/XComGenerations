@@ -29,17 +29,17 @@ namespace XCom.Graphics
 				var subframeDataOffset = subframeOffset + Marshal.SizeOf(subframeHeader);
 				switch (subframeHeader.SubframeType)
 				{
-				case SubframeHeader.TypeColor64:
-					yield return new SubframeColor64(data, subframeDataOffset);
-					break;
-				case SubframeHeader.TypeByteRun:
-					yield return new MovieSubframeByteRun(data, subframeDataOffset);
-					break;
-				case SubframeHeader.TypeDelta:
-					yield return new MovieSubframeDelta(data, subframeDataOffset);
-					break;
-				default:
-					throw new InvalidOperationException("unsupported subframe type");
+					case SubframeHeader.TypeColor64:
+						yield return new SubframeColor64(data, subframeDataOffset);
+						break;
+					case SubframeHeader.TypeByteRun:
+						yield return new MovieSubframeByteRun(data, subframeDataOffset);
+						break;
+					case SubframeHeader.TypeDelta:
+						yield return new MovieSubframeDelta(data, subframeDataOffset);
+						break;
+					default:
+						throw new InvalidOperationException("unsupported subframe type");
 				}
 			}
 		}

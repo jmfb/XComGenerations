@@ -30,7 +30,8 @@ namespace XCom.Fonts
 						buffer.SetPixel(
 							topRow + rowIndex,
 							leftColumn + columnIndex,
-							scheme.GetColor(colorIndex));
+							scheme.GetColor(colorIndex)
+						);
 				}
 			}
 		}

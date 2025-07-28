@@ -18,28 +18,58 @@ namespace XCom.Screens
 
 			AddControl(new Background(Backgrounds.InfoSoldier, 1));
 			AddControl(new Picture(4, 4, soldier.Rank.Image()));
-			AddControl(new ClickToEdit(9, 40, 176, soldier.Name, Font.Large, ColorScheme.Blue, OnEditName));
-			AddControl(new Button(33, 0, 28, 14, "<<", ColorScheme.Purple, Font.Normal, OnPreviousSoldier));
+			AddControl(
+				new ClickToEdit(9, 40, 176, soldier.Name, Font.Large, ColorScheme.Blue, OnEditName)
+			);
+			AddControl(
+				new Button(33, 0, 28, 14, "<<", ColorScheme.Purple, Font.Normal, OnPreviousSoldier)
+			);
 			AddControl(new Button(33, 30, 48, 14, "OK", ColorScheme.Purple, Font.Normal, OnOk));
-			AddControl(new Button(33, 80, 28, 14, ">>", ColorScheme.Purple, Font.Normal, OnNextSoldier));
-			AddControl(new Button(33, 130, 60, 14, "ARMOR", ColorScheme.Purple, Font.Normal, OnEditArmor));
-			AddControl(new DynamicLabel(38, 194, () => soldier.ArmorName, Font.Normal, ColorScheme.Purple));
+			AddControl(
+				new Button(33, 80, 28, 14, ">>", ColorScheme.Purple, Font.Normal, OnNextSoldier)
+			);
+			AddControl(
+				new Button(33, 130, 60, 14, "ARMOR", ColorScheme.Purple, Font.Normal, OnEditArmor)
+			);
+			AddControl(
+				new DynamicLabel(38, 194, () => soldier.ArmorName, Font.Normal, ColorScheme.Purple)
+			);
 			AddControl(new Label(48, 0, "RANK>", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(48, 29, $"{soldier.Rank}", Font.Normal, ColorScheme.White));
 			AddControl(new Label(48, 130, "MISSIONS>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(48, 178, soldier.MissionCount.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(
+				new Label(
+					48,
+					178,
+					soldier.MissionCount.FormatNumber(),
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
 			AddControl(new Label(48, 230, "KILLS>", Font.Normal, ColorScheme.Blue));
-			AddControl(new Label(48, 261, soldier.KillCount.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(
+				new Label(48, 261, soldier.KillCount.FormatNumber(), Font.Normal, ColorScheme.White)
+			);
 			AddControl(new Label(56, 0, "CRAFT>", Font.Normal, ColorScheme.Blue));
 			AddControl(new Label(56, 34, soldier.CraftName, Font.Normal, ColorScheme.White));
 			if (soldier.DaysUntilRecovered > 0)
 			{
 				AddControl(new Label(56, 130, "WOUND RECOVERY>", Font.Normal, ColorScheme.Blue));
-				AddControl(new Label(56, 211, $"{soldier.DaysUntilRecovered} days", Font.Normal, ColorScheme.White));
+				AddControl(
+					new Label(
+						56,
+						211,
+						$"{soldier.DaysUntilRecovered} days",
+						Font.Normal,
+						ColorScheme.White
+					)
+				);
 			}
 
 			if (soldier.InPsiTraining)
-				AddControl(new Label(66, 0, "In Psionic Training", Font.Normal, ColorScheme.LightMagenta));
+				AddControl(
+					new Label(66, 0, "In Psionic Training", Font.Normal, ColorScheme.LightMagenta)
+				);
 
 			AddRow(82, "TIME UNITS", statistics => statistics.TimeUnits, 48);
 			AddRow(94, "STAMINA", statistics => statistics.Stamina, 144);
@@ -59,14 +89,18 @@ namespace XCom.Screens
 			int topRow,
 			string label,
 			Func<SoldierStatistics, int> property,
-			int colorIndex)
+			int colorIndex
+		)
 		{
-			AddControl(new SoldierInformationRow(
-				topRow,
-				label,
-				property(soldier.OriginalStatistics),
-				property(soldier.Statistics),
-				colorIndex));
+			AddControl(
+				new SoldierInformationRow(
+					topRow,
+					label,
+					property(soldier.OriginalStatistics),
+					property(soldier.Statistics),
+					colorIndex
+				)
+			);
 		}
 
 		private static void OnOk()
@@ -77,9 +111,8 @@ namespace XCom.Screens
 		private void OnPreviousSoldier()
 		{
 			var soldierIndex = GameState.SelectedBase.Soldiers.IndexOf(soldier);
-			var previousSoldierIndex = soldierIndex == 0 ?
-				GameState.SelectedBase.Soldiers.Count - 1 :
-				soldierIndex - 1;
+			var previousSoldierIndex =
+				soldierIndex == 0 ? GameState.SelectedBase.Soldiers.Count - 1 : soldierIndex - 1;
 			var previousSoldier = GameState.SelectedBase.Soldiers[previousSoldierIndex];
 			GameState.Current.SetScreen(new SoldierView(previousSoldier));
 		}

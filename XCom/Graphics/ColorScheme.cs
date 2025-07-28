@@ -13,9 +13,8 @@ namespace XCom.Graphics
 			if (schemeSize != 5 && schemeSize != 6)
 				throw new InvalidOperationException("Invalid color scheme size.");
 			var palette = Palette.GetPalette(paletteIndex);
-			var indexes = schemeSize == 5 ?
-				new[] { 0, 1, 2, 2, 3, 4 } :
-				Enumerable.Range(0, schemeSize);
+			var indexes =
+				schemeSize == 5 ? new[] { 0, 1, 2, 2, 3, 4 } : Enumerable.Range(0, schemeSize);
 			colors = indexes.Select(index => palette.GetColor(firstColorIndex + index)).ToArray();
 		}
 
@@ -57,14 +56,16 @@ namespace XCom.Graphics
 		public static readonly ColorScheme LightAqua = new ColorScheme(3, 245, 5);
 		public static readonly ColorScheme Orange = new ColorScheme(1, 16, 5);
 
-		public static readonly ColorScheme LightBlue = new ColorScheme(new[]
-		{
-			Color.FromArgb(130, 190, 231),
-			Color.FromArgb(105, 162, 207),
-			Color.FromArgb(89, 138, 186),
-			Color.FromArgb(89, 138, 186),
-			Color.FromArgb(69, 113, 166),
-			Color.FromArgb(52, 93, 142)
-		});
+		public static readonly ColorScheme LightBlue = new ColorScheme(
+			new[]
+			{
+				Color.FromArgb(130, 190, 231),
+				Color.FromArgb(105, 162, 207),
+				Color.FromArgb(89, 138, 186),
+				Color.FromArgb(89, 138, 186),
+				Color.FromArgb(69, 113, 166),
+				Color.FromArgb(52, 93, 142),
+			}
+		);
 	}
 }

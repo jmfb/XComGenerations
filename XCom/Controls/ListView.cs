@@ -38,7 +38,8 @@ namespace XCom.Controls
 			List<T> data,
 			ColorScheme scheme,
 			Color selectionColor,
-			Action<T> action)
+			Action<T> action
+		)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;
@@ -63,7 +64,15 @@ namespace XCom.Controls
 			foreach (var index in Enumerable.Range(0, displayedRowCount))
 			{
 				var localIndex = index;
-				AddControl(new UpDown(topRow + index * rowHeight, left, defaultScheme, () => OnUp(localIndex), () => OnDown(localIndex)));
+				AddControl(
+					new UpDown(
+						topRow + index * rowHeight,
+						left,
+						defaultScheme,
+						() => OnUp(localIndex),
+						() => OnDown(localIndex)
+					)
+				);
 			}
 			return this;
 		}
@@ -82,7 +91,8 @@ namespace XCom.Controls
 			int width,
 			Alignment alignment,
 			Func<T, string> display,
-			Func<T, ColorScheme> scheme = null)
+			Func<T, ColorScheme> scheme = null
+		)
 		{
 			return AddColumn(
 				width,
@@ -90,21 +100,25 @@ namespace XCom.Controls
 				value => new ColoredText
 				{
 					Text = display(value),
-					Scheme = scheme?.Invoke(value) ?? defaultScheme
-				});
+					Scheme = scheme?.Invoke(value) ?? defaultScheme,
+				}
+			);
 		}
 
 		public ListView<T> AddColumn(
 			int width,
 			Alignment alignment,
-			params Func<T, ColoredText>[] parts)
+			params Func<T, ColoredText>[] parts
+		)
 		{
-			columns.Add(new Column
-			{
-				Width = width,
-				Alignment = alignment,
-				Parts = parts
-			});
+			columns.Add(
+				new Column
+				{
+					Width = width,
+					Alignment = alignment,
+					Parts = parts,
+				}
+			);
 			MoveButtons();
 			return this;
 		}
@@ -126,10 +140,10 @@ namespace XCom.Controls
 
 		public override bool HitTest(int row, int column)
 		{
-			return row >= topRow &&
-				row < (topRow + Height) &&
-				column >= leftColumn &&
-				column < (leftColumn + Width);
+			return row >= topRow
+				&& row < (topRow + Height)
+				&& column >= leftColumn
+				&& column < (leftColumn + Width);
 		}
 
 		public override void OnLeftButtonDown(int row, int column)
@@ -161,15 +175,16 @@ namespace XCom.Controls
 				{
 					var parts = column.Parts.Select(part => part(rowData)).ToList();
 					var textLeftColumn = nextLeftColumn;
-					var textWidth = parts.Sum(part => Font.Normal.MeasureString(part.Text)) - parts.Count;
+					var textWidth =
+						parts.Sum(part => Font.Normal.MeasureString(part.Text)) - parts.Count;
 					switch (column.Alignment)
 					{
-					case Alignment.Center:
-						textLeftColumn = nextLeftColumn + (column.Width - textWidth) / 2;
-						break;
-					case Alignment.Right:
-						textLeftColumn = nextLeftColumn + column.Width - textWidth;
-						break;
+						case Alignment.Center:
+							textLeftColumn = nextLeftColumn + (column.Width - textWidth) / 2;
+							break;
+						case Alignment.Right:
+							textLeftColumn = nextLeftColumn + column.Width - textWidth;
+							break;
 					}
 					var nextPartLeft = textLeftColumn;
 					foreach (var part in parts)
@@ -193,7 +208,8 @@ namespace XCom.Controls
 				ColumnWidths,
 				rowHeight,
 				selectionColor,
-				CopyPixelOperation.SourcePaint);
+				CopyPixelOperation.SourcePaint
+			);
 		}
 
 		private void OnUp()
@@ -218,7 +234,7 @@ namespace XCom.Controls
 		{
 			var buttonLeftColumn = leftColumn + ColumnWidths + 3;
 			up.Move(topRow, buttonLeftColumn);
-			down.Move(topRow + Height - 15, buttonLeftColumn); 
+			down.Move(topRow + Height - 15, buttonLeftColumn);
 		}
 
 		private void UpdateButtons()
@@ -229,15 +245,14 @@ namespace XCom.Controls
 
 		private bool IsCursorBetweenListColumns(int column)
 		{
-			return column >= leftColumn &&
-				column < (leftColumn + ColumnWidths);
+			return column >= leftColumn && column < (leftColumn + ColumnWidths);
 		}
 
 		private bool IsValidRowIndex(int rowIndex)
 		{
-			return rowIndex >= 0 &&
-				rowIndex < maxRowsToDisplay &&
-				(rowIndex + scrollPosition) < data.Count;
+			return rowIndex >= 0
+				&& rowIndex < maxRowsToDisplay
+				&& (rowIndex + scrollPosition) < data.Count;
 		}
 	}
 }

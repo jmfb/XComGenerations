@@ -13,11 +13,30 @@ namespace XCom.Modals
 		{
 			AddControl(new Border(20, 32, 256, 160, ColorScheme.Green, Backgrounds.Craft, 10));
 			AddControl(new Label(66, Label.Center, "Not enough", Font.Large, ColorScheme.Green));
-			AddControl(new Label(82, Label.Center, ammo.Metadata().Name, Font.Large, ColorScheme.Green));
-			AddControl(new Label(98, Label.Center, $"to rearm {craft.Name}", Font.Large, ColorScheme.Green));
-			AddControl(new Label(114, Label.Center, $"at {@base.Name}", Font.Large, ColorScheme.Green));
-			AddControl(new Button(150, 48, 100, 16, "OK", ColorScheme.Green, Font.Normal, EndModal));
-			AddControl(new Button(150, 172, 100, 16, "OK - 5 secs", ColorScheme.Green, Font.Normal, OnOkFiveSeconds));
+			AddControl(
+				new Label(82, Label.Center, ammo.Metadata().Name, Font.Large, ColorScheme.Green)
+			);
+			AddControl(
+				new Label(98, Label.Center, $"to rearm {craft.Name}", Font.Large, ColorScheme.Green)
+			);
+			AddControl(
+				new Label(114, Label.Center, $"at {@base.Name}", Font.Large, ColorScheme.Green)
+			);
+			AddControl(
+				new Button(150, 48, 100, 16, "OK", ColorScheme.Green, Font.Normal, EndModal)
+			);
+			AddControl(
+				new Button(
+					150,
+					172,
+					100,
+					16,
+					"OK - 5 secs",
+					ColorScheme.Green,
+					Font.Normal,
+					OnOkFiveSeconds
+				)
+			);
 		}
 
 		private void OnOkFiveSeconds()

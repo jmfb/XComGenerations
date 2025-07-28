@@ -19,8 +19,12 @@ namespace XCom.Data
 			return new Country
 			{
 				CountryType = countryType,
-				Funding = GameState.Current.Random.Next(metadata.MinStartingFunding, metadata.MaxStartingFunding) * 1000,
-				Satisfaction = CountrySatisfaction.Average
+				Funding =
+					GameState.Current.Random.Next(
+						metadata.MinStartingFunding,
+						metadata.MaxStartingFunding
+					) * 1000,
+				Satisfaction = CountrySatisfaction.Average,
 			};
 		}
 
@@ -28,18 +32,18 @@ namespace XCom.Data
 		{
 			switch (Satisfaction)
 			{
-			case CountrySatisfaction.Happy:
-				IncreaseFunding();
-				break;
-			case CountrySatisfaction.Average:
-				RetainFunding();
-				break;
-			case CountrySatisfaction.Unhappy:
-				DecreaseFunding();
-				break;
-			case CountrySatisfaction.SignedAlienPact:
-				SignAlienPact();
-				break;
+				case CountrySatisfaction.Happy:
+					IncreaseFunding();
+					break;
+				case CountrySatisfaction.Average:
+					RetainFunding();
+					break;
+				case CountrySatisfaction.Unhappy:
+					DecreaseFunding();
+					break;
+				case CountrySatisfaction.SignedAlienPact:
+					SignAlienPact();
+					break;
 			}
 			Funding += FundingChange;
 		}

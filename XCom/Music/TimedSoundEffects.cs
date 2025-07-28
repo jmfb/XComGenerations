@@ -68,7 +68,7 @@ namespace XCom.Music
 				{ 745, IntroductionSoundEffect.Teleport },
 				{ 755, IntroductionSoundEffect.Teleport },
 				{ 760, IntroductionSoundEffect.Teleport },
-				{ 786, IntroductionSoundEffect.Whoosh }
+				{ 786, IntroductionSoundEffect.Whoosh },
 			};
 	}
 }

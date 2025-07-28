@@ -6,6 +6,6 @@
 		InsufficientFunds,
 		InsufficientHangarSpace,
 		InsufficientMaterials,
-		InfufficentStorageSpace
+		InfufficentStorageSpace,
 	}
 }

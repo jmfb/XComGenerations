@@ -4,6 +4,6 @@
 	{
 		Soldier,
 		Hwp,
-		Alien
+		Alien,
 	}
 }

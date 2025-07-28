@@ -24,7 +24,8 @@ namespace XCom.Graphics
 			int leftColumn,
 			int width,
 			Color color,
-			CopyPixelOperation operation = CopyPixelOperation.SourceCopy)
+			CopyPixelOperation operation = CopyPixelOperation.SourceCopy
+		)
 		{
 			if (!IsValidRow(row) || width <= 0)
 				return;
@@ -37,7 +38,8 @@ namespace XCom.Graphics
 			int column,
 			int height,
 			Color color,
-			CopyPixelOperation operation = CopyPixelOperation.SourceCopy)
+			CopyPixelOperation operation = CopyPixelOperation.SourceCopy
+		)
 		{
 			if (!IsValidColumn(column) || height <= 0)
 				return;
@@ -51,7 +53,8 @@ namespace XCom.Graphics
 			int width,
 			int height,
 			Color color,
-			CopyPixelOperation operation = CopyPixelOperation.SourceCopy)
+			CopyPixelOperation operation = CopyPixelOperation.SourceCopy
+		)
 		{
 			if (width <= 0 || height <= 0)
 				return;
@@ -67,7 +70,8 @@ namespace XCom.Graphics
 			int width,
 			int height,
 			Color color,
-			CopyPixelOperation operation = CopyPixelOperation.SourceCopy)
+			CopyPixelOperation operation = CopyPixelOperation.SourceCopy
+		)
 		{
 			if (width <= 0 || height <= 0)
 				return;
@@ -79,7 +83,8 @@ namespace XCom.Graphics
 			int row,
 			int column,
 			Color color,
-			CopyPixelOperation operation = CopyPixelOperation.SourceCopy)
+			CopyPixelOperation operation = CopyPixelOperation.SourceCopy
+		)
 		{
 			if (!IsValidPixel(row, column))
 				return;
@@ -99,7 +104,8 @@ namespace XCom.Graphics
 			int leftColumn,
 			int width,
 			int height,
-			int paletteIndex)
+			int paletteIndex
+		)
 		{
 			DrawPaletteImage(
 				topRow,
@@ -111,15 +117,11 @@ namespace XCom.Graphics
 				leftColumn,
 				width,
 				height,
-				paletteIndex);
+				paletteIndex
+			);
 		}
 
-		public void DrawImage(
-			byte[] image,
-			int topRow,
-			int leftColumn,
-			int width,
-			int paletteIndex)
+		public void DrawImage(byte[] image, int topRow, int leftColumn, int width, int paletteIndex)
 		{
 			DrawPaletteImage(
 				topRow,
@@ -131,7 +133,8 @@ namespace XCom.Graphics
 				0,
 				width,
 				image.Length / width,
-				paletteIndex);
+				paletteIndex
+			);
 		}
 
 		public void DrawOverlay(byte[] overlay, int paletteIndex)
@@ -146,18 +149,22 @@ namespace XCom.Graphics
 				overlayIndex += sizeof(ushort);
 				switch (code)
 				{
-				case skipCode:
-					screenIndex += 2 * BitConverter.ToInt16(overlay, overlayIndex);
-					overlayIndex += sizeof(short);
-					break;
-				case drawCode:
-					var pixelCount = 2 * BitConverter.ToInt16(overlay, overlayIndex);
-					overlayIndex += sizeof(short);
-					for (; pixelCount > 0; --pixelCount, ++overlayIndex, ++screenIndex)
-						SetPixel(screenIndex / GameWidth, screenIndex % GameWidth, palette.GetColor(overlay[overlayIndex]));
-					break;
-				case doneCode:
-					return;
+					case skipCode:
+						screenIndex += 2 * BitConverter.ToInt16(overlay, overlayIndex);
+						overlayIndex += sizeof(short);
+						break;
+					case drawCode:
+						var pixelCount = 2 * BitConverter.ToInt16(overlay, overlayIndex);
+						overlayIndex += sizeof(short);
+						for (; pixelCount > 0; --pixelCount, ++overlayIndex, ++screenIndex)
+							SetPixel(
+								screenIndex / GameWidth,
+								screenIndex % GameWidth,
+								palette.GetColor(overlay[overlayIndex])
+							);
+						break;
+					case doneCode:
+						return;
 				}
 			}
 		}
@@ -174,15 +181,19 @@ namespace XCom.Graphics
 				var code = item[itemIndex++];
 				switch (code)
 				{
-				case skipCode:
-					imageIndex += item[itemIndex++];
-					break;
-				case doneCode:
-					return;
-				default:
-					SetPixel(topRow + skipRows + imageIndex / imageWidth, leftColumn + imageIndex % imageWidth, palette.GetColor(code));
-					++imageIndex;
-					break;
+					case skipCode:
+						imageIndex += item[itemIndex++];
+						break;
+					case doneCode:
+						return;
+					default:
+						SetPixel(
+							topRow + skipRows + imageIndex / imageWidth,
+							leftColumn + imageIndex % imageWidth,
+							palette.GetColor(code)
+						);
+						++imageIndex;
+						break;
 				}
 			}
 		}
@@ -198,7 +209,8 @@ namespace XCom.Graphics
 			int sourceWidth,
 			int sourceHeight,
 			int paletteIndex,
-			bool masked = false)
+			bool masked = false
+		)
 		{
 			var palette = Palette.GetPalette(paletteIndex);
 			foreach (var rowIndex in Enumerable.Range(0, sourceHeight))
@@ -217,7 +229,8 @@ namespace XCom.Graphics
 						SetPixel(
 							topRow + rowIndex,
 							leftColumn + columnIndex,
-							palette.GetColor(image[sourceIndex]));
+							palette.GetColor(image[sourceIndex])
+						);
 				}
 			}
 		}
@@ -228,7 +241,8 @@ namespace XCom.Graphics
 			byte[] image,
 			int width,
 			int height,
-			int paletteIndex)
+			int paletteIndex
+		)
 		{
 			DrawPaletteImage(
 				topRow,
@@ -241,7 +255,8 @@ namespace XCom.Graphics
 				width,
 				height,
 				paletteIndex,
-				true);
+				true
+			);
 		}
 
 		private static bool IsValidRow(int row)
@@ -259,17 +274,16 @@ namespace XCom.Graphics
 			return IsValidRow(row) && IsValidColumn(column);
 		}
 
-		private static Func<byte, byte, byte> GetPixelFunction(
-			CopyPixelOperation operation)
+		private static Func<byte, byte, byte> GetPixelFunction(CopyPixelOperation operation)
 		{
 			switch (operation)
 			{
-			case CopyPixelOperation.SourceCopy:
-				return (source, destination) => source;
-			case CopyPixelOperation.SourcePaint:
-				return (source, destination) => (byte)(source | destination);
-			default:
-				throw new InvalidOperationException("Unsupported CopyPixelOperation");
+				case CopyPixelOperation.SourceCopy:
+					return (source, destination) => source;
+				case CopyPixelOperation.SourcePaint:
+					return (source, destination) => (byte)(source | destination);
+				default:
+					throw new InvalidOperationException("Unsupported CopyPixelOperation");
 			}
 		}
 	}

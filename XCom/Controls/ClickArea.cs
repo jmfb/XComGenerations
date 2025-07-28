@@ -20,16 +20,14 @@ namespace XCom.Controls
 			this.action = action;
 		}
 
-		public override void Render(GraphicsBuffer buffer)
-		{
-		}
+		public override void Render(GraphicsBuffer buffer) { }
 
 		public override bool HitTest(int row, int column)
 		{
-			return row >= topRow &&
-				row < topRow + height &&
-				column >= leftColumn &&
-				column < leftColumn + width;
+			return row >= topRow
+				&& row < topRow + height
+				&& column >= leftColumn
+				&& column < leftColumn + width;
 		}
 
 		public override void OnLeftButtonDown(int row, int column)

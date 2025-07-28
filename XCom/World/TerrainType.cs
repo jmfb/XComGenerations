@@ -19,36 +19,37 @@ namespace XCom.World
 		PolarIce,
 		Forest3,
 		Forest4,
-		PolarSeas
+		PolarSeas,
 	}
 
 	public static class TerrainTypeExtensions
 	{
-		public static TerrainMetadata Metadata(this TerrainType terrainType) => metadata[terrainType];
+		public static TerrainMetadata Metadata(this TerrainType terrainType) =>
+			metadata[terrainType];
 
 		private static TerrainCategory GetCategory(TerrainType terrainType)
 		{
 			switch (terrainType)
 			{
-			case TerrainType.Forest1:
-			case TerrainType.Forest2:
-			case TerrainType.Forest3:
-			case TerrainType.Forest4:
-				return TerrainCategory.Forest;
-			case TerrainType.Farm1:
-			case TerrainType.Farm2:
-			case TerrainType.Farm3:
-			case TerrainType.Farm4:
-				return TerrainCategory.Farm;
-			case TerrainType.Mountain:
-				return TerrainCategory.Mountain;
-			case TerrainType.Desert1:
-			case TerrainType.Desert2:
-				return TerrainCategory.Desert;
-			case TerrainType.PolarIce:
-				return TerrainCategory.PolarIce;
-			case TerrainType.PolarSeas:
-				return TerrainCategory.PolarSeas;
+				case TerrainType.Forest1:
+				case TerrainType.Forest2:
+				case TerrainType.Forest3:
+				case TerrainType.Forest4:
+					return TerrainCategory.Forest;
+				case TerrainType.Farm1:
+				case TerrainType.Farm2:
+				case TerrainType.Farm3:
+				case TerrainType.Farm4:
+					return TerrainCategory.Farm;
+				case TerrainType.Mountain:
+					return TerrainCategory.Mountain;
+				case TerrainType.Desert1:
+				case TerrainType.Desert2:
+					return TerrainCategory.Desert;
+				case TerrainType.PolarIce:
+					return TerrainCategory.PolarIce;
+				case TerrainType.PolarSeas:
+					return TerrainCategory.PolarSeas;
 			}
 			throw new InvalidOperationException("Invalid terrain type.");
 		}
@@ -64,13 +65,23 @@ namespace XCom.World
 			return new TerrainMetadata
 			{
 				Category = GetCategory(terrainType),
-				ImageZoom1 = WorldResources.TerrainTypes.Skip(zoomOffset).Take(terrainRecordSize).ToArray(),
-				ImageZoom2 = WorldResources.TerrainTypes.Skip(zoomRecordSize + zoomOffset).Take(terrainRecordSize).ToArray(),
-				ImageZoom3 = WorldResources.TerrainTypes.Skip(2 * zoomRecordSize + zoomOffset).Take(terrainRecordSize).ToArray()
+				ImageZoom1 = WorldResources
+					.TerrainTypes.Skip(zoomOffset)
+					.Take(terrainRecordSize)
+					.ToArray(),
+				ImageZoom2 = WorldResources
+					.TerrainTypes.Skip(zoomRecordSize + zoomOffset)
+					.Take(terrainRecordSize)
+					.ToArray(),
+				ImageZoom3 = WorldResources
+					.TerrainTypes.Skip(2 * zoomRecordSize + zoomOffset)
+					.Take(terrainRecordSize)
+					.ToArray(),
 			};
 		}
 
-		private static readonly Dictionary<TerrainType, TerrainMetadata> metadata = EnumEx.GetValues<TerrainType>()
+		private static readonly Dictionary<TerrainType, TerrainMetadata> metadata = EnumEx
+			.GetValues<TerrainType>()
 			.ToDictionary(terrainType => terrainType, LoadMetadata);
 	}
 }

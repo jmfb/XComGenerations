@@ -7,11 +7,7 @@
 
 		public static RegionMetadata Create(string name, int baseCost)
 		{
-			return new RegionMetadata
-			{
-				Name = name,
-				BaseCost = baseCost
-			};
+			return new RegionMetadata { Name = name, BaseCost = baseCost };
 		}
 	}
 }

@@ -13,17 +13,16 @@ namespace XCom.Controls
 			string text,
 			Font font,
 			ColorScheme scheme,
-			Action<string> action)
-			: base(topRow, leftColumn, width, text, font, scheme, action)
-		{
-		}
+			Action<string> action
+		)
+			: base(topRow, leftColumn, width, text, font, scheme, action) { }
 
 		public override bool HitTest(int row, int column)
 		{
-			return row >= TopRow &&
-				row < (TopRow + Font.Height) &&
-				column >= LeftColumn &&
-				column < (LeftColumn + Width);
+			return row >= TopRow
+				&& row < (TopRow + Font.Height)
+				&& column >= LeftColumn
+				&& column < (LeftColumn + Width);
 		}
 
 		public override void OnLeftButtonDown(int row, int column)

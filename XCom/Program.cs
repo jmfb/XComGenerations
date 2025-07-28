@@ -18,7 +18,9 @@ namespace XCom
 				LoadLargeStaticResources();
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
-				GameState.Current.SetScreen(new MovieScreen(Movies.Introduction, MusicType.Introduction, new MainMenu()));
+				GameState.Current.SetScreen(
+					new MovieScreen(Movies.Introduction, MusicType.Introduction, new MainMenu())
+				);
 				Application.Run(new MainForm());
 			}
 			catch (Exception exception)

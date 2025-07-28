@@ -26,7 +26,8 @@ namespace XCom.Controls
 			string text,
 			ColorScheme scheme,
 			Font font,
-			Action action)
+			Action action
+		)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;
@@ -56,10 +57,31 @@ namespace XCom.Controls
 			buffer.DrawVerticalLine(topRow, leftColumn, height, colorScheme.Lighter);
 			buffer.DrawHorizontalLine(topRow + 1, leftColumn + 1, width - 3, colorScheme.Light);
 			buffer.DrawVerticalLine(topRow + 1, leftColumn + 1, height - 2, colorScheme.Light);
-			buffer.FillRect(topRow + 2, leftColumn + 2, width - 4, height - 4, colorScheme.LightDark);
-			buffer.DrawHorizontalLine(topRow + height - 2, leftColumn + 2, width - 3, colorScheme.Dark);
-			buffer.DrawVerticalLine(topRow + 1, leftColumn + width - 2, height - 2, colorScheme.Dark);
-			buffer.DrawHorizontalLine(topRow + height - 1, leftColumn + 1, width - 1, colorScheme.Darker);
+			buffer.FillRect(
+				topRow + 2,
+				leftColumn + 2,
+				width - 4,
+				height - 4,
+				colorScheme.LightDark
+			);
+			buffer.DrawHorizontalLine(
+				topRow + height - 2,
+				leftColumn + 2,
+				width - 3,
+				colorScheme.Dark
+			);
+			buffer.DrawVerticalLine(
+				topRow + 1,
+				leftColumn + width - 2,
+				height - 2,
+				colorScheme.Dark
+			);
+			buffer.DrawHorizontalLine(
+				topRow + height - 1,
+				leftColumn + 1,
+				width - 1,
+				colorScheme.Darker
+			);
 			buffer.DrawVerticalLine(topRow, leftColumn + width - 1, height, colorScheme.Darker);
 
 			var textTopRow = topRow + (height - font.Height + 1) / 2;
@@ -69,11 +91,11 @@ namespace XCom.Controls
 
 		public override bool HitTest(int row, int column)
 		{
-			return Visible &&
-				row >= topRow &&
-				row < (topRow + height) &&
-				column >= leftColumn &&
-				column < (leftColumn + width);
+			return Visible
+				&& row >= topRow
+				&& row < (topRow + height)
+				&& column >= leftColumn
+				&& column < (leftColumn + width);
 		}
 
 		public override void OnLeftButtonDown(int row, int column)

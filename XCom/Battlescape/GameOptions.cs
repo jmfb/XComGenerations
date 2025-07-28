@@ -22,14 +22,32 @@ namespace XCom.Battlescape
 			AddControl(new Label(32, 16, "SCROLL SPEED", Font.Normal, ColorScheme.White));
 			foreach (var scrollSpeed in Enumerable.Range(0, 5))
 			{
-				var toggle = new Toggle(42, 16 + 24 * scrollSpeed, 22, 14 + 4 * scrollSpeed, $"{scrollSpeed + 1}", ColorScheme.White, Font.Normal, () => OnScrollSpeed(scrollSpeed));
+				var toggle = new Toggle(
+					42,
+					16 + 24 * scrollSpeed,
+					22,
+					14 + 4 * scrollSpeed,
+					$"{scrollSpeed + 1}",
+					ColorScheme.White,
+					Font.Normal,
+					() => OnScrollSpeed(scrollSpeed)
+				);
 				scrollSpeeds[scrollSpeed] = toggle;
 				AddControl(toggle);
 			}
 			AddControl(new Label(32, 150, "SCROLL TYPE", Font.Normal, ColorScheme.White));
 			foreach (var scrollType in Enumerable.Range(0, 2))
 			{
-				var toggle = new Toggle(42 + 16 * scrollType, 150, 30, 14, $"{scrollType + 1}", ColorScheme.White, Font.Normal, () => OnScrollType(scrollType));
+				var toggle = new Toggle(
+					42 + 16 * scrollType,
+					150,
+					30,
+					14,
+					$"{scrollType + 1}",
+					ColorScheme.White,
+					Font.Normal,
+					() => OnScrollType(scrollType)
+				);
 				scrollTypes[scrollType] = toggle;
 				AddControl(toggle);
 			}
@@ -42,7 +60,16 @@ namespace XCom.Battlescape
 			{
 				var left = nextLeft;
 				nextLeft += widths[fireSpeed] + 2;
-				var toggle = new Toggle(84, left, widths[fireSpeed], 12, $"{fireSpeed + 1}", ColorScheme.White, Font.Normal, () => OnFireSpeed(fireSpeed));
+				var toggle = new Toggle(
+					84,
+					left,
+					widths[fireSpeed],
+					12,
+					$"{fireSpeed + 1}",
+					ColorScheme.White,
+					Font.Normal,
+					() => OnFireSpeed(fireSpeed)
+				);
 				fireSpeeds[fireSpeed] = toggle;
 				AddControl(toggle);
 			}
@@ -52,7 +79,16 @@ namespace XCom.Battlescape
 			{
 				var left = nextLeft;
 				nextLeft += widths[movementSpeed] + 2;
-				var toggle = new Toggle(116, left, widths[movementSpeed], 12, $"{movementSpeed + 1}", ColorScheme.White, Font.Normal, () => OnXcomMovementSpeed(movementSpeed));
+				var toggle = new Toggle(
+					116,
+					left,
+					widths[movementSpeed],
+					12,
+					$"{movementSpeed + 1}",
+					ColorScheme.White,
+					Font.Normal,
+					() => OnXcomMovementSpeed(movementSpeed)
+				);
 				xcomMovementSpeeds[movementSpeed] = toggle;
 				AddControl(toggle);
 			}
@@ -62,13 +98,26 @@ namespace XCom.Battlescape
 			{
 				var left = nextLeft;
 				nextLeft += widths[movementSpeed] + 2;
-				var toggle = new Toggle(148, left, widths[movementSpeed], 12, $"{movementSpeed + 1}", ColorScheme.White, Font.Normal, () => OnAlienMovementSpeed(movementSpeed));
+				var toggle = new Toggle(
+					148,
+					left,
+					widths[movementSpeed],
+					12,
+					$"{movementSpeed + 1}",
+					ColorScheme.White,
+					Font.Normal,
+					() => OnAlienMovementSpeed(movementSpeed)
+				);
 				alienMovementSpeeds[movementSpeed] = toggle;
 				AddControl(toggle);
 			}
 			AddControl(new Button(174, 16, 100, 16, "OK", ColorScheme.White, Font.Normal, OnOk));
-			AddControl(new Button(174, 132, 78, 16, "LOAD", ColorScheme.White, Font.Normal, OnLoad));
-			AddControl(new Button(174, 226, 78, 16, "SAVE", ColorScheme.White, Font.Normal, OnSave));
+			AddControl(
+				new Button(174, 132, 78, 16, "LOAD", ColorScheme.White, Font.Normal, OnLoad)
+			);
+			AddControl(
+				new Button(174, 226, 78, 16, "SAVE", ColorScheme.White, Font.Normal, OnSave)
+			);
 
 			scrollSpeeds[GameState.Current.Data.ScrollSpeed].Value = true;
 			scrollTypes[GameState.Current.Data.ScrollType].Value = true;
@@ -114,12 +163,16 @@ namespace XCom.Battlescape
 
 		private static void OnLoad()
 		{
-			GameState.Current.SetScreen(new LoadGame(new Battlescape(GameState.Current.Data.Battle)));
+			GameState.Current.SetScreen(
+				new LoadGame(new Battlescape(GameState.Current.Data.Battle))
+			);
 		}
 
 		private static void OnSave()
 		{
-			GameState.Current.SetScreen(new SaveGame(new Battlescape(GameState.Current.Data.Battle)));
+			GameState.Current.SetScreen(
+				new SaveGame(new Battlescape(GameState.Current.Data.Battle))
+			);
 		}
 	}
 }

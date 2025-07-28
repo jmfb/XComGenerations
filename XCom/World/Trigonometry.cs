@@ -11,7 +11,7 @@ namespace XCom.World
 		private const int halfEighthDegreesCount = EighthDegreesCount / 2;
 		private const double radiansPerEighthDegree = Math.PI / halfEighthDegreesCount;
 		private const double tolerance = 0.1e-6;
-	
+
 		public static int AddEighthDegrees(int value1, int value2)
 		{
 			return (value1 + value2 + 2 * EighthDegreesCount) % EighthDegreesCount;
@@ -37,16 +37,21 @@ namespace XCom.World
 			return new[]
 			{
 				(-b + Math.Sqrt(numerator)) / (2.0 * a),
-				(-b - Math.Sqrt(numerator)) / (2.0 * a)
+				(-b - Math.Sqrt(numerator)) / (2.0 * a),
 			};
 		}
 
 		//Determine the slope and intercept of a line (tests for vertical lines)
 		private static void LineEquation(
-			double x1, double y1,       //First point of line
-			double x2, double y2,       //Second point of line
-			out double m, out double b,       //Output variables for slope(m) and intercept(b)
-			out bool vertical, out double x)  //Output variable for vertical lines
+			double x1,
+			double y1, //First point of line
+			double x2,
+			double y2, //Second point of line
+			out double m,
+			out double b, //Output variables for slope(m) and intercept(b)
+			out bool vertical,
+			out double x
+		) //Output variable for vertical lines
 		{
 			//Vertical line
 			if (AreEqual(x1, x2))
@@ -81,14 +86,16 @@ namespace XCom.World
 			var latitude = location.Latitude * radiansPerEighthDegree;
 			var longitude = location.Longitude * radiansPerEighthDegree;
 
-			var unitZ = Math.Sin(latitude) * Math.Sin(pitchRadians) +
-				Math.Cos(longitude + rollRadians) * Math.Cos(latitude) * Math.Cos(pitchRadians);
+			var unitZ =
+				Math.Sin(latitude) * Math.Sin(pitchRadians)
+				+ Math.Cos(longitude + rollRadians) * Math.Cos(latitude) * Math.Cos(pitchRadians);
 			if (unitZ < 0)
 				return null;
 
 			var unitX = Math.Sin(longitude + rollRadians) * Math.Cos(latitude);
-			var unitY = Math.Sin(latitude) * Math.Cos(pitchRadians) -
-				Math.Cos(longitude + rollRadians) * Math.Cos(latitude) * Math.Sin(pitchRadians);
+			var unitY =
+				Math.Sin(latitude) * Math.Cos(pitchRadians)
+				- Math.Cos(longitude + rollRadians) * Math.Cos(latitude) * Math.Sin(pitchRadians);
 
 			var x = (int)(unitX * WorldView.Radius) + WorldView.CenterX;
 			var y = (int)(unitY * WorldView.Radius) + WorldView.CenterY;
@@ -143,14 +150,20 @@ namespace XCom.World
 			return new Location
 			{
 				Longitude = AddEighthDegrees(longitudeEighthDegrees, 0),
-				Latitude = latitudeEighthDegrees
+				Latitude = latitudeEighthDegrees,
 			};
 		}
 
 		public static Location MoveLocation(Location source, Location destination, int distance)
 		{
-			var xr = destination.Longitude < source.Longitude ? destination.Longitude + EighthDegreesCount : destination.Longitude;
-			var xl = destination.Longitude > source.Longitude ? destination.Longitude - EighthDegreesCount : destination.Longitude;
+			var xr =
+				destination.Longitude < source.Longitude
+					? destination.Longitude + EighthDegreesCount
+					: destination.Longitude;
+			var xl =
+				destination.Longitude > source.Longitude
+					? destination.Longitude - EighthDegreesCount
+					: destination.Longitude;
 			var dxr = xr - source.Longitude;
 			var dxl = xl - source.Longitude;
 			var dy = destination.Latitude - source.Latitude;
@@ -164,30 +177,42 @@ namespace XCom.World
 				return new Location
 				{
 					Longitude = destination.Longitude,
-					Latitude = destination.Latitude
+					Latitude = destination.Latitude,
 				};
 
-			double m, b, x;
+			double m,
+				b,
+				x;
 			bool vertical;
-			LineEquation(source.Longitude, source.Latitude, destinationLongitude, destination.Latitude, out m, out b, out vertical, out x);
+			LineEquation(
+				source.Longitude,
+				source.Latitude,
+				destinationLongitude,
+				destination.Latitude,
+				out m,
+				out b,
+				out vertical,
+				out x
+			);
 			if (vertical)
 				return new Location
 				{
 					Longitude = source.Longitude,
-					Latitude = source.Latitude + Math.Sign(dy) * distance
+					Latitude = source.Latitude + Math.Sign(dy) * distance,
 				};
 
 			var c = b - source.Latitude;
 			var longitudes = QuadraticEquationBothSolutions(
 				m * m + 1,
 				2 * m * c - 2 * source.Longitude,
-				c * c + source.Longitude * source.Longitude - distance * distance);
+				c * c + source.Longitude * source.Longitude - distance * distance
+			);
 			var longitude = dx < 0 ? longitudes.Min() : longitudes.Max();
 			var latitude = m * longitude + b;
 			return new Location
 			{
 				Longitude = AddEighthDegrees((int)longitude, 0),
-				Latitude = (int)latitude
+				Latitude = (int)latitude,
 			};
 		}
 	}

@@ -20,7 +20,8 @@ namespace XCom.Controls
 			int height,
 			ColorScheme scheme,
 			byte[] background,
-			int paletteIndex)
+			int paletteIndex
+		)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;
@@ -39,7 +40,7 @@ namespace XCom.Controls
 				scheme.Light,
 				scheme.Lighter,
 				scheme.Light,
-				scheme.Base
+				scheme.Base,
 			};
 			foreach (var index in Enumerable.Range(0, pattern.Length))
 				buffer.DrawFrame(
@@ -47,14 +48,16 @@ namespace XCom.Controls
 					leftColumn + index,
 					width - 2 * index,
 					height - 2 * index,
-					pattern[index]);
+					pattern[index]
+				);
 			buffer.DrawBackground(
 				background,
 				topRow + pattern.Length,
 				leftColumn + pattern.Length,
 				width - 2 * pattern.Length,
 				height - 2 * pattern.Length,
-				paletteIndex);
+				paletteIndex
+			);
 		}
 	}
 }

@@ -10,6 +10,6 @@
 		AlienLifeForms,
 		AlienResearch,
 		UfoComponents,
-		Ufos
+		Ufos,
 	}
 }

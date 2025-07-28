@@ -7,9 +7,7 @@ namespace XCom.Controls
 		private readonly byte[] background;
 		private readonly int paletteIndex;
 
-		public Background(
-			byte[] background,
-			int paletteIndex)
+		public Background(byte[] background, int paletteIndex)
 		{
 			this.background = background;
 			this.paletteIndex = paletteIndex;
@@ -23,7 +21,8 @@ namespace XCom.Controls
 				0,
 				GraphicsBuffer.GameWidth,
 				GraphicsBuffer.GameHeight,
-				paletteIndex);
+				paletteIndex
+			);
 		}
 	}
 }

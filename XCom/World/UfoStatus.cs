@@ -4,6 +4,6 @@
 	{
 		Flying,
 		Landed,
-		Crashed
+		Crashed,
 	}
 }

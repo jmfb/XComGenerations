@@ -4,7 +4,8 @@ namespace XCom
 {
 	public static class ByteArrayExtensions
 	{
-		public static T ReadStruct<T>(this byte[] data, int offset) where T : struct
+		public static T ReadStruct<T>(this byte[] data, int offset)
+			where T : struct
 		{
 			var size = Marshal.SizeOf(typeof(T));
 			var memory = Marshal.AllocHGlobal(size);
@@ -22,8 +23,7 @@ namespace XCom
 			{
 				part = data[offset++];
 				value = (value << 7) | (uint)(part & 0x7f);
-			}
-			while ((part & 0x80) != 0);
+			} while ((part & 0x80) != 0);
 			return value;
 		}
 	}

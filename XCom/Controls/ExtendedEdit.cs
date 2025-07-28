@@ -13,10 +13,9 @@ namespace XCom.Controls
 			string text,
 			Font font,
 			ColorScheme scheme,
-			Action<string> action)
-			: base(topRow, leftColumn, width, text, font, scheme, action)
-		{
-		}
+			Action<string> action
+		)
+			: base(topRow, leftColumn, width, text, font, scheme, action) { }
 
 		public override void Render(GraphicsBuffer buffer)
 		{

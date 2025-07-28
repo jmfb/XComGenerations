@@ -13,7 +13,8 @@ namespace XCom.Controls
 			int leftColumn,
 			Func<string> textAction,
 			Font font,
-			ColorScheme scheme)
+			ColorScheme scheme
+		)
 			: base(topRow, leftColumn, textAction(), font, scheme)
 		{
 			this.textAction = textAction;

@@ -12,11 +12,17 @@
 			{
 				ShotType = shotType,
 				Accuracy = accuracy,
-				TimeUnits = timeUnits
+				TimeUnits = timeUnits,
 			};
 		}
-		public static Shot Auto(int accuracy, int timeUnits) => Create(ShotType.Auto, accuracy, timeUnits);
-		public static Shot Snap(int accuracy, int timeUnits) => Create(ShotType.Snap, accuracy, timeUnits);
-		public static Shot Aimed(int accuracy, int timeUnits) => Create(ShotType.Aimed, accuracy, timeUnits);
+
+		public static Shot Auto(int accuracy, int timeUnits) =>
+			Create(ShotType.Auto, accuracy, timeUnits);
+
+		public static Shot Snap(int accuracy, int timeUnits) =>
+			Create(ShotType.Snap, accuracy, timeUnits);
+
+		public static Shot Aimed(int accuracy, int timeUnits) =>
+			Create(ShotType.Aimed, accuracy, timeUnits);
 	}
 }

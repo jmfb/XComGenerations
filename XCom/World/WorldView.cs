@@ -78,8 +78,8 @@ namespace XCom.World
 		private void CalculateScreen()
 		{
 			foreach (var row in Enumerable.Range(0, 200))
-				foreach (var column in Enumerable.Range(0, 256))
-					screen[column, row] = Map.Instance[Trigonometry.ScreenToLocation(row, column)];
+			foreach (var column in Enumerable.Range(0, 256))
+				screen[column, row] = Map.Instance[Trigonometry.ScreenToLocation(row, column)];
 		}
 
 		public static int Radius => zoomRadius[Zoom];
@@ -121,7 +121,10 @@ namespace XCom.World
 					var mapLocation = screen[column, row];
 					if (mapLocation == null)
 						continue;
-					var shadeIndex = Shader.GetShadeIndex(mapLocation.Location.Longitude, secondOfDay);
+					var shadeIndex = Shader.GetShadeIndex(
+						mapLocation.Location.Longitude,
+						secondOfDay
+					);
 					var color = mapLocation.GetColor(row, column, shadeIndex, Zoom);
 					buffer.SetPixel(row, column, color);
 				}
@@ -139,7 +142,8 @@ namespace XCom.World
 		private static IEnumerable<WorldObject> GetVisibleWorldObjects<T>(
 			IEnumerable<T> items,
 			Func<T, Location> location,
-			WorldObjectType worldObjectType)
+			WorldObjectType worldObjectType
+		)
 		{
 			return items
 				.Select(item => Trigonometry.LocationToScreen(location(item)))
@@ -147,16 +151,28 @@ namespace XCom.World
 				.Select(point => new WorldObject
 				{
 					WorldObjectType = worldObjectType,
-					Location = point
+					Location = point,
 				});
 		}
 
 		private static IEnumerable<WorldObject> VisibleXcomBases =>
-			GetVisibleWorldObjects(GameState.Current.Data.Bases, @base => @base.Location, WorldObjectType.XcomBase);
+			GetVisibleWorldObjects(
+				GameState.Current.Data.Bases,
+				@base => @base.Location,
+				WorldObjectType.XcomBase
+			);
 		private static IEnumerable<WorldObject> VisibleWaypoints =>
-			GetVisibleWorldObjects(GameState.Current.Data.Waypoints, waypoint => waypoint.Location, WorldObjectType.Waypoint);
+			GetVisibleWorldObjects(
+				GameState.Current.Data.Waypoints,
+				waypoint => waypoint.Location,
+				WorldObjectType.Waypoint
+			);
 		private static IEnumerable<WorldObject> VisibleInterceptors =>
-			GetVisibleWorldObjects(GameState.Current.Data.ActiveInterceptors, interceptor => interceptor.Location, WorldObjectType.Interceptor);
+			GetVisibleWorldObjects(
+				GameState.Current.Data.ActiveInterceptors,
+				interceptor => interceptor.Location,
+				WorldObjectType.Interceptor
+			);
 		private static IEnumerable<WorldObject> VisibleUfos =>
 			GetVisibleWorldObjects(FlyingUfos, ufo => ufo.Location, WorldObjectType.Ufo);
 		private static IEnumerable<WorldObject> VisibleLandingSites =>
@@ -164,17 +180,20 @@ namespace XCom.World
 		private static IEnumerable<WorldObject> VisibleCrashSites =>
 			GetVisibleWorldObjects(CrashSites, ufo => ufo.Location, WorldObjectType.CrashSite);
 
-		private static IEnumerable<Ufo> FlyingUfos => GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Flying);
-		private static IEnumerable<Ufo> LandingSites => GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Landed);
-		private static IEnumerable<Ufo> CrashSites => GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Crashed);
+		private static IEnumerable<Ufo> FlyingUfos =>
+			GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Flying);
+		private static IEnumerable<Ufo> LandingSites =>
+			GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Landed);
+		private static IEnumerable<Ufo> CrashSites =>
+			GameState.Current.Data.VisibleUfos.Where(ufo => ufo.Status == UfoStatus.Crashed);
 
 		private static IEnumerable<WorldObject> VisibleWorldObjects =>
 			VisibleXcomBases
-			.Concat(VisibleWaypoints)
-			.Concat(VisibleInterceptors)
-			.Concat(VisibleUfos)
-			.Concat(VisibleLandingSites)
-			.Concat(VisibleCrashSites);
+				.Concat(VisibleWaypoints)
+				.Concat(VisibleInterceptors)
+				.Concat(VisibleUfos)
+				.Concat(VisibleLandingSites)
+				.Concat(VisibleCrashSites);
 
 		private void DrawWorldObjects(GraphicsBuffer buffer)
 		{

@@ -17,12 +17,18 @@ namespace XCom.Battlescape
 
 		[JsonIgnore]
 		public List<BattleItem> Stores { get; set; }
+
 		[JsonIgnore]
 		public Craft Craft => GameState.Current.Data.GetCraft(CraftId);
+
 		[JsonIgnore]
 		public Unit SelectedUnit => SelectedSoldier; //TODO: handle hwp/alien
+
 		[JsonIgnore]
-		public BattleSoldier SelectedSoldier => SelectedUnitId.UnitType == UnitType.Soldier ? Soldiers.Single(soldier => soldier.Id == SelectedUnitId.Id) : null;
+		public BattleSoldier SelectedSoldier =>
+			SelectedUnitId.UnitType == UnitType.Soldier
+				? Soldiers.Single(soldier => soldier.Id == SelectedUnitId.Id)
+				: null;
 
 		public void SelectNextUnit(bool doneThisTurn)
 		{
@@ -32,7 +38,8 @@ namespace XCom.Battlescape
 			if (doneThisTurn)
 				soldier.DoneThisTurn = true;
 			var index = Soldiers.IndexOf(soldier);
-			var newSelectedSoldier = Enumerable.Range(0, Soldiers.Count - 1)
+			var newSelectedSoldier = Enumerable
+				.Range(0, Soldiers.Count - 1)
 				.Select(value => (index + value + 1) % Soldiers.Count)
 				.Select(nextIndex => Soldiers[nextIndex])
 				.FirstOrDefault(nextSoldier => !nextSoldier.DoneThisTurn);
@@ -41,7 +48,7 @@ namespace XCom.Battlescape
 			SelectedUnitId = new SelectedUnitId
 			{
 				UnitType = UnitType.Soldier,
-				Id = newSelectedSoldier.Id
+				Id = newSelectedSoldier.Id,
 			};
 		}
 
@@ -51,12 +58,15 @@ namespace XCom.Battlescape
 			SelectedUnitId = new SelectedUnitId
 			{
 				UnitType = UnitType.Soldier,
-				Id = Soldiers.First().Id
+				Id = Soldiers.First().Id,
 			};
 			foreach (var soldier in Soldiers)
 			{
 				soldier.TimeUnits = soldier.MaxTimeUnits;
-				soldier.Energy = Math.Min(soldier.MaxEnergy, soldier.Energy + soldier.Soldier.OriginalStatistics.TimeUnits / 3);
+				soldier.Energy = Math.Min(
+					soldier.MaxEnergy,
+					soldier.Energy + soldier.Soldier.OriginalStatistics.TimeUnits / 3
+				);
 				soldier.DoneThisTurn = false;
 			}
 		}
@@ -86,10 +96,10 @@ namespace XCom.Battlescape
 				SelectedUnitId = new SelectedUnitId
 				{
 					UnitType = UnitType.Soldier,
-					Id = craft.SoldierIds.First()
+					Id = craft.SoldierIds.First(),
 				},
 				//TODO: Create alien base, terror, or craft recovery based on craft destination
-				Map = MapFactory.CreateFromCraft(craft)
+				Map = MapFactory.CreateFromCraft(craft),
 			};
 			//TODO: Initial unit placement
 			//TODO: Placement of remaining store items

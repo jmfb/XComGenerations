@@ -26,10 +26,10 @@ namespace XCom.World
 						Location = new Location
 						{
 							Longitude = longitude,
-							Latitude = latitudeIndex + minLatitude
+							Latitude = latitudeIndex + minLatitude,
 						},
 						TerrainType = terrain == byte.MaxValue ? null : (TerrainType?)terrain,
-						RegionType = (RegionType)region
+						RegionType = (RegionType)region,
 					};
 				}
 			}
@@ -41,11 +41,15 @@ namespace XCom.World
 			{
 				if (location == null)
 					return null;
-				if (location.Longitude < 0 ||
-					location.Longitude >= longitudeCount ||
-					location.Latitude < minLatitude ||
-					location.Latitude >= minLatitude + latitudeCount)
-					throw new InvalidOperationException($"Invalid longitude/latitude: ({location.Longitude}, {location.Latitude})");
+				if (
+					location.Longitude < 0
+					|| location.Longitude >= longitudeCount
+					|| location.Latitude < minLatitude
+					|| location.Latitude >= minLatitude + latitudeCount
+				)
+					throw new InvalidOperationException(
+						$"Invalid longitude/latitude: ({location.Longitude}, {location.Latitude})"
+					);
 				return locations[location.Longitude, location.Latitude - minLatitude];
 			}
 		}

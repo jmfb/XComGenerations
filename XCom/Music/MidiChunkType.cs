@@ -4,6 +4,6 @@
 	{
 		Header,
 		Track,
-		Other
+		Other,
 	}
 }

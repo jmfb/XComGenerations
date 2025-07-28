@@ -20,12 +20,22 @@ namespace XCom.Screens
 		public Geoscape()
 		{
 			AddControl(new Background(Backgrounds.Geoscape, 0));
-			AddControl(new Button(0, 257, 63, 11, "INTERCEPT", ColorScheme.Blue, Font.Small, OnIntercept));
+			AddControl(
+				new Button(0, 257, 63, 11, "INTERCEPT", ColorScheme.Blue, Font.Small, OnIntercept)
+			);
 			AddControl(new Button(12, 257, 63, 11, "BASES", ColorScheme.Blue, Font.Small, OnBases));
-			AddControl(new Button(24, 257, 63, 11, "GRAPHS", ColorScheme.Blue, Font.Small, OnGraphs));
-			AddControl(new Button(36, 257, 63, 11, "UFOPAEDIA", ColorScheme.Blue, Font.Small, OnUfoPaedia));
-			AddControl(new Button(48, 257, 63, 11, "OPTIONS", ColorScheme.Blue, Font.Small, OnOptions));
-			AddControl(new Button(60, 257, 63, 11, "FUNDING", ColorScheme.Blue, Font.Small, OnFunding));
+			AddControl(
+				new Button(24, 257, 63, 11, "GRAPHS", ColorScheme.Blue, Font.Small, OnGraphs)
+			);
+			AddControl(
+				new Button(36, 257, 63, 11, "UFOPAEDIA", ColorScheme.Blue, Font.Small, OnUfoPaedia)
+			);
+			AddControl(
+				new Button(48, 257, 63, 11, "OPTIONS", ColorScheme.Blue, Font.Small, OnOptions)
+			);
+			AddControl(
+				new Button(60, 257, 63, 11, "FUNDING", ColorScheme.Blue, Font.Small, OnFunding)
+			);
 			AddControl(new TimeDisplay());
 			AddControl(gameSpeed);
 			worldView = new WorldView(OnClick);
@@ -101,11 +111,20 @@ namespace XCom.Screens
 		private void OnClick(Location location)
 		{
 			var data = GameState.Current.Data;
-			var bases = data.Bases.Where(@base => Trigonometry.HitTestCoordinate(@base.Location, location));
-			var waypoints = data.Waypoints.Where(waypoint => Trigonometry.HitTestCoordinate(waypoint.Location, location));
-			var crafts = data.ActiveInterceptors.Where(craft => Trigonometry.HitTestCoordinate(craft.Location, location));
-			var ufos = data.VisibleUfos.Where(ufo => Trigonometry.HitTestCoordinate(ufo.Location, location));
-			var worldObjects = bases.Cast<object>()
+			var bases = data.Bases.Where(@base =>
+				Trigonometry.HitTestCoordinate(@base.Location, location)
+			);
+			var waypoints = data.Waypoints.Where(waypoint =>
+				Trigonometry.HitTestCoordinate(waypoint.Location, location)
+			);
+			var crafts = data.ActiveInterceptors.Where(craft =>
+				Trigonometry.HitTestCoordinate(craft.Location, location)
+			);
+			var ufos = data.VisibleUfos.Where(ufo =>
+				Trigonometry.HitTestCoordinate(ufo.Location, location)
+			);
+			var worldObjects = bases
+				.Cast<object>()
 				.Concat(waypoints)
 				.Concat(crafts)
 				.Concat(ufos)

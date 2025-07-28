@@ -14,21 +14,34 @@ namespace XCom.Screens
 			AddControl(new Label(24, 32, "Country", Font.Large, ColorScheme.Green));
 			AddControl(new Label(24, 140, "Funding", Font.Large, ColorScheme.Green));
 			AddControl(new Label(24, 240, "Change", Font.Large, ColorScheme.Green));
-			
+
 			var nextTopRow = 40;
 			foreach (var country in GameState.Current.Data.Countries)
 			{
 				var topRow = nextTopRow;
 				nextTopRow += 8;
 
-				AddControl(new ExtendedLabel(topRow, 32, 108, country.Name, Font.Normal, ColorScheme.Green));
+				AddControl(
+					new ExtendedLabel(topRow, 32, 108, country.Name, Font.Normal, ColorScheme.Green)
+				);
 				AddControl(new Label(topRow, 140, "$", Font.Normal, ColorScheme.Green));
-				
+
 				var fundingColor = country.Funding == 0 ? ColorScheme.Green : ColorScheme.Yellow;
 				var funding = country.Funding.FormatNumber();
-				AddControl(new ExtendedLabel(topRow, 146, 94, funding, Font.Normal, fundingColor, ColorScheme.Green));
+				AddControl(
+					new ExtendedLabel(
+						topRow,
+						146,
+						94,
+						funding,
+						Font.Normal,
+						fundingColor,
+						ColorScheme.Green
+					)
+				);
 
-				var changeColor = country.FundingChange == 0 ? ColorScheme.Green : ColorScheme.Yellow;
+				var changeColor =
+					country.FundingChange == 0 ? ColorScheme.Green : ColorScheme.Yellow;
 				var change = country.FundingChange.FormatNumber();
 				if (country.FundingChange > 0)
 					change = $"+{change}";
@@ -36,7 +49,15 @@ namespace XCom.Screens
 			}
 
 			AddControl(new ExtendedLabel(168, 32, 108, "TOTAL", Font.Normal, ColorScheme.Aqua));
-			AddControl(new Label(168, 140, $"${GameState.Current.Data.TotalFunding.FormatNumber()}", Font.Normal, ColorScheme.Aqua));
+			AddControl(
+				new Label(
+					168,
+					140,
+					$"${GameState.Current.Data.TotalFunding.FormatNumber()}",
+					Font.Normal,
+					ColorScheme.Aqua
+				)
+			);
 
 			AddControl(new Button(180, 135, 50, 12, "OK", ColorScheme.Green, Font.Normal, OnOk));
 		}

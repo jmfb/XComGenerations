@@ -14,10 +14,9 @@ namespace XCom.Controls
 			string text,
 			ColorScheme scheme,
 			Font font,
-			Action action)
-			: base(topRow, leftColumn, width, height, text, scheme, font, action)
-		{
-		}
+			Action action
+		)
+			: base(topRow, leftColumn, width, height, text, scheme, font, action) { }
 
 		public bool Value
 		{
@@ -25,9 +24,7 @@ namespace XCom.Controls
 			set { Pushed = value; }
 		}
 
-		public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton)
-		{
-		}
+		public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton) { }
 
 		public override void OnLeftButtonDown(int row, int column)
 		{
@@ -37,8 +34,6 @@ namespace XCom.Controls
 			Action();
 		}
 
-		public override void OnLeftButtonUp(int row, int column)
-		{
-		}
+		public override void OnLeftButtonUp(int row, int column) { }
 	}
 }

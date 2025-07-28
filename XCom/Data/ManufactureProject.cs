@@ -11,12 +11,18 @@ namespace XCom.Data
 		public int HoursCompleted { get; set; }
 
 		private int HoursToComplete => UnitsToProduce * ManufactureType.Metadata().HoursToProduce;
-		private int TotalHoursRemaining => HoursToComplete > HoursCompleted ? HoursToComplete - HoursCompleted : 0;
-		private int EffectiveHoursRemaining => EngineersAllocated == 0 ? 0 : TotalHoursRemaining / EngineersAllocated;
+		private int TotalHoursRemaining =>
+			HoursToComplete > HoursCompleted ? HoursToComplete - HoursCompleted : 0;
+		private int EffectiveHoursRemaining =>
+			EngineersAllocated == 0 ? 0 : TotalHoursRemaining / EngineersAllocated;
 		private int DaysRemaining => EffectiveHoursRemaining / 24;
 		private int HoursRemaining => EffectiveHoursRemaining % 24;
+
 		[JsonIgnore]
-		public string TimeRemaining => EngineersAllocated == 0 ? "-" :  $"{DaysRemaining.FormatNumber()}\t/{HoursRemaining.FormatNumber()}";
+		public string TimeRemaining =>
+			EngineersAllocated == 0
+				? "-"
+				: $"{DaysRemaining.FormatNumber()}\t/{HoursRemaining.FormatNumber()}";
 
 		private bool ValidateRequiredFunds()
 		{
@@ -30,18 +36,22 @@ namespace XCom.Data
 
 		private bool ValidateRequiredStorageSpace(Base @base)
 		{
-			var newItemSpaceRequired = ManufactureType.Metadata().ItemProduced.Metadata().StorageSpace;
-			var spaceUsedWithNewItem = (@base.Stores.TotalItemSpaceRequired + newItemSpaceRequired + 99) / 100;
+			var newItemSpaceRequired = ManufactureType
+				.Metadata()
+				.ItemProduced.Metadata()
+				.StorageSpace;
+			var spaceUsedWithNewItem =
+				(@base.Stores.TotalItemSpaceRequired + newItemSpaceRequired + 99) / 100;
 			return spaceUsedWithNewItem <= @base.TotalStorageSpace;
 		}
 
 		private bool ValidateRequiredMaterials(Base @base)
 		{
 			var metadata = ManufactureType.Metadata();
-			return @base.Stores[ItemType.AlienAlloys] >= metadata.AlienAlloysRequired &&
-				@base.Stores[ItemType.Elerium115] >= metadata.EleriumRequired &&
-				@base.Stores[ItemType.UfoPowerSource] >= metadata.PowerSourcesRequired &&
-				@base.Stores[ItemType.UfoNavigation] >= metadata.NavigationRequired;
+			return @base.Stores[ItemType.AlienAlloys] >= metadata.AlienAlloysRequired
+				&& @base.Stores[ItemType.Elerium115] >= metadata.EleriumRequired
+				&& @base.Stores[ItemType.UfoPowerSource] >= metadata.PowerSourcesRequired
+				&& @base.Stores[ItemType.UfoNavigation] >= metadata.NavigationRequired;
 		}
 
 		private void ConsumeRequiredFundsAndMaterials(Base @base)
@@ -76,27 +86,42 @@ namespace XCom.Data
 			var item = metadata.ItemProduced;
 			switch (item)
 			{
-			case ItemType.Firestorm:
-				@base.Crafts.Add(Craft.CreateNew(CraftType.Firestorm, GameState.Current.Data.NextFirestormNumber++));
-				break;
-			case ItemType.Lightning:
-				@base.Crafts.Add(Craft.CreateNew(CraftType.Lightning, GameState.Current.Data.NextLightningNumber++));
-				break;
-			case ItemType.Avenger:
-				@base.Crafts.Add(Craft.CreateNew(CraftType.Avenger, GameState.Current.Data.NextAvengerNumber++));
-				break;
-			default:
-				@base.Stores.Add(item);
-				break;
+				case ItemType.Firestorm:
+					@base.Crafts.Add(
+						Craft.CreateNew(
+							CraftType.Firestorm,
+							GameState.Current.Data.NextFirestormNumber++
+						)
+					);
+					break;
+				case ItemType.Lightning:
+					@base.Crafts.Add(
+						Craft.CreateNew(
+							CraftType.Lightning,
+							GameState.Current.Data.NextLightningNumber++
+						)
+					);
+					break;
+				case ItemType.Avenger:
+					@base.Crafts.Add(
+						Craft.CreateNew(
+							CraftType.Avenger,
+							GameState.Current.Data.NextAvengerNumber++
+						)
+					);
+					break;
+				default:
+					@base.Stores.Add(item);
+					break;
 			}
 		}
 
 		public bool CanProduce(Base selectedBase)
 		{
-			return ValidateRequiredFunds() &&
-				ValidateRequiredHangarSpace(selectedBase) &&
-				ValidateRequiredMaterials(selectedBase) &&
-				ValidateRequiredStorageSpace(selectedBase);
+			return ValidateRequiredFunds()
+				&& ValidateRequiredHangarSpace(selectedBase)
+				&& ValidateRequiredMaterials(selectedBase)
+				&& ValidateRequiredStorageSpace(selectedBase);
 		}
 	}
 }

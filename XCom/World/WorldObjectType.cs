@@ -11,12 +11,13 @@ namespace XCom.World
 		LandingSite,
 		Interceptor,
 		Waypoint,
-		Ufo
+		Ufo,
 	}
 
 	public static class WorldObjectTypeExtensions
 	{
-		public static WorldObjectMetadata Metadata(this WorldObjectType worldObjectType) => metadata[worldObjectType];
+		public static WorldObjectMetadata Metadata(this WorldObjectType worldObjectType) =>
+			metadata[worldObjectType];
 
 		private static readonly WorldObjectMetadata alienBase = new WorldObjectMetadata
 		{
@@ -26,8 +27,8 @@ namespace XCom.World
 			{
 				new[] { true, true, true },
 				new[] { true, false, true },
-				new[] { true, true, true }
-			}
+				new[] { true, true, true },
+			},
 		};
 
 		private static readonly WorldObjectMetadata xcomBase = new WorldObjectMetadata
@@ -38,8 +39,8 @@ namespace XCom.World
 			{
 				new[] { true, true, true },
 				new[] { true, false, true },
-				new[] { true, true, true }
-			}
+				new[] { true, true, true },
+			},
 		};
 
 		private static readonly WorldObjectMetadata terrorSite = new WorldObjectMetadata
@@ -50,8 +51,8 @@ namespace XCom.World
 			{
 				new[] { false, true, false },
 				new[] { true, true, true },
-				new[] { false, true, false }
-			}
+				new[] { false, true, false },
+			},
 		};
 
 		private static readonly WorldObjectMetadata crashSite = new WorldObjectMetadata
@@ -62,8 +63,8 @@ namespace XCom.World
 			{
 				new[] { true, false, true },
 				new[] { false, true, false },
-				new[] { true, false, true }
-			}
+				new[] { true, false, true },
+			},
 		};
 
 		private static readonly WorldObjectMetadata landingSite = new WorldObjectMetadata
@@ -74,8 +75,8 @@ namespace XCom.World
 			{
 				new[] { true, false, true },
 				new[] { false, true, false },
-				new[] { true, false, true }
-			}
+				new[] { true, false, true },
+			},
 		};
 
 		private static readonly WorldObjectMetadata interceptor = new WorldObjectMetadata
@@ -86,8 +87,8 @@ namespace XCom.World
 			{
 				new[] { false, true, false },
 				new[] { true, false, true },
-				new[] { false, true, false }
-			}
+				new[] { false, true, false },
+			},
 		};
 
 		private static readonly WorldObjectMetadata waypoint = new WorldObjectMetadata
@@ -98,8 +99,8 @@ namespace XCom.World
 			{
 				new[] { true, false, true },
 				new[] { false, true, false },
-				new[] { true, false, true }
-			}
+				new[] { true, false, true },
+			},
 		};
 
 		private static readonly WorldObjectMetadata ufo = new WorldObjectMetadata
@@ -110,20 +111,21 @@ namespace XCom.World
 			{
 				new[] { false, true, false },
 				new[] { true, true, true },
-				new[] { false, true, false }
-			}
+				new[] { false, true, false },
+			},
 		};
 
-		private static readonly Dictionary<WorldObjectType, WorldObjectMetadata> metadata = new Dictionary<WorldObjectType, WorldObjectMetadata>
-		{
-			{ WorldObjectType.AlienBase, alienBase },
-			{ WorldObjectType.XcomBase, xcomBase },
-			{ WorldObjectType.TerrorSite, terrorSite },
-			{ WorldObjectType.CrashSite, crashSite },
-			{ WorldObjectType.LandingSite, landingSite },
-			{ WorldObjectType.Interceptor, interceptor },
-			{ WorldObjectType.Waypoint, waypoint },
-			{ WorldObjectType.Ufo, ufo }
-		};
+		private static readonly Dictionary<WorldObjectType, WorldObjectMetadata> metadata =
+			new Dictionary<WorldObjectType, WorldObjectMetadata>
+			{
+				{ WorldObjectType.AlienBase, alienBase },
+				{ WorldObjectType.XcomBase, xcomBase },
+				{ WorldObjectType.TerrorSite, terrorSite },
+				{ WorldObjectType.CrashSite, crashSite },
+				{ WorldObjectType.LandingSite, landingSite },
+				{ WorldObjectType.Interceptor, interceptor },
+				{ WorldObjectType.Waypoint, waypoint },
+				{ WorldObjectType.Ufo, ufo },
+			};
 	}
 }

@@ -16,7 +16,9 @@ namespace XCom.Modals
 			AddControl(new Label(82, Label.Center, "at", Font.Large, ColorScheme.Aqua));
 			AddControl(new Label(98, Label.Center, baseName, Font.Large, ColorScheme.Aqua));
 			AddControl(new Label(114, Label.Center, "is complete", Font.Large, ColorScheme.Aqua));
-			AddControl(new Button(154, 100, 120, 16, "OK", ColorScheme.Aqua, Font.Normal, EndModal));
+			AddControl(
+				new Button(154, 100, 120, 16, "OK", ColorScheme.Aqua, Font.Normal, EndModal)
+			);
 		}
 	}
 }

@@ -6,4 +6,8 @@
 using System.Diagnostics.CodeAnalysis;
 
 // Suppress Windows-specific API warnings since this is a Windows-only application
-[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "This is a Windows-only application using Windows Forms")]
+[assembly: SuppressMessage(
+	"Interoperability",
+	"CA1416:Validate platform compatibility",
+	Justification = "This is a Windows-only application using Windows Forms"
+)]

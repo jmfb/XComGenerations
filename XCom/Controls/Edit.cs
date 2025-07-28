@@ -24,7 +24,8 @@ namespace XCom.Controls
 			string text,
 			Font font,
 			ColorScheme scheme,
-			Action<string> action)
+			Action<string> action
+		)
 		{
 			TopRow = topRow;
 			LeftColumn = leftColumn;
@@ -42,23 +43,23 @@ namespace XCom.Controls
 
 			switch (value)
 			{
-			case (char)Keys.Escape:
-			case (char)0x0a:
-			case (char)Keys.Tab:
-			case '`':
-				break;
+				case (char)Keys.Escape:
+				case (char)0x0a:
+				case (char)Keys.Tab:
+				case '`':
+					break;
 
-			case (char)Keys.Back:
-				TryDeleteLastCharacter();
-				break;
+				case (char)Keys.Back:
+					TryDeleteLastCharacter();
+					break;
 
-			case (char)Keys.Return:
-				EndEdit();
-				break;
+				case (char)Keys.Return:
+					EndEdit();
+					break;
 
-			default:
-				TryAppend(value);
-				break;
+				default:
+					TryAppend(value);
+					break;
 			}
 		}
 

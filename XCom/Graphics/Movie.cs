@@ -17,7 +17,8 @@ namespace XCom.Graphics
 		private int frameIndex;
 		private readonly Stopwatch stopwatch = new Stopwatch();
 		private int FrameSpeedInMilliseconds => (int)header.Speed * 20;
-		private readonly Dictionary<int, IntroductionSoundEffect> soundEffects = TimedSoundEffects.Introduction;
+		private readonly Dictionary<int, IntroductionSoundEffect> soundEffects =
+			TimedSoundEffects.Introduction;
 
 		public Movie(byte[] data)
 		{
@@ -78,8 +79,7 @@ namespace XCom.Graphics
 			{
 				++frameIndex;
 				ApplyFrame();
-			}
-			while (frameIndex < nextFrameIndex);
+			} while (frameIndex < nextFrameIndex);
 		}
 
 		private void ApplyFrame()

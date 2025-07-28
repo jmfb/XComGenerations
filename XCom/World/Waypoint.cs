@@ -11,9 +11,12 @@ namespace XCom.World
 
 		[JsonIgnore]
 		public string Name => $"WAYPOINT-{Number}";
+
 		[JsonIgnore]
-		public Craft TargetedBy => GameState.Current.Data.ActiveInterceptors.Single(craft =>
-				craft.Destination?.WorldObjectType == WorldObjectType.Waypoint &&
-				craft.Destination?.Number == Number);
+		public Craft TargetedBy =>
+			GameState.Current.Data.ActiveInterceptors.Single(craft =>
+				craft.Destination?.WorldObjectType == WorldObjectType.Waypoint
+				&& craft.Destination?.Number == Number
+			);
 	}
 }

@@ -23,13 +23,18 @@ namespace XCom.Data
 		public SoldierStatistics Statistics { get; set; }
 
 		[JsonIgnore]
-		public Craft Craft => GameState.SelectedBase.Crafts.FirstOrDefault(craft => craft.SoldierIds.Contains(Id));
+		public Craft Craft =>
+			GameState.SelectedBase.Crafts.FirstOrDefault(craft => craft.SoldierIds.Contains(Id));
+
 		[JsonIgnore]
 		public string CraftName => IsWounded ? "WOUNDED" : Craft?.Name ?? "NONE";
+
 		[JsonIgnore]
 		public string ArmorName => Armor?.Metadata().Name ?? "NONE";
+
 		[JsonIgnore]
 		public bool IsWounded => DaysUntilRecovered > 0;
+
 		[JsonIgnore]
 		public byte[] Paperdoll
 		{
@@ -37,26 +42,30 @@ namespace XCom.Data
 			{
 				switch (Armor)
 				{
-				case ArmorType.FlyingSuit:
-					return Paperdolls.FlyingSuit;
-				case ArmorType.PowerSuit:
-					return Paperdolls.PowerSuit;
-				case ArmorType.PersonalArmor:
-					return GetPersonalArmorPaperdoll(SkinColor, Gender);
-				default:
-					return GetCoverallsPaperdoll(SkinColor, Gender);
+					case ArmorType.FlyingSuit:
+						return Paperdolls.FlyingSuit;
+					case ArmorType.PowerSuit:
+						return Paperdolls.PowerSuit;
+					case ArmorType.PersonalArmor:
+						return GetPersonalArmorPaperdoll(SkinColor, Gender);
+					default:
+						return GetCoverallsPaperdoll(SkinColor, Gender);
 				}
 			}
 		}
 
 		[JsonIgnore]
 		public int FrontArmor => Armor?.Metadata().FrontArmor ?? 12;
+
 		[JsonIgnore]
 		public int LeftArmor => Armor?.Metadata().LeftArmor ?? 8;
+
 		[JsonIgnore]
 		public int RightArmor => Armor?.Metadata().RightArmor ?? 8;
+
 		[JsonIgnore]
 		public int RearArmor => Armor?.Metadata().RearArmor ?? 5;
+
 		[JsonIgnore]
 		public int UnderArmor => Armor?.Metadata().UnderArmor ?? 2;
 
@@ -64,22 +73,22 @@ namespace XCom.Data
 		{
 			switch (skinColor)
 			{
-			case SkinColor.White:
-				return gender == Gender.Male ?
-					Paperdolls.PersonalArmorWhiteMale :
-					Paperdolls.PersonalArmorWhiteFemale;
-			case SkinColor.Tan:
-				return gender == Gender.Male ?
-					Paperdolls.PersonalArmorTanMale :
-					Paperdolls.PersonalArmorTanFemale;
-			case SkinColor.Brown:
-				return gender == Gender.Male ?
-					Paperdolls.PersonalArmorBrownMale :
-					Paperdolls.PersonalArmorBrownFemale;
-			case SkinColor.Black:
-				return gender == Gender.Male ?
-					Paperdolls.PersonalArmorBlackMale :
-					Paperdolls.PersonalArmorBlackFemale;
+				case SkinColor.White:
+					return gender == Gender.Male
+						? Paperdolls.PersonalArmorWhiteMale
+						: Paperdolls.PersonalArmorWhiteFemale;
+				case SkinColor.Tan:
+					return gender == Gender.Male
+						? Paperdolls.PersonalArmorTanMale
+						: Paperdolls.PersonalArmorTanFemale;
+				case SkinColor.Brown:
+					return gender == Gender.Male
+						? Paperdolls.PersonalArmorBrownMale
+						: Paperdolls.PersonalArmorBrownFemale;
+				case SkinColor.Black:
+					return gender == Gender.Male
+						? Paperdolls.PersonalArmorBlackMale
+						: Paperdolls.PersonalArmorBlackFemale;
 			}
 			throw new InvalidOperationException("Invalid skin color.");
 		}
@@ -88,22 +97,22 @@ namespace XCom.Data
 		{
 			switch (skinColor)
 			{
-			case SkinColor.White:
-				return gender == Gender.Male ?
-					Paperdolls.CoverallsWhiteMale :
-					Paperdolls.CoverallsWhiteFemale;
-			case SkinColor.Tan:
-				return gender == Gender.Male ?
-					Paperdolls.CoverallsTanMale :
-					Paperdolls.CoverallsTanFemale;
-			case SkinColor.Brown:
-				return gender == Gender.Male ?
-					Paperdolls.CoverallsBrownMale :
-					Paperdolls.CoverallsBrownFemale;
-			case SkinColor.Black:
-				return gender == Gender.Male ?
-					Paperdolls.CoverallsBlackMale :
-					Paperdolls.CoverallsBlackFemale;
+				case SkinColor.White:
+					return gender == Gender.Male
+						? Paperdolls.CoverallsWhiteMale
+						: Paperdolls.CoverallsWhiteFemale;
+				case SkinColor.Tan:
+					return gender == Gender.Male
+						? Paperdolls.CoverallsTanMale
+						: Paperdolls.CoverallsTanFemale;
+				case SkinColor.Brown:
+					return gender == Gender.Male
+						? Paperdolls.CoverallsBrownMale
+						: Paperdolls.CoverallsBrownFemale;
+				case SkinColor.Black:
+					return gender == Gender.Male
+						? Paperdolls.CoverallsBlackMale
+						: Paperdolls.CoverallsBlackFemale;
 			}
 			throw new InvalidOperationException("Invalid skin color.");
 		}
@@ -133,7 +142,7 @@ namespace XCom.Data
 				InPsiTraining = false,
 				HasPsiSkill = false,
 				OriginalStatistics = statistics.Copy(),
-				Statistics = statistics
+				Statistics = statistics,
 			};
 		}
 
@@ -166,7 +175,7 @@ namespace XCom.Data
 			"Dan",
 			"Andrew",
 			"Paul",
-			"Zach"
+			"Zach",
 		};
 
 		private static readonly List<string> femaleFirstNames = new List<string>
@@ -194,7 +203,7 @@ namespace XCom.Data
 			"Meagan",
 			"Catherine",
 			"Katy",
-			"Elizabeth"
+			"Elizabeth",
 		};
 
 		private static readonly List<string> lastNames = new List<string>
@@ -232,7 +241,7 @@ namespace XCom.Data
 			"Moore",
 			"Dixon",
 			"Cheron",
-			"McNichols"
+			"McNichols",
 		};
 	}
 }

@@ -14,7 +14,7 @@
 				FacilityType = facilityType,
 				Row = row,
 				Column = column,
-				DaysUntilConstructionComplete = 0
+				DaysUntilConstructionComplete = 0,
 			};
 		}
 
@@ -23,10 +23,7 @@
 			if (!allowUnderConstruction && DaysUntilConstructionComplete > 0)
 				return false;
 			var size = FacilityType.Metadata().Shape.Size();
-			return row >= Row &&
-				row < (Row + size) &&
-				column >= Column &&
-				column < (Column + size);
+			return row >= Row && row < (Row + size) && column >= Column && column < (Column + size);
 		}
 	}
 }

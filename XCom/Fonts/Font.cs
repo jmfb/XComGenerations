@@ -15,7 +15,8 @@ namespace XCom.Fonts
 			Height = height;
 			this.characters = characters.ToDictionary(
 				keyValue => keyValue.Key,
-				keyValue => new Character(keyValue.Value, height));
+				keyValue => new Character(keyValue.Value, height)
+			);
 		}
 
 		private Character GetCharacter(char value)
@@ -37,7 +38,8 @@ namespace XCom.Fonts
 			int topRow,
 			int leftColumn,
 			string value,
-			ColorScheme scheme)
+			ColorScheme scheme
+		)
 		{
 			var column = leftColumn;
 			foreach (var character in value.Select(GetCharacter))
@@ -52,6 +54,9 @@ namespace XCom.Fonts
 		public static readonly Font Small = new Font(Fonts.Small.Height, Fonts.Small.Characters);
 		public static readonly Font Arrow = new Font(Fonts.Arrow.Height, Fonts.Arrow.Characters);
 		public static readonly Font Time = new Font(Fonts.Time.Height, Fonts.Time.Characters);
-		public static readonly Font UpDownButtons  = new Font(Fonts.UpDownButtons.Height, Fonts.UpDownButtons.Characters);
+		public static readonly Font UpDownButtons = new Font(
+			Fonts.UpDownButtons.Height,
+			Fonts.UpDownButtons.Characters
+		);
 	}
 }

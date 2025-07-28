@@ -12,12 +12,13 @@ namespace XCom.Data
 		MediKit,
 		PsiAmp,
 		Elerium115,
-		MindProbe
+		MindProbe,
 	}
 
 	public static class EquipmentTypeExtensions
 	{
-		public static EquipmentMetadata Metadata(this EquipmentType equipmentType) => metadata[equipmentType];
+		public static EquipmentMetadata Metadata(this EquipmentType equipmentType) =>
+			metadata[equipmentType];
 
 		private static readonly EquipmentMetadata stunRod = new EquipmentMetadata
 		{
@@ -29,10 +30,10 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"This device can only be used in close combat, but will stun a",
-				"living organism without killing it by using electric shocks."
+				"living organism without killing it by using electric shocks.",
 			},
 			IsTwoHanded = true,
-			Sprites = BattleItemSprite.StunRod
+			Sprites = BattleItemSprite.StunRod,
 		};
 
 		private static readonly EquipmentMetadata electroFlare = new EquipmentMetadata
@@ -46,8 +47,8 @@ namespace XCom.Data
 			{
 				"This compact device produces a bright flare light when it is",
 				"thrown. This will highlight enemy units in the vicinity of the",
-				"electro-flare during night time missions."
-			}
+				"electro-flare during night time missions.",
+			},
 		};
 
 		private static readonly EquipmentMetadata motionScanner = new EquipmentMetadata
@@ -67,8 +68,8 @@ namespace XCom.Data
 				"in the center which is the direction the soldier is facing (North",
 				"is at the top). The flashing blobs show units which have moved",
 				"recently. Large units, or fast moving units, will produce larger",
-				"blobs. Static units will not be detected."
-			}
+				"blobs. Static units will not be detected.",
+			},
 		};
 
 		private static readonly EquipmentMetadata mediKit = new EquipmentMetadata
@@ -92,8 +93,8 @@ namespace XCom.Data
 				"(stunned) soldiers. In order to revive an unconcious soldier",
 				"you must stand directly over the body.",
 				"PAIN KILLER> This will restore the morale of wounded soldiers",
-				"up to an amount equivalent to the soldier's last health."
-			}
+				"up to an amount equivalent to the soldier's last health.",
+			},
 		};
 
 		private static readonly EquipmentMetadata psiAmp = new EquipmentMetadata
@@ -114,9 +115,9 @@ namespace XCom.Data
 				"MIND CONTROL> If this is successful then you will gain immediate",
 				"control of the enemy unit as if it was one of your own (except",
 				"that you cannot access the object screen). It is more difficult",
-				"to be successful with this type of attack."
+				"to be successful with this type of attack.",
 			},
-			Sprites = BattleItemSprite.PsiAmp
+			Sprites = BattleItemSprite.PsiAmp,
 		};
 
 		private static readonly EquipmentMetadata elerium115 = new EquipmentMetadata
@@ -131,8 +132,8 @@ namespace XCom.Data
 				"This element has the unusual property of generating",
 				"anti-matter power when bombarded with certain particles. This",
 				"creates gravity waves and other forms of energy. It is not",
-				"naturally found in our solar system and cannot be reproduced."
-			}
+				"naturally found in our solar system and cannot be reproduced.",
+			},
 		};
 
 		private static readonly EquipmentMetadata mindProbe = new EquipmentMetadata
@@ -148,19 +149,20 @@ namespace XCom.Data
 				"to take information directly from brain waves. XCom units can",
 				"use this device in combat to display an alien's characteristics.",
 				"Click on the mind probe and the 'use' option. Then click on an",
-				"alien with the cursor."
-			}
+				"alien with the cursor.",
+			},
 		};
 
-		private static readonly Dictionary<EquipmentType, EquipmentMetadata> metadata = new Dictionary<EquipmentType, EquipmentMetadata>
-		{
-			{ EquipmentType.StunRod, stunRod },
-			{ EquipmentType.ElectroFlare, electroFlare },
-			{ EquipmentType.MotionScanner, motionScanner },
-			{ EquipmentType.MediKit, mediKit },
-			{ EquipmentType.PsiAmp, psiAmp },
-			{ EquipmentType.Elerium115, elerium115 },
-			{ EquipmentType.MindProbe, mindProbe }
-		};
+		private static readonly Dictionary<EquipmentType, EquipmentMetadata> metadata =
+			new Dictionary<EquipmentType, EquipmentMetadata>
+			{
+				{ EquipmentType.StunRod, stunRod },
+				{ EquipmentType.ElectroFlare, electroFlare },
+				{ EquipmentType.MotionScanner, motionScanner },
+				{ EquipmentType.MediKit, mediKit },
+				{ EquipmentType.PsiAmp, psiAmp },
+				{ EquipmentType.Elerium115, elerium115 },
+				{ EquipmentType.MindProbe, mindProbe },
+			};
 	}
 }

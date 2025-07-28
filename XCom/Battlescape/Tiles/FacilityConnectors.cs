@@ -44,7 +44,7 @@ namespace XCom.Battlescape.Tiles
 			Tileset.AlienBase0,
 			Tileset.AlienBase1,
 			Tileset.AlienBase9,
-			Tileset.AlienBase14
+			Tileset.AlienBase14,
 		};
 
 		private static readonly List<Tileset> noSouthConnectors = new List<Tileset>
@@ -52,14 +52,14 @@ namespace XCom.Battlescape.Tiles
 			null,
 			Tileset.XcomBase16,
 			Tileset.XcomBase17,
-			Tileset.XcomBase20
+			Tileset.XcomBase20,
 		};
 		private static readonly List<Tileset> noNorthConnectors = new List<Tileset>
 		{
 			null,
 			Tileset.XcomBase18,
 			Tileset.XcomBase19,
-			Tileset.XcomBase20
+			Tileset.XcomBase20,
 		};
 
 		private static readonly List<Tileset> noEastConnectors = new List<Tileset>
@@ -67,27 +67,30 @@ namespace XCom.Battlescape.Tiles
 			null,
 			Tileset.XcomBase16,
 			Tileset.XcomBase18,
-			Tileset.XcomBase20
+			Tileset.XcomBase20,
 		};
 		private static readonly List<Tileset> noWestConnectors = new List<Tileset>
 		{
 			null,
 			Tileset.XcomBase17,
 			Tileset.XcomBase19,
-			Tileset.XcomBase20
+			Tileset.XcomBase20,
 		};
 
 		private static bool AreVerticallyConnected(Tileset northFacility, Tileset southFacility)
 		{
-			return !noSouthConnectors.Contains(northFacility) && !noNorthConnectors.Contains(southFacility);
+			return !noSouthConnectors.Contains(northFacility)
+				&& !noNorthConnectors.Contains(southFacility);
 		}
 
 		private static bool AreHorizontallyConnected(Tileset westFacility, Tileset eastFacility)
 		{
-			return !noEastConnectors.Contains(westFacility) && !noWestConnectors.Contains(eastFacility);
+			return !noEastConnectors.Contains(westFacility)
+				&& !noWestConnectors.Contains(eastFacility);
 		}
 
-		private bool HasAnyConnectors => northConnector || southConnector || eastConnector || westConnector;
+		private bool HasAnyConnectors =>
+			northConnector || southConnector || eastConnector || westConnector;
 
 		public Tileset UpdateTileset(Tileset tileset)
 		{
@@ -107,7 +110,11 @@ namespace XCom.Battlescape.Tiles
 
 		private static void SetNorthConnectors(Tileset tileset)
 		{
-			foreach (var offset in Enumerable.Range(0, tileset.ColumnCount / 10).Select(index => 10 * index))
+			foreach (
+				var offset in Enumerable
+					.Range(0, tileset.ColumnCount / 10)
+					.Select(index => 10 * index)
+			)
 			{
 				tileset[0, 0, 3 + offset] = tileset[0, 0, 3 + offset].SetNorthWall(0);
 				tileset[0, 0, 4 + offset] = tileset[0, 0, 4 + offset].SetNorthWall(0);
@@ -118,30 +125,54 @@ namespace XCom.Battlescape.Tiles
 		private void SetSouthConnectors(Tileset tileset)
 		{
 			var bottom = tileset.RowCount - 1;
-			foreach (var offset in Enumerable.Range(0, tileset.ColumnCount / 10).Select(index => 10 * index))
+			foreach (
+				var offset in Enumerable
+					.Range(0, tileset.ColumnCount / 10)
+					.Select(index => 10 * index)
+			)
 			{
-				tileset[0, bottom, 3 + offset] = tileset[0, bottom, 3 + offset].SetNorthWall(0).SetEntity(0).SetWestWall(westWall);
-				tileset[0, bottom, 4 + offset] = tileset[0, bottom, 4 + offset].SetNorthWall(0).SetEntity(0);
-				tileset[0, bottom, 5 + offset] = tileset[0, bottom, 5 + offset].SetNorthWall(0).SetEntity(0);
-				tileset[0, bottom, 6 + offset] = tileset[0, bottom, 6 + offset].SetWestWall(westWall);
+				tileset[0, bottom, 3 + offset] = tileset[0, bottom, 3 + offset]
+					.SetNorthWall(0)
+					.SetEntity(0)
+					.SetWestWall(westWall);
+				tileset[0, bottom, 4 + offset] = tileset[0, bottom, 4 + offset]
+					.SetNorthWall(0)
+					.SetEntity(0);
+				tileset[0, bottom, 5 + offset] = tileset[0, bottom, 5 + offset]
+					.SetNorthWall(0)
+					.SetEntity(0);
+				tileset[0, bottom, 6 + offset] = tileset[0, bottom, 6 + offset]
+					.SetWestWall(westWall);
 			}
 		}
 
 		private void SetEastConnectors(Tileset tileset)
 		{
 			var right = tileset.ColumnCount - 1;
-			foreach (var offset in Enumerable.Range(0, tileset.RowCount / 10).Select(index => 10 * index))
+			foreach (
+				var offset in Enumerable.Range(0, tileset.RowCount / 10).Select(index => 10 * index)
+			)
 			{
-				tileset[0, 3 + offset, right] = tileset[0, 3 + offset, right].SetWestWall(0).SetEntity(0).SetNorthWall(northWall);
-				tileset[0, 4 + offset, right] = tileset[0, 4 + offset, right].SetWestWall(0).SetEntity(0);
-				tileset[0, 5 + offset, right] = tileset[0, 5 + offset, right].SetWestWall(0).SetEntity(0);
-				tileset[0, 6 + offset, right] = tileset[0, 6 + offset, right].SetNorthWall(northWall);
+				tileset[0, 3 + offset, right] = tileset[0, 3 + offset, right]
+					.SetWestWall(0)
+					.SetEntity(0)
+					.SetNorthWall(northWall);
+				tileset[0, 4 + offset, right] = tileset[0, 4 + offset, right]
+					.SetWestWall(0)
+					.SetEntity(0);
+				tileset[0, 5 + offset, right] = tileset[0, 5 + offset, right]
+					.SetWestWall(0)
+					.SetEntity(0);
+				tileset[0, 6 + offset, right] = tileset[0, 6 + offset, right]
+					.SetNorthWall(northWall);
 			}
 		}
 
 		private static void SetWestConnectors(Tileset tileset)
 		{
-			foreach (var offset in Enumerable.Range(0, tileset.RowCount / 10).Select(index => 10 * index))
+			foreach (
+				var offset in Enumerable.Range(0, tileset.RowCount / 10).Select(index => 10 * index)
+			)
 			{
 				tileset[0, 3 + offset, 0] = tileset[0, 3 + offset, 0].SetWestWall(0);
 				tileset[0, 4 + offset, 0] = tileset[0, 4 + offset, 0].SetWestWall(0);

@@ -27,23 +27,38 @@ namespace XCom.Data
 
 		[JsonIgnore]
 		public string Name => $"{CraftType.Metadata().Name}-{Number}";
+
 		[JsonIgnore]
 		public int FuelPercent => Fuel * 100 / CraftType.Metadata().Fuel;
+
 		[JsonIgnore]
 		public int DamagePercent => Damage * 100 / CraftType.Metadata().Damage;
+
 		[JsonIgnore]
-		public int TotalItemCount => Stores.Items.Where(item => item.ItemType.Metadata().HwpSpace == 0).Sum(item => item.Count);
+		public int TotalItemCount =>
+			Stores
+				.Items.Where(item => item.ItemType.Metadata().HwpSpace == 0)
+				.Sum(item => item.Count);
+
 		[JsonIgnore]
-		public int TotalHwpCount => Stores.Items.Where(item => item.ItemType.Metadata().HwpSpace > 0).Sum(item => item.Count);
+		public int TotalHwpCount =>
+			Stores
+				.Items.Where(item => item.ItemType.Metadata().HwpSpace > 0)
+				.Sum(item => item.Count);
+
 		[JsonIgnore]
 		public int SpaceUsed => SoldierIds.Count + TotalHwpCount * 4;
+
 		[JsonIgnore]
 		public int SpaceAvailable => CraftType.Metadata().Space - SpaceUsed;
+
 		[JsonIgnore]
 		public int HwpSpaceAvailable => CraftType.Metadata().HwpCount - TotalHwpCount;
 
 		[JsonIgnore]
-		public Base Base => GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
+		public Base Base =>
+			GameState.Current.Data.Bases.Single(@base => @base.Crafts.Contains(this));
+
 		[JsonIgnore]
 		public string MissionStatus
 		{
@@ -53,24 +68,27 @@ namespace XCom.Data
 					return "PATROLLING";
 				switch (Destination.WorldObjectType)
 				{
-				case WorldObjectType.XcomBase:
-					return LowFuel ?
-						"LOW FUEL - RETURNING TO BASE" :
-						"RETURNING TO BASE";
-				case WorldObjectType.Ufo:
-				case WorldObjectType.LandingSite:
-					return $"INTERCEPTING {Destination.Name}";
-				default:
-					return $"DESTINATION: {Destination.Name}";
+					case WorldObjectType.XcomBase:
+						return LowFuel ? "LOW FUEL - RETURNING TO BASE" : "RETURNING TO BASE";
+					case WorldObjectType.Ufo:
+					case WorldObjectType.LandingSite:
+						return $"INTERCEPTING {Destination.Name}";
+					default:
+						return $"DESTINATION: {Destination.Name}";
 				}
 			}
 		}
+
 		[JsonIgnore]
 		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess
+
 		[JsonIgnore]
-		public string Weapon1Name => Weapons.Count >= 1 ? Weapons[0].WeaponType.Metadata().Name : "NONE";
+		public string Weapon1Name =>
+			Weapons.Count >= 1 ? Weapons[0].WeaponType.Metadata().Name : "NONE";
+
 		[JsonIgnore]
-		public string Weapon2Name => Weapons.Count == 2 ? Weapons[1].WeaponType.Metadata().Name : "NONE";
+		public string Weapon2Name =>
+			Weapons.Count == 2 ? Weapons[1].WeaponType.Metadata().Name : "NONE";
 
 		public static Craft CreateRefueled(CraftType craftType, int number)
 		{
@@ -84,7 +102,7 @@ namespace XCom.Data
 				Weapons = new List<CraftWeapon>(),
 				Status = CraftStatus.Ready,
 				SoldierIds = new List<int>(),
-				Stores = Stores.Create()
+				Stores = Stores.Create(),
 			};
 		}
 
@@ -100,7 +118,7 @@ namespace XCom.Data
 				Weapons = new List<CraftWeapon>(),
 				Status = CraftStatus.Refuelling,
 				SoldierIds = new List<int>(),
-				Stores = Stores.Create()
+				Stores = Stores.Create(),
 			};
 		}
 
@@ -109,15 +127,15 @@ namespace XCom.Data
 			AlreadyNotified = false;
 			switch (Status)
 			{
-			case CraftStatus.Repairs:
-				Status = CraftStatus.Refuelling;
-				break;
-			case CraftStatus.Refuelling:
-				Status = CraftStatus.Rearming;
-				break;
-			case CraftStatus.Rearming:
-				Status = CraftStatus.Ready;
-				break;
+				case CraftStatus.Repairs:
+					Status = CraftStatus.Refuelling;
+					break;
+				case CraftStatus.Refuelling:
+					Status = CraftStatus.Rearming;
+					break;
+				case CraftStatus.Rearming:
+					Status = CraftStatus.Ready;
+					break;
 			}
 		}
 
@@ -134,10 +152,12 @@ namespace XCom.Data
 		public int Distance(long milliseconds)
 		{
 			const double earthCircumferenceInNauticalMiles = 21639;
-			const double nauticalMilesPerEightDegree = earthCircumferenceInNauticalMiles / Trigonometry.EighthDegreesCount;
+			const double nauticalMilesPerEightDegree =
+				earthCircumferenceInNauticalMiles / Trigonometry.EighthDegreesCount;
 			const double millisecondsPerHour = 1000 * 60 * 60;
 			var distanceInNauticalMiles = (Speed * milliseconds) / millisecondsPerHour;
-			var distanceInEighthDegrees = distanceInNauticalMiles / nauticalMilesPerEightDegree + DistanceError;
+			var distanceInEighthDegrees =
+				distanceInNauticalMiles / nauticalMilesPerEightDegree + DistanceError;
 			var integerDistanceInEighthDegrees = (int)distanceInEighthDegrees;
 			DistanceError = distanceInEighthDegrees - integerDistanceInEighthDegrees;
 			return integerDistanceInEighthDegrees;
@@ -150,7 +170,7 @@ namespace XCom.Data
 			Destination = new Destination
 			{
 				WorldObjectType = WorldObjectType.XcomBase,
-				Number = Base.Number
+				Number = Base.Number,
 			};
 		}
 
@@ -176,9 +196,9 @@ namespace XCom.Data
 
 		public Waypoint RemoveWaypoint()
 		{
-			return Destination?.WorldObjectType == WorldObjectType.Waypoint ?
-				GameState.Current.Data.RemoveWaypoint(Destination.Number) :
-				null;
+			return Destination?.WorldObjectType == WorldObjectType.Waypoint
+				? GameState.Current.Data.RemoveWaypoint(Destination.Number)
+				: null;
 		}
 	}
 }

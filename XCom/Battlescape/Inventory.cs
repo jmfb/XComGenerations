@@ -27,7 +27,12 @@ namespace XCom.Battlescape
 		private bool notEnoughTimeUnits;
 		private readonly Stopwatch stopwatch = new Stopwatch();
 
-		public Inventory(Battle battle, BattleSoldier soldier, List<BattleItem> ground, bool isInitialInventory)
+		public Inventory(
+			Battle battle,
+			BattleSoldier soldier,
+			List<BattleItem> ground,
+			bool isInitialInventory
+		)
 		{
 			this.battle = battle;
 			this.soldier = soldier;
@@ -66,7 +71,15 @@ namespace XCom.Battlescape
 			if (!isInitialInventory)
 			{
 				AddControl(new Label(24, 250, "TUs>", Font.Normal, ColorScheme.Green));
-				AddControl(new DynamicLabel(24, 270, () => $"{soldier.TimeUnits}", Font.Normal, ColorScheme.Orange));
+				AddControl(
+					new DynamicLabel(
+						24,
+						270,
+						() => $"{soldier.TimeUnits}",
+						Font.Normal,
+						ColorScheme.Orange
+					)
+				);
 			}
 
 			AddControl(new Overlay(soldier.Soldier.Paperdoll, 4));
@@ -97,7 +110,14 @@ namespace XCom.Battlescape
 			return groundView;
 		}
 
-		private static void FillGroundView(BattleItem[,] groundView, List<BattleItem> items, int row, int column, int maxWidth, int maxHeight)
+		private static void FillGroundView(
+			BattleItem[,] groundView,
+			List<BattleItem> items,
+			int row,
+			int column,
+			int maxWidth,
+			int maxHeight
+		)
 		{
 			if (maxWidth == 0 || maxHeight == 0 || !items.Any())
 				return;
@@ -105,13 +125,29 @@ namespace XCom.Battlescape
 			{
 				for (var height = maxHeight; height > 0; --height)
 				{
-					var matchingItem = items.FirstOrDefault(item => item.Width == width && item.Height == height);
+					var matchingItem = items.FirstOrDefault(item =>
+						item.Width == width && item.Height == height
+					);
 					if (matchingItem == null)
 						continue;
 					groundView[row, column] = matchingItem;
 					items.Remove(matchingItem);
-					FillGroundView(groundView, items, row + height, column, width, maxHeight - height);
-					FillGroundView(groundView, items, row, column + width, maxWidth - width, maxHeight);
+					FillGroundView(
+						groundView,
+						items,
+						row + height,
+						column,
+						width,
+						maxHeight - height
+					);
+					FillGroundView(
+						groundView,
+						items,
+						row,
+						column + width,
+						maxWidth - width,
+						maxHeight
+					);
 					return;
 				}
 			}
@@ -137,7 +173,13 @@ namespace XCom.Battlescape
 				return;
 			}
 			var blink = (int)(stopwatch.ElapsedMilliseconds / 20) % 8;
-			buffer.FillRect(176, 48, 320 - 48 * 2, 200 - 176, Palette.GetPalette(1).GetColor(40 + blink));
+			buffer.FillRect(
+				176,
+				48,
+				320 - 48 * 2,
+				200 - 176,
+				Palette.GetPalette(1).GetColor(40 + blink)
+			);
 			Font.Normal.DrawString(buffer, 184, 109, "Not Enough Time Units!", ColorScheme.Yellow);
 		}
 
@@ -183,7 +225,12 @@ namespace XCom.Battlescape
 			DrawBattleItems(buffer, soldier.Belt, 104, 192);
 		}
 
-		private static void DrawCenteredBattleItem(GraphicsBuffer buffer, BattleItem item, int topRow, int leftColumn)
+		private static void DrawCenteredBattleItem(
+			GraphicsBuffer buffer,
+			BattleItem item,
+			int topRow,
+			int leftColumn
+		)
 		{
 			if (item == null)
 				return;
@@ -192,18 +239,28 @@ namespace XCom.Battlescape
 			buffer.DrawItem(top, left, item.Image);
 		}
 
-		private static void DrawBattleItems(GraphicsBuffer buffer, BattleItem[,] items, int topRow, int leftColumn)
+		private static void DrawBattleItems(
+			GraphicsBuffer buffer,
+			BattleItem[,] items,
+			int topRow,
+			int leftColumn
+		)
 		{
 			foreach (var row in Enumerable.Range(0, items.GetLength(0)))
-				foreach (var column in Enumerable.Range(0, items.GetLength(1)))
-				{
-					var item = items[row, column];
-					if (item != null)
-						buffer.DrawItem(topRow + row * 16, leftColumn + column * 16, item.Image);
-				}
+			foreach (var column in Enumerable.Range(0, items.GetLength(1)))
+			{
+				var item = items[row, column];
+				if (item != null)
+					buffer.DrawItem(topRow + row * 16, leftColumn + column * 16, item.Image);
+			}
 		}
 
-		private static void DrawBattleItems(GraphicsBuffer buffer, BattleItem[] items, int topRow, int leftColumn)
+		private static void DrawBattleItems(
+			GraphicsBuffer buffer,
+			BattleItem[] items,
+			int topRow,
+			int leftColumn
+		)
 		{
 			foreach (var column in Enumerable.Range(0, items.Length))
 			{
@@ -227,7 +284,10 @@ namespace XCom.Battlescape
 				Font.Normal.DrawString(buffer, 80, 272, "LEFT=", ColorScheme.Green);
 				Font.Normal.DrawString(buffer, 80, 298, $"{selection.Rounds}", ColorScheme.Orange);
 				buffer.DrawFrame(88, 272, 32, 48, Color.Gray);
-				var ammunitionItem = selection.Ammunition == null ? selection : new BattleItem { Item = selection.Ammunition };
+				var ammunitionItem =
+					selection.Ammunition == null
+						? selection
+						: new BattleItem { Item = selection.Ammunition };
 				DrawCenteredBattleItem(buffer, ammunitionItem, 88, 272);
 			}
 
@@ -260,13 +320,17 @@ namespace XCom.Battlescape
 		private void OnPreviousSoldier()
 		{
 			//TODO: when in battle, use ground items at soldiers position
-			GameState.Current.SetScreen(new Inventory(battle, battle.PreviousSoldier(soldier), ground, isInitialInventory));
+			GameState.Current.SetScreen(
+				new Inventory(battle, battle.PreviousSoldier(soldier), ground, isInitialInventory)
+			);
 		}
 
 		private void OnNextSoldier()
 		{
 			//TODO: when in battle, use ground items at soldiers position
-			GameState.Current.SetScreen(new Inventory(battle, battle.NextSoldier(soldier), ground, isInitialInventory));
+			GameState.Current.SetScreen(
+				new Inventory(battle, battle.NextSoldier(soldier), ground, isInitialInventory)
+			);
 		}
 
 		private void OnUnloadWeapon()
@@ -283,7 +347,7 @@ namespace XCom.Battlescape
 			{
 				Item = selection.Ammunition,
 				Ammunition = null,
-				Rounds = selection.Rounds
+				Rounds = selection.Rounds,
 			};
 
 			soldier.RightHand = selection;
@@ -371,7 +435,8 @@ namespace XCom.Battlescape
 			InventoryLocation location,
 			int row,
 			int column,
-			Func<int, int, int, int, bool> canDropHere = null)
+			Func<int, int, int, int, bool> canDropHere = null
+		)
 		{
 			if (selection == null)
 			{
@@ -387,7 +452,10 @@ namespace XCom.Battlescape
 					return;
 				var dropRow = dropLocation.Value.Y;
 				var dropColumn = dropLocation.Value.X;
-				if (canDropHere != null && !canDropHere(dropRow, dropColumn, selection.Width, selection.Height))
+				if (
+					canDropHere != null
+					&& !canDropHere(dropRow, dropColumn, selection.Width, selection.Height)
+				)
 					return;
 				if (!TryConsumeTimeUnits(GetTransferTimeUnits(location)))
 					return;
@@ -429,7 +497,7 @@ namespace XCom.Battlescape
 				return;
 			if (!TryConsumeTimeUnits(15))
 				return;
-			item.Ammunition = (AmmunitionType) selection.Item;
+			item.Ammunition = (AmmunitionType)selection.Item;
 			item.Rounds = selection.Rounds;
 			selection = null;
 			BattlescapeSoundEffect.Reload.Play();
@@ -482,14 +550,23 @@ namespace XCom.Battlescape
 					if (item == null)
 						continue;
 					foreach (var rowOffset in Enumerable.Range(0, item.Height))
-						foreach (var columnOffset in Enumerable.Range(0, item.Width))
-							targets[row + rowOffset, column + columnOffset] = new Point { X = column, Y = row };
+					foreach (var columnOffset in Enumerable.Range(0, item.Width))
+						targets[row + rowOffset, column + columnOffset] = new Point
+						{
+							X = column,
+							Y = row,
+						};
 				}
 			}
 			return targets;
 		}
 
-		private static Point? GetDropLocation(BattleItem[,] items, int row, int column, BattleItem item)
+		private static Point? GetDropLocation(
+			BattleItem[,] items,
+			int row,
+			int column,
+			BattleItem item
+		)
 		{
 			var targets = GetClickTargets(items);
 			var itemWidth = item.Width;
@@ -497,13 +574,13 @@ namespace XCom.Battlescape
 			var width = items.GetLength(1);
 			var height = items.GetLength(0);
 			foreach (var rowOffset in Enumerable.Range(0, itemHeight))
-				foreach (var columnOffset in Enumerable.Range(0, itemWidth))
-				{
-					var dropRow = row - rowOffset;
-					var dropColumn = column - columnOffset;
-					if (CanDropHere(targets, dropRow, dropColumn, itemWidth, itemHeight, width, height))
-						return new Point { X = dropColumn, Y = dropRow };
-				}
+			foreach (var columnOffset in Enumerable.Range(0, itemWidth))
+			{
+				var dropRow = row - rowOffset;
+				var dropColumn = column - columnOffset;
+				if (CanDropHere(targets, dropRow, dropColumn, itemWidth, itemHeight, width, height))
+					return new Point { X = dropColumn, Y = dropRow };
+			}
 			return null;
 		}
 
@@ -530,16 +607,23 @@ namespace XCom.Battlescape
 			int itemWidth,
 			int itemHeight,
 			int width,
-			int height)
+			int height
+		)
 		{
-			if (dropRow < 0 ||
-				dropColumn < 0 ||
-				dropRow + itemHeight > height ||
-				dropColumn + itemWidth > width)
+			if (
+				dropRow < 0
+				|| dropColumn < 0
+				|| dropRow + itemHeight > height
+				|| dropColumn + itemWidth > width
+			)
 				return false;
-			return Enumerable.Range(dropRow, itemHeight).All(row =>
-				Enumerable.Range(dropColumn, itemWidth).All(column =>
-					targets[row, column] == null));
+			return Enumerable
+				.Range(dropRow, itemHeight)
+				.All(row =>
+					Enumerable
+						.Range(dropColumn, itemWidth)
+						.All(column => targets[row, column] == null)
+				);
 		}
 
 		private static BattleItem SelectItem(BattleItem[,] items, int row, int column)

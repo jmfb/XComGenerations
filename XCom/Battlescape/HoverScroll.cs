@@ -39,15 +39,27 @@ namespace XCom.Battlescape
 		}
 
 		private static bool ShouldScrollInAtLeastOneDirection(Point pointer) =>
-			ShouldScrollUp(pointer) ||
-			ShouldScrollDown(pointer) ||
-			ShouldScrollLeft(pointer) ||
-			ShouldScrollRight(pointer);
-		private static bool ShouldScrollUp(Point pointer) => pointer.Y < (ShouldScrollHorizontally(pointer) ? 50 : 10);
-		private static bool ShouldScrollDown(Point pointer) => pointer.Y >= (ShouldScrollHorizontally(pointer) ? 150 : 190);
-		private static bool ShouldScrollLeft(Point pointer) => pointer.X < (ShouldScrollVertically(pointer) ? 50 : 10);
-		private static bool ShouldScrollRight(Point pointer) => pointer.X >= (ShouldScrollVertically(pointer) ? 270 : 310);
-		private static bool ShouldScrollHorizontally(Point pointer) => pointer.X < 10 || pointer.X >= 310;
-		private static bool ShouldScrollVertically(Point pointer) => pointer.Y < 10 || pointer.Y >= 190;
+			ShouldScrollUp(pointer)
+			|| ShouldScrollDown(pointer)
+			|| ShouldScrollLeft(pointer)
+			|| ShouldScrollRight(pointer);
+
+		private static bool ShouldScrollUp(Point pointer) =>
+			pointer.Y < (ShouldScrollHorizontally(pointer) ? 50 : 10);
+
+		private static bool ShouldScrollDown(Point pointer) =>
+			pointer.Y >= (ShouldScrollHorizontally(pointer) ? 150 : 190);
+
+		private static bool ShouldScrollLeft(Point pointer) =>
+			pointer.X < (ShouldScrollVertically(pointer) ? 50 : 10);
+
+		private static bool ShouldScrollRight(Point pointer) =>
+			pointer.X >= (ShouldScrollVertically(pointer) ? 270 : 310);
+
+		private static bool ShouldScrollHorizontally(Point pointer) =>
+			pointer.X < 10 || pointer.X >= 310;
+
+		private static bool ShouldScrollVertically(Point pointer) =>
+			pointer.Y < 10 || pointer.Y >= 190;
 	}
 }

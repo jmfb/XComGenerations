@@ -18,7 +18,8 @@ namespace XCom.Controls
 			ColorScheme scheme,
 			Font font,
 			Action action,
-			int repeatInterval)
+			int repeatInterval
+		)
 			: base(topRow, leftColumn, width, height, text, scheme, font, action)
 		{
 			this.repeatInterval = repeatInterval;

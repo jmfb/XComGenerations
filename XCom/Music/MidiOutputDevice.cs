@@ -43,7 +43,10 @@ namespace XCom.Music
 			stopwatch.Restart();
 			microsecondsPerBeat = defaultTempo;
 			trackEventIndices = Enumerable.Repeat(0, CurrentFile.Tracks.Count).ToList();
-			trackEventElapsed = Enumerable.Range(0, CurrentFile.Tracks.Count).Select(value => (long)0).ToList();
+			trackEventElapsed = Enumerable
+				.Range(0, CurrentFile.Tracks.Count)
+				.Select(value => (long)0)
+				.ToList();
 		}
 
 		public void PlayFiles(params MidiFile[] filesToRepeat)
@@ -63,8 +66,10 @@ namespace XCom.Music
 				PlayFile(fileIndex + 1);
 		}
 
-		private bool IsEndOfFile => Enumerable.Range(0, CurrentFile.Tracks.Count)
-			.All(index => trackEventIndices[index] >= CurrentFile.Tracks[index].Events.Count);
+		private bool IsEndOfFile =>
+			Enumerable
+				.Range(0, CurrentFile.Tracks.Count)
+				.All(index => trackEventIndices[index] >= CurrentFile.Tracks[index].Events.Count);
 
 		private void PlayTrackEvents(int trackIndex, long elapsedMicroseconds)
 		{
@@ -72,10 +77,17 @@ namespace XCom.Music
 			var eventIndex = trackEventIndices[trackIndex];
 			if (eventIndex >= track.Events.Count)
 				return;
-			for (; trackEventIndices[trackIndex] < track.Events.Count; ++trackEventIndices[trackIndex])
+			for (
+				;
+				trackEventIndices[trackIndex] < track.Events.Count;
+				++trackEventIndices[trackIndex]
+			)
 			{
 				var midiEvent = track.Events[trackEventIndices[trackIndex]];
-				var deltaTime = (elapsedMicroseconds - trackEventElapsed[trackIndex]) * CurrentFile.TicksPerBeat / microsecondsPerBeat;
+				var deltaTime =
+					(elapsedMicroseconds - trackEventElapsed[trackIndex])
+					* CurrentFile.TicksPerBeat
+					/ microsecondsPerBeat;
 				if (midiEvent.DeltaTime > deltaTime)
 					return;
 				var duration = midiEvent.DeltaTime * microsecondsPerBeat / CurrentFile.TicksPerBeat;
@@ -90,11 +102,11 @@ namespace XCom.Music
 			{
 				switch (midiEvent.MetaEvent)
 				{
-				case MetaEvent.SetTempo:
-					microsecondsPerBeat = midiEvent.Tempo;
-					break;
-				case MetaEvent.EndOfTrack:
-					break;
+					case MetaEvent.SetTempo:
+						microsecondsPerBeat = midiEvent.Tempo;
+						break;
+					case MetaEvent.EndOfTrack:
+						break;
 				}
 			}
 			else

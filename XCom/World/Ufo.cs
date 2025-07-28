@@ -25,7 +25,8 @@ namespace XCom.World
 			UfoStatus status,
 			AlienType alienType,
 			AlienMissionType mission,
-			RegionType region)
+			RegionType region
+		)
 		{
 			var ufo = new Ufo
 			{
@@ -34,7 +35,7 @@ namespace XCom.World
 				Number = GameState.Current.Data.NextUfoNumber++,
 				AlienType = alienType,
 				Mission = mission,
-				Region = region
+				Region = region,
 			};
 			GameState.Current.Data.Ufos.Add(ufo);
 			return ufo;
@@ -42,15 +43,18 @@ namespace XCom.World
 
 		[JsonIgnore]
 		public string Altitude => "VERY LOW"; //TODO: something with altitudes I guess
+
 		[JsonIgnore]
 		public string Heading => "NORTH WEST";
+
 		[JsonIgnore]
 		public string Name => $"UFO-{Number}";
+
 		[JsonIgnore]
 		public WorldObjectType WorldObjectType =>
-			Status == UfoStatus.Flying ? WorldObjectType.Ufo :
-			Status == UfoStatus.Landed ? WorldObjectType.LandingSite :
-			WorldObjectType.CrashSite;
+			Status == UfoStatus.Flying ? WorldObjectType.Ufo
+			: Status == UfoStatus.Landed ? WorldObjectType.LandingSite
+			: WorldObjectType.CrashSite;
 
 		//TODO: calculate heading based on Location/Destination
 
@@ -68,10 +72,12 @@ namespace XCom.World
 		public int Distance(long milliseconds)
 		{
 			const double earthCircumferenceInNauticalMiles = 21639;
-			const double nauticalMilesPerEightDegree = earthCircumferenceInNauticalMiles / Trigonometry.EighthDegreesCount;
+			const double nauticalMilesPerEightDegree =
+				earthCircumferenceInNauticalMiles / Trigonometry.EighthDegreesCount;
 			const double millisecondsPerHour = 1000 * 60 * 60;
 			var distanceInNauticalMiles = (Speed * milliseconds) / millisecondsPerHour;
-			var distanceInEighthDegrees = distanceInNauticalMiles / nauticalMilesPerEightDegree + DistanceError;
+			var distanceInEighthDegrees =
+				distanceInNauticalMiles / nauticalMilesPerEightDegree + DistanceError;
 			var integerDistanceInEighthDegrees = (int)distanceInEighthDegrees;
 			DistanceError = distanceInEighthDegrees - integerDistanceInEighthDegrees;
 			return integerDistanceInEighthDegrees;

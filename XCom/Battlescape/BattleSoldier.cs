@@ -46,27 +46,33 @@ namespace XCom.Battlescape
 
 		[JsonIgnore]
 		public string Name => Soldier.Name;
+
 		[JsonIgnore]
 		public int MaxTimeUnits => Soldier.Statistics.TimeUnits;
+
 		[JsonIgnore]
 		public int MaxHealth => Soldier.Statistics.Health;
+
 		[JsonIgnore]
 		public int MaxEnergy => Soldier.Statistics.Stamina;
+
 		[JsonIgnore]
 		public int MaxMorale => 100;
+
 		[JsonIgnore]
 		public Rank? Rank => Soldier.Rank;
 
 		[JsonIgnore]
 		public Soldier Soldier => GameState.Current.Data.GetSoldier(Id);
+
 		[JsonIgnore]
 		public int TotalFatalWounds =>
-			HeadFatalWounds +
-			RightArmFatalWounds +
-			LeftArmFatalWounds +
-			BodyFatalWounds +
-			RightLegFatalWounds +
-			LeftLegFatalWounds;
+			HeadFatalWounds
+			+ RightArmFatalWounds
+			+ LeftArmFatalWounds
+			+ BodyFatalWounds
+			+ RightLegFatalWounds
+			+ LeftLegFatalWounds;
 
 		public static BattleSoldier Create(int soldierId)
 		{
@@ -109,7 +115,7 @@ namespace XCom.Battlescape
 				RearArmor = soldier.RearArmor,
 				UnderArmor = soldier.UnderArmor,
 
-				DoneThisTurn = false
+				DoneThisTurn = false,
 			};
 		}
 	}

@@ -3,6 +3,6 @@
 	public enum FuelType
 	{
 		Normal,
-		Elerium115
+		Elerium115,
 	}
 }

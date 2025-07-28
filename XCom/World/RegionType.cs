@@ -18,14 +18,17 @@ namespace XCom.World
 		Pacific,
 		NorthAtlantic,
 		SouthAtlantic,
-		IndianOcean
+		IndianOcean,
 	}
 
 	public static class RegionTypeExtensions
 	{
 		public static RegionMetadata Metadata(this RegionType regionType) => metadata[regionType];
 
-		private static readonly Dictionary<RegionType, RegionMetadata> metadata = new Dictionary<RegionType, RegionMetadata>
+		private static readonly Dictionary<RegionType, RegionMetadata> metadata = new Dictionary<
+			RegionType,
+			RegionMetadata
+		>
 		{
 			{ RegionType.NorthAmerica, RegionMetadata.Create("North America", 800000) },
 			{ RegionType.Arctic, RegionMetadata.Create("Arctic", 950000) },
@@ -41,7 +44,7 @@ namespace XCom.World
 			{ RegionType.Pacific, RegionMetadata.Create("Pacific", 600000) },
 			{ RegionType.NorthAtlantic, RegionMetadata.Create("North Atlantic", 500000) },
 			{ RegionType.SouthAtlantic, RegionMetadata.Create("South Atlantic", 500000) },
-			{ RegionType.IndianOcean, RegionMetadata.Create("Indian Ocean", 500000) }
+			{ RegionType.IndianOcean, RegionMetadata.Create("Indian Ocean", 500000) },
 		};
 	}
 }

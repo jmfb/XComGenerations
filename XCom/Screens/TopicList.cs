@@ -19,8 +19,17 @@ namespace XCom.Screens
 
 			var topics = GameState.Current.Data.GetTopics(category);
 			var selectionColor = Palette.GetPalette(12).GetColor(230);
-			AddControl(new ListView<TopicType>(50, 40, 14, topics, ColorScheme.Aqua, selectionColor, OnSelectTopic)
-				.AddColumn(224, Alignment.Center, item => item.Metadata().Name));
+			AddControl(
+				new ListView<TopicType>(
+					50,
+					40,
+					14,
+					topics,
+					ColorScheme.Aqua,
+					selectionColor,
+					OnSelectTopic
+				).AddColumn(224, Alignment.Center, item => item.Metadata().Name)
+			);
 
 			AddControl(new Button(166, 48, 224, 16, "OK", ColorScheme.Green, Font.Normal, OnOk));
 		}

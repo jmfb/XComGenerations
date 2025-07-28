@@ -18,8 +18,12 @@ namespace XCom.World
 			this.battle = battle;
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Green, Backgrounds.Assault, 0));
 			AddControl(new Label(24, 16, "UFO GROUND ASSAULT", Font.Large, ColorScheme.Aqua));
-			AddControl(new Label(40, 16, battle.Craft.Destination.Name, Font.Large, ColorScheme.Aqua));
-			AddControl(new Label(56, 16, $"CRAFT> {battle.Craft.Name}", Font.Large, ColorScheme.Aqua));
+			AddControl(
+				new Label(40, 16, battle.Craft.Destination.Name, Font.Large, ColorScheme.Aqua)
+			);
+			AddControl(
+				new Label(56, 16, $"CRAFT> {battle.Craft.Name}", Font.Large, ColorScheme.Aqua)
+			);
 			var nextTop = 72;
 			var instructions = new[]
 			{
@@ -28,7 +32,7 @@ namespace XCom.World
 				"eliminated or neutralized.  Recovery of UFO, artifacts and",
 				"alien corpses can then be initiated.  To abort the mission",
 				"return XCom operatives to transport vehicle and click on",
-				"the 'Abort Mission' icon."
+				"the 'Abort Mission' icon.",
 			};
 			foreach (var instruction in instructions)
 			{
@@ -46,7 +50,9 @@ namespace XCom.World
 
 		private void OnOk()
 		{
-			GameState.Current.SetScreen(new Inventory(battle, battle.Soldiers.First(), battle.Stores, true));
+			GameState.Current.SetScreen(
+				new Inventory(battle, battle.Soldiers.First(), battle.Stores, true)
+			);
 		}
 	}
 }

@@ -15,7 +15,10 @@ namespace XCom.Data
 
 		public bool IsRequiredResearchCompleted(List<ResearchType> completedResearch)
 		{
-			return RequiredResearch == null || RequiredResearch.Any(researchPath => researchPath.All(completedResearch.Contains));
+			return RequiredResearch == null
+				|| RequiredResearch.Any(researchPath =>
+					researchPath.All(completedResearch.Contains)
+				);
 		}
 
 		public bool AreRequiredItemsInStores(Stores stores)
@@ -27,9 +30,13 @@ namespace XCom.Data
 
 		public bool IsExhausted(List<ResearchType> completedResearch)
 		{
-			if (AdditionalResearchResults != null && !AdditionalResearchResults.All(completedResearch.Contains))
+			if (
+				AdditionalResearchResults != null
+				&& !AdditionalResearchResults.All(completedResearch.Contains)
+			)
 				return false;
-			return LotteryResearchResults == null || LotteryResearchResults.All(completedResearch.Contains);
+			return LotteryResearchResults == null
+				|| LotteryResearchResults.All(completedResearch.Contains);
 		}
 	}
 }

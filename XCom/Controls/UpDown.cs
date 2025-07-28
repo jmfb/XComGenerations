@@ -18,8 +18,9 @@ namespace XCom.Controls
 		{
 			None,
 			Up,
-			Down
+			Down,
 		}
+
 		private State state = State.None;
 
 		public UpDown(
@@ -27,7 +28,8 @@ namespace XCom.Controls
 			int leftColumn,
 			ColorScheme scheme,
 			Action upAction,
-			Action downAction)
+			Action downAction
+		)
 		{
 			this.topRow = topRow;
 			this.leftColumn = leftColumn;
@@ -38,10 +40,10 @@ namespace XCom.Controls
 
 		public override bool HitTest(int row, int column)
 		{
-			return row >= topRow &&
-				row < (topRow + 8) &&
-				column >= leftColumn &&
-				column < (leftColumn + 23);
+			return row >= topRow
+				&& row < (topRow + 8)
+				&& column >= leftColumn
+				&& column < (leftColumn + 23);
 		}
 
 		public override void OnLeftButtonDown(int row, int column)
@@ -93,19 +95,31 @@ namespace XCom.Controls
 			stopwatch.Restart();
 			switch (state)
 			{
-			case State.Up:
-				upAction();
-				break;
-			case State.Down:
-				downAction();
-				break;
+				case State.Up:
+					upAction();
+					break;
+				case State.Down:
+					downAction();
+					break;
 			}
 		}
 
 		public override void Render(GraphicsBuffer buffer)
 		{
-			Font.UpDownButtons.DrawString(buffer, topRow, leftColumn, "U", state == State.Up ? scheme.Inverse : scheme);
-			Font.UpDownButtons.DrawString(buffer, topRow, leftColumn + 12, "D", state == State.Down ? scheme.Inverse : scheme);
+			Font.UpDownButtons.DrawString(
+				buffer,
+				topRow,
+				leftColumn,
+				"U",
+				state == State.Up ? scheme.Inverse : scheme
+			);
+			Font.UpDownButtons.DrawString(
+				buffer,
+				topRow,
+				leftColumn + 12,
+				"D",
+				state == State.Down ? scheme.Inverse : scheme
+			);
 		}
 
 		public void Abort()

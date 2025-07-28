@@ -20,7 +20,8 @@
 			const int secondsInDay = 60 * 60 * 24;
 			const int secondsPerEighthDegree = secondsInDay / Trigonometry.EighthDegreesCount;
 			const int secondsPerShade = 450;
-			var localSecondOfDay = (longitude * secondsPerEighthDegree + secondsInDay + secondOfDay) % secondsInDay;
+			var localSecondOfDay =
+				(longitude * secondsPerEighthDegree + secondsInDay + secondOfDay) % secondsInDay;
 			return localSecondOfDay / secondsPerShade;
 		}
 

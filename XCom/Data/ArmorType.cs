@@ -7,7 +7,7 @@ namespace XCom.Data
 	{
 		PersonalArmor,
 		PowerSuit,
-		FlyingSuit
+		FlyingSuit,
 	}
 
 	public static class ArmorTypeExtensions
@@ -28,7 +28,7 @@ namespace XCom.Data
 			FireResistant = true,
 			StunResistance = 10,
 			Item = ItemType.PersonalArmor,
-			Overlay = Paperdolls.PersonalArmorWhiteMale
+			Overlay = Paperdolls.PersonalArmorWhiteMale,
 		};
 
 		private static readonly ArmorMetadata powerSuit = new ArmorMetadata
@@ -43,7 +43,7 @@ namespace XCom.Data
 			SmokeResistant = true,
 			StunResistance = 20,
 			Item = ItemType.PowerSuit,
-			Overlay = Paperdolls.PowerSuit
+			Overlay = Paperdolls.PowerSuit,
 		};
 
 		private static readonly ArmorMetadata flyingSuit = new ArmorMetadata
@@ -58,14 +58,17 @@ namespace XCom.Data
 			SmokeResistant = true,
 			StunResistance = 20,
 			Item = ItemType.FlyingSuit,
-			Overlay = Paperdolls.FlyingSuit
+			Overlay = Paperdolls.FlyingSuit,
 		};
 
-		private static readonly Dictionary<ArmorType, ArmorMetadata> metadata = new Dictionary<ArmorType,ArmorMetadata>
+		private static readonly Dictionary<ArmorType, ArmorMetadata> metadata = new Dictionary<
+			ArmorType,
+			ArmorMetadata
+		>
 		{
 			{ ArmorType.PersonalArmor, personalArmor },
 			{ ArmorType.PowerSuit, powerSuit },
-			{ ArmorType.FlyingSuit, flyingSuit }
+			{ ArmorType.FlyingSuit, flyingSuit },
 		};
 	}
 }

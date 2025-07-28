@@ -12,7 +12,7 @@ namespace XCom.Data
 		Stingray,
 		LaserBeam,
 		PlasmaBeam,
-		FusionBall
+		FusionBall,
 	}
 
 	public static class CraftWeaponTypeExtensions
@@ -33,7 +33,7 @@ namespace XCom.Data
 			Image = new Image(CraftWeapons.Cannon),
 			Item = ItemType.Cannon,
 			Ammo = ItemType.CannonRounds,
-			Overlay = Overlays.Cannon
+			Overlay = Overlays.Cannon,
 		};
 		private static readonly CraftWeaponMetadata avalanche = new CraftWeaponMetadata
 		{
@@ -46,7 +46,7 @@ namespace XCom.Data
 			Image = new Image(CraftWeapons.Avalanche),
 			Item = ItemType.AvalancheLauncher,
 			Ammo = ItemType.AvalancheMissiles,
-			Overlay = Overlays.Avalanche
+			Overlay = Overlays.Avalanche,
 		};
 		private static readonly CraftWeaponMetadata stingray = new CraftWeaponMetadata
 		{
@@ -59,7 +59,7 @@ namespace XCom.Data
 			Image = new Image(CraftWeapons.Stingray),
 			Item = ItemType.StingrayLauncher,
 			Ammo = ItemType.StingrayMissiles,
-			Overlay = Overlays.Stingray
+			Overlay = Overlays.Stingray,
 		};
 		private static readonly CraftWeaponMetadata laserBeam = new CraftWeaponMetadata
 		{
@@ -72,7 +72,7 @@ namespace XCom.Data
 			Image = new Image(CraftWeapons.LaserBeam),
 			Item = ItemType.LaserCannon,
 			Ammo = null,
-			Overlay = Overlays.LaserCannon
+			Overlay = Overlays.LaserCannon,
 		};
 		private static readonly CraftWeaponMetadata plasmaBeam = new CraftWeaponMetadata
 		{
@@ -85,7 +85,7 @@ namespace XCom.Data
 			Image = new Image(CraftWeapons.PlasmaBeam),
 			Item = ItemType.PlasmaBeam,
 			Ammo = null,
-			Overlay = Overlays.PlasmaBeam
+			Overlay = Overlays.PlasmaBeam,
 		};
 		private static readonly CraftWeaponMetadata fusionBall = new CraftWeaponMetadata
 		{
@@ -98,17 +98,18 @@ namespace XCom.Data
 			Image = new Image(CraftWeapons.FusionBall),
 			Item = ItemType.FusionBallLauncher,
 			Ammo = ItemType.FusionBall,
-			Overlay = Overlays.FusionBallLauncher
+			Overlay = Overlays.FusionBallLauncher,
 		};
 
-		private static readonly Dictionary<CraftWeaponType, CraftWeaponMetadata> metadata = new Dictionary<CraftWeaponType, CraftWeaponMetadata>
-		{
-			{ CraftWeaponType.Cannon, cannon },
-			{ CraftWeaponType.Avalanche, avalanche },
-			{ CraftWeaponType.Stingray, stingray },
-			{ CraftWeaponType.LaserBeam, laserBeam },
-			{ CraftWeaponType.PlasmaBeam, plasmaBeam },
-			{ CraftWeaponType.FusionBall, fusionBall }
-		};
+		private static readonly Dictionary<CraftWeaponType, CraftWeaponMetadata> metadata =
+			new Dictionary<CraftWeaponType, CraftWeaponMetadata>
+			{
+				{ CraftWeaponType.Cannon, cannon },
+				{ CraftWeaponType.Avalanche, avalanche },
+				{ CraftWeaponType.Stingray, stingray },
+				{ CraftWeaponType.LaserBeam, laserBeam },
+				{ CraftWeaponType.PlasmaBeam, plasmaBeam },
+				{ CraftWeaponType.FusionBall, fusionBall },
+			};
 	}
 }

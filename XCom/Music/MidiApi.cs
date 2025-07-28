@@ -31,14 +31,24 @@ namespace XCom.Music
 			MMSYSERR_NODRIVERCB = 20,
 			WAVERR_BADFORMAT = 32,
 			WAVERR_STILLPLAYING = 33,
-			WAVERR_UNPREPARED = 34
+			WAVERR_UNPREPARED = 34,
 		}
 
 		[DllImport("winmm.dll")]
-		private static extern MMRESULT midiOutGetErrorText(uint mmrError, StringBuilder pszText, uint cchText);
+		private static extern MMRESULT midiOutGetErrorText(
+			uint mmrError,
+			StringBuilder pszText,
+			uint cchText
+		);
 
 		[DllImport("winmm.dll")]
-		private static extern MMRESULT midiOutOpen(out IntPtr lphMidiOut, uint uDeviceID, IntPtr dwCallback, IntPtr dwInstance, uint dwFlags);
+		private static extern MMRESULT midiOutOpen(
+			out IntPtr lphMidiOut,
+			uint uDeviceID,
+			IntPtr dwCallback,
+			IntPtr dwInstance,
+			uint dwFlags
+		);
 
 		[DllImport("winmm.dll")]
 		private static extern MMRESULT midiOutClose(IntPtr hMidiOut);
@@ -59,10 +69,17 @@ namespace XCom.Music
 				return;
 			var description = new StringBuilder((int)maxErrorDescriptionLength);
 			midiOutGetErrorText((uint)result, description, (uint)description.Capacity);
-			throw new InvalidOperationException($"{function}({parameters}) returned {result}({(int)result}): {description}");
+			throw new InvalidOperationException(
+				$"{function}({parameters}) returned {result}({(int)result}): {description}"
+			);
 		}
 
-		public static IntPtr OpenOutputDevice(uint deviceId, IntPtr callback, IntPtr instance, uint flags)
+		public static IntPtr OpenOutputDevice(
+			uint deviceId,
+			IntPtr callback,
+			IntPtr instance,
+			uint flags
+		)
 		{
 			IntPtr handle;
 			var result = midiOutOpen(out handle, deviceId, callback, instance, flags);

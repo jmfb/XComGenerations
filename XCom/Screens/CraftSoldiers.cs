@@ -14,19 +14,47 @@ namespace XCom.Screens
 		{
 			this.craft = craft;
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.Purple, Backgrounds.Soldier, 8));
-			AddControl(new Label(8, 16, $"Select Squad for {craft.Name}", Font.Large, ColorScheme.Purple));
+			AddControl(
+				new Label(8, 16, $"Select Squad for {craft.Name}", Font.Large, ColorScheme.Purple)
+			);
 			AddControl(new Label(24, 16, "SPACE AVAILABLE>", Font.Normal, ColorScheme.Purple));
-			AddControl(new DynamicLabel(24, 94, () => craft.SpaceAvailable.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(
+				new DynamicLabel(
+					24,
+					94,
+					() => craft.SpaceAvailable.FormatNumber(),
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
 			AddControl(new Label(24, 130, "SPACE USED>", Font.Normal, ColorScheme.Purple));
-			AddControl(new DynamicLabel(24, 183, () => craft.SpaceUsed.FormatNumber(), Font.Normal, ColorScheme.White));
+			AddControl(
+				new DynamicLabel(
+					24,
+					183,
+					() => craft.SpaceUsed.FormatNumber(),
+					Font.Normal,
+					ColorScheme.White
+				)
+			);
 			AddControl(new Label(32, 16, "NAME", Font.Normal, ColorScheme.Purple));
 			AddControl(new Label(32, 130, "RANK", Font.Normal, ColorScheme.Purple));
 			AddControl(new Label(32, 232, "CRAFT", Font.Normal, ColorScheme.Purple));
 			var selectionColor = Palette.GetPalette(8).GetColor(230);
-			AddControl(new ListView<Soldier>(40, 16, 16, GameState.SelectedBase.Soldiers, ColorScheme.Purple, selectionColor, OnClickSoldier)
-				.AddColumn(114, Alignment.Left, soldier => soldier.Name, GetSoldierColor)
-				.AddColumn(102, Alignment.Left, soldier => $"{soldier.Rank}", GetSoldierColor)
-				.AddColumn(64, Alignment.Left, soldier => soldier.CraftName, GetSoldierColor));
+			AddControl(
+				new ListView<Soldier>(
+					40,
+					16,
+					16,
+					GameState.SelectedBase.Soldiers,
+					ColorScheme.Purple,
+					selectionColor,
+					OnClickSoldier
+				)
+					.AddColumn(114, Alignment.Left, soldier => soldier.Name, GetSoldierColor)
+					.AddColumn(102, Alignment.Left, soldier => $"{soldier.Rank}", GetSoldierColor)
+					.AddColumn(64, Alignment.Left, soldier => soldier.CraftName, GetSoldierColor)
+			);
 			AddControl(new Button(176, 16, 288, 16, "OK", ColorScheme.Blue, Font.Normal, OnOk));
 		}
 
@@ -68,9 +96,9 @@ namespace XCom.Screens
 
 		private ColorScheme GetSoldierColor(Soldier soldier)
 		{
-			return soldier.Craft == null ? ColorScheme.Blue :
-				ReferenceEquals(craft, soldier.Craft) ? ColorScheme.White :
-				ColorScheme.Purple;
+			return soldier.Craft == null ? ColorScheme.Blue
+				: ReferenceEquals(craft, soldier.Craft) ? ColorScheme.White
+				: ColorScheme.Purple;
 		}
 	}
 }

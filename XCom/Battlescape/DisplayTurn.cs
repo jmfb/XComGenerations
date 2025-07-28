@@ -15,9 +15,19 @@ namespace XCom.Battlescape
 			this.battle = battle;
 			AddControl(new Border(0, 0, 320, 200, ColorScheme.White, Backgrounds.Turn, 1));
 			AddControl(new Label(68, Label.Center, "UFO", Font.Large, ColorScheme.White));
-			AddControl(new Label(92, Label.Center, $"TURN> {battle.Turn}", Font.Large, ColorScheme.White));
+			AddControl(
+				new Label(92, Label.Center, $"TURN> {battle.Turn}", Font.Large, ColorScheme.White)
+			);
 			AddControl(new Label(108, Label.Center, "SIDE> Xcom", Font.Large, ColorScheme.White));
-			AddControl(new Label(132, Label.Center, "Press button to continue", Font.Large, ColorScheme.White));
+			AddControl(
+				new Label(
+					132,
+					Label.Center,
+					"Press button to continue",
+					Font.Large,
+					ColorScheme.White
+				)
+			);
 		}
 
 		public override bool HitTest(int row, int column)

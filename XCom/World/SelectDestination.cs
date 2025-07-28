@@ -23,7 +23,9 @@ namespace XCom.World
 
 			AddControl(new Border(0, 0, 256, 28, ColorScheme.Green, Backgrounds.Title, 0));
 			AddControl(new Label(10, 8, "SELECT DESTINATION", Font.Normal, ColorScheme.Green));
-			AddControl(new Button(8, 110, 53, 12, "CANCEL", ColorScheme.Aqua, Font.Normal, OnCancel));
+			AddControl(
+				new Button(8, 110, 53, 12, "CANCEL", ColorScheme.Aqua, Font.Normal, OnCancel)
+			);
 
 			AddControl(new TimeDisplay());
 		}
@@ -36,7 +38,11 @@ namespace XCom.World
 		private void OnChooseDestination(Location location)
 		{
 			//TODO: hit test for terror sites and alien bases
-			var ufos = GameState.Current.Data.VisibleUfos.Where(ufo => Trigonometry.HitTestCoordinate(ufo.Location, location)).ToList();
+			var ufos = GameState
+				.Current.Data.VisibleUfos.Where(ufo =>
+					Trigonometry.HitTestCoordinate(ufo.Location, location)
+				)
+				.ToList();
 			if (!ufos.Any())
 				new ConfirmDestination("WAY POINT", () => SelectWaypoint(location)).DoModal(this);
 			else if (ufos.Count == 1)
@@ -45,7 +51,11 @@ namespace XCom.World
 			{
 				var selector = new SelectWorldObject(
 					ufos.Cast<object>().ToList(),
-					ufo => new ConfirmDestination(((Ufo)ufo).Name, () => SelectUfo((Ufo)ufo)).DoModal(this));
+					ufo =>
+						new ConfirmDestination(((Ufo)ufo).Name, () => SelectUfo((Ufo)ufo)).DoModal(
+							this
+						)
+				);
 				selector.DoModal(this);
 			}
 		}
@@ -62,7 +72,10 @@ namespace XCom.World
 
 		private void SelectWaypoint(Location location)
 		{
-			SelectWorldObject(WorldObjectType.Waypoint, GameState.Current.Data.CreateWaypoint(location));
+			SelectWorldObject(
+				WorldObjectType.Waypoint,
+				GameState.Current.Data.CreateWaypoint(location)
+			);
 		}
 
 		private void SelectWorldObject(WorldObjectType worldObjectType, int number)
@@ -80,7 +93,7 @@ namespace XCom.World
 			craft.Destination = new Destination
 			{
 				WorldObjectType = worldObjectType,
-				Number = number
+				Number = number,
 			};
 		}
 	}

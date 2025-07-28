@@ -14,7 +14,8 @@ namespace XCom.Controls
 			int width,
 			string text,
 			Font font,
-			ColorScheme scheme)
+			ColorScheme scheme
+		)
 			: base(topRow, leftColumn, text, font, scheme)
 		{
 			this.width = width;
@@ -28,7 +29,8 @@ namespace XCom.Controls
 			string text,
 			Font font,
 			ColorScheme scheme,
-			ColorScheme fillScheme)
+			ColorScheme fillScheme
+		)
 			: base(topRow, leftColumn, text, font, scheme)
 		{
 			this.width = width;

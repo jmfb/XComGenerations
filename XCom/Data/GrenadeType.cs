@@ -10,12 +10,13 @@ namespace XCom.Data
 		SmokeGrenade,
 		ProximityGrenade,
 		HighExplosive,
-		AlienGrenade
+		AlienGrenade,
 	}
 
 	public static class GenadeTypeExtensions
 	{
-		public static GrenadeMetadata Metadata(this GrenadeType grenadeType) => metadata[grenadeType];
+		public static GrenadeMetadata Metadata(this GrenadeType grenadeType) =>
+			metadata[grenadeType];
 
 		private static readonly GrenadeMetadata grenade = new GrenadeMetadata
 		{
@@ -29,9 +30,9 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"This standard issue grenade has an accurate and sophisticated",
-				"timer for precision control."
+				"timer for precision control.",
 			},
-			Sprites = BattleItemSprite.Grenade
+			Sprites = BattleItemSprite.Grenade,
 		};
 
 		private static readonly GrenadeMetadata smokeGrenade = new GrenadeMetadata
@@ -47,8 +48,8 @@ namespace XCom.Data
 			{
 				"Smoke grenades are useful for providing cover in exposed",
 				"combat situations.  Use with care because they can benefit the",
-				"enemy as well"
-			}
+				"enemy as well",
+			},
 		};
 
 		private static readonly GrenadeMetadata proximityGrenade = new GrenadeMetadata
@@ -64,8 +65,8 @@ namespace XCom.Data
 			{
 				"A proximity grenade can be thrown like an ordinary grenade",
 				"but is triggered by nearby movement after it lands. Great skill",
-				"and care is required to use these devices properly."
-			}
+				"and care is required to use these devices properly.",
+			},
 		};
 
 		private static readonly GrenadeMetadata highExplosive = new GrenadeMetadata
@@ -80,8 +81,8 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"This explosive should only be used for demolition purposes.",
-				"Keep personnel clear of demolition sites."
-			}
+				"Keep personnel clear of demolition sites.",
+			},
 		};
 
 		private static readonly GrenadeMetadata alienGrenade = new GrenadeMetadata
@@ -96,17 +97,20 @@ namespace XCom.Data
 			DescriptionLines = new[]
 			{
 				"This device works in the same way as a terrestrial grenade -",
-				"except that it is more powerful."
-			}
+				"except that it is more powerful.",
+			},
 		};
 
-		private static readonly Dictionary<GrenadeType, GrenadeMetadata> metadata = new Dictionary<GrenadeType, GrenadeMetadata>
+		private static readonly Dictionary<GrenadeType, GrenadeMetadata> metadata = new Dictionary<
+			GrenadeType,
+			GrenadeMetadata
+		>
 		{
 			{ GrenadeType.Grenade, grenade },
 			{ GrenadeType.SmokeGrenade, smokeGrenade },
 			{ GrenadeType.ProximityGrenade, proximityGrenade },
 			{ GrenadeType.HighExplosive, highExplosive },
-			{ GrenadeType.AlienGrenade, alienGrenade }
+			{ GrenadeType.AlienGrenade, alienGrenade },
 		};
 	}
 }

@@ -28,7 +28,7 @@ namespace XCom.Music
 		Teleport,
 		UfoDetected,
 		Warning,
-		Whoosh
+		Whoosh,
 	}
 
 	public static class IntroductionSoundEffectExtensions
@@ -45,8 +45,12 @@ namespace XCom.Music
 		private static readonly SoundPlayer deadAlien1 = new SoundPlayer(Introduction.DeadAlien1);
 		private static readonly SoundPlayer deadAlien2 = new SoundPlayer(Introduction.DeadAlien2);
 		private static readonly SoundPlayer deadAlien3 = new SoundPlayer(Introduction.DeadAlien3);
-		private static readonly SoundPlayer deathScreamFemale = new SoundPlayer(Introduction.DeathScreamFemale);
-		private static readonly SoundPlayer deathScreamMale = new SoundPlayer(Introduction.DeathScreamMale);
+		private static readonly SoundPlayer deathScreamFemale = new SoundPlayer(
+			Introduction.DeathScreamFemale
+		);
+		private static readonly SoundPlayer deathScreamMale = new SoundPlayer(
+			Introduction.DeathScreamMale
+		);
 		private static readonly SoundPlayer hum = new SoundPlayer(Introduction.Hum);
 		private static readonly SoundPlayer landing = new SoundPlayer(Introduction.Landing);
 		private static readonly SoundPlayer openHatch = new SoundPlayer(Introduction.OpenHatch);
@@ -66,52 +70,52 @@ namespace XCom.Music
 		{
 			switch (soundEffect)
 			{
-			case IntroductionSoundEffect.Beep:
-				return beep;
-			case IntroductionSoundEffect.Cannon:
-				return cannon;
-			case IntroductionSoundEffect.Chatter:
-				return chatter;
-			case IntroductionSoundEffect.Computer:
-				return computer;
-			case IntroductionSoundEffect.DeadAlien1:
-				return deadAlien1;
-			case IntroductionSoundEffect.DeadAlien2:
-				return deadAlien2;
-			case IntroductionSoundEffect.DeadAlien3:
-				return deadAlien3;
-			case IntroductionSoundEffect.DeathScreamFemale:
-				return deathScreamFemale;
-			case IntroductionSoundEffect.DeathScreamMale:
-				return deathScreamMale;
-			case IntroductionSoundEffect.Hum:
-				return hum;
-			case IntroductionSoundEffect.Landing:
-				return landing;
-			case IntroductionSoundEffect.OpenHatch:
-				return openHatch;
-			case IntroductionSoundEffect.Plasma:
-				return plasma;
-			case IntroductionSoundEffect.Roar1:
-				return roar1;
-			case IntroductionSoundEffect.Roar2:
-				return roar2;
-			case IntroductionSoundEffect.Roar3:
-				return roar3;
-			case IntroductionSoundEffect.Roar4:
-				return roar4;
-			case IntroductionSoundEffect.Shot:
-				return shot;
-			case IntroductionSoundEffect.TakeOff:
-				return takeOff;
-			case IntroductionSoundEffect.Teleport:
-				return teleport;
-			case IntroductionSoundEffect.UfoDetected:
-				return ufoDetected;
-			case IntroductionSoundEffect.Warning:
-				return warning;
-			case IntroductionSoundEffect.Whoosh:
-				return whoosh;
+				case IntroductionSoundEffect.Beep:
+					return beep;
+				case IntroductionSoundEffect.Cannon:
+					return cannon;
+				case IntroductionSoundEffect.Chatter:
+					return chatter;
+				case IntroductionSoundEffect.Computer:
+					return computer;
+				case IntroductionSoundEffect.DeadAlien1:
+					return deadAlien1;
+				case IntroductionSoundEffect.DeadAlien2:
+					return deadAlien2;
+				case IntroductionSoundEffect.DeadAlien3:
+					return deadAlien3;
+				case IntroductionSoundEffect.DeathScreamFemale:
+					return deathScreamFemale;
+				case IntroductionSoundEffect.DeathScreamMale:
+					return deathScreamMale;
+				case IntroductionSoundEffect.Hum:
+					return hum;
+				case IntroductionSoundEffect.Landing:
+					return landing;
+				case IntroductionSoundEffect.OpenHatch:
+					return openHatch;
+				case IntroductionSoundEffect.Plasma:
+					return plasma;
+				case IntroductionSoundEffect.Roar1:
+					return roar1;
+				case IntroductionSoundEffect.Roar2:
+					return roar2;
+				case IntroductionSoundEffect.Roar3:
+					return roar3;
+				case IntroductionSoundEffect.Roar4:
+					return roar4;
+				case IntroductionSoundEffect.Shot:
+					return shot;
+				case IntroductionSoundEffect.TakeOff:
+					return takeOff;
+				case IntroductionSoundEffect.Teleport:
+					return teleport;
+				case IntroductionSoundEffect.UfoDetected:
+					return ufoDetected;
+				case IntroductionSoundEffect.Warning:
+					return warning;
+				case IntroductionSoundEffect.Whoosh:
+					return whoosh;
 			}
 			throw new InvalidOperationException("Invalid sound effect.");
 		}

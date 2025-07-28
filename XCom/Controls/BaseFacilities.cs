@@ -15,7 +15,7 @@ namespace XCom.Controls
 		{
 			PlaceAccessLift,
 			ViewFacilities,
-			BuildFacility
+			BuildFacility,
 		}
 
 		private const int rowCount = 6;
@@ -24,8 +24,12 @@ namespace XCom.Controls
 		private readonly Mode mode;
 		private readonly Action<int, int> action;
 		private readonly FacilityType facilityType;
-		private static readonly Image horizontalBridge = new Image(Content.Images.Base.Base.BridgeHorizontal);
-		private static readonly Image verticalBridge = new Image(Content.Images.Base.Base.BridgeVertical);
+		private static readonly Image horizontalBridge = new Image(
+			Content.Images.Base.Base.BridgeHorizontal
+		);
+		private static readonly Image verticalBridge = new Image(
+			Content.Images.Base.Base.BridgeVertical
+		);
 
 		public BaseFacilities(Mode mode, Action<int, int> action)
 		{
@@ -37,15 +41,12 @@ namespace XCom.Controls
 		{
 			mode = Mode.BuildFacility;
 			this.action = action;
-			this.facilityType  = facilityType;
+			this.facilityType = facilityType;
 		}
 
 		public override bool HitTest(int row, int column)
 		{
-			return row >= 8 &&
-				row < GraphicsBuffer.GameHeight &&
-				column >= 0 &&
-				column < 192;
+			return row >= 8 && row < GraphicsBuffer.GameHeight && column >= 0 && column < 192;
 		}
 
 		private class FacilityPoint
@@ -72,17 +73,17 @@ namespace XCom.Controls
 				return;
 			switch (mode)
 			{
-			case Mode.PlaceAccessLift:
-				action(facilityPoint.Row, facilityPoint.Column);
-				break;
-			case Mode.ViewFacilities:
-				if (IsFacilityAt(facilityPoint.Row, facilityPoint.Column, true))
+				case Mode.PlaceAccessLift:
 					action(facilityPoint.Row, facilityPoint.Column);
-				break;
-			case Mode.BuildFacility:
-				if (IsSpaceAvailable(facilityPoint.Row, facilityPoint.Column))
-					action(facilityPoint.Row, facilityPoint.Column);
-				break;
+					break;
+				case Mode.ViewFacilities:
+					if (IsFacilityAt(facilityPoint.Row, facilityPoint.Column, true))
+						action(facilityPoint.Row, facilityPoint.Column);
+					break;
+				case Mode.BuildFacility:
+					if (IsSpaceAvailable(facilityPoint.Row, facilityPoint.Column))
+						action(facilityPoint.Row, facilityPoint.Column);
+					break;
 			}
 		}
 
@@ -93,9 +94,9 @@ namespace XCom.Controls
 			if (column < 0 || (column + FacilitySize - 1) >= columnCount)
 				return false;
 			foreach (var baseRow in Enumerable.Range(row, FacilitySize))
-				foreach (var baseColumn in Enumerable.Range(column, FacilitySize))
-					if (IsFacilityAt(baseRow, baseColumn, true))
-						return false;
+			foreach (var baseColumn in Enumerable.Range(column, FacilitySize))
+				if (IsFacilityAt(baseRow, baseColumn, true))
+					return false;
 			return true;
 		}
 
@@ -104,7 +105,13 @@ namespace XCom.Controls
 			RenderBackground(buffer);
 			if (mode == Mode.PlaceAccessLift)
 			{
-				Font.Normal.DrawString(buffer, 0, 10, "SELECT POSITION FOR ACCESS LIFT", ColorScheme.Yellow);
+				Font.Normal.DrawString(
+					buffer,
+					0,
+					10,
+					"SELECT POSITION FOR ACCESS LIFT",
+					ColorScheme.Yellow
+				);
 				return;
 			}
 
@@ -121,9 +128,19 @@ namespace XCom.Controls
 			var facilityPoint = GetFacilityPoint(position.X, position.Y);
 			if (facilityPoint != null)
 			{
-				var facility = GameState.SelectedBase.FindFacilityAt(facilityPoint.Row, facilityPoint.Column, true);
+				var facility = GameState.SelectedBase.FindFacilityAt(
+					facilityPoint.Row,
+					facilityPoint.Column,
+					true
+				);
 				if (facility != null)
-					Font.Normal.DrawString(buffer, 0, 0, facility.FacilityType.Metadata().Name, ColorScheme.Blue);
+					Font.Normal.DrawString(
+						buffer,
+						0,
+						0,
+						facility.FacilityType.Metadata().Name,
+						ColorScheme.Blue
+					);
 			}
 		}
 
@@ -139,7 +156,8 @@ namespace XCom.Controls
 					facilityPoint.Column * 32,
 					FacilitySize * 32,
 					FacilitySize * 32,
-					Color.FromArgb(255, 255, 0));
+					Color.FromArgb(255, 255, 0)
+				);
 		}
 
 		private int FacilitySize => facilityType.Metadata().Shape.Size();
@@ -148,8 +166,8 @@ namespace XCom.Controls
 		{
 			var backgroundImage = new Image(Content.Images.Base.Base.Background);
 			foreach (var row in Enumerable.Range(0, rowCount))
-				foreach (var column in Enumerable.Range(0, columnCount))
-					backgroundImage.Render(buffer, row * 32 + 8, column * 32);
+			foreach (var column in Enumerable.Range(0, columnCount))
+				backgroundImage.Render(buffer, row * 32 + 8, column * 32);
 		}
 
 		private static void RenderFacilities(GraphicsBuffer buffer)
@@ -167,9 +185,18 @@ namespace XCom.Controls
 		private static void RenderCrafts(GraphicsBuffer buffer)
 		{
 			var selectedBase = GameState.SelectedBase;
-			var crafts = selectedBase.Crafts.Where(craft => craft.Status != CraftStatus.Out).ToList();
-			var hangars = selectedBase.Facilities.Where(facility => facility.FacilityType == FacilityType.Hangar).ToList();
-			foreach (var craftAndHangar in hangars.Zip(crafts, (hangar, craft) => new {Hangar = hangar, Craft = craft}))
+			var crafts = selectedBase
+				.Crafts.Where(craft => craft.Status != CraftStatus.Out)
+				.ToList();
+			var hangars = selectedBase
+				.Facilities.Where(facility => facility.FacilityType == FacilityType.Hangar)
+				.ToList();
+			foreach (
+				var craftAndHangar in hangars.Zip(
+					crafts,
+					(hangar, craft) => new { Hangar = hangar, Craft = craft }
+				)
+			)
 				RenderCraft(buffer, craftAndHangar.Hangar, craftAndHangar.Craft);
 		}
 
@@ -228,16 +255,28 @@ namespace XCom.Controls
 
 			var metadata = facility.FacilityType.Metadata();
 			if (metadata.Shape != FacilityShape.Hangar)
-				metadata.Image.Render(buffer, topRow + metadata.RowOffset, leftColumn + metadata.ColumnOffset);
+				metadata.Image.Render(
+					buffer,
+					topRow + metadata.RowOffset,
+					leftColumn + metadata.ColumnOffset
+				);
 
 			if (facility.DaysUntilConstructionComplete == 0)
 				return;
 
-			var daysRemaining = facility.DaysUntilConstructionComplete.ToString(CultureInfo.InvariantCulture);
+			var daysRemaining = facility.DaysUntilConstructionComplete.ToString(
+				CultureInfo.InvariantCulture
+			);
 			var size = metadata.Shape.Size() * 32;
 			var textTopRow = topRow + (size - Font.Large.Height) / 2;
 			var textLeftColumn = leftColumn + (size - Font.Large.MeasureString(daysRemaining)) / 2;
-			Font.Large.DrawString(buffer, textTopRow, textLeftColumn, daysRemaining, ColorScheme.Yellow);
+			Font.Large.DrawString(
+				buffer,
+				textTopRow,
+				textLeftColumn,
+				daysRemaining,
+				ColorScheme.Yellow
+			);
 		}
 
 		private static void RenderCraft(GraphicsBuffer buffer, Facility hangar, Craft craft)
@@ -250,7 +289,8 @@ namespace XCom.Controls
 
 		private static bool IsFacilityAt(int row, int column, bool allowUnderConstruction)
 		{
-			return GameState.SelectedBase.FindFacilityAt(row, column, allowUnderConstruction) != null;
+			return GameState.SelectedBase.FindFacilityAt(row, column, allowUnderConstruction)
+				!= null;
 		}
 	}
 }

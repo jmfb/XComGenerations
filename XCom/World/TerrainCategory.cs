@@ -10,7 +10,7 @@ namespace XCom.World
 		Mountain,
 		Desert,
 		PolarIce,
-		PolarSeas
+		PolarSeas,
 	}
 
 	public static class TerrainCategoryExtensions
@@ -19,17 +19,17 @@ namespace XCom.World
 		{
 			switch (category)
 			{
-			case TerrainCategory.Forest:
-				return latitude < 0 ? forest : jungle;
-			case TerrainCategory.Farm:
-				return farm;
-			case TerrainCategory.Mountain:
-				return mountain;
-			case TerrainCategory.Desert:
-				return desert;
-			case TerrainCategory.PolarIce:
-			case TerrainCategory.PolarSeas:
-				return polar;
+				case TerrainCategory.Forest:
+					return latitude < 0 ? forest : jungle;
+				case TerrainCategory.Farm:
+					return farm;
+				case TerrainCategory.Mountain:
+					return mountain;
+				case TerrainCategory.Desert:
+					return desert;
+				case TerrainCategory.PolarIce:
+				case TerrainCategory.PolarSeas:
+					return polar;
 			}
 			throw new InvalidOperationException("Invalid category");
 		}
@@ -48,8 +48,8 @@ namespace XCom.World
 				Tileset.Forest8,
 				Tileset.Forest9,
 				Tileset.Forest10,
-				Tileset.Forest11
-			}
+				Tileset.Forest11,
+			},
 		};
 
 		private static readonly TerrainCategoryMetadata jungle = new TerrainCategoryMetadata
@@ -65,13 +65,18 @@ namespace XCom.World
 				Tileset.Jungle8,
 				Tileset.Jungle9,
 				Tileset.Jungle10,
-				Tileset.Jungle11
-			}
+				Tileset.Jungle11,
+			},
 		};
 
 		private static readonly TerrainCategoryMetadata farm = new TerrainCategoryMetadata
 		{
-			FlatTilesets = new[] { Tileset.Cultivation0, Tileset.Cultivation7, Tileset.Cultivation11 },
+			FlatTilesets = new[]
+			{
+				Tileset.Cultivation0,
+				Tileset.Cultivation7,
+				Tileset.Cultivation11,
+			},
 			OtherTilesets = new[]
 			{
 				Tileset.Cultivation1,
@@ -89,8 +94,8 @@ namespace XCom.World
 				Tileset.Cultivation15,
 				Tileset.Cultivation16,
 				Tileset.Cultivation17,
-				Tileset.Cultivation18
-			}
+				Tileset.Cultivation18,
+			},
 		};
 
 		private static readonly TerrainCategoryMetadata mountain = new TerrainCategoryMetadata
@@ -107,8 +112,8 @@ namespace XCom.World
 				Tileset.Mountain9,
 				Tileset.Mountain10,
 				Tileset.Mountain11,
-				Tileset.Mountain12
-			}
+				Tileset.Mountain12,
+			},
 		};
 
 		private static readonly TerrainCategoryMetadata desert = new TerrainCategoryMetadata
@@ -124,8 +129,8 @@ namespace XCom.World
 				Tileset.Desert8,
 				Tileset.Desert9,
 				Tileset.Desert10,
-				Tileset.Desert11
-			}
+				Tileset.Desert11,
+			},
 		};
 
 		private static readonly TerrainCategoryMetadata polar = new TerrainCategoryMetadata
@@ -143,8 +148,8 @@ namespace XCom.World
 				Tileset.Polar10,
 				Tileset.Polar11,
 				Tileset.Polar12,
-				Tileset.Polar13
-			}
+				Tileset.Polar13,
+			},
 		};
 	}
 }

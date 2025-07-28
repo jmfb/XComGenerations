@@ -15,17 +15,13 @@ namespace XCom.Data
 			return new CraftWeapon
 			{
 				WeaponType = weaponType,
-				Ammunition = weaponType.Metadata().Ammunition
+				Ammunition = weaponType.Metadata().Ammunition,
 			};
 		}
 
 		public static CraftWeapon CreateUnloaded(CraftWeaponType weaponType)
 		{
-			return new CraftWeapon
-			{
-				WeaponType = weaponType,
-				Ammunition = 0
-			};
+			return new CraftWeapon { WeaponType = weaponType, Ammunition = 0 };
 		}
 
 		public void Reload(int count)

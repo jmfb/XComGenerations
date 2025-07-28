@@ -6,7 +6,7 @@ namespace XCom.Data
 	{
 		CannonShell,
 		Rocket,
-		FusionBomb
+		FusionBomb,
 	}
 
 	public static class HwpAmmunitionTypeExtensions
@@ -18,17 +18,15 @@ namespace XCom.Data
 
 		private static HwpAmmunitionMetadata Ammo(string name)
 		{
-			return new HwpAmmunitionMetadata
-			{
-				Name = name
-			};
+			return new HwpAmmunitionMetadata { Name = name };
 		}
 
-		private static readonly Dictionary<HwpAmmunitionType, HwpAmmunitionMetadata> metadata = new Dictionary<HwpAmmunitionType, HwpAmmunitionMetadata>
-		{
-			{ HwpAmmunitionType.CannonShell, Ammo("HWP Cannon Shells") },
-			{ HwpAmmunitionType.Rocket, Ammo("HWP Rockets") },
-			{ HwpAmmunitionType.FusionBomb, Ammo("HWP Fusion Bomb") }
-		};
+		private static readonly Dictionary<HwpAmmunitionType, HwpAmmunitionMetadata> metadata =
+			new Dictionary<HwpAmmunitionType, HwpAmmunitionMetadata>
+			{
+				{ HwpAmmunitionType.CannonShell, Ammo("HWP Cannon Shells") },
+				{ HwpAmmunitionType.Rocket, Ammo("HWP Rockets") },
+				{ HwpAmmunitionType.FusionBomb, Ammo("HWP Fusion Bomb") },
+			};
 	}
 }

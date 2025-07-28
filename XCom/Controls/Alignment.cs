@@ -4,6 +4,6 @@ namespace XCom.Controls
 	{
 		Left,
 		Center,
-		Right
+		Right,
 	}
 }

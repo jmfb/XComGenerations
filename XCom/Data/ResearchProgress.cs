@@ -7,6 +7,6 @@
 		Poor,
 		Average,
 		Good,
-		Excellent
+		Excellent,
 	}
 }

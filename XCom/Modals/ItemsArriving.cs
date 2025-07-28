@@ -17,13 +17,49 @@ namespace XCom.Modals
 			AddControl(new Label(34, 10, "ITEM", Font.Normal, ColorScheme.Aqua));
 			AddControl(new Label(34, 150, "QUANTITY", Font.Normal, ColorScheme.Aqua));
 			AddControl(new Label(34, 205, "Destination", Font.Normal, ColorScheme.Aqua));
-			AddControl(new ListView<CompletedTransfer>(50, 10, 13, completedTransfers, ColorScheme.Aqua, Palette.GetPalette(6).GetColor(230), item => EndModal())
-				.AddColumn(2, Alignment.Left, item => "")
-				.AddColumn(175, Alignment.Left, item => item.Name, item => ColorScheme.DarkYellow)
-				.AddColumn(25, Alignment.Left, item => item.Quantity.FormatNumber(), item => ColorScheme.DarkYellow)
-				.AddColumn(95, Alignment.Left, item => item.Destination, item => ColorScheme.DarkYellow));
+			AddControl(
+				new ListView<CompletedTransfer>(
+					50,
+					10,
+					13,
+					completedTransfers,
+					ColorScheme.Aqua,
+					Palette.GetPalette(6).GetColor(230),
+					item => EndModal()
+				)
+					.AddColumn(2, Alignment.Left, item => "")
+					.AddColumn(
+						175,
+						Alignment.Left,
+						item => item.Name,
+						item => ColorScheme.DarkYellow
+					)
+					.AddColumn(
+						25,
+						Alignment.Left,
+						item => item.Quantity.FormatNumber(),
+						item => ColorScheme.DarkYellow
+					)
+					.AddColumn(
+						95,
+						Alignment.Left,
+						item => item.Destination,
+						item => ColorScheme.DarkYellow
+					)
+			);
 			AddControl(new Button(166, 8, 148, 16, "OK", ColorScheme.Aqua, Font.Normal, EndModal));
-			AddControl(new Button(166, 160, 148, 16, "OK - 5 secs", ColorScheme.Aqua, Font.Normal, OnOkFiveSeconds));
+			AddControl(
+				new Button(
+					166,
+					160,
+					148,
+					16,
+					"OK - 5 secs",
+					ColorScheme.Aqua,
+					Font.Normal,
+					OnOkFiveSeconds
+				)
+			);
 		}
 
 		private void OnOkFiveSeconds()

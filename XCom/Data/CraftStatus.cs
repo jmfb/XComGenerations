@@ -8,7 +8,7 @@ namespace XCom.Data
 		Out,
 		Repairs,
 		Refuelling,
-		Rearming
+		Rearming,
 	}
 
 	public static class CraftStatusExtensions
@@ -17,16 +17,16 @@ namespace XCom.Data
 		{
 			switch (craftStatus)
 			{
-			case CraftStatus.Ready:
-				return "READY";
-			case CraftStatus.Out:
-				return "OUT";
-			case CraftStatus.Repairs:
-				return "REPAIRS";
-			case CraftStatus.Refuelling:
-				return "REFUELLING";
-			case CraftStatus.Rearming:
-				return "REARMING";
+				case CraftStatus.Ready:
+					return "READY";
+				case CraftStatus.Out:
+					return "OUT";
+				case CraftStatus.Repairs:
+					return "REPAIRS";
+				case CraftStatus.Refuelling:
+					return "REFUELLING";
+				case CraftStatus.Rearming:
+					return "REARMING";
 			}
 			throw new InvalidOperationException("Invalid craft status.");
 		}
