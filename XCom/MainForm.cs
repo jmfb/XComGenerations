@@ -5,15 +5,53 @@ using XCom.Graphics;
 
 namespace XCom;
 
-public partial class MainForm : Form
+public class MainForm : Form
 {
 	private readonly GraphicsBuffer graphicsBuffer = new GraphicsBuffer();
 	private const int scaleFactor = 3;
+	private SharpGL.OpenGLControl openGlControl;
 
 	public MainForm()
 	{
 		InitializeComponent();
 		Cursor.Hide();
+	}
+
+	private void InitializeComponent()
+	{
+		this.openGlControl = new SharpGL.OpenGLControl();
+		((System.ComponentModel.ISupportInitialize)(this.openGlControl)).BeginInit();
+		this.SuspendLayout();
+
+		this.openGlControl.Dock = System.Windows.Forms.DockStyle.Fill;
+		this.openGlControl.DrawFPS = false;
+		this.openGlControl.FrameRate = 60;
+		this.openGlControl.Location = new System.Drawing.Point(0, 0);
+		this.openGlControl.Name = "openGlControl";
+		this.openGlControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
+		this.openGlControl.RenderContextType = SharpGL.RenderContextType.FBO;
+		this.openGlControl.RenderTrigger = SharpGL.RenderTrigger.Manual;
+		this.openGlControl.Size = new System.Drawing.Size(960, 600);
+		this.openGlControl.TabIndex = 0;
+		this.openGlControl.OpenGLInitialized += new System.EventHandler(this.openGlControl_OpenGLInitialized);
+		this.openGlControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGlControl_OpenGLDraw);
+		this.openGlControl.Resized += new System.EventHandler(this.openGlControl_Resized);
+		this.openGlControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.openGlControl_KeyPress);
+		this.openGlControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.openGlControl_MouseDown);
+		this.openGlControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.openGlControl_MouseMove);
+		this.openGlControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGlControl_MouseUp);
+
+		this.ClientSize = new System.Drawing.Size(960, 600);
+		this.Controls.Add(this.openGlControl);
+		this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+		this.MaximizeBox = false;
+		this.Name = "MainForm";
+		this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+		this.Text = "X-Com Generations";
+		this.Load += new System.EventHandler(this.MainForm_Load);
+		((System.ComponentModel.ISupportInitialize)(this.openGlControl)).EndInit();
+		this.ResumeLayout(false);
+
 	}
 
 	private void MainForm_Load(object sender, EventArgs e)
