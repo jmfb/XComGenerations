@@ -1,4 +1,4 @@
-﻿using XCom.Content.Overlays;
+using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;

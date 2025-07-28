@@ -1,4 +1,4 @@
-﻿namespace XCom.Data;
+namespace XCom.Data;
 
 public class CompletedTransfer
 {

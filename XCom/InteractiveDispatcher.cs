@@ -1,4 +1,4 @@
-﻿using XCom.Controls;
+using XCom.Controls;
 
 namespace XCom;
 

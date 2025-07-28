@@ -1,4 +1,4 @@
-﻿using XCom.Battlescape;
+using XCom.Battlescape;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;

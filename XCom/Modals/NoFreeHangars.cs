@@ -1,4 +1,4 @@
-﻿using XCom.Controls;
+using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Screens;

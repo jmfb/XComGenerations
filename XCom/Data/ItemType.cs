@@ -1,4 +1,4 @@
-﻿using XCom.Content.Items;
+using XCom.Content.Items;
 
 namespace XCom.Data;
 

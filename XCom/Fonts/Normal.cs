@@ -1,4 +1,4 @@
-﻿namespace XCom.Fonts;
+namespace XCom.Fonts;
 
 public static class Normal
 {

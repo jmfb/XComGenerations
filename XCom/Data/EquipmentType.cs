@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Items;
 

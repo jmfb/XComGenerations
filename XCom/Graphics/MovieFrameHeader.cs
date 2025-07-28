@@ -1,4 +1,4 @@
-﻿namespace XCom.Graphics;
+namespace XCom.Graphics;
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public struct MovieFrameHeader

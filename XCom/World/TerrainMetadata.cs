@@ -1,4 +1,4 @@
-﻿namespace XCom.World;
+namespace XCom.World;
 
 public class TerrainMetadata
 {

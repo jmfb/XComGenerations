@@ -1,4 +1,4 @@
-﻿using System.Media;
+using System.Media;
 using XCom.Content.SoundEffects.Battlescape;
 
 namespace XCom.Music;

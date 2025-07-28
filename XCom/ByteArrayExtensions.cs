@@ -1,4 +1,4 @@
-﻿namespace XCom;
+namespace XCom;
 
 public static class ByteArrayExtensions
 {

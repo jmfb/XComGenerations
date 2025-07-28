@@ -1,4 +1,4 @@
-﻿using XCom.Content.Images.Equipment;
+using XCom.Content.Images.Equipment;
 using XCom.Data;
 using XCom.Graphics;
 

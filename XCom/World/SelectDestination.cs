@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;

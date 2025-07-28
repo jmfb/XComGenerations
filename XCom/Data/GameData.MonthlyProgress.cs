@@ -1,4 +1,4 @@
-﻿using XCom.Screens;
+using XCom.Screens;
 
 namespace XCom.Data;
 

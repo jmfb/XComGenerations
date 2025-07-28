@@ -1,4 +1,4 @@
-﻿namespace XCom.Graphics;
+namespace XCom.Graphics;
 
 public interface Drawable
 {

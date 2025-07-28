@@ -1,4 +1,4 @@
-﻿using XCom.Modals;
+using XCom.Modals;
 using XCom.Screens;
 using XCom.World;
 

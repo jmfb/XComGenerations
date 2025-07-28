@@ -1,4 +1,4 @@
-﻿using XCom.Battlescape.Tiles;
+using XCom.Battlescape.Tiles;
 using XCom.Content.Images.Crafts;
 using XCom.Content.Overlays;
 using XCom.Graphics;

@@ -1,4 +1,4 @@
-﻿namespace XCom.Controls;
+namespace XCom.Controls;
 
 public interface Interactive
 {

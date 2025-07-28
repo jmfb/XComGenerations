@@ -1,4 +1,4 @@
-﻿using XCom.Content.Paperdolls;
+using XCom.Content.Paperdolls;
 
 namespace XCom.Data;
 

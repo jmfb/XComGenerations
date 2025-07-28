@@ -1,4 +1,4 @@
-﻿using XCom.Content.Maps.TileParts;
+using XCom.Content.Maps.TileParts;
 
 namespace XCom.Battlescape.Tiles;
 

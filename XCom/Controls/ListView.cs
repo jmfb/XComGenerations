@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using XCom.Graphics;
 using Font = XCom.Fonts.Font;
 

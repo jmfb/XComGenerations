@@ -1,4 +1,4 @@
-﻿namespace XCom.Battlescape;
+namespace XCom.Battlescape;
 
 public class SelectedUnitId
 {

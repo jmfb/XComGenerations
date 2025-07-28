@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using XCom.Content.Overlays;
 
 namespace XCom.Data;

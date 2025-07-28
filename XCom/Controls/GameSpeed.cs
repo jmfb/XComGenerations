@@ -1,4 +1,4 @@
-﻿using XCom.Fonts;
+using XCom.Fonts;
 using XCom.Graphics;
 
 namespace XCom.Controls;

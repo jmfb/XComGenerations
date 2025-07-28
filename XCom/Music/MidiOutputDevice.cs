@@ -1,4 +1,4 @@
-﻿namespace XCom.Music;
+namespace XCom.Music;
 
 public class MidiOutputDevice
 {

@@ -1,4 +1,4 @@
-﻿using XCom.Content.Images.Ranks;
+using XCom.Content.Images.Ranks;
 using XCom.Graphics;
 
 namespace XCom.Data;

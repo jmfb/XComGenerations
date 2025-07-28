@@ -1,4 +1,4 @@
-﻿using XCom.Content.Backgrounds;
+using XCom.Content.Backgrounds;
 using XCom.Graphics;
 
 namespace XCom.Data;

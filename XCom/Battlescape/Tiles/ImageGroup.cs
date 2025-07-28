@@ -1,4 +1,4 @@
-﻿using XCom.Content.Maps.ImageGroups;
+using XCom.Content.Maps.ImageGroups;
 using XCom.Content.Maps.ImageTables;
 using UnitImageGroups = XCom.Content.Units.ImageGroups.ImageGroups;
 using UnitImageTables = XCom.Content.Units.ImageTables.ImageTables;

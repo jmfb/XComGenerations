@@ -1,4 +1,4 @@
-﻿namespace XCom.Battlescape.Tiles;
+namespace XCom.Battlescape.Tiles;
 
 public class ImageTable
 {

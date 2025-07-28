@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;

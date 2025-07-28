@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles;

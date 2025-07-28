@@ -1,4 +1,4 @@
-﻿using XCom.Battlescape.Tiles;
+using XCom.Battlescape.Tiles;
 
 namespace XCom.Data;
 

@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using XCom.Fonts;
 using XCom.Graphics;
 
