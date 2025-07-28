@@ -22,21 +22,19 @@ namespace XCom.Content.SoundEffects.Windows {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Windows {
+    public class Windows {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Windows() {
+          [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        public Windows() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        /// </summary>        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XCom.Content.SoundEffects.Windows.Windows", typeof(Windows).Assembly);
@@ -49,9 +47,8 @@ namespace XCom.Content.SoundEffects.Windows {
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        /// </summary>        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -59,47 +56,42 @@ namespace XCom.Content.SoundEffects.Windows {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
+          /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ButtonPush1 {
+        public static System.IO.UnmanagedMemoryStream ButtonPush1 {
             get {
                 return ResourceManager.GetStream("ButtonPush1", resourceCulture);
             }
         }
-        
-        /// <summary>
+          /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ButtonPush2 {
+        public static System.IO.UnmanagedMemoryStream ButtonPush2 {
             get {
                 return ResourceManager.GetStream("ButtonPush2", resourceCulture);
             }
         }
-        
-        /// <summary>
+          /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream WindowClose {
+        public static System.IO.UnmanagedMemoryStream WindowClose {
             get {
                 return ResourceManager.GetStream("WindowClose", resourceCulture);
             }
         }
-        
-        /// <summary>
+          /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream WindowOpen1 {
+        public static System.IO.UnmanagedMemoryStream WindowOpen1 {
             get {
                 return ResourceManager.GetStream("WindowOpen1", resourceCulture);
             }
         }
-        
-        /// <summary>
+          /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream WindowOpen2 {
+        public static System.IO.UnmanagedMemoryStream WindowOpen2 {
             get {
                 return ResourceManager.GetStream("WindowOpen2", resourceCulture);
             }

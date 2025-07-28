@@ -1,5 +1,6 @@
-Debug
-Release
-packages
-.vs
-.git
+obj/
+Debug/
+Release/
+packages/
+.vs/
+.git/
