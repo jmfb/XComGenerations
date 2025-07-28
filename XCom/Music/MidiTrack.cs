@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace XCom.Music;
+﻿namespace XCom.Music;
 
 public class MidiTrack
 {

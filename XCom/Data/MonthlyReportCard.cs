@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace XCom.Data;
+﻿namespace XCom.Data;
 
 public class MonthlyReportCard
 {
@@ -42,8 +38,7 @@ public class MonthlyReportCard
 	}
 
 	private ScoreType ScoreType =>
-		EnumEx
-			.GetValues<ScoreType>()
+		Enum.GetValues<ScoreType>()
 			.First(scoreType => Score < scoreType.Metadata().MaxMonthlyPoints);
 	public string Status => ScoreType.Metadata().Name;
 	private string Description => ScoreType.Metadata().Description;

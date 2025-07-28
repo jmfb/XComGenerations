@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using XCom.Content.World;
+﻿using XCom.Content.World;
 
 namespace XCom.World;
 

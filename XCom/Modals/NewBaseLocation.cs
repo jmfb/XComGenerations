@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using XCom.Content.Backgrounds;
+﻿using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
@@ -57,7 +56,7 @@ public class NewBaseLocation : Screen
 		var newBase = Base.Create(name, location.Location, location.RegionType);
 		var data = GameState.Current.Data;
 		if (name == "Research") //TODO: remove research hack
-			data.CompletedResearch = EnumEx.GetValues<ResearchType>().ToList();
+			data.CompletedResearch = Enum.GetValues<ResearchType>().ToList();
 		var originalBase = data.Bases.Count == 0;
 		if (originalBase)
 			InitializeOriginalBase(newBase);

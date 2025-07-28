@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Drawing;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
@@ -22,8 +22,10 @@ public class SelectDestination : Screen
 		AddControl(new WorldControls(worldView));
 
 		AddControl(new Border(0, 0, 256, 28, ColorScheme.Green, Backgrounds.Title, 0));
-		AddControl(new Label(10, 8, "SELECT DESTINATION", Font.Normal, ColorScheme.Green));
-		AddControl(new Button(8, 110, 53, 12, "CANCEL", ColorScheme.Aqua, Font.Normal, OnCancel));
+		AddControl(new Label(10, 8, "SELECT DESTINATION", Fonts.Font.Normal, ColorScheme.Green));
+		AddControl(
+			new Button(8, 110, 53, 12, "CANCEL", ColorScheme.Aqua, Fonts.Font.Normal, OnCancel)
+		);
 
 		AddControl(new TimeDisplay());
 	}

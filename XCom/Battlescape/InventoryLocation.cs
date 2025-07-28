@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace XCom.Battlescape;
+﻿namespace XCom.Battlescape;
 
 public enum InventoryLocation
 {

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace XCom.Battlescape.Tiles;
+﻿namespace XCom.Battlescape.Tiles;
 
 public class FacilityConnectors
 {

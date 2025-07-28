@@ -1,7 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using XCom.Data;
 using XCom.Graphics;
 using Font = XCom.Fonts.Font;

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using XCom.Battlescape.Tiles;
+﻿using XCom.Battlescape.Tiles;
 using XCom.Graphics;
 
 namespace XCom.Data;

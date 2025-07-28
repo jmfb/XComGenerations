@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace XCom.Graphics;
+﻿namespace XCom.Graphics;
 
 public class MovieSubframeDelta
 {

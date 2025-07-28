@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using XCom.Controls;
+﻿using XCom.Controls;
 using XCom.Graphics;
 
 namespace XCom.World;

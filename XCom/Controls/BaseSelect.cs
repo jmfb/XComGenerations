@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
+﻿using System.Drawing;
 using XCom.Content.Images.BasePreview;
 using XCom.Data;
 using XCom.Graphics;

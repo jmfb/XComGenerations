@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using XCom.Graphics;
+﻿using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles;
 
@@ -139,8 +137,7 @@ public class SimpleSprite
 		int animationCount
 	)
 	{
-		return EnumEx
-			.GetValues<Direction>()
+		return Enum.GetValues<Direction>()
 			.Select(
 				(direction, index) =>
 					new SimpleSprite(
@@ -166,8 +163,7 @@ public class SimpleSprite
 		int animationCount
 	)
 	{
-		return EnumEx
-			.GetValues<Direction>()
+		return Enum.GetValues<Direction>()
 			.Select(
 				(direction, index) =>
 					new SimpleSprite(
@@ -194,8 +190,7 @@ public class SimpleSprite
 		int animationCount
 	)
 	{
-		return EnumEx
-			.GetValues<Direction>()
+		return Enum.GetValues<Direction>()
 			.Select(
 				(direction, index) =>
 					new SimpleSprite(
@@ -219,8 +214,7 @@ public class SimpleSprite
 		int animationCount
 	)
 	{
-		return EnumEx
-			.GetValues<Direction>()
+		return Enum.GetValues<Direction>()
 			.Select(direction => new SimpleSprite(
 				imageGroup,
 				direction,

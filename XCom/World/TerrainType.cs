@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using XCom.Content.World;
+﻿using XCom.Content.World;
 
 namespace XCom.World;
 
@@ -53,7 +50,7 @@ public static class TerrainTypeExtensions
 		throw new InvalidOperationException("Invalid terrain type.");
 	}
 
-	private static readonly int terrainTypeCount = EnumEx.GetValues<TerrainType>().Count();
+	private static readonly int terrainTypeCount = Enum.GetValues<TerrainType>().Count();
 
 	private static TerrainMetadata LoadMetadata(TerrainType terrainType)
 	{
@@ -79,7 +76,6 @@ public static class TerrainTypeExtensions
 		};
 	}
 
-	private static readonly Dictionary<TerrainType, TerrainMetadata> metadata = EnumEx
-		.GetValues<TerrainType>()
-		.ToDictionary(terrainType => terrainType, LoadMetadata);
+	private static readonly Dictionary<TerrainType, TerrainMetadata> metadata =
+		Enum.GetValues<TerrainType>().ToDictionary(terrainType => terrainType, LoadMetadata);
 }

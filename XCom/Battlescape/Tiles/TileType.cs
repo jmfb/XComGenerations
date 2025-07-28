@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace XCom.Battlescape.Tiles;
+﻿namespace XCom.Battlescape.Tiles;
 
 public enum TileType
 {

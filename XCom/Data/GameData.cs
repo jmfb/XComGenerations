@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using XCom.Battlescape;
 using XCom.World;
 
@@ -48,7 +45,7 @@ public partial class GameData
 	[JsonIgnore]
 	public int TotalMonthlyCosts => Bases.Sum(@base => @base.TotalMonthlyCost);
 
-	private static IEnumerable<FacilityType> AllFacilityTypes => EnumEx.GetValues<FacilityType>();
+	private static IEnumerable<FacilityType> AllFacilityTypes => Enum.GetValues<FacilityType>();
 	private static IEnumerable<FacilityType> BuildableFacilityTypes =>
 		AllFacilityTypes.Except(new[] { FacilityType.AccessLift });
 
@@ -60,7 +57,7 @@ public partial class GameData
 			)
 			.ToList();
 
-	private static IEnumerable<TopicType> AllTopics => EnumEx.GetValues<TopicType>();
+	private static IEnumerable<TopicType> AllTopics => Enum.GetValues<TopicType>();
 	private List<TopicType> AvailableTopics =>
 		AllTopics
 			.Where(topic => topic.Metadata().IsRequiredResearchCompleted(CompletedResearch))
@@ -126,7 +123,7 @@ public partial class GameData
 			NextLightningNumber = 1,
 			NextAvengerNumber = 1,
 			CompletedResearch = new List<ResearchType>(),
-			Countries = EnumEx.GetValues<CountryType>().Select(Country.Create).ToList(),
+			Countries = Enum.GetValues<CountryType>().Select(Country.Create).ToList(),
 			NextWaypointNumber = 1,
 			Waypoints = new List<Waypoint>(),
 			NextUfoNumber = 1,

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace XCom.Music;
+﻿namespace XCom.Music;
 
 public static class MidiFiles
 {

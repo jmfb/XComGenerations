@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace XCom.World;
+﻿namespace XCom.World;
 
 public enum RegionType
 {

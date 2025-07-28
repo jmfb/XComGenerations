@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
+﻿using System.Drawing;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;

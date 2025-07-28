@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace XCom;
+﻿namespace XCom;
 
 public static class ByteArrayExtensions
 {

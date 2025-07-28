@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using XCom.Controls;
+﻿using XCom.Controls;
 
 namespace XCom;
 

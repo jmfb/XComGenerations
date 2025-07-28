@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using XCom.Content.Overlays;
+﻿using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;

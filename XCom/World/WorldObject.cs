@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Linq;
 using XCom.Graphics;
 
 namespace XCom.World;

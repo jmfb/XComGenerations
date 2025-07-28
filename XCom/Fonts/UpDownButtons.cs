@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace XCom.Fonts;
+﻿namespace XCom.Fonts;
 
 public static class UpDownButtons
 {

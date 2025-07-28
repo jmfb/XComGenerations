@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace XCom.Data;
+﻿namespace XCom.Data;
 
 public enum HwpType
 {

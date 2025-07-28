@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using XCom.Content.Backgrounds;
+﻿using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
@@ -72,8 +70,7 @@ public class CraftEquipment : Screen
 	}
 
 	private List<ItemType> AvailableItems =>
-		EnumEx
-			.GetValues<ItemType>()
+		Enum.GetValues<ItemType>()
 			.Where(item =>
 				GameState.SelectedBase.Stores[item] + craft.Stores[item] > 0
 				&& (item.Metadata().HwpSpace > 0 || item.Metadata().IsEquipment)

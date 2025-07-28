@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using XCom.Controls;
+﻿using XCom.Controls;
 using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
@@ -183,8 +181,7 @@ public class TopicView : Screen
 
 		var nextTop = 24;
 		var ammoLeft = Label.CenterOf(195, 90);
-		var laserWeapon = EnumEx
-			.GetValues<LaserWeaponType>()
+		var laserWeapon = Enum.GetValues<LaserWeaponType>()
 			.Where(laserWeaponType => laserWeaponType.Metadata().Weapon == weapon)
 			.Cast<LaserWeaponType?>()
 			.SingleOrDefault();

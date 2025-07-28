@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using XCom.Graphics;
+﻿using XCom.Graphics;
 
 namespace XCom.Fonts;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using XCom.Battlescape;
+﻿using XCom.Battlescape;
 using XCom.Battlescape.Tiles;
 
 namespace XCom.Data;
@@ -19,10 +17,9 @@ public class WeaponMetadata : BattleItemMetadata
 
 	public string Name => ItemType.Metadata().Name;
 	private WeaponType ThisWeapon =>
-		EnumEx.GetValues<WeaponType>().Single(weapon => ReferenceEquals(this, weapon.Metadata()));
+		Enum.GetValues<WeaponType>().Single(weapon => ReferenceEquals(this, weapon.Metadata()));
 	public List<AmmunitionType> SupportedAmmunition =>
-		EnumEx
-			.GetValues<AmmunitionType>()
+		Enum.GetValues<AmmunitionType>()
 			.Where(ammo => ammo.Metadata().Weapon == ThisWeapon)
 			.ToList();
 }

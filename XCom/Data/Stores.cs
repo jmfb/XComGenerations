@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace XCom.Data;
 
@@ -37,8 +34,7 @@ public class Stores
 	{
 		return new Stores
 		{
-			Items = EnumEx
-				.GetValues<ItemType>()
+			Items = Enum.GetValues<ItemType>()
 				.Select(item => new StoreItem { ItemType = item })
 				.ToList(),
 		};

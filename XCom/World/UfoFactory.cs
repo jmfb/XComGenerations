@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using XCom.Data;
+﻿using XCom.Data;
 
 namespace XCom.World;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using XCom.Content.Backgrounds;
+﻿using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Fonts;
 using XCom.Graphics;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace XCom.Battlescape.Tiles;
+﻿namespace XCom.Battlescape.Tiles;
 
 public class TileTypes
 {

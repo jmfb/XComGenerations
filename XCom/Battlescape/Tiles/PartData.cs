@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.InteropServices;
-using XCom.Content.Maps.TileParts;
+﻿using XCom.Content.Maps.TileParts;
 
 namespace XCom.Battlescape.Tiles;
 

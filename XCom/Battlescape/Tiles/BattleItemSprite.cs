@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
 namespace XCom.Battlescape.Tiles;
 
 public static class BattleItemSprite
 {
 	private static Dictionary<Direction, byte[]> LoadSprites(int groupIndex)
 	{
-		return EnumEx
+		return Enum
 			.GetValues<Direction>()
 			.Select(
 				(direction, index) =>

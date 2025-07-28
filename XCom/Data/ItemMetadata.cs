@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace XCom.Data;
+﻿namespace XCom.Data;
 
 public class ItemMetadata
 {

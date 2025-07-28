@@ -1,4 +1,6 @@
-﻿namespace XCom;
+﻿using System.Windows.Forms;
+using System.Drawing;
+namespace XCom;
 
 partial class MainForm
 {
@@ -72,4 +74,5 @@ partial class MainForm
 	#endregion
 
 	private SharpGL.OpenGLControl openGlControl;
-}
+}
+

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using XCom.Battlescape.Tiles;
+﻿using XCom.Battlescape.Tiles;
 
 namespace XCom.World;
 

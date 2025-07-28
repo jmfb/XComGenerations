@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Runtime.InteropServices;
-using XCom.Content.Maps.Tilesets;
+﻿using XCom.Content.Maps.Tilesets;
 
 namespace XCom.Battlescape.Tiles;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using XCom.Graphics;
+﻿using XCom.Graphics;
 
 namespace XCom.Data;
 

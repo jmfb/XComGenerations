@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using XCom.Graphics;
+﻿using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles;
 

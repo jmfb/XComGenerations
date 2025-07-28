@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using XCom.Content.Images.CraftWeapons;
+﻿using XCom.Content.Images.CraftWeapons;
 using XCom.Content.Overlays;
 using XCom.Graphics;
 

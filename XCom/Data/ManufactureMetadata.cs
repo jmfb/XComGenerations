@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace XCom.Data;
+﻿namespace XCom.Data;
 
 public class ManufactureMetadata
 {

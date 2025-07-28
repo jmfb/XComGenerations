@@ -1,6 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using XCom.Battlescape.Tiles;
 using XCom.Data;
@@ -85,19 +82,19 @@ public class BattleItem
 
 	private static BattleItem Create(ItemType item)
 	{
-		var weaponType = EnumEx
+		var weaponType = Enum
 			.GetValues<WeaponType>()
 			.Cast<WeaponType?>()
 			.SingleOrDefault(weapon => weapon?.Metadata().ItemType == item);
-		var ammunitionType = EnumEx
+		var ammunitionType = Enum
 			.GetValues<AmmunitionType>()
 			.Cast<AmmunitionType?>()
 			.SingleOrDefault(ammunition => ammunition?.Metadata().ItemType == item);
-		var equipmentType = EnumEx
+		var equipmentType = Enum
 			.GetValues<EquipmentType>()
 			.Cast<EquipmentType?>()
 			.SingleOrDefault(equipment => equipment?.Metadata().ItemType == item);
-		var grenadeType = EnumEx
+		var grenadeType = Enum
 			.GetValues<GrenadeType>()
 			.Cast<GrenadeType?>()
 			.SingleOrDefault(grenade => grenade?.Metadata().ItemType == item);

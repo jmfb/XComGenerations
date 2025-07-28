@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-
-namespace XCom.Music;
+﻿namespace XCom.Music;
 
 public class MidiOutputDevice
 {

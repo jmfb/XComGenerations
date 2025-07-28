@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using XCom.World;
 
 namespace XCom.Data;
@@ -181,8 +179,7 @@ public class Base
 	[JsonIgnore]
 	public int HangarSpaceAvailable => TotalHangarSpace - TotalCraftCount;
 
-	private static IEnumerable<ResearchType> AllResearchProjects =>
-		EnumEx.GetValues<ResearchType>();
+	private static IEnumerable<ResearchType> AllResearchProjects => Enum.GetValues<ResearchType>();
 	private IEnumerable<ResearchType> ActiveResearchProjects =>
 		ResearchProjects.Select(project => project.ResearchType);
 	private static IEnumerable<ResearchType> ExhaustedResearch =>
@@ -204,7 +201,7 @@ public class Base
 			.ToList();
 
 	private static IEnumerable<ManufactureType> AllManufactureProjects =>
-		EnumEx.GetValues<ManufactureType>();
+		Enum.GetValues<ManufactureType>();
 	private IEnumerable<ManufactureType> ActiveManufactureProjects =>
 		ManufactureProjects.Select(project => project.ManufactureType);
 	private IEnumerable<ManufactureType> RemainingManufactureProjects =>

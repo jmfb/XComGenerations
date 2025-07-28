@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Drawing;
 using Newtonsoft.Json;
 using XCom.Content.Paperdolls;
 
@@ -121,12 +119,12 @@ public class Soldier
 	{
 		var random = GameState.Current.Random;
 		var statistics = SoldierStatistics.Create();
-		var genders = EnumEx.GetValues<Gender>().ToList();
+		var genders = Enum.GetValues<Gender>().ToList();
 		var gender = genders[random.Next(genders.Count)];
 		var firstNames = gender == Gender.Male ? maleFirstNames : femaleFirstNames;
 		var firstName = firstNames[random.Next(firstNames.Count)];
 		var lastName = lastNames[random.Next(lastNames.Count)];
-		var skinColors = EnumEx.GetValues<SkinColor>().ToList();
+		var skinColors = Enum.GetValues<SkinColor>().ToList();
 		var skinColor = skinColors[random.Next(skinColors.Count)];
 		return new Soldier
 		{

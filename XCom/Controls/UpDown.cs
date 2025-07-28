@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using XCom.Fonts;
+﻿using XCom.Fonts;
 using XCom.Graphics;
 
 namespace XCom.Controls;

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using XCom.Battlescape;
+﻿using XCom.Battlescape;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
