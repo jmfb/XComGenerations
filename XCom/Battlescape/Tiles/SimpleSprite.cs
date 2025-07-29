@@ -347,4 +347,16 @@ public class SimpleSprite
 		32,
 		8
 	);
+
+	public static readonly Dictionary<Direction, SimpleSprite>[] All =
+	[
+		CivilianFemale,
+		CivilianMale,
+		Zombie,
+		Celatid,
+		Silacoid,
+		Ethereal,
+		Floater,
+		Snakeman
+	];
 }

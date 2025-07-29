@@ -14,7 +14,8 @@ public class SpriteTester : Screen
 	private int frame;
 	private int deathFrame;
 
-	private Dictionary<Direction, SimpleSprite> sprites = SimpleSprite.Snakeman;
+	private int spriteIndex;
+	private Dictionary<Direction, SimpleSprite> Sprites => SimpleSprite.All[spriteIndex];
 	private Animation death = Animation.SnakemanDeath;
 	private BattleItem item;
 
@@ -104,22 +105,26 @@ public class SpriteTester : Screen
 
 	private void OnToggleSprite()
 	{
-		if (sprites == SimpleSprite.Snakeman)
-		{
-			sprites = SimpleSprite.Floater;
+		spriteIndex = (spriteIndex + 1) % SimpleSprite.All.Length;
+		if (Sprites == SimpleSprite.Zombie)
+			death = Animation.ZombieDeath;
+		else if (Sprites == SimpleSprite.Celatid)
+			death = Animation.CelatidDeath;
+		else if (Sprites == SimpleSprite.Silacoid)
+			death = Animation.SilacoidDeath;
+		else if (Sprites == SimpleSprite.CivilianFemale)
+			death = Animation.CivilianFemaleDeath;
+		else if (Sprites == SimpleSprite.CivilianMale)
+			death = Animation.CivilianMaleDeath;
+		else if (Sprites == SimpleSprite.Floater)
 			death = Animation.FloaterDeath;
-		}
-		else if (sprites == SimpleSprite.Floater)
-		{
-			sprites = SimpleSprite.Ethereal;
-			death = Animation.EtherealDeath;
-		}
-		else
-		{
-			sprites = SimpleSprite.Snakeman;
+		else if (Sprites == SimpleSprite.Snakeman)
 			death = Animation.SnakemanDeath;
-		}
-		frame = GetNextFrame(frame, sprites[Direction.North].FrameCount, 0);
+		else if (Sprites == SimpleSprite.Ethereal)
+			death = Animation.EtherealDeath;
+		else
+			death = Animation.ZombieDeath;
+		frame = GetNextFrame(frame, Sprites[Direction.North].FrameCount, 0);
 		deathFrame = GetNextFrame(deathFrame, death.FrameCount, 0);
 	}
 
@@ -127,10 +132,10 @@ public class SpriteTester : Screen
 		(currentFrame + frameCount + delta) % frameCount;
 
 	private void OnNextFrame() =>
-		frame = GetNextFrame(frame, sprites[Direction.North].FrameCount, 1);
+		frame = GetNextFrame(frame, Sprites[Direction.North].FrameCount, 1);
 
 	private void OnPrevFrame() =>
-		frame = GetNextFrame(frame, sprites[Direction.North].FrameCount, -1);
+		frame = GetNextFrame(frame, Sprites[Direction.North].FrameCount, -1);
 
 	private void OnNextDeathFrame() => deathFrame = GetNextFrame(deathFrame, death.FrameCount, 1);
 
@@ -166,25 +171,25 @@ public class SpriteTester : Screen
 		const int column3 = 208;
 		const int column4 = 240;
 
-		sprites[Direction.North].Render(buffer, row1, column1, item);
-		sprites[Direction.NorthEast].Render(buffer, row1, column2, item);
-		sprites[Direction.East].Render(buffer, row1, column3, item);
-		sprites[Direction.SouthEast].Render(buffer, row1, column4, item);
+		Sprites[Direction.North].Render(buffer, row1, column1, item);
+		Sprites[Direction.NorthEast].Render(buffer, row1, column2, item);
+		Sprites[Direction.East].Render(buffer, row1, column3, item);
+		Sprites[Direction.SouthEast].Render(buffer, row1, column4, item);
 
-		sprites[Direction.South].Render(buffer, row3, column4, item);
-		sprites[Direction.SouthWest].Render(buffer, row3, column3, item);
-		sprites[Direction.West].Render(buffer, row3, column2, item);
-		sprites[Direction.NorthWest].Render(buffer, row3, column1, item);
+		Sprites[Direction.South].Render(buffer, row3, column4, item);
+		Sprites[Direction.SouthWest].Render(buffer, row3, column3, item);
+		Sprites[Direction.West].Render(buffer, row3, column2, item);
+		Sprites[Direction.NorthWest].Render(buffer, row3, column1, item);
 
-		sprites[Direction.North].Animate(buffer, row2, column1, item, frame);
-		sprites[Direction.NorthEast].Animate(buffer, row2, column2, item, frame);
-		sprites[Direction.East].Animate(buffer, row2, column3, item, frame);
-		sprites[Direction.SouthEast].Animate(buffer, row2, column4, item, frame);
+		Sprites[Direction.North].Animate(buffer, row2, column1, item, frame);
+		Sprites[Direction.NorthEast].Animate(buffer, row2, column2, item, frame);
+		Sprites[Direction.East].Animate(buffer, row2, column3, item, frame);
+		Sprites[Direction.SouthEast].Animate(buffer, row2, column4, item, frame);
 
-		sprites[Direction.South].Animate(buffer, row4, column4, item, frame);
-		sprites[Direction.SouthWest].Animate(buffer, row4, column3, item, frame);
-		sprites[Direction.West].Animate(buffer, row4, column2, item, frame);
-		sprites[Direction.NorthWest].Animate(buffer, row4, column1, item, frame);
+		Sprites[Direction.South].Animate(buffer, row4, column4, item, frame);
+		Sprites[Direction.SouthWest].Animate(buffer, row4, column3, item, frame);
+		Sprites[Direction.West].Animate(buffer, row4, column2, item, frame);
+		Sprites[Direction.NorthWest].Animate(buffer, row4, column1, item, frame);
 
 		death.Animate(buffer, 0, 0, deathFrame);
 
