@@ -2,7 +2,7 @@ using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles;
 
-public class Sprite
+public class Sprite : BaseSprite
 {
 	private readonly Direction direction;
 	private readonly byte[] emptyLeftArm;
@@ -169,7 +169,7 @@ public class Sprite
 		}
 	}
 
-	private static Dictionary<Direction, Sprite> LoadSprites(
+	private static Dictionary<Direction, BaseSprite> LoadSprites(
 		ImageGroup imageGroup,
 		int emptyLeftArm,
 		int twoHandedLeftArm,
@@ -205,10 +205,10 @@ public class Sprite
 						head + index
 					)
 			)
-			.ToDictionary(sprite => sprite.direction, sprite => sprite);
+			.ToDictionary(sprite => sprite.direction, sprite => (BaseSprite)sprite);
 	}
 
-	public static readonly Dictionary<Direction, Sprite> SoldierCoverallsMale = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> SoldierCoverallsMale = LoadSprites(
 		ImageGroup.SoldierCoveralls,
 		0,
 		240,
@@ -223,7 +223,7 @@ public class Sprite
 		56,
 		32
 	);
-	public static readonly Dictionary<Direction, Sprite> SoldierCoverallsFemale = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> SoldierCoverallsFemale = LoadSprites(
 		ImageGroup.SoldierCoveralls,
 		0,
 		240,
@@ -238,7 +238,7 @@ public class Sprite
 		56,
 		267
 	);
-	public static readonly Dictionary<Direction, Sprite> SoldierPersonalArmorMale = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> SoldierPersonalArmorMale = LoadSprites(
 		ImageGroup.SoldierPersonalArmor,
 		0,
 		240,
@@ -253,22 +253,23 @@ public class Sprite
 		56,
 		32
 	);
-	public static readonly Dictionary<Direction, Sprite> SoldierPersonalArmorFemale = LoadSprites(
-		ImageGroup.SoldierPersonalArmor,
-		0,
-		240,
-		40,
-		8,
-		232,
-		248,
-		256,
-		48,
-		16,
-		24,
-		56,
-		267
-	);
-	public static readonly Dictionary<Direction, Sprite> SoldierPowerSuit = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> SoldierPersonalArmorFemale =
+		LoadSprites(
+			ImageGroup.SoldierPersonalArmor,
+			0,
+			240,
+			40,
+			8,
+			232,
+			248,
+			256,
+			48,
+			16,
+			24,
+			56,
+			267
+		);
+	public static readonly Dictionary<Direction, BaseSprite> SoldierPowerSuit = LoadSprites(
 		ImageGroup.SoldierPowerSuit,
 		0,
 		240,
@@ -283,7 +284,7 @@ public class Sprite
 		56,
 		32
 	);
-	public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuit = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> SoldierFlyingSuit = LoadSprites(
 		ImageGroup.SoldierPowerSuit,
 		0,
 		240,
@@ -298,7 +299,7 @@ public class Sprite
 		56,
 		267
 	);
-	public static readonly Dictionary<Direction, Sprite> SoldierFlyingSuitFlying = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> SoldierFlyingSuitFlying = LoadSprites(
 		ImageGroup.SoldierPowerSuit,
 		0,
 		240,
@@ -313,7 +314,7 @@ public class Sprite
 		56,
 		267
 	);
-	public static readonly Dictionary<Direction, Sprite> Muton = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> Muton = LoadSprites(
 		ImageGroup.Muton,
 		0,
 		240,
@@ -328,7 +329,7 @@ public class Sprite
 		56,
 		32
 	); //NOTE: East empty right arm animation is incorrect.
-	public static readonly Dictionary<Direction, Sprite> Sectoid = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> Sectoid = LoadSprites(
 		ImageGroup.Sectoid,
 		0,
 		240,
@@ -343,7 +344,7 @@ public class Sprite
 		56,
 		32
 	);
-	public static readonly Dictionary<Direction, Sprite> Chryssalid = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> Chryssalid = LoadSprites(
 		ImageGroup.Chryssalid,
 		0,
 		0,
@@ -358,4 +359,18 @@ public class Sprite
 		48,
 		24
 	);
+
+	public static readonly Dictionary<Direction, BaseSprite>[] All =
+	[
+		SoldierCoverallsMale,
+		SoldierCoverallsFemale,
+		SoldierPersonalArmorMale,
+		SoldierPersonalArmorFemale,
+		SoldierPowerSuit,
+		SoldierFlyingSuit,
+		SoldierFlyingSuitFlying,
+		Muton,
+		Sectoid,
+		Chryssalid,
+	];
 }

@@ -2,7 +2,7 @@ using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles;
 
-public class SimpleSprite
+public class SimpleSprite : BaseSprite
 {
 	private readonly Direction direction;
 	private readonly byte[] image;
@@ -168,7 +168,7 @@ public class SimpleSprite
 
 	public int FrameCount => animation.Length;
 
-	private static Dictionary<Direction, SimpleSprite> LoadSprites(
+	private static Dictionary<Direction, BaseSprite> LoadSprites(
 		ImageGroup imageGroup,
 		int imageIndex,
 		int animationIndex,
@@ -193,10 +193,10 @@ public class SimpleSprite
 						animationCount
 					)
 			)
-			.ToDictionary(sprite => sprite.direction, sprite => sprite);
+			.ToDictionary(sprite => sprite.direction, sprite => (BaseSprite)sprite);
 	}
 
-	private static Dictionary<Direction, SimpleSprite> LoadSpritesWithArms(
+	private static Dictionary<Direction, BaseSprite> LoadSpritesWithArms(
 		ImageGroup imageGroup,
 		int emptyLeftArmIndex,
 		int twoHandedLeftArmIndex,
@@ -227,10 +227,10 @@ public class SimpleSprite
 						animationCount
 					)
 			)
-			.ToDictionary(sprite => sprite.direction, sprite => sprite);
+			.ToDictionary(sprite => sprite.direction, sprite => (BaseSprite)sprite);
 	}
 
-	private static Dictionary<Direction, SimpleSprite> LoadSpritesWithHead(
+	private static Dictionary<Direction, BaseSprite> LoadSpritesWithHead(
 		ImageGroup imageGroup,
 		int emptyLeftArmIndex,
 		int twoHandedLeftArmIndex,
@@ -262,10 +262,10 @@ public class SimpleSprite
 						animationCount
 					)
 			)
-			.ToDictionary(sprite => sprite.direction, sprite => sprite);
+			.ToDictionary(sprite => sprite.direction, sprite => (BaseSprite)sprite);
 	}
 
-	private static Dictionary<Direction, SimpleSprite> LoadOmnidirectionalSprites(
+	private static Dictionary<Direction, BaseSprite> LoadOmnidirectionalSprites(
 		ImageGroup imageGroup,
 		int imageIndex,
 		int animationIndex,
@@ -287,42 +287,46 @@ public class SimpleSprite
 				animationIndex,
 				animationCount
 			))
-			.ToDictionary(sprite => sprite.direction, sprite => sprite);
+			.ToDictionary(sprite => sprite.direction, sprite => (BaseSprite)sprite);
 	}
 
-	public static readonly Dictionary<Direction, SimpleSprite> CivilianFemale = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> CivilianFemale = LoadSprites(
 		ImageGroup.CivilianFemale,
 		0,
 		8,
 		8
 	);
-	public static readonly Dictionary<Direction, SimpleSprite> CivilianMale = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> CivilianMale = LoadSprites(
 		ImageGroup.CivilianMale,
 		0,
 		8,
 		8
 	);
-	public static readonly Dictionary<Direction, SimpleSprite> Zombie = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> Zombie = LoadSprites(
 		ImageGroup.Zombie,
 		0,
 		8,
 		8
 	);
-	public static readonly Dictionary<Direction, SimpleSprite> Celatid = LoadOmnidirectionalSprites(
+	public static readonly Dictionary<Direction, BaseSprite> Celatid = LoadOmnidirectionalSprites(
 		ImageGroup.Celatid,
 		0,
 		1,
 		5
 	);
-	public static readonly Dictionary<Direction, SimpleSprite> Silacoid =
-		LoadOmnidirectionalSprites(ImageGroup.Silacoid, 0, 1, 5);
-	public static readonly Dictionary<Direction, SimpleSprite> Ethereal = LoadSprites(
+	public static readonly Dictionary<Direction, BaseSprite> Silacoid = LoadOmnidirectionalSprites(
+		ImageGroup.Silacoid,
+		0,
+		1,
+		5
+	);
+	public static readonly Dictionary<Direction, BaseSprite> Ethereal = LoadSprites(
 		ImageGroup.Ethereal,
 		0,
 		8,
 		8
 	);
-	public static readonly Dictionary<Direction, SimpleSprite> Floater = LoadSpritesWithArms(
+	public static readonly Dictionary<Direction, BaseSprite> Floater = LoadSpritesWithArms(
 		ImageGroup.Floater,
 		8,
 		75,
@@ -334,7 +338,7 @@ public class SimpleSprite
 		24,
 		5
 	);
-	public static readonly Dictionary<Direction, SimpleSprite> Snakeman = LoadSpritesWithHead(
+	public static readonly Dictionary<Direction, BaseSprite> Snakeman = LoadSpritesWithHead(
 		ImageGroup.Snakeman,
 		0,
 		107,
@@ -348,7 +352,7 @@ public class SimpleSprite
 		8
 	);
 
-	public static readonly Dictionary<Direction, SimpleSprite>[] All =
+	public static readonly Dictionary<Direction, BaseSprite>[] All =
 	[
 		CivilianFemale,
 		CivilianMale,
@@ -357,6 +361,6 @@ public class SimpleSprite
 		Silacoid,
 		Ethereal,
 		Floater,
-		Snakeman
+		Snakeman,
 	];
 }

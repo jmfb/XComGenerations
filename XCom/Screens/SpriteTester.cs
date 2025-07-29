@@ -15,8 +15,7 @@ public class SpriteTester : Screen
 	private int deathFrame;
 
 	private int spriteIndex;
-	private Dictionary<Direction, SimpleSprite> Sprites => SimpleSprite.All[spriteIndex];
-	private Animation death = Animation.SnakemanDeath;
+	private Dictionary<Direction, BaseSprite> Sprites => BaseSprite.All[spriteIndex];
 	private BattleItem item;
 
 	public SpriteTester()
@@ -103,29 +102,54 @@ public class SpriteTester : Screen
 			item = new BattleItem { Item = WeaponType.BlasterLauncher };
 	}
 
+	private Animation Death
+	{
+		get
+		{
+			if (Sprites == SimpleSprite.Zombie)
+				return Animation.ZombieDeath;
+			if (Sprites == SimpleSprite.Celatid)
+				return Animation.CelatidDeath;
+			if (Sprites == SimpleSprite.Silacoid)
+				return Animation.SilacoidDeath;
+			if (Sprites == SimpleSprite.CivilianFemale)
+				return Animation.CivilianFemaleDeath;
+			if (Sprites == SimpleSprite.CivilianMale)
+				return Animation.CivilianMaleDeath;
+			if (Sprites == SimpleSprite.Floater)
+				return Animation.FloaterDeath;
+			if (Sprites == SimpleSprite.Snakeman)
+				return Animation.SnakemanDeath;
+			if (Sprites == SimpleSprite.Ethereal)
+				return Animation.EtherealDeath;
+			if (Sprites == Sprite.SoldierCoverallsFemale || Sprites == Sprite.SoldierCoverallsMale)
+				return Animation.SoldierCoverallsDeath;
+			if (
+				Sprites == Sprite.SoldierPersonalArmorFemale
+				|| Sprites == Sprite.SoldierPersonalArmorMale
+			)
+				return Animation.SoldierPersonalArmorDeath;
+			if (
+				Sprites == Sprite.SoldierPowerSuit
+				|| Sprites == Sprite.SoldierFlyingSuit
+				|| Sprites == Sprite.SoldierFlyingSuitFlying
+			)
+				return Animation.SoldierPowerSuitDeath;
+			if (Sprites == Sprite.Muton)
+				return Animation.MutonDeath;
+			if (Sprites == Sprite.Sectoid)
+				return Animation.SectoidDeath;
+			if (Sprites == Sprite.Chryssalid)
+				return Animation.ChryssalidDeath;
+			return Animation.ZombieDeath;
+		}
+	}
+
 	private void OnToggleSprite()
 	{
-		spriteIndex = (spriteIndex + 1) % SimpleSprite.All.Length;
-		if (Sprites == SimpleSprite.Zombie)
-			death = Animation.ZombieDeath;
-		else if (Sprites == SimpleSprite.Celatid)
-			death = Animation.CelatidDeath;
-		else if (Sprites == SimpleSprite.Silacoid)
-			death = Animation.SilacoidDeath;
-		else if (Sprites == SimpleSprite.CivilianFemale)
-			death = Animation.CivilianFemaleDeath;
-		else if (Sprites == SimpleSprite.CivilianMale)
-			death = Animation.CivilianMaleDeath;
-		else if (Sprites == SimpleSprite.Floater)
-			death = Animation.FloaterDeath;
-		else if (Sprites == SimpleSprite.Snakeman)
-			death = Animation.SnakemanDeath;
-		else if (Sprites == SimpleSprite.Ethereal)
-			death = Animation.EtherealDeath;
-		else
-			death = Animation.ZombieDeath;
+		spriteIndex = (spriteIndex + 1) % BaseSprite.All.Length;
 		frame = GetNextFrame(frame, Sprites[Direction.North].FrameCount, 0);
-		deathFrame = GetNextFrame(deathFrame, death.FrameCount, 0);
+		deathFrame = GetNextFrame(deathFrame, Death.FrameCount, 0);
 	}
 
 	private static int GetNextFrame(int currentFrame, int frameCount, int delta) =>
@@ -137,18 +161,15 @@ public class SpriteTester : Screen
 	private void OnPrevFrame() =>
 		frame = GetNextFrame(frame, Sprites[Direction.North].FrameCount, -1);
 
-	private void OnNextDeathFrame() => deathFrame = GetNextFrame(deathFrame, death.FrameCount, 1);
+	private void OnNextDeathFrame() => deathFrame = GetNextFrame(deathFrame, Death.FrameCount, 1);
 
-	private void OnPrevDeathFrame() => deathFrame = GetNextFrame(deathFrame, death.FrameCount, -1);
+	private void OnPrevDeathFrame() => deathFrame = GetNextFrame(deathFrame, Death.FrameCount, -1);
 
 	// TODO: Firing frames?
 	//private int firingFrame;
 	//var firing = Animation.CelatidFiring;
 	//firingFrame = (firingFrame + 1) % firing.FrameCount;
 	//firing.Animate(buffer, 0, 32, firingFrame);
-
-	//TODO: Floater
-	//TODO: Snakeman
 
 	//HWPs (large 4x4 images)
 	//TODO: Tanks (tanks, laser, hover)
@@ -191,7 +212,7 @@ public class SpriteTester : Screen
 		Sprites[Direction.West].Animate(buffer, row4, column2, item, frame);
 		Sprites[Direction.NorthWest].Animate(buffer, row4, column1, item, frame);
 
-		death.Animate(buffer, 0, 0, deathFrame);
+		Death.Animate(buffer, 0, 0, deathFrame);
 
 		Font.Normal.DrawString(buffer, 100, 0, $"Frame {frame}", ColorScheme.White);
 		Font.Normal.DrawString(buffer, 110, 0, $"Death {deathFrame}", ColorScheme.White);
