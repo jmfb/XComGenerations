@@ -51,7 +51,8 @@ public class MainMenu : Screen
 
 	private static void OnTest()
 	{
-		GameState.Current.SetScreen(new SpriteTester());
+		// GameState.Current.SetScreen(new SpriteTester());
+		GameState.Current.SetScreen(new TankSpriteTester());
 		// GameState.Current.SetScreen(new ImageGroupTester());
 	}
 

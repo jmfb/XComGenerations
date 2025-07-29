@@ -9,8 +9,8 @@ public class ImageGroupTester : Screen
 {
 	private int offset1;
 	private int offset2;
-	private readonly byte[][] images1 = ImageGroup.Floater.Images;
-	private readonly byte[][] images2 = ImageGroup.Muton.Images;
+	private readonly byte[][] images1 = ImageGroup.Tanks.Images;
+	private readonly byte[][] images2 = ImageGroup.Cyberdisc.Images;
 
 	const int ImageWidth = 32;
 	const int ImageHeight = 48;
