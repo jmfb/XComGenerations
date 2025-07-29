@@ -1,9 +1,6 @@
-using System.Diagnostics;
 using XCom.Battlescape;
 using XCom.Battlescape.Tiles;
-using XCom.Content.Backgrounds;
 using XCom.Controls;
-using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Music;
@@ -12,7 +9,7 @@ namespace XCom.Screens;
 
 public class SpriteTester : Screen
 {
-	private readonly Stopwatch stopwatch = new Stopwatch();
+	private readonly Stopwatch stopwatch = new();
 	private int frame;
 	private int deathFrame;
 
