@@ -28,8 +28,10 @@ public class MainMenu : Screen
 				OnLoadSavedGame
 			)
 		);
-		AddControl(new Button(138, 64, 192, 20, "Sprite Tester", ColorScheme.Aqua, Font.Normal, OnSpriteTester));
-		AddControl(new Button(158, 64, 192, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
+		// TODO: Move this back once the sprite testing is done
+		// AddControl(new Button(146, 64, 192, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
+		AddControl(new Button(146, 64, 92, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
+		AddControl(new Button(146, 164, 92, 20, "Sprite Tester", ColorScheme.Aqua, Font.Normal, OnSpriteTester));
 	}
 
 	public override void OnSetFocus()

@@ -12,17 +12,36 @@ namespace XCom.Screens;
 
 public class SpriteTester : Screen
 {
+	private readonly Stopwatch stopwatch = new Stopwatch();
+	private int frame;
+	private int deathFrame;
+
+	private readonly Dictionary<Direction, SimpleSprite> sprites = SimpleSprite.Snakeman;
+	private readonly Animation death = Animation.SnakemanDeath;
+	// = new BattleItem { Item = WeaponType.BlasterLauncher };
+	private readonly BattleItem item = null;
+
 	public SpriteTester()
 	{
-		AddControl(new Border(20, 32, 256, 160, ColorScheme.Aqua, Backgrounds.Title, 0));
-		AddControl(new Label(45, Label.Center, "Sprite Tester", Font.Large, ColorScheme.Yellow));
-		AddControl(new Button(146, 64, 192, 20, "Back to Main Menu", ColorScheme.Aqua, Font.Normal, OnBackToMainMenu));
+		AddControl(new Button(180, 256, 64, 20, "Main Menu", ColorScheme.Aqua, Font.Normal, OnBackToMainMenu));
+		AddControl(new UpDown(160, 0, ColorScheme.Aqua, OnNextFrame, OnPrevFrame));
+		AddControl(new UpDown(160, 32, ColorScheme.Aqua, OnNextDeathFrame, OnPrevDeathFrame));
+		AddControl(new Button(180, 0, 64, 20, "Start/Stop", ColorScheme.Aqua, Font.Normal, OnToggleStopwatch));
 	}
 
 	public override void OnSetFocus()
 	{
 		MidiFiles.Play(MusicType.Story);
+		GameState.Current.OnIdle += OnIdle;
 		stopwatch.Restart();
+		frame = 0;
+		deathFrame = 0;
+	}
+
+	public override void OnKillFocus()
+	{
+		GameState.Current.OnIdle -= OnIdle;
+		stopwatch.Stop();
 	}
 
 	private static void OnBackToMainMenu()
@@ -30,11 +49,45 @@ public class SpriteTester : Screen
 		GameState.Current.SetScreen(new MainMenu());
 	}
 
-	private readonly Stopwatch stopwatch = new Stopwatch();
-	private int frame;
-	private int deathFrame;
+	private void OnIdle()
+	{
+		if (stopwatch.IsRunning && stopwatch.ElapsedMilliseconds > 100)
+		{
+			OnNextFrame();
+			OnNextDeathFrame();
+			stopwatch.Restart();
+		}
+	}
 
+	private void OnToggleStopwatch()
+	{
+		if (stopwatch.IsRunning)
+			stopwatch.Stop();
+		else
+			stopwatch.Restart();
+	}
+
+	private static int GetNextFrame(int currentFrame, int frameCount, int delta) =>
+		(currentFrame + frameCount + delta) % frameCount;
+
+	private void OnNextFrame() =>
+		frame = GetNextFrame(frame, sprites[Direction.North].FrameCount, 1);
+
+	private void OnPrevFrame() =>
+		frame = GetNextFrame(frame, sprites[Direction.North].FrameCount, -1);
+
+	private void OnNextDeathFrame() =>
+		deathFrame = GetNextFrame(deathFrame, death.FrameCount, 1);
+
+	private void OnPrevDeathFrame() =>
+		deathFrame = GetNextFrame(deathFrame, death.FrameCount, -1);
+
+	// TODO: Firing frames?
 	//private int firingFrame;
+	//var firing = Animation.CelatidFiring;
+	//firingFrame = (firingFrame + 1) % firing.FrameCount;
+	//firing.Animate(buffer, 0, 32, firingFrame);
+
 
 	//TODO: Floater
 	//TODO: Snakeman
@@ -49,41 +102,38 @@ public class SpriteTester : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
-		//base.Render(buffer);
-		//var item = new BattleItem { Item = WeaponType.BlasterLauncher };
-		const BattleItem item = null;
-		var sprites = SimpleSprite.Snakeman;
-		var death = Animation.SnakemanDeath;
-		//var firing = Animation.CelatidFiring;
+		base.Render(buffer);
 
-		sprites[Direction.North].Render(buffer, 0, 144, item);
-		sprites[Direction.NorthEast].Render(buffer, 0, 176, item);
-		sprites[Direction.East].Render(buffer, 0, 208, item);
-		sprites[Direction.SouthEast].Render(buffer, 0, 240, item);
-		sprites[Direction.South].Render(buffer, 80, 240, item);
-		sprites[Direction.SouthWest].Render(buffer, 80, 208, item);
-		sprites[Direction.West].Render(buffer, 80, 176, item);
-		sprites[Direction.NorthWest].Render(buffer, 80, 144, item);
+		const int row1 = 0;
+		const int row2 = 40;
+		const int row3 = 80;
+		const int row4 = 120;
+		const int column1 = 144;
+		const int column2 = 176;
+		const int column3 = 208;
+		const int column4 = 240;
 
-		if (stopwatch.ElapsedMilliseconds > 100)
-		{
-			frame = (frame + 1) % sprites[Direction.North].FrameCount;
-			deathFrame = (deathFrame + 1) % death.FrameCount;
-			//firingFrame = (firingFrame + 1) % firing.FrameCount;
-			stopwatch.Restart();
-		}
+		sprites[Direction.North].Render(buffer, row1, column1, item);
+		sprites[Direction.NorthEast].Render(buffer, row1, column2, item);
+		sprites[Direction.East].Render(buffer, row1, column3, item);
+		sprites[Direction.SouthEast].Render(buffer, row1, column4, item);
 
-		sprites[Direction.North].Animate(buffer, 40, 144, item, frame);
-		sprites[Direction.NorthEast].Animate(buffer, 40, 176, item, frame);
-		sprites[Direction.East].Animate(buffer, 40, 208, item, frame);
-		sprites[Direction.SouthEast].Animate(buffer, 40, 240, item, frame);
-		sprites[Direction.South].Animate(buffer, 120, 240, item, frame);
-		sprites[Direction.SouthWest].Animate(buffer, 120, 208, item, frame);
-		sprites[Direction.West].Animate(buffer, 120, 176, item, frame);
-		sprites[Direction.NorthWest].Animate(buffer, 120, 144, item, frame);
+		sprites[Direction.South].Render(buffer, row3, column4, item);
+		sprites[Direction.SouthWest].Render(buffer, row3, column3, item);
+		sprites[Direction.West].Render(buffer, row3, column2, item);
+		sprites[Direction.NorthWest].Render(buffer, row3, column1, item);
+
+		sprites[Direction.North].Animate(buffer, row2, column1, item, frame);
+		sprites[Direction.NorthEast].Animate(buffer, row2, column2, item, frame);
+		sprites[Direction.East].Animate(buffer, row2, column3, item, frame);
+		sprites[Direction.SouthEast].Animate(buffer, row2, column4, item, frame);
+
+		sprites[Direction.South].Animate(buffer, row4, column4, item, frame);
+		sprites[Direction.SouthWest].Animate(buffer, row4, column3, item, frame);
+		sprites[Direction.West].Animate(buffer, row4, column2, item, frame);
+		sprites[Direction.NorthWest].Animate(buffer, row4, column1, item, frame);
 
 		death.Animate(buffer, 0, 0, deathFrame);
-		//firing.Animate(buffer, 0, 32, firingFrame);
 
 		Font.Normal.DrawString(buffer, 100, 0, $"Frame {frame}", ColorScheme.White);
 		Font.Normal.DrawString(buffer, 110, 0, $"Death {deathFrame}", ColorScheme.White);
