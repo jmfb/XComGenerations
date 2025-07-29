@@ -18,7 +18,18 @@ public class ImageGroupTester : Screen
 
 	public ImageGroupTester()
 	{
-		AddControl(new Button(180, 256, 64, 20, "Main Menu", ColorScheme.Aqua, Font.Normal, OnBackToMainMenu));
+		AddControl(
+			new Button(
+				180,
+				256,
+				64,
+				20,
+				"Main Menu",
+				ColorScheme.Aqua,
+				Font.Normal,
+				OnBackToMainMenu
+			)
+		);
 		AddControl(new UpDown(170, 0, ColorScheme.Aqua, OnNextOffset1, OnPrevOffset1));
 		AddControl(new UpDown(180, 0, ColorScheme.Aqua, OnNextOffset2, OnPrevOffset2));
 	}
@@ -39,9 +50,11 @@ public class ImageGroupTester : Screen
 	}
 
 	private void OnNextOffset1() => offset1 = AdjustOffset(offset1, images1.Length, 1);
+
 	private void OnPrevOffset1() => offset1 = AdjustOffset(offset1, images1.Length, -1);
 
 	private void OnNextOffset2() => offset2 = AdjustOffset(offset2, images2.Length, 1);
+
 	private void OnPrevOffset2() => offset2 = AdjustOffset(offset2, images2.Length, -1);
 
 	public override void Render(GraphicsBuffer buffer)
@@ -72,7 +85,19 @@ public class ImageGroupTester : Screen
 			buffer.DrawItem(top, left, images2[index]);
 		}
 
-		Font.Normal.DrawString(buffer, 170, 32, $"{offset1} of {images1.Length}", ColorScheme.White);
-		Font.Normal.DrawString(buffer, 180, 32, $"{offset2} of {images2.Length}", ColorScheme.White);
+		Font.Normal.DrawString(
+			buffer,
+			170,
+			32,
+			$"{offset1} of {images1.Length}",
+			ColorScheme.White
+		);
+		Font.Normal.DrawString(
+			buffer,
+			180,
+			32,
+			$"{offset2} of {images2.Length}",
+			ColorScheme.White
+		);
 	}
 }

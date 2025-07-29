@@ -33,13 +33,25 @@ public class MainForm : Form
 		this.openGlControl.RenderTrigger = SharpGL.RenderTrigger.Manual;
 		this.openGlControl.Size = new System.Drawing.Size(960, 600);
 		this.openGlControl.TabIndex = 0;
-		this.openGlControl.OpenGLInitialized += new System.EventHandler(this.openGlControl_OpenGLInitialized);
-		this.openGlControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGlControl_OpenGLDraw);
+		this.openGlControl.OpenGLInitialized += new System.EventHandler(
+			this.openGlControl_OpenGLInitialized
+		);
+		this.openGlControl.OpenGLDraw += new SharpGL.RenderEventHandler(
+			this.openGlControl_OpenGLDraw
+		);
 		this.openGlControl.Resized += new System.EventHandler(this.openGlControl_Resized);
-		this.openGlControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.openGlControl_KeyPress);
-		this.openGlControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.openGlControl_MouseDown);
-		this.openGlControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.openGlControl_MouseMove);
-		this.openGlControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGlControl_MouseUp);
+		this.openGlControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(
+			this.openGlControl_KeyPress
+		);
+		this.openGlControl.MouseDown += new System.Windows.Forms.MouseEventHandler(
+			this.openGlControl_MouseDown
+		);
+		this.openGlControl.MouseMove += new System.Windows.Forms.MouseEventHandler(
+			this.openGlControl_MouseMove
+		);
+		this.openGlControl.MouseUp += new System.Windows.Forms.MouseEventHandler(
+			this.openGlControl_MouseUp
+		);
 
 		this.ClientSize = new System.Drawing.Size(960, 600);
 		this.Controls.Add(this.openGlControl);
@@ -51,7 +63,6 @@ public class MainForm : Form
 		this.Load += new System.EventHandler(this.MainForm_Load);
 		((System.ComponentModel.ISupportInitialize)(this.openGlControl)).EndInit();
 		this.ResumeLayout(false);
-
 	}
 
 	private void MainForm_Load(object sender, EventArgs e)

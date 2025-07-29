@@ -9,17 +9,26 @@ public class SimpleSprite
 	private readonly byte[] headImage;
 	private readonly byte[][] animation;
 	private readonly byte[] emptyLeftArm;
+	private readonly byte[] twoHandedLeftArm;
 	private readonly byte[] emptyRightArm;
+	private readonly byte[] oneHandedRightArm;
+	private readonly byte[] twoHandedRightArm;
+	private readonly byte[] firingRightArm;
 
-	private static readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
-	private readonly int[] headTopOffsets = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	private readonly int[] headLeftOffsets = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	private readonly int[] walkingOffsets = [0, 0, 0, 0, 0, 0, 0, 0];
+	private readonly int[] headTopOffsets = [0, 0, 0, 0, 0, 0, 0, 0];
+	private readonly int[] headLeftOffsets = [0, 0, 0, 0, 0, 0, 0, 0];
+	private readonly int oneHandedWeaponOffset = 0;
 
 	private SimpleSprite(
 		ImageGroup imageGroup,
 		Direction direction,
 		int emptyLeftArmIndex,
+		int twoHandedLeftArmIndex,
 		int emptyRightArmIndex,
+		int oneHandedRightArmIndex,
+		int twoHandedRightArmIndex,
+		int firingRightArmIndex,
 		int imageIndex,
 		int headImageIndex,
 		int animationIndex,
@@ -31,26 +40,40 @@ public class SimpleSprite
 		headImage = headImageIndex == -1 ? null : imageGroup.Images[headImageIndex];
 		animation = imageGroup.Images.Skip(animationIndex).Take(animationCount).ToArray();
 		emptyLeftArm = emptyLeftArmIndex == -1 ? null : imageGroup.Images[emptyLeftArmIndex];
+		twoHandedLeftArm =
+			twoHandedLeftArmIndex == -1 ? null : imageGroup.Images[twoHandedLeftArmIndex];
 		emptyRightArm = emptyRightArmIndex == -1 ? null : imageGroup.Images[emptyRightArmIndex];
+		oneHandedRightArm =
+			oneHandedRightArmIndex == -1 ? null : imageGroup.Images[oneHandedRightArmIndex];
+		twoHandedRightArm =
+			twoHandedRightArmIndex == -1 ? null : imageGroup.Images[twoHandedRightArmIndex];
+		firingRightArm = firingRightArmIndex == -1 ? null : imageGroup.Images[firingRightArmIndex];
+
+		if (imageGroup == ImageGroup.Ethereal)
+		{
+			walkingOffsets = [1, 0, -1, 0, 1, 0, -1, 0];
+		}
 
 		if (imageGroup == ImageGroup.Snakeman)
 		{
-			headTopOffsets = new[] { 3, 3, 2, 1, 0, 0, 1, 2 };
-			if (
-				direction == Direction.North
-				|| direction == Direction.NorthEast
-				|| direction == Direction.East
-			)
+			headTopOffsets = [3, 3, 2, 1, 0, 0, 1, 2];
+			if (direction is Direction.North or Direction.NorthEast or Direction.East)
 			{
-				headLeftOffsets = new[] { 0, 0, 1, 2, 3, 2, 1, 0 };
+				headLeftOffsets = [0, 0, 1, 2, 3, 2, 1, 0];
 			}
-			else if (
-				direction == Direction.South
-				|| direction == Direction.SouthWest
-				|| direction == Direction.West
-			)
+			else if (direction is Direction.South or Direction.SouthWest or Direction.West)
 			{
-				headLeftOffsets = new[] { 0, 0, -1, -2, -3, -2, -1, 0 };
+				headLeftOffsets = [0, 0, -1, -2, -3, -2, -1, 0];
+			}
+
+			switch (direction)
+			{
+				case Direction.North:
+					oneHandedWeaponOffset = 2;
+					break;
+				case Direction.NorthEast:
+					oneHandedWeaponOffset = 1;
+					break;
 			}
 		}
 	}
@@ -85,9 +108,14 @@ public class SimpleSprite
 		var headTopOffset = animating ? headTopOffsets[frame] : 0;
 		var headLeftOffset = animating ? headLeftOffsets[frame] : 0;
 
-		//TODO: arms with one or two handed, possibly animating, possibly with offset
-		var leftArm = emptyLeftArm;
-		var rightArm = emptyRightArm;
+		// TODO: Firing position
+		var isOneHanded = item is { IsTwoHanded: false };
+		var isTwoHanded = item is { IsTwoHanded: true };
+		var leftArm = isTwoHanded ? twoHandedLeftArm : emptyLeftArm;
+		var rightArm =
+			isTwoHanded ? twoHandedRightArm
+			: isOneHanded ? oneHandedRightArm
+			: emptyRightArm;
 
 		foreach (var part in direction.Metadata().DrawOrder)
 		{
@@ -103,24 +131,34 @@ public class SimpleSprite
 					buffer.DrawItem(topRow, leftColumn, body);
 					break;
 				case SpritePart.LeftArm:
-					buffer.DrawItem(topRow + headTopOffset, leftColumn + headLeftOffset, leftArm);
+					if (leftArm != null)
+						buffer.DrawItem(
+							topRow + headTopOffset,
+							leftColumn + headLeftOffset,
+							leftArm
+						);
 					break;
 				case SpritePart.RightArm:
-					buffer.DrawItem(topRow + headTopOffset, leftColumn + headLeftOffset, rightArm);
+					if (rightArm != null)
+						buffer.DrawItem(
+							topRow + headTopOffset,
+							leftColumn + headLeftOffset,
+							rightArm
+						);
 					break;
 				case SpritePart.OneHandedWeapon:
-					if (item != null && !item.IsTwoHanded)
+					if (isOneHanded)
 						buffer.DrawItem(
-							topRow + walkingOffset,
-							leftColumn,
+							topRow + walkingOffset + headTopOffset + oneHandedWeaponOffset,
+							leftColumn + headLeftOffset,
 							item.Sprites[direction]
 						);
 					break;
 				case SpritePart.TwoHandedWeapon:
-					if (item != null && item.IsTwoHanded)
+					if (isTwoHanded)
 						buffer.DrawItem(
-							topRow + walkingOffset,
-							leftColumn,
+							topRow + walkingOffset + headTopOffset,
+							leftColumn + headLeftOffset,
 							item.Sprites[direction]
 						);
 					break;
@@ -145,6 +183,10 @@ public class SimpleSprite
 						direction,
 						-1,
 						-1,
+						-1,
+						-1,
+						-1,
+						-1,
 						imageIndex + index,
 						-1,
 						animationIndex + index * animationCount,
@@ -157,7 +199,11 @@ public class SimpleSprite
 	private static Dictionary<Direction, SimpleSprite> LoadSpritesWithArms(
 		ImageGroup imageGroup,
 		int emptyLeftArmIndex,
+		int twoHandedLeftArmIndex,
 		int emptyRightArmIndex,
+		int oneHandedRightArmIndex,
+		int twoHandedRightArmIndex,
+		int firingRightArmIndex,
 		int imageIndex,
 		int animationIndex,
 		int animationCount
@@ -170,7 +216,11 @@ public class SimpleSprite
 						imageGroup,
 						direction,
 						emptyLeftArmIndex + index,
+						twoHandedLeftArmIndex + index,
 						emptyRightArmIndex + index,
+						oneHandedRightArmIndex + index,
+						twoHandedRightArmIndex + index,
+						firingRightArmIndex + index,
 						imageIndex + index,
 						-1,
 						animationIndex + index * animationCount,
@@ -183,7 +233,11 @@ public class SimpleSprite
 	private static Dictionary<Direction, SimpleSprite> LoadSpritesWithHead(
 		ImageGroup imageGroup,
 		int emptyLeftArmIndex,
+		int twoHandedLeftArmIndex,
 		int emptyRightArmIndex,
+		int oneHandedRightArmIndex,
+		int twoHandedRightArmIndex,
+		int firingRightArmIndex,
 		int imageIndex,
 		int headImageIndex,
 		int animationIndex,
@@ -197,7 +251,11 @@ public class SimpleSprite
 						imageGroup,
 						direction,
 						emptyLeftArmIndex + index,
+						twoHandedLeftArmIndex + index,
 						emptyRightArmIndex + index,
+						oneHandedRightArmIndex + index,
+						twoHandedRightArmIndex + index,
+						firingRightArmIndex + index,
 						imageIndex + index,
 						headImageIndex + index,
 						animationIndex + index * animationCount,
@@ -218,6 +276,10 @@ public class SimpleSprite
 			.Select(direction => new SimpleSprite(
 				imageGroup,
 				direction,
+				-1,
+				-1,
+				-1,
+				-1,
 				-1,
 				-1,
 				imageIndex,
@@ -260,13 +322,14 @@ public class SimpleSprite
 		8,
 		8
 	);
-
-	//TODO: Floater and Snakeman still need firing/animating arms.
-	//TODO: 32 Float arms: 67-98, 32 Snakeman arms: 99-130
 	public static readonly Dictionary<Direction, SimpleSprite> Floater = LoadSpritesWithArms(
 		ImageGroup.Floater,
 		8,
+		75,
 		0,
+		67,
+		83,
+		91,
 		16,
 		24,
 		5
@@ -274,7 +337,11 @@ public class SimpleSprite
 	public static readonly Dictionary<Direction, SimpleSprite> Snakeman = LoadSpritesWithHead(
 		ImageGroup.Snakeman,
 		0,
+		107,
 		8,
+		99,
+		115,
+		123,
 		16,
 		24,
 		32,

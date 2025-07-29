@@ -4,8 +4,7 @@ public static class BattleItemSprite
 {
 	private static Dictionary<Direction, byte[]> LoadSprites(int groupIndex)
 	{
-		return Enum
-			.GetValues<Direction>()
+		return Enum.GetValues<Direction>()
 			.Select(
 				(direction, index) =>
 					new

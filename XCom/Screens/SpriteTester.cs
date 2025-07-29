@@ -1,6 +1,7 @@
 using XCom.Battlescape;
 using XCom.Battlescape.Tiles;
 using XCom.Controls;
+using XCom.Data;
 using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Music;
@@ -13,17 +14,44 @@ public class SpriteTester : Screen
 	private int frame;
 	private int deathFrame;
 
-	private readonly Dictionary<Direction, SimpleSprite> sprites = SimpleSprite.Snakeman;
-	private readonly Animation death = Animation.SnakemanDeath;
-	// = new BattleItem { Item = WeaponType.BlasterLauncher };
-	private readonly BattleItem item = null;
+	private Dictionary<Direction, SimpleSprite> sprites = SimpleSprite.Snakeman;
+	private Animation death = Animation.SnakemanDeath;
+	private BattleItem item;
 
 	public SpriteTester()
 	{
-		AddControl(new Button(180, 256, 64, 20, "Main Menu", ColorScheme.Aqua, Font.Normal, OnBackToMainMenu));
+		AddControl(
+			new Button(
+				180,
+				256,
+				64,
+				20,
+				"Main Menu",
+				ColorScheme.Aqua,
+				Font.Normal,
+				OnBackToMainMenu
+			)
+		);
 		AddControl(new UpDown(160, 0, ColorScheme.Aqua, OnNextFrame, OnPrevFrame));
 		AddControl(new UpDown(160, 32, ColorScheme.Aqua, OnNextDeathFrame, OnPrevDeathFrame));
-		AddControl(new Button(180, 0, 64, 20, "Start/Stop", ColorScheme.Aqua, Font.Normal, OnToggleStopwatch));
+		AddControl(
+			new Button(
+				180,
+				0,
+				64,
+				20,
+				"Start/Stop",
+				ColorScheme.Aqua,
+				Font.Normal,
+				OnToggleStopwatch
+			)
+		);
+		AddControl(
+			new Button(180, 64, 64, 20, "Toggle Item", ColorScheme.Aqua, Font.Normal, OnToggleItem)
+		);
+		AddControl(
+			new Button(180, 128, 64, 20, "Sprite", ColorScheme.Aqua, Font.Normal, OnToggleSprite)
+		);
 	}
 
 	public override void OnSetFocus()
@@ -64,6 +92,37 @@ public class SpriteTester : Screen
 			stopwatch.Restart();
 	}
 
+	private void OnToggleItem()
+	{
+		if (item == null)
+			item = new BattleItem { Item = WeaponType.PlasmaPistol };
+		else if (item.IsTwoHanded)
+			item = null;
+		else
+			item = new BattleItem { Item = WeaponType.BlasterLauncher };
+	}
+
+	private void OnToggleSprite()
+	{
+		if (sprites == SimpleSprite.Snakeman)
+		{
+			sprites = SimpleSprite.Floater;
+			death = Animation.FloaterDeath;
+		}
+		else if (sprites == SimpleSprite.Floater)
+		{
+			sprites = SimpleSprite.Ethereal;
+			death = Animation.EtherealDeath;
+		}
+		else
+		{
+			sprites = SimpleSprite.Snakeman;
+			death = Animation.SnakemanDeath;
+		}
+		frame = GetNextFrame(frame, sprites[Direction.North].FrameCount, 0);
+		deathFrame = GetNextFrame(deathFrame, death.FrameCount, 0);
+	}
+
 	private static int GetNextFrame(int currentFrame, int frameCount, int delta) =>
 		(currentFrame + frameCount + delta) % frameCount;
 
@@ -73,18 +132,15 @@ public class SpriteTester : Screen
 	private void OnPrevFrame() =>
 		frame = GetNextFrame(frame, sprites[Direction.North].FrameCount, -1);
 
-	private void OnNextDeathFrame() =>
-		deathFrame = GetNextFrame(deathFrame, death.FrameCount, 1);
+	private void OnNextDeathFrame() => deathFrame = GetNextFrame(deathFrame, death.FrameCount, 1);
 
-	private void OnPrevDeathFrame() =>
-		deathFrame = GetNextFrame(deathFrame, death.FrameCount, -1);
+	private void OnPrevDeathFrame() => deathFrame = GetNextFrame(deathFrame, death.FrameCount, -1);
 
 	// TODO: Firing frames?
 	//private int firingFrame;
 	//var firing = Animation.CelatidFiring;
 	//firingFrame = (firingFrame + 1) % firing.FrameCount;
 	//firing.Animate(buffer, 0, 32, firingFrame);
-
 
 	//TODO: Floater
 	//TODO: Snakeman

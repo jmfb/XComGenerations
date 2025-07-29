@@ -82,20 +82,16 @@ public class BattleItem
 
 	private static BattleItem Create(ItemType item)
 	{
-		var weaponType = Enum
-			.GetValues<WeaponType>()
+		var weaponType = Enum.GetValues<WeaponType>()
 			.Cast<WeaponType?>()
 			.SingleOrDefault(weapon => weapon?.Metadata().ItemType == item);
-		var ammunitionType = Enum
-			.GetValues<AmmunitionType>()
+		var ammunitionType = Enum.GetValues<AmmunitionType>()
 			.Cast<AmmunitionType?>()
 			.SingleOrDefault(ammunition => ammunition?.Metadata().ItemType == item);
-		var equipmentType = Enum
-			.GetValues<EquipmentType>()
+		var equipmentType = Enum.GetValues<EquipmentType>()
 			.Cast<EquipmentType?>()
 			.SingleOrDefault(equipment => equipment?.Metadata().ItemType == item);
-		var grenadeType = Enum
-			.GetValues<GrenadeType>()
+		var grenadeType = Enum.GetValues<GrenadeType>()
 			.Cast<GrenadeType?>()
 			.SingleOrDefault(grenade => grenade?.Metadata().ItemType == item);
 		var battleItemType = weaponType ?? ammunitionType ?? (object)equipmentType ?? grenadeType;
