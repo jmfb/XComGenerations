@@ -33,13 +33,13 @@ public static class AlienTypeExtensions
 {
 	public static AlienMetadata Metadata(this AlienType alienType) => metadata[alienType];
 
-	private static readonly AlienMetadata sectoid = new AlienMetadata
+	private static readonly AlienMetadata sectoid = new()
 	{
 		Name = "Sectoid",
 		RequiredResearch = ResearchType.Sectoid,
 		Overlay = Overlays.Sectoid,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The Sectoid Hierarchy ranges",
 			"from soldiers to leaders with",
 			"powerful psionic abilities. These",
@@ -58,17 +58,17 @@ public static class AlienTypeExtensions
 			"appears to want to develop",
 			"superior genetic hybrids to",
 			"increase the efficiency of their",
-			"hive-like society.",
-		},
+			"hive-like society."
+		],
 	};
 
-	private static readonly AlienMetadata sectoidAutopsy = new AlienMetadata
+	private static readonly AlienMetadata sectoidAutopsy = new()
 	{
 		Name = "Sectoid autopsy",
 		RequiredResearch = ResearchType.SectoidCorpse,
 		Overlay = Overlays.SectoidAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The autopsy reveals vestigal",
 			"digestive organs and a simple",
 			"structure. The brain and eyes",
@@ -84,17 +84,17 @@ public static class AlienTypeExtensions
 			"clues as to how this species can",
 			"reproduce.  They are most",
 			"probably a genetically engineered",
-			"species.",
-		},
+			"species."
+		],
 	};
 
-	private static readonly AlienMetadata snakeman = new AlienMetadata
+	private static readonly AlienMetadata snakeman = new()
 	{
 		Name = "Snakeman",
 		RequiredResearch = ResearchType.Snakeman,
 		Overlay = Overlays.Snakeman,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This race developed in an",
 			"extremely hostile environment.",
 			"They are extremely tough and",
@@ -108,17 +108,17 @@ public static class AlienTypeExtensions
 			"the command of some other",
 			"Intelligence which directs their",
 			"military-style incursions on",
-			"earth.",
-		},
+			"earth."
+		],
 	};
 
-	private static readonly AlienMetadata snakemanAutopsy = new AlienMetadata
+	private static readonly AlienMetadata snakemanAutopsy = new()
 	{
 		Name = "Snakeman autopsy",
 		RequiredResearch = ResearchType.SnakemanCorpse,
 		Overlay = Overlays.SnakemanAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The skin is extremely tough and",
 			"heat resistant.  The",
 			"cardio-vascular system is part",
@@ -133,17 +133,17 @@ public static class AlienTypeExtensions
 			"its body at any one time.  Left",
 			"to its own devices this species",
 			"would be a severe threat to",
-			"life on earth.",
-		},
+			"life on earth."
+		],
 	};
 
-	private static readonly AlienMetadata muton = new AlienMetadata
+	private static readonly AlienMetadata muton = new()
 	{
 		Name = "Muton",
 		RequiredResearch = ResearchType.Muton,
 		Overlay = Overlays.Muton,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This humanoid creature is",
 			"physically powerful and",
 			"intelligent.  They have a",
@@ -161,17 +161,17 @@ public static class AlienTypeExtensions
 			"implants are used to enhance",
 			"their combat performance.  They",
 			"are clearly the foot soldiers",
-			"for a higher intelligence.",
-		},
+			"for a higher intelligence."
+		],
 	};
 
-	private static readonly AlienMetadata mutonAutopsy = new AlienMetadata
+	private static readonly AlienMetadata mutonAutopsy = new()
 	{
 		Name = "Muton autopsy",
 		RequiredResearch = ResearchType.MutonCorpse,
 		Overlay = Overlays.MutonAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The 'skin' of this creature",
 			"appears to be an organically",
 			"created protective armor which",
@@ -187,17 +187,17 @@ public static class AlienTypeExtensions
 			"of warfare and conquest.",
 			"Armor piercing ammunition is",
 			"not very effective against",
-			"their toughened skin.",
-		},
+			"their toughened skin."
+		],
 	};
 
-	private static readonly AlienMetadata floater = new AlienMetadata
+	private static readonly AlienMetadata floater = new()
 	{
 		Name = "Floater",
 		RequiredResearch = ResearchType.Floater,
 		Overlay = Overlays.Floater,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The Floaters are primarily",
 			"soldiers and terror agents.",
 			"They are naturally predatory",
@@ -211,17 +211,17 @@ public static class AlienTypeExtensions
 			"contains an anti-grav unit which",
 			"enabled the creature to float,",
 			"albeit unsteadily, through the",
-			"air.",
-		},
+			"air."
+		],
 	};
 
-	private static readonly AlienMetadata floaterAutopsy = new AlienMetadata
+	private static readonly AlienMetadata floaterAutopsy = new()
 	{
 		Name = "Floater autopsy",
 		RequiredResearch = ResearchType.FloaterCorpse,
 		Overlay = Overlays.FloaterAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The creature has been",
 			"drastically altered by surgery.",
 			"The device which seems to form",
@@ -234,17 +234,17 @@ public static class AlienTypeExtensions
 			"environments.  The brain is",
 			"smaller than ours, but the",
 			"sensory organs are well",
-			"developed.",
-		},
+			"developed."
+		],
 	};
 
-	private static readonly AlienMetadata ethereal = new AlienMetadata
+	private static readonly AlienMetadata ethereal = new()
 	{
 		Name = "Ethereal",
 		RequiredResearch = ResearchType.Ethereal,
 		Overlay = Overlays.Ethereal,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This being has awesome mental",
 			"powers which allow for telepathic",
 			"communication and telekinetic",
@@ -261,17 +261,17 @@ public static class AlienTypeExtensions
 			"their mental powers for combat.",
 			"They rarely appear on earth",
 			"since they seem to rely on other",
-			"races to pursue their objectives.",
-		},
+			"races to pursue their objectives."
+		],
 	};
 
-	private static readonly AlienMetadata etherealAutopsy = new AlienMetadata
+	private static readonly AlienMetadata etherealAutopsy = new()
 	{
 		Name = "Ethereal autopsy",
 		RequiredResearch = ResearchType.EtherealCorpse,
 		Overlay = Overlays.EtherealAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This being is physically retarded",
 			"and seems incapable of sustaining",
 			"any life functions.  The muscles",
@@ -285,17 +285,17 @@ public static class AlienTypeExtensions
 			"proportion of the body's blood",
 			"supply.  It is a mystery as to",
 			"how this creature can sustain",
-			"itself without external support.",
-		},
+			"itself without external support."
+		],
 	};
 
-	private static readonly AlienMetadata celatid = new AlienMetadata
+	private static readonly AlienMetadata celatid = new()
 	{
 		Name = "Celatid",
 		RequiredResearch = ResearchType.Celatid,
 		Overlay = Overlays.Celatid,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This life-form has the",
 			"mysterious natural ability to",
 			"float through the air.  It",
@@ -309,17 +309,17 @@ public static class AlienTypeExtensions
 			"has the ability to clone itself",
 			"at an alarming rate. It",
 			"accompanies the Muton race in",
-			"its wonderings.",
-		},
+			"its wonderings."
+		],
 	};
 
-	private static readonly AlienMetadata celatidAutopsy = new AlienMetadata
+	private static readonly AlienMetadata celatidAutopsy = new()
 	{
 		Name = "Celatid autopsy",
 		RequiredResearch = ResearchType.CelatidCorpse,
 		Overlay = Overlays.CelatidAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The core contains a small",
 			"bio-mechanical device which",
 			"appears to be a naturally",
@@ -332,17 +332,17 @@ public static class AlienTypeExtensions
 			"reproductive system. A small",
 			"organ contains embryos which",
 			"can grow rapidly into a new",
-			"being.",
-		},
+			"being."
+		],
 	};
 
-	private static readonly AlienMetadata silacoid = new AlienMetadata
+	private static readonly AlienMetadata silacoid = new()
 	{
 		Name = "Silacoid",
 		RequiredResearch = ResearchType.Silacoid,
 		Overlay = Overlays.Silacoid,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This silicon based life form",
 			"generates an enormous amount",
 			"of heat.  It has the strength",
@@ -352,17 +352,17 @@ public static class AlienTypeExtensions
 			"and can be controlled by",
 			"implants or telepathic beings. It",
 			"works with the Muton alien",
-			"race.",
-		},
+			"race."
+		],
 	};
 
-	private static readonly AlienMetadata silacoidAutopsy = new AlienMetadata
+	private static readonly AlienMetadata silacoidAutopsy = new()
 	{
 		Name = "Silacoid autopsy",
 		RequiredResearch = ResearchType.SilacoidCorpse,
 		Overlay = Overlays.SilacoidAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The core of the creature is",
 			"extremely hot, and seems to be",
 			"the basis for a digestive",
@@ -370,17 +370,17 @@ public static class AlienTypeExtensions
 			"system has tremendous power",
 			"and speed. Its rock like skin is",
 			"not harmed by fire or",
-			"incendiary ammunition.",
-		},
+			"incendiary ammunition."
+		],
 	};
 
-	private static readonly AlienMetadata chryssalid = new AlienMetadata
+	private static readonly AlienMetadata chryssalid = new()
 	{
 		Name = "Chryssalid",
 		RequiredResearch = ResearchType.Chrysalid,
 		Overlay = Overlays.Chryssalid,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The crab like claws of this",
 			"creature are a powerful weapon",
 			"in close combat. The high",
@@ -394,17 +394,17 @@ public static class AlienTypeExtensions
 			"the victim shortly after",
 			"impregnation.  Chryssalids are",
 			"associated with the Snakeman",
-			"race.",
-		},
+			"race."
+		],
 	};
 
-	private static readonly AlienMetadata chryssalidAutopsy = new AlienMetadata
+	private static readonly AlienMetadata chryssalidAutopsy = new()
 	{
 		Name = "Chryssalid autopsy",
 		RequiredResearch = ResearchType.ChryssalidCorpse,
 		Overlay = Overlays.ChryssalidAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The exo-skeleton of this",
 			"creature is extremely tough,",
 			"but surprisingly vulnerable to",
@@ -414,17 +414,17 @@ public static class AlienTypeExtensions
 			"creature carries twenty eggs",
 			"which are laid inside other",
 			"organisms.  This creature is a",
-			"very effective terror weapon.",
-		},
+			"very effective terror weapon."
+		],
 	};
 
-	private static readonly AlienMetadata reaper = new AlienMetadata
+	private static readonly AlienMetadata reaper = new()
 	{
 		Name = "Reaper",
 		RequiredResearch = ResearchType.Reaper,
 		Overlay = Overlays.Reaper,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This bipedal carnivore has",
 			"powerful jaws and a voracious",
 			"appetite. It has a number of",
@@ -434,34 +434,34 @@ public static class AlienTypeExtensions
 			"this creature are of little use",
 			"except to terrorize and",
 			"destroy. Reapers are commonly",
-			"associated with Floaters.",
-		},
+			"associated with Floaters."
+		],
 	};
 
-	private static readonly AlienMetadata reaperAutopsy = new AlienMetadata
+	private static readonly AlienMetadata reaperAutopsy = new()
 	{
 		Name = "Reaper autopsy",
 		RequiredResearch = ResearchType.ReaperCorpse,
 		Overlay = Overlays.ReaperAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The Reaper contains two 'brains'",
 			"and two 'hearts' which allow it",
 			"to function even when heavily",
 			"wounded.  However its furry",
 			"skin is highly flammable, making",
 			"the creature vulnerable to",
-			"incendiary weapons.",
-		},
+			"incendiary weapons."
+		],
 	};
 
-	private static readonly AlienMetadata cyberdisc = new AlienMetadata
+	private static readonly AlienMetadata cyberdisc = new()
 	{
 		Name = "Cyberdisc",
 		RequiredResearch = ResearchType.Cyberdisc,
 		Overlay = Overlays.Cyberdisc,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This miniature flying saucer is",
 			"an automated terror weapon",
 			"armed with a powerful plasma",
@@ -470,34 +470,34 @@ public static class AlienTypeExtensions
 			"difficult terrain. Its primary",
 			"function is destruction and",
 			"terror in the service of the",
-			"Sectoid race.",
-		},
+			"Sectoid race."
+		],
 	};
 
-	private static readonly AlienMetadata cyberdiscAutopsy = new AlienMetadata
+	private static readonly AlienMetadata cyberdiscAutopsy = new()
 	{
 		Name = "Cyberdisc autopsy",
 		RequiredResearch = ResearchType.CyberdiscCorpse,
 		Overlay = Overlays.CyberdiscAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The Cyberdisc is well shielded",
 			"and is particularly good at",
 			"withstanding explosive",
 			"ammunition. The primary",
 			"anti-gravity system is too",
 			"badly damaged to gain any",
-			"understanding of its functioning.",
-		},
+			"understanding of its functioning."
+		],
 	};
 
-	private static readonly AlienMetadata sectopod = new AlienMetadata
+	private static readonly AlienMetadata sectopod = new()
 	{
 		Name = "Sectopod",
 		RequiredResearch = ResearchType.Sectopod,
 		Overlay = Overlays.Sectopod,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Sectopods are robot creatures",
 			"with a powerful plasma beam",
 			"weapon. The control if these",
@@ -506,31 +506,28 @@ public static class AlienTypeExtensions
 			"controllers, the Ethereals.",
 			"Sectopods are the most powerful",
 			"terror weapon available to the",
-			"alien forces.",
-		},
+			"alien forces."
+		],
 	};
 
-	private static readonly AlienMetadata sectopodAutopsy = new AlienMetadata
+	private static readonly AlienMetadata sectopodAutopsy = new()
 	{
 		Name = "Sectopod autopsy",
 		RequiredResearch = ResearchType.SectopodCorpse,
 		Overlay = Overlays.SectopodAutopsy,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The robot is sturdily constructed",
 			"with powered armor capable of",
 			"resisting most forms of attack,",
 			"in particular plasma weapons.",
 			"However, the sensing circuitry",
 			"seems particularly vulnerable to",
-			"laser weapons.",
-		},
+			"laser weapons."
+		],
 	};
 
-	private static readonly Dictionary<AlienType, AlienMetadata> metadata = new Dictionary<
-		AlienType,
-		AlienMetadata
-	>
+	private static readonly Dictionary<AlienType, AlienMetadata> metadata = new()
 	{
 		{ AlienType.Sectoid, sectoid },
 		{ AlienType.SectoidAutopsy, sectoidAutopsy },

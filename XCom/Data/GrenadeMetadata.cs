@@ -10,6 +10,7 @@ public class GrenadeMetadata : BattleItemMetadata
 	public int Damage { get; set; }
 	public int Weight { get; set; }
 	public byte[] Image { get; set; }
+	public byte[][] GroundImages { get; set; }
 	public int Width { get; set; }
 	public int Height { get; set; }
 	public string[] DescriptionLines { get; set; }

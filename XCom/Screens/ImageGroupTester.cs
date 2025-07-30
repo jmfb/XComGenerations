@@ -9,8 +9,8 @@ public class ImageGroupTester : Screen
 {
 	private int offset1;
 	private int offset2;
-	private readonly byte[][] images1 = ImageGroup.Reaper.Images;
-	private readonly byte[][] images2 = ImageGroup.Sectopod.Images;
+	private readonly byte[][] images1 = ImageGroup.Ground.Images;
+	private readonly byte[][] images2 = ImageGroup.Ground.Images;
 
 	const int ImageWidth = 32;
 	const int ImageHeight = 48;

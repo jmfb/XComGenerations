@@ -17,93 +17,95 @@ public static class GenadeTypeExtensions
 {
 	public static GrenadeMetadata Metadata(this GrenadeType grenadeType) => metadata[grenadeType];
 
-	private static readonly GrenadeMetadata grenade = new GrenadeMetadata
+	private static readonly GrenadeMetadata grenade = new()
 	{
 		ItemType = ItemType.Grenade,
 		DamageType = DamageType.HighExplosive,
 		Damage = 50,
 		Weight = 3,
 		Image = Items.Grenade,
+		GroundImages = GroundSprite.Grenade,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This standard issue grenade has an accurate and sophisticated",
-			"timer for precision control.",
-		},
+			"timer for precision control."
+		],
 		Sprites = BattleItemSprite.Grenade,
 	};
 
-	private static readonly GrenadeMetadata smokeGrenade = new GrenadeMetadata
+	private static readonly GrenadeMetadata smokeGrenade = new()
 	{
 		ItemType = ItemType.SmokeGrenade,
 		DamageType = DamageType.Smoke,
 		Damage = 60,
 		Weight = 3,
 		Image = Items.SmokeGrenade,
+		GroundImages = GroundSprite.SmokeGrenade,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Smoke grenades are useful for providing cover in exposed",
 			"combat situations.  Use with care because they can benefit the",
-			"enemy as well",
-		},
+			"enemy as well"
+		],
 	};
 
-	private static readonly GrenadeMetadata proximityGrenade = new GrenadeMetadata
+	private static readonly GrenadeMetadata proximityGrenade = new()
 	{
 		ItemType = ItemType.ProximityGrenade,
 		DamageType = DamageType.HighExplosive,
 		Damage = 70,
 		Weight = 3,
 		Image = Items.ProximityGrenade,
+		GroundImages = GroundSprite.ProximityGrenade,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"A proximity grenade can be thrown like an ordinary grenade",
 			"but is triggered by nearby movement after it lands. Great skill",
-			"and care is required to use these devices properly.",
-		},
+			"and care is required to use these devices properly."
+		],
 	};
 
-	private static readonly GrenadeMetadata highExplosive = new GrenadeMetadata
+	private static readonly GrenadeMetadata highExplosive = new()
 	{
 		ItemType = ItemType.HighExplosive,
 		DamageType = DamageType.HighExplosive,
 		Damage = 110,
 		Weight = 6,
 		Image = Items.HighExplosive,
+		GroundImages = GroundSprite.HighExplosive,
 		Width = 2,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This explosive should only be used for demolition purposes.",
-			"Keep personnel clear of demolition sites.",
-		},
+			"Keep personnel clear of demolition sites."
+		],
 	};
 
-	private static readonly GrenadeMetadata alienGrenade = new GrenadeMetadata
+	private static readonly GrenadeMetadata alienGrenade = new()
 	{
 		ItemType = ItemType.AlienGrenade,
 		DamageType = DamageType.HighExplosive,
 		Damage = 90,
 		Weight = 3,
 		Image = Items.AlienGrenade,
+		GroundImages = GroundSprite.AlienGrenade,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This device works in the same way as a terrestrial grenade -",
-			"except that it is more powerful.",
-		},
+			"except that it is more powerful."
+		],
 	};
 
-	private static readonly Dictionary<GrenadeType, GrenadeMetadata> metadata = new Dictionary<
-		GrenadeType,
-		GrenadeMetadata
-	>
+	private static readonly Dictionary<GrenadeType, GrenadeMetadata> metadata = new()
 	{
 		{ GrenadeType.Grenade, grenade },
 		{ GrenadeType.SmokeGrenade, smokeGrenade },

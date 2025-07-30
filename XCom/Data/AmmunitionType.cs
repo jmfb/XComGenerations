@@ -1,3 +1,4 @@
+using XCom.Battlescape.Tiles;
 using XCom.Content.Items;
 
 namespace XCom.Data;
@@ -28,7 +29,7 @@ public static class AmmunitionTypeExtensions
 	public static AmmunitionMetadata Metadata(this AmmunitionType ammunitionType) =>
 		metadata[ammunitionType];
 
-	private static readonly AmmunitionMetadata pistolClip = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata pistolClip = new()
 	{
 		ItemType = ItemType.PistolClip,
 		Weapon = WeaponType.Pistol,
@@ -37,11 +38,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 12,
 		Weight = 3,
 		Image = Items.PistolClip,
+		GroundImages = GroundSprite.PistolClip,
 		Width = 1,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata rifleClip = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata rifleClip = new()
 	{
 		ItemType = ItemType.RifleClip,
 		Weapon = WeaponType.Rifle,
@@ -50,11 +52,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 20,
 		Weight = 3,
 		Image = Items.RifleClip,
+		GroundImages = GroundSprite.RifleClip,
 		Width = 1,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata hcApAmmo = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata hcApAmmo = new()
 	{
 		ItemType = ItemType.HcApAmmo,
 		Weapon = WeaponType.HeavyCannon,
@@ -63,11 +66,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 6,
 		Weight = 6,
 		Image = Items.HcApAmmo,
+		GroundImages = GroundSprite.HcApAmmo,
 		Width = 2,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata hcHeAmmo = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata hcHeAmmo = new()
 	{
 		ItemType = ItemType.HcHeAmmo,
 		Weapon = WeaponType.HeavyCannon,
@@ -76,11 +80,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 6,
 		Weight = 6,
 		Image = Items.HcHeAmmo,
+		GroundImages = GroundSprite.HcHeAmmo,
 		Width = 2,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata hcIAmmo = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata hcIAmmo = new()
 	{
 		ItemType = ItemType.HcIAmmo,
 		Weapon = WeaponType.HeavyCannon,
@@ -89,11 +94,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 6,
 		Weight = 6,
 		Image = Items.HcIAmmo,
+		GroundImages = GroundSprite.HcIAmmo,
 		Width = 2,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata acApAmmo = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata acApAmmo = new()
 	{
 		ItemType = ItemType.AcApAmmo,
 		Weapon = WeaponType.AutoCannon,
@@ -102,11 +108,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 14,
 		Weight = 5,
 		Image = Items.AcApAmmo,
+		GroundImages = GroundSprite.AcApAmmo,
 		Width = 2,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata acHeAmmo = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata acHeAmmo = new()
 	{
 		ItemType = ItemType.AcHeAmmo,
 		Weapon = WeaponType.AutoCannon,
@@ -115,11 +122,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 14,
 		Weight = 5,
 		Image = Items.AcHeAmmo,
+		GroundImages = GroundSprite.AcHeAmmo,
 		Width = 2,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata acIAmmo = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata acIAmmo = new()
 	{
 		ItemType = ItemType.AcIAmmo,
 		Weapon = WeaponType.AutoCannon,
@@ -128,11 +136,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 14,
 		Weight = 5,
 		Image = Items.AcIAmmo,
+		GroundImages = GroundSprite.AcIAmmo,
 		Width = 2,
 		Height = 1,
 	};
 
-	private static readonly AmmunitionMetadata smallRocket = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata smallRocket = new()
 	{
 		ItemType = ItemType.SmallRocket,
 		Weapon = WeaponType.RocketLauncher,
@@ -141,11 +150,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 1,
 		Weight = 6,
 		Image = Items.SmallRocket,
+		GroundImages = GroundSprite.SmallRocket,
 		Width = 1,
 		Height = 3,
 	};
 
-	private static readonly AmmunitionMetadata largeRocket = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata largeRocket = new()
 	{
 		ItemType = ItemType.LargeRocket,
 		Weapon = WeaponType.RocketLauncher,
@@ -154,11 +164,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 1,
 		Weight = 8,
 		Image = Items.LargeRocket,
+		GroundImages = GroundSprite.LargeRocket,
 		Width = 1,
 		Height = 3,
 	};
 
-	private static readonly AmmunitionMetadata incendiaryRocket = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata incendiaryRocket = new()
 	{
 		ItemType = ItemType.IncendiaryRocket,
 		Weapon = WeaponType.RocketLauncher,
@@ -167,11 +178,12 @@ public static class AmmunitionTypeExtensions
 		Rounds = 1,
 		Weight = 8,
 		Image = Items.IncendiaryRocket,
+		GroundImages = GroundSprite.IncendiaryRocket,
 		Width = 1,
 		Height = 3,
 	};
 
-	private static readonly AmmunitionMetadata plasmaPistolClip = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata plasmaPistolClip = new()
 	{
 		ItemType = ItemType.PlasmaPistolClip,
 		Weapon = WeaponType.PlasmaPistol,
@@ -180,16 +192,17 @@ public static class AmmunitionTypeExtensions
 		Rounds = 26,
 		Weight = 3,
 		Image = Items.PlasmaPistolClip,
+		GroundImages = GroundSprite.PlasmaClip,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Power source for the small alien plasma pistol. Contains Elerium",
-			"- the source of all alien power.",
-		},
+			"- the source of all alien power."
+		],
 	};
 
-	private static readonly AmmunitionMetadata plasmaRifleClip = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata plasmaRifleClip = new()
 	{
 		ItemType = ItemType.PlasmaRifleClip,
 		Weapon = WeaponType.PlasmaRifle,
@@ -198,17 +211,18 @@ public static class AmmunitionTypeExtensions
 		Rounds = 28,
 		Weight = 3,
 		Image = Items.PlasmaPistolClip,
+		GroundImages = GroundSprite.PlasmaClip,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This small object is used as a power source for a plasma rifle",
 			"- a medium powered alien weapon. Contains a small quantity of",
-			"Elerium.",
-		},
+			"Elerium."
+		],
 	};
 
-	private static readonly AmmunitionMetadata heavyPlasmaClip = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata heavyPlasmaClip = new()
 	{
 		ItemType = ItemType.HeavyPlasmaClip,
 		Weapon = WeaponType.HeavyPlasma,
@@ -217,16 +231,17 @@ public static class AmmunitionTypeExtensions
 		Rounds = 35,
 		Weight = 3,
 		Image = Items.HeavyPlasmaClip,
+		GroundImages = GroundSprite.PlasmaClip,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This compact device is used as ammunition for a Heavy Plasma",
-			"Gun. It contains a small quantity of Elerium.",
-		},
+			"Gun. It contains a small quantity of Elerium."
+		],
 	};
 
-	private static readonly AmmunitionMetadata stunBomb = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata stunBomb = new()
 	{
 		ItemType = ItemType.StunBomb,
 		Weapon = WeaponType.SmallLauncher,
@@ -235,17 +250,18 @@ public static class AmmunitionTypeExtensions
 		Rounds = 1,
 		Weight = 3,
 		Image = Items.StunBomb,
+		GroundImages = GroundSprite.StunBomb,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The Stun bomb is used for capturing live human specimens, but",
 			"it can also be used against most alien races. It is fired from a",
-			"small launcher.",
-		},
+			"small launcher."
+		],
 	};
 
-	private static readonly AmmunitionMetadata blasterBomb = new AmmunitionMetadata
+	private static readonly AmmunitionMetadata blasterBomb = new()
 	{
 		ItemType = ItemType.BlasterBomb,
 		Weapon = WeaponType.BlasterLauncher,
@@ -254,17 +270,18 @@ public static class AmmunitionTypeExtensions
 		Rounds = 1,
 		Weight = 3,
 		Image = Items.BlasterBomb,
+		GroundImages = GroundSprite.BlasterBomb,
 		Width = 1,
 		Height = 2,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This device is a highly explosive missile that has an intelligent",
-			"guidance system. It is fired from a blaster launcher.",
-		},
+			"guidance system. It is fired from a blaster launcher."
+		],
 	};
 
 	private static readonly Dictionary<AmmunitionType, AmmunitionMetadata> metadata =
-		new Dictionary<AmmunitionType, AmmunitionMetadata>
+		new()
 		{
 			{ AmmunitionType.PistolClip, pistolClip },
 			{ AmmunitionType.RifleClip, rifleClip },

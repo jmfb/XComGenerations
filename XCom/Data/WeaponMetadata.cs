@@ -10,6 +10,7 @@ public class WeaponMetadata : BattleItemMetadata
 	public int Weight { get; set; }
 	public bool IsTwoHanded { get; set; }
 	public byte[] Image { get; set; }
+	public byte[][] GroundImages { get; set; }
 	public int Width { get; set; }
 	public int Height { get; set; }
 	public string[] DescriptionLines { get; set; }

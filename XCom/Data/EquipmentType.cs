@@ -20,46 +20,49 @@ public static class EquipmentTypeExtensions
 	public static EquipmentMetadata Metadata(this EquipmentType equipmentType) =>
 		metadata[equipmentType];
 
-	private static readonly EquipmentMetadata stunRod = new EquipmentMetadata
+	private static readonly EquipmentMetadata stunRod = new()
 	{
 		ItemType = ItemType.StunRod,
 		Weight = 6,
 		Image = Items.StunRod,
+		GroundImages = GroundSprite.StunRod,
 		Width = 1,
 		Height = 3,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This device can only be used in close combat, but will stun a",
-			"living organism without killing it by using electric shocks.",
-		},
+			"living organism without killing it by using electric shocks."
+		],
 		IsTwoHanded = true,
 		Sprites = BattleItemSprite.StunRod,
 	};
 
-	private static readonly EquipmentMetadata electroFlare = new EquipmentMetadata
+	private static readonly EquipmentMetadata electroFlare = new()
 	{
 		ItemType = ItemType.ElectroFlare,
 		Weight = 3,
 		Image = Items.ElectroFlare,
+		GroundImages = GroundSprite.ElectroFlare,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This compact device produces a bright flare light when it is",
 			"thrown. This will highlight enemy units in the vicinity of the",
-			"electro-flare during night time missions.",
-		},
+			"electro-flare during night time missions."
+		],
 	};
 
-	private static readonly EquipmentMetadata motionScanner = new EquipmentMetadata
+	private static readonly EquipmentMetadata motionScanner = new()
 	{
 		ItemType = ItemType.MotionScanner,
 		Weight = 3,
 		Image = Items.MotionScanner,
+		GroundImages = GroundSprite.MotionScanner,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This sophisticated device uses a variety of detectors and",
 			"advanced computer algorithms to identify moving enemy units.",
 			"However, it requires some practice to use effectively. Click on",
@@ -68,19 +71,20 @@ public static class EquipmentTypeExtensions
 			"in the center which is the direction the soldier is facing (North",
 			"is at the top). The flashing blobs show units which have moved",
 			"recently. Large units, or fast moving units, will produce larger",
-			"blobs. Static units will not be detected.",
-		},
+			"blobs. Static units will not be detected."
+		],
 	};
 
-	private static readonly EquipmentMetadata mediKit = new EquipmentMetadata
+	private static readonly EquipmentMetadata mediKit = new()
 	{
 		ItemType = ItemType.MediKit,
 		Weight = 5,
 		Image = Items.MediKit,
+		GroundImages = GroundSprite.MediKit,
 		Width = 1,
 		Height = 2,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The medi-kit combines a healing facility with pain killters and",
 			"stimulants. In order to use the medi-kit you must face",
 			"towards the soldier requiring treatment. If the soldier is",
@@ -93,19 +97,20 @@ public static class EquipmentTypeExtensions
 			"(stunned) soldiers. In order to revive an unconcious soldier",
 			"you must stand directly over the body.",
 			"PAIN KILLER> This will restore the morale of wounded soldiers",
-			"up to an amount equivalent to the soldier's last health.",
-		},
+			"up to an amount equivalent to the soldier's last health."
+		],
 	};
 
-	private static readonly EquipmentMetadata psiAmp = new EquipmentMetadata
+	private static readonly EquipmentMetadata psiAmp = new()
 	{
 		ItemType = ItemType.PsiAmp,
 		Weight = 10,
 		Image = Items.PsiAmp,
+		GroundImages = GroundSprite.PsiAmp,
 		Width = 1,
 		Height = 3,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The Psi-amp can only be used by soldiers with psionic skill.",
 			"During combat, click on the Psi-amp, select the type of attack,",
 			"and select a target unit with the cursor. There are two types",
@@ -115,48 +120,48 @@ public static class EquipmentTypeExtensions
 			"MIND CONTROL> If this is successful then you will gain immediate",
 			"control of the enemy unit as if it was one of your own (except",
 			"that you cannot access the object screen). It is more difficult",
-			"to be successful with this type of attack.",
-		},
+			"to be successful with this type of attack."
+		],
 		Sprites = BattleItemSprite.PsiAmp,
 	};
 
-	private static readonly EquipmentMetadata elerium115 = new EquipmentMetadata
+	private static readonly EquipmentMetadata elerium115 = new()
 	{
 		ItemType = ItemType.Elerium115,
 		Weight = 3,
 		Image = Items.Elerium115,
+		// Elerium 115 does not have a unique ground sprite
+		GroundImages = GroundSprite.StunBomb,
 		Width = 1,
 		Height = 1,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This element has the unusual property of generating",
 			"anti-matter power when bombarded with certain particles. This",
 			"creates gravity waves and other forms of energy. It is not",
-			"naturally found in our solar system and cannot be reproduced.",
-		},
+			"naturally found in our solar system and cannot be reproduced."
+		],
 	};
 
-	private static readonly EquipmentMetadata mindProbe = new EquipmentMetadata
+	private static readonly EquipmentMetadata mindProbe = new()
 	{
 		ItemType = ItemType.MindProbe,
 		Weight = 5,
 		Image = Items.MindProbe,
+		GroundImages = GroundSprite.MindProbe,
 		Width = 2,
 		Height = 2,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The mind probe is an alien communication device which is used",
 			"to take information directly from brain waves. XCom units can",
 			"use this device in combat to display an alien's characteristics.",
 			"Click on the mind probe and the 'use' option. Then click on an",
-			"alien with the cursor.",
-		},
+			"alien with the cursor."
+		],
 	};
 
-	private static readonly Dictionary<EquipmentType, EquipmentMetadata> metadata = new Dictionary<
-		EquipmentType,
-		EquipmentMetadata
-	>
+	private static readonly Dictionary<EquipmentType, EquipmentMetadata> metadata = new()
 	{
 		{ EquipmentType.StunRod, stunRod },
 		{ EquipmentType.ElectroFlare, electroFlare },
