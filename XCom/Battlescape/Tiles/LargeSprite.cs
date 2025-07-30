@@ -99,6 +99,4 @@ public class LargeSprite
 	public static readonly Dictionary<Direction, LargeSprite> Sectopod = LoadSprites(
 		ImageGroup.Sectopod
 	);
-
-	public static readonly Dictionary<Direction, LargeSprite>[] All = [Reaper, Sectopod];
 }

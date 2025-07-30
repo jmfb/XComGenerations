@@ -182,7 +182,7 @@ public class TankSprite
 		112,
 		120
 	);
-	public static readonly Dictionary<Direction, TankSprite> Cyberdisk = LoadSprites(
+	public static readonly Dictionary<Direction, TankSprite> Cyberdisc = LoadSprites(
 		ImageGroup.Cyberdisc,
 		false,
 		0,
@@ -194,14 +194,4 @@ public class TankSprite
 		40,
 		48
 	);
-
-	public static readonly Dictionary<Direction, TankSprite>[] All =
-	[
-		TankCannon,
-		TankRocketLauncher,
-		TankLaserCannon,
-		HovertankPlasma,
-		HovertankLauncher,
-		Cyberdisk,
-	];
 }

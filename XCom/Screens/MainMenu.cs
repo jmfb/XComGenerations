@@ -28,10 +28,7 @@ public class MainMenu : Screen
 				OnLoadSavedGame
 			)
 		);
-		// TODO: Move this back once the sprite testing is done
-		// AddControl(new Button(146, 64, 192, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
-		AddControl(new Button(146, 64, 92, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
-		AddControl(new Button(146, 164, 92, 20, "Test", ColorScheme.Aqua, Font.Normal, OnTest));
+		AddControl(new Button(146, 64, 192, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
 	}
 
 	public override void OnSetFocus()
@@ -47,14 +44,6 @@ public class MainMenu : Screen
 	private void OnLoadSavedGame()
 	{
 		GameState.Current.SetScreen(new LoadGame(this));
-	}
-
-	private static void OnTest()
-	{
-		// GameState.Current.SetScreen(new SpriteTester());
-		// GameState.Current.SetScreen(new TankSpriteTester());
-		// GameState.Current.SetScreen(new LargeSpriteTester());
-		GameState.Current.SetScreen(new ImageGroupTester());
 	}
 
 	private static void OnQuit()
