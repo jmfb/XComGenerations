@@ -1,11 +1,10 @@
-using System.Windows.Forms;
 using XCom.Graphics;
 
 namespace XCom.Controls;
 
 public abstract class InteractiveContainer : InteractiveControl
 {
-	private readonly List<object> controls = new List<object>();
+	private readonly List<object> controls = new();
 
 	protected void AddControl(object control)
 	{

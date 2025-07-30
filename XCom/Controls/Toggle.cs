@@ -3,24 +3,21 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class Toggle : Button
+public class Toggle(
+	int topRow,
+	int leftColumn,
+	int width,
+	int height,
+	string text,
+	ColorScheme scheme,
+	Font font,
+	Action action
+) : Button(topRow, leftColumn, width, height, text, scheme, font, action)
 {
-	public Toggle(
-		int topRow,
-		int leftColumn,
-		int width,
-		int height,
-		string text,
-		ColorScheme scheme,
-		Font font,
-		Action action
-	)
-		: base(topRow, leftColumn, width, height, text, scheme, font, action) { }
-
 	public bool Value
 	{
-		get { return Pushed; }
-		set { Pushed = value; }
+		get => Pushed;
+		set => Pushed = value;
 	}
 
 	public override void OnMouseMove(int row, int column, bool leftButton, bool rightButton) { }

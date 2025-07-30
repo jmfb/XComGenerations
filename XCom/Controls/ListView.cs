@@ -13,7 +13,7 @@ public class ListView<T> : InteractiveContainer
 		public Func<T, ColoredText>[] Parts { get; set; }
 	}
 
-	private readonly List<Column> columns = new List<Column>();
+	private readonly List<Column> columns = new();
 	private readonly int topRow;
 	private readonly int leftColumn;
 	private readonly int maxRowsToDisplay;

@@ -6,12 +6,12 @@ namespace XCom.Battlescape.Tiles;
 
 public static class MapFactory
 {
-	private static readonly Tileset placeholder = new Tileset();
-	private static readonly TerrainCategoryMetadata cityMetadata = new TerrainCategoryMetadata
+	private static readonly Tileset placeholder = new();
+	private static readonly TerrainCategoryMetadata cityMetadata = new()
 	{
-		FlatTilesets = new[] { Tileset.City3, Tileset.City4 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.City3, Tileset.City4],
+		OtherTilesets =
+		[
 			Tileset.City5,
 			Tileset.City6,
 			Tileset.City7,
@@ -22,13 +22,13 @@ public static class MapFactory
 			Tileset.City12,
 			Tileset.City13,
 			Tileset.City14,
-		},
+		],
 	};
-	private static readonly TerrainCategoryMetadata marsMetadata = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata marsMetadata = new()
 	{
-		FlatTilesets = new[] { Tileset.Mars0 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.Mars0],
+		OtherTilesets =
+		[
 			Tileset.Mars1,
 			Tileset.Mars2,
 			Tileset.Mars3,
@@ -38,13 +38,13 @@ public static class MapFactory
 			Tileset.Mars7,
 			Tileset.Mars8,
 			Tileset.Mars9,
-		},
+		],
 	};
-	private static readonly TerrainCategoryMetadata alienBaseMetadata = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata alienBaseMetadata = new()
 	{
-		FlatTilesets = new Tileset[0],
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [],
+		OtherTilesets =
+		[
 			Tileset.AlienBase1,
 			Tileset.AlienBase2,
 			Tileset.AlienBase3,
@@ -55,13 +55,13 @@ public static class MapFactory
 			Tileset.AlienBase9,
 			Tileset.AlienBase10,
 			Tileset.AlienBase11,
-		},
+		],
 	};
-	private static readonly TerrainCategoryMetadata marsBaseMetadata = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata marsBaseMetadata = new()
 	{
-		FlatTilesets = new Tileset[0],
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [],
+		OtherTilesets =
+		[
 			Tileset.AlienBase1,
 			Tileset.AlienBase2,
 			Tileset.AlienBase3,
@@ -75,7 +75,7 @@ public static class MapFactory
 			Tileset.AlienBase12,
 			Tileset.AlienBase13,
 			Tileset.AlienBase14,
-		},
+		],
 	};
 
 	public static Map CreateMarsMap(Craft avenger)

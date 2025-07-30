@@ -2,22 +2,16 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class ClickGridArea : InteractiveControl
+public class ClickGridArea(
+	int topRow,
+	int leftColumn,
+	int width,
+	int height,
+	Action<int, int> action
+) : InteractiveControl
 {
-	private readonly int topRow;
-	private readonly int leftColumn;
-	private readonly int width;
-	private readonly int height;
-	private readonly Action<int, int> action;
-
-	public ClickGridArea(int topRow, int leftColumn, int width, int height, Action<int, int> action)
-	{
-		this.topRow = topRow;
-		this.leftColumn = leftColumn;
-		this.width = width * 16;
-		this.height = height * 16;
-		this.action = action;
-	}
+	private readonly int width = width * 16;
+	private readonly int height = height * 16;
 
 	public override void Render(GraphicsBuffer buffer) { }
 

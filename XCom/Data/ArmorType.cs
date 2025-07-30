@@ -16,7 +16,7 @@ public static class ArmorTypeExtensions
 		return metadata[armorType];
 	}
 
-	private static readonly ArmorMetadata personalArmor = new ArmorMetadata
+	private static readonly ArmorMetadata personalArmor = new()
 	{
 		Name = "PERSONAL ARMOR",
 		FrontArmor = 50,
@@ -30,7 +30,7 @@ public static class ArmorTypeExtensions
 		Overlay = Paperdolls.PersonalArmorWhiteMale,
 	};
 
-	private static readonly ArmorMetadata powerSuit = new ArmorMetadata
+	private static readonly ArmorMetadata powerSuit = new()
 	{
 		Name = "POWER SUIT",
 		FrontArmor = 100,
@@ -45,7 +45,7 @@ public static class ArmorTypeExtensions
 		Overlay = Paperdolls.PowerSuit,
 	};
 
-	private static readonly ArmorMetadata flyingSuit = new ArmorMetadata
+	private static readonly ArmorMetadata flyingSuit = new()
 	{
 		Name = "FLYING SUIT",
 		FrontArmor = 110,
@@ -60,10 +60,7 @@ public static class ArmorTypeExtensions
 		Overlay = Paperdolls.FlyingSuit,
 	};
 
-	private static readonly Dictionary<ArmorType, ArmorMetadata> metadata = new Dictionary<
-		ArmorType,
-		ArmorMetadata
-	>
+	private static readonly Dictionary<ArmorType, ArmorMetadata> metadata = new()
 	{
 		{ ArmorType.PersonalArmor, personalArmor },
 		{ ArmorType.PowerSuit, powerSuit },

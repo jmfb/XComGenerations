@@ -4,18 +4,11 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class CraftCargoPreview : Drawable
+public class CraftCargoPreview(Craft craft) : Drawable
 {
-	private readonly Craft craft;
-
-	private static readonly Image crew = new Image(Equipment.Crew);
-	private static readonly Image tank = new Image(Equipment.Tank);
-	private static readonly Image items = new Image(Equipment.Items);
-
-	public CraftCargoPreview(Craft craft)
-	{
-		this.craft = craft;
-	}
+	private static readonly Image crew = new(Equipment.Crew);
+	private static readonly Image tank = new(Equipment.Tank);
+	private static readonly Image items = new(Equipment.Items);
 
 	public void Render(GraphicsBuffer buffer)
 	{

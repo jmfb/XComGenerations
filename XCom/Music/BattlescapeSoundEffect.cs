@@ -68,140 +68,60 @@ public static class BattlescapeSoundEffectExtensions
 		GetSoundPlayer(soundEffect).Play();
 	}
 
-	private static readonly SoundPlayer ammoHit = new SoundPlayer(BattlescapeSounds.AmmoHit);
-	private static readonly SoundPlayer beamHit = new SoundPlayer(BattlescapeSounds.BeamHit);
-	private static readonly SoundPlayer bigGunShot = new SoundPlayer(BattlescapeSounds.BigGunShot);
-	private static readonly SoundPlayer blasterLaunch = new SoundPlayer(
-		BattlescapeSounds.BlasterLaunch
-	);
-	private static readonly SoundPlayer bulletHit = new SoundPlayer(BattlescapeSounds.BulletHit);
-	private static readonly SoundPlayer celatidAttack = new SoundPlayer(
-		BattlescapeSounds.CelatidAttack
-	);
-	private static readonly SoundPlayer celatidMove = new SoundPlayer(
-		BattlescapeSounds.CelatidMove
-	);
-	private static readonly SoundPlayer celatidScream = new SoundPlayer(
-		BattlescapeSounds.CelatidScream
-	);
-	private static readonly SoundPlayer chryssalidAttack = new SoundPlayer(
-		BattlescapeSounds.ChryssalidAttack
-	);
-	private static readonly SoundPlayer doorOpen = new SoundPlayer(BattlescapeSounds.DoorOpen);
-	private static readonly SoundPlayer etherealScream = new SoundPlayer(
-		BattlescapeSounds.EtherealScream
-	);
-	private static readonly SoundPlayer flyingMovement = new SoundPlayer(
-		BattlescapeSounds.FlyingMovement
-	);
-	private static readonly SoundPlayer footstepGround1 = new SoundPlayer(
-		BattlescapeSounds.FootstepGround1
-	);
-	private static readonly SoundPlayer footstepGround2 = new SoundPlayer(
-		BattlescapeSounds.FootstepGround2
-	);
-	private static readonly SoundPlayer footstepMars1 = new SoundPlayer(
-		BattlescapeSounds.FootstepMars1
-	);
-	private static readonly SoundPlayer footstepMars2 = new SoundPlayer(
-		BattlescapeSounds.FootstepMars2
-	);
-	private static readonly SoundPlayer footstepMetal1 = new SoundPlayer(
-		BattlescapeSounds.FootstepMetal1
-	);
-	private static readonly SoundPlayer footstepMetal2 = new SoundPlayer(
-		BattlescapeSounds.FootstepMetal2
-	);
-	private static readonly SoundPlayer footstepMud1 = new SoundPlayer(
-		BattlescapeSounds.FootstepMud1
-	);
-	private static readonly SoundPlayer footstepMud2 = new SoundPlayer(
-		BattlescapeSounds.FootstepMud2
-	);
-	private static readonly SoundPlayer footstepSand1 = new SoundPlayer(
-		BattlescapeSounds.FootstepSand1
-	);
-	private static readonly SoundPlayer footstepSand2 = new SoundPlayer(
-		BattlescapeSounds.FootstepSand2
-	);
-	private static readonly SoundPlayer footstepSnow1 = new SoundPlayer(
-		BattlescapeSounds.FootstepSnow1
-	);
-	private static readonly SoundPlayer footstepSnow2 = new SoundPlayer(
-		BattlescapeSounds.FootstepSnow2
-	);
-	private static readonly SoundPlayer gunShot = new SoundPlayer(BattlescapeSounds.GunShot);
-	private static readonly SoundPlayer hovertankMove = new SoundPlayer(
-		BattlescapeSounds.HovertankMove
-	);
-	private static readonly SoundPlayer itemDrop = new SoundPlayer(BattlescapeSounds.ItemDrop);
-	private static readonly SoundPlayer itemThrow = new SoundPlayer(BattlescapeSounds.ItemThrow);
-	private static readonly SoundPlayer largeExplosion = new SoundPlayer(
-		BattlescapeSounds.LargeExplosion
-	);
-	private static readonly SoundPlayer laserShot = new SoundPlayer(BattlescapeSounds.LaserShot);
-	private static readonly SoundPlayer machineDeath = new SoundPlayer(
-		BattlescapeSounds.MachineDeath
-	);
-	private static readonly SoundPlayer mindControl = new SoundPlayer(
-		BattlescapeSounds.MindControl
-	);
-	private static readonly SoundPlayer mindProbe = new SoundPlayer(BattlescapeSounds.MindProbe);
-	private static readonly SoundPlayer mutonScream = new SoundPlayer(
-		BattlescapeSounds.MutonScream
-	);
-	private static readonly SoundPlayer plasmaShot = new SoundPlayer(BattlescapeSounds.PlasmaShot);
-	private static readonly SoundPlayer reaperAttack = new SoundPlayer(
-		BattlescapeSounds.ReaperAttack
-	);
-	private static readonly SoundPlayer reload = new SoundPlayer(BattlescapeSounds.Reload);
-	private static readonly SoundPlayer rocketLaunch = new SoundPlayer(
-		BattlescapeSounds.RocketLaunch
-	);
-	private static readonly SoundPlayer screamFemale1 = new SoundPlayer(
-		BattlescapeSounds.ScreamFemale1
-	);
-	private static readonly SoundPlayer screamFemale2 = new SoundPlayer(
-		BattlescapeSounds.ScreamFemale2
-	);
-	private static readonly SoundPlayer screamFemale3 = new SoundPlayer(
-		BattlescapeSounds.ScreamFemale3
-	);
-	private static readonly SoundPlayer screamMale1 = new SoundPlayer(
-		BattlescapeSounds.ScreamMale1
-	);
-	private static readonly SoundPlayer screamMale2 = new SoundPlayer(
-		BattlescapeSounds.ScreamMale2
-	);
-	private static readonly SoundPlayer screamMale3 = new SoundPlayer(
-		BattlescapeSounds.ScreamMale3
-	);
-	private static readonly SoundPlayer sectoidScream = new SoundPlayer(
-		BattlescapeSounds.SectoidScream
-	);
-	private static readonly SoundPlayer silacoidAttack = new SoundPlayer(
-		BattlescapeSounds.SilacoidAttack
-	);
-	private static readonly SoundPlayer silacoidMove = new SoundPlayer(
-		BattlescapeSounds.SilacoidMove
-	);
-	private static readonly SoundPlayer smallExplosion = new SoundPlayer(
-		BattlescapeSounds.SmallExplosion
-	);
-	private static readonly SoundPlayer snakemanScream = new SoundPlayer(
-		BattlescapeSounds.SnakemanScream
-	);
-	private static readonly SoundPlayer snakemanSlither = new SoundPlayer(
-		BattlescapeSounds.SnakemanSlither
-	);
-	private static readonly SoundPlayer stunRod = new SoundPlayer(BattlescapeSounds.StunRod);
-	private static readonly SoundPlayer tankMove = new SoundPlayer(BattlescapeSounds.TankMove);
-	private static readonly SoundPlayer ufoDoorOpen1 = new SoundPlayer(
-		BattlescapeSounds.UfoDoorOpen1
-	);
-	private static readonly SoundPlayer ufoDoorOpen2 = new SoundPlayer(
-		BattlescapeSounds.UfoDoorOpen2
-	);
+	private static readonly SoundPlayer ammoHit = new(BattlescapeSounds.AmmoHit);
+	private static readonly SoundPlayer beamHit = new(BattlescapeSounds.BeamHit);
+	private static readonly SoundPlayer bigGunShot = new(BattlescapeSounds.BigGunShot);
+	private static readonly SoundPlayer blasterLaunch = new(BattlescapeSounds.BlasterLaunch);
+	private static readonly SoundPlayer bulletHit = new(BattlescapeSounds.BulletHit);
+	private static readonly SoundPlayer celatidAttack = new(BattlescapeSounds.CelatidAttack);
+	private static readonly SoundPlayer celatidMove = new(BattlescapeSounds.CelatidMove);
+	private static readonly SoundPlayer celatidScream = new(BattlescapeSounds.CelatidScream);
+	private static readonly SoundPlayer chryssalidAttack = new(BattlescapeSounds.ChryssalidAttack);
+	private static readonly SoundPlayer doorOpen = new(BattlescapeSounds.DoorOpen);
+	private static readonly SoundPlayer etherealScream = new(BattlescapeSounds.EtherealScream);
+	private static readonly SoundPlayer flyingMovement = new(BattlescapeSounds.FlyingMovement);
+	private static readonly SoundPlayer footstepGround1 = new(BattlescapeSounds.FootstepGround1);
+	private static readonly SoundPlayer footstepGround2 = new(BattlescapeSounds.FootstepGround2);
+	private static readonly SoundPlayer footstepMars1 = new(BattlescapeSounds.FootstepMars1);
+	private static readonly SoundPlayer footstepMars2 = new(BattlescapeSounds.FootstepMars2);
+	private static readonly SoundPlayer footstepMetal1 = new(BattlescapeSounds.FootstepMetal1);
+	private static readonly SoundPlayer footstepMetal2 = new(BattlescapeSounds.FootstepMetal2);
+	private static readonly SoundPlayer footstepMud1 = new(BattlescapeSounds.FootstepMud1);
+	private static readonly SoundPlayer footstepMud2 = new(BattlescapeSounds.FootstepMud2);
+	private static readonly SoundPlayer footstepSand1 = new(BattlescapeSounds.FootstepSand1);
+	private static readonly SoundPlayer footstepSand2 = new(BattlescapeSounds.FootstepSand2);
+	private static readonly SoundPlayer footstepSnow1 = new(BattlescapeSounds.FootstepSnow1);
+	private static readonly SoundPlayer footstepSnow2 = new(BattlescapeSounds.FootstepSnow2);
+	private static readonly SoundPlayer gunShot = new(BattlescapeSounds.GunShot);
+	private static readonly SoundPlayer hovertankMove = new(BattlescapeSounds.HovertankMove);
+	private static readonly SoundPlayer itemDrop = new(BattlescapeSounds.ItemDrop);
+	private static readonly SoundPlayer itemThrow = new(BattlescapeSounds.ItemThrow);
+	private static readonly SoundPlayer largeExplosion = new(BattlescapeSounds.LargeExplosion);
+	private static readonly SoundPlayer laserShot = new(BattlescapeSounds.LaserShot);
+	private static readonly SoundPlayer machineDeath = new(BattlescapeSounds.MachineDeath);
+	private static readonly SoundPlayer mindControl = new(BattlescapeSounds.MindControl);
+	private static readonly SoundPlayer mindProbe = new(BattlescapeSounds.MindProbe);
+	private static readonly SoundPlayer mutonScream = new(BattlescapeSounds.MutonScream);
+	private static readonly SoundPlayer plasmaShot = new(BattlescapeSounds.PlasmaShot);
+	private static readonly SoundPlayer reaperAttack = new(BattlescapeSounds.ReaperAttack);
+	private static readonly SoundPlayer reload = new(BattlescapeSounds.Reload);
+	private static readonly SoundPlayer rocketLaunch = new(BattlescapeSounds.RocketLaunch);
+	private static readonly SoundPlayer screamFemale1 = new(BattlescapeSounds.ScreamFemale1);
+	private static readonly SoundPlayer screamFemale2 = new(BattlescapeSounds.ScreamFemale2);
+	private static readonly SoundPlayer screamFemale3 = new(BattlescapeSounds.ScreamFemale3);
+	private static readonly SoundPlayer screamMale1 = new(BattlescapeSounds.ScreamMale1);
+	private static readonly SoundPlayer screamMale2 = new(BattlescapeSounds.ScreamMale2);
+	private static readonly SoundPlayer screamMale3 = new(BattlescapeSounds.ScreamMale3);
+	private static readonly SoundPlayer sectoidScream = new(BattlescapeSounds.SectoidScream);
+	private static readonly SoundPlayer silacoidAttack = new(BattlescapeSounds.SilacoidAttack);
+	private static readonly SoundPlayer silacoidMove = new(BattlescapeSounds.SilacoidMove);
+	private static readonly SoundPlayer smallExplosion = new(BattlescapeSounds.SmallExplosion);
+	private static readonly SoundPlayer snakemanScream = new(BattlescapeSounds.SnakemanScream);
+	private static readonly SoundPlayer snakemanSlither = new(BattlescapeSounds.SnakemanSlither);
+	private static readonly SoundPlayer stunRod = new(BattlescapeSounds.StunRod);
+	private static readonly SoundPlayer tankMove = new(BattlescapeSounds.TankMove);
+	private static readonly SoundPlayer ufoDoorOpen1 = new(BattlescapeSounds.UfoDoorOpen1);
+	private static readonly SoundPlayer ufoDoorOpen2 = new(BattlescapeSounds.UfoDoorOpen2);
 
 	private static SoundPlayer GetSoundPlayer(BattlescapeSoundEffect soundEffect)
 	{

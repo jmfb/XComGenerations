@@ -3,13 +3,17 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class Label : Drawable
+public class Label(int topRow, int leftColumn, string text, Font font, ColorScheme scheme)
+	: Drawable
 {
-	protected int TopRow { get; }
-	protected int LeftColumn { get; }
-	protected string Text { get; set; }
-	protected Font Font { get; }
-	private readonly ColorScheme scheme;
+	protected int TopRow { get; } = topRow;
+	protected int LeftColumn { get; } =
+		leftColumn == Center
+			? (GraphicsBuffer.GameWidth - font.MeasureString(text)) / 2
+			: leftColumn;
+
+	protected string Text { get; set; } = text;
+	protected Font Font { get; } = font;
 
 	public const int Center = -1;
 
@@ -28,18 +32,6 @@ public class Label : Drawable
 	public static CenterParameters CenterOf(int leftColumn, int width)
 	{
 		return new CenterParameters { LeftColumn = leftColumn, Width = width };
-	}
-
-	public Label(int topRow, int leftColumn, string text, Font font, ColorScheme scheme)
-	{
-		TopRow = topRow;
-		LeftColumn =
-			leftColumn == Center
-				? (GraphicsBuffer.GameWidth - font.MeasureString(text)) / 2
-				: leftColumn;
-		Text = text;
-		Font = font;
-		this.scheme = scheme;
 	}
 
 	public Label(int topRow, CenterParameters centerOf, string text, Font font, ColorScheme scheme)

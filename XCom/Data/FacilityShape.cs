@@ -47,20 +47,20 @@ public static class FacilityShapeExtensions
 		return shape == FacilityShape.Hangar ? 2 : 1;
 	}
 
-	private static readonly Image squareConstruction = new Image(
+	private static readonly Image squareConstruction = new(
 		Content.Images.Base.Base.ConstructionSquare
 	);
-	private static readonly Image octagonConstruction = new Image(
+	private static readonly Image octagonConstruction = new(
 		Content.Images.Base.Base.ConstructionOctagon
 	);
-	private static readonly Image crossConstruction = new Image(
+	private static readonly Image crossConstruction = new(
 		Content.Images.Base.Base.ConstructionCross
 	);
-	private static readonly Image hangarConstruction = new Image(
+	private static readonly Image hangarConstruction = new(
 		Content.Images.Base.Base.ConstructionHangar
 	);
 
-	private static readonly Image squareBuilding = new Image(Content.Images.Base.Base.Square);
-	private static readonly Image octagonBuilding = new Image(Content.Images.Base.Base.Octagon);
-	private static readonly Image crossBuilding = new Image(Content.Images.Base.Base.Cross);
+	private static readonly Image squareBuilding = new(Content.Images.Base.Base.Square);
+	private static readonly Image octagonBuilding = new(Content.Images.Base.Base.Octagon);
+	private static readonly Image crossBuilding = new(Content.Images.Base.Base.Cross);
 }

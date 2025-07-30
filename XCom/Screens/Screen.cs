@@ -37,5 +37,5 @@ public abstract class Screen : InteractiveContainer
 		newModal.DoModal(currentParent);
 	}
 
-	public static readonly Geoscape Geoscape = new Geoscape();
+	public static readonly Geoscape Geoscape = new();
 }

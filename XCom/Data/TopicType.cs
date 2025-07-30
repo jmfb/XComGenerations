@@ -333,7 +333,7 @@ public static class TopicTypeExtensions
 			Name = alien.Metadata().Name,
 			Category = TopicCategory.AlienLifeForms,
 			Scheme = ColorScheme.LightWhite,
-			RequiredResearch = new[] { alien.Metadata().RequiredResearch },
+			RequiredResearch = [alien.Metadata().RequiredResearch],
 			Subject = alien,
 		};
 	}
@@ -347,7 +347,7 @@ public static class TopicTypeExtensions
 			Background = Backgrounds.InfoMission,
 			BackgroundPalette = 3,
 			Scheme = ColorScheme.LightWhite,
-			RequiredResearch = new[] { alienResearch.Metadata().RequiredResearch },
+			RequiredResearch = [alienResearch.Metadata().RequiredResearch],
 			Subject = alienResearch,
 		};
 	}
@@ -359,7 +359,7 @@ public static class TopicTypeExtensions
 			Name = ufoComponent.Metadata().Name,
 			Category = TopicCategory.UfoComponents,
 			Scheme = ColorScheme.LightWhite,
-			RequiredResearch = new[] { ufoComponent.Metadata().RequiredResearch },
+			RequiredResearch = [ufoComponent.Metadata().RequiredResearch],
 			Subject = ufoComponent,
 		};
 	}
@@ -373,15 +373,12 @@ public static class TopicTypeExtensions
 			Background = Backgrounds.InfoUfo,
 			BackgroundPalette = 0,
 			Scheme = ColorScheme.Aqua,
-			RequiredResearch = new[] { ufo.Metadata().RequiredResearch },
+			RequiredResearch = [ufo.Metadata().RequiredResearch],
 			Subject = ufo,
 		};
 	}
 
-	private static readonly Dictionary<TopicType, TopicMetadata> metadata = new Dictionary<
-		TopicType,
-		TopicMetadata
-	>
+	private static readonly Dictionary<TopicType, TopicMetadata> metadata = new()
 	{
 		{ TopicType.Skyranger, Craft(CraftType.Skyranger) },
 		{ TopicType.Lightning, Craft(CraftType.Lightning, ResearchType.NewFighterTransporter) },

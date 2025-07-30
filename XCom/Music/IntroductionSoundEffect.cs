@@ -37,33 +37,29 @@ public static class IntroductionSoundEffectExtensions
 		GetSoundPlayer(soundEffect).Play();
 	}
 
-	private static readonly SoundPlayer beep = new SoundPlayer(Introduction.Beep);
-	private static readonly SoundPlayer cannon = new SoundPlayer(Introduction.Cannon);
-	private static readonly SoundPlayer chatter = new SoundPlayer(Introduction.Chatter);
-	private static readonly SoundPlayer computer = new SoundPlayer(Introduction.Computer);
-	private static readonly SoundPlayer deadAlien1 = new SoundPlayer(Introduction.DeadAlien1);
-	private static readonly SoundPlayer deadAlien2 = new SoundPlayer(Introduction.DeadAlien2);
-	private static readonly SoundPlayer deadAlien3 = new SoundPlayer(Introduction.DeadAlien3);
-	private static readonly SoundPlayer deathScreamFemale = new SoundPlayer(
-		Introduction.DeathScreamFemale
-	);
-	private static readonly SoundPlayer deathScreamMale = new SoundPlayer(
-		Introduction.DeathScreamMale
-	);
-	private static readonly SoundPlayer hum = new SoundPlayer(Introduction.Hum);
-	private static readonly SoundPlayer landing = new SoundPlayer(Introduction.Landing);
-	private static readonly SoundPlayer openHatch = new SoundPlayer(Introduction.OpenHatch);
-	private static readonly SoundPlayer plasma = new SoundPlayer(Introduction.Plasma);
-	private static readonly SoundPlayer roar1 = new SoundPlayer(Introduction.Roar1);
-	private static readonly SoundPlayer roar2 = new SoundPlayer(Introduction.Roar2);
-	private static readonly SoundPlayer roar3 = new SoundPlayer(Introduction.Roar3);
-	private static readonly SoundPlayer roar4 = new SoundPlayer(Introduction.Roar4);
-	private static readonly SoundPlayer shot = new SoundPlayer(Introduction.Shot);
-	private static readonly SoundPlayer takeOff = new SoundPlayer(Introduction.TakeOff);
-	private static readonly SoundPlayer teleport = new SoundPlayer(Introduction.Teleport);
-	private static readonly SoundPlayer ufoDetected = new SoundPlayer(Introduction.UfoDetected);
-	private static readonly SoundPlayer warning = new SoundPlayer(Introduction.Warning);
-	private static readonly SoundPlayer whoosh = new SoundPlayer(Introduction.Whoosh);
+	private static readonly SoundPlayer beep = new(Introduction.Beep);
+	private static readonly SoundPlayer cannon = new(Introduction.Cannon);
+	private static readonly SoundPlayer chatter = new(Introduction.Chatter);
+	private static readonly SoundPlayer computer = new(Introduction.Computer);
+	private static readonly SoundPlayer deadAlien1 = new(Introduction.DeadAlien1);
+	private static readonly SoundPlayer deadAlien2 = new(Introduction.DeadAlien2);
+	private static readonly SoundPlayer deadAlien3 = new(Introduction.DeadAlien3);
+	private static readonly SoundPlayer deathScreamFemale = new(Introduction.DeathScreamFemale);
+	private static readonly SoundPlayer deathScreamMale = new(Introduction.DeathScreamMale);
+	private static readonly SoundPlayer hum = new(Introduction.Hum);
+	private static readonly SoundPlayer landing = new(Introduction.Landing);
+	private static readonly SoundPlayer openHatch = new(Introduction.OpenHatch);
+	private static readonly SoundPlayer plasma = new(Introduction.Plasma);
+	private static readonly SoundPlayer roar1 = new(Introduction.Roar1);
+	private static readonly SoundPlayer roar2 = new(Introduction.Roar2);
+	private static readonly SoundPlayer roar3 = new(Introduction.Roar3);
+	private static readonly SoundPlayer roar4 = new(Introduction.Roar4);
+	private static readonly SoundPlayer shot = new(Introduction.Shot);
+	private static readonly SoundPlayer takeOff = new(Introduction.TakeOff);
+	private static readonly SoundPlayer teleport = new(Introduction.Teleport);
+	private static readonly SoundPlayer ufoDetected = new(Introduction.UfoDetected);
+	private static readonly SoundPlayer warning = new(Introduction.Warning);
+	private static readonly SoundPlayer whoosh = new(Introduction.Whoosh);
 
 	private static SoundPlayer GetSoundPlayer(IntroductionSoundEffect soundEffect)
 	{

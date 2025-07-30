@@ -6,16 +6,16 @@ using XCom.Screens;
 
 namespace XCom.Modals;
 
-public class NoFreeAccomodation : Screen
+public class NoFreeAccommodation : Screen
 {
-	public NoFreeAccomodation()
+	public NoFreeAccommodation()
 	{
 		AddControl(new Border(20, 32, 256, 160, ColorScheme.LightMagenta, Backgrounds.Funds, 6));
 		AddControl(
 			new Label(
 				75,
 				Label.Center,
-				"NO FREE ACCOMODATOIN!",
+				"NO FREE ACCOMMODATION!",
 				Font.Large,
 				ColorScheme.LightMagenta
 			)

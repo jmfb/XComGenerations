@@ -7,9 +7,9 @@ namespace XCom;
 
 public class MainForm : Form
 {
-	private readonly GraphicsBuffer graphicsBuffer = new GraphicsBuffer();
+	private readonly GraphicsBuffer graphicsBuffer = new();
 	private const int scaleFactor = 3;
-	private SharpGL.OpenGLControl openGlControl;
+	private OpenGLControl openGlControl;
 
 	public MainForm()
 	{
@@ -19,50 +19,38 @@ public class MainForm : Form
 
 	private void InitializeComponent()
 	{
-		this.openGlControl = new SharpGL.OpenGLControl();
-		((System.ComponentModel.ISupportInitialize)(this.openGlControl)).BeginInit();
-		this.SuspendLayout();
+		openGlControl = new OpenGLControl();
+		((System.ComponentModel.ISupportInitialize)openGlControl).BeginInit();
+		SuspendLayout();
 
-		this.openGlControl.Dock = System.Windows.Forms.DockStyle.Fill;
-		this.openGlControl.DrawFPS = false;
-		this.openGlControl.FrameRate = 60;
-		this.openGlControl.Location = new System.Drawing.Point(0, 0);
-		this.openGlControl.Name = "openGlControl";
-		this.openGlControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
-		this.openGlControl.RenderContextType = SharpGL.RenderContextType.FBO;
-		this.openGlControl.RenderTrigger = SharpGL.RenderTrigger.Manual;
-		this.openGlControl.Size = new System.Drawing.Size(960, 600);
-		this.openGlControl.TabIndex = 0;
-		this.openGlControl.OpenGLInitialized += new System.EventHandler(
-			this.openGlControl_OpenGLInitialized
-		);
-		this.openGlControl.OpenGLDraw += new SharpGL.RenderEventHandler(
-			this.openGlControl_OpenGLDraw
-		);
-		this.openGlControl.Resized += new System.EventHandler(this.openGlControl_Resized);
-		this.openGlControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(
-			this.openGlControl_KeyPress
-		);
-		this.openGlControl.MouseDown += new System.Windows.Forms.MouseEventHandler(
-			this.openGlControl_MouseDown
-		);
-		this.openGlControl.MouseMove += new System.Windows.Forms.MouseEventHandler(
-			this.openGlControl_MouseMove
-		);
-		this.openGlControl.MouseUp += new System.Windows.Forms.MouseEventHandler(
-			this.openGlControl_MouseUp
-		);
+		openGlControl.Dock = DockStyle.Fill;
+		openGlControl.DrawFPS = false;
+		openGlControl.FrameRate = 60;
+		openGlControl.Location = new Point(0, 0);
+		openGlControl.Name = "openGlControl";
+		openGlControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
+		openGlControl.RenderContextType = RenderContextType.FBO;
+		openGlControl.RenderTrigger = RenderTrigger.Manual;
+		openGlControl.Size = new Size(960, 600);
+		openGlControl.TabIndex = 0;
+		openGlControl.OpenGLInitialized += openGlControl_OpenGLInitialized;
+		openGlControl.OpenGLDraw += openGlControl_OpenGLDraw;
+		openGlControl.Resized += openGlControl_Resized;
+		openGlControl.KeyPress += openGlControl_KeyPress;
+		openGlControl.MouseDown += openGlControl_MouseDown;
+		openGlControl.MouseMove += openGlControl_MouseMove;
+		openGlControl.MouseUp += openGlControl_MouseUp;
 
-		this.ClientSize = new System.Drawing.Size(960, 600);
-		this.Controls.Add(this.openGlControl);
-		this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-		this.MaximizeBox = false;
-		this.Name = "MainForm";
-		this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-		this.Text = "X-Com Generations";
-		this.Load += new System.EventHandler(this.MainForm_Load);
-		((System.ComponentModel.ISupportInitialize)(this.openGlControl)).EndInit();
-		this.ResumeLayout(false);
+		ClientSize = new Size(960, 600);
+		Controls.Add(openGlControl);
+		FormBorderStyle = FormBorderStyle.FixedSingle;
+		MaximizeBox = false;
+		Name = "MainForm";
+		SizeGripStyle = SizeGripStyle.Hide;
+		Text = "X-Com Generations";
+		Load += MainForm_Load;
+		((System.ComponentModel.ISupportInitialize)(openGlControl)).EndInit();
+		ResumeLayout(false);
 	}
 
 	private void MainForm_Load(object sender, EventArgs e)

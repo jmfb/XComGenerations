@@ -5,7 +5,7 @@ public class MidiFile
 	private ushort Format { get; set; }
 	private ushort TrackCount { get; set; }
 	public ushort TicksPerBeat { get; set; }
-	public List<MidiTrack> Tracks { get; } = new List<MidiTrack>();
+	public List<MidiTrack> Tracks { get; } = new();
 
 	public MidiFile(byte[] data)
 	{

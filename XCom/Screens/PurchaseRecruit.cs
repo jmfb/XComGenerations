@@ -30,7 +30,7 @@ public class PurchaseRecruit : Screen
 				ColorScheme.White
 			)
 		);
-		AddControl(new Label(24, 160, "Cost of Purcahses>", Font.Normal, ColorScheme.Blue));
+		AddControl(new Label(24, 160, "Cost of Purchases>", Font.Normal, ColorScheme.Blue));
 		AddControl(
 			new DynamicLabel(
 				24,

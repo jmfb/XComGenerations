@@ -23,10 +23,7 @@ public static class RegionTypeExtensions
 {
 	public static RegionMetadata Metadata(this RegionType regionType) => metadata[regionType];
 
-	private static readonly Dictionary<RegionType, RegionMetadata> metadata = new Dictionary<
-		RegionType,
-		RegionMetadata
-	>
+	private static readonly Dictionary<RegionType, RegionMetadata> metadata = new()
 	{
 		{ RegionType.NorthAmerica, RegionMetadata.Create("North America", 800000) },
 		{ RegionType.Arctic, RegionMetadata.Create("Arctic", 950000) },

@@ -12,7 +12,7 @@ public static class Pointer
 	private const int PaletteIndex = 2;
 
 	private static readonly byte[] imageMask =
-	{
+	[
 		1,
 		0,
 		0,
@@ -130,7 +130,7 @@ public static class Pointer
 		0,
 		0,
 		0,
-	};
+	];
 
 	private static byte[] GetImage()
 	{

@@ -19,10 +19,7 @@ public static class ShotTypeExtensions
 		return new ShotMetadata { Name = name };
 	}
 
-	private static readonly Dictionary<ShotType, ShotMetadata> metadata = new Dictionary<
-		ShotType,
-		ShotMetadata
-	>
+	private static readonly Dictionary<ShotType, ShotMetadata> metadata = new()
 	{
 		{ ShotType.Auto, Shot("Auto") },
 		{ ShotType.Snap, Shot("Snap") },

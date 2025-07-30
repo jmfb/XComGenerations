@@ -3,26 +3,19 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class Repeater : Button
+public class Repeater(
+	int topRow,
+	int leftColumn,
+	int width,
+	int height,
+	string text,
+	ColorScheme scheme,
+	Font font,
+	Action action,
+	int repeatInterval
+) : Button(topRow, leftColumn, width, height, text, scheme, font, action)
 {
-	private readonly int repeatInterval;
 	private DateTime lastAction;
-
-	public Repeater(
-		int topRow,
-		int leftColumn,
-		int width,
-		int height,
-		string text,
-		ColorScheme scheme,
-		Font font,
-		Action action,
-		int repeatInterval
-	)
-		: base(topRow, leftColumn, width, height, text, scheme, font, action)
-	{
-		this.repeatInterval = repeatInterval;
-	}
 
 	public override void OnLeftButtonDown(int row, int column)
 	{

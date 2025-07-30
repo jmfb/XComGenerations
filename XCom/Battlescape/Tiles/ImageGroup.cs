@@ -27,183 +27,126 @@ public class ImageGroup
 			.ToArray();
 	}
 
-	public static readonly ImageGroup Common = new ImageGroup(
-		ImageTables.Common,
-		ImageGroups.Common
-	);
+	public static readonly ImageGroup Common = new(ImageTables.Common, ImageGroups.Common);
 
-	public static readonly ImageGroup Skyranger = new ImageGroup(
-		ImageTables.Skyranger,
-		ImageGroups.Skyranger
-	);
-	public static readonly ImageGroup Lightning = new ImageGroup(
-		ImageTables.Lightning,
-		ImageGroups.Lightning
-	);
-	public static readonly ImageGroup Avenger = new ImageGroup(
-		ImageTables.Avenger,
-		ImageGroups.Avenger
-	);
+	public static readonly ImageGroup Skyranger = new(ImageTables.Skyranger, ImageGroups.Skyranger);
+	public static readonly ImageGroup Lightning = new(ImageTables.Lightning, ImageGroups.Lightning);
+	public static readonly ImageGroup Avenger = new(ImageTables.Avenger, ImageGroups.Avenger);
 
-	public static readonly ImageGroup XcomBase = new ImageGroup(
-		ImageTables.XcomBase,
-		ImageGroups.XcomBase
-	);
-	public static readonly ImageGroup XcomFacilities = new ImageGroup(
+	public static readonly ImageGroup XcomBase = new(ImageTables.XcomBase, ImageGroups.XcomBase);
+	public static readonly ImageGroup XcomFacilities = new(
 		ImageTables.XcomFacilities,
 		ImageGroups.XcomFacilities
 	);
 
-	public static readonly ImageGroup AlienBase = new ImageGroup(
-		ImageTables.AlienBase,
-		ImageGroups.AlienBase
-	);
-	public static readonly ImageGroup Brain = new ImageGroup(ImageTables.Brain, ImageGroups.Brain);
-	public static readonly ImageGroup UfoSmallScout = new ImageGroup(
+	public static readonly ImageGroup AlienBase = new(ImageTables.AlienBase, ImageGroups.AlienBase);
+	public static readonly ImageGroup Brain = new(ImageTables.Brain, ImageGroups.Brain);
+	public static readonly ImageGroup UfoSmallScout = new(
 		ImageTables.UfoSmallScout,
 		ImageGroups.UfoSmallScout
 	);
-	public static readonly ImageGroup UfoExterior = new ImageGroup(
+	public static readonly ImageGroup UfoExterior = new(
 		ImageTables.UfoExterior,
 		ImageGroups.UfoExterior
 	);
-	public static readonly ImageGroup UfoBits = new ImageGroup(
-		ImageTables.UfoBits,
-		ImageGroups.UfoBits
-	);
-	public static readonly ImageGroup UfoComponents = new ImageGroup(
+	public static readonly ImageGroup UfoBits = new(ImageTables.UfoBits, ImageGroups.UfoBits);
+	public static readonly ImageGroup UfoComponents = new(
 		ImageTables.UfoComponents,
 		ImageGroups.UfoComponents
 	);
-	public static readonly ImageGroup UfoEquipment = new ImageGroup(
+	public static readonly ImageGroup UfoEquipment = new(
 		ImageTables.UfoEquipment,
 		ImageGroups.UfoEquipment
 	);
-	public static readonly ImageGroup UfoExaminationRoom = new ImageGroup(
+	public static readonly ImageGroup UfoExaminationRoom = new(
 		ImageTables.UfoExaminationRoom,
 		ImageGroups.UfoExaminationRoom
 	);
-	public static readonly ImageGroup UfoOperatingTable = new ImageGroup(
+	public static readonly ImageGroup UfoOperatingTable = new(
 		ImageTables.UfoOperatingTable,
 		ImageGroups.UfoOperatingTable
 	);
 
-	public static readonly ImageGroup City = new ImageGroup(ImageTables.City, ImageGroups.City);
-	public static readonly ImageGroup CityBits = new ImageGroup(
-		ImageTables.CityBits,
-		ImageGroups.CityBits
-	);
-	public static readonly ImageGroup Roads = new ImageGroup(ImageTables.Roads, ImageGroups.Roads);
-	public static readonly ImageGroup Furniture = new ImageGroup(
-		ImageTables.Furniture,
-		ImageGroups.Furniture
-	);
+	public static readonly ImageGroup City = new(ImageTables.City, ImageGroups.City);
+	public static readonly ImageGroup CityBits = new(ImageTables.CityBits, ImageGroups.CityBits);
+	public static readonly ImageGroup Roads = new(ImageTables.Roads, ImageGroups.Roads);
+	public static readonly ImageGroup Furniture = new(ImageTables.Furniture, ImageGroups.Furniture);
 
-	public static readonly ImageGroup Barn = new ImageGroup(ImageTables.Barn, ImageGroups.Barn);
-	public static readonly ImageGroup Cultivation = new ImageGroup(
+	public static readonly ImageGroup Barn = new(ImageTables.Barn, ImageGroups.Barn);
+	public static readonly ImageGroup Cultivation = new(
 		ImageTables.Cultivation,
 		ImageGroups.Cultivation
 	);
-	public static readonly ImageGroup Desert = new ImageGroup(
-		ImageTables.Desert,
-		ImageGroups.Desert
-	);
-	public static readonly ImageGroup Forest = new ImageGroup(
-		ImageTables.Forest,
-		ImageGroups.Forest
-	);
-	public static readonly ImageGroup Jungle = new ImageGroup(
-		ImageTables.Jungle,
-		ImageGroups.Jungle
-	);
-	public static readonly ImageGroup Mountain = new ImageGroup(
-		ImageTables.Mountain,
-		ImageGroups.Mountain
-	);
-	public static readonly ImageGroup Polar = new ImageGroup(ImageTables.Polar, ImageGroups.Polar);
+	public static readonly ImageGroup Desert = new(ImageTables.Desert, ImageGroups.Desert);
+	public static readonly ImageGroup Forest = new(ImageTables.Forest, ImageGroups.Forest);
+	public static readonly ImageGroup Jungle = new(ImageTables.Jungle, ImageGroups.Jungle);
+	public static readonly ImageGroup Mountain = new(ImageTables.Mountain, ImageGroups.Mountain);
+	public static readonly ImageGroup Polar = new(ImageTables.Polar, ImageGroups.Polar);
 
-	public static readonly ImageGroup Mars = new ImageGroup(ImageTables.Mars, ImageGroups.Mars);
+	public static readonly ImageGroup Mars = new(ImageTables.Mars, ImageGroups.Mars);
 
-	public static readonly ImageGroup SoldierCoveralls = new ImageGroup(
+	public static readonly ImageGroup SoldierCoveralls = new(
 		UnitImageTables.SoldierCoveralls,
 		UnitImageGroups.SoldierCoveralls
 	);
-	public static readonly ImageGroup SoldierPersonalArmor = new ImageGroup(
+	public static readonly ImageGroup SoldierPersonalArmor = new(
 		UnitImageTables.SoldierPersonalArmor,
 		UnitImageGroups.SoldierPersonalArmor
 	);
-	public static readonly ImageGroup SoldierPowerSuit = new ImageGroup(
+	public static readonly ImageGroup SoldierPowerSuit = new(
 		UnitImageTables.SoldierPowerSuit,
 		UnitImageGroups.SoldierPowerSuit
 	);
-	public static readonly ImageGroup Tanks = new ImageGroup(
-		UnitImageTables.Tanks,
-		UnitImageGroups.Tanks
-	);
-	public static readonly ImageGroup CivilianMale = new ImageGroup(
+	public static readonly ImageGroup Tanks = new(UnitImageTables.Tanks, UnitImageGroups.Tanks);
+	public static readonly ImageGroup CivilianMale = new(
 		UnitImageTables.CivilianMale,
 		UnitImageGroups.CivilianMale
 	);
-	public static readonly ImageGroup CivilianFemale = new ImageGroup(
+	public static readonly ImageGroup CivilianFemale = new(
 		UnitImageTables.CivilianFemale,
 		UnitImageGroups.CivilianFemale
 	);
 
-	public static readonly ImageGroup Sectoid = new ImageGroup(
+	public static readonly ImageGroup Sectoid = new(
 		UnitImageTables.Sectoid,
 		UnitImageGroups.Sectoid
 	);
-	public static readonly ImageGroup Snakeman = new ImageGroup(
+	public static readonly ImageGroup Snakeman = new(
 		UnitImageTables.Snakeman,
 		UnitImageGroups.Snakeman
 	);
-	public static readonly ImageGroup Muton = new ImageGroup(
-		UnitImageTables.Muton,
-		UnitImageGroups.Muton
-	);
-	public static readonly ImageGroup Floater = new ImageGroup(
+	public static readonly ImageGroup Muton = new(UnitImageTables.Muton, UnitImageGroups.Muton);
+	public static readonly ImageGroup Floater = new(
 		UnitImageTables.Floater,
 		UnitImageGroups.Floater
 	);
-	public static readonly ImageGroup Ethereal = new ImageGroup(
+	public static readonly ImageGroup Ethereal = new(
 		UnitImageTables.Ethereal,
 		UnitImageGroups.Ethereal
 	);
-	public static readonly ImageGroup Celatid = new ImageGroup(
+	public static readonly ImageGroup Celatid = new(
 		UnitImageTables.Celatid,
 		UnitImageGroups.Celatid
 	);
-	public static readonly ImageGroup Silacoid = new ImageGroup(
+	public static readonly ImageGroup Silacoid = new(
 		UnitImageTables.Silacoid,
 		UnitImageGroups.Silacoid
 	);
-	public static readonly ImageGroup Chryssalid = new ImageGroup(
+	public static readonly ImageGroup Chryssalid = new(
 		UnitImageTables.Chryssalid,
 		UnitImageGroups.Chryssalid
 	);
-	public static readonly ImageGroup Reaper = new ImageGroup(
-		UnitImageTables.Reaper,
-		UnitImageGroups.Reaper
-	);
-	public static readonly ImageGroup Cyberdisc = new ImageGroup(
+	public static readonly ImageGroup Reaper = new(UnitImageTables.Reaper, UnitImageGroups.Reaper);
+	public static readonly ImageGroup Cyberdisc = new(
 		UnitImageTables.Cyberdisc,
 		UnitImageGroups.Cyberdisc
 	);
-	public static readonly ImageGroup Sectopod = new ImageGroup(
+	public static readonly ImageGroup Sectopod = new(
 		UnitImageTables.Sectopod,
 		UnitImageGroups.Sectopod
 	);
-	public static readonly ImageGroup Zombie = new ImageGroup(
-		UnitImageTables.Zombie,
-		UnitImageGroups.Zombie
-	);
+	public static readonly ImageGroup Zombie = new(UnitImageTables.Zombie, UnitImageGroups.Zombie);
 
-	public static readonly ImageGroup Ground = new ImageGroup(
-		UnitImageTables.Ground,
-		UnitImageGroups.Ground
-	);
-	public static readonly ImageGroup Hand = new ImageGroup(
-		UnitImageTables.Hand,
-		UnitImageGroups.Hand
-	);
+	public static readonly ImageGroup Ground = new(UnitImageTables.Ground, UnitImageGroups.Ground);
+	public static readonly ImageGroup Hand = new(UnitImageTables.Hand, UnitImageGroups.Hand);
 }

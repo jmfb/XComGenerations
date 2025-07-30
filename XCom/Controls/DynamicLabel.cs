@@ -3,22 +3,14 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class DynamicLabel : Label
+public class DynamicLabel(
+	int topRow,
+	int leftColumn,
+	Func<string> textAction,
+	Font font,
+	ColorScheme scheme
+) : Label(topRow, leftColumn, textAction(), font, scheme)
 {
-	private readonly Func<string> textAction;
-
-	public DynamicLabel(
-		int topRow,
-		int leftColumn,
-		Func<string> textAction,
-		Font font,
-		ColorScheme scheme
-	)
-		: base(topRow, leftColumn, textAction(), font, scheme)
-	{
-		this.textAction = textAction;
-	}
-
 	public override void Render(GraphicsBuffer buffer)
 	{
 		Text = textAction();

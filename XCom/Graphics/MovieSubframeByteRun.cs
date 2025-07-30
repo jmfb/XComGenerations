@@ -1,16 +1,7 @@
 namespace XCom.Graphics;
 
-public class MovieSubframeByteRun
+public class MovieSubframeByteRun(byte[] data, int offset)
 {
-	private readonly byte[] data;
-	private readonly int offset;
-
-	public MovieSubframeByteRun(byte[] data, int offset)
-	{
-		this.data = data;
-		this.offset = offset;
-	}
-
 	public void Apply(byte[,] image)
 	{
 		var index = offset;

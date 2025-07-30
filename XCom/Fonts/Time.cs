@@ -4,10 +4,10 @@ public static class Time
 {
 	public const int Height = 7;
 
-	private static readonly byte[] space = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	private static readonly byte[] space = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 	private static readonly byte[] zero =
-	{
+	[
 		2,
 		1,
 		1,
@@ -50,9 +50,9 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] one =
-	{
+	[
 		0,
 		1,
 		0,
@@ -88,9 +88,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] three =
-	{
+	[
 		1,
 		1,
 		2,
@@ -126,9 +126,9 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] five =
-	{
+	[
 		1,
 		1,
 		1,
@@ -171,10 +171,10 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 
 	private static readonly byte[] uppercaseD =
-	{
+	[
 		1,
 		1,
 		1,
@@ -224,9 +224,9 @@ public static class Time
 		0,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] uppercaseH =
-	{
+	[
 		1,
 		0,
 		0,
@@ -269,9 +269,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] uppercaseM =
-	{
+	[
 		1,
 		0,
 		0,
@@ -321,9 +321,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] uppercaseS =
-	{
+	[
 		2,
 		1,
 		1,
@@ -366,10 +366,10 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 
 	private static readonly byte[] lowercaseA =
-	{
+	[
 		0,
 		0,
 		0,
@@ -405,9 +405,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseC =
-	{
+	[
 		0,
 		0,
 		0,
@@ -443,9 +443,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseE =
-	{
+	[
 		0,
 		0,
 		0,
@@ -481,9 +481,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseI =
-	{
+	[
 		1,
 		0,
 		0,
@@ -505,9 +505,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseN =
-	{
+	[
 		0,
 		0,
 		0,
@@ -543,9 +543,9 @@ public static class Time
 		1,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseO =
-	{
+	[
 		0,
 		0,
 		0,
@@ -581,9 +581,9 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseR =
-	{
+	[
 		0,
 		0,
 		0,
@@ -619,9 +619,9 @@ public static class Time
 		0,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseS =
-	{
+	[
 		0,
 		0,
 		0,
@@ -657,9 +657,9 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseU =
-	{
+	[
 		0,
 		0,
 		0,
@@ -695,9 +695,9 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 	private static readonly byte[] lowercaseY =
-	{
+	[
 		0,
 		0,
 		0,
@@ -733,9 +733,9 @@ public static class Time
 		2,
 		0,
 		0,
-	};
+	];
 
-	public static readonly Dictionary<char, byte[]> Characters = new Dictionary<char, byte[]>
+	public static readonly Dictionary<char, byte[]> Characters = new()
 	{
 		{ ' ', space },
 		{ '0', zero },

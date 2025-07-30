@@ -6,24 +6,13 @@ using Image = XCom.Graphics.Image;
 
 namespace XCom.Controls;
 
-public class BaseSelect : InteractiveControl
+public class BaseSelect(int topRow, int leftColumn, Action action) : InteractiveControl
 {
-	private readonly int topRow;
-	private readonly int leftColumn;
-	private readonly Action action;
-
-	private static readonly Image preview = new Image(BasePreview.Background);
-	private static readonly Image facility1x1 = new Image(BasePreview.Facility1x1);
-	private static readonly Image facility2x2 = new Image(BasePreview.Facility2x2);
-	private static readonly Image construction1x1 = new Image(BasePreview.Construction1x1);
-	private static readonly Image construction2x2 = new Image(BasePreview.Construction2x2);
-
-	public BaseSelect(int topRow, int leftColumn, Action action)
-	{
-		this.topRow = topRow;
-		this.leftColumn = leftColumn;
-		this.action = action;
-	}
+	private static readonly Image preview = new(BasePreview.Background);
+	private static readonly Image facility1x1 = new(BasePreview.Facility1x1);
+	private static readonly Image facility2x2 = new(BasePreview.Facility2x2);
+	private static readonly Image construction1x1 = new(BasePreview.Construction1x1);
+	private static readonly Image construction2x2 = new(BasePreview.Construction2x2);
 
 	public override bool HitTest(int row, int column)
 	{

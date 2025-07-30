@@ -12,118 +12,115 @@ public enum Direction
 	NorthWest,
 }
 
-public static class DirectoinExtensions
+public static class DirectionExtensions
 {
 	public static DirectionMetadata Metadata(this Direction direction) => metadata[direction];
 
-	private static readonly DirectionMetadata north = new DirectionMetadata
+	private static readonly DirectionMetadata north = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.LeftArm,
 			SpritePart.OneHandedWeapon,
 			SpritePart.TwoHandedWeapon,
 			SpritePart.Head,
 			SpritePart.Legs,
 			SpritePart.RightArm,
-		},
+		],
 	};
 
-	private static readonly DirectionMetadata northEast = new DirectionMetadata
+	private static readonly DirectionMetadata northEast = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.LeftArm,
 			SpritePart.TwoHandedWeapon,
 			SpritePart.Head,
 			SpritePart.Legs,
 			SpritePart.RightArm,
 			SpritePart.OneHandedWeapon,
-		},
+		],
 	};
 
-	private static readonly DirectionMetadata east = new DirectionMetadata
+	private static readonly DirectionMetadata east = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.LeftArm,
 			SpritePart.Head,
 			SpritePart.Legs,
 			SpritePart.TwoHandedWeapon,
 			SpritePart.RightArm,
 			SpritePart.OneHandedWeapon,
-		},
+		],
 	};
 
-	private static readonly DirectionMetadata southEast = new DirectionMetadata
+	private static readonly DirectionMetadata southEast = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.Head,
 			SpritePart.Legs,
 			SpritePart.LeftArm,
 			SpritePart.TwoHandedWeapon,
 			SpritePart.RightArm,
 			SpritePart.OneHandedWeapon,
-		},
+		],
 	};
 
-	private static readonly DirectionMetadata south = new DirectionMetadata
+	private static readonly DirectionMetadata south = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.RightArm,
 			SpritePart.Head,
 			SpritePart.Legs,
 			SpritePart.LeftArm,
 			SpritePart.OneHandedWeapon,
 			SpritePart.TwoHandedWeapon,
-		},
+		],
 	};
 
-	private static readonly DirectionMetadata southWest = new DirectionMetadata
+	private static readonly DirectionMetadata southWest = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.RightArm,
 			SpritePart.Head,
 			SpritePart.Legs,
 			SpritePart.OneHandedWeapon,
 			SpritePart.TwoHandedWeapon,
 			SpritePart.LeftArm,
-		},
+		],
 	};
 
-	private static readonly DirectionMetadata west = new DirectionMetadata
+	private static readonly DirectionMetadata west = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.RightArm,
 			SpritePart.OneHandedWeapon,
 			SpritePart.TwoHandedWeapon,
 			SpritePart.Head,
 			SpritePart.Legs,
 			SpritePart.LeftArm,
-		},
+		],
 	};
 
-	private static readonly DirectionMetadata northWest = new DirectionMetadata
+	private static readonly DirectionMetadata northWest = new()
 	{
-		DrawOrder = new[]
-		{
+		DrawOrder =
+		[
 			SpritePart.RightArm,
 			SpritePart.OneHandedWeapon,
 			SpritePart.TwoHandedWeapon,
 			SpritePart.LeftArm,
 			SpritePart.Head,
 			SpritePart.Legs,
-		},
+		],
 	};
 
-	private static readonly Dictionary<Direction, DirectionMetadata> metadata = new Dictionary<
-		Direction,
-		DirectionMetadata
-	>
+	private static readonly Dictionary<Direction, DirectionMetadata> metadata = new()
 	{
 		{ Direction.North, north },
 		{ Direction.NorthEast, northEast },

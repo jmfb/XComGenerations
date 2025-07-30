@@ -2,7 +2,7 @@ namespace XCom.Music;
 
 public class MidiTrack
 {
-	public List<MidiEvent> Events { get; } = new List<MidiEvent>();
+	public List<MidiEvent> Events { get; } = new();
 
 	public MidiTrack(byte[] data)
 	{

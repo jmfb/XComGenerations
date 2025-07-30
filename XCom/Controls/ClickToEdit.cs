@@ -3,19 +3,16 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class ClickToEdit : Edit
+public class ClickToEdit(
+	int topRow,
+	int leftColumn,
+	int width,
+	string text,
+	Font font,
+	ColorScheme scheme,
+	Action<string> action
+) : Edit(topRow, leftColumn, width, text, font, scheme, action)
 {
-	public ClickToEdit(
-		int topRow,
-		int leftColumn,
-		int width,
-		string text,
-		Font font,
-		ColorScheme scheme,
-		Action<string> action
-	)
-		: base(topRow, leftColumn, width, text, font, scheme, action) { }
-
 	public override bool HitTest(int row, int column)
 	{
 		return row >= TopRow

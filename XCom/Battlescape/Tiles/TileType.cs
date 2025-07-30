@@ -60,10 +60,7 @@ public static class TileTypeExtensions
 		return new TileMetadata { ImageGroup = imageGroup, Parts = parts };
 	}
 
-	private static readonly Dictionary<TileType, TileMetadata> metadata = new Dictionary<
-		TileType,
-		TileMetadata
-	>
+	private static readonly Dictionary<TileType, TileMetadata> metadata = new()
 	{
 		{ TileType.Common, Create(ImageGroup.Common, PartData.Common) },
 		{ TileType.Skyranger, Create(ImageGroup.Skyranger, PartData.Skyranger) },

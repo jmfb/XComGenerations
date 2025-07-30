@@ -18,8 +18,7 @@ public class Font
 
 	private Character GetCharacter(char value)
 	{
-		Character character;
-		if (!characters.TryGetValue(value, out character))
+		if (!characters.TryGetValue(value, out var character))
 			throw new InvalidOperationException("Invalid character for font.");
 		return character;
 	}
@@ -46,12 +45,12 @@ public class Font
 		}
 	}
 
-	public static readonly Font Normal = new Font(Fonts.Normal.Height, Fonts.Normal.Characters);
-	public static readonly Font Large = new Font(Fonts.Large.Height, Fonts.Large.Characters);
-	public static readonly Font Small = new Font(Fonts.Small.Height, Fonts.Small.Characters);
-	public static readonly Font Arrow = new Font(Fonts.Arrow.Height, Fonts.Arrow.Characters);
-	public static readonly Font Time = new Font(Fonts.Time.Height, Fonts.Time.Characters);
-	public static readonly Font UpDownButtons = new Font(
+	public static readonly Font Normal = new(Fonts.Normal.Height, Fonts.Normal.Characters);
+	public static readonly Font Large = new(Fonts.Large.Height, Fonts.Large.Characters);
+	public static readonly Font Small = new(Fonts.Small.Height, Fonts.Small.Characters);
+	public static readonly Font Arrow = new(Fonts.Arrow.Height, Fonts.Arrow.Characters);
+	public static readonly Font Time = new(Fonts.Time.Height, Fonts.Time.Characters);
+	public static readonly Font UpDownButtons = new(
 		Fonts.UpDownButtons.Height,
 		Fonts.UpDownButtons.Characters
 	);

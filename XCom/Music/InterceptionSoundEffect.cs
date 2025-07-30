@@ -24,18 +24,16 @@ public static class InterceptionSoundEffectExtensions
 		GetSoundPlayer(soundEffect).Play();
 	}
 
-	private static readonly SoundPlayer cannon = new SoundPlayer(Interception.Cannon);
-	private static readonly SoundPlayer missile = new SoundPlayer(Interception.Missile);
-	private static readonly SoundPlayer laserCannon = new SoundPlayer(Interception.LaserCannon);
-	private static readonly SoundPlayer plasmaCannon = new SoundPlayer(Interception.PlasmaCannon);
-	private static readonly SoundPlayer fusionBall = new SoundPlayer(Interception.FusionBall);
+	private static readonly SoundPlayer cannon = new(Interception.Cannon);
+	private static readonly SoundPlayer missile = new(Interception.Missile);
+	private static readonly SoundPlayer laserCannon = new(Interception.LaserCannon);
+	private static readonly SoundPlayer plasmaCannon = new(Interception.PlasmaCannon);
+	private static readonly SoundPlayer fusionBall = new(Interception.FusionBall);
 
-	private static readonly SoundPlayer ufoHit = new SoundPlayer(Interception.UfoHit);
-	private static readonly SoundPlayer ufoExplosion = new SoundPlayer(Interception.UfoExplosion);
-	private static readonly SoundPlayer craftHit = new SoundPlayer(Interception.CraftHit);
-	private static readonly SoundPlayer craftExplosion = new SoundPlayer(
-		Interception.CraftExplosion
-	);
+	private static readonly SoundPlayer ufoHit = new(Interception.UfoHit);
+	private static readonly SoundPlayer ufoExplosion = new(Interception.UfoExplosion);
+	private static readonly SoundPlayer craftHit = new(Interception.CraftHit);
+	private static readonly SoundPlayer craftExplosion = new(Interception.CraftExplosion);
 
 	private static SoundPlayer GetSoundPlayer(InterceptionSoundEffect soundEffect)
 	{

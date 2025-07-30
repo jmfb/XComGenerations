@@ -8,7 +8,7 @@ namespace XCom.Screens;
 
 public class SellSack : Screen
 {
-	private readonly Dictionary<object, int> itemsToSell = new Dictionary<object, int>();
+	private readonly Dictionary<object, int> itemsToSell = new();
 
 	public SellSack()
 	{
@@ -92,23 +92,21 @@ public class SellSack : Screen
 
 	private static string GetName(object item)
 	{
-		var soldier = item as Soldier;
-		if (soldier != null)
+		if (item is Soldier soldier)
 			return soldier.Name;
-		if (item is ItemType)
-			return ((ItemType)item).Metadata().Name;
-		var craft = item as Craft;
-		return craft != null ? craft.Name : ((StoreItem)item).ItemType.Metadata().Name;
+		if (item is ItemType type)
+			return type.Metadata().Name;
+		return item is Craft craft ? craft.Name : ((StoreItem)item).ItemType.Metadata().Name;
 	}
 
 	private int GetRemaining(object item)
 	{
 		var sellCount = itemsToSell[item];
-		if (item is Soldier || item is Craft)
+		if (item is Soldier or Craft)
 			return 1 - sellCount;
-		if (item is ItemType && (ItemType)item == ItemType.Engineer)
+		if (item is ItemType.Engineer)
 			return GameState.SelectedBase.EngineersAvailable - sellCount;
-		if (item is ItemType && (ItemType)item == ItemType.Scientist)
+		if (item is ItemType.Scientist)
 			return GameState.SelectedBase.ScientistsAvailable - sellCount;
 		return ((StoreItem)item).Count - sellCount;
 	}

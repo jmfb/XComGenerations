@@ -19,11 +19,10 @@ public static class HwpAmmunitionTypeExtensions
 		return new HwpAmmunitionMetadata { Name = name };
 	}
 
-	private static readonly Dictionary<HwpAmmunitionType, HwpAmmunitionMetadata> metadata =
-		new Dictionary<HwpAmmunitionType, HwpAmmunitionMetadata>
-		{
-			{ HwpAmmunitionType.CannonShell, Ammo("HWP Cannon Shells") },
-			{ HwpAmmunitionType.Rocket, Ammo("HWP Rockets") },
-			{ HwpAmmunitionType.FusionBomb, Ammo("HWP Fusion Bomb") },
-		};
+	private static readonly Dictionary<HwpAmmunitionType, HwpAmmunitionMetadata> metadata = new()
+	{
+		{ HwpAmmunitionType.CannonShell, Ammo("HWP Cannon Shells") },
+		{ HwpAmmunitionType.Rocket, Ammo("HWP Rockets") },
+		{ HwpAmmunitionType.FusionBomb, Ammo("HWP Fusion Bomb") },
+	};
 }

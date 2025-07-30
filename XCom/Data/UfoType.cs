@@ -19,7 +19,7 @@ public static class UfoTypeExtensions
 {
 	public static UfoMetadata Metadata(this UfoType ufoType) => metadata[ufoType];
 
-	private static readonly UfoMetadata smallScout = new UfoMetadata
+	private static readonly UfoMetadata smallScout = new()
 	{
 		Name = "Small Scout",
 		RequiredResearch = ResearchType.SmallScout,
@@ -37,7 +37,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.SmallScout,
 	};
 
-	private static readonly UfoMetadata mediumScout = new UfoMetadata
+	private static readonly UfoMetadata mediumScout = new()
 	{
 		Name = "Medium Scout",
 		RequiredResearch = ResearchType.MediumScout,
@@ -54,7 +54,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.MediumScout,
 	};
 
-	private static readonly UfoMetadata largeScout = new UfoMetadata
+	private static readonly UfoMetadata largeScout = new()
 	{
 		Name = "Large Scout",
 		RequiredResearch = ResearchType.LargeScout,
@@ -71,7 +71,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.LargeScout,
 	};
 
-	private static readonly UfoMetadata abductor = new UfoMetadata
+	private static readonly UfoMetadata abductor = new()
 	{
 		Name = "Abductor",
 		RequiredResearch = ResearchType.Abductor,
@@ -90,7 +90,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.Abductor,
 	};
 
-	private static readonly UfoMetadata harvester = new UfoMetadata
+	private static readonly UfoMetadata harvester = new()
 	{
 		Name = "Harvester",
 		RequiredResearch = ResearchType.Harvester,
@@ -109,7 +109,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.Harvester,
 	};
 
-	private static readonly UfoMetadata terrorShip = new UfoMetadata
+	private static readonly UfoMetadata terrorShip = new()
 	{
 		Name = "Terror Ship",
 		RequiredResearch = ResearchType.TerrorShip,
@@ -127,7 +127,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.TerrorShip,
 	};
 
-	private static readonly UfoMetadata supplyShip = new UfoMetadata
+	private static readonly UfoMetadata supplyShip = new()
 	{
 		Name = "Supply Ship",
 		RequiredResearch = ResearchType.SupplyShip,
@@ -145,7 +145,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.SupplyShip,
 	};
 
-	private static readonly UfoMetadata battleship = new UfoMetadata
+	private static readonly UfoMetadata battleship = new()
 	{
 		Name = "Battleship",
 		RequiredResearch = ResearchType.Battleship,
@@ -163,10 +163,7 @@ public static class UfoTypeExtensions
 		Tileset = Tileset.Battleship,
 	};
 
-	private static readonly Dictionary<UfoType, UfoMetadata> metadata = new Dictionary<
-		UfoType,
-		UfoMetadata
-	>
+	private static readonly Dictionary<UfoType, UfoMetadata> metadata = new()
 	{
 		{ UfoType.SmallScout, smallScout },
 		{ UfoType.MediumScout, mediumScout },

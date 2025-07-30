@@ -11,8 +11,8 @@ namespace XCom.Screens;
 
 public class Geoscape : Screen
 {
-	private readonly Stopwatch stopwatch = new Stopwatch();
-	private readonly GameSpeed gameSpeed = new GameSpeed();
+	private readonly Stopwatch stopwatch = new();
+	private readonly GameSpeed gameSpeed = new();
 	private readonly WorldView worldView;
 
 	public Geoscape()

@@ -8,7 +8,7 @@ public struct TileData
 	public byte NorthWall;
 	public byte Entity;
 
-	public static readonly TileData Empty = default(TileData);
+	public static readonly TileData Empty = default;
 
 	public TileData SetNorthWall(byte value)
 	{

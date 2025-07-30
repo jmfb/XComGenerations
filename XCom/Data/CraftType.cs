@@ -21,7 +21,7 @@ public static class CraftTypeExtensions
 		return metadata[craftType];
 	}
 
-	private static readonly CraftMetadata skyranger = new CraftMetadata
+	private static readonly CraftMetadata skyranger = new()
 	{
 		Name = "SKYRANGER",
 		Damage = 150,
@@ -36,17 +36,17 @@ public static class CraftTypeExtensions
 		RowOffset = 17,
 		ColumnOffset = 19,
 		Overlay = Overlays.Skyranger,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"TROOP TRANSPORTER. THE",
 			"FASTEST OF ITS KIND, WITH",
 			"VERTICAL TAKE OFF AND",
 			"LANDING (V.T.O.L) CAPABILITY.",
-		},
+		],
 		Tileset = Tileset.Skyranger,
 	};
 
-	private static readonly CraftMetadata interceptor = new CraftMetadata
+	private static readonly CraftMetadata interceptor = new()
 	{
 		Name = "INTERCEPTOR",
 		Damage = 100,
@@ -61,17 +61,17 @@ public static class CraftTypeExtensions
 		RowOffset = 21,
 		ColumnOffset = 23,
 		Overlay = Overlays.Interceptor,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"COMBAT AIRCRAFT WITH DUAL PULSE",
 			"DETONATION ENGINES AND SPECIALLY SHIELDED",
 			"ELECTRONIC SYSTEMS. THE BEST AVAILABLE",
 			"EARTH BASED TECHNOLOGY.",
-		},
+		],
 		ShowStatsOnBottom = true,
 	};
 
-	private static readonly CraftMetadata firestorm = new CraftMetadata
+	private static readonly CraftMetadata firestorm = new()
 	{
 		Name = "FIRESTORM",
 		Damage = 500,
@@ -86,17 +86,17 @@ public static class CraftTypeExtensions
 		RowOffset = 26,
 		ColumnOffset = 27,
 		Overlay = Overlays.Firestorm,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"COMBAT CRAFT.  THIS ONE-MAN",
 			"FIGHTER REPLICATES THE",
 			"CLASSIC ALIEN FLYING SAUCER",
 			"DESIGN, WITH CENTRAL",
 			"PROPULSION UNIT.",
-		},
+		],
 	};
 
-	private static readonly CraftMetadata lightning = new CraftMetadata
+	private static readonly CraftMetadata lightning = new()
 	{
 		Name = "LIGHTNING",
 		Damage = 800,
@@ -111,16 +111,16 @@ public static class CraftTypeExtensions
 		RowOffset = 23,
 		ColumnOffset = 24,
 		Overlay = Overlays.Lightning,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"TRANSPORTER AND COMBAT CRAFT.  A CRUDE BUT EFFECTIVE",
 			"REPLICATION OF ALIEN PROPULSION SYSTEMS.",
-		},
+		],
 		ShowStatsOnBottom = true,
 		Tileset = Tileset.Lightning,
 	};
 
-	private static readonly CraftMetadata avenger = new CraftMetadata
+	private static readonly CraftMetadata avenger = new()
 	{
 		Name = "AVENGER",
 		Damage = 1200,
@@ -135,20 +135,17 @@ public static class CraftTypeExtensions
 		RowOffset = 20,
 		ColumnOffset = 23,
 		Overlay = Overlays.Avenger,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"TRANSPORTER AND COMBAT",
-			"SPACEFRACT.  THE ULTIMATE",
+			"SPACECRAFT.  THE ULTIMATE",
 			"REPLICATION OF ALIEN",
 			"TECHNOLOGY.",
-		},
+		],
 		Tileset = Tileset.Avenger,
 	};
 
-	private static readonly Dictionary<CraftType, CraftMetadata> metadata = new Dictionary<
-		CraftType,
-		CraftMetadata
-	>
+	private static readonly Dictionary<CraftType, CraftMetadata> metadata = new()
 	{
 		{ CraftType.Skyranger, skyranger },
 		{ CraftType.Interceptor, interceptor },

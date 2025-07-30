@@ -5,7 +5,7 @@ public static class UpDownButtons
 	public const int Height = 8;
 
 	private static readonly byte[] up =
-	{
+	[
 		1,
 		2,
 		2,
@@ -94,10 +94,10 @@ public static class UpDownButtons
 		6,
 		6,
 		6,
-	};
+	];
 
 	private static readonly byte[] down =
-	{
+	[
 		1,
 		2,
 		2,
@@ -186,9 +186,9 @@ public static class UpDownButtons
 		6,
 		6,
 		6,
-	};
+	];
 
-	public static readonly Dictionary<char, byte[]> Characters = new Dictionary<char, byte[]>
+	public static readonly Dictionary<char, byte[]> Characters = new()
 	{
 		{ 'U', up },
 		{ 'D', down },

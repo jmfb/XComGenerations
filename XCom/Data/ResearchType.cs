@@ -110,7 +110,7 @@ public enum ResearchType
 	Reaper,
 	ReaperCorpse,
 	ReaperTerrorist,
-	Chrysalid,
+	Chryssalid,
 	ChryssalidCorpse,
 	ChryssalidTerrorist,
 	Silacoid,
@@ -134,54 +134,69 @@ public static class ResearchTypeExtensions
 		return metadata[researchType];
 	}
 
-	private static readonly ResearchMetadata laserWeapons = new ResearchMetadata
+	private static readonly ResearchMetadata laserWeapons = new()
 	{
 		Name = "Laser Weapons",
 		AverageHoursToComplete = 50,
 		Points = 10,
 	};
 
-	private static readonly ResearchMetadata laserPistol = new ResearchMetadata
+	private static readonly ResearchMetadata laserPistol = new()
 	{
 		Name = "Laser Pistol",
 		AverageHoursToComplete = 100,
 		Points = 10,
-		RequiredResearch = new[] { new[] { ResearchType.LaserWeapons } },
+		RequiredResearch =
+		[
+			[ResearchType.LaserWeapons],
+		],
 	};
 
-	private static readonly ResearchMetadata laserRifle = new ResearchMetadata
+	private static readonly ResearchMetadata laserRifle = new()
 	{
 		Name = "Laser Rifle",
 		AverageHoursToComplete = 300,
 		Points = 10,
-		RequiredResearch = new[] { new[] { ResearchType.LaserPistol } },
+		RequiredResearch =
+		[
+			[ResearchType.LaserPistol],
+		],
 	};
 
-	private static readonly ResearchMetadata heavyLaser = new ResearchMetadata
+	private static readonly ResearchMetadata heavyLaser = new()
 	{
 		Name = "Heavy Laser",
 		AverageHoursToComplete = 460,
 		Points = 10,
-		RequiredResearch = new[] { new[] { ResearchType.LaserRifle } },
+		RequiredResearch =
+		[
+			[ResearchType.LaserRifle],
+		],
 	};
 
-	private static readonly ResearchMetadata laserCannon = new ResearchMetadata
+	private static readonly ResearchMetadata laserCannon = new()
 	{
 		Name = "Laser Cannon",
 		AverageHoursToComplete = 420,
 		Points = 10,
-		RequiredResearch = new[] { new[] { ResearchType.HeavyLaser } },
+		RequiredResearch =
+		[
+			[ResearchType.HeavyLaser],
+		],
 	};
 
-	private static readonly ResearchMetadata laserDefenses = new ResearchMetadata
+	private static readonly ResearchMetadata laserDefenses = new()
 	{
 		Name = "Laser Defenses",
 		AverageHoursToComplete = 510,
 		Points = 15,
-		RequiredResearch = new[] { new[] { ResearchType.LaserCannon } },
+		RequiredResearch =
+		[
+			[ResearchType.LaserCannon],
+		],
 	};
 
-	private static readonly ResearchMetadata plasmaPistol = new ResearchMetadata
+	private static readonly ResearchMetadata plasmaPistol = new()
 	{
 		Name = "Plasma Pistol",
 		AverageHoursToComplete = 600,
@@ -189,7 +204,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.PlasmaPistol,
 	};
 
-	private static readonly ResearchMetadata plasmaPistolClip = new ResearchMetadata
+	private static readonly ResearchMetadata plasmaPistolClip = new()
 	{
 		Name = "Plasma Pistol Clip",
 		AverageHoursToComplete = 400,
@@ -197,7 +212,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.PlasmaPistolClip,
 	};
 
-	private static readonly ResearchMetadata plasmaRifle = new ResearchMetadata
+	private static readonly ResearchMetadata plasmaRifle = new()
 	{
 		Name = "Plasma Rifle",
 		AverageHoursToComplete = 700,
@@ -205,7 +220,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.PlasmaRifle,
 	};
 
-	private static readonly ResearchMetadata plasmaRifleClip = new ResearchMetadata
+	private static readonly ResearchMetadata plasmaRifleClip = new()
 	{
 		Name = "Plasma Rifle Clip",
 		AverageHoursToComplete = 400,
@@ -213,7 +228,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.PlasmaRifleClip,
 	};
 
-	private static readonly ResearchMetadata heavyPlasma = new ResearchMetadata
+	private static readonly ResearchMetadata heavyPlasma = new()
 	{
 		Name = "Heavy Plasma",
 		AverageHoursToComplete = 800,
@@ -221,7 +236,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.HeavyPlasma,
 	};
 
-	private static readonly ResearchMetadata heavyPlasmaClip = new ResearchMetadata
+	private static readonly ResearchMetadata heavyPlasmaClip = new()
 	{
 		Name = "Heavy Plasma Clip",
 		AverageHoursToComplete = 400,
@@ -229,41 +244,44 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.HeavyPlasmaClip,
 	};
 
-	private static readonly ResearchMetadata plasmaCannon = new ResearchMetadata
+	private static readonly ResearchMetadata plasmaCannon = new()
 	{
 		Name = "Plasma Cannon",
 		AverageHoursToComplete = 660,
 		Points = 25,
-		RequiredResearch = new[]
-		{
-			new[] { ResearchType.PlasmaRifle, ResearchType.PlasmaRifleClip },
-			new[] { ResearchType.HeavyPlasma, ResearchType.HeavyPlasmaClip },
-		},
+		RequiredResearch =
+		[
+			[ResearchType.PlasmaRifle, ResearchType.PlasmaRifleClip],
+			[ResearchType.HeavyPlasma, ResearchType.HeavyPlasmaClip],
+		],
 	};
 
-	private static readonly ResearchMetadata plasmaDefenses = new ResearchMetadata
+	private static readonly ResearchMetadata plasmaDefenses = new()
 	{
 		Name = "Plasma Defenses",
 		AverageHoursToComplete = 620,
 		Points = 25,
-		RequiredResearch = new[] { new[] { ResearchType.PlasmaCannon } },
+		RequiredResearch =
+		[
+			[ResearchType.PlasmaCannon],
+		],
 	};
 
-	private static readonly ResearchMetadata mediKit = new ResearchMetadata
+	private static readonly ResearchMetadata mediKit = new()
 	{
 		Name = "Medi-Kit",
 		AverageHoursToComplete = 210,
 		Points = 20,
 	};
 
-	private static readonly ResearchMetadata motionScanner = new ResearchMetadata
+	private static readonly ResearchMetadata motionScanner = new()
 	{
 		Name = "Motion Scanner",
 		AverageHoursToComplete = 180,
 		Points = 20,
 	};
 
-	private static readonly ResearchMetadata alienGrenade = new ResearchMetadata
+	private static readonly ResearchMetadata alienGrenade = new()
 	{
 		Name = "Alien Grenade",
 		AverageHoursToComplete = 200,
@@ -271,7 +289,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.AlienGrenade,
 	};
 
-	private static readonly ResearchMetadata smallLauncher = new ResearchMetadata
+	private static readonly ResearchMetadata smallLauncher = new()
 	{
 		Name = "Small Launcher",
 		AverageHoursToComplete = 550,
@@ -279,7 +297,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.SmallLauncher,
 	};
 
-	private static readonly ResearchMetadata stunBomb = new ResearchMetadata
+	private static readonly ResearchMetadata stunBomb = new()
 	{
 		Name = "Stun Bomb",
 		AverageHoursToComplete = 180,
@@ -287,7 +305,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.StunBomb,
 	};
 
-	private static readonly ResearchMetadata blasterLauncher = new ResearchMetadata
+	private static readonly ResearchMetadata blasterLauncher = new()
 	{
 		Name = "Blaster Launcher",
 		AverageHoursToComplete = 900,
@@ -295,7 +313,7 @@ public static class ResearchTypeExtensions
 		Points = 40,
 	};
 
-	private static readonly ResearchMetadata blasterBomb = new ResearchMetadata
+	private static readonly ResearchMetadata blasterBomb = new()
 	{
 		Name = "Blaster Bomb",
 		AverageHoursToComplete = 300,
@@ -303,26 +321,29 @@ public static class ResearchTypeExtensions
 		Points = 10,
 	};
 
-	private static readonly ResearchMetadata fusionMissile = new ResearchMetadata
+	private static readonly ResearchMetadata fusionMissile = new()
 	{
 		Name = "Fusion Missile",
 		AverageHoursToComplete = 880,
 		Points = 25,
-		RequiredResearch = new[]
-		{
-			new[] { ResearchType.BlasterLauncher, ResearchType.BlasterBomb },
-		},
+		RequiredResearch =
+		[
+			[ResearchType.BlasterLauncher, ResearchType.BlasterBomb],
+		],
 	};
 
-	private static readonly ResearchMetadata fusionDefenses = new ResearchMetadata
+	private static readonly ResearchMetadata fusionDefenses = new()
 	{
 		Name = "Fusion Defenses",
 		AverageHoursToComplete = 800,
 		Points = 25,
-		RequiredResearch = new[] { new[] { ResearchType.FusionMissile } },
+		RequiredResearch =
+		[
+			[ResearchType.FusionMissile],
+		],
 	};
 
-	private static readonly ResearchMetadata ufoPowerSource = new ResearchMetadata
+	private static readonly ResearchMetadata ufoPowerSource = new()
 	{
 		Name = "UFO Power Source",
 		AverageHoursToComplete = 450,
@@ -330,7 +351,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.UfoPowerSource,
 	};
 
-	private static readonly ResearchMetadata ufoNavigation = new ResearchMetadata
+	private static readonly ResearchMetadata ufoNavigation = new()
 	{
 		Name = "UFO Navigation",
 		AverageHoursToComplete = 450,
@@ -338,7 +359,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.UfoNavigation,
 	};
 
-	private static readonly ResearchMetadata alienAlloys = new ResearchMetadata
+	private static readonly ResearchMetadata alienAlloys = new()
 	{
 		Name = "Alien Alloys",
 		AverageHoursToComplete = 400,
@@ -346,7 +367,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.AlienAlloys,
 	};
 
-	private static readonly ResearchMetadata elerium115 = new ResearchMetadata
+	private static readonly ResearchMetadata elerium115 = new()
 	{
 		Name = "Elerium-115",
 		AverageHoursToComplete = 450,
@@ -354,88 +375,100 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.Elerium115,
 	};
 
-	private static readonly ResearchMetadata personalArmor = new ResearchMetadata
+	private static readonly ResearchMetadata personalArmor = new()
 	{
 		Name = "Personal Armor",
 		AverageHoursToComplete = 180,
 		Points = 20,
-		RequiredResearch = new[] { new[] { ResearchType.AlienAlloys } },
+		RequiredResearch =
+		[
+			[ResearchType.AlienAlloys],
+		],
 	};
 
-	private static readonly ResearchMetadata powerSuit = new ResearchMetadata
+	private static readonly ResearchMetadata powerSuit = new()
 	{
 		Name = "Power Suit",
 		AverageHoursToComplete = 205,
 		Points = 20,
-		RequiredResearch = new[]
-		{
-			new[]
-			{
-				ResearchType.UfoPowerSource,
-				ResearchType.Elerium115,
-				ResearchType.PersonalArmor,
-			},
-		},
+		RequiredResearch =
+		[
+			[ResearchType.UfoPowerSource, ResearchType.Elerium115, ResearchType.PersonalArmor],
+		],
 	};
 
-	private static readonly ResearchMetadata flyingSuit = new ResearchMetadata
+	private static readonly ResearchMetadata flyingSuit = new()
 	{
 		Name = "Flying Suit",
 		AverageHoursToComplete = 330,
 		Points = 20,
-		RequiredResearch = new[] { new[] { ResearchType.UfoNavigation, ResearchType.PowerSuit } },
+		RequiredResearch =
+		[
+			[ResearchType.UfoNavigation, ResearchType.PowerSuit],
+		],
 	};
 
-	private static readonly ResearchMetadata ufoConstruction = new ResearchMetadata
+	private static readonly ResearchMetadata ufoConstruction = new()
 	{
 		Name = "UFO Construction",
 		AverageHoursToComplete = 450,
 		Points = 30,
-		RequiredResearch = new[]
-		{
-			new[]
-			{
+		RequiredResearch =
+		[
+			[
 				ResearchType.UfoPowerSource,
 				ResearchType.UfoNavigation,
 				ResearchType.AlienAlloys,
 				ResearchType.Elerium115,
-			},
-		},
+			],
+		],
 	};
 
-	private static readonly ResearchMetadata newFighterCraft = new ResearchMetadata
+	private static readonly ResearchMetadata newFighterCraft = new()
 	{
 		Name = "New Fighter Craft",
 		AverageHoursToComplete = 600,
 		Points = 30,
-		RequiredResearch = new[] { new[] { ResearchType.UfoConstruction } },
+		RequiredResearch =
+		[
+			[ResearchType.UfoConstruction],
+		],
 	};
 
-	private static readonly ResearchMetadata newFighterTransporter = new ResearchMetadata
+	private static readonly ResearchMetadata newFighterTransporter = new()
 	{
 		Name = "New Fighter Transporter",
 		AverageHoursToComplete = 700,
 		Points = 30,
-		RequiredResearch = new[] { new[] { ResearchType.NewFighterCraft } },
+		RequiredResearch =
+		[
+			[ResearchType.NewFighterCraft],
+		],
 	};
 
-	private static readonly ResearchMetadata ultimateCraft = new ResearchMetadata
+	private static readonly ResearchMetadata ultimateCraft = new()
 	{
 		Name = "Ultimate Craft",
 		AverageHoursToComplete = 900,
 		Points = 30,
-		RequiredResearch = new[] { new[] { ResearchType.NewFighterTransporter } },
+		RequiredResearch =
+		[
+			[ResearchType.NewFighterTransporter],
+		],
 	};
 
-	private static readonly ResearchMetadata gravShield = new ResearchMetadata
+	private static readonly ResearchMetadata gravShield = new()
 	{
 		Name = "Grav Shield",
 		AverageHoursToComplete = 930,
 		Points = 25,
-		RequiredResearch = new[] { new[] { ResearchType.NewFighterTransporter } },
+		RequiredResearch =
+		[
+			[ResearchType.NewFighterTransporter],
+		],
 	};
 
-	private static readonly ResearchMetadata mindProbe = new ResearchMetadata
+	private static readonly ResearchMetadata mindProbe = new()
 	{
 		Name = "Mind Probe",
 		AverageHoursToComplete = 600,
@@ -443,75 +476,87 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.MindProbe,
 	};
 
-	private static readonly ResearchMetadata psiLab = new ResearchMetadata
+	private static readonly ResearchMetadata psiLab = new()
 	{
 		Name = "Psi-Lab",
 		AverageHoursToComplete = 420,
 		Points = 25,
-		RequiredResearch = new[]
-		{
-			new[] { ResearchType.SectoidLeader },
-			new[] { ResearchType.SectoidCommander },
-			new[] { ResearchType.Ethereal },
-		},
+		RequiredResearch =
+		[
+			[ResearchType.SectoidLeader],
+			[ResearchType.SectoidCommander],
+			[ResearchType.Ethereal],
+		],
 	};
 
-	private static readonly ResearchMetadata psiAmp = new ResearchMetadata
+	private static readonly ResearchMetadata psiAmp = new()
 	{
 		Name = "Psi-Amp",
 		AverageHoursToComplete = 500,
 		Points = 20,
-		RequiredResearch = new[] { new[] { ResearchType.PsiLab } },
+		RequiredResearch =
+		[
+			[ResearchType.PsiLab],
+		],
 	};
 
-	private static readonly ResearchMetadata mindShield = new ResearchMetadata
+	private static readonly ResearchMetadata mindShield = new()
 	{
 		Name = "Mind Shield",
 		AverageHoursToComplete = 360,
 		Points = 25,
-		RequiredResearch = new[] { new[] { ResearchType.PsiLab } },
+		RequiredResearch =
+		[
+			[ResearchType.PsiLab],
+		],
 	};
 
-	private static readonly ResearchMetadata hyperwaveDecoder = new ResearchMetadata
+	private static readonly ResearchMetadata hyperwaveDecoder = new()
 	{
 		Name = "Hyper-Wave Decoder",
 		AverageHoursToComplete = 670,
 		Points = 25,
-		RequiredResearch = new[] { new[] { ResearchType.Navigator } },
+		RequiredResearch =
+		[
+			[ResearchType.Navigator],
+		],
 	};
 
-	private static readonly ResearchMetadata alienOrigins = new ResearchMetadata
+	private static readonly ResearchMetadata alienOrigins = new()
 	{
 		Name = "Alien Origins",
 		AverageHoursToComplete = 300,
 		Points = 60,
-		RequiredResearch = new[] { new[] { ResearchType.Alien } },
+		RequiredResearch =
+		[
+			[ResearchType.Alien],
+		],
 	};
 
-	private static readonly ResearchMetadata theMartianSolution = new ResearchMetadata
+	private static readonly ResearchMetadata theMartianSolution = new()
 	{
 		Name = "The Martian Solution",
 		AverageHoursToComplete = 500,
 		Points = 60,
-		RequiredResearch = new[]
-		{
-			new[] { ResearchType.Leader, ResearchType.AlienOrigins },
-			new[] { ResearchType.Commander, ResearchType.AlienOrigins },
-		},
+		RequiredResearch =
+		[
+			[ResearchType.Leader, ResearchType.AlienOrigins],
+			[ResearchType.Commander, ResearchType.AlienOrigins],
+		],
 	};
 
-	private static readonly ResearchMetadata cydoniaOrBust = new ResearchMetadata
+	private static readonly ResearchMetadata cydoniaOrBust = new()
 	{
 		Name = "Cydonia or Bust",
 		AverageHoursToComplete = 600,
 		Points = 60,
-		RequiredResearch = new[]
-		{
-			new[] { ResearchType.Commander, ResearchType.TheMartianSolution },
-		},
+		RequiredResearch =
+		[
+			[ResearchType.Commander, ResearchType.TheMartianSolution],
+		],
 	};
 
-	private static readonly ResearchMetadata alienFood = new ResearchMetadata
+	private static readonly ResearchMetadata alienFood = new()
 	{
 		Name = "Alien Food",
 		AverageHoursToComplete = 150,
@@ -519,7 +564,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.AlienFood,
 	};
 
-	private static readonly ResearchMetadata alienEntertainment = new ResearchMetadata
+	private static readonly ResearchMetadata alienEntertainment = new()
 	{
 		Name = "Alien Entertainment",
 		AverageHoursToComplete = 150,
@@ -527,7 +572,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.AlienEntertainment,
 	};
 
-	private static readonly ResearchMetadata alienSurgery = new ResearchMetadata
+	private static readonly ResearchMetadata alienSurgery = new()
 	{
 		Name = "Alien Surgery",
 		AverageHoursToComplete = 150,
@@ -535,7 +580,7 @@ public static class ResearchTypeExtensions
 		RequiredItem = ItemType.AlienSurgery,
 	};
 
-	private static readonly ResearchMetadata examinationRoom = new ResearchMetadata
+	private static readonly ResearchMetadata examinationRoom = new()
 	{
 		Name = "Examination Room",
 		AverageHoursToComplete = 150,
@@ -610,7 +655,7 @@ public static class ResearchTypeExtensions
 				: 192,
 			Points = 50,
 			RequiredItem = item,
-			AdditionalResearchResults = new[] { ResearchType.Alien, race, rank },
+			AdditionalResearchResults = [ResearchType.Alien, race, rank],
 			LotteryResearchResults =
 				rank == ResearchType.Medic ? medicLottery
 				: rank == ResearchType.Navigator ? navigatorLottery
@@ -624,14 +669,14 @@ public static class ResearchTypeExtensions
 		return new ResearchMetadata
 		{
 			Points = 50,
-			RequiredResearch = new[] { new[] { research } },
+			RequiredResearch =
+			[
+				[research],
+			],
 		};
 	}
 
-	private static readonly Dictionary<ResearchType, ResearchMetadata> metadata = new Dictionary<
-		ResearchType,
-		ResearchMetadata
-	>
+	private static readonly Dictionary<ResearchType, ResearchMetadata> metadata = new()
 	{
 		{ ResearchType.LaserWeapons, laserWeapons },
 		{ ResearchType.LaserPistol, laserPistol },
@@ -710,7 +755,7 @@ public static class ResearchTypeExtensions
 		{ ResearchType.Muton, NotResearchable(ResearchType.Muton) },
 		{ ResearchType.Ethereal, NotResearchable(ResearchType.Ethereal) },
 		{ ResearchType.Reaper, NotResearchable(ResearchType.Reaper) },
-		{ ResearchType.Chrysalid, NotResearchable(ResearchType.Chrysalid) },
+		{ ResearchType.Chryssalid, NotResearchable(ResearchType.Chryssalid) },
 		{ ResearchType.Silacoid, NotResearchable(ResearchType.Silacoid) },
 		{ ResearchType.Celatid, NotResearchable(ResearchType.Celatid) },
 		{ ResearchType.Sectopod, NotResearchable(ResearchType.Sectopod) },
@@ -740,7 +785,7 @@ public static class ResearchTypeExtensions
 			Alien(
 				"Chryssalid Terrorist",
 				ItemType.ChryssalidTerrorist,
-				ResearchType.Chrysalid,
+				ResearchType.Chryssalid,
 				ResearchType.Terrorist
 			)
 		},

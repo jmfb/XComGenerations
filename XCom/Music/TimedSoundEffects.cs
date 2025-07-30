@@ -3,7 +3,7 @@ namespace XCom.Music;
 public static class TimedSoundEffects
 {
 	public static Dictionary<int, IntroductionSoundEffect> Introduction =>
-		new Dictionary<int, IntroductionSoundEffect>
+		new()
 		{
 			{ 121, IntroductionSoundEffect.Whoosh },
 			{ 133, IntroductionSoundEffect.Hum },

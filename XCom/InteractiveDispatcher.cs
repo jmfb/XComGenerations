@@ -5,7 +5,7 @@ namespace XCom;
 public class InteractiveDispatcher
 {
 	private Interactive activeFocus;
-	private readonly Stack<Interactive> focusHistory = new Stack<Interactive>();
+	private readonly Stack<Interactive> focusHistory = new();
 
 	public void CaptureFocus(Interactive newFocus)
 	{

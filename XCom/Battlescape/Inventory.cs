@@ -15,13 +15,13 @@ public class Inventory : Screen
 	private readonly Battle battle;
 	private readonly BattleSoldier soldier;
 	private readonly List<BattleItem> ground;
-	private readonly List<BattleItem[,]> groundViews = new List<BattleItem[,]>();
+	private readonly List<BattleItem[,]> groundViews = [];
 	private int groundViewIndex;
 	private BattleItem selection;
 	private InventoryLocation selectionSource;
 	private readonly bool isInitialInventory;
 	private bool notEnoughTimeUnits;
-	private readonly Stopwatch stopwatch = new Stopwatch();
+	private readonly Stopwatch stopwatch = new();
 
 	public Inventory(
 		Battle battle,

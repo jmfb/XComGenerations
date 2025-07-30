@@ -26,13 +26,13 @@ public class ProductionStopped : Screen
 		switch (status)
 		{
 			case ManufactureStatus.InsufficientFunds:
-				return new[] { "Not enough money to", "produce" };
+				return ["Not enough money to", "produce"];
 			case ManufactureStatus.InsufficientHangarSpace:
-				return new[] { "Not enough hangar space", "to produce" };
+				return ["Not enough hangar space", "to produce"];
 			case ManufactureStatus.InsufficientMaterials:
-				return new[] { "Not enough special materials", "to produce" };
-			case ManufactureStatus.InfufficentStorageSpace:
-				return new[] { "Not enough storage space", "to produce" };
+				return ["Not enough special materials", "to produce"];
+			case ManufactureStatus.InsufficientStorageSpace:
+				return ["Not enough storage space", "to produce"];
 		}
 		throw new InvalidOperationException("Invalid manufacture status");
 	}

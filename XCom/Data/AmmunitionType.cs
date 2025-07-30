@@ -198,7 +198,7 @@ public static class AmmunitionTypeExtensions
 		DescriptionLines =
 		[
 			"Power source for the small alien plasma pistol. Contains Elerium",
-			"- the source of all alien power."
+			"- the source of all alien power.",
 		],
 	};
 
@@ -218,7 +218,7 @@ public static class AmmunitionTypeExtensions
 		[
 			"This small object is used as a power source for a plasma rifle",
 			"- a medium powered alien weapon. Contains a small quantity of",
-			"Elerium."
+			"Elerium.",
 		],
 	};
 
@@ -237,7 +237,7 @@ public static class AmmunitionTypeExtensions
 		DescriptionLines =
 		[
 			"This compact device is used as ammunition for a Heavy Plasma",
-			"Gun. It contains a small quantity of Elerium."
+			"Gun. It contains a small quantity of Elerium.",
 		],
 	};
 
@@ -257,7 +257,7 @@ public static class AmmunitionTypeExtensions
 		[
 			"The Stun bomb is used for capturing live human specimens, but",
 			"it can also be used against most alien races. It is fired from a",
-			"small launcher."
+			"small launcher.",
 		],
 	};
 
@@ -276,28 +276,27 @@ public static class AmmunitionTypeExtensions
 		DescriptionLines =
 		[
 			"This device is a highly explosive missile that has an intelligent",
-			"guidance system. It is fired from a blaster launcher."
+			"guidance system. It is fired from a blaster launcher.",
 		],
 	};
 
-	private static readonly Dictionary<AmmunitionType, AmmunitionMetadata> metadata =
-		new()
-		{
-			{ AmmunitionType.PistolClip, pistolClip },
-			{ AmmunitionType.RifleClip, rifleClip },
-			{ AmmunitionType.HcApAmmo, hcApAmmo },
-			{ AmmunitionType.HcHeAmmo, hcHeAmmo },
-			{ AmmunitionType.HcIAmmo, hcIAmmo },
-			{ AmmunitionType.AcApAmmo, acApAmmo },
-			{ AmmunitionType.AcHeAmmo, acHeAmmo },
-			{ AmmunitionType.AcIAmmo, acIAmmo },
-			{ AmmunitionType.SmallRocket, smallRocket },
-			{ AmmunitionType.LargeRocket, largeRocket },
-			{ AmmunitionType.IncendiaryRocket, incendiaryRocket },
-			{ AmmunitionType.PlasmaPistolClip, plasmaPistolClip },
-			{ AmmunitionType.PlasmaRifleClip, plasmaRifleClip },
-			{ AmmunitionType.HeavyPlasmaClip, heavyPlasmaClip },
-			{ AmmunitionType.StunBomb, stunBomb },
-			{ AmmunitionType.BlasterBomb, blasterBomb },
-		};
+	private static readonly Dictionary<AmmunitionType, AmmunitionMetadata> metadata = new()
+	{
+		{ AmmunitionType.PistolClip, pistolClip },
+		{ AmmunitionType.RifleClip, rifleClip },
+		{ AmmunitionType.HcApAmmo, hcApAmmo },
+		{ AmmunitionType.HcHeAmmo, hcHeAmmo },
+		{ AmmunitionType.HcIAmmo, hcIAmmo },
+		{ AmmunitionType.AcApAmmo, acApAmmo },
+		{ AmmunitionType.AcHeAmmo, acHeAmmo },
+		{ AmmunitionType.AcIAmmo, acIAmmo },
+		{ AmmunitionType.SmallRocket, smallRocket },
+		{ AmmunitionType.LargeRocket, largeRocket },
+		{ AmmunitionType.IncendiaryRocket, incendiaryRocket },
+		{ AmmunitionType.PlasmaPistolClip, plasmaPistolClip },
+		{ AmmunitionType.PlasmaRifleClip, plasmaRifleClip },
+		{ AmmunitionType.HeavyPlasmaClip, heavyPlasmaClip },
+		{ AmmunitionType.StunBomb, stunBomb },
+		{ AmmunitionType.BlasterBomb, blasterBomb },
+	};
 }

@@ -4,35 +4,23 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class Edit : InteractiveControl
+public class Edit(
+	int topRow,
+	int leftColumn,
+	int width,
+	string text,
+	Font font,
+	ColorScheme scheme,
+	Action<string> action
+) : InteractiveControl
 {
-	protected int TopRow { get; private set; }
-	protected int LeftColumn { get; private set; }
-	protected int Width { get; private set; }
-	public string Text { get; private set; }
-	protected Font Font { get; private set; }
-	protected ColorScheme Scheme { get; private set; }
-	private readonly Action<string> action;
+	protected int TopRow { get; private set; } = topRow;
+	protected int LeftColumn { get; private set; } = leftColumn;
+	protected int Width { get; private set; } = width;
+	public string Text { get; private set; } = text;
+	protected Font Font { get; private set; } = font;
+	protected ColorScheme Scheme { get; private set; } = scheme;
 	protected bool Editing { get; private set; }
-
-	public Edit(
-		int topRow,
-		int leftColumn,
-		int width,
-		string text,
-		Font font,
-		ColorScheme scheme,
-		Action<string> action
-	)
-	{
-		TopRow = topRow;
-		LeftColumn = leftColumn;
-		Width = width;
-		Text = text;
-		Font = font;
-		Scheme = scheme;
-		this.action = action;
-	}
 
 	public override void OnKeyPressed(char value)
 	{

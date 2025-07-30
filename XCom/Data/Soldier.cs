@@ -1,4 +1,3 @@
-using System.Drawing;
 using Newtonsoft.Json;
 using XCom.Content.Paperdolls;
 
@@ -144,8 +143,9 @@ public class Soldier
 		};
 	}
 
-	private static readonly List<string> maleFirstNames = new List<string>
-	{
+	// ReSharper disable StringLiteralTypo
+	private static readonly List<string> maleFirstNames =
+	[
 		"Jacob",
 		"Marcin",
 		"Dom",
@@ -174,10 +174,10 @@ public class Soldier
 		"Andrew",
 		"Paul",
 		"Zach",
-	};
+	];
 
-	private static readonly List<string> femaleFirstNames = new List<string>
-	{
+	private static readonly List<string> femaleFirstNames =
+	[
 		"Anne",
 		"Rebecca",
 		"Wrishali",
@@ -202,10 +202,10 @@ public class Soldier
 		"Catherine",
 		"Katy",
 		"Elizabeth",
-	};
+	];
 
-	private static readonly List<string> lastNames = new List<string>
-	{
+	private static readonly List<string> lastNames =
+	[
 		"Buysse",
 		"Polewski",
 		"Piccione",
@@ -240,5 +240,6 @@ public class Soldier
 		"Dixon",
 		"Cheron",
 		"McNichols",
-	};
+	];
+	// ReSharper restore StringLiteralTypo
 }

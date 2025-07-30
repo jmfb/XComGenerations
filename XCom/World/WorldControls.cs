@@ -3,16 +3,10 @@ using XCom.Graphics;
 
 namespace XCom.World;
 
-public class WorldControls : InteractiveControl
+public class WorldControls(WorldView worldView) : InteractiveControl
 {
-	private readonly WorldView worldView;
 	private Action currentAction;
-	private readonly Stopwatch stopwatch = new Stopwatch();
-
-	public WorldControls(WorldView worldView)
-	{
-		this.worldView = worldView;
-	}
+	private readonly Stopwatch stopwatch = new();
 
 	public override bool HitTest(int row, int column)
 	{

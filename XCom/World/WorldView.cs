@@ -7,9 +7,9 @@ namespace XCom.World;
 public class WorldView : InteractiveControl
 {
 	private readonly MapLocation[,] screen = new MapLocation[256, 200];
-	private static readonly int[] zoomRadius = { 90, 120, 180, 270, 440, 720 };
+	private static readonly int[] zoomRadius = [90, 120, 180, 270, 440, 720];
 	private readonly Action<Location> onClick;
-	private readonly Stopwatch stopwatch = new Stopwatch();
+	private readonly Stopwatch stopwatch = new();
 	private bool flashWorldObjects;
 	public const int CenterX = 128;
 	public const int CenterY = 100;
@@ -27,20 +27,20 @@ public class WorldView : InteractiveControl
 
 	private static int LongitudeOffset
 	{
-		get { return GameState.Current?.Data?.LongitudeOffset ?? 0; }
-		set { GameState.Current.Data.LongitudeOffset = value; }
+		get => GameState.Current?.Data?.LongitudeOffset ?? 0;
+		set => GameState.Current.Data.LongitudeOffset = value;
 	}
 
 	private static int Pitch
 	{
-		get { return GameState.Current?.Data?.Pitch ?? 0; }
-		set { GameState.Current.Data.Pitch = value; }
+		get => GameState.Current?.Data?.Pitch ?? 0;
+		set => GameState.Current.Data.Pitch = value;
 	}
 
 	private static int Zoom
 	{
-		get { return GameState.Current?.Data?.Zoom ?? 0; }
-		set { GameState.Current.Data.Zoom = value; }
+		get => GameState.Current?.Data?.Zoom ?? 0;
+		set => GameState.Current.Data.Zoom = value;
 	}
 
 	public void ChangeLongitudeOffset(int delta)

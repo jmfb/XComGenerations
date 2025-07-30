@@ -1,4 +1,3 @@
-using System.Windows.Forms;
 using XCom.Content.Overlays;
 
 namespace XCom.Data;
@@ -48,7 +47,7 @@ public static class AlienTypeExtensions
 			"even take control of their",
 			"minds. They tend to indulge in",
 			"human abductions and cattle",
-			"mutilation.  The adbuction is",
+			"mutilation.  The abduction is",
 			"used to extract genetic",
 			"material for cross breeding and",
 			"developing clones for infiltrating",
@@ -58,7 +57,7 @@ public static class AlienTypeExtensions
 			"appears to want to develop",
 			"superior genetic hybrids to",
 			"increase the efficiency of their",
-			"hive-like society."
+			"hive-like society.",
 		],
 	};
 
@@ -69,7 +68,7 @@ public static class AlienTypeExtensions
 		Overlay = Overlays.SectoidAutopsy,
 		DescriptionLines =
 		[
-			"The autopsy reveals vestigal",
+			"The autopsy reveals vestigial",
 			"digestive organs and a simple",
 			"structure. The brain and eyes",
 			"are very well developed.  The",
@@ -84,7 +83,7 @@ public static class AlienTypeExtensions
 			"clues as to how this species can",
 			"reproduce.  They are most",
 			"probably a genetically engineered",
-			"species."
+			"species.",
 		],
 	};
 
@@ -108,7 +107,7 @@ public static class AlienTypeExtensions
 			"the command of some other",
 			"Intelligence which directs their",
 			"military-style incursions on",
-			"earth."
+			"earth.",
 		],
 	};
 
@@ -133,7 +132,7 @@ public static class AlienTypeExtensions
 			"its body at any one time.  Left",
 			"to its own devices this species",
 			"would be a severe threat to",
-			"life on earth."
+			"life on earth.",
 		],
 	};
 
@@ -161,7 +160,7 @@ public static class AlienTypeExtensions
 			"implants are used to enhance",
 			"their combat performance.  They",
 			"are clearly the foot soldiers",
-			"for a higher intelligence."
+			"for a higher intelligence.",
 		],
 	};
 
@@ -187,7 +186,7 @@ public static class AlienTypeExtensions
 			"of warfare and conquest.",
 			"Armor piercing ammunition is",
 			"not very effective against",
-			"their toughened skin."
+			"their toughened skin.",
 		],
 	};
 
@@ -211,7 +210,7 @@ public static class AlienTypeExtensions
 			"contains an anti-grav unit which",
 			"enabled the creature to float,",
 			"albeit unsteadily, through the",
-			"air."
+			"air.",
 		],
 	};
 
@@ -234,7 +233,7 @@ public static class AlienTypeExtensions
 			"environments.  The brain is",
 			"smaller than ours, but the",
 			"sensory organs are well",
-			"developed."
+			"developed.",
 		],
 	};
 
@@ -261,7 +260,7 @@ public static class AlienTypeExtensions
 			"their mental powers for combat.",
 			"They rarely appear on earth",
 			"since they seem to rely on other",
-			"races to pursue their objectives."
+			"races to pursue their objectives.",
 		],
 	};
 
@@ -285,7 +284,7 @@ public static class AlienTypeExtensions
 			"proportion of the body's blood",
 			"supply.  It is a mystery as to",
 			"how this creature can sustain",
-			"itself without external support."
+			"itself without external support.",
 		],
 	};
 
@@ -309,7 +308,7 @@ public static class AlienTypeExtensions
 			"has the ability to clone itself",
 			"at an alarming rate. It",
 			"accompanies the Muton race in",
-			"its wonderings."
+			"its wonderings.",
 		],
 	};
 
@@ -332,7 +331,7 @@ public static class AlienTypeExtensions
 			"reproductive system. A small",
 			"organ contains embryos which",
 			"can grow rapidly into a new",
-			"being."
+			"being.",
 		],
 	};
 
@@ -352,7 +351,7 @@ public static class AlienTypeExtensions
 			"and can be controlled by",
 			"implants or telepathic beings. It",
 			"works with the Muton alien",
-			"race."
+			"race.",
 		],
 	};
 
@@ -370,14 +369,14 @@ public static class AlienTypeExtensions
 			"system has tremendous power",
 			"and speed. Its rock like skin is",
 			"not harmed by fire or",
-			"incendiary ammunition."
+			"incendiary ammunition.",
 		],
 	};
 
 	private static readonly AlienMetadata chryssalid = new()
 	{
 		Name = "Chryssalid",
-		RequiredResearch = ResearchType.Chrysalid,
+		RequiredResearch = ResearchType.Chryssalid,
 		Overlay = Overlays.Chryssalid,
 		DescriptionLines =
 		[
@@ -394,7 +393,7 @@ public static class AlienTypeExtensions
 			"the victim shortly after",
 			"impregnation.  Chryssalids are",
 			"associated with the Snakeman",
-			"race."
+			"race.",
 		],
 	};
 
@@ -414,7 +413,7 @@ public static class AlienTypeExtensions
 			"creature carries twenty eggs",
 			"which are laid inside other",
 			"organisms.  This creature is a",
-			"very effective terror weapon."
+			"very effective terror weapon.",
 		],
 	};
 
@@ -434,7 +433,7 @@ public static class AlienTypeExtensions
 			"this creature are of little use",
 			"except to terrorize and",
 			"destroy. Reapers are commonly",
-			"associated with Floaters."
+			"associated with Floaters.",
 		],
 	};
 
@@ -451,7 +450,7 @@ public static class AlienTypeExtensions
 			"wounded.  However its furry",
 			"skin is highly flammable, making",
 			"the creature vulnerable to",
-			"incendiary weapons."
+			"incendiary weapons.",
 		],
 	};
 
@@ -470,7 +469,7 @@ public static class AlienTypeExtensions
 			"difficult terrain. Its primary",
 			"function is destruction and",
 			"terror in the service of the",
-			"Sectoid race."
+			"Sectoid race.",
 		],
 	};
 
@@ -487,7 +486,7 @@ public static class AlienTypeExtensions
 			"ammunition. The primary",
 			"anti-gravity system is too",
 			"badly damaged to gain any",
-			"understanding of its functioning."
+			"understanding of its functioning.",
 		],
 	};
 
@@ -506,7 +505,7 @@ public static class AlienTypeExtensions
 			"controllers, the Ethereals.",
 			"Sectopods are the most powerful",
 			"terror weapon available to the",
-			"alien forces."
+			"alien forces.",
 		],
 	};
 
@@ -523,7 +522,7 @@ public static class AlienTypeExtensions
 			"in particular plasma weapons.",
 			"However, the sensing circuitry",
 			"seems particularly vulnerable to",
-			"laser weapons."
+			"laser weapons.",
 		],
 	};
 

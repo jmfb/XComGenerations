@@ -85,7 +85,7 @@ public static class InventoryLocationExtensions
 		};
 	}
 
-	private static readonly InventoryLocationMetadata backPack = new InventoryLocationMetadata
+	private static readonly InventoryLocationMetadata backPack = new()
 	{
 		TimeUnitCost = new Dictionary<InventoryLocation, int>
 		{
@@ -101,7 +101,7 @@ public static class InventoryLocationExtensions
 		},
 	};
 
-	private static readonly InventoryLocationMetadata belt = new InventoryLocationMetadata
+	private static readonly InventoryLocationMetadata belt = new()
 	{
 		TimeUnitCost = new Dictionary<InventoryLocation, int>
 		{
@@ -117,7 +117,7 @@ public static class InventoryLocationExtensions
 		},
 	};
 
-	private static readonly InventoryLocationMetadata ground = new InventoryLocationMetadata
+	private static readonly InventoryLocationMetadata ground = new()
 	{
 		TimeUnitCost = new Dictionary<InventoryLocation, int>
 		{
@@ -134,7 +134,7 @@ public static class InventoryLocationExtensions
 	};
 
 	private static readonly Dictionary<InventoryLocation, InventoryLocationMetadata> metadata =
-		new Dictionary<InventoryLocation, InventoryLocationMetadata>
+		new()
 		{
 			{ InventoryLocation.RightShoulder, CreateShoulder(0, 8) },
 			{ InventoryLocation.LeftShoulder, CreateShoulder(8, 0) },

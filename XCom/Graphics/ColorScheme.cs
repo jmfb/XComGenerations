@@ -37,32 +37,31 @@ public class ColorScheme
 	public Color LightDark => GetColor(4);
 	public Color Dark => GetColor(5);
 	public Color Darker => GetColor(6);
-	public ColorScheme Inverse => new ColorScheme(colors.Reverse().ToArray());
+	public ColorScheme Inverse => new(colors.Reverse().ToArray());
 
-	public static readonly ColorScheme White = new ColorScheme(1, 209, 5);
-	public static readonly ColorScheme LightWhite = new ColorScheme(2, 96, 5);
-	public static readonly ColorScheme Aqua = new ColorScheme(0, 134, 5);
-	public static readonly ColorScheme Green = new ColorScheme(0, 240, 5);
-	public static readonly ColorScheme LightGreen = new ColorScheme(1, 48, 5);
-	public static readonly ColorScheme Red = new ColorScheme(1, 32, 5);
-	public static readonly ColorScheme Blue = new ColorScheme(1, 219, 5);
-	public static readonly ColorScheme DarkYellow = new ColorScheme(1, 214, 5);
-	public static readonly ColorScheme Purple = new ColorScheme(1, 247, 5);
-	public static readonly ColorScheme Yellow = new ColorScheme(2, 16, 6);
-	public static readonly ColorScheme LightMagenta = new ColorScheme(1, 242, 5);
-	public static readonly ColorScheme LightPurple = new ColorScheme(3, 240, 5);
-	public static readonly ColorScheme LightAqua = new ColorScheme(3, 245, 5);
-	public static readonly ColorScheme Orange = new ColorScheme(1, 16, 5);
+	public static readonly ColorScheme White = new(1, 209, 5);
+	public static readonly ColorScheme LightWhite = new(2, 96, 5);
+	public static readonly ColorScheme Aqua = new(0, 134, 5);
+	public static readonly ColorScheme Green = new(0, 240, 5);
+	public static readonly ColorScheme LightGreen = new(1, 48, 5);
+	public static readonly ColorScheme Red = new(1, 32, 5);
+	public static readonly ColorScheme Blue = new(1, 219, 5);
+	public static readonly ColorScheme DarkYellow = new(1, 214, 5);
+	public static readonly ColorScheme Purple = new(1, 247, 5);
+	public static readonly ColorScheme Yellow = new(2, 16, 6);
+	public static readonly ColorScheme LightMagenta = new(1, 242, 5);
+	public static readonly ColorScheme LightPurple = new(3, 240, 5);
+	public static readonly ColorScheme LightAqua = new(3, 245, 5);
+	public static readonly ColorScheme Orange = new(1, 16, 5);
 
-	public static readonly ColorScheme LightBlue = new ColorScheme(
-		new[]
-		{
+	public static readonly ColorScheme LightBlue = new(
+		[
 			Color.FromArgb(130, 190, 231),
 			Color.FromArgb(105, 162, 207),
 			Color.FromArgb(89, 138, 186),
 			Color.FromArgb(89, 138, 186),
 			Color.FromArgb(69, 113, 166),
 			Color.FromArgb(52, 93, 142),
-		}
+		]
 	);
 }

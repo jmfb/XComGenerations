@@ -6,5 +6,5 @@ public enum ManufactureStatus
 	InsufficientFunds,
 	InsufficientHangarSpace,
 	InsufficientMaterials,
-	InfufficentStorageSpace,
+	InsufficientStorageSpace,
 }

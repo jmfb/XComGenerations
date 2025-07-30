@@ -1,4 +1,3 @@
-using System.Windows.Forms;
 using XCom.Content.Overlays;
 
 namespace XCom.Data;
@@ -20,7 +19,7 @@ public static class UfoComponentTypeExtensions
 	public static UfoComponentMetadata Metadata(this UfoComponentType ufoComponentType) =>
 		metadata[ufoComponentType];
 
-	private static readonly UfoComponentMetadata ufoPowerSource = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata ufoPowerSource = new()
 	{
 		Name = "UFO Power Source",
 		RequiredResearch = ResearchType.UfoPowerSource,
@@ -35,7 +34,7 @@ public static class UfoComponentTypeExtensions
 			+ "This unit can be reproduced easily using alien alloys.",
 	};
 
-	private static readonly UfoComponentMetadata ufoNavigation = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata ufoNavigation = new()
 	{
 		Name = "UFO Navigation",
 		RequiredResearch = ResearchType.UfoNavigation,
@@ -51,7 +50,7 @@ public static class UfoComponentTypeExtensions
 			+ "it can be reproduced using alien alloys and other components.",
 	};
 
-	private static readonly UfoComponentMetadata ufoConstruction = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata ufoConstruction = new()
 	{
 		Name = "UFO Construction",
 		RequiredResearch = ResearchType.UfoConstruction,
@@ -67,7 +66,7 @@ public static class UfoComponentTypeExtensions
 			+ "are known, then it is possible to build these types of craft.",
 	};
 
-	private static readonly UfoComponentMetadata alienFood = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata alienFood = new()
 	{
 		Name = "Alien Food",
 		RequiredResearch = ResearchType.AlienFood,
@@ -81,7 +80,7 @@ public static class UfoComponentTypeExtensions
 			+ "earth for food - a symbiosis between earth and alien society.",
 	};
 
-	private static readonly UfoComponentMetadata alienEntertainment = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata alienEntertainment = new()
 	{
 		Name = "Alien Entertainment",
 		RequiredResearch = ResearchType.AlienEntertainment,
@@ -94,7 +93,7 @@ public static class UfoComponentTypeExtensions
 			+ "evidence that aliens have any cultural or recreational pastimes.",
 	};
 
-	private static readonly UfoComponentMetadata alienSurgery = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata alienSurgery = new()
 	{
 		Name = "Alien Surgery",
 		RequiredResearch = ResearchType.AlienSurgery,
@@ -108,7 +107,7 @@ public static class UfoComponentTypeExtensions
 			+ "or genetic purposes.",
 	};
 
-	private static readonly UfoComponentMetadata examinationRoom = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata examinationRoom = new()
 	{
 		Name = "Examination Room",
 		RequiredResearch = ResearchType.ExaminationRoom,
@@ -123,7 +122,7 @@ public static class UfoComponentTypeExtensions
 			+ "months later.  Who knows what sinister motives the aliens have?",
 	};
 
-	private static readonly UfoComponentMetadata alienAlloys = new UfoComponentMetadata
+	private static readonly UfoComponentMetadata alienAlloys = new()
 	{
 		Name = "Alien Alloys",
 		RequiredResearch = ResearchType.AlienAlloys,
@@ -136,16 +135,15 @@ public static class UfoComponentTypeExtensions
 			+ "reproduced and used in many kinds of manufacturing processes.",
 	};
 
-	private static readonly Dictionary<UfoComponentType, UfoComponentMetadata> metadata =
-		new Dictionary<UfoComponentType, UfoComponentMetadata>
-		{
-			{ UfoComponentType.UfoPowerSource, ufoPowerSource },
-			{ UfoComponentType.UfoNavigation, ufoNavigation },
-			{ UfoComponentType.UfoConstruction, ufoConstruction },
-			{ UfoComponentType.AlienFood, alienFood },
-			{ UfoComponentType.AlienEntertainment, alienEntertainment },
-			{ UfoComponentType.AlienSurgery, alienSurgery },
-			{ UfoComponentType.ExaminationRoom, examinationRoom },
-			{ UfoComponentType.AlienAlloys, alienAlloys },
-		};
+	private static readonly Dictionary<UfoComponentType, UfoComponentMetadata> metadata = new()
+	{
+		{ UfoComponentType.UfoPowerSource, ufoPowerSource },
+		{ UfoComponentType.UfoNavigation, ufoNavigation },
+		{ UfoComponentType.UfoConstruction, ufoConstruction },
+		{ UfoComponentType.AlienFood, alienFood },
+		{ UfoComponentType.AlienEntertainment, alienEntertainment },
+		{ UfoComponentType.AlienSurgery, alienSurgery },
+		{ UfoComponentType.ExaminationRoom, examinationRoom },
+		{ UfoComponentType.AlienAlloys, alienAlloys },
+	};
 }

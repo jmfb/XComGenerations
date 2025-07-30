@@ -16,19 +16,19 @@ public static class WindowsSoundEffectExtensions
 		GetSoundPlayer(soundEffect).Play();
 	}
 
-	private static readonly SoundPlayer buttonPush1 = new SoundPlayer(
+	private static readonly SoundPlayer buttonPush1 = new(
 		XCom.Content.SoundEffects.Windows.Windows.ButtonPush1
 	);
-	private static readonly SoundPlayer buttonPush2 = new SoundPlayer(
+	private static readonly SoundPlayer buttonPush2 = new(
 		XCom.Content.SoundEffects.Windows.Windows.ButtonPush2
 	);
-	private static readonly SoundPlayer windowOpen1 = new SoundPlayer(
+	private static readonly SoundPlayer windowOpen1 = new(
 		XCom.Content.SoundEffects.Windows.Windows.WindowOpen1
 	);
-	private static readonly SoundPlayer windowOpen2 = new SoundPlayer(
+	private static readonly SoundPlayer windowOpen2 = new(
 		XCom.Content.SoundEffects.Windows.Windows.WindowOpen2
 	);
-	private static readonly SoundPlayer windowClose = new SoundPlayer(
+	private static readonly SoundPlayer windowClose = new(
 		XCom.Content.SoundEffects.Windows.Windows.WindowClose
 	);
 

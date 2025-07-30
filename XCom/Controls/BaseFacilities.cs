@@ -7,7 +7,7 @@ using Image = XCom.Graphics.Image;
 
 namespace XCom.Controls;
 
-public class BaseFacilities : InteractiveControl
+public class BaseFacilities(BaseFacilities.Mode mode, Action<int, int> action) : InteractiveControl
 {
 	public enum Mode
 	{
@@ -19,26 +19,13 @@ public class BaseFacilities : InteractiveControl
 	private const int rowCount = 6;
 	private const int columnCount = 6;
 
-	private readonly Mode mode;
-	private readonly Action<int, int> action;
 	private readonly FacilityType facilityType;
-	private static readonly Image horizontalBridge = new Image(
-		Content.Images.Base.Base.BridgeHorizontal
-	);
-	private static readonly Image verticalBridge = new Image(
-		Content.Images.Base.Base.BridgeVertical
-	);
-
-	public BaseFacilities(Mode mode, Action<int, int> action)
-	{
-		this.mode = mode;
-		this.action = action;
-	}
+	private static readonly Image horizontalBridge = new(Content.Images.Base.Base.BridgeHorizontal);
+	private static readonly Image verticalBridge = new(Content.Images.Base.Base.BridgeVertical);
 
 	public BaseFacilities(FacilityType facilityType, Action<int, int> action)
+		: this(Mode.BuildFacility, action)
 	{
-		mode = Mode.BuildFacility;
-		this.action = action;
 		this.facilityType = facilityType;
 	}
 

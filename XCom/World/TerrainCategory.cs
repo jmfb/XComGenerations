@@ -33,11 +33,11 @@ public static class TerrainCategoryExtensions
 		throw new InvalidOperationException("Invalid category");
 	}
 
-	private static readonly TerrainCategoryMetadata forest = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata forest = new()
 	{
-		FlatTilesets = new[] { Tileset.Forest0, Tileset.Forest1 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.Forest0, Tileset.Forest1],
+		OtherTilesets =
+		[
 			Tileset.Forest2,
 			Tileset.Forest3,
 			Tileset.Forest4,
@@ -48,14 +48,14 @@ public static class TerrainCategoryExtensions
 			Tileset.Forest9,
 			Tileset.Forest10,
 			Tileset.Forest11,
-		},
+		],
 	};
 
-	private static readonly TerrainCategoryMetadata jungle = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata jungle = new()
 	{
-		FlatTilesets = new[] { Tileset.Jungle0, Tileset.Jungle1, Tileset.Jungle2 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.Jungle0, Tileset.Jungle1, Tileset.Jungle2],
+		OtherTilesets =
+		[
 			Tileset.Jungle3,
 			Tileset.Jungle4,
 			Tileset.Jungle5,
@@ -65,14 +65,14 @@ public static class TerrainCategoryExtensions
 			Tileset.Jungle9,
 			Tileset.Jungle10,
 			Tileset.Jungle11,
-		},
+		],
 	};
 
-	private static readonly TerrainCategoryMetadata farm = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata farm = new()
 	{
-		FlatTilesets = new[] { Tileset.Cultivation0, Tileset.Cultivation7, Tileset.Cultivation11 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.Cultivation0, Tileset.Cultivation7, Tileset.Cultivation11],
+		OtherTilesets =
+		[
 			Tileset.Cultivation1,
 			Tileset.Cultivation2,
 			Tileset.Cultivation3,
@@ -89,14 +89,14 @@ public static class TerrainCategoryExtensions
 			Tileset.Cultivation16,
 			Tileset.Cultivation17,
 			Tileset.Cultivation18,
-		},
+		],
 	};
 
-	private static readonly TerrainCategoryMetadata mountain = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata mountain = new()
 	{
-		FlatTilesets = new[] { Tileset.Mountain0, Tileset.Mountain1, Tileset.Mountain2 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.Mountain0, Tileset.Mountain1, Tileset.Mountain2],
+		OtherTilesets =
+		[
 			Tileset.Mountain3,
 			Tileset.Mountain4,
 			Tileset.Mountain5,
@@ -107,14 +107,14 @@ public static class TerrainCategoryExtensions
 			Tileset.Mountain10,
 			Tileset.Mountain11,
 			Tileset.Mountain12,
-		},
+		],
 	};
 
-	private static readonly TerrainCategoryMetadata desert = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata desert = new()
 	{
-		FlatTilesets = new[] { Tileset.Desert0, Tileset.Desert1, Tileset.Desert2 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.Desert0, Tileset.Desert1, Tileset.Desert2],
+		OtherTilesets =
+		[
 			Tileset.Desert3,
 			Tileset.Desert4,
 			Tileset.Desert5,
@@ -124,14 +124,14 @@ public static class TerrainCategoryExtensions
 			Tileset.Desert9,
 			Tileset.Desert10,
 			Tileset.Desert11,
-		},
+		],
 	};
 
-	private static readonly TerrainCategoryMetadata polar = new TerrainCategoryMetadata
+	private static readonly TerrainCategoryMetadata polar = new()
 	{
-		FlatTilesets = new[] { Tileset.Polar0, Tileset.Polar1, Tileset.Polar2 },
-		OtherTilesets = new[]
-		{
+		FlatTilesets = [Tileset.Polar0, Tileset.Polar1, Tileset.Polar2],
+		OtherTilesets =
+		[
 			Tileset.Polar3,
 			Tileset.Polar4,
 			Tileset.Polar5,
@@ -143,6 +143,6 @@ public static class TerrainCategoryExtensions
 			Tileset.Polar11,
 			Tileset.Polar12,
 			Tileset.Polar13,
-		},
+		],
 	};
 }

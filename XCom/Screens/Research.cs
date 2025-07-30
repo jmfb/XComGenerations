@@ -27,7 +27,7 @@ public class Research : Screen
 				ColorScheme.White
 			)
 		);
-		AddControl(new Label(24, 160, "Scientists Allocdated>", Font.Normal, ColorScheme.Blue));
+		AddControl(new Label(24, 160, "Scientists Allocated>", Font.Normal, ColorScheme.Blue));
 		AddControl(
 			new DynamicLabel(
 				24,

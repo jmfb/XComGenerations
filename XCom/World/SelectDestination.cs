@@ -1,8 +1,6 @@
-using System.Drawing;
 using XCom.Content.Backgrounds;
 using XCom.Controls;
 using XCom.Data;
-using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Screens;
 

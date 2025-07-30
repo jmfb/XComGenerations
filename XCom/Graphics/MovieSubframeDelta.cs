@@ -1,16 +1,7 @@
 namespace XCom.Graphics;
 
-public class MovieSubframeDelta
+public class MovieSubframeDelta(byte[] data, int offset)
 {
-	private readonly byte[] data;
-	private readonly int offset;
-
-	public MovieSubframeDelta(byte[] data, int offset)
-	{
-		this.data = data;
-		this.offset = offset;
-	}
-
 	public void Apply(byte[,] image)
 	{
 		var index = offset;

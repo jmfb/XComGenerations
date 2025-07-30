@@ -71,7 +71,7 @@ public class ManufactureProject
 		if (!ValidateRequiredMaterials(@base))
 			return ManufactureStatus.InsufficientMaterials;
 		if (!ValidateRequiredStorageSpace(@base))
-			return ManufactureStatus.InfufficentStorageSpace;
+			return ManufactureStatus.InsufficientStorageSpace;
 		ConsumeRequiredFundsAndMaterials(@base);
 		return ManufactureStatus.UnitStarted;
 	}

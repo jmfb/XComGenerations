@@ -137,7 +137,7 @@ public class LoadGame : Screen
 		public ColorScheme TextScheme { get; set; }
 	}
 
-	private static readonly Theme battlescapeTheme = new Theme
+	private static readonly Theme battlescapeTheme = new()
 	{
 		Background = Backgrounds.Turn,
 		BackgroundPalette = 1,
@@ -147,7 +147,7 @@ public class LoadGame : Screen
 		TextScheme = ColorScheme.White,
 	};
 
-	private static readonly Theme geoscapeTheme = new Theme
+	private static readonly Theme geoscapeTheme = new()
 	{
 		Background = Backgrounds.Title,
 		BackgroundPalette = 0,

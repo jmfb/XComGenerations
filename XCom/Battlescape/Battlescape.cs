@@ -11,7 +11,7 @@ namespace XCom.Battlescape;
 public class Battlescape : Screen
 {
 	private readonly Battle battle;
-	private readonly HoverScroll hoverScroll = new HoverScroll();
+	private readonly HoverScroll hoverScroll = new();
 
 	public Battlescape(Battle battle)
 	{

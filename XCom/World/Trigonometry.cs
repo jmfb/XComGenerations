@@ -31,12 +31,8 @@ public static class Trigonometry
 	{
 		var numerator = b * b - 4.0 * a * c;
 		if (IsNegative(numerator))
-			return new[] { 0.0, 0.0 };
-		return new[]
-		{
-			(-b + Math.Sqrt(numerator)) / (2.0 * a),
-			(-b - Math.Sqrt(numerator)) / (2.0 * a),
-		};
+			return [0.0, 0.0];
+		return [(-b + Math.Sqrt(numerator)) / (2.0 * a), (-b - Math.Sqrt(numerator)) / (2.0 * a)];
 	}
 
 	//Determine the slope and intercept of a line (tests for vertical lines)

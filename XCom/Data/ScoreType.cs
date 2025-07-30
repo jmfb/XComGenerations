@@ -16,7 +16,7 @@ public static class ScoreTypeExtensions
 		return metadata[scoreType];
 	}
 
-	private static readonly ScoreMetadata terrible = new ScoreMetadata
+	private static readonly ScoreMetadata terrible = new()
 	{
 		Name = "TERRIBLE!",
 		MaxMissionPoints = -200,
@@ -26,7 +26,7 @@ public static class ScoreTypeExtensions
 			+ "You must improve your effectiveness in dealing with the alien menace or risk termination of the project.",
 	};
 
-	private static readonly ScoreMetadata poor = new ScoreMetadata
+	private static readonly ScoreMetadata poor = new()
 	{
 		Name = "POOR!",
 		MaxMissionPoints = 0,
@@ -35,7 +35,7 @@ public static class ScoreTypeExtensions
 			"The council of funding nations is generally satisfied with your progress so far.",
 	};
 
-	private static readonly ScoreMetadata okay = new ScoreMetadata
+	private static readonly ScoreMetadata okay = new()
 	{
 		Name = "OK",
 		MaxMissionPoints = 200,
@@ -44,7 +44,7 @@ public static class ScoreTypeExtensions
 			"The council of funding nations is generally satisfied with your progress so far.",
 	};
 
-	private static readonly ScoreMetadata good = new ScoreMetadata
+	private static readonly ScoreMetadata good = new()
 	{
 		Name = "GOOD!",
 		MaxMissionPoints = 500,
@@ -53,9 +53,9 @@ public static class ScoreTypeExtensions
 			"The council of funding nations is generally satisfied with your progress so far.",
 	};
 
-	private static readonly ScoreMetadata excellent = new ScoreMetadata
+	private static readonly ScoreMetadata excellent = new()
 	{
-		Name = "EXCELENT!",
+		Name = "EXCELLENT!",
 		MaxMissionPoints = int.MaxValue,
 		MaxMonthlyPoints = int.MaxValue,
 		Description =
@@ -63,10 +63,7 @@ public static class ScoreTypeExtensions
 			+ "Keep up the good work.",
 	};
 
-	private static readonly Dictionary<ScoreType, ScoreMetadata> metadata = new Dictionary<
-		ScoreType,
-		ScoreMetadata
-	>
+	private static readonly Dictionary<ScoreType, ScoreMetadata> metadata = new()
 	{
 		{ ScoreType.Terrible, terrible },
 		{ ScoreType.Poor, poor },

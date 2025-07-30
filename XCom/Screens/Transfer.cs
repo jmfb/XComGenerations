@@ -10,7 +10,7 @@ namespace XCom.Screens;
 public class Transfer : Screen
 {
 	private readonly Data.Base destination;
-	private readonly Dictionary<object, int> itemsToTransfer = new Dictionary<object, int>();
+	private readonly Dictionary<object, int> itemsToTransfer = new();
 
 	public Transfer(Data.Base destination)
 	{
@@ -122,7 +122,7 @@ public class Transfer : Screen
 		)
 		{
 			AbortTransferItem();
-			new NoFreeAccomodation().DoModal(this);
+			new NoFreeAccommodation().DoModal(this);
 			return;
 		}
 

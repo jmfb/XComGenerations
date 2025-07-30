@@ -11,8 +11,8 @@ public class GameSpeed : InteractiveContainer
 
 	public GameSpeed()
 	{
-		speeds = new[]
-		{
+		speeds =
+		[
 			new Toggle(
 				112,
 				257,
@@ -73,8 +73,8 @@ public class GameSpeed : InteractiveContainer
 				Font.Time,
 				() => OnSpeedChange(5)
 			),
-		};
-		multipliers = new[] { 5, 60, 5 * 60, 30 * 60, 60 * 60, 24 * 60 * 60 };
+		];
+		multipliers = [5, 60, 5 * 60, 30 * 60, 60 * 60, 24 * 60 * 60];
 
 		foreach (var speed in speeds)
 			AddControl(speed);

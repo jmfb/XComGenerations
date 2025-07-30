@@ -1,5 +1,3 @@
-using System.Windows.Forms;
-
 namespace XCom.Data;
 
 public enum AlienResearchType
@@ -22,12 +20,12 @@ public static class AlienResearchTypeExtensions
 	public static AlienResearchMetadata Metadata(this AlienResearchType alienResearchType) =>
 		metadata[alienResearchType];
 
-	private static readonly AlienResearchMetadata alienOrigins = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienOrigins = new()
 	{
 		Name = "Alien Origins",
 		RequiredResearch = ResearchType.AlienOrigins,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"It is clear that we are fighting a losing battle on earth. The",
 			"alien hordes are overwhelming in number.  The best we can do",
 			"is slow down their progress.  The only hope for humanity is",
@@ -38,15 +36,15 @@ public static class AlienResearchTypeExtensions
 			"place as soon as possible.  However we need to capture and",
 			"interrogate an alien leader to gain more detailed information.",
 			"The larger UFOs probably contain at least one Alien leader.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata theMartianSolution = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata theMartianSolution = new()
 	{
 		Name = "The Martian Solution",
 		RequiredResearch = ResearchType.TheMartianSolution,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Our research now points to Mars as the base of alien",
 			"operations.  The base is well hidden, and contains all the",
 			"manufacturing and cloning facilities to fuel the infiltration of",
@@ -58,15 +56,15 @@ public static class AlienResearchTypeExtensions
 			"before it is too late.  In order to progress we must capture",
 			"the highest ranking aliens - the commanders - which only",
 			"reside in alien bases.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata cydoniaOrBust = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata cydoniaOrBust = new()
 	{
 		Name = "Cydonia or Bust",
 		RequiredResearch = ResearchType.CydoniaOrBust,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"It is now clear that the alien hordes are being controlled",
 			"from an underground base in Cydonia - which is an unusual",
 			"area of Mars featuring five sided pyramids and a large",
@@ -80,29 +78,29 @@ public static class AlienResearchTypeExtensions
 			"the most awesome destructive power at our disposal.  There",
 			"is nothing more we can learn here - we must await the",
 			"outcome of the Cydonian assault.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienResearch = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienResearch = new()
 	{
 		Name = "Alien Research",
 		RequiredResearch = ResearchType.AlienResearch,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The alien research mission is used for collecting basic data on",
 			"earth and its inhabitants.  Small vehicles are predominantly",
 			"used, with occasional landings in deserted areas.  This type of",
 			"alien activity poses the least threat to XCom, with little",
 			"concern from governments or the public.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienHarvest = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienHarvest = new()
 	{
 		Name = "Alien Harvest",
 		RequiredResearch = ResearchType.AlienHarvest,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"The aliens have many uses for earth's fauna.  Animals are",
 			"abducted secretly, and returned with various organs removed.",
 			"Cattle mutilations are predominantly reported along with UFO",
@@ -112,15 +110,15 @@ public static class AlienResearchTypeExtensions
 			"theory behind the 'alien harvest' suggests that alien races",
 			"originally 'seeded' the planet with its flora and fauna, and now",
 			"they have returned to reap the harvest they have sown.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienAbduction = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienAbduction = new()
 	{
 		Name = "Alien Abduction",
 		RequiredResearch = ResearchType.AlienAbduction,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This is the most insidious form of alien activity.  The abduction",
 			"by aliens is widely reported, despite the aliens' attempts to",
 			"erase the experience from their victims' memories. Abductees",
@@ -130,15 +128,15 @@ public static class AlienResearchTypeExtensions
 			"linked to genetic mutation and manipulation of the aliens own",
 			"genetic material. This activity causes great alarm, and occurs",
 			"in populated areas or cities.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienInfiltration = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienInfiltration = new()
 	{
 		Name = "Alien Infiltration",
 		RequiredResearch = ResearchType.AlienInfiltration,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Earth governments can be infiltrated by alien agents which are",
 			"human in appearance.  This can result in official contact between",
 			"aliens and governments at the highest level. The climax of this",
@@ -149,15 +147,15 @@ public static class AlienResearchTypeExtensions
 			"conduct their activity unhindered. This alien mission represents",
 			"the worst threat to XCom. If a government agrees to a pact",
 			"then its funding will cease.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienBase = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienBase = new()
 	{
 		Name = "Alien Base",
 		RequiredResearch = ResearchType.AlienBase,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Aliens will construct secret underground bases in remote",
 			"locations. After some initial reconnaissance flights some intense",
 			"UFO activity will occur as the base is being built.  These bases",
@@ -167,65 +165,64 @@ public static class AlienResearchTypeExtensions
 			"activity without the presence of UFOs. In order to locate a",
 			"base an XCom craft must patrol an area for a few hours to",
 			"stand some chance of detection.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienTerror = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienTerror = new()
 	{
 		Name = "Alien Terror",
 		RequiredResearch = ResearchType.AlienTerror,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"When the aliens terrorize a city they will deploy some special",
 			"forces with awesome powers.  Civilians will be directly",
 			"threatened, and governments will be forced to evacuate whole",
 			"areas. The main purpose behind this activity is to generate",
 			"sufficient public hysteria so that governments will threaten",
 			"the XCom project.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienRetaliation = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienRetaliation = new()
 	{
 		Name = "Alien Retaliation",
 		RequiredResearch = ResearchType.AlienRetaliation,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"If XCom interceptors are being particularly successful in",
 			"shooting down UFOs then the aliens may take some retaliatory",
 			"action. This could result in a direct attack against an XCom",
 			"base.  However, the aliens have to find an XCom base in order",
 			"to attack it, and provided UFOs are kept away then there",
 			"should be little danger of an assault.",
-		},
+		],
 	};
 
-	private static readonly AlienResearchMetadata alienSupply = new AlienResearchMetadata
+	private static readonly AlienResearchMetadata alienSupply = new()
 	{
 		Name = "Alien Supply",
 		RequiredResearch = ResearchType.AlienSupply,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Once an alien base is constructed then it is resupplied on a",
 			"regular basis by a special supply vessel.  If one of these",
 			"vessels is detected while landing then it is certain that an",
 			"alien base is nearby.",
-		},
+		],
 	};
 
-	private static readonly Dictionary<AlienResearchType, AlienResearchMetadata> metadata =
-		new Dictionary<AlienResearchType, AlienResearchMetadata>
-		{
-			{ AlienResearchType.AlienOrigins, alienOrigins },
-			{ AlienResearchType.TheMartianSolution, theMartianSolution },
-			{ AlienResearchType.CydoniaOrBust, cydoniaOrBust },
-			{ AlienResearchType.AlienResearch, alienResearch },
-			{ AlienResearchType.AlienHarvest, alienHarvest },
-			{ AlienResearchType.AlienAbduction, alienAbduction },
-			{ AlienResearchType.AlienInfiltration, alienInfiltration },
-			{ AlienResearchType.AlienBase, alienBase },
-			{ AlienResearchType.AlienTerror, alienTerror },
-			{ AlienResearchType.AlienRetaliation, alienRetaliation },
-			{ AlienResearchType.AlienSupply, alienSupply },
-		};
+	private static readonly Dictionary<AlienResearchType, AlienResearchMetadata> metadata = new()
+	{
+		{ AlienResearchType.AlienOrigins, alienOrigins },
+		{ AlienResearchType.TheMartianSolution, theMartianSolution },
+		{ AlienResearchType.CydoniaOrBust, cydoniaOrBust },
+		{ AlienResearchType.AlienResearch, alienResearch },
+		{ AlienResearchType.AlienHarvest, alienHarvest },
+		{ AlienResearchType.AlienAbduction, alienAbduction },
+		{ AlienResearchType.AlienInfiltration, alienInfiltration },
+		{ AlienResearchType.AlienBase, alienBase },
+		{ AlienResearchType.AlienTerror, alienTerror },
+		{ AlienResearchType.AlienRetaliation, alienRetaliation },
+		{ AlienResearchType.AlienSupply, alienSupply },
+	};
 }

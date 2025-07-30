@@ -8,7 +8,7 @@ public class HoverScroll
 	public event Action<int> OnScrollDown;
 	public event Action<int> OnScrollLeft;
 	public event Action<int> OnScrollRight;
-	private readonly Stopwatch stopwatch = new Stopwatch();
+	private readonly Stopwatch stopwatch = new();
 
 	public HoverScroll()
 	{

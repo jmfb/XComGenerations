@@ -3,11 +3,8 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class TimeDisplay : Button
+public class TimeDisplay() : Button(72, 257, 63, 39, "", ColorScheme.Blue, Font.Normal, () => { })
 {
-	public TimeDisplay()
-		: base(72, 257, 63, 39, "", ColorScheme.Blue, Font.Normal, () => { }) { }
-
 	public override bool HitTest(int row, int column)
 	{
 		return false;

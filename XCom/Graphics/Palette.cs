@@ -52,15 +52,15 @@ public class Palette
 		return newPalette;
 	}
 
-	private static readonly Palette background = new Palette(Content.Palettes.Palettes.Background);
-	private static readonly Palette palette0 = new Palette(Content.Palettes.Palettes.Palette0);
-	private static readonly Palette palette1 = new Palette(Content.Palettes.Palettes.Palette1);
-	private static readonly Palette palette2 = new Palette(Content.Palettes.Palettes.Palette2);
-	private static readonly Palette palette3 = new Palette(Content.Palettes.Palettes.Palette3);
-	private static readonly Palette palette4 = new Palette(Content.Palettes.Palettes.Palette4);
+	private static readonly Palette background = new(Content.Palettes.Palettes.Background);
+	private static readonly Palette palette0 = new(Content.Palettes.Palettes.Palette0);
+	private static readonly Palette palette1 = new(Content.Palettes.Palettes.Palette1);
+	private static readonly Palette palette2 = new(Content.Palettes.Palettes.Palette2);
+	private static readonly Palette palette3 = new(Content.Palettes.Palettes.Palette3);
+	private static readonly Palette palette4 = new(Content.Palettes.Palettes.Palette4);
 
 	private static readonly Color[] greyscale =
-	{
+	[
 		Color.FromArgb(140, 150, 148),
 		Color.FromArgb(132, 138, 140),
 		Color.FromArgb(115, 125, 132),
@@ -77,7 +77,7 @@ public class Palette
 		Color.FromArgb(8, 12, 16),
 		Color.FromArgb(0, 4, 8),
 		Color.FromArgb(0, 0, 0),
-	};
+	];
 
 	private static Palette[] LoadPalettes()
 	{

@@ -6,7 +6,7 @@ public class MidiOutputDevice
 
 	private MidiFile[] files;
 	private int fileIndex;
-	private readonly Stopwatch stopwatch = new Stopwatch();
+	private readonly Stopwatch stopwatch = new();
 	private const uint defaultTempo = 500000;
 	private uint microsecondsPerBeat;
 	private List<int> trackEventIndices;

@@ -3,14 +3,15 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class UpDown : InteractiveControl
+public class UpDown(
+	int topRow,
+	int leftColumn,
+	ColorScheme scheme,
+	Action upAction,
+	Action downAction
+) : InteractiveControl
 {
-	private readonly int topRow;
-	private readonly int leftColumn;
-	private readonly ColorScheme scheme;
-	private readonly Action upAction;
-	private readonly Action downAction;
-	private readonly Stopwatch stopwatch = new Stopwatch();
+	private readonly Stopwatch stopwatch = new();
 
 	private enum State
 	{
@@ -20,21 +21,6 @@ public class UpDown : InteractiveControl
 	}
 
 	private State state = State.None;
-
-	public UpDown(
-		int topRow,
-		int leftColumn,
-		ColorScheme scheme,
-		Action upAction,
-		Action downAction
-	)
-	{
-		this.topRow = topRow;
-		this.leftColumn = leftColumn;
-		this.scheme = scheme;
-		this.upAction = upAction;
-		this.downAction = downAction;
-	}
 
 	public override bool HitTest(int row, int column)
 	{

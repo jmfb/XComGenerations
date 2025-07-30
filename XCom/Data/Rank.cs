@@ -20,14 +20,14 @@ public static class RankExtensions
 		return images[rank];
 	}
 
-	private static readonly Image rookie = new Image(Ranks.Rookie);
-	private static readonly Image squaddie = new Image(Ranks.Squaddie);
-	private static readonly Image sergeant = new Image(Ranks.Sergeant);
-	private static readonly Image captain = new Image(Ranks.Captain);
-	private static readonly Image colonel = new Image(Ranks.Colonel);
-	private static readonly Image commander = new Image(Ranks.Commander);
+	private static readonly Image rookie = new(Ranks.Rookie);
+	private static readonly Image squaddie = new(Ranks.Squaddie);
+	private static readonly Image sergeant = new(Ranks.Sergeant);
+	private static readonly Image captain = new(Ranks.Captain);
+	private static readonly Image colonel = new(Ranks.Colonel);
+	private static readonly Image commander = new(Ranks.Commander);
 
-	private static readonly Dictionary<Rank, Image> images = new Dictionary<Rank, Image>
+	private static readonly Dictionary<Rank, Image> images = new()
 	{
 		{ Rank.Rookie, rookie },
 		{ Rank.Squaddie, squaddie },

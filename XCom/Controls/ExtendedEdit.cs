@@ -3,19 +3,16 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class ExtendedEdit : Edit
+public class ExtendedEdit(
+	int topRow,
+	int leftColumn,
+	int width,
+	string text,
+	Font font,
+	ColorScheme scheme,
+	Action<string> action
+) : Edit(topRow, leftColumn, width, text, font, scheme, action)
 {
-	public ExtendedEdit(
-		int topRow,
-		int leftColumn,
-		int width,
-		string text,
-		Font font,
-		ColorScheme scheme,
-		Action<string> action
-	)
-		: base(topRow, leftColumn, width, text, font, scheme, action) { }
-
 	public override void Render(GraphicsBuffer buffer)
 	{
 		base.Render(buffer);

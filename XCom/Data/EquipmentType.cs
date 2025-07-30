@@ -1,4 +1,3 @@
-using System.Windows.Forms;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Items;
 
@@ -31,7 +30,7 @@ public static class EquipmentTypeExtensions
 		DescriptionLines =
 		[
 			"This device can only be used in close combat, but will stun a",
-			"living organism without killing it by using electric shocks."
+			"living organism without killing it by using electric shocks.",
 		],
 		IsTwoHanded = true,
 		Sprites = BattleItemSprite.StunRod,
@@ -49,7 +48,7 @@ public static class EquipmentTypeExtensions
 		[
 			"This compact device produces a bright flare light when it is",
 			"thrown. This will highlight enemy units in the vicinity of the",
-			"electro-flare during night time missions."
+			"electro-flare during night time missions.",
 		],
 	};
 
@@ -71,7 +70,7 @@ public static class EquipmentTypeExtensions
 			"in the center which is the direction the soldier is facing (North",
 			"is at the top). The flashing blobs show units which have moved",
 			"recently. Large units, or fast moving units, will produce larger",
-			"blobs. Static units will not be detected."
+			"blobs. Static units will not be detected.",
 		],
 	};
 
@@ -85,7 +84,7 @@ public static class EquipmentTypeExtensions
 		Height = 2,
 		DescriptionLines =
 		[
-			"The medi-kit combines a healing facility with pain killters and",
+			"The medi-kit combines a healing facility with pain killers and",
 			"stimulants. In order to use the medi-kit you must face",
 			"towards the soldier requiring treatment. If the soldier is",
 			"stunned you must stand over the body. Click on the medi-kit",
@@ -93,11 +92,11 @@ public static class EquipmentTypeExtensions
 			"HEALING> Red body parts show fatal wounds. Click on a body",
 			"part that is wounded. Click on the 'Heal' button. One fatal",
 			"would will be cured and some health restored.",
-			"STIMULANT> This will restore energy and revive unconcious",
-			"(stunned) soldiers. In order to revive an unconcious soldier",
+			"STIMULANT> This will restore energy and revive unconscious",
+			"(stunned) soldiers. In order to revive an unconscious soldier",
 			"you must stand directly over the body.",
 			"PAIN KILLER> This will restore the morale of wounded soldiers",
-			"up to an amount equivalent to the soldier's last health."
+			"up to an amount equivalent to the soldier's last health.",
 		],
 	};
 
@@ -120,7 +119,7 @@ public static class EquipmentTypeExtensions
 			"MIND CONTROL> If this is successful then you will gain immediate",
 			"control of the enemy unit as if it was one of your own (except",
 			"that you cannot access the object screen). It is more difficult",
-			"to be successful with this type of attack."
+			"to be successful with this type of attack.",
 		],
 		Sprites = BattleItemSprite.PsiAmp,
 	};
@@ -139,7 +138,7 @@ public static class EquipmentTypeExtensions
 			"This element has the unusual property of generating",
 			"anti-matter power when bombarded with certain particles. This",
 			"creates gravity waves and other forms of energy. It is not",
-			"naturally found in our solar system and cannot be reproduced."
+			"naturally found in our solar system and cannot be reproduced.",
 		],
 	};
 
@@ -157,7 +156,7 @@ public static class EquipmentTypeExtensions
 			"to take information directly from brain waves. XCom units can",
 			"use this device in combat to display an alien's characteristics.",
 			"Click on the mind probe and the 'use' option. Then click on an",
-			"alien with the cursor."
+			"alien with the cursor.",
 		],
 	};
 

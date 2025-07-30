@@ -2,24 +2,11 @@ using System.Drawing;
 
 namespace XCom.Graphics;
 
-public class Image
+public class Image(byte[] data)
 {
-	private readonly byte[] data;
+	public int Width => BitConverter.ToInt32(data, 0);
 
-	public Image(byte[] data)
-	{
-		this.data = data;
-	}
-
-	public int Width
-	{
-		get { return BitConverter.ToInt32(data, 0); }
-	}
-
-	private int Height
-	{
-		get { return BitConverter.ToInt32(data, sizeof(int)); }
-	}
+	private int Height => BitConverter.ToInt32(data, sizeof(int));
 
 	public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
 	{

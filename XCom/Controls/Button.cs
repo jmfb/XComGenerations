@@ -4,40 +4,20 @@ using XCom.Music;
 
 namespace XCom.Controls;
 
-public class Button : InteractiveControl
+public class Button(
+	int topRow,
+	int leftColumn,
+	int width,
+	int height,
+	string text,
+	ColorScheme scheme,
+	Font font,
+	Action action
+) : InteractiveControl
 {
-	private int topRow;
-	private int leftColumn;
-	private readonly int width;
-	private readonly int height;
-	private readonly string text;
-	private readonly ColorScheme scheme;
-	private readonly Font font;
-	protected Action Action { get; }
+	protected Action Action { get; } = action;
 	protected bool Pushed { get; set; }
-	public bool Visible { protected get; set; }
-
-	public Button(
-		int topRow,
-		int leftColumn,
-		int width,
-		int height,
-		string text,
-		ColorScheme scheme,
-		Font font,
-		Action action
-	)
-	{
-		this.topRow = topRow;
-		this.leftColumn = leftColumn;
-		this.width = width;
-		this.height = height;
-		this.text = text;
-		this.scheme = scheme;
-		this.font = font;
-		Action = action;
-		Visible = true;
-	}
+	public bool Visible { protected get; set; } = true;
 
 	public void Move(int newTopRow, int newLeftColumn)
 	{

@@ -13,11 +13,11 @@ public class FacilityConnectors
 	{
 		var facility = tilesets[row, column];
 		var northFacility = row == 0 ? null : tilesets[row - 1, column];
-		var sourthFacility = row == 5 ? null : tilesets[row + 1, column];
+		var southFacility = row == 5 ? null : tilesets[row + 1, column];
 		var eastFacility = column == 5 ? null : tilesets[row, column + 1];
 		var westFacility = column == 0 ? null : tilesets[row, column - 1];
 		northConnector = AreVerticallyConnected(northFacility, facility);
-		southConnector = AreVerticallyConnected(facility, sourthFacility);
+		southConnector = AreVerticallyConnected(facility, southFacility);
 		eastConnector = AreHorizontallyConnected(facility, eastFacility);
 		westConnector = AreHorizontallyConnected(westFacility, facility);
 		northWall = 14;
@@ -36,43 +36,43 @@ public class FacilityConnectors
 		//TODO: Set correct ground tile when taking out south/east "objects" (unless dirt looks okay for some facilities...)
 	}
 
-	private static readonly List<Tileset> alienGardens = new List<Tileset>
-	{
+	private static readonly List<Tileset> alienGardens =
+	[
 		Tileset.AlienBase0,
 		Tileset.AlienBase1,
 		Tileset.AlienBase9,
 		Tileset.AlienBase14,
-	};
+	];
 
-	private static readonly List<Tileset> noSouthConnectors = new List<Tileset>
-	{
+	private static readonly List<Tileset> noSouthConnectors =
+	[
 		null,
 		Tileset.XcomBase16,
 		Tileset.XcomBase17,
 		Tileset.XcomBase20,
-	};
-	private static readonly List<Tileset> noNorthConnectors = new List<Tileset>
-	{
+	];
+	private static readonly List<Tileset> noNorthConnectors =
+	[
 		null,
 		Tileset.XcomBase18,
 		Tileset.XcomBase19,
 		Tileset.XcomBase20,
-	};
+	];
 
-	private static readonly List<Tileset> noEastConnectors = new List<Tileset>
-	{
+	private static readonly List<Tileset> noEastConnectors =
+	[
 		null,
 		Tileset.XcomBase16,
 		Tileset.XcomBase18,
 		Tileset.XcomBase20,
-	};
-	private static readonly List<Tileset> noWestConnectors = new List<Tileset>
-	{
+	];
+	private static readonly List<Tileset> noWestConnectors =
+	[
 		null,
 		Tileset.XcomBase17,
 		Tileset.XcomBase19,
 		Tileset.XcomBase20,
-	};
+	];
 
 	private static bool AreVerticallyConnected(Tileset northFacility, Tileset southFacility)
 	{

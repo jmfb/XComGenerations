@@ -17,11 +17,10 @@ public static class LaserWeaponTypeExtensions
 		return new LaserWeaponMetadata { Weapon = weapon, Damage = damage };
 	}
 
-	private static readonly Dictionary<LaserWeaponType, LaserWeaponMetadata> metadata =
-		new Dictionary<LaserWeaponType, LaserWeaponMetadata>
-		{
-			{ LaserWeaponType.LaserPistol, Create(WeaponType.LaserPistol, 46) },
-			{ LaserWeaponType.LaserRifle, Create(WeaponType.LaserRifle, 60) },
-			{ LaserWeaponType.HeavyLaser, Create(WeaponType.HeavyLaser, 85) },
-		};
+	private static readonly Dictionary<LaserWeaponType, LaserWeaponMetadata> metadata = new()
+	{
+		{ LaserWeaponType.LaserPistol, Create(WeaponType.LaserPistol, 46) },
+		{ LaserWeaponType.LaserRifle, Create(WeaponType.LaserRifle, 60) },
+		{ LaserWeaponType.HeavyLaser, Create(WeaponType.HeavyLaser, 85) },
+	};
 }

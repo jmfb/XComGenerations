@@ -2,16 +2,9 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class MoviePlayer : InteractiveControl
+public class MoviePlayer(byte[] data, Action action) : InteractiveControl
 {
-	private readonly Action action;
-	private readonly Movie movie;
-
-	public MoviePlayer(byte[] data, Action action)
-	{
-		this.action = action;
-		movie = new Movie(data);
-	}
+	private readonly Movie movie = new(data);
 
 	public override bool HitTest(int row, int column)
 	{

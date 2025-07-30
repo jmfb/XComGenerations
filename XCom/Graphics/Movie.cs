@@ -10,7 +10,7 @@ public class Movie : Drawable
 	private readonly List<object> frames;
 	private readonly byte[,] image = new byte[200, 320];
 	private int frameIndex;
-	private readonly Stopwatch stopwatch = new Stopwatch();
+	private readonly Stopwatch stopwatch = new();
 	private int FrameSpeedInMilliseconds => (int)header.Speed * 20;
 	private readonly Dictionary<int, IntroductionSoundEffect> soundEffects =
 		TimedSoundEffects.Introduction;
@@ -40,8 +40,7 @@ public class Movie : Drawable
 			var frame = new MovieFrame(data, frameOffset);
 			foreach (var subframe in frame.Subframes)
 			{
-				var subframeColor64 = subframe as SubframeColor64;
-				if (subframeColor64 != null)
+				if (subframe is SubframeColor64 subframeColor64)
 					palette = subframeColor64.Colors;
 				else
 					yield return subframe;
@@ -84,8 +83,7 @@ public class Movie : Drawable
 		(frames[frameIndex] as MovieSubframeByteRun)?.Apply(image);
 		(frames[frameIndex] as MovieSubframeDelta)?.Apply(image);
 
-		IntroductionSoundEffect soundEffect;
-		if (soundEffects.TryGetValue(frameIndex, out soundEffect))
+		if (soundEffects.TryGetValue(frameIndex, out var soundEffect))
 			soundEffect.Play();
 	}
 }

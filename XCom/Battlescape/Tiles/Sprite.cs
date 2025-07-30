@@ -51,15 +51,11 @@ public class Sprite : BaseSprite
 		head = imageGroup.Images[headIndex];
 
 		if (imageGroup == ImageGroup.SoldierPersonalArmor && this.direction == Direction.South)
-		{
-			var temp = rightArmAnimation;
-			rightArmAnimation = leftArmAnimation;
-			leftArmAnimation = temp;
-		}
+			(rightArmAnimation, leftArmAnimation) = (leftArmAnimation, rightArmAnimation);
 		if (imageGroup == ImageGroup.Muton)
 		{
-			walkingOffsets = new[] { 1, 1, 0, -1, 1, 1, 0, -1 };
-			armOffsets = new[] { 0, 0, -1, -2, 0, 0, -1, -2 };
+			walkingOffsets = [1, 1, 0, -1, 1, 1, 0, -1];
+			armOffsets = [0, 0, -1, -2, 0, 0, -1, -2];
 		}
 		if (imageGroup == ImageGroup.Sectoid)
 			weaponOffset = 6;
@@ -91,8 +87,8 @@ public class Sprite : BaseSprite
 		Walking,
 	}
 
-	private readonly int[] walkingOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
-	private readonly int[] armOffsets = { 1, 0, -1, 0, 1, 0, -1, 0 };
+	private readonly int[] walkingOffsets = [1, 0, -1, 0, 1, 0, -1, 0];
+	private readonly int[] armOffsets = [1, 0, -1, 0, 1, 0, -1, 0];
 
 	private void DrawSprite(
 		GraphicsBuffer buffer,

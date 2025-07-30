@@ -42,17 +42,17 @@ public class TileTypes
 		throw new InvalidOperationException("Index out of bounds of parts in all tile types.");
 	}
 
-	public static readonly TileTypes Skyranger = new TileTypes(TileType.Skyranger);
-	public static readonly TileTypes Lightning = new TileTypes(TileType.Lightning);
-	public static readonly TileTypes Avenger = new TileTypes(TileType.Avenger);
+	public static readonly TileTypes Skyranger = new(TileType.Skyranger);
+	public static readonly TileTypes Lightning = new(TileType.Lightning);
+	public static readonly TileTypes Avenger = new(TileType.Avenger);
 
-	public static readonly TileTypes XcomBase = new TileTypes(
+	public static readonly TileTypes XcomBase = new(
 		TileType.Common,
 		TileType.XcomBase,
 		TileType.XcomFacilities
 	);
 
-	public static readonly TileTypes AlienBase = new TileTypes(
+	public static readonly TileTypes AlienBase = new(
 		TileType.Common,
 		TileType.AlienBase,
 		TileType.UfoComponents,
@@ -60,32 +60,32 @@ public class TileTypes
 		TileType.Brain
 	);
 
-	public static readonly TileTypes UfoSmallScout = new TileTypes(TileType.UfoSmallScout);
-	public static readonly TileTypes Ufo = new TileTypes(
+	public static readonly TileTypes UfoSmallScout = new(TileType.UfoSmallScout);
+	public static readonly TileTypes Ufo = new(
 		TileType.UfoExterior,
 		TileType.UfoComponents,
 		TileType.UfoBits
 	);
-	public static readonly TileTypes UfoWithOperatingTable = new TileTypes(
+	public static readonly TileTypes UfoWithOperatingTable = new(
 		TileType.UfoExterior,
 		TileType.UfoComponents,
 		TileType.UfoOperatingTable,
 		TileType.UfoBits
 	);
-	public static readonly TileTypes UfoWithExaminationRoom = new TileTypes(
+	public static readonly TileTypes UfoWithExaminationRoom = new(
 		TileType.UfoExterior,
 		TileType.UfoComponents,
 		TileType.UfoExaminationRoom,
 		TileType.UfoBits
 	);
-	public static readonly TileTypes UfoWithEquipment = new TileTypes(
+	public static readonly TileTypes UfoWithEquipment = new(
 		TileType.UfoExterior,
 		TileType.UfoComponents,
 		TileType.UfoEquipment,
 		TileType.UfoBits
 	);
 
-	public static readonly TileTypes City = new TileTypes(
+	public static readonly TileTypes City = new(
 		TileType.Common,
 		TileType.Roads,
 		TileType.CityBits,
@@ -93,18 +93,18 @@ public class TileTypes
 		TileType.Furniture
 	);
 
-	public static readonly TileTypes Cultivation = new TileTypes(
+	public static readonly TileTypes Cultivation = new(
 		TileType.Common,
 		TileType.Cultivation,
 		TileType.Barn
 	);
-	public static readonly TileTypes Forest = new TileTypes(TileType.Common, TileType.Forest);
-	public static readonly TileTypes Desert = new TileTypes(TileType.Common, TileType.Desert);
-	public static readonly TileTypes Jungle = new TileTypes(TileType.Common, TileType.Jungle);
-	public static readonly TileTypes Mountain = new TileTypes(TileType.Common, TileType.Mountain);
-	public static readonly TileTypes Polar = new TileTypes(TileType.Common, TileType.Polar);
+	public static readonly TileTypes Forest = new(TileType.Common, TileType.Forest);
+	public static readonly TileTypes Desert = new(TileType.Common, TileType.Desert);
+	public static readonly TileTypes Jungle = new(TileType.Common, TileType.Jungle);
+	public static readonly TileTypes Mountain = new(TileType.Common, TileType.Mountain);
+	public static readonly TileTypes Polar = new(TileType.Common, TileType.Polar);
 
-	public static readonly TileTypes Mars = new TileTypes(
+	public static readonly TileTypes Mars = new(
 		TileType.Common,
 		TileType.Mars,
 		TileType.UfoComponents

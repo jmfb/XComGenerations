@@ -3,38 +3,17 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class Bar : Drawable
+public class Bar(
+	int topRow,
+	int leftColumn,
+	int width,
+	int height,
+	int position,
+	Color borderColor,
+	Color fillColor,
+	Color? unfilledColor = null
+) : Drawable
 {
-	private readonly int topRow;
-	private readonly int leftColumn;
-	private readonly int width;
-	private readonly int height;
-	private readonly int position;
-	private readonly Color borderColor;
-	private readonly Color fillColor;
-	private readonly Color? unfilledColor;
-
-	public Bar(
-		int topRow,
-		int leftColumn,
-		int width,
-		int height,
-		int position,
-		Color borderColor,
-		Color fillColor,
-		Color? unfilledColor = null
-	)
-	{
-		this.topRow = topRow;
-		this.leftColumn = leftColumn;
-		this.width = width;
-		this.height = height;
-		this.position = position;
-		this.borderColor = borderColor;
-		this.fillColor = fillColor;
-		this.unfilledColor = unfilledColor;
-	}
-
 	public Bar(
 		int topRow,
 		int leftColumn,

@@ -11,20 +11,20 @@ namespace XCom;
 
 public class GameState : Drawable
 {
-	public InteractiveDispatcher Dispatcher { get; } = new InteractiveDispatcher();
+	public InteractiveDispatcher Dispatcher { get; } = new();
 	public Screen ActiveScreen { get; private set; }
 	public GameData Data { get; set; }
-	public MidiOutputDevice MusicPlayer { get; } = new MidiOutputDevice();
-	public Random Random { get; } = new Random(DateTime.Now.Ticks.GetHashCode());
+	public MidiOutputDevice MusicPlayer { get; } = new();
+	public Random Random { get; } = new(DateTime.Now.Ticks.GetHashCode());
 
-	public Queue<Action> Notifications { get; } = new Queue<Action>();
+	public Queue<Action> Notifications { get; } = new();
 
 	private GameState()
 	{
 		OnIdle += MusicPlayer.OnIdle;
 	}
 
-	public static readonly GameState Current = new GameState();
+	public static readonly GameState Current = new();
 	public static Base SelectedBase => Current.Data.Bases[Current.Data.SelectedBase];
 
 	public event Action OnQuit;

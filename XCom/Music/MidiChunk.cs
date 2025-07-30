@@ -9,8 +9,7 @@ public struct MidiChunk
 	[MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
 	public byte[] ChunkLengthBigEndian;
 
-	public string ChunkTypeString =>
-		new string(ChunkTypeBytes.Select(value => (char)value).ToArray());
+	public string ChunkTypeString => new(ChunkTypeBytes.Select(value => (char)value).ToArray());
 	public MidiChunkType ChunkType
 	{
 		get

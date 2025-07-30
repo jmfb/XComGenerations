@@ -43,10 +43,7 @@ public static class CountryTypeExtensions
 		};
 	}
 
-	private static readonly Dictionary<CountryType, CountryMetadata> metadata = new Dictionary<
-		CountryType,
-		CountryMetadata
-	>
+	private static readonly Dictionary<CountryType, CountryMetadata> metadata = new()
 	{
 		{ CountryType.UnitedStates, Create("USA", 900, 1200, 10000) },
 		{ CountryType.Russia, Create("RUSSIA", 400, 600, 8000) },

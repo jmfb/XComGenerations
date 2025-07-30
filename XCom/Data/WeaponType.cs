@@ -36,7 +36,7 @@ public static class WeaponTypeExtensions
 		DescriptionLines =
 		[
 			"The standard issue XCom pistol is a high powered",
-			"semi-automatic with a 12 round capacity."
+			"semi-automatic with a 12 round capacity.",
 		],
 		Sprites = BattleItemSprite.Pistol,
 	};
@@ -54,7 +54,7 @@ public static class WeaponTypeExtensions
 		DescriptionLines =
 		[
 			"This highly accurate sniper rifle has laser guided sights and",
-			"takes 6.7mm ammunition in 20 round clips."
+			"takes 6.7mm ammunition in 20 round clips.",
 		],
 		Sprites = BattleItemSprite.Rifle,
 	};
@@ -76,7 +76,7 @@ public static class WeaponTypeExtensions
 			"versatility comes from the fact that",
 			"it can take three types of",
 			"ammunition - armor piercing,",
-			"incendiary and high explosive."
+			"incendiary and high explosive.",
 		],
 		Sprites = BattleItemSprite.HeavyCannon,
 	};
@@ -95,7 +95,7 @@ public static class WeaponTypeExtensions
 		[
 			"The auto-cannon combines the",
 			"versatility and power of a heavy",
-			"cannon with a faster fire rate."
+			"cannon with a faster fire rate.",
 		],
 		Sprites = BattleItemSprite.AutoCannon,
 	};
@@ -114,7 +114,7 @@ public static class WeaponTypeExtensions
 		[
 			"The rocket launcher is a laser guided",
 			"system which can fire three different",
-			"sizes of missile."
+			"sizes of missile.",
 		],
 		Sprites = BattleItemSprite.RocketLauncher,
 	};
@@ -132,7 +132,7 @@ public static class WeaponTypeExtensions
 		[
 			"The laser pistol is an effective implementation of new",
 			"technology. It has the convenience of a pistol with faster and",
-			"more accurate firing."
+			"more accurate firing.",
 		],
 		Sprites = BattleItemSprite.LaserPistol,
 	};
@@ -150,7 +150,7 @@ public static class WeaponTypeExtensions
 		DescriptionLines =
 		[
 			"The laser rifle is a more powerful and accurate version of the",
-			"earlier pistol design."
+			"earlier pistol design.",
 		],
 		Sprites = BattleItemSprite.LaserRifle,
 	};
@@ -182,7 +182,7 @@ public static class WeaponTypeExtensions
 		DescriptionLines =
 		[
 			"This is a devastatingly powerful weapon based on accelerating",
-			"particles from within a minute anti-gravity field"
+			"particles from within a minute anti-gravity field",
 		],
 		Sprites = BattleItemSprite.HeavyPlasma,
 	};
@@ -200,7 +200,7 @@ public static class WeaponTypeExtensions
 		DescriptionLines =
 		[
 			"This is a devastatingly powerful weapon based on accelerating",
-			"particles from within a minute anti-gravity field"
+			"particles from within a minute anti-gravity field",
 		],
 		Sprites = BattleItemSprite.PlasmaRifle,
 	};
@@ -217,7 +217,7 @@ public static class WeaponTypeExtensions
 		DescriptionLines =
 		[
 			"Plasma pistols are a lethal alien weapon based on accelerating",
-			"particles from within a minute anti-gravity field"
+			"particles from within a minute anti-gravity field",
 		],
 		Sprites = BattleItemSprite.PlasmaPistol,
 	};
@@ -238,7 +238,7 @@ public static class WeaponTypeExtensions
 			"'blaster bombs'. When you click to fire the weapon it will",
 			"generate 'way points' for the blaster bomb to follow.  When",
 			"you have positioned enough way points click on the special",
-			"launch icon."
+			"launch icon.",
 		],
 		Sprites = BattleItemSprite.BlasterLauncher,
 	};
@@ -255,7 +255,7 @@ public static class WeaponTypeExtensions
 		DescriptionLines =
 		[
 			"A small launcher which fires stun bombs. Very useful for",
-			"capturing live aliens."
+			"capturing live aliens.",
 		],
 		Sprites = BattleItemSprite.SmallLauncher,
 	};

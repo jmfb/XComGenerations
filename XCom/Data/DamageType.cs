@@ -25,10 +25,7 @@ public static class DamageTypeExtensions
 		return new DamageMetadata { Name = name };
 	}
 
-	private static readonly Dictionary<DamageType, DamageMetadata> metadata = new Dictionary<
-		DamageType,
-		DamageMetadata
-	>
+	private static readonly Dictionary<DamageType, DamageMetadata> metadata = new()
 	{
 		{ DamageType.ArmorPiercing, Damage("ARMOR PIERCING") },
 		{ DamageType.HighExplosive, Damage("HIGH EXPLOSIVE") },

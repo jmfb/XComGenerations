@@ -16,7 +16,7 @@ public static class HwpTypeExtensions
 		return metadata[hwpType];
 	}
 
-	private static readonly HwpMetadata tankCannon = new HwpMetadata
+	private static readonly HwpMetadata tankCannon = new()
 	{
 		Name = "Tank/Cannon",
 		TimeUnits = 70,
@@ -30,18 +30,18 @@ public static class HwpTypeExtensions
 		Damage = 60,
 		Ammunition = HwpAmmunitionType.CannonShell,
 		Rounds = 30,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Automated heavy weapons platforms are designed to",
 			"complement an XCom squad. The combination of high fire power",
 			"and strong armor makes these units valuable for open",
 			"terrain fire fights. Make sure that there are sufficient",
 			"cannon shells in your stores to re-arm tanks. They are armed",
 			"automatically when you assign them to a squad.",
-		},
+		],
 	};
 
-	private static readonly HwpMetadata tankRocketLauncher = new HwpMetadata
+	private static readonly HwpMetadata tankRocketLauncher = new()
 	{
 		Name = "Tank/Rocket Launcher",
 		TimeUnits = 70,
@@ -55,15 +55,15 @@ public static class HwpTypeExtensions
 		Damage = 85,
 		Ammunition = HwpAmmunitionType.Rocket,
 		Rounds = 8,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This automated heavy weapons platform is armed with powerful",
 			"rockets.  This will be devastating for any alien foe.  Make sure",
 			"your stores are kept supplied with HWP rockets.",
-		},
+		],
 	};
 
-	private static readonly HwpMetadata tankLaserCannon = new HwpMetadata
+	private static readonly HwpMetadata tankLaserCannon = new()
 	{
 		Name = "Tank/Laser Cannon",
 		TimeUnits = 70,
@@ -77,14 +77,14 @@ public static class HwpTypeExtensions
 		Damage = 110,
 		Ammunition = null,
 		Rounds = 255,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Laser weapons are a useful addition for HWPs. It combines",
 			"heavy firepower with no ammunition restrictions.",
-		},
+		],
 	};
 
-	private static readonly HwpMetadata hovertankPlasma = new HwpMetadata
+	private static readonly HwpMetadata hovertankPlasma = new()
 	{
 		Name = "Hovertank/Plasma",
 		TimeUnits = 100,
@@ -98,15 +98,15 @@ public static class HwpTypeExtensions
 		Damage = 110,
 		Ammunition = null,
 		Rounds = 255,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"Alien technology has given the HWP a new lease of life. The",
 			"added maneuverability of air travel and the power of plasma",
 			"beams is a lethal combination.",
-		},
+		],
 	};
 
-	private static readonly HwpMetadata hovertankLauncher = new HwpMetadata
+	private static readonly HwpMetadata hovertankLauncher = new()
 	{
 		Name = "Hovertank/Launcher",
 		TimeUnits = 100,
@@ -120,21 +120,18 @@ public static class HwpTypeExtensions
 		Damage = 140,
 		Ammunition = HwpAmmunitionType.FusionBomb,
 		Rounds = 8,
-		DescriptionLines = new[]
-		{
+		DescriptionLines =
+		[
 			"This hovertank has a fusion ball launcher that is capable of",
 			"immense devastation.  Use it with great care.  You will have",
 			"to manufacture the fusion balls to keep these HWPs fully",
 			"armed. A fusion ball is an intelligent guided weapon. In order",
 			"to fire it you select a number of 'way points' with hte cursor",
 			"and then click on the launch icon to fire the fusion ball.",
-		},
+		],
 	};
 
-	private static readonly Dictionary<HwpType, HwpMetadata> metadata = new Dictionary<
-		HwpType,
-		HwpMetadata
-	>
+	private static readonly Dictionary<HwpType, HwpMetadata> metadata = new()
 	{
 		{ HwpType.TankCannon, tankCannon },
 		{ HwpType.TankRocketLauncher, tankRocketLauncher },

@@ -1,4 +1,3 @@
-using System.Windows.Forms;
 using XCom.Battlescape.Tiles;
 using XCom.Content.Items;
 
@@ -13,7 +12,7 @@ public enum GrenadeType
 	AlienGrenade,
 }
 
-public static class GenadeTypeExtensions
+public static class GrenadeTypeExtensions
 {
 	public static GrenadeMetadata Metadata(this GrenadeType grenadeType) => metadata[grenadeType];
 
@@ -30,7 +29,7 @@ public static class GenadeTypeExtensions
 		DescriptionLines =
 		[
 			"This standard issue grenade has an accurate and sophisticated",
-			"timer for precision control."
+			"timer for precision control.",
 		],
 		Sprites = BattleItemSprite.Grenade,
 	};
@@ -49,7 +48,7 @@ public static class GenadeTypeExtensions
 		[
 			"Smoke grenades are useful for providing cover in exposed",
 			"combat situations.  Use with care because they can benefit the",
-			"enemy as well"
+			"enemy as well",
 		],
 	};
 
@@ -67,7 +66,7 @@ public static class GenadeTypeExtensions
 		[
 			"A proximity grenade can be thrown like an ordinary grenade",
 			"but is triggered by nearby movement after it lands. Great skill",
-			"and care is required to use these devices properly."
+			"and care is required to use these devices properly.",
 		],
 	};
 
@@ -84,7 +83,7 @@ public static class GenadeTypeExtensions
 		DescriptionLines =
 		[
 			"This explosive should only be used for demolition purposes.",
-			"Keep personnel clear of demolition sites."
+			"Keep personnel clear of demolition sites.",
 		],
 	};
 
@@ -101,7 +100,7 @@ public static class GenadeTypeExtensions
 		DescriptionLines =
 		[
 			"This device works in the same way as a terrestrial grenade -",
-			"except that it is more powerful."
+			"except that it is more powerful.",
 		],
 	};
 

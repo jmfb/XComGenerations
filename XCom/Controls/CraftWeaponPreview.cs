@@ -4,15 +4,8 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class CraftWeaponPreview : Drawable
+public class CraftWeaponPreview(Craft craft) : Drawable
 {
-	private readonly Craft craft;
-
-	public CraftWeaponPreview(Craft craft)
-	{
-		this.craft = craft;
-	}
-
 	public void Render(GraphicsBuffer buffer)
 	{
 		RenderWeapon1(buffer);

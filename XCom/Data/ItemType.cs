@@ -330,10 +330,7 @@ public static class ItemTypeExtensions
 		return new ItemMetadata { Name = name, IsLiveAlien = true };
 	}
 
-	private static readonly Dictionary<ItemType, ItemMetadata> metadata = new Dictionary<
-		ItemType,
-		ItemMetadata
-	>
+	private static readonly Dictionary<ItemType, ItemMetadata> metadata = new()
 	{
 		{ ItemType.Soldier, Personnel("Soldier", 40000) },
 		{ ItemType.Scientist, Personnel("Scientist", 60000) },
