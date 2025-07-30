@@ -123,4 +123,3 @@ public class TankSpriteTester : Screen
 		Font.Normal.DrawString(buffer, 100, 0, $"Frame {frame}", ColorScheme.White);
 	}
 }
-
