@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using XCom.Battlescape.Tiles;
 using XCom.Data;
+using XCom.Graphics;
 
 namespace XCom.Battlescape;
 
@@ -42,6 +43,7 @@ public class BattleSoldier : Unit
 	public int UnderArmor { get; set; }
 
 	public MapLocation Location { get; set; }
+	public Direction Direction { get; set; }
 	public bool DoneThisTurn { get; set; }
 
 	[JsonIgnore]
@@ -73,6 +75,34 @@ public class BattleSoldier : Unit
 		+ BodyFatalWounds
 		+ RightLegFatalWounds
 		+ LeftLegFatalWounds;
+
+	public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
+	{
+		var soldier = Soldier;
+		// TODO: Detect flying
+		var isFlying = false;
+		var sprites =
+			soldier.Armor == ArmorType.FlyingSuit
+				? isFlying
+					? Sprite.SoldierFlyingSuitFlying
+					: Sprite.SoldierFlyingSuit
+				: soldier.Armor == ArmorType.PowerSuit
+					? Sprite.SoldierPowerSuit
+					: soldier.Armor == ArmorType.PersonalArmor
+						? soldier.Gender == Gender.Male
+							? Sprite.SoldierPersonalArmorMale
+							: Sprite.SoldierPersonalArmorFemale
+						: soldier.Gender == Gender.Male
+							? Sprite.SoldierCoverallsMale
+							: Sprite.SoldierCoverallsFemale;
+
+		var item =
+			LeftHand?.IsTwoHanded == true ? LeftHand
+			: RightHand?.IsTwoHanded == true ? RightHand
+			: RightHand ?? LeftHand;
+
+		sprites[Direction].Render(buffer, topRow, leftColumn, item);
+	}
 
 	public static BattleSoldier Create(int soldierId)
 	{

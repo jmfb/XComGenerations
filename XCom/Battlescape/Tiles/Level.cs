@@ -20,18 +20,27 @@ public class Level
 			Tiles[topRow + row, leftColumn + column] = tileset.CreateTile(level, row, column);
 	}
 
-	public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
+	public void Render(
+		GraphicsBuffer buffer,
+		int topRow,
+		int leftColumn,
+		IReadOnlyCollection<BattleSoldier> soldiers
+	)
 	{
+		var soldierByLocation = soldiers.ToDictionary(soldier =>
+			(soldier.Location.Row, soldier.Location.Column)
+		);
 		foreach (var row in Enumerable.Range(0, Tiles.GetLength(0)))
 		foreach (var column in Enumerable.Range(0, Tiles.GetLength(1)))
 		{
+			var soldier = soldierByLocation.GetValueOrDefault((row, column));
 			var top = topRow + column * 8 + row * 8;
 			var left = leftColumn + column * 16 - row * 16;
 			var bottom = top + 40;
 			var right = left + 32;
 			if (bottom < 0 || right < 0 || top >= 144 || left >= 320)
 				continue;
-			Tiles[row, column].Render(buffer, top, left);
+			Tiles[row, column].Render(buffer, top, left, soldier);
 		}
 	}
 }

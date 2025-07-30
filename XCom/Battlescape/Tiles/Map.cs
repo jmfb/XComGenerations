@@ -63,10 +63,16 @@ public class Map
 		ColumnOffset -= offset;
 	}
 
-	public void Render(GraphicsBuffer buffer)
+	public void Render(GraphicsBuffer buffer, IReadOnlyCollection<BattleSoldier> soldiers)
 	{
 		foreach (var levelIndex in Enumerable.Range(0, SelectedLevelIndex + 1))
-			Levels[levelIndex].Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset);
+		{
+			var levelSoldiers = soldiers
+				.Where(soldier => soldier.Location.Level == levelIndex)
+				.ToList();
+			Levels[levelIndex]
+				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers);
+		}
 	}
 
 	public void CenterOn(MapLocation location)

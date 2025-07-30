@@ -84,21 +84,31 @@ public class Battle
 
 	public static Battle CreateFromCraft(Craft craft)
 	{
+		//TODO: Create alien base, terror, or craft recovery based on craft destination
+		var map = MapFactory.CreateFromCraft(craft);
+		var soldiers = craft.SoldierIds.Select(BattleSoldier.Create).ToList();
+
+		//TODO: Initial unit placement
+		foreach (var (soldier, entryPoint) in soldiers.Zip(map.EntryPoints))
+			soldier.Location = entryPoint;
+		if (soldiers.Any(soldier => soldier.Location == null))
+			throw new InvalidOperationException(
+				"Unable to place all soldiers in entry points of map"
+			);
+
 		return new Battle
 		{
 			Turn = 1,
 			CraftId = craft.Id,
-			Soldiers = craft.SoldierIds.Select(BattleSoldier.Create).ToList(),
+			Soldiers = soldiers,
 			Stores = craft.Stores.Items.SelectMany(BattleItem.Create).ToList(),
 			SelectedUnitId = new SelectedUnitId
 			{
 				UnitType = UnitType.Soldier,
 				Id = craft.SoldierIds.First(),
 			},
-			//TODO: Create alien base, terror, or craft recovery based on craft destination
-			Map = MapFactory.CreateFromCraft(craft),
+			Map = map,
 		};
-		//TODO: Initial unit placement
 		//TODO: Placement of remaining store items
 	}
 

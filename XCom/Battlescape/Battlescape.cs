@@ -176,7 +176,7 @@ public class Battlescape : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
-		battle.Map.Render(buffer);
+		battle.Map.Render(buffer, battle.Soldiers);
 		base.Render(buffer);
 		DrawUnitInformation(buffer, battle.SelectedUnit);
 	}

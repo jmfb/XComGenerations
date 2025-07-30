@@ -1,3 +1,4 @@
+using XCom.Data;
 using XCom.Graphics;
 
 namespace XCom.Battlescape.Tiles;
@@ -16,12 +17,13 @@ public class Tile
 	//TODO: Fog of war state
 	//TODO: Brightness
 
-	public void Render(GraphicsBuffer buffer, int topRow, int leftColumn)
+	public void Render(GraphicsBuffer buffer, int topRow, int leftColumn, BattleSoldier soldier)
 	{
 		Ground.Render(buffer, topRow, leftColumn);
 		NorthWall.Render(buffer, topRow, leftColumn);
 		WestWall.Render(buffer, topRow, leftColumn);
 		Entity.Render(buffer, topRow, leftColumn);
+		soldier?.Render(buffer, topRow, leftColumn);
 	}
 
 	public bool IsEntryPoint =>

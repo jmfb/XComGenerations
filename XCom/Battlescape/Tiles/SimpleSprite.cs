@@ -314,12 +314,8 @@ public class SimpleSprite
 		1,
 		5
 	);
-	public static readonly Dictionary<Direction, SimpleSprite> Silacoid = LoadOmnidirectionalSprites(
-		ImageGroup.Silacoid,
-		0,
-		1,
-		5
-	);
+	public static readonly Dictionary<Direction, SimpleSprite> Silacoid =
+		LoadOmnidirectionalSprites(ImageGroup.Silacoid, 0, 1, 5);
 	public static readonly Dictionary<Direction, SimpleSprite> Ethereal = LoadSprites(
 		ImageGroup.Ethereal,
 		0,

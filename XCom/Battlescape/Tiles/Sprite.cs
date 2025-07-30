@@ -249,22 +249,21 @@ public class Sprite
 		56,
 		32
 	);
-	public static readonly Dictionary<Direction, Sprite> SoldierPersonalArmorFemale =
-		LoadSprites(
-			ImageGroup.SoldierPersonalArmor,
-			0,
-			240,
-			40,
-			8,
-			232,
-			248,
-			256,
-			48,
-			16,
-			24,
-			56,
-			267
-		);
+	public static readonly Dictionary<Direction, Sprite> SoldierPersonalArmorFemale = LoadSprites(
+		ImageGroup.SoldierPersonalArmor,
+		0,
+		240,
+		40,
+		8,
+		232,
+		248,
+		256,
+		48,
+		16,
+		24,
+		56,
+		267
+	);
 	public static readonly Dictionary<Direction, Sprite> SoldierPowerSuit = LoadSprites(
 		ImageGroup.SoldierPowerSuit,
 		0,
