@@ -171,12 +171,6 @@ public class SpriteTester : Screen
 	//firingFrame = (firingFrame + 1) % firing.FrameCount;
 	//firing.Animate(buffer, 0, 32, firingFrame);
 
-	//HWPs (large 4x4 images)
-	//TODO: Tanks (tanks, laser, hover)
-	//TODO: Cyberdisc
-	//TODO: Reaper
-	//TODO: Sectopod
-
 	//TODO: Ground items
 
 	public override void Render(GraphicsBuffer buffer)

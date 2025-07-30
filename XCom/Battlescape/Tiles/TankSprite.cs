@@ -16,18 +16,20 @@ public class TankSprite
 	private readonly int turretTopOffset;
 	private readonly int turretLeftOffset;
 
-	private static readonly Dictionary<Direction, (int TopOffset, int LeftOffset)>
-		HoverTankTurretOffsets = new()
-		{
-			[Direction.North] = (-1, -1),
-			[Direction.NorthEast] = (-2, -7),
-			[Direction.East] = (-6, -6),
-			[Direction.SouthEast] = (-6, 0),
-			[Direction.South] = (-6, 6),
-			[Direction.SouthWest] = (-2, 7),
-			[Direction.West] = (-1, 1),
-			[Direction.NorthWest] = (-1, 0),
-		};
+	private static readonly Dictionary<
+		Direction,
+		(int TopOffset, int LeftOffset)
+	> HoverTankTurretOffsets = new()
+	{
+		[Direction.North] = (-1, -1),
+		[Direction.NorthEast] = (-2, -7),
+		[Direction.East] = (-6, -6),
+		[Direction.SouthEast] = (-6, 0),
+		[Direction.South] = (-6, 6),
+		[Direction.SouthWest] = (-2, 7),
+		[Direction.West] = (-1, 1),
+		[Direction.NorthWest] = (-1, 0),
+	};
 
 	private TankSprite(
 		ImageGroup imageGroup,
@@ -63,8 +65,7 @@ public class TankSprite
 				: imageGroup.Images.Skip(animateCenterIndex).Take(FrameCount).ToArray();
 
 		if (isHoverTank)
-			(turretTopOffset, turretLeftOffset) =
-				HoverTankTurretOffsets[direction];
+			(turretTopOffset, turretLeftOffset) = HoverTankTurretOffsets[direction];
 	}
 
 	public void Animate(GraphicsBuffer buffer, int topRow, int leftColumn, int frame)
