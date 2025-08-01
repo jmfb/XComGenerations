@@ -4,6 +4,20 @@
 
 This is a C# WinForms rewrite of the original X-COM: UFO Defense using OpenGL rendering. The codebase recreates the original gameplay mechanics with eventual goals for new story content.
 
+## Terminal/Console Commands
+This project uses Windows and the PowerShell terminal for commands.
+
+Do:
+- Use (;) to chain commands.
+
+Don't:
+- Use (&&) to chain commands.
+
+Exmaple:
+```PowerShell
+cd "path"; dotnet build
+```
+
 ## Architecture & Core Patterns
 
 ### Global Singleton Pattern
@@ -46,9 +60,15 @@ ItemType.LaserRifle.Metadata()      // Returns ItemMetadata
 ## Key Development Workflows
 
 ### Building & Running
-```powershell
-dotnet build XCom\XCom.csproj
-dotnet run --project XCom\XCom.csproj
+```PowerShell
+dotnet build
+dotnet run --project XCom
+```
+
+Note that when running the application, it will not exit automatically.
+If you want to exit the application, use the following command:
+```PowerShell
+taskkill /IM XCom.exe /F
 ```
 
 ### Adding New Screens
