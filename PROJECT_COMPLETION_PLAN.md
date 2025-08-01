@@ -31,10 +31,10 @@
 #### Week 1: Visual Foundation and Input Handling
 
 **Day 1-2: Soldier Selection Indicator**
-- [ ] Create visual indicator above selected soldier (arrow, highlight ring, or pulsing effect)
-- [ ] Update indicator position when soldier selection changes
-- [ ] Handle indicator visibility during map scrolling
-- [ ] Add animation/pulsing effect to make selection clear
+- [x] Create visual indicator above selected soldier (arrow, highlight ring, or pulsing effect)
+- [x] Update indicator position when soldier selection changes
+- [x] Handle indicator visibility during map scrolling
+- [x] Add animation/pulsing effect to make selection clear
 
 **Key Files to Create/Modify:**
 - `XCom/Battlescape/SoldierIndicator.cs` (new)

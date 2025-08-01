@@ -63,7 +63,7 @@ public class Map
 		ColumnOffset -= offset;
 	}
 
-	public void Render(GraphicsBuffer buffer, IReadOnlyCollection<BattleSoldier> soldiers)
+	public void Render(GraphicsBuffer buffer, IReadOnlyCollection<BattleSoldier> soldiers, SoldierIndicator soldierIndicator = null, BattleSoldier selectedSoldier = null)
 	{
 		foreach (var levelIndex in Enumerable.Range(0, SelectedLevelIndex + 1))
 		{
@@ -71,8 +71,11 @@ public class Map
 				.Where(soldier => soldier.Location.Level == levelIndex)
 				.ToList();
 			Levels[levelIndex]
-				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers);
+				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers, levelIndex, soldierIndicator, selectedSoldier);
 		}
+
+		// Handle case where indicator should be rendered above the top rendered level
+		soldierIndicator?.RenderAboveTopLevel(buffer, this, selectedSoldier);
 	}
 
 	public void CenterOn(MapLocation location)

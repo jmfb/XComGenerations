@@ -12,6 +12,7 @@ public class Battlescape : Screen
 {
 	private readonly Battle battle;
 	private readonly HoverScroll hoverScroll = new();
+	private readonly SoldierIndicator soldierIndicator = new();
 
 	public Battlescape(Battle battle)
 	{
@@ -176,7 +177,8 @@ public class Battlescape : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
-		battle.Map.Render(buffer, battle.Soldiers);
+		// Render the map with soldier indicators integrated
+		battle.Map.Render(buffer, battle.Soldiers, soldierIndicator, battle.SelectedSoldier);
 		base.Render(buffer);
 		DrawUnitInformation(buffer, battle.SelectedUnit);
 	}
