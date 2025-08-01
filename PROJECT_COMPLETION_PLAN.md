@@ -26,18 +26,175 @@
 
 ## Phase 1: Combat System Foundation (4-6 weeks)
 
-### Priority 1A: Movement and Pathfinding
-- [ ] Implement A* pathfinding algorithm for unit movement
-- [ ] Add movement validation (time units, obstacles, terrain)
-- [ ] Create movement animation and visualization
-- [ ] Handle elevation changes and stairs/ramps
-- [ ] Implement proper ground item interaction during movement
+### Priority 1A: Movement and Pathfinding (2-3 weeks)
+
+#### Week 1: Visual Foundation and Input Handling
+
+**Day 1-2: Soldier Selection Indicator**
+- [ ] Create visual indicator above selected soldier (arrow, highlight ring, or pulsing effect)
+- [ ] Update indicator position when soldier selection changes
+- [ ] Handle indicator visibility during map scrolling
+- [ ] Add animation/pulsing effect to make selection clear
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/SoldierIndicator.cs` (new)
+- `XCom/Battlescape/Battlescape.cs` (add indicator rendering)
+- `XCom/Graphics/BattleVisuals.cs` (new - visual effect helpers)
+
+**Day 3-4: Interactive Battle Cursor**
+- [ ] Implement cursor that highlights map squares under mouse
+- [ ] Show cursor at correct world coordinates (accounting for isometric projection)
+- [ ] Handle cursor visibility on different terrain types
+- [ ] Add smooth cursor movement and visual feedback
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/BattleCursor.cs` (new)
+- `XCom/Battlescape/CoordinateSystem.cs` (new - screen to world conversion)
+- `XCom/Battlescape/Battlescape.cs` (integrate cursor rendering and mouse handling)
+
+**Day 5: Multi-Level Cursor Display**
+- [ ] Show cursor indicators on levels below current mouse position
+- [ ] Implement "column highlight" effect for elevated positions
+- [ ] Add visual distinction between primary cursor and level indicators
+- [ ] Handle cursor display when hovering over multi-level terrain
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/BattleCursor.cs` (expand for multi-level display)
+- `XCom/Battlescape/LevelIndicator.cs` (new)
+
+#### Week 2: Mouse Interaction and Movement Planning
+
+**Day 1-2: Soldier Selection by Click**
+- [ ] Implement left-click to select soldier at cursor position
+- [ ] Add hit-testing for soldier sprites (accounting for isometric view)
+- [ ] Handle selection priority when multiple units overlap
+- [ ] Provide visual feedback for clickable soldiers (hover effects)
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/SoldierSelection.cs` (new)
+- `XCom/Battlescape/Battlescape.cs` (handle mouse click events)
+- `XCom/Battlescape/HitTesting.cs` (new - determine what's under mouse)
+
+**Day 3-4: Movement Target Validation**
+- [ ] Implement basic movement validation (can unit reach target?)
+- [ ] Check for obstacles (walls, other units, impassable terrain)
+- [ ] Validate movement within time unit constraints
+- [ ] Show different cursor states: valid move, invalid move, out of range
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/MovementValidator.cs` (new)
+- `XCom/Battlescape/BattleCursor.cs` (add cursor state modes)
+- `XCom/Battlescape/TerrainAnalysis.cs` (new - terrain passability)
+
+**Day 5: Basic Movement Command**
+- [ ] Implement right-click to attempt movement
+- [ ] Show movement path preview when hovering over valid targets
+- [ ] Display time unit cost for planned movement
+- [ ] Handle invalid movement attempts with user feedback
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/MovementPlanner.cs` (new)
+- `XCom/Battlescape/Battlescape.cs` (handle right-click movement)
+- `XCom/Battlescape/PathPreview.cs` (new - show planned route)
+
+#### Week 3: Pathfinding and Movement Execution
+
+**Day 1-3: A* Pathfinding Implementation**
+- [ ] Implement A* algorithm for battlescape grid
+- [ ] Handle 3D pathfinding with multiple levels
+- [ ] Account for unit size and terrain passability
+- [ ] Optimize pathfinding performance for real-time use
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/Pathfinding.cs` (new)
+- `XCom/Battlescape/PathNode.cs` (new)
+- `XCom/Battlescape/MovementCost.cs` (new - calculate movement costs)
+- `XCom/Battlescape/TerrainGraph.cs` (new - represent walkable terrain)
+
+**Day 4-5: Movement Animation and Execution**
+- [ ] Implement smooth movement animation along calculated path
+- [ ] Handle soldier facing direction during movement
+- [ ] Update soldier position in battle state during movement
+- [ ] Deduct time units as movement progresses
+
+**Key Files to Create/Modify:**
+- `XCom/Battlescape/MovementAnimation.cs` (new)
+- `XCom/Battlescape/BattleSoldier.cs` (add movement methods)
+- `XCom/Battlescape/Battle.cs` (update unit positions)
+
+#### Advanced Cursor System Design
+
+**Cursor Display Modes:**
+```csharp
+public enum CursorMode
+{
+    Default,           // Basic map exploration
+    ValidMove,         // Can move here (green highlight)
+    InvalidMove,       // Cannot move here (red highlight)
+    OutOfRange,        // Beyond movement range (orange/yellow)
+    EnemyTarget,       // Enemy unit (crosshairs)
+    FriendlyUnit,      // Friendly unit (blue highlight)
+    InteractableItem,  // Ground items, doors (special icon)
+    ElevatedPosition   // Multi-level indicator
+}
+```
+
+**Cursor Visual Components:**
+- Primary cursor: Highlights current tile
+- Level indicators: Show on lower levels for elevated positions
+- Path preview: Dotted line showing planned movement route
+- Cost indicator: Shows time unit cost for movement
+- Action icons: Different icons for different available actions
+
+**Mouse Interaction Flow:**
+1. **Mouse Move**: Update cursor position, determine cursor mode, show path preview
+2. **Left Click**: Select unit, interact with objects, or confirm actions
+3. **Right Click**: Attempt movement or show context menu for advanced actions
+4. **Mouse Hover**: Show tooltips, highlight interactive elements
+
+#### Integration with Existing Systems
+
+**Leverage Current Architecture:**
+- Use existing `Interactive` interface for mouse handling
+- Integrate with `GraphicsBuffer` rendering system
+- Follow established coordinate transformation patterns
+- Use `GameState.Current.PointerPosition` for mouse tracking
+
+**Build on Existing Components:**
+- Extend `Battlescape.cs` mouse event handlers
+- Use current soldier selection from `Battle.cs`
+- Integrate with existing map rendering in `Map.cs`
+- Follow patterns from `HoverScroll.cs` for input handling
+
+#### Testing and Validation
+
+**Unit Tests:**
+- Pathfinding algorithm correctness
+- Movement validation logic
+- Coordinate transformation accuracy
+- Cursor state transitions
+
+**Integration Tests:**
+- Mouse-to-world coordinate conversion
+- Soldier selection by clicking
+- Movement command execution
+- Multi-level cursor display
+
+**User Experience Tests:**
+- Cursor responsiveness and accuracy
+- Visual clarity of movement options
+- Intuitive interaction patterns
+- Performance with complex terrain
 
 **Key Files to Create/Modify:**
 - `XCom/Battlescape/Pathfinding.cs` (new)
 - `XCom/Battlescape/MovementCalculator.cs` (new)
 - `XCom/Battlescape/Unit.cs` (expand movement methods)
 - `XCom/Battlescape/Battlescape.cs` (handle movement commands)
+- `XCom/Battlescape/BattleCursor.cs` (new)
+- `XCom/Battlescape/SoldierSelection.cs` (new)
+- `XCom/Battlescape/MovementValidator.cs` (new)
+- `XCom/Battlescape/MovementAnimation.cs` (new)
 
 ### Priority 1B: Line of Sight and Visibility
 - [ ] Implement line of sight calculations
