@@ -177,4 +177,9 @@ public class ImageGroup
 		52,
 		58
 	);
+	public static readonly ImageGroup SpecialActionIcons = new(
+		BattlescapeImages.SpecialActionIcons,
+		32,
+		24
+	);
 }

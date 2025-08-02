@@ -24,4 +24,7 @@ public static class Images
 
 	public static byte[] MediKitBodyParts =>
 		(byte[])ResourceManager.GetObject("MediKitBodyParts", null);
+
+	public static byte[] SpecialActionIcons =>
+		(byte[])ResourceManager.GetObject("SpecialActionIcons", null);
 }
