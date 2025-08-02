@@ -1,6 +1,7 @@
 using XCom.Content.Maps.ImageGroups;
 using XCom.Content.Maps.ImageTables;
 using BattlescapeImageGroups = XCom.Content.Battlescape.ImageGroups.ImageGroups;
+using BattlescapeImages = XCom.Content.Battlescape.Images.Images;
 using BattlescapeImageTables = XCom.Content.Battlescape.ImageTables.ImageTables;
 using UnitImageGroups = XCom.Content.Units.ImageGroups.ImageGroups;
 using UnitImageTables = XCom.Content.Units.ImageTables.ImageTables;
@@ -26,6 +27,16 @@ public class ImageGroup
 						)
 						.ToArray()
 			)
+			.ToArray();
+	}
+
+	private ImageGroup(IReadOnlyCollection<byte> imageData, int width, int height)
+	{
+		var imageSize = width * height;
+		var imageCount = imageData.Count / imageSize;
+		Images = Enumerable
+			.Range(0, imageCount)
+			.Select(index => imageData.Skip(index * imageSize).Take(imageSize).ToArray())
 			.ToArray();
 	}
 
@@ -155,5 +166,10 @@ public class ImageGroup
 	public static readonly ImageGroup Cursors = new(
 		BattlescapeImageTables.Cursors,
 		BattlescapeImageGroups.Cursors
+	);
+	public static readonly ImageGroup MotionScannerIcons = new(
+		BattlescapeImages.MotionScannerIcons,
+		16,
+		16
 	);
 }
