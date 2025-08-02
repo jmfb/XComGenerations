@@ -39,7 +39,11 @@ public class ImageGroupTester : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
+		buffer.DrawOverlay(XCom.Content.Battlescape.Images.Images.MotionScannerBackground, 14);
+		buffer.DrawOverlay(XCom.Content.Battlescape.Images.Images.MotionScannerBorder, 14);
 		base.Render(buffer);
+		return;
+
 		var top = 120;
 		var left = 0;
 		for (var index = imageIndex; index < imageGroup.Images.Length; ++index)

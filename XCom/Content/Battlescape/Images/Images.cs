@@ -22,6 +22,12 @@ public static class Images
 	public static byte[] MotionScannerIcons =>
 		(byte[])ResourceManager.GetObject("MotionScannerIcons", null);
 
+	public static byte[] MotionScannerBorder =>
+		(byte[])ResourceManager.GetObject("MotionScannerBorder", null);
+
+	public static byte[] MotionScannerBackground =>
+		(byte[])ResourceManager.GetObject("MotionScannerBackground", null);
+
 	public static byte[] MediKitBodyParts =>
 		(byte[])ResourceManager.GetObject("MediKitBodyParts", null);
 
