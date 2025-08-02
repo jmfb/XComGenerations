@@ -29,6 +29,7 @@ public class MainMenu : Screen
 			)
 		);
 		AddControl(new Button(146, 64, 192, 20, "Quit", ColorScheme.Aqua, Font.Normal, OnQuit));
+		AddControl(new Button(146, 0, 32, 20, "Test", ColorScheme.Yellow, Font.Normal, OnTest));
 	}
 
 	public override void OnSetFocus()
@@ -49,5 +50,10 @@ public class MainMenu : Screen
 	private static void OnQuit()
 	{
 		GameState.Current.Quit();
+	}
+
+	private static void OnTest()
+	{
+		GameState.Current.SetScreen(new ImageGroupTester());
 	}
 }

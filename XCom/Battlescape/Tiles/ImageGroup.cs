@@ -1,5 +1,7 @@
 using XCom.Content.Maps.ImageGroups;
 using XCom.Content.Maps.ImageTables;
+using BattlescapeImageGroups = XCom.Content.Battlescape.ImageGroups.ImageGroups;
+using BattlescapeImageTables = XCom.Content.Battlescape.ImageTables.ImageTables;
 using UnitImageGroups = XCom.Content.Units.ImageGroups.ImageGroups;
 using UnitImageTables = XCom.Content.Units.ImageTables.ImageTables;
 
@@ -149,4 +151,9 @@ public class ImageGroup
 
 	public static readonly ImageGroup Ground = new(UnitImageTables.Ground, UnitImageGroups.Ground);
 	public static readonly ImageGroup Hand = new(UnitImageTables.Hand, UnitImageGroups.Hand);
+
+	public static readonly ImageGroup Cursors = new(
+		BattlescapeImageTables.Cursors,
+		BattlescapeImageGroups.Cursors
+	);
 }
