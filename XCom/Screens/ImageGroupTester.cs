@@ -7,7 +7,7 @@ namespace XCom.Screens;
 
 public class ImageGroupTester : Screen
 {
-	private readonly ImageGroup imageGroup = ImageGroup.MotionScannerIcons;
+	private readonly ImageGroup imageGroup = ImageGroup.MediKitBodyParts;
 	private int imageIndex;
 
 	public ImageGroupTester()
@@ -44,8 +44,8 @@ public class ImageGroupTester : Screen
 		var left = 0;
 		for (var index = imageIndex; index < imageGroup.Images.Length; ++index)
 		{
-			buffer.DrawMaskedImage(top, left, imageGroup.Images[index], 16, 16, 14);
-			left += 16;
+			buffer.DrawMaskedImage(top, left, imageGroup.Images[index], 52, 58, 14);
+			left += 52;
 			if (left > 320)
 				break;
 		}

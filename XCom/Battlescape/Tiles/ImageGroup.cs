@@ -172,4 +172,9 @@ public class ImageGroup
 		16,
 		16
 	);
+	public static readonly ImageGroup MediKitBodyParts = new(
+		BattlescapeImages.MediKitBodyParts,
+		52,
+		58
+	);
 }
