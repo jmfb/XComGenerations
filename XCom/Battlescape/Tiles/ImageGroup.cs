@@ -177,6 +177,10 @@ public class ImageGroup
 		BattlescapeImageTables.Miscellaneous,
 		BattlescapeImageGroups.Miscellaneous
 	);
+	public static readonly ImageGroup Explosion = new(
+		BattlescapeImageTables.Explosion,
+		BattlescapeImageGroups.Explosion
+	);
 	public static readonly ImageGroup MotionScannerIcons = new(
 		BattlescapeImages.MotionScannerIcons,
 		16,
@@ -196,5 +200,9 @@ public class ImageGroup
 	public static readonly ImageGroup InterceptionIcons = new(
 		InterceptionImageTables.Icons,
 		InterceptionImageGroups.Icons
+	);
+	public static readonly ImageGroup InterceptionOtherIcons = new(
+		InterceptionImageTables.OtherIcons,
+		InterceptionImageGroups.OtherIcons
 	);
 }

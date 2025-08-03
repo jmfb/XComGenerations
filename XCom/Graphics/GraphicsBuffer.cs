@@ -166,13 +166,18 @@ public class GraphicsBuffer
 		}
 	}
 
-	public void DrawItem(int topRow, int leftColumn, byte[] item)
+	public void DrawItem(
+		int topRow,
+		int leftColumn,
+		byte[] item,
+		int imageWidth = 32,
+		int paletteIndex = 14
+	)
 	{
-		const int imageWidth = 32;
 		const byte skipCode = 0xfe;
 		const byte doneCode = 0xff;
 		var skipRows = item[0];
-		var palette = Palette.GetPalette(14);
+		var palette = Palette.GetPalette(paletteIndex);
 		for (int itemIndex = 1, imageIndex = 0; itemIndex < item.Length; )
 		{
 			var code = item[itemIndex++];

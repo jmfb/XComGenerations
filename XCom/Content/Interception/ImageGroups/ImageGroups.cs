@@ -20,4 +20,5 @@ public static class ImageGroups
 	}
 
 	public static byte[] Icons => (byte[])ResourceManager.GetObject("Icons", null);
+	public static byte[] OtherIcons => (byte[])ResourceManager.GetObject("OtherIcons", null);
 }
