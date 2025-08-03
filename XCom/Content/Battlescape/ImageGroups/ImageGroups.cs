@@ -21,4 +21,5 @@ public static class ImageGroups
 
 	public static byte[] Cursors => (byte[])ResourceManager.GetObject("Cursors", null);
 	public static byte[] MeleeHit => (byte[])ResourceManager.GetObject("MeleeHit", null);
+	public static byte[] Miscellaneous => (byte[])ResourceManager.GetObject("Miscellaneous", null);
 }

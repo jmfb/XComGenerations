@@ -173,6 +173,10 @@ public class ImageGroup
 		BattlescapeImageTables.MeleeHit,
 		BattlescapeImageGroups.MeleeHit
 	);
+	public static readonly ImageGroup BattlescapeMiscellaneous = new(
+		BattlescapeImageTables.Miscellaneous,
+		BattlescapeImageGroups.Miscellaneous
+	);
 	public static readonly ImageGroup MotionScannerIcons = new(
 		BattlescapeImages.MotionScannerIcons,
 		16,
