@@ -3,6 +3,8 @@ using XCom.Content.Maps.ImageTables;
 using BattlescapeImageGroups = XCom.Content.Battlescape.ImageGroups.ImageGroups;
 using BattlescapeImages = XCom.Content.Battlescape.Images.Images;
 using BattlescapeImageTables = XCom.Content.Battlescape.ImageTables.ImageTables;
+using InterceptionImageGroups = XCom.Content.Interception.ImageGroups.ImageGroups;
+using InterceptionImageTables = XCom.Content.Interception.ImageTables.ImageTables;
 using UnitImageGroups = XCom.Content.Units.ImageGroups.ImageGroups;
 using UnitImageTables = XCom.Content.Units.ImageTables.ImageTables;
 
@@ -185,5 +187,10 @@ public class ImageGroup
 		BattlescapeImages.SpecialActionIcons,
 		32,
 		24
+	);
+
+	public static readonly ImageGroup InterceptionIcons = new(
+		InterceptionImageTables.Icons,
+		InterceptionImageGroups.Icons
 	);
 }
