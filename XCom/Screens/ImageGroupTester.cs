@@ -58,6 +58,7 @@ public class ImageGroupTester : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
+		buffer.DrawOverlay(XCom.Content.Overlays.Overlays.GraphButtons, paletteIndex);
 		base.Render(buffer);
 
 		const int top = 120;
