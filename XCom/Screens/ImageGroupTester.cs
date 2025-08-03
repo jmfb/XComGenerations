@@ -72,5 +72,7 @@ public class ImageGroupTester : Screen
 		}
 		Font.Normal.DrawString(buffer, 50, 0, $"{imageIndex}", ColorScheme.White);
 		Font.Normal.DrawString(buffer, 50, 100, $"Palette {paletteIndex}", ColorScheme.White);
+
+		SelectedUnit.Render(112, 8, buffer);
 	}
 }
