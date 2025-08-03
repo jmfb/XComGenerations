@@ -37,4 +37,6 @@ public static class Images
 		(byte[])ResourceManager.GetObject("SpecialActionIcons", null);
 
 	public static byte[] MapBorder => (byte[])ResourceManager.GetObject("MapBorder", null);
+
+	public static byte[] SoldierStats => (byte[])ResourceManager.GetObject("SoldierStats", null);
 }

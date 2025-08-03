@@ -39,6 +39,7 @@ public class ImageGroupTester : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
+		buffer.DrawOverlay(XCom.Content.Battlescape.Images.Images.SoldierStats, 14);
 		base.Render(buffer);
 
 		const int top = 120;
