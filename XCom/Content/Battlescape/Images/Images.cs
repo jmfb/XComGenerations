@@ -35,4 +35,6 @@ public static class Images
 
 	public static byte[] SpecialActionIcons =>
 		(byte[])ResourceManager.GetObject("SpecialActionIcons", null);
+
+	public static byte[] MapBorder => (byte[])ResourceManager.GetObject("MapBorder", null);
 }
