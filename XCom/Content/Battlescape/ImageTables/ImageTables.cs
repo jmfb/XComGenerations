@@ -20,4 +20,5 @@ public static class ImageTables
 	}
 
 	public static byte[] Cursors => (byte[])ResourceManager.GetObject("Cursors", null);
+	public static byte[] MeleeHit => (byte[])ResourceManager.GetObject("MeleeHit", null);
 }

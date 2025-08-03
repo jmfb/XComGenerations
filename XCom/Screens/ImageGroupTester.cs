@@ -7,7 +7,7 @@ namespace XCom.Screens;
 
 public class ImageGroupTester : Screen
 {
-	private readonly ImageGroup imageGroup = ImageGroup.SpecialActionIcons;
+	private readonly ImageGroup imageGroup = ImageGroup.MeleeHit;
 	private int imageIndex;
 
 	public ImageGroupTester()
@@ -39,16 +39,13 @@ public class ImageGroupTester : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
-		buffer.DrawOverlay(XCom.Content.Battlescape.Images.Images.MotionScannerBackground, 14);
-		buffer.DrawOverlay(XCom.Content.Battlescape.Images.Images.MotionScannerBorder, 14);
 		base.Render(buffer);
-		return;
 
-		var top = 120;
+		const int top = 120;
 		var left = 0;
 		for (var index = imageIndex; index < imageGroup.Images.Length; ++index)
 		{
-			buffer.DrawMaskedImage(top, left, imageGroup.Images[index], 32, 24, 14);
+			buffer.DrawItem(top, left, imageGroup.Images[index]);
 			left += 32;
 			if (left > 320)
 				break;

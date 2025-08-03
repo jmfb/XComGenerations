@@ -11,10 +11,14 @@ public static class ImageGroups
 		get
 		{
 			if (resourceMan == null)
-				resourceMan = new ResourceManager("XCom.Content.Battlescape.ImageGroups.ImageGroups", typeof(ImageGroups).Assembly);
+				resourceMan = new ResourceManager(
+					"XCom.Content.Battlescape.ImageGroups.ImageGroups",
+					typeof(ImageGroups).Assembly
+				);
 			return resourceMan;
 		}
 	}
 
-	public static byte[] Cursors  => (byte[])ResourceManager.GetObject("Cursors", null);
+	public static byte[] Cursors => (byte[])ResourceManager.GetObject("Cursors", null);
+	public static byte[] MeleeHit => (byte[])ResourceManager.GetObject("MeleeHit", null);
 }

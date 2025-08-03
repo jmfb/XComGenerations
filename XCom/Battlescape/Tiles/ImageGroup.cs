@@ -167,6 +167,10 @@ public class ImageGroup
 		BattlescapeImageTables.Cursors,
 		BattlescapeImageGroups.Cursors
 	);
+	public static readonly ImageGroup MeleeHit = new(
+		BattlescapeImageTables.MeleeHit,
+		BattlescapeImageGroups.MeleeHit
+	);
 	public static readonly ImageGroup MotionScannerIcons = new(
 		BattlescapeImages.MotionScannerIcons,
 		16,
