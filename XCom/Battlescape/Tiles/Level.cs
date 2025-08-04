@@ -25,9 +25,13 @@ public class Level
 		int topRow,
 		int leftColumn,
 		IReadOnlyCollection<BattleSoldier> soldiers,
-		int animationFrame
+		int animationFrame,
+		int levelIndex,
+		MapLocation cursorLocation
 	)
 	{
+		var isAlternateFrame = animationFrame % 2 == 1;
+
 		var soldierByLocation = soldiers.ToDictionary(soldier =>
 			(soldier.Location.Row, soldier.Location.Column)
 		);
@@ -35,6 +39,9 @@ public class Level
 		foreach (var column in Enumerable.Range(0, Tiles.GetLength(1)))
 		{
 			var soldier = soldierByLocation.GetValueOrDefault((row, column));
+			// TODO: Take into account HWP, civilian, alien units
+			var hasUnit = soldier != null;
+
 			var top = topRow + column * 8 + row * 8;
 			var left = leftColumn + column * 16 - row * 16;
 			var bottom = top + 40;
@@ -46,13 +53,21 @@ public class Level
 			tile.Ground.Render(buffer, top, left);
 			tile.NorthWall.Render(buffer, top, left);
 			tile.WestWall.Render(buffer, top, left);
+
+			var showCursor =
+				cursorLocation != null &&
+				cursorLocation.Row == row &&
+				cursorLocation.Column == column &&
+				levelIndex <= cursorLocation.Level;
+			var cursorIndex = levelIndex < (cursorLocation?.Level ?? 0) ? 2 : hasUnit && isAlternateFrame ? 1 : 0;
+			if (showCursor)
+				buffer.DrawItem(top, left, ImageGroup.Cursors.Images[cursorIndex]);
 			tile.Entity.Render(buffer, top, left);
 			soldier?.Render(buffer, top, left);
+			if (showCursor)
+				buffer.DrawItem(top, left, ImageGroup.Cursors.Images[cursorIndex + 3]);
 			if (GameState.Current.Data.Battle.SelectedUnit == soldier)
-			{
-				var isOdd = animationFrame % 2 == 1;
-				SelectedUnit.Render(top - 8 - (isOdd ? 1 : 0), left + 8, buffer);
-			}
+				SelectedUnit.Render(top - 8 - (isAlternateFrame ? 1 : 0), left + 8, buffer);
 		}
 	}
 }

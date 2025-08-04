@@ -45,16 +45,18 @@ public class GameState : Drawable
 	public void Render(GraphicsBuffer buffer)
 	{
 		ActiveScreen?.Render(buffer);
+		var pointerPosition = PointerPosition;
+		Pointer.Render(pointerPosition.Y, pointerPosition.X, buffer);
 	}
 
-	private Func<Point> pointerPosition;
+	private Func<Point> getPointerPosition;
 
 	public void SetPointerPositionFunction(Func<Point> pointerPositionFunction)
 	{
-		pointerPosition = pointerPositionFunction;
+		getPointerPosition = pointerPositionFunction;
 	}
 
-	public Point PointerPosition => pointerPosition();
+	public Point PointerPosition => getPointerPosition();
 
 	public void SetScreen(Screen newScreen)
 	{

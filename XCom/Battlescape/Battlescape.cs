@@ -1,3 +1,4 @@
+using XCom.Battlescape.Tiles;
 using XCom.Content.Overlays;
 using XCom.Controls;
 using XCom.Data;
@@ -188,9 +189,48 @@ public class Battlescape : Screen
 		GameState.Current.SetScreen(new ViewSoldierStatistics(battle, activeSolider));
 	}
 
+	private MapLocation GetCursorLocation()
+	{
+		var pointerPosition = GameState.Current.PointerPosition;
+		var x = pointerPosition.X;
+		var y = pointerPosition.Y;
+		if (x < 0 || y < 0 || x >= 320 || y >= 144)
+			return null;
+
+		var level = battle.Map.SelectedLevelIndex;
+		y += 24 * level;
+
+		x -= battle.Map.ColumnOffset;
+		y -= battle.Map.RowOffset;
+
+		// TODO: Improve row/column computation for isometric view
+		// This is currently "close" but does not feel correct
+		x -= 16;
+		y -= 8;
+
+		var h = x / 8;
+		var v = y / 8;
+
+		var row = (2 * v - h) / 4;
+		var column = v - row;
+
+		if (row < 0 ||
+			row >= battle.Map.RowCount ||
+			column < 0 ||
+			column >= battle.Map.ColumnCount)
+			return null;
+
+		return new MapLocation
+		{
+			Level = level,
+			Row = row,
+			Column = column
+		};
+	}
+
 	public override void Render(GraphicsBuffer buffer)
 	{
-		battle.Map.Render(buffer, animationFrame);
+		battle.Map.Render(buffer, animationFrame, GetCursorLocation());
 		base.Render(buffer);
 		DrawUnitInformation(buffer, battle.SelectedUnit);
 		// TODO: Black/Gray color scheme?

@@ -32,6 +32,12 @@ public class Map
 		}
 	}
 
+	[JsonIgnore]
+	public int RowCount => Levels[0].RowCount;
+
+	[JsonIgnore]
+	public int ColumnCount => Levels[0].ColumnCount;
+
 	public void SelectNextLevelUp()
 	{
 		if (SelectedLevelIndex + 1 < Levels.Length)
@@ -64,7 +70,7 @@ public class Map
 		ColumnOffset -= offset;
 	}
 
-	public void Render(GraphicsBuffer buffer, int animationFrame)
+	public void Render(GraphicsBuffer buffer, int animationFrame, MapLocation cursorLocation)
 	{
 		var levelsToRender = ViewAllLevels ? Levels.Length : SelectedLevelIndex + 1;
 		foreach (var levelIndex in Enumerable.Range(0, levelsToRender))
@@ -73,7 +79,7 @@ public class Map
 				.Where(soldier => soldier.Location.Level == levelIndex)
 				.ToList();
 			Levels[levelIndex]
-				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers, animationFrame);
+				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers, animationFrame, levelIndex, cursorLocation);
 		}
 	}
 

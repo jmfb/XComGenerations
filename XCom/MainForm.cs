@@ -78,7 +78,6 @@ public class MainForm : Form
 		var gl = openGlControl.OpenGL;
 		graphicsBuffer.Clear();
 		GameState.Current.Render(graphicsBuffer);
-		RenderPointer();
 		gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 		gl.RasterPos(0, 0);
 		gl.PixelZoom(scaleFactor, scaleFactor);
@@ -100,12 +99,6 @@ public class MainForm : Form
 			var leftColumn = mousePosition.X / scaleFactor;
 			return new Point(leftColumn, topRow);
 		}
-	}
-
-	private void RenderPointer()
-	{
-		var pointerPosition = PointerPosition;
-		Pointer.Render(pointerPosition.Y, pointerPosition.X, graphicsBuffer);
 	}
 
 	private void openGlControl_Resized(object sender, EventArgs e)
