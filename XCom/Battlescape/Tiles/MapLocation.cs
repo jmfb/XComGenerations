@@ -35,15 +35,22 @@ public class MapLocation
 	private static int MapViewWidth = 320;
 	private static int MapViewHeight = 144;
 
+	private static int RowsPerLevel = 24;
+	private static int TileWidth = 32;
+	private static int TileHeight = 40;
+
+	private static int ColumnsPerUnit = TileWidth / 2;
+	private static int GridUnitRatio = 2;
+	private static int RowsPerUnit = ColumnsPerUnit / GridUnitRatio;
+
+	private static int HoverRowOffset = -(TileHeight - 2 * RowsPerUnit) / 2;
+	private static int HoverColumnOffset = -ColumnsPerUnit;
+
 	private static bool IsPointInMapView(Point pointerPosition) =>
 		pointerPosition.X >= 0 &&
 		pointerPosition.X < MapViewWidth &&
 		pointerPosition.Y >= 0 &&
 		pointerPosition.Y < MapViewHeight;
-
-	private static int RowsPerLevel = 24;
-	private static int HoverRowOffset = -12;
-	private static int HoverColumnOffset = -16;
 
 	private static (int x, int y) AdjustForScrollAndLevel(
 		Point pointerPosition,
@@ -55,10 +62,6 @@ public class MapLocation
 		pointerPosition.Y - rowOffset + RowsPerLevel * level + HoverRowOffset
 	);
 
-	private static int RowsPerUnit = 8;
-	private static int ColumnsPerUnit = 16;
-	private static int GridUnitRatio = ColumnsPerUnit / RowsPerUnit;
-
 	private static (int hUnit, int hUnitOffset, int vUnit, int vUnitOffset) ToGridUnits(int x, int y) =>
 	(
 		(x < 0 ? (x - ColumnsPerUnit + 1) : x) / ColumnsPerUnit,
@@ -67,32 +70,13 @@ public class MapLocation
 		((y % RowsPerUnit) + RowsPerUnit) % RowsPerUnit
 	);
 
-	private enum GridQuadrant
-	{
-		EvenEven,
-		OddOdd,
-		EvenOdd,
-		OddEven
-	}
-
-	private static GridQuadrant GetGridQuadrant(int hUnit, int vUnit) =>
-		(Math.Abs(hUnit) % 2, Math.Abs(vUnit) % 2) switch
-		{
-			(0, 0) => GridQuadrant.EvenEven,
-			(1, 1) => GridQuadrant.OddOdd,
-			(0, 1) => GridQuadrant.EvenOdd,
-			(1, 0) => GridQuadrant.OddEven,
-			_ => throw new InvalidOperationException($"Invalid grid unit combination: ({hUnit},{vUnit})")
-		};
-
 	private static (int row, int column) GetMapCoordinates(int x, int y)
 	{
 		var (hUnit, hUnitOffset, vUnit, vUnitOffset) = ToGridUnits(x, y);
 		var isTopRightCorner = IsTopRightCorner(hUnitOffset, vUnitOffset);
 		var isBottomRightCorner = IsBottomRightCorner(hUnitOffset, vUnitOffset);
-		var quadrant = GetGridQuadrant(hUnit, vUnit);
-		return quadrant is GridQuadrant.EvenEven or GridQuadrant.OddOdd ?
-			GetEvenEvenOrOddOddMapCoordinates(hUnit, vUnit, isTopRightCorner) :
+		return (Math.Abs(hUnit) % 2) == (Math.Abs(vUnit) % 2) ?
+			GetEqualMapCoordinates(hUnit, vUnit, isTopRightCorner) :
 			GetXorMapCoordinates(hUnit, vUnit, isBottomRightCorner);
 	}
 
@@ -102,7 +86,7 @@ public class MapLocation
 	private static bool IsBottomRightCorner(int xOffset, int yOffset) =>
 		(RowsPerUnit - yOffset - 1) <= (xOffset / GridUnitRatio);
 
-	private static (int row, int column) GetEvenEvenOrOddOddMapCoordinates(
+	private static (int row, int column) GetEqualMapCoordinates(
 		int hUnit, int vUnit, bool isTopRightCorner) =>
 	(
 		(vUnit - hUnit) / 2 - (isTopRightCorner ? 1 : 0),
