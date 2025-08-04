@@ -70,8 +70,9 @@ public class Map
 		ColumnOffset -= offset;
 	}
 
-	public void Render(GraphicsBuffer buffer, int animationFrame, MapLocation cursorLocation)
+	public void Render(GraphicsBuffer buffer, int animationFrame)
 	{
+		var cursorLocation = GetCursorLocation();
 		var levelsToRender = ViewAllLevels ? Levels.Length : SelectedLevelIndex + 1;
 		foreach (var levelIndex in Enumerable.Range(0, levelsToRender))
 		{
@@ -91,4 +92,13 @@ public class Map
 		RowOffset = 52 - topRow;
 		ColumnOffset = 144 - leftColumn;
 	}
+
+	private MapLocation GetCursorLocation() =>
+		MapLocation.FromPointerPosition(
+			GameState.Current.PointerPosition,
+			RowOffset,
+			ColumnOffset,
+			SelectedLevelIndex,
+			RowCount,
+			ColumnCount);
 }
