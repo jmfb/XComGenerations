@@ -12,7 +12,8 @@ public class Battlescape : Screen
 {
 	private readonly Battle battle;
 	private readonly HoverScroll hoverScroll = new();
-	private readonly SoldierIndicator soldierIndicator = new();
+	private readonly Stopwatch stopwatch = new();
+	private int animationFrame;
 
 	public Battlescape(Battle battle)
 	{
@@ -49,12 +50,24 @@ public class Battlescape : Screen
 	public override void OnSetFocus()
 	{
 		MidiFiles.Play(MusicType.Battlescape);
-		GameState.Current.OnIdle += hoverScroll.OnIdle;
+		GameState.Current.OnIdle += OnIdle;
+		stopwatch.Restart();
 	}
 
 	public override void OnKillFocus()
 	{
-		GameState.Current.OnIdle -= hoverScroll.OnIdle;
+		stopwatch.Stop();
+		GameState.Current.OnIdle -= OnIdle;
+	}
+
+	public void OnIdle()
+	{
+		hoverScroll.OnIdle();
+		if (stopwatch.ElapsedMilliseconds >= 100)
+		{
+			stopwatch.Restart();
+			animationFrame = (animationFrame + 1) % 8;
+		}
 	}
 
 	private static void OnLeftWeapon()
@@ -125,9 +138,9 @@ public class Battlescape : Screen
 		OnCenterOnActiveUnit();
 	}
 
-	private static void OnToggleLevelView()
+	private void OnToggleLevelView()
 	{
-		//TODO
+		battle.Map.ViewAllLevels = !battle.Map.ViewAllLevels;
 	}
 
 	private static void OnOptions()
@@ -177,10 +190,11 @@ public class Battlescape : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
-		// Render the map with soldier indicators integrated
-		battle.Map.Render(buffer, battle.Soldiers, soldierIndicator, battle.SelectedSoldier);
+		battle.Map.Render(buffer, animationFrame);
 		base.Render(buffer);
 		DrawUnitInformation(buffer, battle.SelectedUnit);
+		// TODO: Black/Gray color scheme?
+		Font.Small.DrawString(buffer, 150, 232, battle.Map.ViewAllLevels ? "2" : "1", ColorScheme.White);
 	}
 
 	private static void DrawUnitInformation(GraphicsBuffer buffer, Unit unit)

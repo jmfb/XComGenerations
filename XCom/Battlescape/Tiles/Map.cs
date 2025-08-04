@@ -9,6 +9,7 @@ public class Map
 	public int RowOffset { get; set; }
 	public int ColumnOffset { get; set; }
 	public int SelectedLevelIndex { get; set; }
+	public bool ViewAllLevels { get; set; }
 
 	[JsonIgnore]
 	public IEnumerable<MapLocation> EntryPoints
@@ -63,19 +64,17 @@ public class Map
 		ColumnOffset -= offset;
 	}
 
-	public void Render(GraphicsBuffer buffer, IReadOnlyCollection<BattleSoldier> soldiers, SoldierIndicator soldierIndicator = null, BattleSoldier selectedSoldier = null)
+	public void Render(GraphicsBuffer buffer, int animationFrame)
 	{
-		foreach (var levelIndex in Enumerable.Range(0, SelectedLevelIndex + 1))
+		var levelsToRender = ViewAllLevels ? Levels.Length : SelectedLevelIndex + 1;
+		foreach (var levelIndex in Enumerable.Range(0, levelsToRender))
 		{
-			var levelSoldiers = soldiers
+			var levelSoldiers = GameState.Current.Data.Battle.Soldiers
 				.Where(soldier => soldier.Location.Level == levelIndex)
 				.ToList();
 			Levels[levelIndex]
-				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers, levelIndex, soldierIndicator, selectedSoldier);
+				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers, animationFrame);
 		}
-
-		// Handle case where indicator should be rendered above the top rendered level
-		soldierIndicator?.RenderAboveTopLevel(buffer, this, selectedSoldier);
 	}
 
 	public void CenterOn(MapLocation location)

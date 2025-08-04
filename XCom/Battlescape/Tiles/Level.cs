@@ -25,9 +25,7 @@ public class Level
 		int topRow,
 		int leftColumn,
 		IReadOnlyCollection<BattleSoldier> soldiers,
-		int levelIndex = -1,
-		SoldierIndicator soldierIndicator = null,
-		BattleSoldier selectedSoldier = null
+		int animationFrame
 	)
 	{
 		var soldierByLocation = soldiers.ToDictionary(soldier =>
@@ -44,32 +42,17 @@ public class Level
 			if (bottom < 0 || right < 0 || top >= 144 || left >= 320)
 				continue;
 
-			// Render tile components in the correct order
 			var tile = Tiles[row, column];
-			
-			// 1. Ground
 			tile.Ground.Render(buffer, top, left);
-			
-			// 2. Soldier indicator (if it should appear here)
-			if (soldierIndicator != null && selectedSoldier != null && levelIndex >= 0)
-			{
-				if (soldierIndicator.ShouldRenderAt(levelIndex, row, column, selectedSoldier))
-				{
-					soldierIndicator.Render(buffer, top, left);
-				}
-			}
-			
-			// 3. North Wall
 			tile.NorthWall.Render(buffer, top, left);
-			
-			// 4. West Wall
 			tile.WestWall.Render(buffer, top, left);
-			
-			// 5. Entity
 			tile.Entity.Render(buffer, top, left);
-			
-			// 6. Unit (soldier)
 			soldier?.Render(buffer, top, left);
+			if (GameState.Current.Data.Battle.SelectedUnit == soldier)
+			{
+				var isOdd = animationFrame % 2 == 1;
+				SelectedUnit.Render(top - 8 - (isOdd ? 1 : 0), left + 8, buffer);
+			}
 		}
 	}
 }

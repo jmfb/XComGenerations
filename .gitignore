@@ -4,3 +4,5 @@ Release/
 packages/
 .vs/
 .git/
+
+save*.json
