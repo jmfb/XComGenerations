@@ -61,10 +61,10 @@ public class MapLocation
 
 	private static (int hUnit, int hUnitOffset, int vUnit, int vUnitOffset) ToGridUnits(int x, int y) =>
 	(
-		x / ColumnsPerUnit,
-		x % ColumnsPerUnit,
-		y / RowsPerUnit,
-		y % RowsPerUnit
+		(x < 0 ? (x - ColumnsPerUnit + 1) : x) / ColumnsPerUnit,
+		((x % ColumnsPerUnit) + ColumnsPerUnit) % ColumnsPerUnit,
+		(y < 0 ? (y - RowsPerUnit + 1) : y) / RowsPerUnit,
+		((y % RowsPerUnit) + RowsPerUnit) % RowsPerUnit
 	);
 
 	private enum GridQuadrant
@@ -97,10 +97,10 @@ public class MapLocation
 	}
 
 	private static bool IsTopRightCorner(int xOffset, int yOffset) =>
-		yOffset < (xOffset / GridUnitRatio);
+		yOffset <= (xOffset / GridUnitRatio);
 
 	private static bool IsBottomRightCorner(int xOffset, int yOffset) =>
-		(RowsPerUnit - yOffset) < (xOffset / GridUnitRatio);
+		(RowsPerUnit - yOffset - 1) <= (xOffset / GridUnitRatio);
 
 	private static (int row, int column) GetEvenEvenOrOddOddMapCoordinates(
 		int hUnit, int vUnit, bool isTopRightCorner) =>
