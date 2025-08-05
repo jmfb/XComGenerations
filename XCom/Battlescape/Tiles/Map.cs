@@ -76,11 +76,19 @@ public class Map
 		var levelsToRender = ViewAllLevels ? Levels.Length : SelectedLevelIndex + 1;
 		foreach (var levelIndex in Enumerable.Range(0, levelsToRender))
 		{
-			var levelSoldiers = GameState.Current.Data.Battle.Soldiers
-				.Where(soldier => soldier.Location.Level == levelIndex)
+			var levelSoldiers = GameState
+				.Current.Data.Battle.Soldiers.Where(soldier => soldier.Location.Level == levelIndex)
 				.ToList();
 			Levels[levelIndex]
-				.Render(buffer, -24 * levelIndex + RowOffset, ColumnOffset, levelSoldiers, animationFrame, levelIndex, cursorLocation);
+				.Render(
+					buffer,
+					-24 * levelIndex + RowOffset,
+					ColumnOffset,
+					levelSoldiers,
+					animationFrame,
+					levelIndex,
+					cursorLocation
+				);
 		}
 	}
 
@@ -93,12 +101,13 @@ public class Map
 		ColumnOffset = 144 - leftColumn;
 	}
 
-	private MapLocation GetCursorLocation() =>
+	public MapLocation GetCursorLocation() =>
 		MapLocation.FromPointerPosition(
 			GameState.Current.PointerPosition,
 			RowOffset,
 			ColumnOffset,
 			SelectedLevelIndex,
 			RowCount,
-			ColumnCount);
+			ColumnCount
+		);
 }

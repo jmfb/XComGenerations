@@ -25,6 +25,8 @@ public class Font
 
 	public int MeasureString(string value)
 	{
+		if (string.IsNullOrWhiteSpace(value))
+			return 0;
 		var width = value.Sum(character => GetCharacter(character).Width - 1);
 		return width == 0 ? 0 : width + 1;
 	}
@@ -37,6 +39,8 @@ public class Font
 		ColorScheme scheme
 	)
 	{
+		if (string.IsNullOrWhiteSpace(value))
+			return;
 		var column = leftColumn;
 		foreach (var character in value.Select(GetCharacter))
 		{

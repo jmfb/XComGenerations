@@ -2,8 +2,14 @@ using XCom.Graphics;
 
 namespace XCom.Controls;
 
-public class ClickArea(int topRow, int leftColumn, int width, int height, Action action)
-	: InteractiveControl
+public class ClickArea(
+	int topRow,
+	int leftColumn,
+	int width,
+	int height,
+	Action leftClickAction,
+	Action rightClickAction = null
+) : InteractiveControl
 {
 	public override void Render(GraphicsBuffer buffer) { }
 
@@ -17,6 +23,11 @@ public class ClickArea(int topRow, int leftColumn, int width, int height, Action
 
 	public override void OnLeftButtonDown(int row, int column)
 	{
-		action();
+		leftClickAction();
+	}
+
+	public override void OnRightButtonDown(int row, int column)
+	{
+		rightClickAction?.Invoke();
 	}
 }

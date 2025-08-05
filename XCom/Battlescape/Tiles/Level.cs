@@ -55,11 +55,14 @@ public class Level
 			tile.WestWall.Render(buffer, top, left);
 
 			var showCursor =
-				cursorLocation != null &&
-				cursorLocation.Row == row &&
-				cursorLocation.Column == column &&
-				levelIndex <= cursorLocation.Level;
-			var cursorIndex = levelIndex < (cursorLocation?.Level ?? 0) ? 2 : hasUnit && isAlternateFrame ? 1 : 0;
+				cursorLocation != null
+				&& cursorLocation.Row == row
+				&& cursorLocation.Column == column
+				&& levelIndex <= cursorLocation.Level;
+			var cursorIndex =
+				levelIndex < (cursorLocation?.Level ?? 0) ? 2
+				: hasUnit && isAlternateFrame ? 1
+				: 0;
 			if (showCursor)
 				buffer.DrawItem(top, left, ImageGroup.Cursors.Images[cursorIndex]);
 			tile.Entity.Render(buffer, top, left);

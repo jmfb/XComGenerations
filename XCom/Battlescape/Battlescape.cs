@@ -15,11 +15,13 @@ public class Battlescape : Screen
 	private readonly HoverScroll hoverScroll = new();
 	private readonly Stopwatch stopwatch = new();
 	private int animationFrame;
+	private string debugText;
 
 	public Battlescape(Battle battle)
 	{
 		this.battle = battle;
 		AddControl(new Overlay(Overlays.BattlescapeControls, 4));
+		AddControl(new ClickArea(0, 0, 320, 144, OnMapLeftClick, OnMapRightClick));
 		AddControl(new ClickArea(144, 0, 48, 56, OnLeftWeapon));
 		AddControl(new ClickArea(144, 272, 48, 56, OnRightWeapon));
 		AddControl(new ClickArea(144, 48, 32, 16, OnMoveUp));
@@ -69,6 +71,28 @@ public class Battlescape : Screen
 			stopwatch.Restart();
 			animationFrame = (animationFrame + 1) % 8;
 		}
+	}
+
+	private void OnMapLeftClick()
+	{
+		var cursorLocation = battle.Map.GetCursorLocation();
+		if (cursorLocation == null)
+			return;
+		var x = cursorLocation.Column;
+		var y = cursorLocation.Row;
+		var z = cursorLocation.Level;
+		debugText = $"Map left click: ({x},{y},{z})";
+	}
+
+	private void OnMapRightClick()
+	{
+		var cursorLocation = battle.Map.GetCursorLocation();
+		if (cursorLocation == null)
+			return;
+		var x = cursorLocation.Column;
+		var y = cursorLocation.Row;
+		var z = cursorLocation.Level;
+		debugText = $"Map right click: ({x},{y},{z})";
 	}
 
 	private static void OnLeftWeapon()
@@ -193,9 +217,16 @@ public class Battlescape : Screen
 	{
 		battle.Map.Render(buffer, animationFrame);
 		base.Render(buffer);
+		Font.Normal.DrawString(buffer, 134, 0, debugText, ColorScheme.White);
 		DrawUnitInformation(buffer, battle.SelectedUnit);
 		// TODO: Black/Gray color scheme?
-		Font.Small.DrawString(buffer, 150, 232, battle.Map.ViewAllLevels ? "2" : "1", ColorScheme.White);
+		Font.Small.DrawString(
+			buffer,
+			150,
+			232,
+			battle.Map.ViewAllLevels ? "2" : "1",
+			ColorScheme.White
+		);
 	}
 
 	private static void DrawUnitInformation(GraphicsBuffer buffer, Unit unit)
