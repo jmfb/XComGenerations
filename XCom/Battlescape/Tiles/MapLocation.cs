@@ -8,6 +8,9 @@ public class MapLocation
 	public int Row { get; set; }
 	public int Column { get; set; }
 
+	public bool Is(MapLocation other) =>
+		other != null && other.Level == Level && other.Row == Row && other.Column == Column;
+
 	public static MapLocation FromPointerPosition(
 		Point pointerPosition,
 		int rowOffset,

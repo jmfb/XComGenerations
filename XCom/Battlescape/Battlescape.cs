@@ -15,7 +15,6 @@ public class Battlescape : Screen
 	private readonly HoverScroll hoverScroll = new();
 	private readonly Stopwatch stopwatch = new();
 	private int animationFrame;
-	private string debugText;
 
 	public Battlescape(Battle battle)
 	{
@@ -78,10 +77,10 @@ public class Battlescape : Screen
 		var cursorLocation = battle.Map.GetCursorLocation();
 		if (cursorLocation == null)
 			return;
-		var x = cursorLocation.Column;
-		var y = cursorLocation.Row;
-		var z = cursorLocation.Level;
-		debugText = $"Map left click: ({x},{y},{z})";
+		var unitId = battle.HitTestUnit(cursorLocation);
+		if (unitId != null && unitId.UnitType == UnitType.Soldier)
+			battle.SelectedUnitId = unitId;
+		// TODO: Other left click logic
 	}
 
 	private void OnMapRightClick()
@@ -89,10 +88,7 @@ public class Battlescape : Screen
 		var cursorLocation = battle.Map.GetCursorLocation();
 		if (cursorLocation == null)
 			return;
-		var x = cursorLocation.Column;
-		var y = cursorLocation.Row;
-		var z = cursorLocation.Level;
-		debugText = $"Map right click: ({x},{y},{z})";
+		// TODO: Right click logic
 	}
 
 	private static void OnLeftWeapon()
@@ -217,7 +213,6 @@ public class Battlescape : Screen
 	{
 		battle.Map.Render(buffer, animationFrame);
 		base.Render(buffer);
-		Font.Normal.DrawString(buffer, 134, 0, debugText, ColorScheme.White);
 		DrawUnitInformation(buffer, battle.SelectedUnit);
 		// TODO: Black/Gray color scheme?
 		Font.Small.DrawString(

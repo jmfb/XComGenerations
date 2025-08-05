@@ -82,6 +82,15 @@ public class Battle
 		return Soldiers[previousIndex];
 	}
 
+	public SelectedUnitId HitTestUnit(MapLocation location)
+	{
+		var soldier = Soldiers.FirstOrDefault(soldier => location.Is(soldier.Location));
+		if (soldier != null)
+			return new SelectedUnitId { UnitType = UnitType.Soldier, Id = soldier.Id };
+		// TODO: HWP, aliens, etc.
+		return null;
+	}
+
 	public static Battle CreateFromCraft(Craft craft)
 	{
 		//TODO: Create alien base, terror, or craft recovery based on craft destination
