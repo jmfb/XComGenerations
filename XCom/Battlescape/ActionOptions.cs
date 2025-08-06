@@ -26,23 +26,28 @@ public class ActionOptions : Screen
 
 		var values = new List<ActionValue>();
 
-		switch (item.BattleItemType)
-		{
-			case BattleItemType.Weapon:
-				values.AddRange(
-					(item.Item as WeaponType?)
-						?.Metadata()
-						.Shots.Select(shot => new ActionValue
-						{
-							ActionType = shot.ShotType.Metadata().ActionType,
-							Name = $"{shot.ShotType.Metadata().Name} Shot",
-							Accuracy = shot.Accuracy,
-							TimeUnits = PercentageTimeUnits(unitMaxTimeUnits, shot.TimeUnits),
-						})
-				);
-				break;
-			// TODO: Grenades, Equipment
-		}
+		var metadata = item.Metadata;
+		if (metadata is WeaponMetadata weaponMetadata)
+			values.AddRange(
+				weaponMetadata.Shots.Select(shot => new ActionValue
+				{
+					ActionType = shot.ShotType.Metadata().ActionType,
+					Name = $"{shot.ShotType.Metadata().Name} Shot",
+					Accuracy = shot.Accuracy,
+					TimeUnits = PercentageTimeUnits(unitMaxTimeUnits, shot.TimeUnits),
+				})
+			);
+		if (metadata is GrenadeMetadata grenadeMetadata && !item.IsPrimed)
+			values.Add(
+				new ActionValue
+				{
+					ActionType = ActionType.PrimeGrenade,
+					Name = "Prime Grenade",
+					Accuracy = null,
+					TimeUnits = PercentageTimeUnits(unitMaxTimeUnits, 50),
+				}
+			);
+		// TODO: Equipment actions (stun, medikit, scan, psi, etc.)
 
 		values.Add(
 			new ActionValue

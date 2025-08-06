@@ -9,8 +9,14 @@ public class BattleItem
 {
 	public BattleItemType BattleItemType { get; set; }
 	public long Value { get; set; }
+
+	// Properties for munitions based weapons, otherwise unused
 	public AmmunitionType? Ammunition { get; set; }
 	public int Rounds { get; set; }
+
+	// Properties for grenades, otherwise unused
+	public bool IsPrimed { get; set; }
+	public int Timer { get; set; }
 
 	[JsonIgnore]
 	public object Item
@@ -46,7 +52,7 @@ public class BattleItem
 		}
 	}
 
-	private BattleItemMetadata Metadata => MetadataOf((dynamic)Item);
+	public BattleItemMetadata Metadata => MetadataOf((dynamic)Item);
 
 	private static BattleItemMetadata MetadataOf(WeaponType weaponType) => weaponType.Metadata();
 
@@ -103,6 +109,8 @@ public class BattleItem
 			Item = battleItemType,
 			Ammunition = null,
 			Rounds = ammunitionType?.Metadata().Rounds ?? 0,
+			IsPrimed = false,
+			Timer = 0,
 		};
 	}
 

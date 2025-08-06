@@ -16,6 +16,7 @@ public class GrenadeMetadata : BattleItemMetadata
 	public string[] DescriptionLines { get; set; }
 	public Dictionary<Direction, byte[]> Sprites { get; set; }
 	public bool IsTwoHanded => false;
+	public bool HasTimer { get; set; }
 
 	public string Name => ItemType.Metadata().Name;
 }

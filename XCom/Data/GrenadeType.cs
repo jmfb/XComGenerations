@@ -32,6 +32,7 @@ public static class GrenadeTypeExtensions
 			"timer for precision control.",
 		],
 		Sprites = BattleItemSprite.Grenade,
+		HasTimer = true,
 	};
 
 	private static readonly GrenadeMetadata smokeGrenade = new()
@@ -50,6 +51,7 @@ public static class GrenadeTypeExtensions
 			"combat situations.  Use with care because they can benefit the",
 			"enemy as well",
 		],
+		HasTimer = true,
 	};
 
 	private static readonly GrenadeMetadata proximityGrenade = new()
@@ -68,6 +70,7 @@ public static class GrenadeTypeExtensions
 			"but is triggered by nearby movement after it lands. Great skill",
 			"and care is required to use these devices properly.",
 		],
+		HasTimer = false,
 	};
 
 	private static readonly GrenadeMetadata highExplosive = new()
@@ -85,6 +88,7 @@ public static class GrenadeTypeExtensions
 			"This explosive should only be used for demolition purposes.",
 			"Keep personnel clear of demolition sites.",
 		],
+		HasTimer = true,
 	};
 
 	private static readonly GrenadeMetadata alienGrenade = new()
@@ -102,6 +106,7 @@ public static class GrenadeTypeExtensions
 			"This device works in the same way as a terrestrial grenade -",
 			"except that it is more powerful.",
 		],
+		HasTimer = true,
 	};
 
 	private static readonly Dictionary<GrenadeType, GrenadeMetadata> metadata = new()
