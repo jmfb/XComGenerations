@@ -122,7 +122,12 @@ public class Battlescape : Screen, BattlescapeControlActions
 				}
 				else
 				{
-					// TODO: Show timer modal, set IsPrimed and Timer if chosen
+					new SetTimerModal(timer =>
+					{
+						activeSoldier.TimeUnits -= value.TimeUnits;
+						item.IsPrimed = true;
+						item.Timer = timer;
+					}).DoModal(this);
 				}
 			}
 		}

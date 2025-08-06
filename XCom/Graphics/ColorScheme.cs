@@ -53,6 +53,7 @@ public class ColorScheme
 	public static readonly ColorScheme LightPurple = new(3, 240, 5);
 	public static readonly ColorScheme LightAqua = new(3, 245, 5);
 	public static readonly ColorScheme Orange = new(1, 16, 5);
+	public static readonly ColorScheme DarkOrange = new(1, 18, 5);
 
 	public static readonly ColorScheme LightBlue = new(
 		[
