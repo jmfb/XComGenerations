@@ -91,14 +91,28 @@ public class Battlescape : Screen
 		// TODO: Right click logic
 	}
 
-	private static void OnLeftWeapon()
+	private void OnLeftWeapon()
 	{
-		//TODO
+		// TODO: HWP, alien?
+		var activeSoldier = battle.SelectedSoldier;
+		if (activeSoldier == null)
+			return;
+		if (activeSoldier.LeftHand == null)
+			return;
+		// TODO: Parameterize with valid options and receive response
+		new ActionOptions().DoModal(this);
 	}
 
-	private static void OnRightWeapon()
+	private void OnRightWeapon()
 	{
-		//TODO
+		// TODO: HWP, alien?
+		var activeSoldier = battle.SelectedSoldier;
+		if (activeSoldier == null)
+			return;
+		if (activeSoldier.RightHand == null)
+			return;
+		// TODO: Parameterize with valid options and receive response
+		new ActionOptions().DoModal(this);
 	}
 
 	private static void OnMoveUp()
@@ -222,6 +236,11 @@ public class Battlescape : Screen
 			battle.Map.ViewAllLevels ? "2" : "1",
 			ColorScheme.White
 		);
+		var activeSoldier = battle.SelectedSoldier;
+		if (activeSoldier?.LeftHand != null)
+			buffer.DrawItem(144, 0, activeSoldier.LeftHand.Image);
+		if (activeSoldier?.RightHand != null)
+			buffer.DrawItem(144, 272, activeSoldier.RightHand.Image);
 	}
 
 	private static void DrawUnitInformation(GraphicsBuffer buffer, Unit unit)
