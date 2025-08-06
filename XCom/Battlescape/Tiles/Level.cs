@@ -25,12 +25,11 @@ public class Level
 		int topRow,
 		int leftColumn,
 		IReadOnlyCollection<BattleSoldier> soldiers,
-		int animationFrame,
 		int levelIndex,
 		MapLocation cursorLocation
 	)
 	{
-		var isAlternateFrame = animationFrame % 2 == 1;
+		var isAlternateFrame = AnimationFrame.GetCurrent(2) == 1;
 
 		var soldierByLocation = soldiers.ToDictionary(soldier =>
 			(soldier.Location.Row, soldier.Location.Column)

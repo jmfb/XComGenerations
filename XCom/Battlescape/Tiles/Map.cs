@@ -70,7 +70,7 @@ public class Map
 		ColumnOffset -= offset;
 	}
 
-	public void Render(GraphicsBuffer buffer, bool renderCursor, int animationFrame)
+	public void Render(GraphicsBuffer buffer, bool renderCursor)
 	{
 		var cursorLocation = renderCursor ? GetCursorLocation() : null;
 		var levelsToRender = ViewAllLevels ? Levels.Length : SelectedLevelIndex + 1;
@@ -85,7 +85,6 @@ public class Map
 					-24 * levelIndex + RowOffset,
 					ColumnOffset,
 					levelSoldiers,
-					animationFrame,
 					levelIndex,
 					cursorLocation
 				);

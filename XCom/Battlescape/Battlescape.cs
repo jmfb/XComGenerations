@@ -13,8 +13,6 @@ public class Battlescape : Screen
 {
 	private readonly Battle battle;
 	private readonly HoverScroll hoverScroll = new();
-	private readonly Stopwatch stopwatch = new();
-	private int animationFrame;
 	private bool hasFocus;
 
 	public Battlescape(Battle battle)
@@ -54,25 +52,18 @@ public class Battlescape : Screen
 	{
 		MidiFiles.Play(MusicType.Battlescape);
 		GameState.Current.OnIdle += OnIdle;
-		stopwatch.Restart();
 		hasFocus = true;
 	}
 
 	public override void OnKillFocus()
 	{
 		hasFocus = false;
-		stopwatch.Stop();
 		GameState.Current.OnIdle -= OnIdle;
 	}
 
 	public void OnIdle()
 	{
 		hoverScroll.OnIdle();
-		if (stopwatch.ElapsedMilliseconds >= 100)
-		{
-			stopwatch.Restart();
-			animationFrame = (animationFrame + 1) % 8;
-		}
 	}
 
 	private void OnMapLeftClick()
@@ -228,7 +219,7 @@ public class Battlescape : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
-		battle.Map.Render(buffer, renderCursor: hasFocus, animationFrame);
+		battle.Map.Render(buffer, renderCursor: hasFocus);
 		base.Render(buffer);
 		DrawUnitInformation(buffer, battle.SelectedUnit);
 		// TODO: Black/Gray color scheme?
