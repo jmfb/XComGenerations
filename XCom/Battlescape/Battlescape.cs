@@ -1,4 +1,5 @@
 using XCom.Controls;
+using XCom.Data;
 using XCom.Graphics;
 using XCom.Music;
 using XCom.Screens;
@@ -9,6 +10,7 @@ public class Battlescape : Screen, BattlescapeControlActions
 {
 	private readonly Battle battle;
 	private readonly HoverScroll hoverScroll = new();
+	private readonly BattlescapeToast toast = new();
 	private bool hasFocus;
 
 	public Battlescape(Battle battle)
@@ -16,6 +18,7 @@ public class Battlescape : Screen, BattlescapeControlActions
 		this.battle = battle;
 		AddControl(new ClickArea(0, 0, 320, 144, OnMapLeftClick, OnMapRightClick));
 		AddControl(new BattlescapeControls(battle, this));
+		AddControl(toast);
 		hoverScroll.OnScrollUp += battle.Map.ScrollUp;
 		hoverScroll.OnScrollDown += battle.Map.ScrollDown;
 		hoverScroll.OnScrollLeft += battle.Map.ScrollLeft;
@@ -93,7 +96,37 @@ public class Battlescape : Screen, BattlescapeControlActions
 
 	private void OnHandAction(Hand hand, BattleItem item, ActionValue value)
 	{
-		// TODO: Check time unit requirements
+		// TODO: HWP, alien?
+		var activeSoldier = battle.SelectedSoldier;
+		if (activeSoldier == null)
+			return;
+
+		if (activeSoldier.TimeUnits < value.TimeUnits)
+		{
+			toast.Show($"Not Enough Time Units!");
+			return;
+		}
+
+		var metadata = item.Metadata;
+		if (metadata is GrenadeMetadata grenadeMetadata)
+		{
+			if (value.ActionType == ActionType.PrimeGrenade)
+			{
+				if (item.IsPrimed)
+					throw new InvalidOperationException("Grenade is already primed.");
+				if (!grenadeMetadata.HasTimer)
+				{
+					activeSoldier.TimeUnits -= value.TimeUnits;
+					item.IsPrimed = true;
+					toast.Show("Grenade is Activated!");
+				}
+				else
+				{
+					// TODO: Show timer modal, set IsPrimed and Timer if chosen
+				}
+			}
+		}
+
 		// TODO: Check ammunition requirements
 		// TODO: Handle different action types (Scan, Throw, Fire, Launch)
 	}
