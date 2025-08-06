@@ -1,15 +1,11 @@
-using XCom.Battlescape.Tiles;
-using XCom.Content.Overlays;
 using XCom.Controls;
-using XCom.Data;
-using XCom.Fonts;
 using XCom.Graphics;
 using XCom.Music;
 using XCom.Screens;
 
 namespace XCom.Battlescape;
 
-public class Battlescape : Screen
+public class Battlescape : Screen, BattlescapeControlActions
 {
 	private readonly Battle battle;
 	private readonly HoverScroll hoverScroll = new();
@@ -18,30 +14,8 @@ public class Battlescape : Screen
 	public Battlescape(Battle battle)
 	{
 		this.battle = battle;
-		AddControl(new Overlay(Overlays.BattlescapeControls, 4));
 		AddControl(new ClickArea(0, 0, 320, 144, OnMapLeftClick, OnMapRightClick));
-		AddControl(new ClickArea(144, 0, 48, 56, OnLeftWeapon));
-		AddControl(new ClickArea(144, 272, 48, 56, OnRightWeapon));
-		AddControl(new ClickArea(144, 48, 32, 16, OnMoveUp));
-		AddControl(new ClickArea(160, 48, 32, 16, OnMoveDown));
-		AddControl(new ClickArea(144, 80, 32, 16, OnLevelUp));
-		AddControl(new ClickArea(160, 80, 32, 16, OnLevelDown));
-		AddControl(new ClickArea(144, 112, 32, 16, OnMiniMap));
-		AddControl(new ClickArea(160, 112, 32, 16, OnToggleCrouch));
-		AddControl(new ClickArea(144, 144, 32, 16, OnInventory));
-		AddControl(new ClickArea(160, 144, 32, 16, OnCenterOnActiveUnit));
-		AddControl(new ClickArea(144, 176, 32, 16, OnNextUnit));
-		AddControl(new ClickArea(160, 176, 32, 16, OnDoneAndNextUnit));
-		AddControl(new ClickArea(144, 208, 32, 16, OnToggleLevelView));
-		AddControl(new ClickArea(160, 208, 32, 16, OnOptions));
-		AddControl(new ClickArea(144, 240, 32, 16, OnEndTurn));
-		AddControl(new ClickArea(160, 240, 32, 16, OnAbortMission));
-		AddControl(new ClickArea(176, 48, 30, 12, OnOptionNoReserve));
-		AddControl(new ClickArea(188, 48, 30, 12, OnOptionReserveAimedShot));
-		AddControl(new ClickArea(176, 78, 30, 12, OnOptionReserveSnapShot));
-		AddControl(new ClickArea(188, 78, 30, 12, OnOptionReserveAutoShot));
-		AddControl(new ClickArea(176, 108, 164, 24, OnUnitStatistics));
-
+		AddControl(new BattlescapeControls(battle, this));
 		hoverScroll.OnScrollUp += battle.Map.ScrollUp;
 		hoverScroll.OnScrollDown += battle.Map.ScrollDown;
 		hoverScroll.OnScrollLeft += battle.Map.ScrollLeft;
@@ -85,7 +59,7 @@ public class Battlescape : Screen
 		// TODO: Right click logic
 	}
 
-	private void OnLeftWeapon()
+	public void OnLeftWeapon()
 	{
 		// TODO: HWP, alien?
 		var activeSoldier = battle.SelectedSoldier;
@@ -97,7 +71,7 @@ public class Battlescape : Screen
 		new ActionOptions().DoModal(this);
 	}
 
-	private void OnRightWeapon()
+	public void OnRightWeapon()
 	{
 		// TODO: HWP, alien?
 		var activeSoldier = battle.SelectedSoldier;
@@ -109,37 +83,37 @@ public class Battlescape : Screen
 		new ActionOptions().DoModal(this);
 	}
 
-	private static void OnMoveUp()
+	public void OnMoveUp()
 	{
 		//TODO
 	}
 
-	private static void OnMoveDown()
+	public void OnMoveDown()
 	{
 		//TODO
 	}
 
-	private void OnLevelUp()
+	public void OnLevelUp()
 	{
 		battle.Map.SelectNextLevelUp();
 	}
 
-	private void OnLevelDown()
+	public void OnLevelDown()
 	{
 		battle.Map.SelectNextLevelDown();
 	}
 
-	private static void OnMiniMap()
+	public void OnMiniMap()
 	{
 		//TODO
 	}
 
-	private static void OnToggleCrouch()
+	public void OnToggleCrouch()
 	{
 		//TODO
 	}
 
-	private void OnInventory()
+	public void OnInventory()
 	{
 		//TODO: detect if the active unit is a soldier, otherwise just return
 		//TODO: use the ground of the active soldier
@@ -150,66 +124,66 @@ public class Battlescape : Screen
 		GameState.Current.SetScreen(new Inventory(battle, activeSoldier, ground, false));
 	}
 
-	private void OnCenterOnActiveUnit()
+	public void OnCenterOnActiveUnit()
 	{
 		battle.Map.CenterOn(battle.SelectedUnit.Location);
 	}
 
-	private void OnNextUnit()
+	public void OnNextUnit()
 	{
 		battle.SelectNextUnit(false);
 		OnCenterOnActiveUnit();
 	}
 
-	private void OnDoneAndNextUnit()
+	public void OnDoneAndNextUnit()
 	{
 		battle.SelectNextUnit(true);
 		OnCenterOnActiveUnit();
 	}
 
-	private void OnToggleLevelView()
+	public void OnToggleLevelView()
 	{
 		battle.Map.ViewAllLevels = !battle.Map.ViewAllLevels;
 	}
 
-	private static void OnOptions()
+	public void OnOptions()
 	{
 		GameState.Current.SetScreen(new GameOptions());
 	}
 
-	private void OnEndTurn()
+	public void OnEndTurn()
 	{
 		//TODO: real end of turn logic
 		battle.StartNextTurn();
 		GameState.Current.SetScreen(new DisplayTurn(battle));
 	}
 
-	private void OnAbortMission()
+	public void OnAbortMission()
 	{
 		new AbortMission().DoModal(this);
 	}
 
-	private static void OnOptionNoReserve()
+	public void OnOptionNoReserve()
 	{
 		//TODO
 	}
 
-	private static void OnOptionReserveSnapShot()
+	public void OnOptionReserveSnapShot()
 	{
 		//TODO
 	}
 
-	private static void OnOptionReserveAimedShot()
+	public void OnOptionReserveAimedShot()
 	{
 		//TODO
 	}
 
-	private static void OnOptionReserveAutoShot()
+	public void OnOptionReserveAutoShot()
 	{
 		//TODO
 	}
 
-	private void OnUnitStatistics()
+	public void OnUnitStatistics()
 	{
 		var activeSolider = battle.SelectedSoldier;
 		if (activeSolider == null)
@@ -221,33 +195,5 @@ public class Battlescape : Screen
 	{
 		battle.Map.Render(buffer, renderCursor: hasFocus);
 		base.Render(buffer);
-		DrawUnitInformation(buffer, battle.SelectedUnit);
-		// TODO: Black/Gray color scheme?
-		Font.Small.DrawString(
-			buffer,
-			150,
-			232,
-			battle.Map.ViewAllLevels ? "2" : "1",
-			ColorScheme.White
-		);
-		var activeSoldier = battle.SelectedSoldier;
-		activeSoldier?.LeftHand?.Render(buffer, 148, 8, isCentered: true);
-		activeSoldier?.RightHand?.Render(buffer, 148, 280, isCentered: true);
-	}
-
-	private static void DrawUnitInformation(GraphicsBuffer buffer, Unit unit)
-	{
-		if (unit == null)
-			return;
-		Font.Normal.DrawString(buffer, 176, 134, unit.Name, ColorScheme.Blue);
-		Font.Small.DrawString(buffer, 186, 136, $"{unit.TimeUnits}", ColorScheme.LightGreen);
-		Font.Small.DrawString(buffer, 194, 136, $"{unit.Health}", ColorScheme.Red);
-		Font.Small.DrawString(buffer, 186, 154, $"{unit.Energy}", ColorScheme.Orange);
-		Font.Small.DrawString(buffer, 194, 154, $"{unit.Morale}", ColorScheme.Purple);
-		new Bar(185, 170, unit.MaxTimeUnits, 3, unit.TimeUnits, 55, 48).Render(buffer);
-		new Bar(189, 170, unit.MaxEnergy, 3, unit.Energy, 23, 16).Render(buffer);
-		new Bar(193, 170, unit.MaxHealth, 3, unit.Health, 39, 32).Render(buffer);
-		new Bar(197, 170, unit.MaxMorale, 3, unit.Morale, 249, 247).Render(buffer);
-		unit.Rank?.Image().Render(buffer, 177, 107);
 	}
 }
