@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using XCom.Battlescape.Tiles;
 using XCom.Data;
+using XCom.Graphics;
 
 namespace XCom.Battlescape;
 
@@ -109,5 +110,14 @@ public class BattleItem
 	{
 		return Ammunition == null
 			&& (item.Item as AmmunitionType?)?.Metadata().Weapon == (WeaponType?)Item;
+	}
+
+	public void Render(GraphicsBuffer buffer, int topRow, int leftColumn, bool isCentered = false)
+	{
+		var centerRowOffset = (3 - Height) * 16 / 2;
+		var centerColumnOffset = (2 - Width) * 16 / 2;
+		var top = topRow + (isCentered ? centerRowOffset : 0);
+		var left = leftColumn + (isCentered ? centerColumnOffset : 0);
+		buffer.DrawItem(top, left, Image);
 	}
 }

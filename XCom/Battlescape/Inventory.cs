@@ -199,26 +199,12 @@ public class Inventory : Screen
 	{
 		DrawBattleItems(buffer, soldier.RightShoulder, 40, 16);
 		DrawBattleItems(buffer, soldier.LeftShoulder, 40, 112);
-		DrawCenteredBattleItem(buffer, soldier.RightHand, 64, 0);
-		DrawCenteredBattleItem(buffer, soldier.LeftHand, 64, 128);
+		soldier.RightHand?.Render(buffer, 64, 0, isCentered: true);
+		soldier.LeftHand?.Render(buffer, 64, 128, isCentered: true);
 		DrawBattleItems(buffer, soldier.RightLeg, 120, 0);
 		DrawBattleItems(buffer, soldier.LeftLeg, 120, 128);
 		DrawBattleItems(buffer, soldier.BackPack, 40, 192);
 		DrawBattleItems(buffer, soldier.Belt, 104, 192);
-	}
-
-	private static void DrawCenteredBattleItem(
-		GraphicsBuffer buffer,
-		BattleItem item,
-		int topRow,
-		int leftColumn
-	)
-	{
-		if (item == null)
-			return;
-		var top = topRow + (3 - item.Height) * 16 / 2;
-		var left = leftColumn + (2 - item.Width) * 16 / 2;
-		buffer.DrawItem(top, left, item.Image);
 	}
 
 	private static void DrawBattleItems(
@@ -230,11 +216,7 @@ public class Inventory : Screen
 	{
 		foreach (var row in Enumerable.Range(0, items.GetLength(0)))
 		foreach (var column in Enumerable.Range(0, items.GetLength(1)))
-		{
-			var item = items[row, column];
-			if (item != null)
-				buffer.DrawItem(topRow + row * 16, leftColumn + column * 16, item.Image);
-		}
+			items[row, column]?.Render(buffer, topRow + row * 16, leftColumn + column * 16);
 	}
 
 	private static void DrawBattleItems(
@@ -245,11 +227,7 @@ public class Inventory : Screen
 	)
 	{
 		foreach (var column in Enumerable.Range(0, items.Length))
-		{
-			var item = items[column];
-			if (item != null)
-				buffer.DrawItem(topRow, leftColumn + column * 16, item.Image);
-		}
+			items[column]?.Render(buffer, topRow, leftColumn + column * 16);
 	}
 
 	private void DrawSelection(GraphicsBuffer buffer)
@@ -270,13 +248,13 @@ public class Inventory : Screen
 				selection.Ammunition == null
 					? selection
 					: new BattleItem { Item = selection.Ammunition };
-			DrawCenteredBattleItem(buffer, ammunitionItem, 88, 272);
+			ammunitionItem.Render(buffer, 88, 272, isCentered: true);
 		}
 
 		var cursor = GameState.Current.PointerPosition;
 		var width = selection.Width * 16;
 		var height = selection.Height * 16;
-		buffer.DrawItem(cursor.Y - height / 2, cursor.X - width / 2, selection.Image);
+		selection.Render(buffer, cursor.Y - height / 2, cursor.X - width / 2);
 	}
 
 	private void OnOk()

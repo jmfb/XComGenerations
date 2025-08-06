@@ -231,10 +231,8 @@ public class Battlescape : Screen
 			ColorScheme.White
 		);
 		var activeSoldier = battle.SelectedSoldier;
-		if (activeSoldier?.LeftHand != null)
-			buffer.DrawItem(144, 0, activeSoldier.LeftHand.Image);
-		if (activeSoldier?.RightHand != null)
-			buffer.DrawItem(144, 272, activeSoldier.RightHand.Image);
+		activeSoldier?.LeftHand?.Render(buffer, 148, 8, isCentered: true);
+		activeSoldier?.RightHand?.Render(buffer, 148, 280, isCentered: true);
 	}
 
 	private static void DrawUnitInformation(GraphicsBuffer buffer, Unit unit)
