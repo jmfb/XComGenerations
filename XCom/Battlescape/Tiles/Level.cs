@@ -26,10 +26,12 @@ public class Level
 		int leftColumn,
 		IReadOnlyCollection<BattleSoldier> soldiers,
 		int levelIndex,
-		MapLocation cursorLocation
+		MapLocation cursorLocation,
+		CursorMode cursorMode
 	)
 	{
 		var isAlternateFrame = AnimationFrame.GetCurrent(2) == 1;
+		var targetingFrame = AnimationFrame.GetCurrent(4) + 7;
 
 		var soldierByLocation = soldiers.ToDictionary(soldier =>
 			(soldier.Location.Row, soldier.Location.Column)
@@ -60,14 +62,23 @@ public class Level
 				&& levelIndex <= cursorLocation.Level;
 			var cursorIndex =
 				levelIndex < (cursorLocation?.Level ?? 0) ? 2
+				: cursorMode == CursorMode.Target
+					? hasUnit ? targetingFrame
+						: 6
 				: hasUnit && isAlternateFrame ? 1
 				: 0;
-			if (showCursor)
+			if (showCursor && cursorIndex < 3)
 				buffer.DrawItem(top, left, ImageGroup.Cursors.Images[cursorIndex]);
 			tile.Entity.Render(buffer, top, left);
 			soldier?.Render(buffer, top, left);
 			if (showCursor)
-				buffer.DrawItem(top, left, ImageGroup.Cursors.Images[cursorIndex + 3]);
+				buffer.DrawItem(
+					top,
+					left,
+					ImageGroup.Cursors.Images[cursorIndex < 3 ? cursorIndex + 3 : cursorIndex]
+				);
+			if (showCursor && cursorMode == CursorMode.Throw && levelIndex == cursorLocation?.Level)
+				buffer.DrawItem(top, left, ImageGroup.Cursors.Images[isAlternateFrame ? 16 : 15]);
 			if (GameState.Current.Data.Battle.SelectedUnit == soldier)
 				SelectedUnit.Render(top - 8 - (isAlternateFrame ? 1 : 0), left + 8, buffer);
 		}

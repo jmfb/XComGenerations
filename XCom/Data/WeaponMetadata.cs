@@ -23,4 +23,5 @@ public class WeaponMetadata : BattleItemMetadata
 		Enum.GetValues<AmmunitionType>()
 			.Where(ammo => ammo.Metadata().Weapon == ThisWeapon)
 			.ToList();
+	public bool UsesAmmunition => SupportedAmmunition.Any();
 }
