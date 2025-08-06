@@ -65,10 +65,14 @@ public class Battlescape : Screen, BattlescapeControlActions
 		var activeSoldier = battle.SelectedSoldier;
 		if (activeSoldier == null)
 			return;
-		if (activeSoldier.LeftHand == null)
+		var item = activeSoldier.LeftHand;
+		if (item == null)
 			return;
-		// TODO: Parameterize with valid options and receive response
-		new ActionOptions().DoModal(this);
+		new ActionOptions(
+			item,
+			activeSoldier.MaxTimeUnits,
+			value => OnHandAction(Hand.Left, item, value)
+		).DoModal(this);
 	}
 
 	public void OnRightWeapon()
@@ -77,10 +81,21 @@ public class Battlescape : Screen, BattlescapeControlActions
 		var activeSoldier = battle.SelectedSoldier;
 		if (activeSoldier == null)
 			return;
-		if (activeSoldier.RightHand == null)
+		var item = activeSoldier.RightHand;
+		if (item == null)
 			return;
-		// TODO: Parameterize with valid options and receive response
-		new ActionOptions().DoModal(this);
+		new ActionOptions(
+			item,
+			activeSoldier.MaxTimeUnits,
+			value => OnHandAction(Hand.Right, item, value)
+		).DoModal(this);
+	}
+
+	private void OnHandAction(Hand hand, BattleItem item, ActionValue value)
+	{
+		// TODO: Check time unit requirements
+		// TODO: Check ammunition requirements
+		// TODO: Handle different action types (Scan, Throw, Fire, Launch)
 	}
 
 	public void OnMoveUp()

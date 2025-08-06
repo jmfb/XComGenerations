@@ -1,3 +1,5 @@
+using XCom.Battlescape;
+
 namespace XCom.Data;
 
 public enum ShotType
@@ -14,15 +16,15 @@ public static class ShotTypeExtensions
 		return metadata[shotType];
 	}
 
-	private static ShotMetadata Shot(string name)
+	private static ShotMetadata Shot(string name, ActionType actionType)
 	{
-		return new ShotMetadata { Name = name };
+		return new ShotMetadata { Name = name, ActionType = actionType };
 	}
 
 	private static readonly Dictionary<ShotType, ShotMetadata> metadata = new()
 	{
-		{ ShotType.Auto, Shot("Auto") },
-		{ ShotType.Snap, Shot("Snap") },
-		{ ShotType.Aimed, Shot("Aimed") },
+		{ ShotType.Auto, Shot("Auto", ActionType.AutoShot) },
+		{ ShotType.Snap, Shot("Snap", ActionType.SnapShot) },
+		{ ShotType.Aimed, Shot("Aimed", ActionType.AimedShot) },
 	};
 }
