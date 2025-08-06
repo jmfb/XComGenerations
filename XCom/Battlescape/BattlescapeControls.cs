@@ -51,9 +51,8 @@ public class BattlescapeControls : InteractiveContainer
 			ColorScheme.White
 		);
 		var activeSoldier = battle.SelectedSoldier;
-		// TODO: Ammunition counts
-		activeSoldier?.LeftHand?.Render(buffer, 148, 8, isCentered: true);
-		activeSoldier?.RightHand?.Render(buffer, 148, 280, isCentered: true);
+		DrawHandItem(buffer, activeSoldier?.LeftHand, 148, 8);
+		DrawHandItem(buffer, activeSoldier?.RightHand, 148, 280);
 		// TODO: HWP, alien?
 	}
 
@@ -71,5 +70,19 @@ public class BattlescapeControls : InteractiveContainer
 		new Bar(193, 170, unit.MaxHealth, 3, unit.Health, 39, 32).Render(buffer);
 		new Bar(197, 170, unit.MaxMorale, 3, unit.Morale, 249, 247).Render(buffer);
 		unit.Rank?.Image().Render(buffer, 177, 107);
+	}
+
+	private static void DrawHandItem(
+		GraphicsBuffer buffer,
+		BattleItem item,
+		int topRow,
+		int leftColumn
+	)
+	{
+		if (item == null)
+			return;
+		item.Render(buffer, topRow, leftColumn, isCentered: true);
+		if (item.Ammunition != null)
+			Font.Small.DrawString(buffer, topRow, leftColumn, $"{item.Rounds}", ColorScheme.White);
 	}
 }
