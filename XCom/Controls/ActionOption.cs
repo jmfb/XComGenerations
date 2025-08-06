@@ -39,7 +39,7 @@ public class ActionOption(
 			);
 
 		var position = GameState.Current.PointerPosition;
-		var isHovered = HitTest(position.X, position.Y);
+		var isHovered = HitTest(position.Y, position.X);
 		var color = isHovered ? scheme.Base : scheme.Darker;
 		buffer.FillRect(
 			topRow + pattern.Length,

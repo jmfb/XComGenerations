@@ -17,14 +17,16 @@ public abstract class Screen : InteractiveContainer
 		parent.OnKillFocus();
 		parent.AddControl(this);
 		GameState.Current.Dispatcher.CaptureFocus(this);
-		WindowsSoundEffect.WindowOpen.Play();
+		if (!IsSilentModal)
+			WindowsSoundEffect.WindowOpen.Play();
 		OnSetFocus();
 	}
 
 	protected void EndModal()
 	{
 		OnKillFocus();
-		WindowsSoundEffect.WindowClose.Play();
+		if (!IsSilentModal)
+			WindowsSoundEffect.WindowClose.Play();
 		GameState.Current.Dispatcher.ReleaseFocus();
 		ModalParent.RemoveControl(this);
 		ModalParent.OnSetFocus();
@@ -36,6 +38,8 @@ public abstract class Screen : InteractiveContainer
 		EndModal();
 		newModal.DoModal(currentParent);
 	}
+
+	public virtual bool IsSilentModal => false;
 
 	public static readonly Geoscape Geoscape = new();
 }

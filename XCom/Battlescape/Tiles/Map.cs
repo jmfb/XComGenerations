@@ -70,9 +70,9 @@ public class Map
 		ColumnOffset -= offset;
 	}
 
-	public void Render(GraphicsBuffer buffer, int animationFrame)
+	public void Render(GraphicsBuffer buffer, bool renderCursor, int animationFrame)
 	{
-		var cursorLocation = GetCursorLocation();
+		var cursorLocation = renderCursor ? GetCursorLocation() : null;
 		var levelsToRender = ViewAllLevels ? Levels.Length : SelectedLevelIndex + 1;
 		foreach (var levelIndex in Enumerable.Range(0, levelsToRender))
 		{
