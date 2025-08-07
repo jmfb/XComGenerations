@@ -197,6 +197,8 @@ public class ImageGroup
 		24
 	);
 
+	public static readonly ImageGroup MapPreviews = new(BattlescapeImages.MapPreviews, 4, 4);
+
 	public static readonly ImageGroup InterceptionIcons = new(
 		InterceptionImageTables.Icons,
 		InterceptionImageGroups.Icons

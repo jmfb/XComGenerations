@@ -7,7 +7,7 @@ namespace XCom.Screens;
 
 public class ImageGroupTester : Screen
 {
-	private readonly ImageGroup imageGroup = ImageGroup.InterceptionOtherIcons;
+	private readonly ImageGroup imageGroup = ImageGroup.MapPreviews;
 	private int imageIndex;
 	private int paletteIndex = 14;
 
@@ -58,21 +58,18 @@ public class ImageGroupTester : Screen
 
 	public override void Render(GraphicsBuffer buffer)
 	{
-		buffer.DrawOverlay(XCom.Content.Overlays.Overlays.GraphButtons, paletteIndex);
 		base.Render(buffer);
 
 		const int top = 120;
 		var left = 0;
 		for (var index = imageIndex; index < imageGroup.Images.Length; ++index)
 		{
-			buffer.DrawItem(top, left, imageGroup.Images[index], 32, paletteIndex);
-			left += 32;
+			buffer.DrawImage(imageGroup.Images[index], top, left, 4, paletteIndex);
+			left += 4;
 			if (left > 320)
 				break;
 		}
 		Font.Normal.DrawString(buffer, 50, 0, $"{imageIndex}", ColorScheme.White);
 		Font.Normal.DrawString(buffer, 50, 100, $"Palette {paletteIndex}", ColorScheme.White);
-
-		SelectedUnit.Render(112, 8, buffer);
 	}
 }

@@ -38,5 +38,7 @@ public static class Images
 
 	public static byte[] MapBorder => (byte[])ResourceManager.GetObject("MapBorder", null);
 
+	public static byte[] MapPreviews => (byte[])ResourceManager.GetObject("MapPreviews", null);
+
 	public static byte[] SoldierStats => (byte[])ResourceManager.GetObject("SoldierStats", null);
 }
